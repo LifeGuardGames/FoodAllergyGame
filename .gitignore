@@ -1,0 +1,40 @@
+# Unity3D .gitignore file.
+
+.DS_Store
+
+FoodAllergyGame/Library
+
+FoodAllergyGame/Temp
+
+# tk2d
+FoodAllergyGame/Assets/-tk2d.asset
+
+FoodAllergyGame/Assets/Resources/tk2d/*
+
+# fast platform
+FoodAllergyGame/LocalCache
+
+*.csproj
+
+*.unityproj
+
+*.pidb
+
+*.sln
+
+*.userprefs
+
+*.sublime-project
+
+*.sublime-workspace
+
+*.suo
+
+FoodAllergyGame/Assets/Editor/mod_pbxproj.pyc
+FoodAllergyGame/Assets/Editor/mod_pbxproj.pyc.meta
+
+FoodAllergyGame/Assets/Editor/mod_pbxproj.py
+FoodAllergyGame/Assets/Editor/mod_pbxproj.py.meta
+FoodAllergyGame/Assets/-tk2d.asset.meta
+
+FoodAllergyGame/Assets/XML/Resources/Constants/_Critical.xml
