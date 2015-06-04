@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : Singleton<GameManager> {
 
 	//StartMenu function - starts menu config - starts the meu builder found in food manager
 	//StartGame function - begins the game with the current menu config starts the dayManager
@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour {
 	//PauseGame function - pauses all corutines and movement
 	//End Game - called by Day manager shows the results screen and grabs stats from the appropriate resources
 	public bool isPaused;
+
+	public void DayComplete();
 	// Use this for initialization
 	void Start () {
 	

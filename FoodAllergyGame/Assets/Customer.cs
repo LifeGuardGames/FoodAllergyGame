@@ -8,16 +8,67 @@ public class Customer : MonoBehaviour {
 	//select food keyword based off allergen and random rolls
 	// Allergen random between wheat, dariy and peanut
 	//State the current state of the customer
-	//JumpToTable jumps to the table given a table number
+
 	//NotifyLeave gives the user money based of satifation and then passes the id to the dayManager
 
-	// Use this for initialization
-	void Start () {
-	
+	public string customerID;
+	public CustomerStates state;
+	public string allergy;
+	private float menuTimer;
+	private float attentionSpan;
+	public int Satisfaction;
+
+	public void Init(){
+		state = CustomerStates.InLine;
+		StartCoroutine(SatisfactionTimer());
+		Satisfaction = 3;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	IEnumerator SatisfactionTimer(){
+		yield return new WaitForSeconds (attentionSpan);
+		Satisfaction--;
+		StartCoroutine(SatisfactionTimer());
 	}
+
+	//JumpToTable jumps to the table given a table number
+	public void JumpToTable(int tableNum){
+		//TODO parent customer to table and move customer to table
+		state = CustomerStates.ReadingMenu;
+		StartCoroutine ("ReadMenu");
+		StopCoroutine(SatisfactionTimer());
+		attentionSpan = 8.0f;
+		StartCoroutine(SatisfactionTimer());
+	}
+
+	IEnumerator ReadMenu(){
+		yield return new WaitForSeconds(menuTimer);
+		//TODO select food option
+		state = CustomerStates.WaitForOrder;
+	}
+
+	public void GetOrder(){
+		//TODO return the supplied order
+		//TODO display table number on table
+		attentionSpan = 16.0f;
+		state = CustomerStates.WaitForFood;
+		StartCoroutine(SatisfactionTimer());
+	}
+
+	public void Eating(){
+		StopCoroutine(SatisfactionTimer());
+		state = CustomerStates.Eating;
+		StartCoroutine("EatingTime");
+	}
+
+	IEnumerator EatingTimer(){
+		yield return new WaitForSeconds(6.0f);
+		attentionSpan = 6.0f;
+		state = CustomerStates.WaitForCheck;
+		StartCoroutine(SatisfactionTimer());
+	}
+
+	public void NotifyLeave(){
+		DayManager.Instance.RemoveElement(customerID);
+	}
+
 }

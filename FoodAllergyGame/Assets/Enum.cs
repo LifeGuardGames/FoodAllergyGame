@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enum : MonoBehaviour {
 	public enum CustomerStates{
 		None,
 		InLine,
@@ -20,13 +19,3 @@ public class Enum : MonoBehaviour {
 		Meal,
 	}
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-}
