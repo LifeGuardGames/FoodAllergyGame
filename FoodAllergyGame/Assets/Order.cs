@@ -4,16 +4,9 @@ using System.Collections;
 public class Order : MonoBehaviour {
 
 	//string FoodID the id of the food
+	public string FoodID;
 	//int TableNum the table number that ordered the dish used to find which table this goes too.
+	public int TableNum;
 	//bool IsCooked has this order been cooked
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	public bool isCooked;
 }

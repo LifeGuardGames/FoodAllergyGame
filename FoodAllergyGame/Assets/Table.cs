@@ -8,13 +8,16 @@ public class Table : MonoBehaviour {
 	//Table Number hard coded number to distinguish between tables
 	public int tableNum;
 
-	// Use this for initialization
-	void Start () {
-	
+	public void TalkToConsumer(){
+		if(transform.childCount > 0){
+			transform.GetChild(0).gameObject.GetComponent<Customer>().CheckState();
+		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	// tell waiter to put food down
+	public void FoodDelivered(){
+
+	}
+	// pay the waiter
+	public void OrderObtained(){
 	}
 }

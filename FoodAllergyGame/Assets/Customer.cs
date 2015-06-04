@@ -49,12 +49,14 @@ public class Customer : MonoBehaviour {
 	public void GetOrder(){
 		//TODO return the supplied order
 		//TODO display table number on table
+		transform.GetComponentInParent<Table>().OrderObtained();
 		attentionSpan = 16.0f;
 		state = CustomerStates.WaitForFood;
 		StartCoroutine(SatisfactionTimer());
 	}
 
 	public void Eating(){
+		transform.GetComponentInParent<Table>().FoodDelivered();
 		StopCoroutine(SatisfactionTimer());
 		state = CustomerStates.Eating;
 		StartCoroutine("EatingTime");
@@ -69,6 +71,22 @@ public class Customer : MonoBehaviour {
 
 	public void NotifyLeave(){
 		DayManager.Instance.RemoveElement(customerID);
+	}
+
+	public void CheckState(){
+		switch(state){
+		case CustomerStates.WaitForOrder:
+			GetOrder();
+			break;
+		case CustomerStates.WaitForFood:
+			Eating();
+			break;
+		case CustomerStates.WaitForCheck:
+			NotifyLeave();
+			break;
+		default:
+			break;
+		}
 	}
 
 }
