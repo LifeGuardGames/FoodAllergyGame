@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Customer : MonoBehaviour {
@@ -70,7 +70,7 @@ public class Customer : MonoBehaviour {
 	}
 
 	public void NotifyLeave(){
-		DayManager.Instance.RemoveElement(customerID);
+		RestaurantManager.Instance.RemoveElement(customerID);
 	}
 
 	public void CheckState(){

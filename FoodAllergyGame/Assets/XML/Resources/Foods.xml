@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Foods>
+	<Food ID = "Food00">
+		<FoodNameKey>FoodName</FoodNameKey>
+		<Allergies>Allergy1,Allergy2,Allergy3</Allergies>
+		<Keywords>Keyword1,Keyword2</Keywords>
+	</Food>
+</Foods>
+
