@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class DayManager : Singleton<DayManager> {
 
@@ -12,12 +13,14 @@ public class DayManager : Singleton<DayManager> {
 	public float customerTimer;
 	public bool dayOver = false;
 	//tracks customers via hashtable
-	Hashtable CustomerList;
+	private Dictionary<string, GameObject> customerHash;
 
 	// RemoveCustomer removes the customer from a hashtable 
 	//and then if the day is over checks to see if the hastable is empty and if it is it ends the round
 
-
+	void Start(){
+		customerHash = new Dictionary<string, GameObject>();
+	}
 
 	public void StartDay(){
 		StartCoroutine("DayTracker");
@@ -44,15 +47,15 @@ public class DayManager : Singleton<DayManager> {
 	}
 
 	public void RemoveElement(string Id){
-		if(CustomerList.ContainsKey(Id)){
-			CustomerList.Remove(Id);
+		if(customerHash.ContainsKey(Id)){
+			customerHash.Remove(Id);
 			CheckForGameOver();
 		}
 	}
 
 	private void CheckForGameOver(){
 		if(dayOver){
-			if(CustomerList.Count == 0){
+			if(customerHash.Count == 0){
 				GameManager.Instance.DayComplete();
 			}
 		}
