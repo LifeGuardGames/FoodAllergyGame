@@ -11,7 +11,7 @@ public class GameManager : Singleton<GameManager> {
 	//End Game - called by Day manager shows the results screen and grabs stats from the appropriate resources
 	public bool isPaused;
 
-	public void DayComplete();
+	public void DayComplete(){};
 	// Use this for initialization
 	void Start () {
 	
