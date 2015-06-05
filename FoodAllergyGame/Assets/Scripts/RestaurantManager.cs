@@ -14,19 +14,21 @@ public class RestaurantManager : Singleton<RestaurantManager> {
 	public bool dayOver = false;
 	//tracks customers via hashtable
 	private Dictionary<string, GameObject> customerHash;
+	private SatisfactionAI satisfactionAI;
 
 	// RemoveCustomer removes the customer from a hashtable 
 	//and then if the day is over checks to see if the hastable is empty and if it is it ends the round
 
 	void Start(){
 		customerHash = new Dictionary<string, GameObject>();
+		satisfactionAI = new SatisfactionAI();
 	}
-
+	// Called at the start of the game day begins the day tracker coroutine 
 	public void StartDay(){
 		StartCoroutine("DayTracker");
 		StartCoroutine("SpawnCustomer");
 	}
-
+	// when complete flips the dayOver bool once the bool is true customers will cease spawning and the game will be looking for the end point
 	IEnumerator DayTracker(){
 		while(GameManager.Instance.isPaused){
 			yield return new WaitForFixedUpdate();
@@ -34,7 +36,7 @@ public class RestaurantManager : Singleton<RestaurantManager> {
 		yield return new WaitForSeconds(dayTime);
 		dayOver = true;
 	}
-
+	//Spawns a customer after a given amount of timer then it restarts the coroutine
 	IEnumerator SpawnCustomer(){
 		while(GameManager.Instance.isPaused){
 			yield return new WaitForFixedUpdate();
@@ -45,14 +47,18 @@ public class RestaurantManager : Singleton<RestaurantManager> {
 			StartCoroutine("SpawnCustomer");
 		}
 	}
-
-	public void RemoveElement(string Id){
+	// removes a customer from the dictionary
+	public void CustomerLeft(string Id, int satisfaction){
 		if(customerHash.ContainsKey(Id)){
+			satisfactionAI.CalculateCheck(satisfaction);
 			customerHash.Remove(Id);
 			CheckForGameOver();
 		}
+		else{
+			Debug.LogError("Invalid call on " + Id);
+		}
 	}
-
+	//checks to see if all the customers let and if so completes the day
 	private void CheckForGameOver(){
 		if(dayOver){
 			if(customerHash.Count == 0){
