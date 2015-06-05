@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class DayManager : Singleton<DayManager> {
+public class RestaurantManager : Singleton<RestaurantManager> {
 
 	//Start Day begins the day coroutine and customer coroutine
 	//Day Tracker once time runs out stops the customer loop

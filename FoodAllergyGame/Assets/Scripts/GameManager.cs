@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class GameManager : Singleton<GameManager> {
@@ -12,7 +12,7 @@ public class GameManager : Singleton<GameManager> {
 	public bool isPaused;
 
 	public void GameStart(){
-		DayManager.Instance.StartDay();
+		RestaurantManager.Instance.StartDay();
 	}
 
 	public void GameOver(){
