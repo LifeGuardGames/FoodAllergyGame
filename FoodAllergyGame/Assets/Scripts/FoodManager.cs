@@ -8,7 +8,7 @@ public class FoodManager : Singleton<FoodManager>{
 	//SelectFoodItems chooses food items based off a supplied keyword
 	//GenerateMenu creates a list of possible menu items from the Foodloader
 	//FoodState gets the specific food data based off a food id
-	public List <string> Menu;
+	public List<string> menu;
 
 	public void GenerateMenu(){
 	
@@ -23,12 +23,7 @@ public class FoodManager : Singleton<FoodManager>{
 	}
 
 	// Use this for initialization
-	void Start () {
-		Menu = new List<string>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	void Start(){
+		menu = new List<string>();
 	}
 }
