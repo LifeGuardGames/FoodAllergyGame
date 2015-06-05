@@ -3,13 +3,14 @@ using System.Collections;
 
 public class SatisfactionManager : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
+	public int score;
+	public int numOfCustomers;
+
+	// takes a satisfaction and transfers it into score
+	public void SatisfactionToScore(int Satisfaction){
+		numOfCustomers++;
+		score += Satisfaction * 100 ;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+
 }
