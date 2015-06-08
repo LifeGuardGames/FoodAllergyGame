@@ -1,0 +1,319 @@
+fileFormatVersion: 2
+guid: 1e1ae33cb7211e842951c67a88457486
+timeCreated: 1433801922
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: food_0
+    21300002: food_1
+    21300004: food_2
+    21300006: food_3
+    21300008: food_4
+    21300010: food_5
+    21300012: food_6
+    21300014: food_7
+    21300016: food_8
+    21300018: food_9
+    21300020: food_10
+    21300022: food_11
+    21300024: food_12
+    21300026: food_13
+    21300028: food_14
+    21300030: food_15
+    21300032: food_16
+    21300034: food_17
+    21300036: food_18
+    21300038: food_19
+    21300040: food_20
+    21300042: food_21
+    21300044: food_22
+    21300046: food_23
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -2
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 7
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: food_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 220
+        width: 62
+        height: 41
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: food_1
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 219
+        width: 62
+        height: 42
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: food_2
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 219
+        width: 62
+        height: 35
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: food_3
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 219
+        width: 62
+        height: 28
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: food_4
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 219
+        width: 62
+        height: 26
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: food_5
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 219
+        width: 62
+        height: 48
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: food_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 146
+        width: 62
+        height: 36
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: food_7
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 146
+        width: 62
+        height: 31
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: food_8
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 146
+        width: 62
+        height: 28
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: food_9
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 146
+        width: 62
+        height: 35
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: food_10
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 146
+        width: 62
+        height: 27
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: food_11
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 146
+        width: 62
+        height: 27
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: food_12
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 73
+        width: 62
+        height: 53
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: food_13
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 73
+        width: 62
+        height: 45
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: food_14
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 73
+        width: 62
+        height: 25
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: food_15
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 73
+        width: 62
+        height: 27
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: food_16
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 73
+        width: 62
+        height: 30
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: food_17
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 73
+        width: 62
+        height: 25
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: food_18
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 0
+        width: 62
+        height: 29
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: food_19
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 0
+        width: 62
+        height: 28
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: food_20
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 0
+        width: 62
+        height: 28
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: food_21
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 0
+        width: 62
+        height: 26
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: food_22
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 0
+        width: 62
+        height: 31
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: food_23
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 0
+        width: 62
+        height: 47
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
