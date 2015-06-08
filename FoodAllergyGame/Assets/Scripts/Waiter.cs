@@ -9,12 +9,12 @@ public class Waiter : Singleton<Waiter>{
 	//UnHand hands off the item to the kitchen or customer
 	public WaiterHands hand1;
 	public WaiterHands hand2;
-	public Order hand1Object;
-	public Order hand2Object;
+	public GameObject hand1Object;
+	public GameObject hand2Object;
 	public bool moving;
 	private Vector3 target;
 	public float speed;
-	public Customer currentlyServing;
+	public GameObject currentlyServing;
 
 	public void MoveToLocation(Vector3 location){
 		moving = true;
@@ -36,24 +36,28 @@ public class Waiter : Singleton<Waiter>{
 		hand2 = WaiterHands.None;
 	}
 
-	public void SetHand(Order order){
+	public void SetHand(GameObject order){
 		if(hand1 == WaiterHands.None){
-			if(hand1Object.name == "Order"){
+			if(!order.GetComponent<Order>().isCooked){
 				hand1 = WaiterHands.Order;
+				hand1Object = order;
 				//TODO show order in hand
 			}
 			else{
 				hand1 = WaiterHands.Meal;
+				hand1Object = order;
 				//TODO show meal in hand
 			}
 		}
 		else if(hand2 == WaiterHands.None){
-			if(hand2Object.name == "Order"){
+			if(!order.GetComponent<Order>().isCooked){
 				hand2 = WaiterHands.Order;
+				hand2Object = order;
 				//TODO show order in hand
 			}
 			else{
 				hand2 = WaiterHands.Meal;
+				hand2Object = order;
 				//TODO show meal in hand
 			}
 		}
@@ -62,7 +66,7 @@ public class Waiter : Singleton<Waiter>{
 		}
 	}
 
-	public Order OrderChef(){
+	public GameObject OrderChef(){
 		if(hand2 == WaiterHands.Order){
 			return hand2Object;
 		}
@@ -75,7 +79,7 @@ public class Waiter : Singleton<Waiter>{
 		}
 	}
 
-	public Order HandMeal(int tableNum){
+	public GameObject HandMeal(int tableNum){
 		if(hand1 == WaiterHands.Meal){
 			//if(handROBJ.GetComponent<Order>().TableNum == tableNum){
 			return hand1Object;
