@@ -11,10 +11,10 @@ public class Waiter : Singleton<Waiter>{
 	public WaiterHands hand2;
 
 	public Transform hand1Parent;
-	public GameObject hand1Object;
-	public GameObject hand2Object;
 	public Transform hand2Parent;
 
+	public GameObject hand1Object;
+	public GameObject hand2Object;
 
 	public bool moving;
 	private Vector3 target;
