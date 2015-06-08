@@ -9,8 +9,13 @@ public class Waiter : Singleton<Waiter>{
 	//UnHand hands off the item to the kitchen or customer
 	public WaiterHands hand1;
 	public WaiterHands hand2;
+
+	public Transform hand1Parent;
+	public Transform hand2Parent;
+
 	public Order hand1Object;
 	public Order hand2Object;
+
 	public bool moving;
 	private Vector3 target;
 	public float speed;

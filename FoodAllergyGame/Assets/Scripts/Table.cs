@@ -7,6 +7,10 @@ public class Table : MonoBehaviour {
 	//Table Number hard coded number to distinguish between tables
 	public int tableNumber;
 
+	public Transform seat;
+	public Transform waiterSpot;
+	public Transform foodSpot;
+
 	public void TalkToConsumer(){
 		if(transform.childCount > 0){
 			transform.GetChild(0).gameObject.GetComponent<Customer>().CheckState();
