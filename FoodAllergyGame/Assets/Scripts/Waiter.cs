@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Waiter : MonoBehaviour{
+public class Waiter : Singleton<Waiter>{
 
 	//MoveToLocation moves the waiter to a specified location
 	//SetHand populates first free had with enum
@@ -14,6 +14,7 @@ public class Waiter : MonoBehaviour{
 	public bool moving;
 	private Vector3 target;
 	public float speed;
+	public Customer currentlyServing;
 
 	public void MoveToLocation(Vector3 location){
 		moving = true;

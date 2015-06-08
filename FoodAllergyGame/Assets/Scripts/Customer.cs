@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Customer : MonoBehaviour{
 	// ID an id given on creation
@@ -15,10 +16,10 @@ public class Customer : MonoBehaviour{
 	public CustomerStates state;
 
 	// The allergy of the customer
-	public string allergy;
+	public List <Allergies> allergy;
 
 	// Time spent looking at the menu
-	private float menuTimer;
+	private float menuTimer = 4.0f;
 
 	// The attention timer
 	private float attentionSpan;
@@ -30,6 +31,7 @@ public class Customer : MonoBehaviour{
 	public void Init(){
 		state = CustomerStates.InLine;
 		StartCoroutine(SatisfactionTimer());
+		allergy = new List<Allergies>();
 		satisfaction = 3;
 	}
 
@@ -54,7 +56,11 @@ public class Customer : MonoBehaviour{
 	IEnumerator ReadMenu(){
 		yield return new WaitForSeconds(menuTimer);
 		//TODO select food option
+		StopCoroutine(SatisfactionTimer());
+		attentionSpan = 8.0f;
+		StartCoroutine(SatisfactionTimer());
 		state = CustomerStates.WaitForOrder;
+		//TODO show customer waiting for order
 	}
 
 	// Gives the order to the waiter

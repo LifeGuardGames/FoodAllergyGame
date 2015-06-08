@@ -12,12 +12,12 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 	//time it takes for a customer to spawn
 	public float customerTimer;
-
+	// bool controlling customer spawning depending on the stage of the day
 	public bool dayOver = false;
 
 	//tracks customers via hashtable
 	private Dictionary<string, GameObject> customerHash;
-
+	// our satisfaction ai 
 	private SatisfactionAI satisfactionAI;
 
 	// RemoveCustomer removes the customer from a hashtable 
@@ -58,7 +58,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	// Removes a customer from the dictionary
 	public void CustomerLeft(string Id, int satisfaction){
 		if(customerHash.ContainsKey(Id)){
-			satisfactionAI.CalculateCheck(satisfaction);
+			GameManager.Instance.CollectCash(satisfactionAI.CalculateCheck(satisfaction));
 			customerHash.Remove(Id);
 			CheckForGameOver();
 		}
