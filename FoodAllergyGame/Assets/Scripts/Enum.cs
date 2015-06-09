@@ -7,9 +7,9 @@ public enum FoodKeywords{
 
 public enum Allergies{
 	None,
-	Allergy1,
-	Allergy2,
-	Allergy3,
+	Wheat,
+	Peanut,
+	Dairy,
 }
 
 public enum CustomerStates{

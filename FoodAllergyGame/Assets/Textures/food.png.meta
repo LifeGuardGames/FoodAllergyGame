@@ -1,33 +1,33 @@
 fileFormatVersion: 2
 guid: 1e1ae33cb7211e842951c67a88457486
-timeCreated: 1433801922
+timeCreated: 1433803718
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: food_0
-    21300002: food_1
-    21300004: food_2
-    21300006: food_3
-    21300008: food_4
-    21300010: food_5
-    21300012: food_6
-    21300014: food_7
-    21300016: food_8
-    21300018: food_9
-    21300020: food_10
-    21300022: food_11
-    21300024: food_12
-    21300026: food_13
-    21300028: food_14
-    21300030: food_15
-    21300032: food_16
-    21300034: food_17
-    21300036: food_18
-    21300038: food_19
-    21300040: food_20
-    21300042: food_21
-    21300044: food_22
-    21300046: food_23
+    21300000: FoodMousseCake
+    21300002: FoodCremeBrulee
+    21300004: FoodStrawberryCake
+    21300006: FoodPeachPie
+    21300008: FoodOmelette
+    21300010: FoodRootBeer
+    21300012: FoodPeanutDessert
+    21300014: FoodBurger
+    21300016: FoodChickenNuggets
+    21300018: FoodStuffedPotato
+    21300020: FoodSteak
+    21300022: FoodDumplings
+    21300024: FoodMilkshake
+    21300026: FoodSundae
+    21300028: FoodGravy
+    21300030: FoodBreakfastPlatter
+    21300032: FoodGrilledCheese
+    21300034: FoodTomatoes
+    21300036: FoodLambChops
+    21300038: FoodSalmon
+    21300040: FoodFriedChicken
+    21300042: FoodSalad
+    21300044: FoodEnchilada
+    21300046: FoodWings
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -73,7 +73,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: food_0
+    - name: FoodMousseCake
       rect:
         serializedVersion: 2
         x: 2
@@ -83,7 +83,7 @@ TextureImporter:
       alignment: 7
       pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: food_1
+    - name: FoodCremeBrulee
       rect:
         serializedVersion: 2
         x: 82
@@ -93,7 +93,7 @@ TextureImporter:
       alignment: 7
       pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: food_2
+    - name: FoodStrawberryCake
       rect:
         serializedVersion: 2
         x: 162
@@ -103,7 +103,7 @@ TextureImporter:
       alignment: 7
       pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: food_3
+    - name: FoodPeachPie
       rect:
         serializedVersion: 2
         x: 242
@@ -113,7 +113,7 @@ TextureImporter:
       alignment: 7
       pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: food_4
+    - name: FoodOmelette
       rect:
         serializedVersion: 2
         x: 324
@@ -121,9 +121,9 @@ TextureImporter:
         width: 62
         height: 26
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: food_5
+    - name: FoodRootBeer
       rect:
         serializedVersion: 2
         x: 404
@@ -131,9 +131,9 @@ TextureImporter:
         width: 62
         height: 48
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: food_6
+    - name: FoodPeanutDessert
       rect:
         serializedVersion: 2
         x: 0
@@ -143,7 +143,7 @@ TextureImporter:
       alignment: 7
       pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: food_7
+    - name: FoodBurger
       rect:
         serializedVersion: 2
         x: 80
@@ -153,7 +153,7 @@ TextureImporter:
       alignment: 7
       pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: food_8
+    - name: FoodChickenNuggets
       rect:
         serializedVersion: 2
         x: 162
@@ -163,7 +163,7 @@ TextureImporter:
       alignment: 7
       pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: food_9
+    - name: FoodStuffedPotato
       rect:
         serializedVersion: 2
         x: 242
@@ -171,9 +171,9 @@ TextureImporter:
         width: 62
         height: 35
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: food_10
+    - name: FoodSteak
       rect:
         serializedVersion: 2
         x: 324
@@ -181,9 +181,9 @@ TextureImporter:
         width: 62
         height: 27
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: food_11
+    - name: FoodDumplings
       rect:
         serializedVersion: 2
         x: 404
@@ -191,9 +191,9 @@ TextureImporter:
         width: 62
         height: 27
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: food_12
+    - name: FoodMilkshake
       rect:
         serializedVersion: 2
         x: 2
@@ -201,9 +201,9 @@ TextureImporter:
         width: 62
         height: 53
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: food_13
+    - name: FoodSundae
       rect:
         serializedVersion: 2
         x: 82
@@ -211,9 +211,9 @@ TextureImporter:
         width: 62
         height: 45
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: food_14
+    - name: FoodGravy
       rect:
         serializedVersion: 2
         x: 162
@@ -221,9 +221,9 @@ TextureImporter:
         width: 62
         height: 25
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: food_15
+    - name: FoodBreakfastPlatter
       rect:
         serializedVersion: 2
         x: 242
@@ -231,9 +231,9 @@ TextureImporter:
         width: 62
         height: 27
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: food_16
+    - name: FoodGrilledCheese
       rect:
         serializedVersion: 2
         x: 324
@@ -241,9 +241,9 @@ TextureImporter:
         width: 62
         height: 30
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: food_17
+    - name: FoodTomatoes
       rect:
         serializedVersion: 2
         x: 404
@@ -251,9 +251,9 @@ TextureImporter:
         width: 62
         height: 25
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: food_18
+    - name: FoodLambChops
       rect:
         serializedVersion: 2
         x: 2
@@ -261,9 +261,9 @@ TextureImporter:
         width: 62
         height: 29
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: food_19
+    - name: FoodSalmon
       rect:
         serializedVersion: 2
         x: 82
@@ -271,9 +271,9 @@ TextureImporter:
         width: 62
         height: 28
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: food_20
+    - name: FoodFriedChicken
       rect:
         serializedVersion: 2
         x: 162
@@ -281,9 +281,9 @@ TextureImporter:
         width: 62
         height: 28
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: food_21
+    - name: FoodSalad
       rect:
         serializedVersion: 2
         x: 242
@@ -291,9 +291,9 @@ TextureImporter:
         width: 62
         height: 26
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: food_22
+    - name: FoodEnchilada
       rect:
         serializedVersion: 2
         x: 324
@@ -301,9 +301,9 @@ TextureImporter:
         width: 62
         height: 31
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: food_23
+    - name: FoodWings
       rect:
         serializedVersion: 2
         x: 404
@@ -311,7 +311,7 @@ TextureImporter:
         width: 62
         height: 47
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
