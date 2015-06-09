@@ -16,5 +16,10 @@ public class KitchenManager : MonoBehaviour {
 	private IEnumerator Cooking(GameObject order){
 		yield return new WaitForSeconds(5.0f);
 		order.GetComponent<Order>().isCooked = true;
+		for (int i = 0; i < orderSpotList.Count; i ++){
+			if(orderSpotList[i].transform.childCount == 0){
+				order.transform.SetParent(orderSpotList[i].transform);
+			}
+		}
 	}
 }

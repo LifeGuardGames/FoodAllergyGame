@@ -16,7 +16,7 @@ public class Customer : MonoBehaviour{
 	public CustomerStates state;
 
 	// The allergy of the customer
-	public List <Allergies> allergy;
+	public Allergies allergy;
 
 	// Time spent looking at the menu
 	private float menuTimer = 4.0f;
@@ -31,8 +31,27 @@ public class Customer : MonoBehaviour{
 	public void Init(){
 		state = CustomerStates.InLine;
 		StartCoroutine(SatisfactionTimer());
-		allergy = new List<Allergies>();
+		//allergy = new List<Allergies>();
 		satisfaction = 3;
+		if(GameObject.Find("Line").GetComponent<LineController>().NewCustomer() == null){
+			Destroy (this.gameObject);
+		}
+		else{
+			this.gameObject.transform.SetParent(GameObject.Find("Line").GetComponent<LineController>().NewCustomer());
+			this.gameObject.transform.position = transform.parent.position;
+			int rand = Random.Range (0,3);
+			switch (rand){
+			case 0:
+				allergy = Allergies.Allergy1;
+				break;
+			case 1:
+				allergy = Allergies.Allergy2;
+				break;
+			case 2:
+				allergy = Allergies.Allergy3;
+				break;
+			}
+		}
 	}
 
 	// When completed removes one satisfaction from that customer

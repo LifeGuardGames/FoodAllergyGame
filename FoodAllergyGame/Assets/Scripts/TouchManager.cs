@@ -10,10 +10,13 @@ public class TouchManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Debug.DrawRay(Input.mousePosition,Vector3.down);
 		if (Input.GetMouseButtonDown(0)){
 			RaycastHit info;
-		
+			Debug.Log ("yo");
+
 			if(Physics.Raycast(Input.mousePosition,Vector3.down,out info)){
+
 				if(info.collider != null){
 					switch(info.collider.gameObject.name){
 					case "Table":
