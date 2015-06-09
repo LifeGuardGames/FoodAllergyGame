@@ -27,7 +27,7 @@ public class Waiter : Singleton<Waiter>{
 	}
 
 	void Update(){
-		if(moving && Vector3.Distance(transform.position, target) > 5){
+		if(moving && Vector3.Distance(transform.position, target) > 0){
 			transform.position = Vector3.MoveTowards(transform.position, target, speed);
 		}
 	}

@@ -10,27 +10,31 @@ public class TouchManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.DrawRay(Input.mousePosition,Vector3.down);
+		Debug.DrawRay(Input.mousePosition,Vector3.right);
 		if (Input.GetMouseButtonDown(0)){
 			RaycastHit info;
-			Debug.Log ("yo");
-
-			if(Physics.Raycast(Input.mousePosition,Vector3.down,out info)){
-
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			if(Physics.Raycast(ray,out info)){
+				Debug.Log (info.collider.gameObject.name);
 				if(info.collider != null){
-					switch(info.collider.gameObject.name){
+					switch(info.collider.gameObject.tag){
 					case "Table":
-						if(Waiter.Instance.currentlyServing != null && info.collider.gameObject.transform.childCount == 1){	
+						if(Waiter.Instance.currentlyServing != null && !info.collider.gameObject.GetComponent<Table>().inUse){	
 							Waiter.Instance.currentlyServing.GetComponent<Customer>().JumpToTable(info.collider.gameObject.GetComponent<Table>().tableNumber);
+							info.collider.gameObject.GetComponent<Table>().inUse = true;
 						}
 						else if(info.collider.gameObject.transform.childCount > 1){
+							Debug.Log ("Hello");
+							Waiter.Instance.MoveToLocation(info.collider.gameObject.transform.GetChild(2).position);
 							info.collider.gameObject.GetComponent<Table>().TalkToConsumer();
 						}
 						else{
-							Waiter.Instance.MoveToLocation(info.collider.gameObject.transform.GetChild(0).position);
+							Debug.Log ("Walking");
+							Waiter.Instance.MoveToLocation(info.collider.gameObject.transform.GetChild(2).position);
 						}
 						break;
 					case "Customer":
+						Debug.Log ("Customer");
 						if(info.collider.gameObject.GetComponent<Customer>().state == CustomerStates.InLine){
 							Waiter.Instance.currentlyServing = info.collider.gameObject;
 						}

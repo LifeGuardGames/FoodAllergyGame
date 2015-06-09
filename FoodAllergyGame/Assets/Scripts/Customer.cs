@@ -22,10 +22,14 @@ public class Customer : MonoBehaviour{
 	private float menuTimer = 4.0f;
 
 	// The attention timer
-	private float attentionSpan;
+	private float attentionSpan = 10f;
 
 	// The satisfaction the customer has, everytime the attention span ticks down to 0 the customer will lose satisfaction
 	public int satisfaction;
+
+	public FoodKeywords desiredFood;
+
+	private GameObject table;
 
 	// Basic intitialzation 
 	public void Init(){
@@ -39,16 +43,43 @@ public class Customer : MonoBehaviour{
 		else{
 			this.gameObject.transform.SetParent(GameObject.Find("Line").GetComponent<LineController>().NewCustomer());
 			this.gameObject.transform.position = transform.parent.position;
-			int rand = Random.Range (0,3);
+			int rand = Random.Range (0,4);
 			switch (rand){
 			case 0:
-				allergy = Allergies.Allergy1;
+				allergy = Allergies.Dairy;
 				break;
 			case 1:
-				allergy = Allergies.Allergy2;
+				allergy = Allergies.Peanut;
 				break;
 			case 2:
-				allergy = Allergies.Allergy3;
+				allergy = Allergies.Wheat;
+				break;
+			case 3:
+				allergy = Allergies.None;
+				break;
+			}
+			rand = Random.Range(0,7);
+			switch(rand){
+			case 0:
+				desiredFood = FoodKeywords.Bread;
+				break;
+			case 1:
+				desiredFood = FoodKeywords.Chocolate;
+				break;
+			case 2:
+				desiredFood = FoodKeywords.Dessert;
+				break;
+			case 3:
+				desiredFood = FoodKeywords.Drink;
+				break;
+			case 4:
+				desiredFood = FoodKeywords.Green;
+				break;
+			case 5:
+				desiredFood = FoodKeywords.Meat;
+				break;
+			case 6:
+				desiredFood = FoodKeywords.Nut;
 				break;
 			}
 		}
@@ -63,7 +94,11 @@ public class Customer : MonoBehaviour{
 
 	// JumpToTable jumps to the table given a table number
 	public void JumpToTable(int tableNum){
-		//TODO parent customer to table and move customer to table
+		Waiter.Instance.currentlyServing = null;
+		Debug.Log ("reading Menu");
+		table = GameObject.Find("Table" + tableNum.ToString());
+		transform.SetParent(table.transform.GetChild(1));
+		transform.localPosition = Vector3.zero;
 		state = CustomerStates.ReadingMenu;
 		StartCoroutine("ReadMenu");
 		StopCoroutine(SatisfactionTimer());
@@ -74,7 +109,7 @@ public class Customer : MonoBehaviour{
 	// Time spent reading menu before ordering
 	IEnumerator ReadMenu(){
 		yield return new WaitForSeconds(menuTimer);
-		//TODO select food option
+		//FoodManager.Instance.SelectFoodItems(desiredFood);
 		StopCoroutine(SatisfactionTimer());
 		attentionSpan = 8.0f;
 		StartCoroutine(SatisfactionTimer());
@@ -111,6 +146,8 @@ public class Customer : MonoBehaviour{
 	// Tells the resturantManager that the customer is leaving and can be removed from the dictionary
 	public void NotifyLeave(){
 		RestaurantManager.Instance.CustomerLeft(customerID, satisfaction);
+		table.GetComponent<Table>().inUse = false;
+
 	}
 
 	// Checks the current state and runs the appropriate function called by table when waiter approaches

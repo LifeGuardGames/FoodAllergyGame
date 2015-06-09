@@ -10,10 +10,11 @@ public class Table : MonoBehaviour {
 	public Transform seat;
 	public Transform waiterSpot;
 	public Transform foodSpot;
+	public bool inUse = false;
 
 	public void TalkToConsumer(){
-		if(transform.childCount > 0){
-			transform.GetChild(0).gameObject.GetComponent<Customer>().CheckState();
+		if(inUse){
+			transform.GetComponentInChildren<Customer>().CheckState();
 		}
 	}
 

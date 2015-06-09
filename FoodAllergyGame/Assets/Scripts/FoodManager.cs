@@ -14,16 +14,21 @@ public class FoodManager : Singleton<FoodManager>{
 		menu.Add(DataLoaderFood.GetData(foodId));
 	}
 
-	public List<ImmutableDataFood> SelectFoodItems(FoodKeywords keyWord){
+	public void SelectFoodItems(FoodKeywords keyWord){
 		List<ImmutableDataFood> selectedFood = new List<ImmutableDataFood>();
-		for (int i = 0; i < menu.Count; i++){
-			for (int f = 0; i < menu[i].KeywordList.Count; f++){
-				if(menu[i].KeywordList[f] == keyWord){
-					selectedFood.Add(menu[i]);
+//		for (int i = 0; i < menu.Count; i++){
+		foreach(ImmutableDataFood foodData in menu){
+			//for (int f = 0; f < menu[i].KeywordList.Count; f++){
+			foreach (FoodKeywords foodKeyword in foodData.KeywordList){
+//				if(menu[i].KeywordList[f] == keyWord){
+//					selectedFood.Add(menu[i]);
+//				}
+				if(foodKeyword == keyWord){
+					selectedFood.Add(foodData);
 				}
 			}
 		}
-		return selectedFood;
+		//return selectedFood;
 	}
 
 	public ImmutableDataFood GetFood(string foodId){
@@ -36,7 +41,7 @@ public class FoodManager : Singleton<FoodManager>{
 	}
 
 	// Use this for initialization
-	void Start(){
+	void Awake(){
 		menu = new List<ImmutableDataFood>();
 	}
 }
