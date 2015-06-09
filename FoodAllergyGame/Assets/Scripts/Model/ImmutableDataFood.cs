@@ -14,6 +14,11 @@ public class ImmutableDataFood : MonoBehaviour {
 		get{ return foodNameKey; }
 	}
 
+	private string spriteName;
+	public string SpriteName{
+		get{ return spriteName; }
+	}
+
 	private List<Allergies> allergyList;
 	public List<Allergies> AllergyList {
 		get{ return AllergyList; }
@@ -29,6 +34,7 @@ public class ImmutableDataFood : MonoBehaviour {
 		
 		this.id = id;
 		foodNameKey = XMLUtils.GetString(hashElements["FoodNameKey"] as IXMLNode, null, error);
+		spriteName = XMLUtils.GetString(hashElements["TextureName"] as IXMLNode, null, error);
 
 		// get the allergies list(optional)
 		if(hashElements.ContainsKey("Allergies")){

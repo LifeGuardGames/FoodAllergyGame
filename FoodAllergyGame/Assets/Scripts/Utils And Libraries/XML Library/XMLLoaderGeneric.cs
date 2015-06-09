@@ -27,7 +27,7 @@ public abstract class XMLLoaderGeneric<T> where T : new() {
 		
 	protected string xmlFileFolderPath; // file path
 
-	private Hashtable hashData; // storing all the xml data
+	protected Hashtable hashData; // storing all the xml data
 
 	/// <summary>
 	/// instance of T class. Will create one if doesn't exist
