@@ -14,7 +14,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public float customerTimer;
 	// bool controlling customer spawning depending on the stage of the day
 	public bool dayOver = false;
-
+	public GameObject customerPrefab;
 	//tracks customers via hashtable
 	private Dictionary<string, GameObject> customerHash;
 	// our satisfaction ai 
@@ -26,6 +26,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	void Start(){
 		customerHash = new Dictionary<string, GameObject>();
 		satisfactionAI = new SatisfactionAI();
+		StartDay();
 	}
 
 	// Called at the start of the game day begins the day tracker coroutine 
@@ -49,8 +50,13 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			yield return new WaitForFixedUpdate();
 		}
 		yield return new WaitForSeconds(customerTimer);
-		if(!dayOver){
+		if(!dayOver && customerHash.Count < 8){
+			GameObject cus = Instantiate(customerPrefab,new Vector3(0,0,0),customerPrefab.transform.rotation)as GameObject;
+			cus.GetComponent<Customer>().Init();
 			//TODO SpawnCustomer
+			StartCoroutine("SpawnCustomer");
+		}
+		else{
 			StartCoroutine("SpawnCustomer");
 		}
 	}
