@@ -1,8 +1,62 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Foods>
-	<Food ID = "Food00">
-		<FoodNameKey>FoodName</FoodNameKey>
-		<Allergies>Allergy1,Allergy2,Allergy3</Allergies>
+	<Food ID="Food00">
+		<FoodNameKey>FoodRootBeer</FoodNameKey>
+		<TextureName>FoodRootBeer</TextureName>
+		<Keywords>Keyword1,Keyword2</Keywords>
+	</Food>
+	<Food ID="Food01">
+		<FoodNameKey>FoodBurger</FoodNameKey>
+		<TextureName>FoodBurger</TextureName>
+		<Allergies>Wheat</Allergies>
+		<Keywords>Keyword1,Keyword2</Keywords>
+	</Food>
+	<Food ID="Food02">
+		<FoodNameKey>FoodSandwich</FoodNameKey>
+		<TextureName>FoodSandwich</TextureName>
+		<Allergies>Wheat</Allergies>
+		<Keywords>Keyword1,Keyword2</Keywords>
+	</Food>
+	<Food ID="Food03">
+		<FoodNameKey>FoodWings</FoodNameKey>
+		<TextureName>FoodWings</TextureName>
+		<Allergies>Wheat</Allergies>
+		<Keywords>Keyword1,Keyword2</Keywords>
+	</Food>
+	<Food ID="Food04">
+		<FoodNameKey>FoodMousseCake</FoodNameKey>
+		<TextureName>FoodMousseCake</TextureName>
+		<Allergies>Dairy</Allergies>
+		<Keywords>Keyword1,Keyword2</Keywords>
+	</Food>
+	<Food ID="Food05">
+		<FoodNameKey>FoodSundae</FoodNameKey>
+		<TextureName>FoodSundae</TextureName>
+		<Allergies>Dairy</Allergies>
+		<Keywords>Keyword1,Keyword2</Keywords>
+	</Food>
+	<Food ID="Food06">
+		<FoodNameKey>FoodMilkshake</FoodNameKey>
+		<TextureName>FoodMilkshake</TextureName>
+		<Allergies>Dairy</Allergies>
+		<Keywords>Keyword1,Keyword2</Keywords>
+	</Food>
+	<Food ID="Food07">
+		<FoodNameKey>FoodPeanutDessert</FoodNameKey>
+		<TextureName>FoodPeanutDessert</TextureName>
+		<Allergies>Peanut</Allergies>
+		<Keywords>Keyword1,Keyword2</Keywords>
+	</Food>
+	<Food ID="Food08">
+		<FoodNameKey>FoodSalad</FoodNameKey>
+		<TextureName>FoodSalad</TextureName>
+		<Allergies>Peanut</Allergies>
+		<Keywords>Keyword1,Keyword2</Keywords>
+	</Food>
+	<Food ID="Food09">
+		<FoodNameKey>FoodDumplings</FoodNameKey>
+		<TextureName>FoodDumplings</TextureName>
+		<Allergies>Peanut</Allergies>
 		<Keywords>Keyword1,Keyword2</Keywords>
 	</Food>
 </Foods>
