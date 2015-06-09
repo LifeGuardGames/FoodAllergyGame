@@ -47,15 +47,15 @@ public class FoodManager : Singleton<FoodManager>{
 	/// Chooses food items based off a supplied keyword from menuList
 	/// </summary>
 	public List<ImmutableDataFood> GetMenuFoodsFromKeyword(FoodKeywords keyword){
-		List<ImmutableDataFood> selectedFoods = new List<ImmutableDataFood>();
-		for (int i = 0; i < menuList.Count; i++){
-			for (int f = 0; i < menuList[i].KeywordList.Count; f++){
-				if(menuList[i].KeywordList[f] == keyword){
-					selectedFoods.Add(menuList[i]);
+		List<ImmutableDataFood> desiredFoodList = new List<ImmutableDataFood>();
+		foreach(ImmutableDataFood foodData in menuList){
+			foreach(FoodKeywords foodKeyword in foodData.KeywordList){
+				if(foodKeyword == keyword){
+					desiredFoodList.Add(foodData);
 				}
 			}
 		}
-		return selectedFoods;
+		return desiredFoodList;
 	}
 
 	#endregion

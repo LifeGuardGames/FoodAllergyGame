@@ -73,10 +73,16 @@ public class Waiter : Singleton<Waiter>{
 
 	public GameObject OrderChef(){
 		if(hand2 == WaiterHands.Order){
-			return hand2Object;
+			GameObject tempOrder = hand2Object;
+			hand1Object = null;
+			hand2 = WaiterHands.None;
+			return tempOrder;
 		}
 		else if(hand1 == WaiterHands.Order){
-			return hand1Object;
+			GameObject tempOrder = hand1Object;
+			hand1Object = null;
+			hand1 = WaiterHands.None;
+			return tempOrder;
 		}
 		else{
 			return null;
@@ -87,12 +93,18 @@ public class Waiter : Singleton<Waiter>{
 	public GameObject HandMeal(int tableNum){
 		if(hand1 == WaiterHands.Meal){
 			//if(handROBJ.GetComponent<Order>().TableNum == tableNum){
-			return hand1Object;
+			GameObject tempFood = hand1Object;
+			hand1Object = null;
+			hand1 = WaiterHands.None;
+			return tempFood;
 			//}
 		}
 		else if(hand2 == WaiterHands.Meal){
 			//	if (handLOBJ.GetComponent<Order>().TableNum == tableNum){
-			return hand2Object;
+			GameObject tempFood = hand2Object;
+			hand1Object = null;
+			hand2 = WaiterHands.None;
+			return tempFood;
 			//}
 		}
 		else{

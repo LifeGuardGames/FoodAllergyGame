@@ -109,7 +109,9 @@ public class Customer : MonoBehaviour{
 	// Time spent reading menu before ordering
 	IEnumerator ReadMenu(){
 		yield return new WaitForSeconds(menuTimer);
-		//FoodManager.Instance.SelectFoodItems(desiredFood);
+
+		FoodManager.Instance.GetMenuFoodsFromKeyword(desiredFood);
+
 		StopCoroutine(SatisfactionTimer());
 		attentionSpan = 8.0f;
 		StartCoroutine(SatisfactionTimer());

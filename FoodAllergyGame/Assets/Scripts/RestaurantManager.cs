@@ -27,11 +27,11 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		customerHash = new Dictionary<string, GameObject>();
 		satisfactionAI = new SatisfactionAI();
 		StartDay();
-		FoodManager.Instance.GenerateMenu("Food00");
-		FoodManager.Instance.GenerateMenu("Food01");
-		FoodManager.Instance.GenerateMenu("Food02");
-		FoodManager.Instance.GenerateMenu("Food03");
-		FoodManager.Instance.GenerateMenu("Food04");
+//		FoodManager.Instance.GenerateMenu("Food00");
+//		FoodManager.Instance.GenerateMenu("Food01");
+//		FoodManager.Instance.GenerateMenu("Food02");
+//		FoodManager.Instance.GenerateMenu("Food03");
+//		FoodManager.Instance.GenerateMenu("Food04");
 	}
 
 	// Called at the start of the game day begins the day tracker coroutine 
