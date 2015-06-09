@@ -95,7 +95,6 @@ public class Customer : MonoBehaviour{
 	// JumpToTable jumps to the table given a table number
 	public void JumpToTable(int tableNum){
 		Waiter.Instance.currentlyServing = null;
-		Debug.Log ("reading Menu");
 		table = GameObject.Find("Table" + tableNum.ToString());
 		transform.SetParent(table.transform.GetChild(1));
 		transform.localPosition = Vector3.zero;
@@ -134,7 +133,7 @@ public class Customer : MonoBehaviour{
 		transform.GetComponentInParent<Table>().FoodDelivered();
 		StopCoroutine(SatisfactionTimer());
 		state = CustomerStates.Eating;
-		StartCoroutine("EatingTime");
+		StartCoroutine("EatingTimer");
 	}
 
 	// Eating coroutine
@@ -152,6 +151,11 @@ public class Customer : MonoBehaviour{
 
 	}
 
+	public void AllergyAttack(){
+		attentionSpan = 5.0f;
+		StartCoroutine(SatisfactionTimer());
+	}
+
 	// Checks the current state and runs the appropriate function called by table when waiter approaches
 	public void CheckState(){
 		switch(state){
@@ -159,7 +163,9 @@ public class Customer : MonoBehaviour{
 			GetOrder();
 			break;
 		case CustomerStates.WaitForFood:
-			Eating();
+			if(Waiter.Instance.hand1 == WaiterHands.Meal || Waiter.Instance.hand2 == WaiterHands.Meal){
+				Eating();
+			}
 			break;
 		case CustomerStates.WaitForCheck:
 			NotifyLeave();

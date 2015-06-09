@@ -20,7 +20,7 @@ public class Table : MonoBehaviour {
 
 	// tell waiter to put food down
 	public void FoodDelivered(){
-	
+		Waiter.Instance.HandMeal(tableNumber);
 	}
 	// pay the waiter
 	public void OrderObtained(){
