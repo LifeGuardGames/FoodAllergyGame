@@ -46,11 +46,15 @@ public class Waiter : Singleton<Waiter>{
 			if(!order.GetComponent<Order>().isCooked){
 				hand1 = WaiterHands.Order;
 				hand1Object = order;
+				hand1Object.transform.SetParent(hand1Parent);
+				hand1Object.transform.localPosition = new Vector3(0,0,0);
 				//TODO show order in hand
 			}
 			else{
 				hand1 = WaiterHands.Meal;
 				hand1Object = order;
+				hand1Object.transform.SetParent(hand1Parent);
+				hand1Object.transform.localPosition = new Vector3(0,0,0);
 				//TODO show meal in hand
 			}
 		}
@@ -58,11 +62,15 @@ public class Waiter : Singleton<Waiter>{
 			if(!order.GetComponent<Order>().isCooked){
 				hand2 = WaiterHands.Order;
 				hand2Object = order;
+				hand2Object.transform.SetParent(hand2Parent);
+				hand2Object.transform.localPosition = new Vector3(0,0,0);
 				//TODO show order in hand
 			}
 			else{
 				hand2 = WaiterHands.Meal;
 				hand2Object = order;
+				hand2Object.transform.SetParent(hand2Parent);
+				hand2Object.transform.localPosition = new Vector3(0,0,0);
 				//TODO show meal in hand
 			}
 		}
@@ -111,5 +119,9 @@ public class Waiter : Singleton<Waiter>{
 			return null;
 			// do nothing
 		}
+	}
+
+	public void writeDownOrder(GameObject order){
+		SetHand(order);
 	}
 }

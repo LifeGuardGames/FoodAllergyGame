@@ -9,6 +9,8 @@ public class Customer : MonoBehaviour{
 	// State the current state of the customer
 	// NotifyLeave gives the user money based of satifation and then passes the id to the dayManager
 
+	public int tableNum;
+
 	// The customer's id used for identification in the 
 	public string customerID;
 
@@ -31,10 +33,13 @@ public class Customer : MonoBehaviour{
 
 	private GameObject table;
 
+	public List <ImmutableDataFood> choices;
+
 	// Basic intitialzation 
 	public void Init(){
 		state = CustomerStates.InLine;
 		StartCoroutine(SatisfactionTimer());
+		choices = new List<ImmutableDataFood>();
 		//allergy = new List<Allergies>();
 		satisfaction = 3;
 		if(GameObject.Find("Line").GetComponent<LineController>().NewCustomer() == null){
@@ -93,9 +98,10 @@ public class Customer : MonoBehaviour{
 	}
 
 	// JumpToTable jumps to the table given a table number
-	public void JumpToTable(int tableNum){
+	public void JumpToTable(int tableN){
 		Waiter.Instance.currentlyServing = null;
-		table = GameObject.Find("Table" + tableNum.ToString());
+		tableNum = tableN;
+		table = GameObject.Find("Table" + tableN.ToString());
 		transform.SetParent(table.transform.GetChild(1));
 		transform.localPosition = Vector3.zero;
 		state = CustomerStates.ReadingMenu;
@@ -109,7 +115,7 @@ public class Customer : MonoBehaviour{
 	IEnumerator ReadMenu(){
 		yield return new WaitForSeconds(menuTimer);
 
-		FoodManager.Instance.GetMenuFoodsFromKeyword(desiredFood);
+		choices = FoodManager.Instance.GetMenuFoodsFromKeyword(desiredFood);
 
 		StopCoroutine(SatisfactionTimer());
 		attentionSpan = 8.0f;
@@ -122,6 +128,7 @@ public class Customer : MonoBehaviour{
 	public void GetOrder(){
 		//TODO return the supplied order
 		//TODO display table number on table
+		GameObject.Find("MenuUIManager").GetComponent<MenuUIManager>().ShowChoices(choices, tableNum);
 		transform.GetComponentInParent<Table>().OrderObtained();
 		attentionSpan = 16.0f;
 		state = CustomerStates.WaitForFood;

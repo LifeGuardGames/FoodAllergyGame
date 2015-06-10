@@ -3,6 +3,7 @@
 	<Food ID="Food00">
 		<FoodNameKey>FoodRootBeer</FoodNameKey>
 		<SpriteName>FoodRootBeer</SpriteName>
+		<Allergies>None</Allergies>
 		<Keywords>Drink,Keyword2</Keywords>
 	</Food>
 	<Food ID="Food01">
@@ -39,7 +40,7 @@
 		<FoodNameKey>FoodMilkshake</FoodNameKey>
 		<SpriteName>FoodMilkshake</SpriteName>
 		<Allergies>Dairy</Allergies>
-		<Keywords>Drink,Keyword2</Keywords>
+		<Keywords>Drink,Chocolate</Keywords>
 	</Food>
 	<Food ID="Food07">
 		<FoodNameKey>FoodPeanutDessert</FoodNameKey>

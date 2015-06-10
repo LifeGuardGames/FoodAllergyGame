@@ -24,5 +24,6 @@ public class Table : MonoBehaviour {
 	}
 	// pay the waiter
 	public void OrderObtained(){
+
 	}
 }

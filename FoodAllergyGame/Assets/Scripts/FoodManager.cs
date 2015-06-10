@@ -9,6 +9,7 @@ public class FoodManager : Singleton<FoodManager>{
 
 	public List<ImmutableDataFood> foodStockList;	// List for the user to choose from in MenuPlanning scene
 	public List<ImmutableDataFood> menuList;		// Compiled chosen list for use in restuarant
+	public List <string> tempMenu;
 
 	private static bool isCreated;
 
@@ -21,6 +22,20 @@ public class FoodManager : Singleton<FoodManager>{
 		}
 		DontDestroyOnLoad(gameObject);
 		isCreated = true;
+
+		//test code
+		tempMenu = new List<string>();
+		tempMenu.Add("Food00");
+		tempMenu.Add("Food01");
+		tempMenu.Add("Food02");
+		tempMenu.Add("Food03");
+		tempMenu.Add("Food04");
+		tempMenu.Add("Food05");
+		tempMenu.Add("Food06");
+		tempMenu.Add("Food07");
+		tempMenu.Add("Food08");
+		tempMenu.Add("Food09");
+		GenerateMenu(tempMenu);
 	}
 
 	////////////////////////////////////
@@ -48,9 +63,13 @@ public class FoodManager : Singleton<FoodManager>{
 	/// </summary>
 	public List<ImmutableDataFood> GetMenuFoodsFromKeyword(FoodKeywords keyword){
 		List<ImmutableDataFood> desiredFoodList = new List<ImmutableDataFood>();
+	//	Debug.Log (menuList.Count);
 		foreach(ImmutableDataFood foodData in menuList){
+		///	Debug.Log ("Middle Step");
 			foreach(FoodKeywords foodKeyword in foodData.KeywordList){
+				//Debug.Log(foodKeyword.ToString());
 				if(foodKeyword == keyword){
+					//Debug.Log (foodData.ID.ToString());
 					desiredFoodList.Add(foodData);
 				}
 			}
