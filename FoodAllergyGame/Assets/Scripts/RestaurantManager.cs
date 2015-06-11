@@ -9,7 +9,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	// CustomerSpawning - spawns a customer adds it to the list
 	//amount of time in seconds that the days lasts
 	public float dayTime;
-
+	private int CustNumer = 0;
 	//time it takes for a customer to spawn
 	public float customerTimer;
 	// bool controlling customer spawning depending on the stage of the day
@@ -57,8 +57,9 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		yield return new WaitForSeconds(customerTimer);
 		if(!dayOver && customerHash.Count < 8){
 			GameObject cus = Instantiate(customerPrefab,new Vector3(0,0,0),customerPrefab.transform.rotation)as GameObject;
-			cus.GetComponent<Customer>().Init();
-			customerHash.Add(cus);
+			CustNumer++;
+			cus.GetComponent<Customer>().Init(CustNumer);
+			customerHash.Add(cus.GetComponent<Customer>().customerID,cus);
 			//TODO SpawnCustomer
 			StartCoroutine("SpawnCustomer");
 		}

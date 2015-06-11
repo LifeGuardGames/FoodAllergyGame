@@ -35,10 +35,15 @@ public class Customer : MonoBehaviour{
 
 	public GameObject order;
 
+	public GameObject exclaimationMark;
+
 	public List <ImmutableDataFood> choices;
 
 	// Basic intitialzation 
-	public void Init(){
+	public void Init(int num){
+		exclaimationMark = transform.GetChild(0).gameObject;
+		exclaimationMark.SetActive(false);
+		customerID = "Customer" + num.ToString();
 		state = CustomerStates.InLine;
 		StartCoroutine(SatisfactionTimer());
 		choices = new List<ImmutableDataFood>();
@@ -95,7 +100,9 @@ public class Customer : MonoBehaviour{
 	// When completed removes one satisfaction from that customer
 	IEnumerator SatisfactionTimer(){
 		yield return new WaitForSeconds(attentionSpan);
-		satisfaction--;
+		if(satisfaction >0){
+			satisfaction--;
+		}
 		StartCoroutine(SatisfactionTimer());
 	}
 
@@ -118,7 +125,7 @@ public class Customer : MonoBehaviour{
 		yield return new WaitForSeconds(menuTimer);
 
 		choices = FoodManager.Instance.GetMenuFoodsFromKeyword(desiredFood);
-
+		exclaimationMark.SetActive(true);
 		StopCoroutine(SatisfactionTimer());
 		attentionSpan = 16.0f;
 		StartCoroutine(SatisfactionTimer());
@@ -135,6 +142,7 @@ public class Customer : MonoBehaviour{
 		}
 	}
 	public void OrderTaken(){
+		exclaimationMark.SetActive(false);
 		attentionSpan = 16.0f;
 		state = CustomerStates.WaitForFood;
 		StopCoroutine(SatisfactionTimer());
@@ -155,6 +163,7 @@ public class Customer : MonoBehaviour{
 	// Eating coroutine
 	IEnumerator EatingTimer(){
 		yield return new WaitForSeconds(6.0f);
+		exclaimationMark.SetActive(true);
 		attentionSpan = 16.0f;
 		Destroy(order.gameObject);
 		state = CustomerStates.WaitForCheck;
