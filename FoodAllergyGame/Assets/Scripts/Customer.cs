@@ -130,10 +130,11 @@ public class Customer : MonoBehaviour{
 	public void GetOrder(){
 		//TODO return the supplied order
 		//TODO display table number on table
-		GameObject.Find("MenuUIManager").GetComponent<MenuUIManager>().ShowChoices(choices, tableNum);
+		if(Waiter.Instance.CheckHands()){
+			GameObject.Find("MenuUIManager").GetComponent<MenuUIManager>().ShowChoices(choices, tableNum);
+		}
 	}
 	public void OrderTaken(){
-		transform.GetComponentInParent<Table>().OrderObtained();
 		attentionSpan = 16.0f;
 		state = CustomerStates.WaitForFood;
 		StartCoroutine(SatisfactionTimer());
@@ -160,7 +161,7 @@ public class Customer : MonoBehaviour{
 	public void NotifyLeave(){
 		RestaurantManager.Instance.CustomerLeft(customerID, satisfaction);
 		table.GetComponent<Table>().inUse = false;
-
+		Destroy(this.gameObject);
 	}
 
 	public void AllergyAttack(){
