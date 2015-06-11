@@ -13,8 +13,8 @@
 		<Keywords>Bread,Meat</Keywords>
 	</Food>
 	<Food ID="Food02">
-		<FoodNameKey>FoodSandwich</FoodNameKey>
-		<SpriteName>FoodSandwich</SpriteName>
+		<FoodNameKey>FoodGrilledCheese</FoodNameKey>
+		<SpriteName>FoodGrilledCheese</SpriteName>
 		<Allergies>Wheat</Allergies>
 		<Keywords>Bread,Green</Keywords>
 	</Food>

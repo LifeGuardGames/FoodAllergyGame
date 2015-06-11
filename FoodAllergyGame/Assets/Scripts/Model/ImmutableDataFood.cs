@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-public class ImmutableDataFood : MonoBehaviour {
+public class ImmutableDataFood{
 	private string id;
 	public string ID{
 		get{ return id; }

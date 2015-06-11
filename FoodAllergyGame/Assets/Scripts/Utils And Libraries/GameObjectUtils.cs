@@ -44,6 +44,30 @@ public static class GameObjectUtils{
 		return go;
 	}
 
+	static public GameObject AddChildGUI(GameObject parent, GameObject prefab, bool isPreserveLayer = false){
+		GameObject go = GameObject.Instantiate(prefab) as GameObject;
+		
+		if(go != null){
+			Transform t = go.transform;
+			
+			if(parent != null){
+				t.SetParent(parent.transform, false);
+
+				if(!isPreserveLayer){
+					go.layer = parent.layer;
+				}
+			}
+			else{
+				t.parent = null;	// Assign to root
+			}
+			
+			t.localPosition = Vector3.zero;
+			t.localRotation = Quaternion.identity;
+			t.localScale = Vector3.one;
+		}
+		return go;
+	}
+
 	/// <summary>
 	/// Instantiate an object and add it to the specified parent. use the position of the prefab
 	/// </summary>

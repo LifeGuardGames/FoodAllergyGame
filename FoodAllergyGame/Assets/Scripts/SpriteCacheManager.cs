@@ -17,6 +17,11 @@ public class SpriteCacheManager : Singleton<SpriteCacheManager> {
 				foodSpriteDictionary.Add(spr.name, spr);	// Adding all sprites for now
 			}
 		}
+
+		if(!foodSpriteDictionary.ContainsKey(spriteName)){
+			Debug.LogError("Can not find key : " + spriteName);
+		}
+
 		return foodSpriteDictionary[spriteName];
 	}
 }
