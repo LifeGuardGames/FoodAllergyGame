@@ -9,9 +9,9 @@ public class KitchenManager : MonoBehaviour {
 
 	public List<Transform> orderSpotList;
 
-	public void CookOrder(GameObject[] order){
+	public void CookOrder(List <GameObject> order){
 
-		if(order.Length > 1){
+		if(order.Count > 1){
 			order[0].transform.SetParent(this.gameObject.transform);
 			order[0].SetActive(false);
 			StartCoroutine(Cooking(order[0]));
@@ -19,9 +19,9 @@ public class KitchenManager : MonoBehaviour {
 			order[1].SetActive(false);
 			StartCoroutine(Cooking(order[1]));
 		}
-		else if(order.Length == 1){
+		else if(order.Count == 1){
 			order[0].transform.SetParent(this.gameObject.transform);
-			order[1].SetActive(false);
+			order[0].SetActive(false);
 			StartCoroutine(Cooking(order[0]));
 		}
 	}

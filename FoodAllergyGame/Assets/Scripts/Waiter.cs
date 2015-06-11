@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Waiter : Singleton<Waiter>{
 
@@ -79,29 +80,29 @@ public class Waiter : Singleton<Waiter>{
 		}
 	}
 
-	public GameObject[] OrderChef(){
-		GameObject[] tempOrderArr = new GameObject[2];
+	public List <GameObject> OrderChef(){
+		List <GameObject> tempOrderArr = new List<GameObject>();
 		if(hand2 == WaiterHands.Order && hand1 == WaiterHands.Order){
-			tempOrderArr[0] = hand2Object;
-			tempOrderArr[1] = hand1Object;
+			tempOrderArr.Add(hand2Object);
+			tempOrderArr.Add(hand1Object);
 			hand2 = WaiterHands.None;
 			hand1 = WaiterHands.None;
 			return tempOrderArr;
 		}
 		else if(hand2 == WaiterHands.Order){
-			tempOrderArr[0] = hand2Object;
+			tempOrderArr.Add(hand2Object);
 			hand2Object = null;
 			hand2 = WaiterHands.None;
 			return tempOrderArr;
 		}
 		else if(hand1 == WaiterHands.Order){
-			tempOrderArr[0] = hand1Object;
+			tempOrderArr.Add(hand1Object);
 			hand1Object = null;
 			hand1 = WaiterHands.None;
 			return tempOrderArr;
 		}
 		else{
-			return null;
+			return tempOrderArr;
 			//nothing here
 		}
 	}
@@ -134,7 +135,7 @@ public class Waiter : Singleton<Waiter>{
 	}
 
 	public bool CheckHands(){
-		if(hand2 == WaiterHands.None&& hand1 == WaiterHands.None){
+		if(hand2 == WaiterHands.None || hand1 == WaiterHands.None){
 			return true;
 		}
 		else{
