@@ -33,6 +33,8 @@ public class Customer : MonoBehaviour{
 
 	private GameObject table;
 
+	public GameObject order;
+
 	public List <ImmutableDataFood> choices;
 
 	// Basic intitialzation 
@@ -137,7 +139,7 @@ public class Customer : MonoBehaviour{
 
 	// Tells the waiter the food has been delivered and begins eating
 	public void Eating(){
-		transform.GetComponentInParent<Table>().FoodDelivered();
+		order = transform.GetComponentInParent<Table>().FoodDelivered();
 		StopCoroutine(SatisfactionTimer());
 		state = CustomerStates.Eating;
 		StartCoroutine("EatingTimer");
@@ -147,6 +149,7 @@ public class Customer : MonoBehaviour{
 	IEnumerator EatingTimer(){
 		yield return new WaitForSeconds(6.0f);
 		attentionSpan = 6.0f;
+		Destroy(order.gameObject);
 		state = CustomerStates.WaitForCheck;
 		StartCoroutine(SatisfactionTimer());
 	}

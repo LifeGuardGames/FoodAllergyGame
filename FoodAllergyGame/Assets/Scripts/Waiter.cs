@@ -79,18 +79,26 @@ public class Waiter : Singleton<Waiter>{
 		}
 	}
 
-	public GameObject OrderChef(){
-		if(hand2 == WaiterHands.Order){
-			GameObject tempOrder = hand2Object;
-			hand1Object = null;
+	public GameObject[] OrderChef(){
+		GameObject[] tempOrderArr = new GameObject[2];
+		if(hand2 == WaiterHands.Order && hand1 == WaiterHands.Order){
+			tempOrderArr[0] = hand2Object;
+			tempOrderArr[1] = hand1Object;
 			hand2 = WaiterHands.None;
-			return tempOrder;
+			hand1 = WaiterHands.None;
+			return tempOrderArr;
+		}
+		else if(hand2 == WaiterHands.Order){
+			tempOrderArr[0] = hand2Object;
+			hand2Object = null;
+			hand2 = WaiterHands.None;
+			return tempOrderArr;
 		}
 		else if(hand1 == WaiterHands.Order){
-			GameObject tempOrder = hand1Object;
+			tempOrderArr[0] = hand1Object;
 			hand1Object = null;
 			hand1 = WaiterHands.None;
-			return tempOrder;
+			return tempOrderArr;
 		}
 		else{
 			return null;
@@ -100,25 +108,29 @@ public class Waiter : Singleton<Waiter>{
 
 	public GameObject HandMeal(int tableNum){
 		if(hand1 == WaiterHands.Meal){
-			//if(handROBJ.GetComponent<Order>().TableNum == tableNum){
-			GameObject tempFood = hand1Object;
-			hand1Object = null;
-			hand1 = WaiterHands.None;
-			return tempFood;
-			//}
+			if(hand1Object.GetComponent<Order>().tableNumber== tableNum){
+				GameObject tempFood = hand1Object;
+				tempFood.transform.SetParent(GameObject.Find("Table" + tableNum.ToString()).transform.GetChild (3));
+				tempFood.transform.localPosition = new Vector3 (0,0,0);
+				hand1Object = null;
+				hand1 = WaiterHands.None;
+				return tempFood;
+			}
 		}
 		else if(hand2 == WaiterHands.Meal){
-			//	if (handLOBJ.GetComponent<Order>().TableNum == tableNum){
-			GameObject tempFood = hand2Object;
-			hand1Object = null;
-			hand2 = WaiterHands.None;
-			return tempFood;
-			//}
+			if (hand2Object.GetComponent<Order>().tableNumber == tableNum){
+				GameObject tempFood = hand2Object;
+				tempFood.transform.SetParent(GameObject.Find("Table" + tableNum.ToString()).transform.GetChild (3));
+				tempFood.transform.localPosition = new Vector3 (0,0,0);
+				hand2Object = null;
+				hand2 = WaiterHands.None;
+				return tempFood;
+			}
 		}
-		else{
-			return null;
+		//else{
+			return hand1Object;
 			// do nothing
-		}
+		//}
 	}
 
 	public void writeDownOrder(GameObject order){

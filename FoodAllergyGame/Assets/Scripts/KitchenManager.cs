@@ -9,8 +9,21 @@ public class KitchenManager : MonoBehaviour {
 
 	public List<Transform> orderSpotList;
 
-	public void CookOrder(GameObject order){
-		StartCoroutine(Cooking(order));
+	public void CookOrder(GameObject[] order){
+
+		if(order.Length > 1){
+			order[0].transform.SetParent(this.gameObject.transform);
+			order[0].SetActive(false);
+			StartCoroutine(Cooking(order[0]));
+			order[1].transform.SetParent(this.gameObject.transform);
+			order[1].SetActive(false);
+			StartCoroutine(Cooking(order[1]));
+		}
+		else if(order.Length == 1){
+			order[0].transform.SetParent(this.gameObject.transform);
+			order[1].SetActive(false);
+			StartCoroutine(Cooking(order[0]));
+		}
 	}
 
 	private IEnumerator Cooking(GameObject order){
@@ -18,7 +31,9 @@ public class KitchenManager : MonoBehaviour {
 		order.GetComponent<Order>().isCooked = true;
 		for (int i = 0; i < orderSpotList.Count; i ++){
 			if(orderSpotList[i].transform.childCount == 0){
+				order.SetActive(true);
 				order.transform.SetParent(orderSpotList[i].transform);
+				order.transform.localPosition = new Vector3 (0,0,0);
 			}
 		}
 	}
