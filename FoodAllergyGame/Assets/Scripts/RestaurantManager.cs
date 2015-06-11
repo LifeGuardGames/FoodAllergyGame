@@ -58,6 +58,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		if(!dayOver && customerHash.Count < 8){
 			GameObject cus = Instantiate(customerPrefab,new Vector3(0,0,0),customerPrefab.transform.rotation)as GameObject;
 			cus.GetComponent<Customer>().Init();
+			customerHash.Add(cus);
 			//TODO SpawnCustomer
 			StartCoroutine("SpawnCustomer");
 		}
@@ -69,6 +70,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	// Removes a customer from the dictionary
 	public void CustomerLeft(string Id, int satisfaction){
 		if(customerHash.ContainsKey(Id)){
+			Debug.Log (satisfactionAI.CalculateCheck(satisfaction));
 			GameManager.Instance.CollectCash(satisfactionAI.CalculateCheck(satisfaction));
 			customerHash.Remove(Id);
 			CheckForGameOver();

@@ -109,7 +109,7 @@ public class Customer : MonoBehaviour{
 		state = CustomerStates.ReadingMenu;
 		StartCoroutine("ReadMenu");
 		StopCoroutine(SatisfactionTimer());
-		attentionSpan = 8.0f;
+		attentionSpan = 20.0f;
 		StartCoroutine(SatisfactionTimer());
 	}
 
@@ -120,7 +120,7 @@ public class Customer : MonoBehaviour{
 		choices = FoodManager.Instance.GetMenuFoodsFromKeyword(desiredFood);
 
 		StopCoroutine(SatisfactionTimer());
-		attentionSpan = 8.0f;
+		attentionSpan = 16.0f;
 		StartCoroutine(SatisfactionTimer());
 		state = CustomerStates.WaitForOrder;
 		//TODO show customer waiting for order
@@ -137,12 +137,16 @@ public class Customer : MonoBehaviour{
 	public void OrderTaken(){
 		attentionSpan = 16.0f;
 		state = CustomerStates.WaitForFood;
+		StopCoroutine(SatisfactionTimer());
+		satisfaction++;
 		StartCoroutine(SatisfactionTimer());
 	}
 
 	// Tells the waiter the food has been delivered and begins eating
 	public void Eating(){
+		satisfaction++;
 		order = transform.GetComponentInParent<Table>().FoodDelivered();
+		order.GetComponent<BoxCollider>().enabled = false;
 		StopCoroutine(SatisfactionTimer());
 		state = CustomerStates.Eating;
 		StartCoroutine("EatingTimer");
@@ -151,7 +155,7 @@ public class Customer : MonoBehaviour{
 	// Eating coroutine
 	IEnumerator EatingTimer(){
 		yield return new WaitForSeconds(6.0f);
-		attentionSpan = 6.0f;
+		attentionSpan = 16.0f;
 		Destroy(order.gameObject);
 		state = CustomerStates.WaitForCheck;
 		StartCoroutine(SatisfactionTimer());

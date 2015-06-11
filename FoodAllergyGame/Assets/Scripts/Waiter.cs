@@ -108,25 +108,21 @@ public class Waiter : Singleton<Waiter>{
 	}
 
 	public GameObject HandMeal(int tableNum){
-		if(hand1 == WaiterHands.Meal){
-			if(hand1Object.GetComponent<Order>().tableNumber== tableNum){
-				GameObject tempFood = hand1Object;
-				tempFood.transform.SetParent(GameObject.Find("Table" + tableNum.ToString()).transform.GetChild (3));
-				tempFood.transform.localPosition = new Vector3 (0,0,0);
-				hand1Object = null;
-				hand1 = WaiterHands.None;
-				return tempFood;
-			}
+		if(hand1 == WaiterHands.Meal && hand1Object.GetComponent<Order>().tableNumber== tableNum){
+			GameObject tempFood = hand1Object;
+			tempFood.transform.SetParent(GameObject.Find("Table" + tableNum.ToString()).transform.GetChild (3));
+			tempFood.transform.localPosition = new Vector3 (0,0,0);
+			hand1Object = null;
+			hand1 = WaiterHands.None;
+			return tempFood;
 		}
-		else if(hand2 == WaiterHands.Meal){
-			if (hand2Object.GetComponent<Order>().tableNumber == tableNum){
-				GameObject tempFood = hand2Object;
-				tempFood.transform.SetParent(GameObject.Find("Table" + tableNum.ToString()).transform.GetChild (3));
-				tempFood.transform.localPosition = new Vector3 (0,0,0);
-				hand2Object = null;
-				hand2 = WaiterHands.None;
-				return tempFood;
-			}
+		else if(hand2 == WaiterHands.Meal && hand2Object.GetComponent<Order>().tableNumber == tableNum){
+			GameObject tempFood = hand2Object;
+			tempFood.transform.SetParent(GameObject.Find("Table" + tableNum.ToString()).transform.GetChild (3));
+			tempFood.transform.localPosition = new Vector3 (0,0,0);
+			hand2Object = null;
+			hand2 = WaiterHands.None;
+			return tempFood;
 		}
 		//else{
 			return hand1Object;
