@@ -12,28 +12,36 @@ public class GameManager : Singleton<GameManager> {
 	public bool isPaused;
 	public float cash;
 
+	private static bool isCreated;
+
+	void Awake(){
+		// Make object persistent
+		if(isCreated){
+			// If There is a duplicate in the scene. delete the object and jump Awake
+			Destroy(gameObject);
+			return;
+		}
+		DontDestroyOnLoad(gameObject);
+		isCreated = true;
+	}
+
 	public void GameStart(){
 		RestaurantManager.Instance.StartDay();
 	}
 
-
 	public void DayComplete(){
 		//TODO Display Stats and replay games buttons
 	}
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 	public float GetCash(){
 		return cash;
 	}
 
 	public void CollectCash(float money){
 		cash += money;
+	}
+
+	public void TransitionScene(string scene){
+		Application.LoadLevel(scene);
 	}
 }

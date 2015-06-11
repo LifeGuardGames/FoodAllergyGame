@@ -30,51 +30,6 @@ public class StringUtils {
 		return newString;
 	}
 
-	/*public static string FormatNumber( int i_nVal ) {
-		string strDelim = Localization.Localize( "NUMBER_DELIMETER" );
-		string strVal = i_nVal.ToString("n0");
-		
-		strVal = strVal.Replace(",", strDelim);
-	
-		return strVal;
-	}*/
-
-    // <Description StringFormat="">
-    // <Binding Path=""></Binding>
-    // </Description>
-    // working progress......probably need type information for each binding
-    // how to handle plural, and possession cases.
-	/*public static string FormatString(Type classType, IXMLNode stringBindings){
-	 	List<PropertyInfo> propertyInfo= new List<PropertyInfo>();
-        string retValue = "";
-
-        Hashtable hashAttr = XMLUtils.GetAttributes(stringBindings);
-        string stringFormat = "";
-
-        if(hashAttr.ContainsKey("StringFormat"))
-        	stringFormat = (string) hashAttr["StringFormat"];
-        else
-        	Debug.LogError("string to be formatted can't be found for class " + classType);
-
-        //Localize the string	
-        string baseString = Localization.Localize(stringFormat);
-
-        //Get all the bindings
-        List<IXMLNode> childrenList = XMLUtils.GetChildrenList(stringBindings);
-
-        foreach(IXMLNode node in childrenList){
-            Hashtable bindingAttr = XMLUtils.GetAttributes(node);
-            string binding = (string) bindingAttr["Path"];
-
-            propertyInfo.Add(classType.GetProperty(binding));
-        }
-
-        //format the base string with the format items
-        retValue = String.Format(baseString, propertyInfo);
-
-        return retValue;	
-	}*/
-
 	public static Vector3 ParseVector3(string vectorString){
 		Vector3 vector = new Vector3(0, 0, 0);
 		String[] arrayVector3;
