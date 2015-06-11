@@ -35,6 +35,8 @@ public class MenuUIManager : MonoBehaviour {
 		GameObject orderObj = Instantiate(order,new Vector3 (0,0,0), order.transform.rotation)as GameObject;
 		Debug.Log (choices[choice].ID.ToString());
 		orderObj.GetComponent<Order>().Init(choices[choice].ID,tableNum);
-		Waiter.Instance.writeDownOrder(orderObj);
+		if(Waiter.Instance.CheckHands()){
+		Waiter.Instance.WriteDownOrder(orderObj);
+		}
 	}
 }

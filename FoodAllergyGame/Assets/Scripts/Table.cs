@@ -22,8 +22,8 @@ public class Table : MonoBehaviour {
 	public GameObject FoodDelivered(){
 		return Waiter.Instance.HandMeal(tableNumber);
 	}
-	// pay the waiter
-	public void OrderObtained(){
 
+	public void OrderObtained(){
+		seat.GetChild(0).GetComponent<Customer>().OrderTaken();
 	}
 }

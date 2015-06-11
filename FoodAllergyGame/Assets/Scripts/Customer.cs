@@ -131,6 +131,8 @@ public class Customer : MonoBehaviour{
 		//TODO return the supplied order
 		//TODO display table number on table
 		GameObject.Find("MenuUIManager").GetComponent<MenuUIManager>().ShowChoices(choices, tableNum);
+	}
+	public void OrderTaken(){
 		transform.GetComponentInParent<Table>().OrderObtained();
 		attentionSpan = 16.0f;
 		state = CustomerStates.WaitForFood;

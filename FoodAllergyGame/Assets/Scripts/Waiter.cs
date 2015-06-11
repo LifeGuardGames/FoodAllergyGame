@@ -133,7 +133,17 @@ public class Waiter : Singleton<Waiter>{
 		//}
 	}
 
-	public void writeDownOrder(GameObject order){
+	public bool CheckHands(){
+		if(hand2 == WaiterHands.None&& hand1 == WaiterHands.None){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+	public void WriteDownOrder(GameObject order){
 		SetHand(order);
+		GameObject.Find ("Table"+ order.GetComponent<Order>().tableNumber.ToString ()).GetComponent<Table>().OrderObtained();
 	}
 }

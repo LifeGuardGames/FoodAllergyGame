@@ -31,7 +31,9 @@ public class TouchManager : MonoBehaviour {
 						break;
 					case "Customer":
 						if(info.collider.gameObject.GetComponent<Customer>().state == CustomerStates.InLine){
-							Waiter.Instance.currentlyServing = info.collider.gameObject;
+							if(Waiter.Instance.CheckHands()){
+								Waiter.Instance.currentlyServing = info.collider.gameObject;
+								}
 						}
 						break;
 					case "Kitchen":
