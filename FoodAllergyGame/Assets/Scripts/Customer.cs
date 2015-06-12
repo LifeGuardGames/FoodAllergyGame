@@ -41,7 +41,7 @@ public class Customer : MonoBehaviour{
 
 	public List <ImmutableDataFood> choices;
 
-	// Basic intitialzation 
+	// Basic intitialzation
 	public void Init(int num){
 		exclaimationMark = transform.GetChild(0).gameObject;
 		exclaimationMark.SetActive(false);
@@ -143,6 +143,7 @@ public class Customer : MonoBehaviour{
 			GameObject.Find("MenuUIManager").GetComponent<MenuUIManager>().ShowChoices(choices, tableNum);
 		}
 	}
+
 	public void OrderTaken(ImmutableDataFood food){
 		exclaimationMark.SetActive(false);
 		GameObject orderObj = Instantiate(TempOrder,new Vector3 (0,0,0), TempOrder.transform.rotation)as GameObject;
