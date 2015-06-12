@@ -21,8 +21,8 @@ public class MenuUIManager : MonoBehaviour {
 		choices = foodChoices;
 		tableNum = table;
 		Debug.Log (foodChoices[0].ID.ToString());
-		button1.GetComponent<Image>().sprite = Resources.Load(foodChoices[0].SpriteName)as Sprite;
-		button2.GetComponent<Image>().sprite = Resources.Load(foodChoices[1].SpriteName)as Sprite;
+		button1.GetComponent<Image>().sprite = SpriteCacheManager.Instance.GetSpriteData(foodChoices[0].SpriteName);
+		button2.GetComponent<Image>().sprite = SpriteCacheManager.Instance.GetSpriteData(foodChoices[1].SpriteName);
 		//button3.GetComponent<Image>().sprite = Resources.Load(foodChoices[2].SpriteName)as Sprite;
 		button1.SetActive(true);
 		button2.SetActive(true);
@@ -35,8 +35,8 @@ public class MenuUIManager : MonoBehaviour {
 		GameObject orderObj = Instantiate(order,new Vector3 (0,0,0), order.transform.rotation)as GameObject;
 		Debug.Log (choices[choice].ID.ToString());
 		orderObj.GetComponent<Order>().Init(choices[choice].ID,tableNum);
-		if(Waiter.Instance.CheckHands()){
+		//if(Waiter.Instance.CheckHands()){
 		Waiter.Instance.WriteDownOrder(orderObj);
-		}
+		//}
 	}
 }
