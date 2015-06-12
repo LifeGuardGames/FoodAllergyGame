@@ -36,6 +36,8 @@ public class Customer : MonoBehaviour{
 	public GameObject order;
 
 	public CustomerUIController customerUI;
+	public GameObject TempOrder;
+
 
 	public List <ImmutableDataFood> choices;
 
@@ -71,29 +73,29 @@ public class Customer : MonoBehaviour{
 				allergy = Allergies.None;
 				break;
 			}
-			rand = Random.Range(0,7);
+			rand = Random.Range(0,3);
 			switch(rand){
 			case 0:
-				desiredFood = FoodKeywords.Bread;
+				desiredFood = FoodKeywords.Meal;
 				break;
 			case 1:
-				desiredFood = FoodKeywords.Chocolate;
+				desiredFood = FoodKeywords.Drink;
 				break;
 			case 2:
 				desiredFood = FoodKeywords.Dessert;
 				break;
-			case 3:
-				desiredFood = FoodKeywords.Drink;
-				break;
-			case 4:
-				desiredFood = FoodKeywords.Green;
-				break;
-			case 5:
-				desiredFood = FoodKeywords.Meat;
-				break;
-			case 6:
-				desiredFood = FoodKeywords.Nut;
-				break;
+//			case 3:
+//				desiredFood = FoodKeywords.Drink;
+//				break;
+//			case 4:
+//				desiredFood = FoodKeywords.Green;
+//				break;
+//			case 5:
+//				desiredFood = FoodKeywords.Meat;
+//				break;
+//			case 6:
+//				desiredFood = FoodKeywords.Nut;
+//				break;
 			}
 		}
 	}
@@ -146,8 +148,8 @@ public class Customer : MonoBehaviour{
 
 	public void OrderTaken(ImmutableDataFood food){
 		customerUI.ToggleWait(false);
-		GameObject orderObj = Instantiate(order,new Vector3 (0,0,0), order.transform.rotation)as GameObject;
-		orderObj.GetComponent<Order>().Init(food.ID,tableNum);
+		GameObject orderObj = Instantiate(TempOrder,new Vector3 (0,0,0), TempOrder.transform.rotation)as GameObject;
+		orderObj.GetComponent<Order>().Init(food.ID,tableNum,food.AllergyList[0]);
 		RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().OrderObtained(orderObj);
 		attentionSpan = 16.0f;
 		state = CustomerStates.WaitForFood;
@@ -164,8 +166,14 @@ public class Customer : MonoBehaviour{
 		order = transform.GetComponentInParent<Table>().FoodDelivered();
 		order.GetComponent<BoxCollider>().enabled = false;
 		StopCoroutine(SatisfactionTimer());
+		if(order.GetComponent<Order>().allergy == allergy){
+			state = CustomerStates.AllergyAttack;
+			AllergyAttack();
+		}
+		else{
 		state = CustomerStates.Eating;
 		StartCoroutine("EatingTimer");
+		}
 	}
 
 	// Eating coroutine
@@ -186,8 +194,24 @@ public class Customer : MonoBehaviour{
 	}
 
 	public void AllergyAttack(){
-		attentionSpan = 5.0f;
-		StartCoroutine(SatisfactionTimer());
+//		attentionSpan = 5.0f;
+		exclaimationMark.SetActive(true);
+		RestaurantManager.Instance.SickCustomers.Add (this.gameObject);
+		StartCoroutine("AllergyTimer");
+	}
+
+	public void Saved(){
+		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
+		satisfaction++;
+		StopCoroutine("AllergyTimer");
+	}
+
+	IEnumerator AllergyTimer(){
+		yield return new WaitForSeconds(5.0f);
+		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
+		satisfaction = -5;
+		Destroy(order.gameObject);
+		NotifyLeave();
 	}
 
 	// Checks the current state and runs the appropriate function called by table when waiter approaches

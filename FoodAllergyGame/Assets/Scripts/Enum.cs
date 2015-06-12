@@ -3,13 +3,16 @@ public enum FoodKeywords{
 	None,
 	Keyword1,
 	Keyword2,
-	Nut,
-	Drink,
-	Green,
-	Meat,
-	Bread,
-	Chocolate,
+//	Nut,
+//	Drink,
+//	Green,
+//	Meat,
+//	Bread,
+//	Chocolate,
+//	Dessert,
+	Meal,
 	Dessert,
+	Drink,
 }
 
 public enum Allergies{

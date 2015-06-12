@@ -20,12 +20,15 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	// our satisfaction ai 
 	private SatisfactionAI satisfactionAI;
 
+	public List<GameObject> SickCustomers;
+
 	public GameObject[] TableList;
 
 	// RemoveCustomer removes the customer from a hashtable 
 	// and then if the day is over checks to see if the hastable is empty and if it is it ends the round
 
 	void Start(){
+		SickCustomers = new List<GameObject>();
 		customerHash = new Dictionary<string, GameObject>();
 		satisfactionAI = new SatisfactionAI();
 		StartDay();
@@ -99,5 +102,11 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			}
 		}
 		return TableList[0];
+	}
+
+	public void CustomerSaved(){
+		for (int i = 0; i < SickCustomers.Count; i++){
+			SickCustomers[i].GetComponent<Customer>().Saved();
+		}
 	}
 }
