@@ -195,7 +195,7 @@ public class Customer : MonoBehaviour{
 
 	public void AllergyAttack(){
 //		attentionSpan = 5.0f;
-		exclaimationMark.SetActive(true);
+		customerUI.ToggleAllergyAttack(true);
 		RestaurantManager.Instance.SickCustomers.Add (this.gameObject);
 		StartCoroutine("AllergyTimer");
 	}
@@ -203,6 +203,8 @@ public class Customer : MonoBehaviour{
 	public void Saved(){
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
 		satisfaction++;
+		customerUI.ToggleAllergyAttack(false);
+		customerUI.UpdateSatisfaction(satisfaction);
 		StopCoroutine("AllergyTimer");
 	}
 
@@ -210,6 +212,7 @@ public class Customer : MonoBehaviour{
 		yield return new WaitForSeconds(5.0f);
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
 		satisfaction = -5;
+		customerUI.UpdateSatisfaction(satisfaction);
 		Destroy(order.gameObject);
 		NotifyLeave();
 	}
