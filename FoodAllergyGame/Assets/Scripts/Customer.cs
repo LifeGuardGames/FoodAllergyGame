@@ -35,22 +35,23 @@ public class Customer : MonoBehaviour{
 
 	public GameObject order;
 
+	public CustomerUIController customerUI;
 	public GameObject TempOrder;
 
-	public GameObject exclaimationMark;
 
 	public List <ImmutableDataFood> choices;
 
 	// Basic intitialzation
 	public void Init(int num){
-		exclaimationMark = transform.GetChild(0).gameObject;
-		exclaimationMark.SetActive(false);
+		customerUI.ToggleWait(false);
+		customerUI.ToggleAllergyAttack(false);
 		customerID = "Customer" + num.ToString();
 		state = CustomerStates.InLine;
 		StartCoroutine(SatisfactionTimer());
 		choices = new List<ImmutableDataFood>();
 		//allergy = new List<Allergies>();
 		satisfaction = 3;
+		customerUI.UpdateSatisfaction(satisfaction);
 		if(GameObject.Find("Line").GetComponent<LineController>().NewCustomer() == null){
 			Destroy (this.gameObject);
 		}
@@ -104,6 +105,7 @@ public class Customer : MonoBehaviour{
 		yield return new WaitForSeconds(attentionSpan);
 		if(satisfaction >0){
 			satisfaction--;
+			customerUI.UpdateSatisfaction(satisfaction);
 		}
 		StartCoroutine(SatisfactionTimer());
 	}
@@ -127,7 +129,7 @@ public class Customer : MonoBehaviour{
 		yield return new WaitForSeconds(menuTimer);
 
 		choices = FoodManager.Instance.GetMenuFoodsFromKeyword(desiredFood);
-		exclaimationMark.SetActive(true);
+		customerUI.ToggleWait(true);
 		StopCoroutine(SatisfactionTimer());
 		attentionSpan = 16.0f;
 		StartCoroutine(SatisfactionTimer());
@@ -145,7 +147,7 @@ public class Customer : MonoBehaviour{
 	}
 
 	public void OrderTaken(ImmutableDataFood food){
-		exclaimationMark.SetActive(false);
+		customerUI.ToggleWait(false);
 		GameObject orderObj = Instantiate(TempOrder,new Vector3 (0,0,0), TempOrder.transform.rotation)as GameObject;
 		orderObj.GetComponent<Order>().Init(food.ID,tableNum,food.AllergyList[0]);
 		RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().OrderObtained(orderObj);
@@ -153,12 +155,14 @@ public class Customer : MonoBehaviour{
 		state = CustomerStates.WaitForFood;
 		StopCoroutine(SatisfactionTimer());
 		satisfaction++;
+		customerUI.UpdateSatisfaction(satisfaction);
 		StartCoroutine(SatisfactionTimer());
 	}
 
 	// Tells the waiter the food has been delivered and begins eating
 	public void Eating(){
 		satisfaction++;
+		customerUI.UpdateSatisfaction(satisfaction);
 		order = transform.GetComponentInParent<Table>().FoodDelivered();
 		order.GetComponent<BoxCollider>().enabled = false;
 		StopCoroutine(SatisfactionTimer());
@@ -175,7 +179,7 @@ public class Customer : MonoBehaviour{
 	// Eating coroutine
 	IEnumerator EatingTimer(){
 		yield return new WaitForSeconds(6.0f);
-		exclaimationMark.SetActive(true);
+		customerUI.ToggleWait(true);
 		attentionSpan = 16.0f;
 		Destroy(order.gameObject);
 		state = CustomerStates.WaitForCheck;
