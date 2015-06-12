@@ -12,6 +12,8 @@ public class CustomerUIController : MonoBehaviour {
 
 	public Image waiting;
 
+	public Text allergyText;
+
 	public void UpdateSatisfaction(int satisfaction){
 		if(satisfaction <= 0){
 			satisfaction1.gameObject.SetActive(false);
@@ -33,6 +35,11 @@ public class CustomerUIController : MonoBehaviour {
 			satisfaction2.gameObject.SetActive(true);
 			satisfaction3.gameObject.SetActive(true);
 		}
+	}
+
+	public void ToggleText(bool isShowAllergy, string _allergyText){
+		allergyText.gameObject.SetActive(isShowAllergy);
+		allergyText.text = _allergyText;
 	}
 
 	public void ToggleWait(bool isWaiting){

@@ -24,18 +24,18 @@ public class FoodManager : Singleton<FoodManager>{
 		isCreated = true;
 
 		//test code
-		tempMenu = new List<string>();
-		tempMenu.Add("Food00");
-		tempMenu.Add("Food01");
-		tempMenu.Add("Food02");
-		tempMenu.Add("Food03");
-		tempMenu.Add("Food04");
-		tempMenu.Add("Food05");
-		tempMenu.Add("Food06");
-		tempMenu.Add("Food07");
-		tempMenu.Add("Food08");
-		tempMenu.Add("Food09");
-		GenerateMenu(tempMenu);
+//		tempMenu = new List<string>();
+//		tempMenu.Add("Food00");
+//		tempMenu.Add("Food01");
+//		tempMenu.Add("Food02");
+//		tempMenu.Add("Food03");
+//		tempMenu.Add("Food04");
+//		tempMenu.Add("Food05");
+//		tempMenu.Add("Food06");
+//		tempMenu.Add("Food07");
+//		tempMenu.Add("Food08");
+//		tempMenu.Add("Food09");
+//		GenerateMenu(tempMenu);
 	}
 
 	////////////////////////////////////

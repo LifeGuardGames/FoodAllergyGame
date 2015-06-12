@@ -45,6 +45,7 @@ public class Customer : MonoBehaviour{
 	public void Init(int num){
 		customerUI.ToggleWait(false);
 		customerUI.ToggleAllergyAttack(false);
+		customerUI.ToggleText(false, "");
 		customerID = "Customer" + num.ToString();
 		state = CustomerStates.InLine;
 		StartCoroutine(SatisfactionTimer());
@@ -142,12 +143,14 @@ public class Customer : MonoBehaviour{
 		//TODO return the supplied order
 		//TODO display table number on table
 		if(Waiter.Instance.CheckHands()){
+			customerUI.ToggleText(true, allergy.ToString());
 			GameObject.Find("MenuUIManager").GetComponent<MenuUIManager>().ShowChoices(choices, tableNum);
 		}
 	}
 
 	public void OrderTaken(ImmutableDataFood food){
 		customerUI.ToggleWait(false);
+		customerUI.ToggleText(false, "");
 		GameObject orderObj = Instantiate(TempOrder,new Vector3 (0,0,0), TempOrder.transform.rotation)as GameObject;
 		orderObj.GetComponent<Order>().Init(food.ID,tableNum,food.AllergyList[0]);
 		RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().OrderObtained(orderObj);
