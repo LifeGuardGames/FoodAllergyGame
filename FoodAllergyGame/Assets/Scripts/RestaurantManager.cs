@@ -20,6 +20,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	// our satisfaction ai 
 	private SatisfactionAI satisfactionAI;
 
+	public GameObject[] TableList;
+
 	// RemoveCustomer removes the customer from a hashtable 
 	// and then if the day is over checks to see if the hastable is empty and if it is it ends the round
 
@@ -88,5 +90,14 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				GameManager.Instance.DayComplete();
 			}
 		}
+	}
+
+	public GameObject GetTable(int tableNum){
+		for (int i = 0; i < 4; i++){
+			if(	TableList [i].GetComponent<Table>().tableNumber == tableNum){
+				return TableList[i];
+			}
+		}
+		return TableList[0];
 	}
 }

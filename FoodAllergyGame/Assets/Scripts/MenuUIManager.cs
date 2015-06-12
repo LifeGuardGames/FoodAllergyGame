@@ -32,11 +32,9 @@ public class MenuUIManager : MonoBehaviour {
 	public void ProduceOrder(int choice){
 		button1.SetActive(false);
 		button2.SetActive(false);
-		GameObject orderObj = Instantiate(order,new Vector3 (0,0,0), order.transform.rotation)as GameObject;
-		Debug.Log (choices[choice].ID.ToString());
-		orderObj.GetComponent<Order>().Init(choices[choice].ID,tableNum);
 		//if(Waiter.Instance.CheckHands()){
-		Waiter.Instance.WriteDownOrder(orderObj);
+		//Waiter.Instance.WriteDownOrder(orderObj);
 		//}
+		RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().seat.GetChild(0).gameObject.GetComponent<Customer>().OrderTaken(choices[choice]);
 	}
 }

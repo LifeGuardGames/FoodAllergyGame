@@ -23,7 +23,7 @@ public class Table : MonoBehaviour {
 		return Waiter.Instance.HandMeal(tableNumber);
 	}
 
-	public void OrderObtained(){
-		seat.GetChild(0).GetComponent<Customer>().OrderTaken();
+	public void OrderObtained(GameObject order){
+		Waiter.Instance.WriteDownOrder(order);
 	}
 }

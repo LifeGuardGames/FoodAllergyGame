@@ -110,7 +110,7 @@ public class Customer : MonoBehaviour{
 	public void JumpToTable(int tableN){
 		Waiter.Instance.currentlyServing = null;
 		tableNum = tableN;
-		table = GameObject.Find("Table" + tableN.ToString());
+		table = RestaurantManager.Instance.GetTable(tableN);
 		transform.SetParent(table.transform.GetChild(1));
 		transform.localPosition = Vector3.zero;
 		state = CustomerStates.ReadingMenu;
@@ -141,8 +141,11 @@ public class Customer : MonoBehaviour{
 			GameObject.Find("MenuUIManager").GetComponent<MenuUIManager>().ShowChoices(choices, tableNum);
 		}
 	}
-	public void OrderTaken(){
+	public void OrderTaken(ImmutableDataFood food){
 		exclaimationMark.SetActive(false);
+		GameObject orderObj = Instantiate(order,new Vector3 (0,0,0), order.transform.rotation)as GameObject;
+		orderObj.GetComponent<Order>().Init(food.ID,tableNum);
+		RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().OrderObtained(orderObj);
 		attentionSpan = 16.0f;
 		state = CustomerStates.WaitForFood;
 		StopCoroutine(SatisfactionTimer());
