@@ -11,10 +11,13 @@ public class Order : MonoBehaviour{
 	// Is this order cooked?
 	public bool isCooked;
 
+	public Allergies allergy;
+
 	// Initialize the order when it is first spawned
-	public void Init(string foodID, int tableNumber){
+	public void Init(string foodID, int tableNumber, Allergies _allergy){
 		this.foodID = foodID;
 		this.tableNumber = tableNumber;
 		isCooked = false;
+		allergy = _allergy;
 	}
 }

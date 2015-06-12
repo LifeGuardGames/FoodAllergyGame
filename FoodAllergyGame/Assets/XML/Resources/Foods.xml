@@ -4,61 +4,61 @@
 		<FoodNameKey>FoodRootBeer</FoodNameKey>
 		<SpriteName>FoodRootBeer</SpriteName>
 		<Allergies>None</Allergies>
-		<Keywords>Drink,Keyword2</Keywords>
+		<Keywords>Drink,Dessert</Keywords>
 	</Food>
 	<Food ID="Food01">
 		<FoodNameKey>FoodBurger</FoodNameKey>
 		<SpriteName>FoodBurger</SpriteName>
 		<Allergies>Wheat</Allergies>
-		<Keywords>Bread,Meat</Keywords>
+		<Keywords>Meal,Dessert</Keywords>
 	</Food>
 	<Food ID="Food02">
 		<FoodNameKey>FoodGrilledCheese</FoodNameKey>
 		<SpriteName>FoodGrilledCheese</SpriteName>
 		<Allergies>Wheat</Allergies>
-		<Keywords>Bread,Green</Keywords>
+		<Keywords>Meal,Drink</Keywords>
 	</Food>
 	<Food ID="Food03">
 		<FoodNameKey>FoodWings</FoodNameKey>
 		<SpriteName>FoodWings</SpriteName>
 		<Allergies>Wheat</Allergies>
-		<Keywords>Bread,Meat</Keywords>
+		<Keywords>Meal,Drink</Keywords>
 	</Food>
 	<Food ID="Food04">
 		<FoodNameKey>FoodMousseCake</FoodNameKey>
 		<SpriteName>FoodMousseCake</SpriteName>
 		<Allergies>Dairy</Allergies>
-		<Keywords>Dessert,Chocolate</Keywords>
+		<Keywords>Dessert,Meal</Keywords>
 	</Food>
 	<Food ID="Food05">
 		<FoodNameKey>FoodSundae</FoodNameKey>
 		<SpriteName>FoodSundae</SpriteName>
 		<Allergies>Dairy</Allergies>
-		<Keywords>Dessert,Chocolate</Keywords>
+		<Keywords>Dessert,Drink</Keywords>
 	</Food>
 	<Food ID="Food06">
 		<FoodNameKey>FoodMilkshake</FoodNameKey>
 		<SpriteName>FoodMilkshake</SpriteName>
 		<Allergies>Dairy</Allergies>
-		<Keywords>Drink,Chocolate</Keywords>
+		<Keywords>Drink,Dessert</Keywords>
 	</Food>
 	<Food ID="Food07">
 		<FoodNameKey>FoodPeanutDessert</FoodNameKey>
 		<SpriteName>FoodPeanutDessert</SpriteName>
 		<Allergies>Peanut</Allergies>
-		<Keywords>Dessert,Nut</Keywords>
+		<Keywords>Dessert,Drink</Keywords>
 	</Food>
 	<Food ID="Food08">
 		<FoodNameKey>FoodSalad</FoodNameKey>
 		<SpriteName>FoodSalad</SpriteName>
 		<Allergies>Peanut</Allergies>
-		<Keywords>Green,Nut</Keywords>
+		<Keywords>Meal,Dessert</Keywords>
 	</Food>
 	<Food ID="Food09">
 		<FoodNameKey>FoodDumplings</FoodNameKey>
 		<SpriteName>FoodDumplings</SpriteName>
 		<Allergies>Peanut</Allergies>
-		<Keywords>Bread,Nut</Keywords>
+		<Keywords>Meal,Drink</Keywords>
 	</Food>
 </Foods>
 
