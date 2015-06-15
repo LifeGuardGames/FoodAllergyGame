@@ -30,5 +30,6 @@ public class Table : MonoBehaviour {
 	public void CustomerLeaving(){
 		inUse = false;
 		Waiter.Instance.RemoveMeal(tableNumber);
+		GameObject.Find("Kitchen").GetComponent<KitchenManager>().CancelOrder(tableNumber);
 	}
 }
