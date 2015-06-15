@@ -20,7 +20,7 @@ public class Waiter : Singleton<Waiter>{
 	public bool moving;
 	private Vector3 target;
 	public float speed;
-	public GameObject currentlyServing;
+	public GameObject currentLineCustomer;
 	public bool canMove = true;
 
 	public void MoveToLocation(Vector3 location){

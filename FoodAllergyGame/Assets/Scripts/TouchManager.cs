@@ -2,13 +2,6 @@
 using System.Collections;
 
 public class TouchManager : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
 	void Update () {
 		if (Input.GetMouseButtonDown(0)){
 			RaycastHit info;
@@ -17,9 +10,9 @@ public class TouchManager : MonoBehaviour {
 				if(info.collider != null){
 					switch(info.collider.gameObject.tag){
 					case "Table":
-						if(Waiter.Instance.currentlyServing != null && !info.collider.gameObject.GetComponent<Table>().inUse){	
-							Waiter.Instance.currentlyServing.transform.localScale = Vector3.one;
-							Waiter.Instance.currentlyServing.GetComponent<Customer>().JumpToTable(info.collider.gameObject.GetComponent<Table>().tableNumber);
+						if(Waiter.Instance.currentLineCustomer != null && !info.collider.gameObject.GetComponent<Table>().inUse){	
+							Waiter.Instance.currentLineCustomer.transform.localScale = Vector3.one;
+							Waiter.Instance.currentLineCustomer.GetComponent<Customer>().JumpToTable(info.collider.gameObject.GetComponent<Table>().tableNumber);
 							info.collider.gameObject.GetComponent<Table>().inUse = true;
 						}
 						else if(info.collider.gameObject.transform.childCount > 1){
@@ -34,16 +27,16 @@ public class TouchManager : MonoBehaviour {
 						if(info.collider.gameObject.GetComponent<Customer>().state == CustomerStates.InLine){
 							if(Waiter.Instance.CheckHands()){
 								// If you were already selecting a customer, untween that
-								if(Waiter.Instance.currentlyServing != null){
-									Customer customerScript = Waiter.Instance.currentlyServing.GetComponent<Customer>();
+								if(Waiter.Instance.currentLineCustomer != null){
+									Customer customerScript = Waiter.Instance.currentLineCustomer.GetComponent<Customer>();
 									if(customerScript != null){
 										if(customerScript.state == CustomerStates.InLine){
 											customerScript.transform.localScale = Vector3.one;
 										}
 									}
 								}
-								Waiter.Instance.currentlyServing = info.collider.gameObject;
-								Waiter.Instance.currentlyServing.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+								Waiter.Instance.currentLineCustomer = info.collider.gameObject;
+								Waiter.Instance.currentLineCustomer.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
 							}
 						}
 						break;
