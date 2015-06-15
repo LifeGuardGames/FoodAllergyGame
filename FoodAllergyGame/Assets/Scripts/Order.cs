@@ -10,9 +10,23 @@ public class Order : MonoBehaviour{
 	public int tableNumber;
 
 	// Is this order cooked?
-	public bool isCooked;
+	private bool isCooked;
+	public bool IsCooked{
+		get{
+			return isCooked;
+		}
+		set{
+			isCooked = value;
+			gameObject.GetComponent<Renderer>().material = isCooked ? cookedMaterial : uncookedMaterial;
+		}
+	}
 
 	public Allergies allergy;
+
+	// TEMP
+	public Material uncookedMaterial;
+	public Material cookedMaterial;
+
 
 	// Initialize the order when it is first spawned
 	public void Init(string foodID, int tableNumber, Allergies _allergy){

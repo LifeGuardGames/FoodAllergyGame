@@ -47,7 +47,7 @@ public class Waiter : Singleton<Waiter>{
 
 	public void SetHand(GameObject order){
 		if(hand1 == WaiterHands.None){
-			if(!order.GetComponent<Order>().isCooked){
+			if(!order.GetComponent<Order>().IsCooked){
 				hand1 = WaiterHands.Order;
 				hand1Object = order;
 				hand1Object.transform.SetParent(hand1Parent);
@@ -63,7 +63,7 @@ public class Waiter : Singleton<Waiter>{
 			}
 		}
 		else if(hand2 == WaiterHands.None){
-			if(!order.GetComponent<Order>().isCooked){
+			if(!order.GetComponent<Order>().IsCooked){
 				hand2 = WaiterHands.Order;
 				hand2Object = order;
 				hand2Object.transform.SetParent(hand2Parent);

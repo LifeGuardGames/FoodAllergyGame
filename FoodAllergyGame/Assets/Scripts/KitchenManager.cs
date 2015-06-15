@@ -28,7 +28,7 @@ public class KitchenManager : MonoBehaviour {
 
 	private IEnumerator Cooking(GameObject order){
 		yield return new WaitForSeconds(5.0f);
-		order.GetComponent<Order>().isCooked = true;
+		order.GetComponent<Order>().IsCooked = true;
 		for (int i = 0; i < orderSpotList.Count; i ++){
 			if(orderSpotList[i].transform.childCount == 0){
 				order.SetActive(true);
