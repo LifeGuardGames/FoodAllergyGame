@@ -28,12 +28,23 @@ public class KitchenManager : MonoBehaviour {
 
 	private IEnumerator Cooking(GameObject order){
 		yield return new WaitForSeconds(5.0f);
-		order.GetComponent<Order>().IsCooked = true;
+		order.GetComponent<Order>().isCooked = true;
 		for (int i = 0; i < orderSpotList.Count; i ++){
 			if(orderSpotList[i].transform.childCount == 0){
 				order.SetActive(true);
 				order.transform.SetParent(orderSpotList[i].transform);
 				order.transform.localPosition = new Vector3 (0,0,0);
+			}
+		}
+	}
+
+	public void CancelOrder(int tableNum){
+		for (int i = 0; i < orderSpotList.Count; i++){
+			if(orderSpotList[i].childCount > 0){
+				if(orderSpotList[i].GetComponentInChildren<Order>().tableNumber == tableNum){
+					StopCoroutine(Cooking(orderSpotList[i].GetChild(0).gameObject));
+					Destroy(Cooking(orderSpotList[i].GetChild(0).gameObject));
+				}
 			}
 		}
 	}
