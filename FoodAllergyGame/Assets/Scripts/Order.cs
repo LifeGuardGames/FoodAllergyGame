@@ -36,4 +36,23 @@ public class Order : MonoBehaviour{
 		allergy = _allergy;
 		this.gameObject.GetComponentInChildren<Text>().text = tableNumber.ToString();
 	}
+
+	public void StartCooking(){
+		GetComponent<MeshRenderer>().enabled = false;
+		GetComponentInChildren<Text>().enabled = false;
+		StartCoroutine("Cooking");
+	}
+
+	private IEnumerator Cooking(){
+		yield return new WaitForSeconds(5.0f);
+		IsCooked = true;
+		GetComponent<MeshRenderer>().enabled = true;
+		GetComponentInChildren<Text>().enabled = true;
+		GameObject.Find("Kitchen").GetComponent<KitchenManager>().Cooked(this.gameObject);
+	}
+
+	public void Canceled(){
+		StopCoroutine("Cooking");
+		Destroy(this.gameObject);
+	}
 }

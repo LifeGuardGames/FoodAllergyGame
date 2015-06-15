@@ -13,25 +13,26 @@ public class KitchenManager : MonoBehaviour {
 
 		if(order.Count > 1){
 			order[0].transform.SetParent(this.gameObject.transform);
-			order[0].SetActive(false);
-			StartCoroutine(Cooking(order[0]));
+			order[0].GetComponent<Order>().StartCooking();
+			//order[0].SetActive(false);
+			//StartCoroutine(Cooking(order[0]));
 			order[1].transform.SetParent(this.gameObject.transform);
-			order[1].SetActive(false);
-			StartCoroutine(Cooking(order[1]));
+			order[1].GetComponent<Order>().StartCooking();
+			//order[1].SetActive(false);
+			//StartCoroutine(Cooking(order[1]));
 		}
 		else if(order.Count == 1){
 			order[0].transform.SetParent(this.gameObject.transform);
-			order[0].SetActive(false);
-			StartCoroutine(Cooking(order[0]));
+			//StartCoroutine(Cooking(order[0]));
+			order[0].GetComponent<Order>().StartCooking();
+			//order[0].SetActive(false);
 		}
 	}
 
-	private IEnumerator Cooking(GameObject order){
-		yield return new WaitForSeconds(5.0f);
-		order.GetComponent<Order>().IsCooked = true;
+	public void Cooked(GameObject order){
 		for (int i = 0; i < orderSpotList.Count; i ++){
 			if(orderSpotList[i].transform.childCount == 0){
-				order.SetActive(true);
+				//order.SetActive(true);
 				order.transform.SetParent(orderSpotList[i].transform);
 				order.transform.localPosition = new Vector3 (0,0,0);
 			}
@@ -42,8 +43,8 @@ public class KitchenManager : MonoBehaviour {
 		for (int i = 0; i < orderSpotList.Count; i++){
 			if(orderSpotList[i].childCount > 0){
 				if(orderSpotList[i].GetComponentInChildren<Order>().tableNumber == tableNum){
-					StopCoroutine(Cooking(orderSpotList[i].GetChild(0).gameObject));
-					Destroy(orderSpotList[i].GetChild(0).gameObject);
+					//StopCoroutine(Cooking(orderSpotList[i].GetChild(0).gameObject));
+					orderSpotList[i].GetChild(0).GetComponent<Order>().Canceled();
 				}
 			}
 		}
