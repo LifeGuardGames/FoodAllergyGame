@@ -200,7 +200,9 @@ public class Customer : MonoBehaviour{
 	// Tells the resturantManager that the customer is leaving and can be removed from the dictionary
 	public void NotifyLeave(){
 		RestaurantManager.Instance.CustomerLeft(customerID, satisfaction);
-		table.GetComponent<Table>().CustomerLeaving();
+		if(state != CustomerStates.InLine){
+			table.GetComponent<Table>().CustomerLeaving();
+		}
 		Destroy(this.gameObject);
 	}
 
