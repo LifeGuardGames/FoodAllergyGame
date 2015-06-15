@@ -47,6 +47,7 @@ public class Customer : MonoBehaviour{
 		customerUI.ToggleAllergyAttack(false);
 		customerUI.ToggleText(false, "");
 		customerID = "Customer" + num.ToString();
+		gameObject.name = "Customer" + num.ToString();
 		state = CustomerStates.InLine;
 		StartCoroutine(SatisfactionTimer());
 		choices = new List<ImmutableDataFood>();
@@ -104,6 +105,7 @@ public class Customer : MonoBehaviour{
 	// When completed removes one satisfaction from that customer
 	IEnumerator SatisfactionTimer(){
 		yield return new WaitForSeconds(attentionSpan);
+		Debug.Log("wait for seconds done " + gameObject.name);
 		if(satisfaction > 0){
 			satisfaction--;
 			customerUI.UpdateSatisfaction(satisfaction);
@@ -158,8 +160,8 @@ public class Customer : MonoBehaviour{
 	public void OrderTaken(ImmutableDataFood food){
 		customerUI.ToggleWait(false);
 		customerUI.ToggleText(false, "");
-		GameObject orderObj = Instantiate(TempOrder,new Vector3 (0,0,0), TempOrder.transform.rotation)as GameObject;
-		orderObj.GetComponent<Order>().Init(food.ID,tableNum,food.AllergyList[0]);
+		GameObject orderObj = GameObjectUtils.AddChildWithPositionAndScale(null, TempOrder);
+		orderObj.GetComponent<Order>().Init(food.ID, tableNum, food.AllergyList[0]);
 		RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().OrderObtained(orderObj);
 		Waiter.Instance.canMove = true;
 		attentionSpan = 16.0f;
