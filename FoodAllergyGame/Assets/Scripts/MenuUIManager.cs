@@ -6,8 +6,11 @@ using System.Collections.Generic;
 public class MenuUIManager : MonoBehaviour {
 
 	public GameObject button1;
+	public Image button1Image;
 	public GameObject button2;
+	public Image button2Image;
 	public GameObject button3;
+	public Image button3Image;
 	public List <ImmutableDataFood> choices;
 	public int tableNum;
 	public GameObject order;
@@ -21,8 +24,8 @@ public class MenuUIManager : MonoBehaviour {
 		choices = foodChoices;
 		tableNum = table;
 		Debug.Log (foodChoices[0].ID.ToString());
-		button1.GetComponent<Image>().sprite = SpriteCacheManager.Instance.GetSpriteData(foodChoices[0].SpriteName);
-		button2.GetComponent<Image>().sprite = SpriteCacheManager.Instance.GetSpriteData(foodChoices[1].SpriteName);
+		button1Image.sprite = SpriteCacheManager.Instance.GetSpriteData(foodChoices[0].SpriteName);
+		button2Image.sprite = SpriteCacheManager.Instance.GetSpriteData(foodChoices[1].SpriteName);
 		//button3.GetComponent<Image>().sprite = Resources.Load(foodChoices[2].SpriteName)as Sprite;
 		button1.SetActive(true);
 		button2.SetActive(true);
