@@ -21,10 +21,13 @@ public class Waiter : Singleton<Waiter>{
 	private Vector3 target;
 	public float speed;
 	public GameObject currentlyServing;
+	public bool canMove = true;
 
 	public void MoveToLocation(Vector3 location){
-		moving = true;
-		target = location;
+		if(canMove){
+			moving = true;
+			target = location;
+		}
 	}
 
 	void Update(){
@@ -138,7 +141,20 @@ public class Waiter : Singleton<Waiter>{
 			return false;
 		}
 	}
-
+	public void RemoveMeal(int table){
+		if(hand1 != WaiterHands.None){
+			if(hand1Object.GetComponent<Order>().tableNumber == table){
+				Destroy(hand1Object.gameObject);
+				hand1 = WaiterHands.None;
+			}
+		}
+		if(hand2 != WaiterHands.None){
+			if(hand2Object.GetComponent<Order>().tableNumber == table){
+				Destroy(hand2Object.gameObject);
+				hand2 = WaiterHands.None;
+			}
+		}
+	}
 	public void WriteDownOrder(GameObject order){
 		SetHand(order);
 	}

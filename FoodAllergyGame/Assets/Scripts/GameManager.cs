@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager> {
 
@@ -39,6 +40,7 @@ public class GameManager : Singleton<GameManager> {
 
 	public void CollectCash(float money){
 		cash += money;
+		GameObject.Find ("Score").GetComponent<Text>().text = "Score: " + cash.ToString();
 	}
 
 	public void TransitionScene(string scene){

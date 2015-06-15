@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Order : MonoBehaviour{
 	// ID of the food
@@ -19,5 +20,6 @@ public class Order : MonoBehaviour{
 		this.tableNumber = tableNumber;
 		isCooked = false;
 		allergy = _allergy;
+		this.gameObject.GetComponentInChildren<Text>().text = tableNumber.ToString();
 	}
 }

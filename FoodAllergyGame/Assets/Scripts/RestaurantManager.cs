@@ -109,4 +109,6 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			SickCustomers[i].GetComponent<Customer>().Saved();
 		}
 	}
+
+
 }

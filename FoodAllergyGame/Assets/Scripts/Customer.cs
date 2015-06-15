@@ -104,9 +104,15 @@ public class Customer : MonoBehaviour{
 	// When completed removes one satisfaction from that customer
 	IEnumerator SatisfactionTimer(){
 		yield return new WaitForSeconds(attentionSpan);
-		if(satisfaction >0){
+		if(satisfaction > 0){
 			satisfaction--;
 			customerUI.UpdateSatisfaction(satisfaction);
+		}
+		if(satisfaction == 0){
+			if(order != null){
+				Destroy(order.gameObject);
+			}
+			NotifyLeave();
 		}
 		StartCoroutine(SatisfactionTimer());
 	}
@@ -143,6 +149,7 @@ public class Customer : MonoBehaviour{
 		//TODO return the supplied order
 		//TODO display table number on table
 		if(Waiter.Instance.CheckHands()){
+			Waiter.Instance.canMove = false;
 			customerUI.ToggleText(true, allergy.ToString());
 			GameObject.Find("MenuUIManager").GetComponent<MenuUIManager>().ShowChoices(choices, tableNum);
 		}
@@ -154,6 +161,7 @@ public class Customer : MonoBehaviour{
 		GameObject orderObj = Instantiate(TempOrder,new Vector3 (0,0,0), TempOrder.transform.rotation)as GameObject;
 		orderObj.GetComponent<Order>().Init(food.ID,tableNum,food.AllergyList[0]);
 		RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().OrderObtained(orderObj);
+		Waiter.Instance.canMove = true;
 		attentionSpan = 16.0f;
 		state = CustomerStates.WaitForFood;
 		StopCoroutine(SatisfactionTimer());
@@ -192,7 +200,7 @@ public class Customer : MonoBehaviour{
 	// Tells the resturantManager that the customer is leaving and can be removed from the dictionary
 	public void NotifyLeave(){
 		RestaurantManager.Instance.CustomerLeft(customerID, satisfaction);
-		table.GetComponent<Table>().inUse = false;
+		table.GetComponent<Table>().CustomerLeaving();
 		Destroy(this.gameObject);
 	}
 
@@ -200,6 +208,7 @@ public class Customer : MonoBehaviour{
 //		attentionSpan = 5.0f;
 		customerUI.ToggleAllergyAttack(true);
 		RestaurantManager.Instance.SickCustomers.Add (this.gameObject);
+		Destroy(order.gameObject);
 		StartCoroutine("AllergyTimer");
 	}
 
@@ -208,6 +217,7 @@ public class Customer : MonoBehaviour{
 		satisfaction++;
 		customerUI.ToggleAllergyAttack(false);
 		customerUI.UpdateSatisfaction(satisfaction);
+		state = CustomerStates.WaitForCheck;
 		StopCoroutine("AllergyTimer");
 	}
 

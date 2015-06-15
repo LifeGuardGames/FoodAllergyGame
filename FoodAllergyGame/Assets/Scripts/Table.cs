@@ -26,4 +26,9 @@ public class Table : MonoBehaviour {
 	public void OrderObtained(GameObject order){
 		Waiter.Instance.WriteDownOrder(order);
 	}
+
+	public void CustomerLeaving(){
+		inUse = false;
+		Waiter.Instance.RemoveMeal(tableNumber);
+	}
 }
