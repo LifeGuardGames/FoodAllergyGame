@@ -121,7 +121,7 @@ public class Customer : MonoBehaviour{
 
 	// JumpToTable jumps to the table given a table number
 	public void JumpToTable(int tableN){
-		Waiter.Instance.currentlyServing = null;
+		Waiter.Instance.currentLineCustomer = null;
 		tableNum = tableN;
 		table = RestaurantManager.Instance.GetTable(tableN);
 		transform.SetParent(table.transform.GetChild(1));
