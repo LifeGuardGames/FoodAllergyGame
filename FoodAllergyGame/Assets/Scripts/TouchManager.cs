@@ -18,6 +18,7 @@ public class TouchManager : MonoBehaviour {
 					switch(info.collider.gameObject.tag){
 					case "Table":
 						if(Waiter.Instance.currentlyServing != null && !info.collider.gameObject.GetComponent<Table>().inUse){	
+							Waiter.Instance.currentlyServing.transform.localScale = Vector3.one;
 							Waiter.Instance.currentlyServing.GetComponent<Customer>().JumpToTable(info.collider.gameObject.GetComponent<Table>().tableNumber);
 							info.collider.gameObject.GetComponent<Table>().inUse = true;
 						}
@@ -32,8 +33,18 @@ public class TouchManager : MonoBehaviour {
 					case "Customer":
 						if(info.collider.gameObject.GetComponent<Customer>().state == CustomerStates.InLine){
 							if(Waiter.Instance.CheckHands()){
-								Waiter.Instance.currentlyServing = info.collider.gameObject;
+								// If you were already selecting a customer, untween that
+								if(Waiter.Instance.currentlyServing != null){
+									Customer customerScript = Waiter.Instance.currentlyServing.GetComponent<Customer>();
+									if(customerScript != null){
+										if(customerScript.state == CustomerStates.InLine){
+											customerScript.transform.localScale = Vector3.one;
+										}
+									}
 								}
+								Waiter.Instance.currentlyServing = info.collider.gameObject;
+								Waiter.Instance.currentlyServing.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+							}
 						}
 						break;
 					case "Kitchen":
