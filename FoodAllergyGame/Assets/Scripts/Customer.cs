@@ -49,7 +49,7 @@ public class Customer : MonoBehaviour{
 		customerID = "Customer" + num.ToString();
 		gameObject.name = "Customer" + num.ToString();
 		state = CustomerStates.InLine;
-		StartCoroutine(SatisfactionTimer());
+		StartCoroutine("SatisfactionTimer");
 		choices = new List<ImmutableDataFood>();
 		//allergy = new List<Allergies>();
 		satisfaction = 3;
@@ -116,7 +116,7 @@ public class Customer : MonoBehaviour{
 			}
 			NotifyLeave();
 		}
-		StartCoroutine(SatisfactionTimer());
+		StartCoroutine("SatisfactionTimer");
 	}
 
 	// JumpToTable jumps to the table given a table number
@@ -128,9 +128,9 @@ public class Customer : MonoBehaviour{
 		transform.localPosition = Vector3.zero;
 		state = CustomerStates.ReadingMenu;
 		StartCoroutine("ReadMenu");
-		StopCoroutine(SatisfactionTimer());
+		StopCoroutine("SatisfactionTimer");
 		attentionSpan = 20.0f;
-		StartCoroutine(SatisfactionTimer());
+		StartCoroutine("SatisfactionTimer");
 	}
 
 	// Time spent reading menu before ordering
@@ -139,9 +139,9 @@ public class Customer : MonoBehaviour{
 
 		choices = FoodManager.Instance.GetMenuFoodsFromKeyword(desiredFood);
 		customerUI.ToggleWait(true);
-		StopCoroutine(SatisfactionTimer());
+		StopCoroutine("SatisfactionTimer");
 		attentionSpan = 16.0f;
-		StartCoroutine(SatisfactionTimer());
+		StartCoroutine("SatisfactionTimer");
 		state = CustomerStates.WaitForOrder;
 		//TODO show customer waiting for order
 	}
@@ -166,10 +166,10 @@ public class Customer : MonoBehaviour{
 		Waiter.Instance.canMove = true;
 		attentionSpan = 16.0f;
 		state = CustomerStates.WaitForFood;
-		StopCoroutine(SatisfactionTimer());
+		StopCoroutine("SatisfactionTimer");
 		satisfaction++;
 		customerUI.UpdateSatisfaction(satisfaction);
-		StartCoroutine(SatisfactionTimer());
+		StartCoroutine("SatisfactionTimer");
 	}
 
 	// Tells the waiter the food has been delivered and begins eating
@@ -178,7 +178,7 @@ public class Customer : MonoBehaviour{
 		customerUI.UpdateSatisfaction(satisfaction);
 		order = transform.GetComponentInParent<Table>().FoodDelivered();
 		order.GetComponent<BoxCollider>().enabled = false;
-		StopCoroutine(SatisfactionTimer());
+		StopCoroutine("SatisfactionTimer");
 		if(order.GetComponent<Order>().allergy == allergy){
 			state = CustomerStates.AllergyAttack;
 			AllergyAttack();
@@ -196,7 +196,7 @@ public class Customer : MonoBehaviour{
 		attentionSpan = 16.0f;
 		Destroy(order.gameObject);
 		state = CustomerStates.WaitForCheck;
-		StartCoroutine(SatisfactionTimer());
+		StartCoroutine("SatisfactionTimer");
 	}
 
 	// Tells the resturantManager that the customer is leaving and can be removed from the dictionary
