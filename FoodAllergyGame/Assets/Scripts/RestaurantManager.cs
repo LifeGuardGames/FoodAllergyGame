@@ -61,7 +61,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		}
 		yield return new WaitForSeconds(customerTimer);
 		if(!dayOver && customerHash.Count < 8){
-			GameObject cus = Instantiate(customerPrefab,new Vector3(0,0,0),customerPrefab.transform.rotation)as GameObject;
+			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 			CustNumer++;
 			cus.GetComponent<Customer>().Init(CustNumer);
 			customerHash.Add(cus.GetComponent<Customer>().customerID,cus);
