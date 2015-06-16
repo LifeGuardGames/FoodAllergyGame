@@ -61,10 +61,20 @@ public class TweenToggle : MonoBehaviour{
 	
 	// Testing purposes, isDebug true will show OnGUI buttons
 	public bool isDebug = false;
-	public Vector2 testButtonPos; // Set base positions of test buttons
-	
+	public Vector2 testButtonPos; 	// Set base positions of test buttons
+
+	protected bool isGUI;				// Check if Unity GUI, will be set on awake
+	protected RectTransform GUIRectTransform;	// Local cache of rect transform if GUI
 
 	protected void Awake(){
+		GUIRectTransform = gameObject.GetComponent<RectTransform>();
+		if(GUIRectTransform != null){
+			isGUI = true;
+		}
+		else{
+			isGUI = false;
+		}
+
 		RememberPositions();
 	}
 	

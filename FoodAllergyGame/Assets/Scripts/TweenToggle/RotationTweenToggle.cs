@@ -10,13 +10,24 @@ using System.Collections;
 public class RotationTweenToggle : TweenToggle {
 
 	protected override void RememberPositions(){
-		showingPos = gameObject.transform.localEulerAngles;
-		hiddenPos = gameObject.transform.localEulerAngles + new Vector3(hideDeltaX, hideDeltaY, hideDeltaZ);
+		if(isGUI){
+			showingPos = GUIRectTransform.localEulerAngles;
+			hiddenPos = GUIRectTransform.localEulerAngles + new Vector3(hideDeltaX, hideDeltaY, hideDeltaZ);
+		}
+		else{
+			showingPos = gameObject.transform.localEulerAngles;
+			hiddenPos = gameObject.transform.localEulerAngles + new Vector3(hideDeltaX, hideDeltaY, hideDeltaZ);
+		}
 	}
 	
 	public override void Reset(){
 		if (startsHidden){
-			gameObject.transform.localEulerAngles = hiddenPos;
+			if(isGUI){
+				GUIRectTransform.localEulerAngles = hiddenPos;
+			}
+			else{
+				gameObject.transform.localEulerAngles = hiddenPos;
+			}
 
 		 	// Need to call show first
 			isShown = false;
@@ -35,10 +46,22 @@ public class RotationTweenToggle : TweenToggle {
 			isMoving = true;
 
 			LeanTween.cancel(gameObject);
-			LeanTween.rotateLocal(gameObject, showingPos, time)
-				.setEase(easeShow)
-					.setDelay(showDelay)
-						.setOnComplete(ShowSendCallback);
+
+			if(isGUI){
+				if(showingPos.x != 0f || showingPos.z != 0f){
+					Debug.LogWarning("GUI rotation will only rotate z-axis");
+				}
+				LeanTween.rotate(GUIRectTransform, showingPos.z, time)
+					.setEase(easeShow)
+						.setDelay(showDelay)
+							.setOnComplete(ShowSendCallback);
+			}
+			else{
+				LeanTween.rotateLocal(gameObject, showingPos, time)
+					.setEase(easeShow)
+						.setDelay(showDelay)
+							.setOnComplete(ShowSendCallback);
+			}
 		}
 	}
 
@@ -48,10 +71,22 @@ public class RotationTweenToggle : TweenToggle {
 			isMoving = true;
             
 			LeanTween.cancel(gameObject);
-			LeanTween.rotateLocal(gameObject, hiddenPos, time)
-				.setEase(easeHide)
-					.setDelay(hideDelay)
-						.setOnComplete(HideSendCallback);
+
+			if(isGUI){
+				if(showingPos.x != 0f || showingPos.z != 0f){
+					Debug.LogWarning("GUI rotation will only rotate z-axis");
+				}
+				LeanTween.rotate(GUIRectTransform, hiddenPos.z, time)
+					.setEase(easeHide)
+						.setDelay(hideDelay)
+							.setOnComplete(ShowSendCallback);
+			}
+			else{
+				LeanTween.rotateLocal(gameObject, hiddenPos, time)
+					.setEase(easeHide)
+						.setDelay(hideDelay)
+							.setOnComplete(HideSendCallback);
+			}
 		}
 	}
 }

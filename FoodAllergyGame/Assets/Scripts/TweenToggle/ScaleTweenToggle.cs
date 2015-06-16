@@ -10,13 +10,24 @@ using System.Collections;
 public class ScaleTweenToggle : TweenToggle {
 	
 	protected override void RememberPositions(){
-		showingPos = gameObject.transform.localScale;
-		hiddenPos = gameObject.transform.localScale + new Vector3(hideDeltaX, hideDeltaY, hideDeltaZ);
+		if(isGUI){
+			showingPos = GUIRectTransform.localScale;
+			hiddenPos = GUIRectTransform.localScale + new Vector3(hideDeltaX, hideDeltaY, hideDeltaZ);
+		}
+		else{
+			showingPos = gameObject.transform.localScale;
+			hiddenPos = gameObject.transform.localScale + new Vector3(hideDeltaX, hideDeltaY, hideDeltaZ);
+		}
 	}
 	
 	public override void Reset(){
 		if (startsHidden){
-			gameObject.transform.localScale = hiddenPos;
+			if(isGUI){
+				GUIRectTransform.localScale = hiddenPos;
+			}
+			else{
+				gameObject.transform.localScale = hiddenPos;
+			}
 			
 		 	// Need to call show first
 			isShown = false;
@@ -35,10 +46,19 @@ public class ScaleTweenToggle : TweenToggle {
 			isMoving = true;
 
             LeanTween.cancel(gameObject);
-			LeanTween.scale(gameObject, showingPos, time)
-				.setEase(easeShow)
-					.setDelay(showDelay)
-						.setOnComplete(ShowSendCallback);
+
+			if(isGUI){
+				LeanTween.scale(GUIRectTransform, showingPos, time)
+					.setEase(easeShow)
+						.setDelay(showDelay)
+							.setOnComplete(ShowSendCallback);
+			}
+			else{
+				LeanTween.scale(gameObject, showingPos, time)
+					.setEase(easeShow)
+						.setDelay(showDelay)
+							.setOnComplete(ShowSendCallback);
+			}
 		}
 	}
 
@@ -48,10 +68,19 @@ public class ScaleTweenToggle : TweenToggle {
 			isMoving = true;
 			
             LeanTween.cancel(gameObject);
-			LeanTween.scale(gameObject, hiddenPos, time)
-				.setEase(easeHide)
-					.setDelay(hideDelay)
-						.setOnComplete(HideSendCallback);
+
+			if(isGUI){
+				LeanTween.scale(GUIRectTransform, hiddenPos, time)
+					.setEase(easeHide)
+						.setDelay(hideDelay)
+							.setOnComplete(HideSendCallback);
+			}
+			else{
+				LeanTween.scale(gameObject, hiddenPos, time)
+					.setEase(easeHide)
+						.setDelay(hideDelay)
+							.setOnComplete(HideSendCallback);
+			}
 		}
 	}
 }

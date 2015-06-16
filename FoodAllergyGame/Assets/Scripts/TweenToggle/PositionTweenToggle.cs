@@ -10,13 +10,24 @@ using System.Collections;
 public class PositionTweenToggle : TweenToggle {
 	
 	protected override void RememberPositions(){
-		showingPos = gameObject.transform.localPosition;
-		hiddenPos = gameObject.transform.localPosition + new Vector3(hideDeltaX, hideDeltaY, hideDeltaZ);
+		if(isGUI){
+			showingPos = GUIRectTransform.localPosition;
+			hiddenPos = GUIRectTransform.localPosition + new Vector3(hideDeltaX, hideDeltaY, hideDeltaZ);
+		}
+		else{
+			showingPos = gameObject.transform.localPosition;
+			hiddenPos = gameObject.transform.localPosition + new Vector3(hideDeltaX, hideDeltaY, hideDeltaZ);
+		}
 	}
 	
 	public override void Reset(){
 		if (startsHidden){
-			gameObject.transform.localPosition = hiddenPos;
+			if(isGUI){
+				GUIRectTransform.localPosition = hiddenPos;
+			}
+			else{
+				gameObject.transform.localPosition = hiddenPos;
+			}
 			
 		 	// Need to call show first
 			isShown = false;
@@ -35,10 +46,19 @@ public class PositionTweenToggle : TweenToggle {
 			isMoving = true;
 			
 			LeanTween.cancel(gameObject);
-			LeanTween.moveLocal(gameObject, showingPos, time)
-				.setEase(easeShow)
-					.setDelay(showDelay)
-						.setOnComplete(ShowSendCallback);
+
+			if(isGUI){
+				LeanTween.move(GUIRectTransform, showingPos, time)
+					.setEase(easeShow)
+						.setDelay(showDelay)
+							.setOnComplete(ShowSendCallback);
+			}
+			else{
+				LeanTween.moveLocal(gameObject, showingPos, time)
+					.setEase(easeShow)
+						.setDelay(showDelay)
+							.setOnComplete(ShowSendCallback);
+			}
 		}
 	}
 
@@ -46,12 +66,21 @@ public class PositionTweenToggle : TweenToggle {
 		if(isShown){
 			isShown = false;
 			isMoving = true;
-			
+
 			LeanTween.cancel(gameObject);
-			LeanTween.moveLocal(gameObject, hiddenPos, time)
-				.setEase(easeHide)
-					.setDelay(hideDelay)
-						.setOnComplete(HideSendCallback);
+
+			if(isGUI){
+				LeanTween.move(GUIRectTransform, hiddenPos, time)
+					.setEase(easeHide)
+						.setDelay(hideDelay)
+							.setOnComplete(HideSendCallback);
+			}
+			else{
+				LeanTween.moveLocal(gameObject, hiddenPos, time)
+					.setEase(easeHide)
+						.setDelay(hideDelay)
+							.setOnComplete(HideSendCallback);
+			}
 		}
 	}
 }
