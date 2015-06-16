@@ -11,6 +11,8 @@ public class Customer : MonoBehaviour{
 
 	public int tableNum;
 
+	public float timer = 1.0f;
+
 	// The customer's id used for identification in the 
 	public string customerID;
 
@@ -24,7 +26,7 @@ public class Customer : MonoBehaviour{
 	private float menuTimer = 4.0f;
 
 	// The attention timer
-	private float attentionSpan = 10f;
+	private float attentionSpan = 10.0f;
 
 	// The satisfaction the customer has, everytime the attention span ticks down to 0 the customer will lose satisfaction
 	public int satisfaction;
@@ -42,11 +44,12 @@ public class Customer : MonoBehaviour{
 	public List <ImmutableDataFood> choices;
 
 	// Basic intitialzation
-	public void Init(int num){
+	public virtual void Init(int num){
 		customerUI.ToggleWait(false);
 		customerUI.ToggleAllergyAttack(false);
 		customerUI.ToggleText(false, "");
 		customerID = "Customer" + num.ToString();
+
 		gameObject.name = "Customer" + num.ToString();
 		state = CustomerStates.InLine;
 		StartCoroutine("SatisfactionTimer");
@@ -54,6 +57,7 @@ public class Customer : MonoBehaviour{
 		//allergy = new List<Allergies>();
 		satisfaction = 3;
 		customerUI.UpdateSatisfaction(satisfaction);
+		attentionSpan = 10f * timer;
 		if(GameObject.Find("Line").GetComponent<LineController>().NewCustomer() == null){
 			Destroy (this.gameObject);
 		}
@@ -120,7 +124,7 @@ public class Customer : MonoBehaviour{
 	}
 
 	// JumpToTable jumps to the table given a table number
-	public void JumpToTable(int tableN){
+	public virtual void JumpToTable(int tableN){
 		Waiter.Instance.currentLineCustomer = null;
 		tableNum = tableN;
 		table = RestaurantManager.Instance.GetTable(tableN);
@@ -129,8 +133,9 @@ public class Customer : MonoBehaviour{
 		state = CustomerStates.ReadingMenu;
 		StartCoroutine("ReadMenu");
 		StopCoroutine("SatisfactionTimer");
-		attentionSpan = 20.0f;
+		attentionSpan = 20.0f * timer;
 		StartCoroutine("SatisfactionTimer");
+		GetComponentInParent<Table>().currentCustomerID = customerID;
 	}
 
 	// Time spent reading menu before ordering
@@ -140,14 +145,14 @@ public class Customer : MonoBehaviour{
 		choices = FoodManager.Instance.GetMenuFoodsFromKeyword(desiredFood);
 		customerUI.ToggleWait(true);
 		StopCoroutine("SatisfactionTimer");
-		attentionSpan = 16.0f;
+		attentionSpan = 16.0f *timer;
 		StartCoroutine("SatisfactionTimer");
 		state = CustomerStates.WaitForOrder;
 		//TODO show customer waiting for order
 	}
 
 	// Gives the order to the waiter
-	public void GetOrder(){
+	public virtual void GetOrder(){
 		//TODO return the supplied order
 		//TODO display table number on table
 		if(Waiter.Instance.CheckHands()){
@@ -157,14 +162,14 @@ public class Customer : MonoBehaviour{
 		}
 	}
 
-	public void OrderTaken(ImmutableDataFood food){
+	public virtual void OrderTaken(ImmutableDataFood food){
 		customerUI.ToggleWait(false);
 		customerUI.ToggleText(false, "");
 		GameObject orderObj = GameObjectUtils.AddChildWithPositionAndScale(null, TempOrder);
 		orderObj.GetComponent<Order>().Init(food.ID, tableNum, food.AllergyList[0]);
 		RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().OrderObtained(orderObj);
 		Waiter.Instance.canMove = true;
-		attentionSpan = 16.0f;
+		attentionSpan = 16.0f * timer;
 		state = CustomerStates.WaitForFood;
 		StopCoroutine("SatisfactionTimer");
 		satisfaction++;
@@ -173,7 +178,7 @@ public class Customer : MonoBehaviour{
 	}
 
 	// Tells the waiter the food has been delivered and begins eating
-	public void Eating(){
+	public virtual void Eating(){
 		satisfaction++;
 		customerUI.UpdateSatisfaction(satisfaction);
 		order = transform.GetComponentInParent<Table>().FoodDelivered();
@@ -193,14 +198,14 @@ public class Customer : MonoBehaviour{
 	IEnumerator EatingTimer(){
 		yield return new WaitForSeconds(6.0f);
 		customerUI.ToggleWait(true);
-		attentionSpan = 16.0f;
+		attentionSpan = 16.0f*timer;
 		Destroy(order.gameObject);
 		state = CustomerStates.WaitForCheck;
 		StartCoroutine("SatisfactionTimer");
 	}
 
 	// Tells the resturantManager that the customer is leaving and can be removed from the dictionary
-	public void NotifyLeave(){
+	public virtual void NotifyLeave(){
 		RestaurantManager.Instance.CustomerLeft(customerID, satisfaction);
 		if(state != CustomerStates.InLine){
 			table.GetComponent<Table>().CustomerLeaving();
@@ -208,7 +213,7 @@ public class Customer : MonoBehaviour{
 		Destroy(this.gameObject);
 	}
 
-	public void AllergyAttack(){
+	public virtual void AllergyAttack(){
 //		attentionSpan = 5.0f;
 		customerUI.ToggleAllergyAttack(true);
 		RestaurantManager.Instance.SickCustomers.Add (this.gameObject);
@@ -216,7 +221,7 @@ public class Customer : MonoBehaviour{
 		StartCoroutine("AllergyTimer");
 	}
 
-	public void Saved(){
+	public virtual void Saved(){
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
 		satisfaction++;
 		customerUI.ToggleAllergyAttack(false);
@@ -235,7 +240,7 @@ public class Customer : MonoBehaviour{
 	}
 
 	// Checks the current state and runs the appropriate function called by table when waiter approaches
-	public void CheckState(){
+	public virtual void CheckState(){
 		switch(state){
 		case CustomerStates.WaitForOrder:
 			GetOrder();

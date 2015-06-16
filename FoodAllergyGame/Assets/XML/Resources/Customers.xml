@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Customers>
+	<Customer ID="Customer00">
+		<Script>Customer</Script>
+	</Customer>
+	<Customer ID="Customer01">
+		<Script>Impatient</Script>
+	</Customer>
+	<Customer ID="Customer02">
+		<Script>Eater</Script>
+	</Customer>
+</Customers>

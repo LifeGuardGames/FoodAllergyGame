@@ -11,6 +11,7 @@ public class Table : MonoBehaviour {
 	public Transform waiterSpot;
 	public Transform foodSpot;
 	public bool inUse = false;
+	public string currentCustomerID;
 
 	public void TalkToConsumer(){
 		if(inUse){
@@ -31,5 +32,10 @@ public class Table : MonoBehaviour {
 		inUse = false;
 		Waiter.Instance.RemoveMeal(tableNumber);
 		GameObject.Find("Kitchen").GetComponent<KitchenManager>().CancelOrder(tableNumber);
+	}
+
+	public void CustomerEaten(){
+		RestaurantManager.Instance.CustomerLeft(currentCustomerID, 0);
+		CustomerLeaving();
 	}
 }
