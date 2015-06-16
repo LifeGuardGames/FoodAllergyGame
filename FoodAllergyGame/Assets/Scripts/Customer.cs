@@ -216,7 +216,7 @@ public class Customer : MonoBehaviour{
 	public virtual void AllergyAttack(){
 //		attentionSpan = 5.0f;
 		customerUI.ToggleAllergyAttack(true);
-		RestaurantManager.Instance.SickCustomers.Add (this.gameObject);
+		RestaurantManager.Instance.SickCustomers.Add(this.gameObject);
 		Destroy(order.gameObject);
 		StartCoroutine("AllergyTimer");
 	}
@@ -226,6 +226,7 @@ public class Customer : MonoBehaviour{
 		satisfaction++;
 		customerUI.ToggleAllergyAttack(false);
 		customerUI.UpdateSatisfaction(satisfaction);
+		customerUI.ToggleWait(true);
 		state = CustomerStates.WaitForCheck;
 		StopCoroutine("AllergyTimer");
 	}
