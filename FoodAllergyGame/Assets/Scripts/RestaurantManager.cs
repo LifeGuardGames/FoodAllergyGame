@@ -14,14 +14,13 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public float customerTimer;
 	// bool controlling customer spawning depending on the stage of the day
 	public bool dayOver = false;
-	public GameObject customerPrefab;
+	//public GameObject customerPrefab;
 	//tracks customers via hashtable
 	private Dictionary<string, GameObject> customerHash;
 	// our satisfaction ai 
 	private SatisfactionAI satisfactionAI;
 
 	public List<GameObject> SickCustomers;
-
 	public GameObject[] TableList;
 
 	// RemoveCustomer removes the customer from a hashtable 
@@ -61,6 +60,15 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		}
 		yield return new WaitForSeconds(customerTimer);
 		if(!dayOver && customerHash.Count < 8){
+			ImmutableDataCustomer test;
+			if(satisfactionAI.GetSatisfaction() > 13){
+				 test = DataLoaderCustomer.GetData("Customer01");
+			}
+			else{
+				 test = DataLoaderCustomer.GetData("Customer02");
+			}
+
+			GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
 			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 			CustNumer++;
 			cus.GetComponent<Customer>().Init(CustNumer);

@@ -32,6 +32,7 @@ public enum CustomerStates{
 	WaitForCheck,
 	AllergyAttack,
 	BeingRescued,
+	Invalid,
 }
 
 public enum WaiterHands{
