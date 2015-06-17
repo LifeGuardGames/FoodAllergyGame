@@ -2,10 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class KitchenManager : MonoBehaviour {
+public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 
 	//CookOrder runs coroutines on orders to cook them once the coroutine is finished the food will be ready for pick up shown by 
 	// MenuUIManager populates the menu sidebar for food selection
+
+	public Transform waiterSpot;
 
 	public List<Transform> orderSpotList;
 
@@ -49,4 +51,14 @@ public class KitchenManager : MonoBehaviour {
 			}
 		}
 	}
+
+	#region IWaiterSelection implementation
+	public void OnWaiterArrived(){
+		CookOrder(Waiter.Instance.OrderChef());
+	}
+
+	public void OnClicked(){
+		Waiter.Instance.MoveToLocation(waiterSpot.position, this);
+	}
+	#endregion
 }
