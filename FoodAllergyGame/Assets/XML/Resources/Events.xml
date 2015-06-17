@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Events>
+	<Event ID = "Event00">
+		<Menu>0</Menu>
+		<Kitchen>0</Kitchen>
+		<Customer>0</Customer>
+		<Day>0</Day>
+	</Event>
+</Events>
+

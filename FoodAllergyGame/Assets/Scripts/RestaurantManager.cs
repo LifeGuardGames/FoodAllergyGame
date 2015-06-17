@@ -62,10 +62,21 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		if(!dayOver && customerHash.Count < 8){
 			ImmutableDataCustomer test;
 			if(satisfactionAI.GetSatisfaction() > 13){
-				 test = DataLoaderCustomer.GetData("Customer01");
+				int rand = Random.Range(0,2);
+				switch(rand){
+				case 0:
+				 	test = DataLoaderCustomer.GetData("Customer01");
+					break;
+				case 1:
+					test = DataLoaderCustomer.GetData("Customer02");
+					break;
+				default:
+					test = DataLoaderCustomer.GetData("Customer02");
+					break;
+				}
 			}
 			else{
-				 test = DataLoaderCustomer.GetData("Customer02");
+				 test = DataLoaderCustomer.GetData("Customer00");
 			}
 
 			GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
