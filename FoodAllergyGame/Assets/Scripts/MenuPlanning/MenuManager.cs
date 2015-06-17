@@ -10,7 +10,9 @@ public class MenuManager : Singleton<MenuManager>{
 	public GameObject foodStockButtonPrefab;
 
 	public PanelInfoController panelInfoController;
+	public AllergiesChartController allergiesChartController;
 	public GameObject foodStockGrid;
+
 	public List<Transform> selectedMenuParentList;
 	public List<string> selectedMenuList;	// Internal aux list keeping track of current selection
 
@@ -54,7 +56,7 @@ public class MenuManager : Singleton<MenuManager>{
 				GameObjectUtils.AddChildGUI(parentToPopulate.gameObject, selectedMenuButtonPrefab);
 
 			menuButtonObject.GetComponent<SelectedMenuButton>().Init(foodID);
-
+			allergiesChartController.UpdateChart(selectedMenuList);
 			return true;
 		}
 	}
@@ -83,6 +85,8 @@ public class MenuManager : Singleton<MenuManager>{
 				break;
 			}
 		}
+
+		allergiesChartController.UpdateChart(selectedMenuList);
 	}
 
 	public void OnMenuSelectionDone(){
