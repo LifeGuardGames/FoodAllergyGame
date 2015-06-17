@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class Order : MonoBehaviour{
+public class Order : MonoBehaviour, IWaiterSelection{
 	// ID of the food
 	public string foodID;
 
@@ -55,4 +55,14 @@ public class Order : MonoBehaviour{
 		StopCoroutine("Cooking");
 		Destroy(this.gameObject);
 	}
+
+	#region IWaiterSelection implementation
+	public void OnWaiterArrived(){
+		Waiter.Instance.SetHand(gameObject);
+	}
+
+	public void OnClicked(){
+		Waiter.Instance.MoveToLocation(KitchenManager.Instance.waiterSpot.position, this);
+	}
+	#endregion
 }

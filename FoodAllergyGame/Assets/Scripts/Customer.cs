@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Customer : MonoBehaviour{
+public class Customer : MonoBehaviour, IWaiterSelection{
 	// ID an id given on creation
 	// Select food keyword based off allergen and random rolls
 	// Allergen random between wheat, dairy and peanut
@@ -264,4 +264,26 @@ public class Customer : MonoBehaviour{
 			break;
 		}
 	}
+
+	#region IWaiterSelection implementation
+	public void OnWaiterArrived(){
+		// Dont do anything, table will talk to customer
+	}
+
+	public void OnClicked(){
+		if(state == CustomerStates.InLine){
+			// If you were already selecting a customer, untween that
+			if(Waiter.Instance.currentLineCustomer != null){
+				Customer otherCustomerScript = Waiter.Instance.currentLineCustomer.GetComponent<Customer>();
+				if(otherCustomerScript != null){
+					if(otherCustomerScript.state == CustomerStates.InLine){
+						otherCustomerScript.transform.localScale = Vector3.one;
+					}
+				}
+			}
+			Waiter.Instance.currentLineCustomer = gameObject;
+			gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+		}
+	}
+	#endregion
 }

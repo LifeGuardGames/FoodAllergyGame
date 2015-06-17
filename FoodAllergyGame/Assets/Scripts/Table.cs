@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Table : MonoBehaviour {
+public class Table : MonoBehaviour, IWaiterSelection{
 
 	//Handles the interaction between the customer and the waiter telling the waiter what action to perform based on the customers state
 	//Table Number hard coded number to distinguish between tables
@@ -39,4 +39,23 @@ public class Table : MonoBehaviour {
 		RestaurantManager.Instance.CustomerLeft(currentCustomerID, 0);
 		CustomerLeaving();
 	}
+
+	#region IWaiterSelection implementation
+	public void OnWaiterArrived(){
+		TalkToConsumer();
+	}
+
+	public void OnClicked(){
+		// Check if customers need to jump to the table
+		if(Waiter.Instance.currentLineCustomer != null && !inUse){
+			Waiter.Instance.currentLineCustomer.transform.localScale = Vector3.one;
+			Waiter.Instance.currentLineCustomer.GetComponent<Customer>().JumpToTable(tableNumber);
+			inUse = true;
+		}
+		// Move the waiter to the table to do what it does
+		else{
+			Waiter.Instance.MoveToLocation(waiterSpot.position, this);
+		}
+	}
+	#endregion
 }

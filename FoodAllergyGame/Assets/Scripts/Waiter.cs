@@ -18,27 +18,47 @@ public class Waiter : Singleton<Waiter>{
 	public GameObject hand2Object;
 
 	public bool moving;
-	private Vector3 target;
-	public float speed;
+	public float movingTime = 0.5f;
 	public GameObject currentLineCustomer;
 	public bool canMove = true;
 
-	public void MoveToLocation(Vector3 location){
-		if(canMove){
-			moving = true;
-			target = location;
-		}
-	}
-
-	void Update(){
-		if(moving && Vector3.Distance(transform.position, target) > 0){
-			transform.position = Vector3.MoveTowards(transform.position, target, speed);
-		}
-	}
+	private IWaiterSelection currentCaller;
 
 	void Start(){
 		ResetHands();
 	}
+
+	public void MoveToLocation(Vector3 location, MonoBehaviour caller){
+		if(canMove){
+			currentCaller = (IWaiterSelection)caller;
+			if(currentCaller == null){
+				Debug.LogError("No IWaiterSelection script exists in the caller");
+			}
+
+			//If the waiter is already at its location, just call what it needs to call
+			if(transform.position == location){
+				MoveDoneCallback();
+			}
+			// Otherwise, move to the location and wait for callback
+			else{
+				moving = true;
+				LeanTween.cancel(gameObject);
+				LeanTween.move(gameObject, location, movingTime)
+					.setEase(LeanTweenType.easeInOutQuad)
+						.setOnComplete(MoveDoneCallback);
+			}
+
+		}
+	}
+
+	public void MoveDoneCallback(){
+		moving = false;
+		if(currentCaller == null){
+			Debug.LogError("No IWaiterSelection script currently exists");
+		}
+		currentCaller.OnWaiterArrived();
+	}
+
 
 	public void ResetHands(){
 		hand1 = WaiterHands.None;
@@ -141,6 +161,7 @@ public class Waiter : Singleton<Waiter>{
 			return false;
 		}
 	}
+
 	public void RemoveMeal(int table){
 		if(hand1 != WaiterHands.None){
 			if(hand1Object.GetComponent<Order>().tableNumber == table){
@@ -155,6 +176,7 @@ public class Waiter : Singleton<Waiter>{
 			}
 		}
 	}
+
 	public void WriteDownOrder(GameObject order){
 		SetHand(order);
 	}
