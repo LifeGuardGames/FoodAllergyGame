@@ -199,7 +199,9 @@ public class Customer : MonoBehaviour{
 		yield return new WaitForSeconds(6.0f);
 		customerUI.ToggleWait(true);
 		attentionSpan = 16.0f*timer;
-		Destroy(order.gameObject);
+		if(order.gameObject != null){
+			Destroy(order.gameObject);
+		}
 		state = CustomerStates.WaitForCheck;
 		StartCoroutine("SatisfactionTimer");
 	}
@@ -217,7 +219,9 @@ public class Customer : MonoBehaviour{
 //		attentionSpan = 5.0f;
 		customerUI.ToggleAllergyAttack(true);
 		RestaurantManager.Instance.SickCustomers.Add(this.gameObject);
-		Destroy(order.gameObject);
+		if(order.gameObject != null){
+			Destroy(order.gameObject);
+		}
 		StartCoroutine("AllergyTimer");
 	}
 
@@ -236,7 +240,9 @@ public class Customer : MonoBehaviour{
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
 		satisfaction = -5;
 		customerUI.UpdateSatisfaction(satisfaction);
-		Destroy(order.gameObject);
+		if(order.gameObject != null){
+			Destroy(order.gameObject);
+		}
 		NotifyLeave();
 	}
 

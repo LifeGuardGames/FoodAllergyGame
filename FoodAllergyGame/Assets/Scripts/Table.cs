@@ -35,6 +35,7 @@ public class Table : MonoBehaviour {
 	}
 
 	public void CustomerEaten(){
+		GetComponentInChildren<Customer>().state = CustomerStates.Invalid;
 		RestaurantManager.Instance.CustomerLeft(currentCustomerID, 0);
 		CustomerLeaving();
 	}
