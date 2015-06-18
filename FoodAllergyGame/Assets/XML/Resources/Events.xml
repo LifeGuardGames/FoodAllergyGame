@@ -2,10 +2,31 @@
 <Events>
 	<Event ID = "Event00">
 		<Menu>0</Menu>
-		<Kitchen>1</Kitchen>
-		<Customer>2</Customer>
-		<Day>1</Day>
+		<Kitchen>0</Kitchen>
+		<Customer>0</Customer>
+		<Day>0</Day>
 		<Allergy>None</Allergy>
+	</Event>
+	<Event ID = "Event01">
+		<Menu>0</Menu>
+		<Kitchen>2</Kitchen>
+		<Customer>1</Customer>
+		<Day>2</Day>
+		<Allergy>Peanut</Allergy>
+	</Event>
+	<Event ID = "Event02">
+		<Menu>0</Menu>
+		<Kitchen>1</Kitchen>
+		<Customer>0</Customer>
+		<Day>1</Day>
+		<Allergy>Wheat</Allergy>
+	</Event>
+	<Event ID = "Event03">
+		<Menu>0</Menu>
+		<Kitchen>2</Kitchen>
+		<Customer>2</Customer>
+		<Day>2</Day>
+		<Allergy>Dairy</Allergy>
 	</Event>
 </Events>
 
