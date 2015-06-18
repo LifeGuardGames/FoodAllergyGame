@@ -9,8 +9,8 @@ public class CustomerUIController : MonoBehaviour {
 	public Image satisfaction3;
 
 	public Image skull;
-
 	public Image waiting;
+	public Image star;
 
 	public Text allergyText;
 
@@ -44,6 +44,10 @@ public class CustomerUIController : MonoBehaviour {
 
 	public void ToggleWait(bool isWaiting){
 		waiting.gameObject.SetActive(isWaiting ? true : false);
+	}
+
+	public void ToggleStar(bool isDoneWithMeal){
+		star.gameObject.SetActive(isDoneWithMeal ? true : false);
 	}
 
 	public void ToggleAllergyAttack(bool isAllergyAttack){

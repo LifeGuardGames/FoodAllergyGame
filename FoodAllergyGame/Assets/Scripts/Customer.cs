@@ -46,6 +46,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	// Basic intitialzation
 	public virtual void Init(int num, ImmutableDataEvents mode){
 		customerUI.ToggleWait(false);
+		customerUI.ToggleStar(false);
 		customerUI.ToggleAllergyAttack(false);
 		customerUI.ToggleText(false, "");
 		customerID = "Customer" + num.ToString();
@@ -259,7 +260,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	// Eating coroutine
 	IEnumerator EatingTimer(){
 		yield return new WaitForSeconds(6.0f);
-		customerUI.ToggleWait(true);
+		customerUI.ToggleStar(true);
 		attentionSpan = 16.0f*timer;
 		if(order.gameObject != null){
 			Destroy(order.gameObject);
@@ -292,7 +293,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		satisfaction++;
 		customerUI.ToggleAllergyAttack(false);
 		customerUI.UpdateSatisfaction(satisfaction);
-		customerUI.ToggleWait(true);
+		customerUI.ToggleStar(true);
 		state = CustomerStates.WaitForCheck;
 		StopCoroutine("AllergyTimer");
 	}
