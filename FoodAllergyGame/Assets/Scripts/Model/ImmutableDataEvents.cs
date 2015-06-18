@@ -43,6 +43,6 @@ public class ImmutableDataEvents{
 		kitchenMod = XMLUtils.GetString(hashElements["Kitchen"] as IXMLNode, null, error);
 		customerMod = XMLUtils.GetString(hashElements["Customer"] as IXMLNode, null, error);
 		dayMod = XMLUtils.GetString(hashElements["Day"] as IXMLNode, null, error);
-		allergy = XMLUtils.GetString(hashElements["allergy"] as IXMLNode, null , error);
+		allergy = XMLUtils.GetString(hashElements["Allergy"] as IXMLNode, null , error);
 	}
 }

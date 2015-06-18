@@ -12,6 +12,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	public Transform foodSpot;
 	public bool inUse = false;
 	public string currentCustomerID;
+	public bool isBroken;
 
 	public void TalkToConsumer(){
 		if(inUse){
@@ -47,7 +48,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 
 	public void OnClicked(){
 		// Check if customers need to jump to the table
-		if(Waiter.Instance.currentLineCustomer != null && !inUse){
+		if(Waiter.Instance.currentLineCustomer != null && !inUse && !isBroken){
 			Waiter.Instance.currentLineCustomer.transform.localScale = Vector3.one;
 			Waiter.Instance.currentLineCustomer.GetComponent<Customer>().JumpToTable(tableNumber);
 			inUse = true;
