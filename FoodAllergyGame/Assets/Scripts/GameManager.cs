@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager> {
 
-	//StartMenu function - starts menu config - starts the meu builder found in food manager
+	//StartMenu function - starts menu config - starts the menu builder found in food manager
 	//StartGame function - begins the game with the current menu config starts the dayManager
 	//RestartMenu function - restarts back at the menu builder 
 	//RestartGame function - restarts resets the scene and stop all coroutines 
