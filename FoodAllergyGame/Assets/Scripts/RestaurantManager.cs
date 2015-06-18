@@ -23,6 +23,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public List<GameObject> SickCustomers;
 	public GameObject[] TableList;
 
+	private ImmutableDataEvents eventParam;
+
 	// RemoveCustomer removes the customer from a hashtable 
 	// and then if the day is over checks to see if the hastable is empty and if it is it ends the round
 
@@ -30,7 +32,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		SickCustomers = new List<GameObject>();
 		customerHash = new Dictionary<string, GameObject>();
 		satisfactionAI = new SatisfactionAI();
-		StartDay();
+		ImmutableDataEvents test = DataLoaderEvents.GetData("Event00");
+		StartDay(test);
 //		FoodManager.Instance.GenerateMenu("Food00");
 //		FoodManager.Instance.GenerateMenu("Food01");
 //		FoodManager.Instance.GenerateMenu("Food02");
@@ -39,9 +42,23 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	}
 
 	// Called at the start of the game day begins the day tracker coroutine 
-	public void StartDay(){
+	public void StartDay(ImmutableDataEvents mode){
+		eventParam = mode;
+		switch (mode.DayMod){
+		case "0":
+			//dayTime = dayTime;
+			break;
+		case "1":
+			dayTime = dayTime * 2;
+			break;
+		case "2":
+			dayTime = dayTime /2;
+			break;
+		}
+
 		StartCoroutine("DayTracker");
 		StartCoroutine("SpawnCustomer");
+		KitchenManager.Instance.Init(mode.KitchenMod);
 	}
 
 	// When complete flips the dayOver bool once the bool is true customers will cease spawning and the game will be looking for the end point
@@ -82,7 +99,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
 			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 			CustNumer++;
-			cus.GetComponent<Customer>().Init(CustNumer);
+			cus.GetComponent<Customer>().Init(CustNumer, eventParam.CustomerMod);
 			customerHash.Add(cus.GetComponent<Customer>().customerID,cus);
 			//TODO SpawnCustomer
 			StartCoroutine("SpawnCustomer");

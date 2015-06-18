@@ -12,10 +12,11 @@ public class GameManager : Singleton<GameManager> {
 	//End Game - called by Day manager shows the results screen and grabs stats from the appropriate resources
 	public bool isPaused;
 	public float cash;
-
+	private ImmutableDataEvents test;
 	private static bool isCreated;
 
 	void Awake(){
+
 		// Make object persistent
 		if(isCreated){
 			// If There is a duplicate in the scene. delete the object and jump Awake
@@ -24,10 +25,11 @@ public class GameManager : Singleton<GameManager> {
 		}
 		DontDestroyOnLoad(gameObject);
 		isCreated = true;
+		test = DataLoaderEvents.GetData("Event00");
 	}
 
 	public void GameStart(){
-		RestaurantManager.Instance.StartDay();
+		RestaurantManager.Instance.StartDay(test);
 	}
 
 	public void DayComplete(){
