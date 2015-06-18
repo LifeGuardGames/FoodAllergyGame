@@ -5,6 +5,7 @@
 		<Kitchen>1</Kitchen>
 		<Customer>2</Customer>
 		<Day>1</Day>
+		<Allergy>None</Allergy>
 	</Event>
 </Events>
 

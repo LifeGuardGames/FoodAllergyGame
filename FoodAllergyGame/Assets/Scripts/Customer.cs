@@ -44,7 +44,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public List <ImmutableDataFood> choices;
 
 	// Basic intitialzation
-	public virtual void Init(int num, string mode){
+	public virtual void Init(int num, ImmutableDataEvents mode){
 		customerUI.ToggleWait(false);
 		customerUI.ToggleAllergyAttack(false);
 		customerUI.ToggleText(false, "");
@@ -56,7 +56,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		//allergy = new List<Allergies>();
 		satisfaction = 3;
 		customerUI.UpdateSatisfaction(satisfaction);
-		switch(mode){
+		switch(mode.CustomerMod){
 		case "0":
 			timer = 1;
 			break;
@@ -74,22 +74,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		else{
 			this.gameObject.transform.SetParent(GameObject.Find("Line").GetComponent<LineController>().NewCustomer());
 			this.gameObject.transform.position = transform.parent.position;
-			int rand = Random.Range (0,4);
-			switch (rand){
-			case 0:
-				allergy = Allergies.Dairy;
-				break;
-			case 1:
-				allergy = Allergies.Peanut;
-				break;
-			case 2:
-				allergy = Allergies.Wheat;
-				break;
-			case 3:
-				allergy = Allergies.None;
-				break;
-			}
-			rand = Random.Range(0,3);
+			SelectAllergy(mode.Allergy);
+			int rand = Random.Range(0,3);
 			switch(rand){
 			case 0:
 				desiredFood = FoodKeywords.Meal;
@@ -115,6 +101,72 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			}
 		}
 	}
+
+	private void SelectAllergy(string mode){
+		if(mode == "None"){
+			int rand = Random.Range (0,4);
+			switch (rand){
+			case 0:
+				allergy = Allergies.Dairy;
+				break;
+			case 1:
+				allergy = Allergies.Peanut;
+				break;
+			case 2:
+				allergy = Allergies.Wheat;
+				break;
+			case 3:
+				allergy = Allergies.None;
+				break;
+			}
+		}
+		else if (mode == "Peanut"){
+			int rand = Random.Range (0,10);
+			if(rand < 7){
+				allergy = Allergies.Peanut;			
+				}
+			else if (rand == 7){
+				allergy = Allergies.None;
+			}
+			else if (rand == 8){
+				allergy = Allergies.Wheat;
+			}
+			else if (rand == 9){
+				allergy = Allergies.Dairy;
+			}
+		}
+		else if (mode == "Dairt"){
+			int rand = Random.Range (0,10);
+			if(rand < 7){
+				allergy = Allergies.Dairy;			
+			}
+			else if (rand == 7){
+				allergy = Allergies.None;
+			}
+			else if (rand == 8){
+				allergy = Allergies.Wheat;
+			}
+			else if (rand == 9){
+				allergy = Allergies.Peanut;
+			}
+		}
+		else if (mode == "Wheat"){
+			int rand = Random.Range (0,10);
+			if(rand < 7){
+				allergy = Allergies.Wheat;			
+			}
+			else if (rand == 7){
+				allergy = Allergies.None;
+			}
+			else if (rand == 8){
+				allergy = Allergies.Peanut;
+			}
+			else if (rand == 9){
+				allergy = Allergies.Dairy;
+			}
+		}
+	}
+
 
 	// When completed removes one satisfaction from that customer
 	IEnumerator SatisfactionTimer(){

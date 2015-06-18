@@ -29,6 +29,11 @@ public class ImmutableDataEvents{
 	public string DayMod{
 		get{return dayMod;}
 	}
+
+	private string allergy;
+	public string Allergy{
+		get {return allergy;}
+	}
 	
 	public ImmutableDataEvents(string id, IXMLNode xmlNode, string error){
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
@@ -38,5 +43,6 @@ public class ImmutableDataEvents{
 		kitchenMod = XMLUtils.GetString(hashElements["Kitchen"] as IXMLNode, null, error);
 		customerMod = XMLUtils.GetString(hashElements["Customer"] as IXMLNode, null, error);
 		dayMod = XMLUtils.GetString(hashElements["Day"] as IXMLNode, null, error);
+		allergy = XMLUtils.GetString(hashElements["allergy"] as IXMLNode, null , error);
 	}
 }

@@ -3,10 +3,10 @@ using System.Collections;
 
 public class Impatient :Customer {
 
-	public override void Init (int num, string mode)
+	public override void Init (int num, ImmutableDataEvents mode)
 	{
 		base.Init (num, mode);
-		switch(mode){
+		switch(mode.CustomerMod){
 			case "0":
 			timer = 0.5f;
 			break;
