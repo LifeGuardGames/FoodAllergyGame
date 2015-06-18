@@ -19,16 +19,16 @@ public class Order : MonoBehaviour, IWaiterSelection{
 		}
 		set{
 			isCooked = value;
-			gameObject.GetComponent<Renderer>().material = isCooked ? cookedMaterial : uncookedMaterial;
+			if(isCooked == true){
+				OrderImage.sprite = SpriteCacheManager.Instance.GetSpriteData(DataLoaderFood.GetData(foodID).SpriteName);
+				OrderImage.SetNativeSize();
+			}
 		}
 	}
 
 	public Allergies allergy;
 
-	// TEMP
-	public Material uncookedMaterial;
-	public Material cookedMaterial;
-
+	public Image OrderImage;
 
 	// Initialize the order when it is first spawned
 	public void Init(string foodID, int tableNumber, Allergies _allergy){
@@ -41,7 +41,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 
 	public void StartCooking(float _cookingTimer){
 		cookTimer = _cookingTimer;
-		GetComponent<MeshRenderer>().enabled = false;
+		OrderImage.enabled = false;
 		GetComponentInChildren<Text>().enabled = false;
 		StartCoroutine("Cooking");
 		cookTimer = _cookingTimer;
@@ -50,7 +50,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 	private IEnumerator Cooking(){
 		yield return new WaitForSeconds(cookTimer);
 		IsCooked = true;
-		GetComponent<MeshRenderer>().enabled = true;
+		OrderImage.enabled = true;
 		GetComponentInChildren<Text>().enabled = true;
 		GameObject.Find("Kitchen").GetComponent<KitchenManager>().Cooked(this.gameObject);
 	}
