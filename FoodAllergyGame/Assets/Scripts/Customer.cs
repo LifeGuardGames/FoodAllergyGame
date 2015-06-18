@@ -44,12 +44,11 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public List <ImmutableDataFood> choices;
 
 	// Basic intitialzation
-	public virtual void Init(int num){
+	public virtual void Init(int num, string mode){
 		customerUI.ToggleWait(false);
 		customerUI.ToggleAllergyAttack(false);
 		customerUI.ToggleText(false, "");
 		customerID = "Customer" + num.ToString();
-
 		gameObject.name = "Customer" + num.ToString();
 		state = CustomerStates.InLine;
 		StartCoroutine("SatisfactionTimer");
@@ -57,6 +56,17 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		//allergy = new List<Allergies>();
 		satisfaction = 3;
 		customerUI.UpdateSatisfaction(satisfaction);
+		switch(mode){
+		case "0":
+			timer = 1;
+			break;
+		case "1":
+			timer = 2;
+			break;
+		case "2":
+			timer = 0.8f;
+			break;
+		}
 		attentionSpan = 10f * timer;
 		if(GameObject.Find("Line").GetComponent<LineController>().NewCustomer() == null){
 			Destroy (this.gameObject);

@@ -9,24 +9,41 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 
 	public Transform waiterSpot;
 
+	public float cookTimer;
+
 	public List<Transform> orderSpotList;
+
+	public void Init(string mode){
+		switch (mode){
+		case "0":
+			cookTimer = 5.0f;
+			break;
+		
+		case "1":
+			cookTimer = 6.5f;
+		break;
+		case "2":
+			cookTimer = 3.0f;
+			break;
+		}
+	}
 
 	public void CookOrder(List <GameObject> order){
 
 		if(order.Count > 1){
 			order[0].transform.SetParent(this.gameObject.transform);
-			order[0].GetComponent<Order>().StartCooking();
+			order[0].GetComponent<Order>().StartCooking(cookTimer);
 			//order[0].SetActive(false);
 			//StartCoroutine(Cooking(order[0]));
 			order[1].transform.SetParent(this.gameObject.transform);
-			order[1].GetComponent<Order>().StartCooking();
+			order[1].GetComponent<Order>().StartCooking(cookTimer);
 			//order[1].SetActive(false);
 			//StartCoroutine(Cooking(order[1]));
 		}
 		else if(order.Count == 1){
 			order[0].transform.SetParent(this.gameObject.transform);
 			//StartCoroutine(Cooking(order[0]));
-			order[0].GetComponent<Order>().StartCooking();
+			order[0].GetComponent<Order>().StartCooking(cookTimer);
 			//order[0].SetActive(false);
 		}
 	}

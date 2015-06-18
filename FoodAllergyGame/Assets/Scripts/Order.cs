@@ -9,6 +9,8 @@ public class Order : MonoBehaviour, IWaiterSelection{
 	// Table number that ordered the dish used to find which table this goes too.
 	public int tableNumber;
 
+	public float cookTimer = 5.0f;
+
 	// Is this order cooked?
 	private bool isCooked;
 	public bool IsCooked{
@@ -37,14 +39,16 @@ public class Order : MonoBehaviour, IWaiterSelection{
 		this.gameObject.GetComponentInChildren<Text>().text = tableNumber.ToString();
 	}
 
-	public void StartCooking(){
+	public void StartCooking(float _cookingTimer){
+		cookTimer = _cookingTimer;
 		GetComponent<MeshRenderer>().enabled = false;
 		GetComponentInChildren<Text>().enabled = false;
 		StartCoroutine("Cooking");
+		cookTimer = _cookingTimer;
 	}
 
 	private IEnumerator Cooking(){
-		yield return new WaitForSeconds(5.0f);
+		yield return new WaitForSeconds(cookTimer);
 		IsCooked = true;
 		GetComponent<MeshRenderer>().enabled = true;
 		GetComponentInChildren<Text>().enabled = true;
