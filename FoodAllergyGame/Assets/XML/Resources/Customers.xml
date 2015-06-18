@@ -4,9 +4,9 @@
 		<Script>Customer</Script>
 	</Customer>
 	<Customer ID="Customer01">
-		<Script>Impatient</Script>
+		<Script>CustomerImpatient</Script>
 	</Customer>
 	<Customer ID="Customer02">
-		<Script>Eater</Script>
+		<Script>CustomerEater</Script>
 	</Customer>
 </Customers>

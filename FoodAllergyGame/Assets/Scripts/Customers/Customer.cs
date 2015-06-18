@@ -317,7 +317,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			break;
 		case CustomerStates.WaitForFood:
 			if(Waiter.Instance.hand1 == WaiterHands.Meal || Waiter.Instance.hand2 == WaiterHands.Meal){
-				Eating();
+				if(Waiter.Instance.HaveMeal(tableNum)){
+					Eating();
+				}
 			}
 			break;
 		case CustomerStates.WaitForCheck:
