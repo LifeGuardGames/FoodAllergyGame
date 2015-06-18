@@ -99,7 +99,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
 			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 			CustNumer++;
-			cus.GetComponent<Customer>().Init(CustNumer, eventParam.CustomerMod);
+			cus.GetComponent<Customer>().Init(CustNumer, eventParam);
 			customerHash.Add(cus.GetComponent<Customer>().customerID,cus);
 			//TODO SpawnCustomer
 			StartCoroutine("SpawnCustomer");
