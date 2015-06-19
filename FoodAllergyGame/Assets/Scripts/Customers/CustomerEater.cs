@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Eater : Customer {
+public class CustomerEater : Customer {
 
 	public override void NotifyLeave ()
 	{

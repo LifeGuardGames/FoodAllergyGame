@@ -41,6 +41,10 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		CustomerLeaving();
 	}
 
+	public void TableSmashed(){
+		isBroken = true;
+	}
+
 	#region IWaiterSelection implementation
 	public void OnWaiterArrived(){
 		TalkToConsumer();

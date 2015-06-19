@@ -9,4 +9,7 @@
 	<Customer ID="Customer02">
 		<Script>CustomerEater</Script>
 	</Customer>
+	<Customer ID="Customer03">
+		<Script>CustomerTableSmasher</Script>
+	</Customer>
 </Customers>

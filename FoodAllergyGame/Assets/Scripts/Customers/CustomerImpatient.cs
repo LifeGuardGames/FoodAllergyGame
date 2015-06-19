@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Impatient :Customer {
+public class CustomerImpatient :Customer {
 
 	public override void Init (int num, ImmutableDataEvents mode)
 	{
