@@ -4,9 +4,11 @@ using System.Collections.Generic;
 
 public class TouchManager : Singleton<TouchManager> {
 	public Queue <GameObject> inputQueue;
+
 	void Start(){
-		inputQueue = new Queue <GameObject>();
+		inputQueue = new Queue<GameObject>();
 	}
+
 	void Update(){
 		if(Input.GetMouseButtonDown(0)){
 			RaycastHit hitObject;

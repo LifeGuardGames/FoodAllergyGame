@@ -45,25 +45,25 @@ public class Waiter : Singleton<Waiter>{
 			// Otherwise, move to the location and wait for callback
 			else{
 				moving = true;
+				waiterAnimController.SetMoving(true);
+
 				LeanTween.cancel(gameObject);
 				LeanTween.move(gameObject, location, movingTime)
 					.setEase(LeanTweenType.easeInOutQuad)
 						.setOnComplete(MoveDoneCallback);
-
-				waiterAnimController.SetMoving(true);
 			}
-
 		}
 	}
 
 	public void MoveDoneCallback(){
+		// Note: Set animations to false before OnWaiterArrived
 		moving = false;
+		waiterAnimController.SetMoving(false);
+
 		if(currentCaller == null){
 			Debug.LogError("No IWaiterSelection script currently exists");
 		}
 		currentCaller.OnWaiterArrived();
-
-		waiterAnimController.SetMoving(false);
 	}
 
 
