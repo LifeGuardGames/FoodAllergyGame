@@ -32,6 +32,7 @@ public class Waiter : Singleton<Waiter>{
 
 	public void MoveToLocation(Vector3 location, MonoBehaviour caller){
 		if(canMove){
+			canMove = false;
 			currentCaller = (IWaiterSelection)caller;
 			if(currentCaller == null){
 				Debug.LogError("No IWaiterSelection script exists in the caller");
@@ -201,5 +202,12 @@ public class Waiter : Singleton<Waiter>{
 
 	public void WriteDownOrder(GameObject order){
 		SetHand(order);
+	}
+
+	public void Finished(){
+		canMove = true;
+		if(TouchManager.Instance.inputQueue.Count > 0){
+			TouchManager.Instance.inputQueue.Dequeue().GetComponent<IWaiterSelection>().OnClicked();
+		}
 	}
 }

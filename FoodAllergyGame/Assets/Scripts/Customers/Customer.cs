@@ -333,6 +333,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	#region IWaiterSelection implementation
 	public void OnWaiterArrived(){
 		// Dont do anything, table will talk to customer
+		Waiter.Instance.Finished();
 	}
 
 	public void OnClicked(){

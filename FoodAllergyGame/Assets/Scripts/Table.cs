@@ -18,6 +18,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		if(inUse){
 			transform.GetComponentInChildren<Customer>().CheckState();
 		}
+		Waiter.Instance.Finished();
 	}
 
 	// tell waiter to put food down
