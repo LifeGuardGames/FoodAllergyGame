@@ -63,6 +63,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 	#region IWaiterSelection implementation
 	public void OnWaiterArrived(){
 		Waiter.Instance.SetHand(gameObject);
+		Waiter.Instance.Finished();
 	}
 
 	public void OnClicked(){

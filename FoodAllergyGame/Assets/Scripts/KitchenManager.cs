@@ -72,6 +72,7 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 	#region IWaiterSelection implementation
 	public void OnWaiterArrived(){
 		CookOrder(Waiter.Instance.OrderChef());
+		Waiter.Instance.Finished();
 	}
 
 	public void OnClicked(){
