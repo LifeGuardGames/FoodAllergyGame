@@ -12,7 +12,9 @@ public class CustomerTableSmasher : Customer {
 			GameObject.Find("Kitchen").GetComponent<KitchenManager>().CancelOrder(tableNum);
 			Destroy(this.gameObject);
 		}
-
+		else {
+			base.NotifyLeave();
+		}
 	}
 }
 
