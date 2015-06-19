@@ -22,6 +22,8 @@ public class Waiter : Singleton<Waiter>{
 	public GameObject currentLineCustomer;
 	public bool canMove = true;
 
+	public WaiterAnimController waiterAnimController;
+
 	private IWaiterSelection currentCaller;
 
 	void Start(){
@@ -46,6 +48,8 @@ public class Waiter : Singleton<Waiter>{
 				LeanTween.move(gameObject, location, movingTime)
 					.setEase(LeanTweenType.easeInOutQuad)
 						.setOnComplete(MoveDoneCallback);
+
+				waiterAnimController.SetMoving(true);
 			}
 
 		}
@@ -57,6 +61,8 @@ public class Waiter : Singleton<Waiter>{
 			Debug.LogError("No IWaiterSelection script currently exists");
 		}
 		currentCaller.OnWaiterArrived();
+
+		waiterAnimController.SetMoving(false);
 	}
 
 
