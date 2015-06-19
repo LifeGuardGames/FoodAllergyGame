@@ -239,7 +239,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		GameObject orderObj = GameObjectUtils.AddChildWithPositionAndScale(null, TempOrder);
 		orderObj.GetComponent<Order>().Init(food.ID, tableNum, food.AllergyList[0]);
 		RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().OrderObtained(orderObj);
-		Waiter.Instance.canMove = true;
+		Waiter.Instance.Finished();
 		attentionSpan = 16.0f * timer;
 		state = CustomerStates.WaitForFood;
 		StopCoroutine("SatisfactionTimer");
@@ -332,6 +332,10 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public virtual void CheckState(){
 		switch(state){
 		case CustomerStates.WaitForOrder:
+			if(Waiter.Instance.hand1 != WaiterHands.None && Waiter.Instance.hand2 != WaiterHands.None){
+				Waiter.Instance.Finished();
+				break;
+			}
 			GetOrder();
 			break;
 		case CustomerStates.WaitForFood:
