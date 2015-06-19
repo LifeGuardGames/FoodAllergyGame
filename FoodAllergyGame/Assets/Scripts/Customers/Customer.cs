@@ -38,8 +38,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public GameObject order;
 
 	public CustomerUIController customerUI;
+	public CustomerAnimController customerAnim;
 	public GameObject TempOrder;
-
 
 	public List <ImmutableDataFood> choices;
 
@@ -49,6 +49,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		customerUI.ToggleStar(false);
 		customerUI.ToggleAllergyAttack(false);
 		customerUI.ToggleText(false, "");
+
 		customerID = "Customer" + num.ToString();
 		gameObject.name = "Customer" + num.ToString();
 		state = CustomerStates.InLine;
@@ -56,7 +57,10 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		choices = new List<ImmutableDataFood>();
 		//allergy = new List<Allergies>();
 		satisfaction = 3;
+
 		customerUI.UpdateSatisfaction(satisfaction);
+		customerAnim.SetSatisfaction(satisfaction);
+
 		switch(mode.CustomerMod){
 		case "0":
 			timer = 1;
@@ -176,6 +180,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		if(satisfaction > 0){
 			satisfaction--;
 			customerUI.UpdateSatisfaction(satisfaction);
+			customerAnim.SetSatisfaction(satisfaction);
 		}
 		if(satisfaction == 0){
 			if(order != null){
@@ -195,6 +200,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		transform.localPosition = Vector3.zero;
 		state = CustomerStates.ReadingMenu;
 		StartCoroutine("ReadMenu");
+
+		customerAnim.SetReadingMenu(true);
+
 		StopCoroutine("SatisfactionTimer");
 		attentionSpan = 20.0f * timer;
 		StartCoroutine("SatisfactionTimer");
@@ -204,7 +212,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	// Time spent reading menu before ordering
 	IEnumerator ReadMenu(){
 		yield return new WaitForSeconds(menuTimer);
-
+		customerAnim.SetReadingMenu(false);
 		choices = FoodManager.Instance.GetMenuFoodsFromKeyword(desiredFood);
 		customerUI.ToggleWait(true);
 		StopCoroutine("SatisfactionTimer");
@@ -236,14 +244,21 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		state = CustomerStates.WaitForFood;
 		StopCoroutine("SatisfactionTimer");
 		satisfaction++;
+
 		customerUI.UpdateSatisfaction(satisfaction);
+		customerAnim.SetSatisfaction(satisfaction);
+
 		StartCoroutine("SatisfactionTimer");
 	}
 
 	// Tells the waiter the food has been delivered and begins eating
 	public virtual void Eating(){
 		satisfaction++;
+
 		customerUI.UpdateSatisfaction(satisfaction);
+		customerAnim.SetSatisfaction(satisfaction);
+		customerAnim.SetEating(true);
+
 		order = transform.GetComponentInParent<Table>().FoodDelivered();
 		order.GetComponent<BoxCollider>().enabled = false;
 		StopCoroutine("SatisfactionTimer");
@@ -261,6 +276,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	IEnumerator EatingTimer(){
 		yield return new WaitForSeconds(6.0f);
 		customerUI.ToggleStar(true);
+		customerAnim.SetEating(false);
 		attentionSpan = 16.0f*timer;
 		if(order.gameObject != null){
 			Destroy(order.gameObject);
@@ -293,6 +309,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		satisfaction++;
 		customerUI.ToggleAllergyAttack(false);
 		customerUI.UpdateSatisfaction(satisfaction);
+		customerAnim.SetSatisfaction(satisfaction);
 		customerUI.ToggleStar(true);
 		state = CustomerStates.WaitForCheck;
 		StopCoroutine("AllergyTimer");
@@ -303,6 +320,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
 		satisfaction = -5;
 		customerUI.UpdateSatisfaction(satisfaction);
+		customerAnim.SetSatisfaction(satisfaction);
+
 		if(order.gameObject != null){
 			Destroy(order.gameObject);
 		}
