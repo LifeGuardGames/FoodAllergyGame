@@ -19,7 +19,7 @@ public class CustomerEater : Customer {
 				}
 			}
 		}
-		if(satisfaction == 0 || state == CustomerStates.WaitForCheck ||state == CustomerStates.InLine){
+		if(satisfaction == 0 || state == CustomerStates.WaitForCheck ||state == CustomerStates.InLine || state == CustomerStates.AllergyAttack){
 			ReallyLeave();
 		}
 	}
