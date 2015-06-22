@@ -10,6 +10,11 @@ public class ImmutableDataCustomer{
 		get{ return id; }
 	}
 
+	private string customerNameKey;
+	public string CustomerNameKey{
+		get{ return customerNameKey; }
+	}
+
 	private string script;
 	public string Script{
 		get{return script;}
@@ -19,6 +24,9 @@ public class ImmutableDataCustomer{
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 		
 		this.id = id;
+		customerNameKey = XMLUtils.GetString(hashElements["CustomerNameKey"] as IXMLNode, null, error);
+
 		script = XMLUtils.GetString(hashElements["Script"] as IXMLNode, null, error);
+
 	}
 }

@@ -72,7 +72,7 @@ public class TweenToggleDemux : MonoBehaviour {
 		}
 	}
 	
-	public void Reset(){
+	public void LgReset(){
 		foreach(GameObject go in GoList){
 			TweenToggle toggle = go.GetComponent<TweenToggle>();
 			toggle.startsHidden = startsHidden;

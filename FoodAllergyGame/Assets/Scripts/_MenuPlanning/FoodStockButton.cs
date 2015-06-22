@@ -17,10 +17,11 @@ public class FoodStockButton : MonoBehaviour {
 	}
 
 	public void OnButtonClick(){
-		// Add food to the selected menu
-		MenuManager.Instance.AddFoodToMenuList(foodID);
-
-		// Show description on the info panel
-
+		if(string.Equals(Application.loadedLevelName, SceneUtils.MENUPLANNING)){
+			MenuManager.Instance.AddFoodToMenuList(foodID);	// Add food to the selected menu
+		}
+		else if(string.Equals(Application.loadedLevelName, SceneUtils.START)){
+			InfoManager.Instance.ShowDetail(InfoManager.InfoType.Food, foodID);
+		}
 	}
 }
