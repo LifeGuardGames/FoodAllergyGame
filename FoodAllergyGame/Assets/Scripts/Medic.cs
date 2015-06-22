@@ -7,15 +7,17 @@ public class Medic : Singleton<Medic> {
 	public WaiterAnimController waiterAnimController;
 
 	public void MoveToLocation(GameObject customer){
-		Debug.Log("jvolaerbgvisdbfjvk");
+
 			//If the waiter is already at its location, just call what it needs to call
 			if(transform.position == customer.transform.position){
+			Debug.Log("jvolaerbgvisdbfjvk");
 				saveCustomer();
 			}
 			// Otherwise, move to the location and wait for callback
 			else{
+			Debug.Log("kltyfhgy");
 			//	moving = true;
-			//	waiterAnimController.SetMoving(true);
+				waiterAnimController.SetMoving(true);
 				
 				LeanTween.cancel(gameObject);
 				LeanTween.move(gameObject, customer.transform.position, 0.5f)
