@@ -144,14 +144,14 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	}
 
 	public void CustomerSaved(){
-		//while(SickCustomers.Count > 0){
-		//	Medic.Instance.MoveToLocation(SickCustomers[0]);
-		//	SickCustomers.Remove (SickCustomers[0]);
-		//}
-		//Medic.Instance.MoveHome();
-		for (int i = 0; i < SickCustomers.Count; i++){
-			SickCustomers[i].GetComponent<Customer>().Saved();
+		while(SickCustomers.Count > 0){
+			Medic.Instance.MoveToLocation(SickCustomers[0]);
+			SickCustomers.Remove (SickCustomers[0]);
 		}
+		Medic.Instance.MoveHome();
+//		for (int i = 0; i < SickCustomers.Count; i++){
+//			SickCustomers[i].GetComponent<Customer>().Saved();
+//		}
 	}
 
 
