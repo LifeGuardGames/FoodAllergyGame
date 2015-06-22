@@ -226,10 +226,15 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public virtual void GetOrder(){
 		//TODO return the supplied order
 		//TODO display table number on table
-		if(Waiter.Instance.CheckHands()){
-			Waiter.Instance.canMove = false;
-			customerUI.ToggleText(true, allergy.ToString());
-			GameObject.Find("MenuUIManager").GetComponent<MenuUIManager>().ShowChoices(choices, tableNum);
+		if(state == CustomerStates.WaitForOrder){
+			if(Waiter.Instance.CheckHands()){
+				Waiter.Instance.canMove = false;
+				customerUI.ToggleText(true, allergy.ToString());
+				GameObject.Find("MenuUIManager").GetComponent<MenuUIManager>().ShowChoices(choices, tableNum);
+			}
+		}
+		else{
+			Waiter.Instance.Finished();
 		}
 	}
 
@@ -239,9 +244,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		GameObject orderObj = GameObjectUtils.AddChildWithPositionAndScale(null, TempOrder);
 		orderObj.GetComponent<Order>().Init(food.ID, tableNum, food.AllergyList[0]);
 		RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().OrderObtained(orderObj);
+		state = CustomerStates.WaitForFood;
 		Waiter.Instance.Finished();
 		attentionSpan = 16.0f * timer;
-		state = CustomerStates.WaitForFood;
 		StopCoroutine("SatisfactionTimer");
 		satisfaction++;
 
@@ -312,6 +317,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		customerAnim.SetSatisfaction(satisfaction);
 		customerUI.ToggleStar(true);
 		state = CustomerStates.WaitForCheck;
+		GameManager.Instance.cash -= 50;
 		StopCoroutine("AllergyTimer");
 	}
 
@@ -343,12 +349,19 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				if(Waiter.Instance.HaveMeal(tableNum)){
 					Eating();
 				}
+				else{
+					Waiter.Instance.Finished();
+				}
+			}
+			else{
+				Waiter.Instance.Finished();
 			}
 			break;
 		case CustomerStates.WaitForCheck:
 			NotifyLeave();
 			break;
 		default:
+			Waiter.Instance.Finished();
 			break;
 		}
 	}

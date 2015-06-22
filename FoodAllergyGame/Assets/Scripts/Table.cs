@@ -23,6 +23,9 @@ public class Table : MonoBehaviour, IWaiterSelection{
 				Waiter.Instance.Finished();
 			}
 		}
+		else{
+			Waiter.Instance.Finished();
+		}
 	}
 
 	// tell waiter to put food down
@@ -41,6 +44,9 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	}
 
 	public void CustomerEaten(){
+		if(foodSpot.childCount > 0){
+			Destroy (foodSpot.GetChild (0));
+		}
 		GetComponentInChildren<Customer>().state = CustomerStates.Invalid;
 		RestaurantManager.Instance.CustomerLeft(currentCustomerID, 0);
 		CustomerLeaving();
