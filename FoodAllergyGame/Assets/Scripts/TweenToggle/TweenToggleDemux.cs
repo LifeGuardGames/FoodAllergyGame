@@ -92,9 +92,9 @@ public class TweenToggleDemux : MonoBehaviour {
 		// Do regular polling
 		else{
 			if(isMoving){
-				Debug.Log("is moving check" + lastFinishedShowObjectScript + " " + lastFinishedShowObjectScript.IsMoving);
+//				Debug.Log("is moving check" + lastFinishedShowObjectScript + " " + lastFinishedShowObjectScript.IsMoving);
 				if(isShown && lastFinishedShowObjectScript != null && !lastFinishedShowObjectScript.IsMoving){
-					Debug.Log(isShown + " " + lastFinishedShowObjectScript + " " + lastFinishedShowObjectScript.IsMoving);
+//					Debug.Log(isShown + " " + lastFinishedShowObjectScript + " " + lastFinishedShowObjectScript.IsMoving);
 					isMoving = false;
 					// If option set for finish show callback, call it now!
 					if(isShowFinishedCallback){
@@ -132,9 +132,7 @@ public class TweenToggleDemux : MonoBehaviour {
 	}
 	
 	public void Hide(){
-		Debug.Log("22" + isShown + " " + isMoving);
 		if(isShown && !isMoving){
-			Debug.Log("33");
 			isShown = false;
 			isMoving = true;
 			
@@ -168,10 +166,8 @@ public class TweenToggleDemux : MonoBehaviour {
 		yield return 0;
 		
 		foreach(GameObject go in GoList){
-			Debug.Log("-1");
 			TweenToggle toggle = go.GetComponent<TweenToggle>();
 			if(toggle != null){
-				Debug.Log("-2");
 				if(hideImmediately){
 					//Debug.Log(" -- - - HIDE BOOLEAN TRUE");
 					// TODO Need to call last hide object last!!!!
@@ -188,17 +184,17 @@ public class TweenToggleDemux : MonoBehaviour {
 		}
 	}
 
-	 void OnGUI(){
-	 	 if(isDebug){
-	 	 	if(GUI.Button(new Rect(testButtonPos.x, testButtonPos.y, 100, 100), "show")){
-	 	 		Show();
-	 	 	}
-	 	 	if(GUI.Button(new Rect(testButtonPos.x + 110, testButtonPos.y, 100, 100), "hide")){
-				Debug.Log("HIDE button");
-	 	 		Hide();
-	 	 	}
-	 	 }
-	 }
+//	 void OnGUI(){
+//	 	 if(isDebug){
+//	 	 	if(GUI.Button(new Rect(testButtonPos.x, testButtonPos.y, 100, 100), "show")){
+//	 	 		Show();
+//	 	 	}
+//	 	 	if(GUI.Button(new Rect(testButtonPos.x + 110, testButtonPos.y, 100, 100), "hide")){
+//				Debug.Log("HIDE button");
+//	 	 		Hide();
+//	 	 	}
+//	 	 }
+//	 }
 	
 	void ShowSendCallback(){
 		if (string.IsNullOrEmpty(ShowFunctionName)) return;

@@ -63,16 +63,13 @@ public class PositionTweenToggle : TweenToggle {
 	}
 
 	public override void Hide(float time){
-		Debug.Log("hide called");
 		if(isShown){
 			isShown = false;
 			isMoving = true;
 
-			Debug.Log("1");
 			LeanTween.cancel(gameObject);
 
 			if(isGUI){
-				Debug.Log("2");
 				LeanTween.move(GUIRectTransform, hiddenPos, time)
 					.setEase(easeHide)
 						.setDelay(hideDelay)
