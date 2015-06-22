@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Customers>
 	<Customer ID="Customer00">
+		<CustomerNameKey>Regular</CustomerNameKey>
 		<Script>Customer</Script>
 	</Customer>
 	<Customer ID="Customer01">
+		<CustomerNameKey>CustomerImpatient</CustomerNameKey>
 		<Script>CustomerImpatient</Script>
 	</Customer>
 	<Customer ID="Customer02">
+		<CustomerNameKey>CustomerEater</CustomerNameKey>
 		<Script>CustomerEater</Script>
 	</Customer>
 	<Customer ID="Customer03">
+		<CustomerNameKey>CustomerTableSmasher</CustomerNameKey>
 		<Script>CustomerTableSmasher</Script>
 	</Customer>
 </Customers>
