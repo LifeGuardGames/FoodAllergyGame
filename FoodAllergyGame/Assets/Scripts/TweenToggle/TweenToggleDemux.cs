@@ -90,10 +90,11 @@ public class TweenToggleDemux : MonoBehaviour {
 			pollingSecondFrameLock = false;
 		}
 		// Do regular polling
-		else{	
+		else{
 			if(isMoving){
+//				Debug.Log("is moving check" + lastFinishedShowObjectScript + " " + lastFinishedShowObjectScript.IsMoving);
 				if(isShown && lastFinishedShowObjectScript != null && !lastFinishedShowObjectScript.IsMoving){
-//					print (isShown + " " + lastFinishedShowObjectScript + " " + lastFinishedShowObjectScript.IsMoving);
+//					Debug.Log(isShown + " " + lastFinishedShowObjectScript + " " + lastFinishedShowObjectScript.IsMoving);
 					isMoving = false;
 					// If option set for finish show callback, call it now!
 					if(isShowFinishedCallback){
@@ -189,6 +190,7 @@ public class TweenToggleDemux : MonoBehaviour {
 //	 	 		Show();
 //	 	 	}
 //	 	 	if(GUI.Button(new Rect(testButtonPos.x + 110, testButtonPos.y, 100, 100), "hide")){
+//				Debug.Log("HIDE button");
 //	 	 		Hide();
 //	 	 	}
 //	 	 }

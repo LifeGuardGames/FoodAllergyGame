@@ -120,7 +120,6 @@ public class TweenToggle : MonoBehaviour{
 	}
 	
 	public void Hide(){
-		
 		Hide(hideDuration);
 	}
 
@@ -129,24 +128,8 @@ public class TweenToggle : MonoBehaviour{
 	}
 
 	///////////////////////// CALLBACKS ///////////////////////////////
-
-	protected void ShowUnlockCallback(Hashtable hash){
-		// Since LeanTween uses BroadcastMessage, it applies to all children, check for self object
-		if(hash["selfCaller"] == this.gameObject){
-			isMoving = false;
-			ShowSendCallback();
-		}
-	}
-
-	protected void HideUnlockCallback(Hashtable hash){
-		// Since LeanTween uses BroadcastMessage, it applies to all children, check for self object
-		if(hash["selfCaller"] == this.gameObject){
-			isMoving = false;
-			HideSendCallback();
-		}
-	}
-
-	protected void ShowSendCallback(){		
+	protected void ShowSendCallback(){	
+		isMoving = false;
 		if(string.IsNullOrEmpty(ShowFunctionName)){
 			return;
 		}
@@ -166,6 +149,7 @@ public class TweenToggle : MonoBehaviour{
 	}
 
 	protected void HideSendCallback(){
+		isMoving = false;
 		if(string.IsNullOrEmpty(HideFunctionName)){
 			return;
 		}
