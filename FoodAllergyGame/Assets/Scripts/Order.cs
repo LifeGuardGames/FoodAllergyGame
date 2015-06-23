@@ -62,7 +62,9 @@ public class Order : MonoBehaviour, IWaiterSelection{
 
 	#region IWaiterSelection implementation
 	public void OnWaiterArrived(){
-		Waiter.Instance.SetHand(gameObject);
+		if(!Waiter.Instance.HaveMeal(tableNumber)){
+			Waiter.Instance.SetHand(gameObject);
+		}
 		Waiter.Instance.Finished();
 	}
 
