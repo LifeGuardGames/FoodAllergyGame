@@ -18,7 +18,7 @@ public class CustomerButton : MonoBehaviour {
 	
 	public void OnButtonClick(){
 		if(string.Equals(Application.loadedLevelName, SceneUtils.START)){
-			InfoManager.Instance.ShowDetail(InfoManager.InfoType.Customer, customerID);
+			InfoManager.Instance.ShowDetail(InfoType.Customer, customerID);
 		}
 	}
 }

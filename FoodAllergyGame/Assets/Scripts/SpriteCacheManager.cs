@@ -8,18 +8,6 @@ using System.Collections.Generic;
 //		so it will miss the food if there is no sprite
 public class SpriteCacheManager : Singleton<SpriteCacheManager> {
 	public Dictionary<string, Sprite> foodSpriteDictionary = new Dictionary<string, Sprite>();
-	private static bool isCreated;
-
-	void Awake(){
-		// Make object persistent
-		if(isCreated){
-			// If There is a duplicate in the scene. delete the object and jump Awake
-			Destroy(gameObject);
-			return;
-		}
-		DontDestroyOnLoad(gameObject);
-		isCreated = true;
-	}
 
 	public Sprite GetSpriteData(string spriteName){
 		if(foodSpriteDictionary.Count == 0){

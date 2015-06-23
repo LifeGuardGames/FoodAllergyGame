@@ -1,4 +1,8 @@
-﻿
+﻿public enum InfoType{
+	Food,
+	Customer
+}
+
 public enum FoodKeywords{
 	None,
 	Keyword1,

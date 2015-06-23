@@ -30,7 +30,7 @@ public class MenuManager : Singleton<MenuManager>{
 	
 	public bool AddFoodToMenuList(string foodID){
 		// Display info in panel
-		panelInfoController.ShowInfo(foodID);
+		panelInfoController.ShowInfo(InfoType.Food, foodID);
 
 		if(selectedMenuList.Contains(foodID)){
 			Debug.LogWarning("Menu already contains food");

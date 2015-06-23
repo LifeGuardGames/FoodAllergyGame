@@ -21,7 +21,7 @@ public class FoodStockButton : MonoBehaviour {
 			MenuManager.Instance.AddFoodToMenuList(foodID);	// Add food to the selected menu
 		}
 		else if(string.Equals(Application.loadedLevelName, SceneUtils.START)){
-			InfoManager.Instance.ShowDetail(InfoManager.InfoType.Food, foodID);
+			InfoManager.Instance.ShowDetail(InfoType.Food, foodID);
 		}
 	}
 }

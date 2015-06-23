@@ -1,12 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
-public class InfoManager : Singleton<InfoManager> {
-	public enum InfoType{
-		Food,
-		Customer
-	}
+public class InfoManager : Singleton<InfoManager>{
 
 	public TweenToggleDemux startDemux;
 	public TweenToggleDemux infoCategoriesDemux;
@@ -15,6 +12,7 @@ public class InfoManager : Singleton<InfoManager> {
 	public GameObject foodStockButtonPrefab;
 	public GameObject customerButtonPrefab;
 	public GameObject grid;
+	public PanelInfoController infoController;
 	
 	public void ShowStartDemux(){
 		infoDetailDemux.Hide();
@@ -34,8 +32,13 @@ public class InfoManager : Singleton<InfoManager> {
 		startDemux.Hide();
 	}
 
-	public void PopulateGridForType(InfoType infoType){
-		switch(infoType){
+	/// <summary>
+	/// Called from the categories button
+	/// Needs to be a string so unity is able to serialize this
+	/// </summary>
+	public void PopulateGridForType(string infoTypeString){
+		InfoType type = (InfoType)Enum.Parse(typeof(InfoType), infoTypeString);
+		switch(type){
 		case InfoType.Food:
 			// Instantiate list here
 			// TODO Watch out for load demux break
@@ -70,7 +73,7 @@ public class InfoManager : Singleton<InfoManager> {
 		return DataLoaderCustomer.GetDataList();
 	}
 
-	public void ShowDetail(InfoType infoType, string id){
-
+	public void ShowDetail(InfoType infoType, string ID){
+		infoController.ShowInfo(infoType, ID);
 	}
 }
