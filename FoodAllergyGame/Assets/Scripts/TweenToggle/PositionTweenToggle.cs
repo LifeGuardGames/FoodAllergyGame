@@ -11,8 +11,8 @@ public class PositionTweenToggle : TweenToggle {
 	
 	protected override void RememberPositions(){
 		if(isGUI){
-			showingPos = GUIRectTransform.localPosition;
-			hiddenPos = GUIRectTransform.localPosition + new Vector3(hideDeltaX, hideDeltaY, hideDeltaZ);
+			showingPos = GUIRectTransform.anchoredPosition3D;
+			hiddenPos = GUIRectTransform.anchoredPosition3D + new Vector3(hideDeltaX, hideDeltaY, hideDeltaZ);
 		}
 		else{
 			showingPos = gameObject.transform.localPosition;
@@ -21,9 +21,9 @@ public class PositionTweenToggle : TweenToggle {
 	}
 	
 	public override void Reset(){
-		if (startsHidden){
+		if(startsHidden){
 			if(isGUI){
-				GUIRectTransform.localPosition = hiddenPos;
+				GUIRectTransform.anchoredPosition3D = hiddenPos;
 			}
 			else{
 				gameObject.transform.localPosition = hiddenPos;
