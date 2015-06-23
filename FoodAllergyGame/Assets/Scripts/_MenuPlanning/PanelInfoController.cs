@@ -19,27 +19,32 @@ public class PanelInfoController : MonoBehaviour {
 		}
 	}
 
-	public void ShowInfo(string foodID){
-		ImmutableDataFood foodData = DataLoaderFood.GetData(foodID);
-		image.sprite = SpriteCacheManager.Instance.GetSpriteData(foodData.SpriteName);
-		foodName.text = foodData.FoodNameKey;
+	public void ShowInfo(InfoType infoType, string ID){
+		if(infoType == InfoType.Food){
+			ImmutableDataFood foodData = DataLoaderFood.GetData(ID);
+			image.sprite = SpriteCacheManager.Instance.GetSpriteData(foodData.SpriteName);
+			foodName.text = foodData.FoodNameKey;
 
-		// Concat the allergies list
-		allergiesLabel.text = "";
-		for(int i = 0; i < foodData.AllergyList.Count; i++){
-			allergiesLabel.text += foodData.AllergyList[i];
-			if(i < foodData.AllergyList.Count - 1){	// Put in a newline if not last element
-				allergiesLabel.text += "\n";
+			// Concat the allergies list
+			allergiesLabel.text = "";
+			for(int i = 0; i < foodData.AllergyList.Count; i++){
+				allergiesLabel.text += foodData.AllergyList[i];
+				if(i < foodData.AllergyList.Count - 1){	// Put in a newline if not last element
+					allergiesLabel.text += "\n";
+				}
+			}
+
+			// Concat the keywords list
+			keywordsLabel.text = "";
+			for(int i = 0; i < foodData.KeywordList.Count; i++){
+				keywordsLabel.text += foodData.KeywordList[i];
+				if(i < foodData.KeywordList.Count - 1){	// Put in a newline if not last element
+					keywordsLabel.text += "\n";
+				}
 			}
 		}
-
-		// Concat the keywords list
-		keywordsLabel.text = "";
-		for(int i = 0; i < foodData.KeywordList.Count; i++){
-			keywordsLabel.text += foodData.KeywordList[i];
-			if(i < foodData.KeywordList.Count - 1){	// Put in a newline if not last element
-				keywordsLabel.text += "\n";
-			}
+		else if(infoType == InfoType.Customer){
+			// TODO implement customer showing here
 		}
 
 		ToggleVisibility(true);

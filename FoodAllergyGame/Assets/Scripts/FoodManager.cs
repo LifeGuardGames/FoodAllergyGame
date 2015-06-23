@@ -11,18 +11,7 @@ public class FoodManager : Singleton<FoodManager>{
 	public List<ImmutableDataFood> menuList;		// Compiled chosen list for use in restuarant
 	public List<string> tempMenu;
 
-	private static bool isCreated;
-
 	void Awake(){
-		// Make object persistent
-		if(isCreated){
-			// If There is a duplicate in the scene. delete the object and jump Awake
-			Destroy(gameObject);
-			return;
-		}
-		DontDestroyOnLoad(gameObject);
-		isCreated = true;
-
 		//test code
 		tempMenu = new List<string>();
 		tempMenu.Add("Food00");
