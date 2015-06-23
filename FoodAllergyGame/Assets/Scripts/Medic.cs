@@ -38,11 +38,9 @@ public class Medic : Singleton<Medic> {
 		RestaurantManager.Instance.SickCustomers[0].GetComponent<Customer>().Saved();
 		//RestaurantManager.Instance.SickCustomers.RemoveAt(index);
 		if(	RestaurantManager.Instance.SickCustomers.Count == 0){
-			Debug.Log("This");
 			MoveHome();
 		}
 		else{
-			Debug.Log ("Breaking");
 			MoveToLocation(RestaurantManager.Instance.SickCustomers[0].transform.position);
 		}
 	}

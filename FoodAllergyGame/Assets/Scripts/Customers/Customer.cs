@@ -267,13 +267,13 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		order = transform.GetComponentInParent<Table>().FoodDelivered();
 		order.GetComponent<BoxCollider>().enabled = false;
 		StopCoroutine("SatisfactionTimer");
-		if(order.GetComponent<Order>().allergy == allergy){
+		if(order.GetComponent<Order>().allergy == allergy && allergy != Allergies.None){
 			state = CustomerStates.AllergyAttack;
 			AllergyAttack();
 		}
 		else{
-		state = CustomerStates.Eating;
-		StartCoroutine("EatingTimer");
+			state = CustomerStates.Eating;
+			StartCoroutine("EatingTimer");
 		}
 	}
 
@@ -310,6 +310,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 
 	public virtual void Saved(){
+		GameManager.Instance.cash -= 25;
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
 		satisfaction++;
 		customerUI.ToggleAllergyAttack(false);
@@ -324,7 +325,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	IEnumerator AllergyTimer(){
 		yield return new WaitForSeconds(5.0f);
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
-		satisfaction = -5;
+		satisfaction = -10;
 		customerUI.UpdateSatisfaction(satisfaction);
 		customerAnim.SetSatisfaction(satisfaction);
 
