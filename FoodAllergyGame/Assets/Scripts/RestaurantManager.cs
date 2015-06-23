@@ -8,13 +8,18 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	//Day Tracker once time runs out stops the customer loop
 	// CustomerSpawning - spawns a customer adds it to the list
 	//amount of time in seconds that the days lasts
+	public bool isPaused;
+
 	public float dayTime;
-	private int CustNumer = 0;
-	//time it takes for a customer to spawn
-	public float customerTimer;
-	// bool controlling customer spawning depending on the stage of the day
-	public bool dayOver = false;
-	//public GameObject customerPrefab;
+	private int customerNumber = 0;
+	public float customerTimer;		//time it takes for a customer to spawn
+	public bool dayOver = false;	// bool controlling customer spawning depending on the stage of the day
+
+	private float dayCash;			// The cash that is earn for the day
+	public float DayCash{
+		get{ return dayCash; }
+	}
+
 	//tracks customers via hashtable
 	private Dictionary<string, GameObject> customerHash;
 	// our satisfaction ai 
@@ -22,6 +27,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 	public List<GameObject> SickCustomers;
 	public GameObject[] TableList;
+	public RestaurantUIManager restaurantUI;
 
 	private ImmutableDataEvents eventParam;
 
@@ -56,6 +62,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			break;
 		}
 
+		dayCash = 0;
+
 		StartCoroutine("DayTracker");
 		StartCoroutine("SpawnCustomer");
 		KitchenManager.Instance.Init(mode.KitchenMod);
@@ -63,7 +71,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 	// When complete flips the dayOver bool once the bool is true customers will cease spawning and the game will be looking for the end point
 	IEnumerator DayTracker(){
-		while(GameManager.Instance.isPaused){
+		while(isPaused){
 			yield return new WaitForFixedUpdate();
 		}
 		yield return new WaitForSeconds(dayTime);
@@ -72,7 +80,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 	// Spawns a customer after a given amount of timer then it restarts the coroutine
 	IEnumerator SpawnCustomer(){
-		while(GameManager.Instance.isPaused){
+		while(isPaused){
 			yield return new WaitForFixedUpdate();
 		}
 		yield return new WaitForSeconds(customerTimer);
@@ -101,8 +109,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 			GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
 			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
-			CustNumer++;
-			cus.GetComponent<Customer>().Init(CustNumer, eventParam);
+			customerNumber++;
+			cus.GetComponent<Customer>().Init(customerNumber, eventParam);
 			customerHash.Add(cus.GetComponent<Customer>().customerID,cus);
 			//TODO SpawnCustomer
 			StartCoroutine("SpawnCustomer");
@@ -116,7 +124,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public void CustomerLeft(string Id, int satisfaction){
 		if(customerHash.ContainsKey(Id)){
 			Debug.Log (satisfactionAI.CalculateCheck(satisfaction));
-			GameManager.Instance.CollectCash(satisfactionAI.CalculateCheck(satisfaction));
+			UpdateCash(satisfactionAI.CalculateCheck(satisfaction));
 			customerHash.Remove(Id);
 			CheckForGameOver();
 		}
@@ -125,11 +133,16 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		}
 	}
 
+	public void UpdateCash(float money){
+		dayCash += money;
+		restaurantUI.UpdateCash(money);
+	}
+
 	//Checks to see if all the customers let and if so completes the day
 	private void CheckForGameOver(){
 		if(dayOver){
 			if(customerHash.Count == 0){
-				GameManager.Instance.DayComplete();
+				//TODO GameManager.Instance.DayComplete();
 			}
 		}
 	}
@@ -143,7 +156,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		return TableList[0];
 	}
 
-	public void CustomerSaved(){
+	public void DeployMedic(){
 		Medic.Instance.MoveToLocation(SickCustomers[0].transform.position);
 		//Medic.Instance.MoveHome();
 //		for (int i = 0; i < SickCustomers.Count; i++){
@@ -151,5 +164,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 //		}
 	}
 
-
+	// TEMPORARY FOR PROTOTYPE
+	public void RestartGame(){
+		TransitionManager.Instance.TransitionScene(SceneUtils.START);
+	}
 }

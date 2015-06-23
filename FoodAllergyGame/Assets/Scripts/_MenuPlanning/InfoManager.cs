@@ -4,33 +4,10 @@ using System.Collections.Generic;
 using System;
 
 public class InfoManager : Singleton<InfoManager>{
-
-	public TweenToggleDemux startDemux;
-	public TweenToggleDemux infoCategoriesDemux;
-	public TweenToggleDemux infoDetailDemux;
-
 	public GameObject foodStockButtonPrefab;
 	public GameObject customerButtonPrefab;
 	public GameObject grid;
 	public PanelInfoController infoController;
-	
-	public void ShowStartDemux(){
-		infoDetailDemux.Hide();
-		infoCategoriesDemux.Hide();
-		startDemux.Show();
-	}
-	
-	public void ShowInfoCategoriesDemux(){
-		infoDetailDemux.Hide();
-		infoCategoriesDemux.Show();
-		startDemux.Hide();
-	}
-	
-	public void ShowInfoDetailDemux(){
-		infoDetailDemux.Show();
-		infoCategoriesDemux.Hide();
-		startDemux.Hide();
-	}
 
 	/// <summary>
 	/// Called from the categories button
@@ -49,7 +26,7 @@ public class InfoManager : Singleton<InfoManager>{
 			}
 
 			// Show content
-			ShowInfoDetailDemux();
+			StartManager.Instance.ShowInfoDetailDemux();
 			break;
 		case InfoType.Customer:
 			// Instantiate list heres
@@ -61,7 +38,7 @@ public class InfoManager : Singleton<InfoManager>{
 			}
 
 			// Show content
-			ShowInfoDetailDemux();
+			StartManager.Instance.ShowInfoDetailDemux();
 			break;
 		}
 	}

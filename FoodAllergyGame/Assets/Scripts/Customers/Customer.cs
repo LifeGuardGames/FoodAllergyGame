@@ -310,7 +310,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 
 	public virtual void Saved(){
-		GameManager.Instance.cash -= 25;
+		RestaurantManager.Instance.UpdateCash(-25f);
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
 		satisfaction++;
 		customerUI.ToggleAllergyAttack(false);
@@ -318,7 +318,6 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		customerAnim.SetSatisfaction(satisfaction);
 		customerUI.ToggleStar(true);
 		state = CustomerStates.WaitForCheck;
-		GameManager.Instance.cash -= 50;
 		StopCoroutine("AllergyTimer");
 	}
 

@@ -3,6 +3,10 @@ using System.Collections;
 
 public class StartManager : Singleton<StartManager>{
 
+	public TweenToggleDemux startDemux;
+	public TweenToggleDemux infoCategoriesDemux;
+	public TweenToggleDemux infoDetailDemux;
+
 	void Start(){
 		//TODO Generate event from data
 
@@ -20,7 +24,25 @@ public class StartManager : Singleton<StartManager>{
 
 	}
 
-	public void OnInfoByttonClicked(){
+	public void OnInfoButtonClicked(){
 
+	}
+
+	public void ShowStartDemux(){
+		infoDetailDemux.Hide();
+		infoCategoriesDemux.Hide();
+		startDemux.Show();
+	}
+	
+	public void ShowInfoCategoriesDemux(){
+		infoDetailDemux.Hide();
+		infoCategoriesDemux.Show();
+		startDemux.Hide();
+	}
+	
+	public void ShowInfoDetailDemux(){
+		infoDetailDemux.Show();
+		infoCategoriesDemux.Hide();
+		startDemux.Hide();
 	}
 }
