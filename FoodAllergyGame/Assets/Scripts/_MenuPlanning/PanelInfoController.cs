@@ -11,6 +11,7 @@ public class PanelInfoController : MonoBehaviour {
 
 	void Start(){
 		ToggleVisibility(false);
+		this.gameObject.AddComponent<Localize>();
 	}
 
 	private void ToggleVisibility(bool isVisible){
@@ -23,7 +24,7 @@ public class PanelInfoController : MonoBehaviour {
 		if(infoType == InfoType.Food){
 			ImmutableDataFood foodData = DataLoaderFood.GetData(ID);
 			image.sprite = SpriteCacheManager.Instance.GetSpriteData(foodData.SpriteName);
-			foodName.text = foodData.FoodNameKey;
+			foodName.text = GetComponent<Localize>().setText(foodData.FoodNameKey);
 
 			// Concat the allergies list
 			allergiesLabel.text = "";

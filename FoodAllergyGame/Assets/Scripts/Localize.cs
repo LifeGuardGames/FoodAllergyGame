@@ -8,10 +8,16 @@ public class Localize : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//Debug.Log ( LocalizationText.GetText(key));
-		GetComponent<Text>().text = LocalizationText.GetText(key);
+		if(key != "" && key != null){
+			//Debug.Log ( LocalizationText.GetText(key));
+			GetComponent<Text>().text = LocalizationText.GetText(key);
+		}
 	}
-	
+
+	public string setText(string _key){
+		return LocalizationText.GetText(_key);
+	}
+
 	// Update is called once per frame
 	void Update () {
 	}
