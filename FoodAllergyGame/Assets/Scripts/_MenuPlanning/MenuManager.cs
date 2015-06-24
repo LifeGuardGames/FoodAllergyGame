@@ -103,7 +103,7 @@ public class MenuManager : Singleton<MenuManager>{
 		}
 	}
 	public void ShowEventDescription(){
-		EventDescription.GetComponentInChildren<Text>().text = EventDescription.GetComponent<Localize>().setText(DataLoaderEvents.GetData("Event00").ID);
+		EventDescription.GetComponentInChildren<Text>().text = EventDescription.GetComponent<Localize>().setText(DataLoaderEvents.GetData(currEvent).ID);
 	}
 	public void closeEventDescription(){
 		EventDescription.SetActive(false);

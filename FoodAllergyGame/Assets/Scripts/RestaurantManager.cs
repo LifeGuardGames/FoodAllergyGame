@@ -28,7 +28,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public List<GameObject> SickCustomers;
 	public GameObject[] TableList;
 	public RestaurantUIManager restaurantUI;
-
+	public string currEvent;
 	private ImmutableDataEvents eventParam;
 
 	// RemoveCustomer removes the customer from a hashtable 
@@ -38,7 +38,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		SickCustomers = new List<GameObject>();
 		customerHash = new Dictionary<string, GameObject>();
 		satisfactionAI = new SatisfactionAI();
-		ImmutableDataEvents test = DataLoaderEvents.GetData("Event00");
+		ImmutableDataEvents test = DataLoaderEvents.GetData(currEvent);
 		StartDay(test);
 //		FoodManager.Instance.GenerateMenu("Food00");
 //		FoodManager.Instance.GenerateMenu("Food01");

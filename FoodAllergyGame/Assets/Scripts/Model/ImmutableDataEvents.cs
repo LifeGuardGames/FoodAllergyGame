@@ -34,7 +34,8 @@ public class ImmutableDataEvents{
 	public string Allergy{
 		get {return allergy;}
 	}
-	
+
+
 	public ImmutableDataEvents(string id, IXMLNode xmlNode, string error){
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 		
