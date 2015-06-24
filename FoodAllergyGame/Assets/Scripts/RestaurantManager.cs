@@ -135,7 +135,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 	public void UpdateCash(float money){
 		dayCash += money;
-		restaurantUI.UpdateCash(money);
+		restaurantUI.UpdateCash(dayCash);
 	}
 
 	//Checks to see if all the customers let and if so completes the day
