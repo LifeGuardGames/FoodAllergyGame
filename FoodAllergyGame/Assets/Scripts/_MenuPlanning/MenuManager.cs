@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class MenuManager : Singleton<MenuManager>{
 
@@ -12,12 +13,14 @@ public class MenuManager : Singleton<MenuManager>{
 	public PanelInfoController panelInfoController;
 	public AllergiesChartController allergiesChartController;
 	public GameObject foodStockGrid;
-
+	public GameObject EventDescription;
+	public string currEvent;
 	public List<Transform> selectedMenuParentList;
 	public List<string> selectedMenuList;	// Internal aux list keeping track of current selection
 
 	void Start(){
-		PopulateStockGrid();
+		EventDescription.SetActive(true);
+		ShowEventDescription();
 	}
 
 	public void PopulateStockGrid(){
@@ -98,5 +101,12 @@ public class MenuManager : Singleton<MenuManager>{
 		else{
 			Debug.LogWarning("Menu not complete!");
 		}
+	}
+	public void ShowEventDescription(){
+		EventDescription.GetComponentInChildren<Text>().text = EventDescription.GetComponent<Localize>().setText(DataLoaderEvents.GetData("Event00").ID);
+	}
+	public void closeEventDescription(){
+		EventDescription.SetActive(false);
+		PopulateStockGrid();
 	}
 }
