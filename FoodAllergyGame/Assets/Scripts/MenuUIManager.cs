@@ -38,6 +38,6 @@ public class MenuUIManager : MonoBehaviour {
 		//if(Waiter.Instance.CheckHands()){
 		//Waiter.Instance.WriteDownOrder(orderObj);
 		//}
-		RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().seat.GetChild(0).gameObject.GetComponent<Customer>().OrderTaken(choices[choice]);
+		RestaurantManager.Instance.GetTable(tableNum).Seat.GetChild(0).gameObject.GetComponent<Customer>().OrderTaken(choices[choice]);
 	}
 }

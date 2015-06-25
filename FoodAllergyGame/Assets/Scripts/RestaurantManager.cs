@@ -26,7 +26,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	private SatisfactionAI satisfactionAI;
 
 	public List<GameObject> SickCustomers;
-	public GameObject[] TableList;
+	public GameObject[] tableList;
 	public RestaurantUIManager restaurantUI;
 	public string currEvent;
 	private ImmutableDataEvents eventParam;
@@ -147,13 +147,15 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		}
 	}
 
-	public GameObject GetTable(int tableNum){
-		for (int i = 0; i < 4; i++){
-			if(	TableList [i].GetComponent<Table>().tableNumber == tableNum){
-				return TableList[i];
+	public Table GetTable(int tableNum){
+		foreach(GameObject table in tableList){
+			Table tableScript = table.GetComponent<Table>();
+			if(tableScript.tableNumber == tableNum){
+				return tableScript;
 			}
 		}
-		return TableList[0];
+		Debug.LogWarning("Can not find table " + tableNum);
+		return null;
 	}
 
 	public void DeployMedic(){
