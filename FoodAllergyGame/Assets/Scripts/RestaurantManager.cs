@@ -157,11 +157,9 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	}
 
 	public void DeployMedic(){
-		Medic.Instance.MoveToLocation(SickCustomers[0].transform.position);
-		//Medic.Instance.MoveHome();
-//		for (int i = 0; i < SickCustomers.Count; i++){
-//			SickCustomers[i].GetComponent<Customer>().Saved();
-//		}
+		if(SickCustomers.Count > 0){
+			Medic.Instance.MoveToLocation(SickCustomers[0].transform.position);
+		}
 	}
 
 	// TEMPORARY FOR PROTOTYPE
