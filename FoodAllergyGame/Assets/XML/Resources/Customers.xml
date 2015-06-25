@@ -16,4 +16,12 @@
 		<CustomerNameKey>CustomerTableSmasher</CustomerNameKey>
 		<Script>CustomerTableSmasher</Script>
 	</Customer>
+	<Customer ID="Customer04">
+		<CustomerNameKey>CustomerHospitalRunner</CustomerNameKey>
+		<Script>CustomerHospitalRunner</Script>
+	</Customer>
+	<Customer ID="Customer05">
+		<CustomerNameKey>CustomerAllergyAttack</CustomerNameKey>
+		<Script>CustomerAllergyAttack</Script>
+	</Customer>
 </Customers>

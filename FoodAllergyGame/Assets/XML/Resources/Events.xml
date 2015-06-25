@@ -28,5 +28,19 @@
 		<Day>2</Day>
 		<Allergy>Dairy</Allergy>
 	</Event>
+	<Event ID = "Event04">
+		<Menu>0</Menu>
+		<Kitchen>0</Kitchen>
+		<Customer>2</Customer>
+		<Day>1</Day>
+		<Allergy>None</Allergy>
+	</Event>
+	<Event ID = "Event05">
+		<Menu>0</Menu>
+		<Kitchen>1</Kitchen>
+		<Customer>1</Customer>
+		<Day>2</Day>
+		<Allergy>None</Allergy>
+	</Event>
 </Events>
 

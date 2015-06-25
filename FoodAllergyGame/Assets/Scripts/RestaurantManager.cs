@@ -87,7 +87,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		if(!dayOver && customerHash.Count < 8){
 			ImmutableDataCustomer test;
 			if(satisfactionAI.GetSatisfaction() > 13){
-				int rand = Random.Range(0,3);
+				int rand = Random.Range(0,5);
 				switch(rand){
 				case 0:
 				 	test = DataLoaderCustomer.GetData("Customer01");
@@ -98,6 +98,13 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				case 2: 
 					test = DataLoaderCustomer.GetData("Customer03");
 					break;
+				case 3: 
+					test = DataLoaderCustomer.GetData("Customer04");
+					break;
+				case 4: 
+					test = DataLoaderCustomer.GetData("Customer05");
+					break;
+
 				default:
 					test = DataLoaderCustomer.GetData("Customer02");
 					break;

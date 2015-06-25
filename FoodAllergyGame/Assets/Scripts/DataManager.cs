@@ -20,7 +20,7 @@ public class DataManager : Singleton<DataManager> {
 		DontDestroyOnLoad(gameObject);
 		isCreated = true;
 
-		eventID = "Event0" + UnityEngine.Random.Range(0,4).ToString();
+		eventID = "Event0" + UnityEngine.Random.Range(0,6).ToString();
 	}
 
 	void OnLevelWasLoaded(){
