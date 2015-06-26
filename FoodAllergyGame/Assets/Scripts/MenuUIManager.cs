@@ -23,7 +23,7 @@ public class MenuUIManager : MonoBehaviour {
 	public void ShowChoices(List <ImmutableDataFood> foodChoices, int table){
 		choices = foodChoices;
 		tableNum = table;
-		Debug.Log (foodChoices[0].ID.ToString());
+//		Debug.Log (foodChoices[0].ID.ToString());
 		button1Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(foodChoices[0].SpriteName);
 		button2Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(foodChoices[1].SpriteName);
 		//button3.GetComponent<Image>().sprite = Resources.Load(foodChoices[2].SpriteName)as Sprite;
