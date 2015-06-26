@@ -46,7 +46,7 @@
 		<FoodNameKey>FoodPeanutDessert</FoodNameKey>
 		<SpriteName>FoodPeanutDessert</SpriteName>
 		<Allergies>Peanut</Allergies>
-		<Keywords>Dessert,Drink</Keywords>
+		<Keywords>Meal,Drink</Keywords>
 	</Food>
 	<Food ID="Food08">
 		<FoodNameKey>FoodSalad</FoodNameKey>

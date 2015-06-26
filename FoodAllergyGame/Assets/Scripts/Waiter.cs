@@ -140,7 +140,7 @@ public class Waiter : Singleton<Waiter>{
 	public GameObject HandMeal(int tableNum){
 		if(hand1 == WaiterHands.Meal && hand1Object.GetComponent<Order>().tableNumber== tableNum){
 			GameObject tempFood = hand1Object;
-			tempFood.transform.SetParent(RestaurantManager.Instance.GetTable(tableNum).transform.GetChild(3));
+			tempFood.transform.SetParent(RestaurantManager.Instance.GetTable(tableNum).foodSpot);
 			tempFood.transform.localPosition = new Vector3 (0,0,0);
 			hand1Object = null;
 			hand1 = WaiterHands.None;
@@ -148,7 +148,7 @@ public class Waiter : Singleton<Waiter>{
 		}
 		else if(hand2 == WaiterHands.Meal && hand2Object.GetComponent<Order>().tableNumber == tableNum){
 			GameObject tempFood = hand2Object;
-			tempFood.transform.SetParent(RestaurantManager.Instance.GetTable(tableNum).transform.GetChild(3));
+			tempFood.transform.SetParent(RestaurantManager.Instance.GetTable(tableNum).foodSpot);
 			tempFood.transform.localPosition = new Vector3 (0,0,0);
 			hand2Object = null;
 			hand2 = WaiterHands.None;
