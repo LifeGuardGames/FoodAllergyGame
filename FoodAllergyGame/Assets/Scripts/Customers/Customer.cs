@@ -191,13 +191,15 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		StartCoroutine("SatisfactionTimer");
 	}
 
-	// JumpToTable jumps to the table given a table number
+	// Jumps to the table given a table number
 	public virtual void JumpToTable(int tableN){
 		Waiter.Instance.currentLineCustomer = null;
+
 		tableNum = tableN;
-		table = RestaurantManager.Instance.GetTable(tableN);
-		transform.SetParent(table.transform.GetChild(1));
+		table = RestaurantManager.Instance.GetTable(tableN).gameObject;
+		transform.SetParent(table.GetComponent<Table>().Seat);
 		transform.localPosition = Vector3.zero;
+
 		state = CustomerStates.ReadingMenu;
 		StartCoroutine("ReadMenu");
 

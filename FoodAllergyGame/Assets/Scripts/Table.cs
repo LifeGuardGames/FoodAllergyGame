@@ -8,6 +8,10 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	public int tableNumber;
 
 	public Transform seat;
+	public Transform Seat{
+		get{ return seat; }
+	}
+
 	public Transform waiterSpot;
 	public Transform foodSpot;
 	public bool inUse = false;
@@ -19,7 +23,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 			transform.GetComponentInChildren<Customer>().CheckState();
 		}
 		if(seat.childCount > 0){
-			if(seat.GetComponentInChildren<Customer>().state!= CustomerStates.WaitForOrder  && Waiter.Instance.CheckHands()){
+			if(seat.GetComponentInChildren<Customer>().state != CustomerStates.WaitForOrder && Waiter.Instance.CheckHands()){
 				Waiter.Instance.Finished();
 			}
 		}
