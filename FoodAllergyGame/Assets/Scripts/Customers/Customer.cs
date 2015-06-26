@@ -221,13 +221,10 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		attentionSpan = 16.0f *timer;
 		StartCoroutine("SatisfactionTimer");
 		state = CustomerStates.WaitForOrder;
-		//TODO show customer waiting for order
 	}
 
 	// Gives the order to the waiter
 	public virtual void GetOrder(){
-		//TODO return the supplied order
-		//TODO display table number on table
 		if(state == CustomerStates.WaitForOrder){
 			if(Waiter.Instance.CheckHands()){
 				Waiter.Instance.canMove = false;
@@ -315,9 +312,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		RestaurantManager.Instance.UpdateCash(-25f);
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
 		satisfaction++;
+		customerAnim.SetSatisfaction(satisfaction);
 		customerUI.ToggleAllergyAttack(false);
 		customerUI.UpdateSatisfaction(satisfaction);
-		customerAnim.SetSatisfaction(satisfaction);
 		customerUI.ToggleStar(true);
 		state = CustomerStates.WaitForCheck;
 		StopCoroutine("AllergyTimer");
