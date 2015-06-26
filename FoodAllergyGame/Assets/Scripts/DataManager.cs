@@ -9,6 +9,7 @@ using System;
 public class DataManager : Singleton<DataManager> {
 
 	private static bool isCreated;
+	public bool isDebug;
 	private string eventID;
 	void Awake(){
 		// Make object persistent
@@ -19,8 +20,20 @@ public class DataManager : Singleton<DataManager> {
 		}
 		DontDestroyOnLoad(gameObject);
 		isCreated = true;
-
+		
 		eventID = "Event0" + UnityEngine.Random.Range(0,6).ToString();
+		if(isDebug){
+			if(Application.loadedLevelName == SceneUtils.MENUPLANNING){
+				MenuManager.Instance.currEvent = eventID;
+			}
+			else if(Application.loadedLevelName == SceneUtils.RESTAURANT){
+				RestaurantManager.Instance.currEvent = eventID;
+			}
+			else if (Application.loadedLevelName == SceneUtils.START){
+				eventID = "Event0" + UnityEngine.Random.Range(0,4).ToString();
+				
+			}
+		}
 	}
 
 	void OnLevelWasLoaded(){
