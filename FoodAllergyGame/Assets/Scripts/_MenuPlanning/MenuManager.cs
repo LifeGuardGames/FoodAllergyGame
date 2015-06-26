@@ -19,6 +19,7 @@ public class MenuManager : Singleton<MenuManager>{
 	public List<string> selectedMenuList;	// Internal aux list keeping track of current selection
 
 	void Start(){
+		currEvent = DataManager.Instance.GetEvent();
 		EventDescription.SetActive(true);
 		ShowEventDescription();
 	}

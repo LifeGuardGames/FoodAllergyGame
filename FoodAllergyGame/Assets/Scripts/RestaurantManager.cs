@@ -35,9 +35,11 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	// and then if the day is over checks to see if the hastable is empty and if it is it ends the round
 
 	void Start(){
+		currEvent = DataManager.Instance.GetEvent();
 		SickCustomers = new List<GameObject>();
 		customerHash = new Dictionary<string, GameObject>();
 		satisfactionAI = new SatisfactionAI();
+		Debug.Log (currEvent);
 		ImmutableDataEvents test = DataLoaderEvents.GetData(currEvent);
 		StartDay(test);
 //		FoodManager.Instance.GenerateMenu("Food00");
