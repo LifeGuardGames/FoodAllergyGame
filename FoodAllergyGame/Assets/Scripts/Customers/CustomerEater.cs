@@ -9,7 +9,7 @@ public class CustomerEater : Customer {
 			Debug.Log(state);
 			for (int i = 0; i < 4; i++){
 				if(RestaurantManager.Instance.GetTable(i).Seat.childCount > 0){
-					if(RestaurantManager.Instance.GetTable(i).Seat.GetChild(0).GetComponent<Customer>().state != CustomerStates.Invalid
+					if(RestaurantManager.Instance.GetTable(i).Seat.GetChild(0).GetComponent<Customer>().state != CustomerStates.Invalid && RestaurantManager.Instance.GetTable(i).Seat.GetChild(0).GetComponent<Customer>().state != CustomerStates.WaitForOrder
 					   && RestaurantManager.Instance.GetTable(i).Seat.GetChild(0).gameObject != this.gameObject){
 
 						Destroy(RestaurantManager.Instance.GetTable(i).Seat.GetChild(0).gameObject);

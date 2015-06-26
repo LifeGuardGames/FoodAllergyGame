@@ -57,7 +57,6 @@ public class Order : MonoBehaviour, IWaiterSelection{
 
 	public void Canceled(){
 		StopCoroutine("Cooking");
-		Debug.Log ("??????");
 		Destroy(this.gameObject);
 	}
 

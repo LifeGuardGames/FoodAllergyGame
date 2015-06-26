@@ -32,6 +32,14 @@ public class MenuUIManager : MonoBehaviour {
 		//button3.SetActive(true);
 
 	}
+
+	public void CancelOrder(int table){
+		if(table == tableNum){
+			button1.SetActive(false);
+			button2.SetActive(false);
+		}
+	}
+
 	public void ProduceOrder(int choice){
 		button1.SetActive(false);
 		button2.SetActive(false);
