@@ -51,6 +51,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		if(foodSpot.childCount > 0){
 			Destroy (foodSpot.GetChild (0));
 		}
+		GameObject.Find("MenuUIManager").GetComponent<MenuUIManager>().CancelOrder(tableNumber);
 		GetComponentInChildren<Customer>().state = CustomerStates.Invalid;
 		RestaurantManager.Instance.CustomerLeft(currentCustomerID, 0);
 		CustomerLeaving();
@@ -62,7 +63,12 @@ public class Table : MonoBehaviour, IWaiterSelection{
 
 	#region IWaiterSelection implementation
 	public void OnWaiterArrived(){
-		TalkToConsumer();
+		if(!isBroken &&seat.childCount > 0){
+			TalkToConsumer();
+		}
+		else{
+			Waiter.Instance.Finished();
+		}
 	}
 
 	public void OnClicked(){
