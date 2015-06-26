@@ -1,0 +1,6 @@
+<Sounds>
+<!--	<Sound ID="decoPlaceFurniture" Volume="1"> </Sound> -->
+	<Sound ID="bgRestaurant"></Sound>
+	<Sound ID="customerEnter"></Sound>
+	<Sound ID="pop"></Sound>
+</Sounds>

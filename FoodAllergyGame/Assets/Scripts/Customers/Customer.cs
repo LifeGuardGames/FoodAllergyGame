@@ -45,6 +45,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Basic intitialzation
 	public virtual void Init(int num, ImmutableDataEvents mode){
+
+		AudioManager.Instance.PlayClip("customerEnter");
+
 		customerUI.ToggleWait(false);
 		customerUI.ToggleStar(false);
 		customerUI.ToggleAllergyAttack(false);
@@ -194,6 +197,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	// Jumps to the table given a table number
 	public virtual void JumpToTable(int tableN){
 		Waiter.Instance.currentLineCustomer = null;
+		AudioManager.Instance.PlayClip("pop");
 
 		tableNum = tableN;
 		table = RestaurantManager.Instance.GetTable(tableN).gameObject;
@@ -384,6 +388,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				}
 			}
 			Waiter.Instance.currentLineCustomer = gameObject;
+			AudioManager.Instance.PlayClip("pop");
 			gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
 		}
 	}
