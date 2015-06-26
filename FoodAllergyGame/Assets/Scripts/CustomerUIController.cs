@@ -39,7 +39,12 @@ public class CustomerUIController : MonoBehaviour {
 
 	public void ToggleText(bool isShowAllergy, string _allergyText){
 		allergyText.gameObject.SetActive(isShowAllergy);
-		allergyText.text = _allergyText;
+		if(string.Equals(_allergyText, "None")){
+			allergyText.text = "No allergies";
+		}
+		else{
+			allergyText.text = "Has " + _allergyText + " allergies";
+		}
 	}
 
 	public void ToggleWait(bool isWaiting){
