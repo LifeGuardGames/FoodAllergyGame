@@ -140,7 +140,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				allergy = Allergies.Dairy;
 			}
 		}
-		else if (mode == "Dairt"){
+		else if (mode == "Dairy"){
 			int rand = Random.Range (0,10);
 			if(rand < 7){
 				allergy = Allergies.Dairy;			
