@@ -1,27 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Customers>
 	<Customer ID="Customer00">
-		<CustomerNameKey>Regular</CustomerNameKey>
+		<CustomerNameKey>Customer</CustomerNameKey>
+		<CustomerDesc>CustomerDesc</CustomerDesc>
+		<SpriteName>Customer</SpriteName>
 		<Script>Customer</Script>
 	</Customer>
 	<Customer ID="Customer01">
 		<CustomerNameKey>CustomerImpatient</CustomerNameKey>
+		<CustomerDesc>CustomerImpatientDesc</CustomerDesc>
+		<SpriteName>CustomerImpatient</SpriteName>
 		<Script>CustomerImpatient</Script>
 	</Customer>
 	<Customer ID="Customer02">
 		<CustomerNameKey>CustomerEater</CustomerNameKey>
+		<CustomerDesc>CustomerEaterDesc</CustomerDesc>
+		<SpriteName>CustomerEater</SpriteName>
 		<Script>CustomerEater</Script>
 	</Customer>
 	<Customer ID="Customer03">
 		<CustomerNameKey>CustomerTableSmasher</CustomerNameKey>
+		<CustomerDesc>CustomerTableSmasherDesc</CustomerDesc>
+		<SpriteName>CustomerTableSmasher</SpriteName>
 		<Script>CustomerTableSmasher</Script>
 	</Customer>
 	<Customer ID="Customer04">
 		<CustomerNameKey>CustomerHospitalRunner</CustomerNameKey>
+		<CustomerDesc>CustomerHospitalRunnerDesc</CustomerDesc>
+		<SpriteName>CustomerHospitalRunner</SpriteName>
 		<Script>CustomerHospitalRunner</Script>
 	</Customer>
 	<Customer ID="Customer05">
 		<CustomerNameKey>CustomerAllergyAttack</CustomerNameKey>
+		<CustomerDesc>CustomerAllergyAttackDesc</CustomerDesc>
+		<SpriteName>CustomerAllergyAttack</SpriteName>
 		<Script>CustomerAllergyAttack</Script>
 	</Customer>
 </Customers>

@@ -1,53 +1,87 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
 public class PanelInfoController : MonoBehaviour {
 
-	public Image image;
-	public Text foodName;
-	public Text allergiesLabel;
-	public Text keywordsLabel;
+	public GameObject foodInfoParent;		// Parent to all the food info game objects
+	public Text foodTitleText;
+	public Image foodImage;
+	public Text foodAllergiesLabel;
+	public Text foodKeywordsLabel;
+
+	public GameObject customerInfoParent;	// Parent to all the customer info game objects
+	public Text customerTitleText;
+	public Image customerImage;
+	public Text customerDescriptionText;
 
 	void Start(){
-		ToggleVisibility(false);
+		ToggleVisibility(false, InfoType.None);
 		this.gameObject.AddComponent<Localize>();
 	}
 
-	private void ToggleVisibility(bool isVisible){
-		foreach(Transform child in gameObject.transform){
-			child.gameObject.SetActive(isVisible);	// Toggle the whole gameobject for now
+	public void ToggleVisibility(bool isVisible, InfoType infoType){
+		if(!isVisible){
+			foodInfoParent.SetActive(false);
+			customerInfoParent.SetActive(false);
+		}
+		// Show the appropriate text and image objects
+		else{
+			switch(infoType){
+			case InfoType.Food:
+				foodInfoParent.SetActive(true);
+				customerInfoParent.SetActive(false);
+				break;
+
+			case InfoType.Customer:
+				foodInfoParent.SetActive(false);
+				customerInfoParent.SetActive(true);
+				break;
+
+			default:
+				Debug.LogError("Bad info type");
+				break;
+			}
 		}
 	}
 
 	public void ShowInfo(InfoType infoType, string ID){
-		if(infoType == InfoType.Food){
+		switch(infoType){
+		case InfoType.Food:
 			ImmutableDataFood foodData = DataLoaderFood.GetData(ID);
-			image.sprite = SpriteCacheManager.Instance.GetSpriteData(foodData.SpriteName);
-			foodName.text = GetComponent<Localize>().setText(foodData.FoodNameKey);
+			foodImage.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(foodData.SpriteName);
+			foodTitleText.text = GetComponent<Localize>().SetText(foodData.FoodNameKey);
 
 			// Concat the allergies list
-			allergiesLabel.text = "";
+			foodAllergiesLabel.text = "";
 			for(int i = 0; i < foodData.AllergyList.Count; i++){
-				allergiesLabel.text += foodData.AllergyList[i];
+				foodAllergiesLabel.text += foodData.AllergyList[i];
 				if(i < foodData.AllergyList.Count - 1){	// Put in a newline if not last element
-					allergiesLabel.text += "\n";
+					foodAllergiesLabel.text += "\n";
 				}
 			}
-
 			// Concat the keywords list
-			keywordsLabel.text = "";
+			foodKeywordsLabel.text = "";
 			for(int i = 0; i < foodData.KeywordList.Count; i++){
-				keywordsLabel.text += foodData.KeywordList[i];
+				foodKeywordsLabel.text += foodData.KeywordList[i];
 				if(i < foodData.KeywordList.Count - 1){	// Put in a newline if not last element
-					keywordsLabel.text += "\n";
+					foodKeywordsLabel.text += "\n";
 				}
 			}
-		}
-		else if(infoType == InfoType.Customer){
-			// TODO implement customer showing here
-		}
+			ToggleVisibility(true, infoType);
+			break;
 
-		ToggleVisibility(true);
+		case InfoType.Customer:
+			ImmutableDataCustomer customerData = DataLoaderCustomer.GetData(ID);
+			customerImage.sprite = SpriteCacheManager.Instance.GetCustomerSpriteData(customerData.SpriteName);
+			customerTitleText.text = GetComponent<Localize>().SetText(customerData.CustomerNameKey);
+			customerDescriptionText.text = GetComponent<Localize>().SetText(customerData.CustomerDescription);
+			ToggleVisibility(true, infoType);
+			break;
+
+		default:
+			Debug.LogError("Bad info type");
+			break;
+		}
 	}
 }

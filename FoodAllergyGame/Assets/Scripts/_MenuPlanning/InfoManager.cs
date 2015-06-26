@@ -18,7 +18,6 @@ public class InfoManager : Singleton<InfoManager>{
 		switch(type){
 		case InfoType.Food:
 			// Instantiate list here
-			// TODO Watch out for load demux break
 			foreach(ImmutableDataFood foodData in DataLoaderFood.GetDataList()){
 				GameObject foodStockButton = 
 					GameObjectUtils.AddChildGUI(grid, foodStockButtonPrefab);
@@ -30,11 +29,10 @@ public class InfoManager : Singleton<InfoManager>{
 			break;
 		case InfoType.Customer:
 			// Instantiate list heres
-			// TODO Watch out for load demux break
 			foreach(ImmutableDataCustomer customerData in DataLoaderCustomer.GetDataList()){
 				GameObject customerButton = 
 					GameObjectUtils.AddChildGUI(grid, customerButtonPrefab);
-				customerButton.GetComponent<CustomerButton>().Init(customerData);
+				customerButton.GetComponent<CustomerInfoButton>().Init(customerData);
 			}
 
 			// Show content
@@ -52,5 +50,15 @@ public class InfoManager : Singleton<InfoManager>{
 
 	public void ShowDetail(InfoType infoType, string ID){
 		infoController.ShowInfo(infoType, ID);
+	}
+
+	public void ClearDetail(){
+		// Disable info panel
+		infoController.ToggleVisibility(false, InfoType.None);
+
+		// Clear the grid
+		foreach(Transform child in grid.transform){
+			Destroy(child.gameObject);
+		}
 	}
 }

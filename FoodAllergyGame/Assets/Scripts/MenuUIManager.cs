@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
@@ -24,8 +24,8 @@ public class MenuUIManager : MonoBehaviour {
 		choices = foodChoices;
 		tableNum = table;
 		Debug.Log (foodChoices[0].ID.ToString());
-		button1Image.sprite = SpriteCacheManager.Instance.GetSpriteData(foodChoices[0].SpriteName);
-		button2Image.sprite = SpriteCacheManager.Instance.GetSpriteData(foodChoices[1].SpriteName);
+		button1Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(foodChoices[0].SpriteName);
+		button2Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(foodChoices[1].SpriteName);
 		//button3.GetComponent<Image>().sprite = Resources.Load(foodChoices[2].SpriteName)as Sprite;
 		button1.SetActive(true);
 		button2.SetActive(true);

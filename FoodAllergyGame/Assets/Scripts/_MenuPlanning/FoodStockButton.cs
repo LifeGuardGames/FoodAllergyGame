@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -12,8 +12,8 @@ public class FoodStockButton : MonoBehaviour {
 	public void Init(ImmutableDataFood foodData){
 		foodID = foodData.ID;
 		gameObject.name = foodData.ID;
-		label.text = GetComponent<Localize>().setText(foodData.FoodNameKey);
-		image.sprite = SpriteCacheManager.Instance.GetSpriteData(foodData.SpriteName);
+		label.text = GetComponent<Localize>().SetText(foodData.FoodNameKey);
+		image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(foodData.SpriteName);
 	}
 
 	public void OnButtonClick(){

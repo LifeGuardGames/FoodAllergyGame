@@ -9,7 +9,7 @@ using System.Collections.Generic;
 public class SpriteCacheManager : Singleton<SpriteCacheManager> {
 	public Dictionary<string, Sprite> foodSpriteDictionary = new Dictionary<string, Sprite>();
 
-	public Sprite GetSpriteData(string spriteName){
+	public Sprite GetFoodSpriteData(string spriteName){
 		if(foodSpriteDictionary.Count == 0){
 			// Set up sprite list from data
 			Sprite[] sprites = Resources.LoadAll<Sprite>("food");
@@ -23,5 +23,10 @@ public class SpriteCacheManager : Singleton<SpriteCacheManager> {
 		}
 
 		return foodSpriteDictionary[spriteName];
+	}
+
+	public Sprite GetCustomerSpriteData(string spriteName){
+		Sprite sprite = Resources.Load<Sprite>(spriteName);
+		return sprite;
 	}
 }

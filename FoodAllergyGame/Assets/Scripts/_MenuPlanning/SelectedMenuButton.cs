@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -14,7 +14,7 @@ public class SelectedMenuButton : MonoBehaviour {
 		gameObject.name = _foodID;
 		ImmutableDataFood foodData = DataLoaderFood.GetData(_foodID);
 		label.text = foodData.FoodNameKey;
-		image.sprite = SpriteCacheManager.Instance.GetSpriteData(foodData.SpriteName);
+		image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(foodData.SpriteName);
 	}
 
 	public void OnButtonClick(){

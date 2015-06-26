@@ -38,6 +38,7 @@ public class StartManager : Singleton<StartManager>{
 		infoDetailDemux.Hide();
 		infoCategoriesDemux.Show();
 		startDemux.Hide();
+		InfoManager.Instance.ClearDetail();
 	}
 	
 	public void ShowInfoDetailDemux(){

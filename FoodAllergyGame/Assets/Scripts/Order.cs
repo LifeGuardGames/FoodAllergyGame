@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -20,7 +20,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 		set{
 			isCooked = value;
 			if(isCooked == true){
-				OrderImage.sprite = SpriteCacheManager.Instance.GetSpriteData(DataLoaderFood.GetData(foodID).SpriteName);
+				OrderImage.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(DataLoaderFood.GetData(foodID).SpriteName);
 				OrderImage.SetNativeSize();
 			}
 		}
