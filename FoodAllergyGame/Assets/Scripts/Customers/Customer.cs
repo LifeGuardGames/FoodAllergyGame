@@ -227,6 +227,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public virtual void GetOrder(){
 		if(state == CustomerStates.WaitForOrder){
 			if(Waiter.Instance.CheckHands()){
+				StopCoroutine("SatisfactionTimer");
 				Waiter.Instance.canMove = false;
 				customerUI.ToggleText(true, allergy.ToString());
 				GameObject.Find("MenuUIManager").GetComponent<MenuUIManager>().ShowChoices(choices, tableNum);
@@ -246,7 +247,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		state = CustomerStates.WaitForFood;
 		Waiter.Instance.Finished();
 		attentionSpan = 16.0f * timer;
-		StopCoroutine("SatisfactionTimer");
+		//StopCoroutine("SatisfactionTimer");
 		satisfaction++;
 
 		customerUI.UpdateSatisfaction(satisfaction);
