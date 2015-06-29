@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class RestaurantManager : Singleton<RestaurantManager>{
 
@@ -24,7 +25,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	private Dictionary<string, GameObject> customerHash;
 	// our satisfaction ai 
 	private SatisfactionAI satisfactionAI;
-
+	public GameObject dayOverUI;
 	public List<GameObject> SickCustomers;
 	public GameObject[] tableList;
 	public RestaurantUIManager restaurantUI;
@@ -121,7 +122,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			customerNumber++;
 			cus.GetComponent<Customer>().Init(customerNumber, eventParam);
 			customerHash.Add(cus.GetComponent<Customer>().customerID,cus);
-			//TODO SpawnCustomer
+			satisfactionAI.AddCustomer();
 			StartCoroutine("SpawnCustomer");
 		}
 		else{
@@ -132,7 +133,6 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	// Removes a customer from the dictionary
 	public void CustomerLeft(string Id, int satisfaction){
 		if(customerHash.ContainsKey(Id)){
-			Debug.Log (satisfactionAI.CalculateCheck(satisfaction));
 			UpdateCash(satisfactionAI.CalculateCheck(satisfaction));
 			customerHash.Remove(Id);
 			CheckForGameOver();
@@ -151,7 +151,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	private void CheckForGameOver(){
 		if(dayOver){
 			if(customerHash.Count == 0){
-				//TODO GameManager.Instance.DayComplete();
+				DayComplete();
 			}
 		}
 	}
@@ -176,5 +176,12 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	// TEMPORARY FOR PROTOTYPE
 	public void RestartGame(){
 		TransitionManager.Instance.TransitionScene(SceneUtils.START);
+	}
+
+	private void DayComplete(){
+		dayOverUI.SetActive(true);
+		dayOverUI.transform.GetChild(1).GetComponent<Text>().text += dayCash.ToString();
+		dayOverUI.transform.GetChild(2).GetComponent<Text>().text += satisfactionAI.GetMissingCustomers();
+		dayOverUI.transform.GetChild(3).GetComponent<Text>().text += satisfactionAI.AvgSatifaction().ToString();
 	}
 }

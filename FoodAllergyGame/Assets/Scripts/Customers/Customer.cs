@@ -252,7 +252,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		Waiter.Instance.Finished();
 		attentionSpan = 16.0f * timer;
 		//StopCoroutine("SatisfactionTimer");
-		satisfaction++;
+		IncreaseSatisfaction();
 
 		customerUI.UpdateSatisfaction(satisfaction);
 		customerAnim.SetSatisfaction(satisfaction);
@@ -262,7 +262,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Tells the waiter the food has been delivered and begins eating
 	public virtual void Eating(){
-		satisfaction++;
+		IncreaseSatisfaction();
 
 		customerUI.UpdateSatisfaction(satisfaction);
 		customerAnim.SetSatisfaction(satisfaction);
@@ -316,7 +316,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public virtual void Saved(){
 		RestaurantManager.Instance.UpdateCash(-25f);
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
-		satisfaction++;
+		IncreaseSatisfaction();
 		customerAnim.SetSatisfaction(satisfaction);
 		customerUI.ToggleAllergyAttack(false);
 		customerUI.UpdateSatisfaction(satisfaction);
@@ -367,6 +367,12 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		default:
 			Waiter.Instance.Finished();
 			break;
+		}
+	}
+
+	public void IncreaseSatisfaction(){
+		if(satisfaction < 3){
+			satisfaction++;
 		}
 	}
 
