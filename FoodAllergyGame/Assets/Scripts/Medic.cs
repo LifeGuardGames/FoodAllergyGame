@@ -35,7 +35,12 @@ public class Medic : Singleton<Medic> {
 	}
 
 	public void saveCustomer(){
-		RestaurantManager.Instance.SickCustomers[0].GetComponent<Customer>().Saved();
+		if(RestaurantManager.Instance.SickCustomers.Count >0){
+			RestaurantManager.Instance.SickCustomers[0].GetComponent<Customer>().Saved();
+		}
+		else{
+			MoveHome();
+		}
 		//RestaurantManager.Instance.SickCustomers.RemoveAt(index);
 		if(	RestaurantManager.Instance.SickCustomers.Count == 0){
 			MoveHome();

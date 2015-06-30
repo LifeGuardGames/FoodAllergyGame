@@ -18,7 +18,7 @@ public class StartManager : Singleton<StartManager>{
 	}
 
 	public void OnPlayButtonClicked(){
-		TransitionManager.Instance.TransitionScene(SceneUtils.MENUPLANNING);
+		TransitionManager.Instance.TransitionScene(SceneUtils.TUTSCENE);
 	}
 
 	public void OnDecoButtonClicked(){

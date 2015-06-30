@@ -26,6 +26,9 @@ public class Table : MonoBehaviour, IWaiterSelection{
 			if(seat.GetComponentInChildren<Customer>().state != CustomerStates.WaitForOrder && Waiter.Instance.CheckHands()){
 				Waiter.Instance.Finished();
 			}
+			else if(seat.GetComponentInChildren<Customer>().state == CustomerStates.WaitForCheck){
+				Waiter.Instance.Finished();
+			}
 		}
 		else{
 			Waiter.Instance.Finished();
