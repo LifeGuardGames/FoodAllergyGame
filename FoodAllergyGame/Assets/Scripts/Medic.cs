@@ -10,12 +10,10 @@ public class Medic : Singleton<Medic> {
 
 			//If the waiter is already at its location, just call what it needs to call
 			if(transform.position == customer){
-			Debug.Log("jvolaerbgvisdbfjvk");
 				saveCustomer();
 			}
 			// Otherwise, move to the location and wait for callback
 			else{
-			Debug.Log("Location " + gameObject.transform.position + " " + customer);
 
 			//	moving = true;
 //				waiterAnimController.SetMoving(true);
