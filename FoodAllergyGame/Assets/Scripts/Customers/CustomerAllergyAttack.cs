@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class CustomerAllergyAttack : Customer {
-
+	// this customer always has an allergy attack so we override eating to make it so
 	public override void Eating(){
 		satisfaction++;
 		

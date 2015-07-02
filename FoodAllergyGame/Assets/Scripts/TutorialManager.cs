@@ -8,12 +8,17 @@ public class TutorialManager : MonoBehaviour {
 	private GameObject tutObject;
 	// Use this for initialization
 	void Start () {
+		// here we want to spawn the first tutorial scene so that we don't have a blank scene
 		currScene = Resources.Load ("TuTObject0")as GameObject;
 		tutObject = GameObjectUtils.AddChild(canvas, currScene);
 		tutObject.GetComponentInChildren<Button>().onClick.AddListener(() => ChangeScene(1));
 	}
+
+	//each time the user hits the button in the tutorial scene we will destroy the current scene load in a new scene 
+	//and attach this function to the current button
+	//NOTE attaching during runtime is necessary as the buttons are created during runtime
 	public void ChangeScene(int scene){
-		Debug.Log (scene);
+		//Debug.Log (scene);
 		switch(scene){
 		case 1:
 			Destroy(tutObject);
@@ -76,6 +81,7 @@ public class TutorialManager : MonoBehaviour {
 			tutObject.GetComponentInChildren<Button>().onClick.AddListener(() => ChangeScene(11));
 			break;
 		case 11:
+			//once the final button is clicked we boot into menu
 			Application.LoadLevel(SceneUtils.MENUPLANNING);
 			break;
 		}

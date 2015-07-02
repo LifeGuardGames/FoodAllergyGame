@@ -6,6 +6,7 @@ public class Medic : Singleton<Medic> {
 	public GameObject startPos;
 	public WaiterAnimController waiterAnimController;
 
+	// the medic move toward the next customer on the list
 	public void MoveToLocation(Vector3 customer){
 
 			//If the waiter is already at its location, just call what it needs to call
@@ -25,13 +26,13 @@ public class Medic : Singleton<Medic> {
 						
 		}
 	}
-
+	// if no one is sick theres no need for the medic to leave his office so he goes back
 	public void MoveHome(){
 		LeanTween.cancel(gameObject);
 		LeanTween.move(gameObject, startPos.transform.position, 0.5f)
 			.setEase(LeanTweenType.easeInOutQuad);
 	}
-
+	// Stops the customer from having an allergy attack
 	public void saveCustomer(){
 		if(RestaurantManager.Instance.SickCustomers.Count >0){
 			RestaurantManager.Instance.SickCustomers[0].GetComponent<Customer>().Saved();

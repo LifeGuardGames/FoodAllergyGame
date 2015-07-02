@@ -18,6 +18,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	public string currentCustomerID;
 	public bool isBroken;
 
+	//facilitates talk between customer and waiter
 	public void TalkToConsumer(){
 		if(inUse){
 			transform.GetComponentInChildren<Customer>().CheckState();
@@ -40,16 +41,19 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		return Waiter.Instance.HandMeal(tableNumber);
 	}
 
+	//Passes order drom customer to waiter
 	public void OrderObtained(GameObject order){
 		Waiter.Instance.WriteDownOrder(order);
 	}
 
+	//makes sure there is no left over food should a customer leave ealy
 	public void CustomerLeaving(){
 		inUse = false;
 		Waiter.Instance.RemoveMeal(tableNumber);
 		GameObject.Find("Kitchen").GetComponent<KitchenManager>().CancelOrder(tableNumber);
 	}
 
+	//in the unfortunate circumstance a customer gets eaten we need to take care of the mess
 	public void CustomerEaten(){
 		if(foodSpot.childCount > 0){
 			Destroy (foodSpot.GetChild (0));
@@ -59,7 +63,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		RestaurantManager.Instance.CustomerLeft(currentCustomerID, 0);
 		CustomerLeaving();
 	}
-
+	//for use by sir table smasher when he does his thing
 	public void TableSmashed(){
 		isBroken = true;
 	}
@@ -73,7 +77,6 @@ public class Table : MonoBehaviour, IWaiterSelection{
 			Waiter.Instance.Finished();
 		}
 	}
-
 	public void OnClicked(){
 		// Check if customers need to jump to the table
 		if(Waiter.Instance.currentLineCustomer != null && !inUse && !isBroken){

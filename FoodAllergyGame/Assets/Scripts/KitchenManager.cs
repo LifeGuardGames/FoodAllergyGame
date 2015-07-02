@@ -7,12 +7,13 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 	//CookOrder runs coroutines on orders to cook them once the coroutine is finished the food will be ready for pick up shown by 
 	// MenuUIManager populates the menu sidebar for food selection
 
+	//position of the waiter
 	public Transform waiterSpot;
-
+	// times it takes to cook food
 	public float cookTimer;
-
+	
 	public List<Transform> orderSpotList;
-
+	//changes the cooking time based off the event
 	public void Init(string mode){
 		switch (mode){
 		case "0":
@@ -28,8 +29,8 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 		}
 	}
 
+	// takes the orders from the waiter and cooks them
 	public void CookOrder(List <GameObject> order){
-
 		if(order.Count > 1){
 			order[0].transform.SetParent(this.gameObject.transform);
 			order[0].GetComponent<Order>().StartCooking(cookTimer);
@@ -47,7 +48,7 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 			//order[0].SetActive(false);
 		}
 	}
-
+	//when the order is cooked it is placed on the counter 
 	public void Cooked(GameObject order){
 		for (int i = 0; i < orderSpotList.Count; i ++){
 			if(orderSpotList[i].transform.childCount == 0){
@@ -57,7 +58,7 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 			}
 		}
 	}
-
+	// called if a customer leaves. The order stops cooking and is destroyed
 	public void CancelOrder(int tableNum){
 		for (int i = 0; i < orderSpotList.Count; i++){
 			if(orderSpotList[i].childCount > 0){

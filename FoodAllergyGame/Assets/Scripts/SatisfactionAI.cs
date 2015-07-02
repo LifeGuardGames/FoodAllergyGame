@@ -12,7 +12,6 @@ public class SatisfactionAI{
 		if(_satisfaction <= 0){
 			missingCustomers++;
 		}
-		UnityEngine.Debug.Log (_satisfaction);
 		score = _satisfaction *5;
 		satisfaction += _satisfaction;
 		SatisfactionLevel(score);
@@ -20,6 +19,7 @@ public class SatisfactionAI{
 	}
 	// Calcualtes the satisfaction level
 	private void SatisfactionLevel(int _satisfaction){
+		// using a random number to add some unpredictability into the system
 		satisfactionLevel += (_satisfaction/numOfCustomers) + UnityEngine.Random.Range(0,4);
 	}
 
@@ -30,9 +30,8 @@ public class SatisfactionAI{
 	public int GetScore(){
 		return score;
 	}
+
 	public float AvgSatifaction(){
-		UnityEngine.Debug.Log(satisfaction);
-		UnityEngine.Debug.Log(numOfCustomers);
 		return satisfaction/ numOfCustomers;
 	}
 
