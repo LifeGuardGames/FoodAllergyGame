@@ -316,6 +316,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		if(state != CustomerStates.InLine){
 			RestaurantManager.Instance.GetTable(tableNum).CustomerLeaving();
 		}
+		AudioManager.Instance.PlayClip("leaving");
 		Destroy(this.gameObject);
 	}
 	// called if the food's ingrediants match the allergy starts a timer in which the player must hit the save me button
@@ -323,6 +324,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 //		attentionSpan = 5.0f;
 		customerUI.ToggleAllergyAttack(true);
 		RestaurantManager.Instance.SickCustomers.Add(this.gameObject);
+		AudioManager.Instance.PlayClip("allergyAttack");
 		if(order.gameObject != null){
 			Destroy(order.gameObject);
 		}
@@ -347,7 +349,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		satisfaction = -10;
 		customerUI.UpdateSatisfaction(satisfaction);
 		customerAnim.SetSatisfaction(satisfaction);
-
+		AudioManager.Instance.PlayClip("Dead");
 		if(order.gameObject != null){
 			Destroy(order.gameObject);
 		}

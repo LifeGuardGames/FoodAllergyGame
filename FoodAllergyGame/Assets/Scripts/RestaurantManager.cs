@@ -186,6 +186,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		dayOverUI.transform.GetChild(1).GetComponent<Text>().text += dayCash.ToString();
 		dayOverUI.transform.GetChild(2).GetComponent<Text>().text += satisfactionAI.GetMissingCustomers();
 		dayOverUI.transform.GetChild(3).GetComponent<Text>().text += satisfactionAI.AvgSatifaction().ToString();
+		AudioManager.Instance.PlayClip("EndOfDay");
 	}
 
 	public LineController GetLine(){

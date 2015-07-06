@@ -64,6 +64,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 	public void OnWaiterArrived(){
 		if(!Waiter.Instance.HaveMeal(tableNumber)){
 			Waiter.Instance.SetHand(gameObject);
+			AudioManager.Instance.PlayClip("orderPickUp");
 		}
 		Waiter.Instance.Finished();
 	}
