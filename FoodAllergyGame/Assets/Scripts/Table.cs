@@ -50,7 +50,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	public void CustomerLeaving(){
 		inUse = false;
 		Waiter.Instance.RemoveMeal(tableNumber);
-		GameObject.Find("Kitchen").GetComponent<KitchenManager>().CancelOrder(tableNumber);
+		RestaurantManager.Instance.GetKitchen().CancelOrder(tableNumber);
 	}
 
 	//in the unfortunate circumstance a customer gets eaten we need to take care of the mess
@@ -58,7 +58,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		if(foodSpot.childCount > 0){
 			Destroy (foodSpot.GetChild (0));
 		}
-		GameObject.Find("MenuUIManager").GetComponent<MenuUIManager>().CancelOrder(tableNumber);
+		RestaurantManager.Instance.GetMenuUiManager().CancelOrder(tableNumber);
 		GetComponentInChildren<Customer>().state = CustomerStates.Invalid;
 		RestaurantManager.Instance.CustomerLeft(currentCustomerID, 0);
 		CustomerLeaving();

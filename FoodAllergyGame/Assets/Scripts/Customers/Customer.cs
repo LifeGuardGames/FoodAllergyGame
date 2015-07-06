@@ -87,11 +87,11 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		//calculates the initial attentionSpan
 		attentionSpan = 10f * timer;
 		// customers refuse to line up out the door
-		if(GameObject.Find("Line").GetComponent<LineController>().NewCustomer() == null){
+		if(RestaurantManager.Instance.GetLine().NewCustomer() == null){
 			Destroy (this.gameObject);
 		}
 		else{
-			this.gameObject.transform.SetParent(GameObject.Find("Line").GetComponent<LineController>().NewCustomer());
+			this.gameObject.transform.SetParent(RestaurantManager.Instance.GetLine().NewCustomer());
 			this.gameObject.transform.position = transform.parent.position;
 			// choose allergy based on the event
 			SelectAllergy(mode.Allergy);
@@ -250,7 +250,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				// lock our waiter 
 				Waiter.Instance.canMove = false;
 				customerUI.ToggleText(true, allergy.ToString());
-				GameObject.Find("MenuUIManager").GetComponent<MenuUIManager>().ShowChoices(choices, tableNum);
+				RestaurantManager.Instance.GetMenuUiManager().ShowChoices(choices, tableNum);
 			}
 		}
 		else{
@@ -415,4 +415,18 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		}
 	}
 	#endregion
+
+	public virtual void Playing(){
+		this.transform.GetChild(0).gameObject.SetActive(false);
+		this.transform.GetChild(1).gameObject.SetActive(false);
+		StopCoroutine("SatisfactionTimer");
+		StartCoroutine("PlayTime");
+	}
+
+	IEnumerator PlayTime(){
+		yield return new WaitForSeconds(10.0f);
+		this.transform.GetChild(0).gameObject.SetActive(true);
+		this.transform.GetChild(1).gameObject.SetActive(true);
+		StartCoroutine("SatisfactionTimer");
+	}
 }
