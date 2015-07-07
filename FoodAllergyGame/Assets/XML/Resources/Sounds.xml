@@ -13,4 +13,5 @@
 	<Sound ID="GiveOrder"></Sound>
 	<Sound ID="MenuButton"></Sound>
 	<Sound ID="WriteDownOrder"></Sound>
+	<Sound ID="TutorialMusic"></Sound>
 </Sounds>
