@@ -12,4 +12,5 @@
 	<Sound ID="leaving"></Sound>
 	<Sound ID="GiveOrder"></Sound>
 	<Sound ID="MenuButton"></Sound>
+	<Sound ID="WriteDownOrder"></Sound>
 </Sounds>
