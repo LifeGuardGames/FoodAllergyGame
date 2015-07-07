@@ -34,6 +34,12 @@ public class Medic : Singleton<Medic> {
 	}
 	// Stops the customer from having an allergy attack
 	public void saveCustomer(){
+		StartCoroutine("TreatCustomer");
+
+	}
+
+	IEnumerator TreatCustomer(){
+		yield return new WaitForSeconds(1.0f);
 		if(RestaurantManager.Instance.SickCustomers.Count >0){
 			RestaurantManager.Instance.SickCustomers[0].GetComponent<Customer>().Saved();
 		}

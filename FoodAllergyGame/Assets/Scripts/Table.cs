@@ -17,6 +17,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	public bool inUse = false;
 	public string currentCustomerID;
 	public bool isBroken;
+	public GameObject _canvas;
 
 	//facilitates talk between customer and waiter
 	public void TalkToConsumer(){
@@ -38,12 +39,14 @@ public class Table : MonoBehaviour, IWaiterSelection{
 
 	// tell waiter to put food down
 	public GameObject FoodDelivered(){
+		_canvas.SetActive(false);
 		return Waiter.Instance.HandMeal(tableNumber);
 	}
 
 	//Passes order drom customer to waiter
 	public void OrderObtained(GameObject order){
 		Waiter.Instance.WriteDownOrder(order);
+		_canvas.SetActive(true);
 	}
 
 	//makes sure there is no left over food should a customer leave ealy
