@@ -16,11 +16,14 @@ public class LocalizeSerialCharacterScroll : Localize{
 	}
 
 	private IEnumerator CharacterDelay(){
-		while(textToShow.Length > currentIndex){
+		if(textToShow.Length > currentIndex){
 			textComponent.text = textComponent.text += textToShow[currentIndex];
 			currentIndex++;
 			yield return new WaitForSeconds(delayBetweenChars);
 			StartCoroutine(CharacterDelay());
+		}
+		else{
+			yield return null;
 		}
 	}
 }

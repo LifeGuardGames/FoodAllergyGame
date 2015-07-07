@@ -10,7 +10,8 @@ public class Localize : MonoBehaviour {
 	void Start(){
 		if(key != null && key != ""){
 			localizedText = GetText(key);
-			GetComponent<Text>().text = localizedText;
+			textComponent = GetComponent<Text>();
+			textComponent.text = localizedText;
 		}
 		_Start();
 	}
