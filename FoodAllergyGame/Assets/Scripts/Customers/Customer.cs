@@ -220,9 +220,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		// begin reading menu
 		state = CustomerStates.ReadingMenu;
 		StartCoroutine("ReadMenu");
-
+		StopCoroutine("SatisfactionTimer");
 		customerAnim.SetReadingMenu(true);
-
 		GetComponentInParent<Table>().currentCustomerID = customerID;
 	}
 
@@ -234,7 +233,6 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		choices = FoodManager.Instance.GetMenuFoodsFromKeyword(desiredFood);
 		customerUI.ToggleWait(true);
 		//stop the satisfaction timer, change the timer and then restart it
-		StopCoroutine("SatisfactionTimer");
 		attentionSpan = 16.0f *timer;
 		StartCoroutine("SatisfactionTimer");
 		// now waiting for our order to be taken
