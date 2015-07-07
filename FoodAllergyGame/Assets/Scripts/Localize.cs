@@ -4,14 +4,20 @@ using UnityEngine.UI;
 
 public class Localize : MonoBehaviour {
 	public string key;
+	protected string localizedText;
+	protected Text textComponent;
 
 	void Start(){
-		if(key != "" && key != null){
-			GetComponent<Text>().text = LocalizationText.GetText(key);
+		if(key != null && key != ""){
+			localizedText = GetText(key);
+			GetComponent<Text>().text = localizedText;
 		}
+		_Start();
 	}
 
-	public string SetText(string _key){
-		return LocalizationText.GetText(_key);
+	public virtual void _Start(){}
+
+	public string GetText(string key){
+		return LocalizationText.GetText(key);
 	}
 }

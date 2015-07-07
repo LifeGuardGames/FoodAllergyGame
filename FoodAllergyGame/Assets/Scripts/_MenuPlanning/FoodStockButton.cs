@@ -12,7 +12,7 @@ public class FoodStockButton : MonoBehaviour {
 	public void Init(ImmutableDataFood foodData){
 		foodID = foodData.ID;
 		gameObject.name = foodData.ID;
-		label.text = GetComponent<Localize>().SetText(foodData.FoodNameKey);
+		label.text = GetComponent<Localize>().GetText(foodData.FoodNameKey);
 		image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(foodData.SpriteName);
 	}
 

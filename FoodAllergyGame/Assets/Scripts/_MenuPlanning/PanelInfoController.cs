@@ -50,7 +50,7 @@ public class PanelInfoController : MonoBehaviour {
 		case InfoType.Food:
 			ImmutableDataFood foodData = DataLoaderFood.GetData(ID);
 			foodImage.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(foodData.SpriteName);
-			foodTitleText.text = GetComponent<Localize>().SetText(foodData.FoodNameKey);
+			foodTitleText.text = GetComponent<Localize>().GetText(foodData.FoodNameKey);
 
 			// Concat the allergies list
 			foodAllergiesLabel.text = "";
@@ -74,8 +74,8 @@ public class PanelInfoController : MonoBehaviour {
 		case InfoType.Customer:
 			ImmutableDataCustomer customerData = DataLoaderCustomer.GetData(ID);
 			customerImage.sprite = SpriteCacheManager.Instance.GetCustomerSpriteData(customerData.SpriteName);
-			customerTitleText.text = GetComponent<Localize>().SetText(customerData.CustomerNameKey);
-			customerDescriptionText.text = GetComponent<Localize>().SetText(customerData.CustomerDescription);
+			customerTitleText.text = GetComponent<Localize>().GetText(customerData.CustomerNameKey);
+			customerDescriptionText.text = GetComponent<Localize>().GetText(customerData.CustomerDescription);
 			ToggleVisibility(true, infoType);
 			break;
 

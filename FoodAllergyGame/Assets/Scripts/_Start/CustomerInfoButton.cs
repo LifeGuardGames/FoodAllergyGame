@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -11,7 +11,7 @@ public class CustomerInfoButton : MonoBehaviour {
 	public void Init(ImmutableDataCustomer customerData){
 		customerID = customerData.ID;
 		gameObject.name = customerData.ID;
-		label.text = GetComponent<Localize>().SetText(customerData.CustomerNameKey);
+		label.text = GetComponent<Localize>().GetText(customerData.CustomerNameKey);
 		image.sprite = SpriteCacheManager.Instance.GetCustomerSpriteData(customerData.SpriteName);
 	}
 	
