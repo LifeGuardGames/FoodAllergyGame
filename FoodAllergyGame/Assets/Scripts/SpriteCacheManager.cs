@@ -29,4 +29,9 @@ public class SpriteCacheManager : Singleton<SpriteCacheManager> {
 		Sprite sprite = Resources.Load<Sprite>(spriteName);
 		return sprite;
 	}
+
+	public Sprite GetAllergySpriteData(Allergies allergyEnum){
+		Sprite sprite = Resources.Load<Sprite>("Allergy" + allergyEnum.ToString());
+		return sprite;
+	}
 }

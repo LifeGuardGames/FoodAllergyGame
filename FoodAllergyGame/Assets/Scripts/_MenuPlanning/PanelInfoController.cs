@@ -8,7 +8,7 @@ public class PanelInfoController : MonoBehaviour {
 	public Text foodTitleText;
 	public Image foodImage;
 	public Text foodAllergiesLabel;
-	public Text foodKeywordsLabel;
+	public Image allergy1Image;
 
 	public GameObject customerInfoParent;	// Parent to all the customer info game objects
 	public Text customerTitleText;
@@ -51,21 +51,16 @@ public class PanelInfoController : MonoBehaviour {
 			ImmutableDataFood foodData = DataLoaderFood.GetData(ID);
 			foodImage.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(foodData.SpriteName);
 			foodTitleText.text = GetComponent<Localize>().GetText(foodData.FoodNameKey);
+			allergy1Image.enabled = false;
 
 			// Concat the allergies list
 			foodAllergiesLabel.text = "";
 			for(int i = 0; i < foodData.AllergyList.Count; i++){
-				foodAllergiesLabel.text += foodData.AllergyList[i];
-				if(i < foodData.AllergyList.Count - 1){	// Put in a newline if not last element
-					foodAllergiesLabel.text += "\n";
-				}
-			}
-			// Concat the keywords list
-			foodKeywordsLabel.text = "";
-			for(int i = 0; i < foodData.KeywordList.Count; i++){
-				foodKeywordsLabel.text += foodData.KeywordList[i];
-				if(i < foodData.KeywordList.Count - 1){	// Put in a newline if not last element
-					foodKeywordsLabel.text += "\n";
+				// UNDONE Only show one allergy text and image for now, index 0
+				foodAllergiesLabel.text = foodData.AllergyList[0].ToString();
+				if(foodData.AllergyList[0] != Allergies.None){
+					allergy1Image.enabled = true;
+					allergy1Image.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(foodData.AllergyList[0]);
 				}
 			}
 			ToggleVisibility(true, infoType);
