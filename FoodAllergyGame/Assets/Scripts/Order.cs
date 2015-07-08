@@ -52,7 +52,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 		IsCooked = true;
 		OrderImage.enabled = true;
 		GetComponentInChildren<Text>().enabled = true;
-		RestaurantManager.Instance.GetKitchen().Cooked(this.gameObject);
+		RestaurantManager.Instance.GetKitchen().FinishCooking(this.gameObject);
 	}
 
 	public void Canceled(){
