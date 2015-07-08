@@ -52,8 +52,8 @@ public class Order : MonoBehaviour, IWaiterSelection{
 		IsCooked = true;
 		OrderImage.enabled = true;
 		GetComponentInChildren<Text>().enabled = true;
+		RestaurantManager.Instance.GetKitchen().FinishCooking(this.gameObject);
 		AudioManager.Instance.PlayClip("orderReady");
-		RestaurantManager.Instance.GetKitchen().Cooked(this.gameObject);
 	}
 
 	public void Canceled(){
