@@ -92,7 +92,7 @@ public class TutorialManager : MonoBehaviour{
 			break;
 		case 11:
 			//once the final button is clicked we boot into menu
-			Application.LoadLevel(SceneUtils.MENUPLANNING);
+			Application.LoadLevel(SceneUtils.RESTAURANT);
 			break;
 		}
 
