@@ -40,14 +40,14 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 			order[1].GetComponent<Order>().StartCooking(cookTimer);
 			//order[1].SetActive(false);
 			//StartCoroutine(Cooking(order[1]));
-			AudioManager.Instance.PlayClip("GiveOrder");
+			AudioManager.Instance.PlayClip("giveOrder");
 		}
 		else if(order.Count == 1){
 			order[0].transform.SetParent(this.gameObject.transform);
 			//StartCoroutine(Cooking(order[0]));
 			order[0].GetComponent<Order>().StartCooking(cookTimer);
 			//order[0].SetActive(false);
-			AudioManager.Instance.PlayClip("GiveOrder");
+			AudioManager.Instance.PlayClip("giveOrder");
 		}
 	}
 	//when the order is cooked it is placed on the counter 

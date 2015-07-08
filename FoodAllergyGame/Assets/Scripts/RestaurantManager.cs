@@ -34,7 +34,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public LineController Line;
 	public MenuUIManager menuUiManager;
 	public KitchenManager kitchen;
-
+	public bool firstSickCustomer = true;
+	public GameObject medicButton;
 	// RemoveCustomer removes the customer from a hashtable 
 	// and then if the day is over checks to see if the hastable is empty and if it is it ends the round
 

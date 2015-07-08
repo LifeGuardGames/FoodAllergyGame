@@ -203,7 +203,7 @@ public class Waiter : Singleton<Waiter>{
 	}
 
 	public void WriteDownOrder(GameObject order){
-		AudioManager.Instance.PlayClip("WriteDownOrder");
+		AudioManager.Instance.PlayClip("writeDownOrder");
 		SetHand(order);
 	}
 
