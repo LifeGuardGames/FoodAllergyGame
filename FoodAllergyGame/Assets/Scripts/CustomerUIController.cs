@@ -12,6 +12,8 @@ public class CustomerUIController : MonoBehaviour {
 	public Image waiting;
 	public Image star;
 
+	public GameObject thoughtObject;
+	public Image allergyImage;
 	public Text allergyText;
 
 	public void UpdateSatisfaction(int satisfaction){
@@ -37,13 +39,17 @@ public class CustomerUIController : MonoBehaviour {
 		}
 	}
 
-	public void ToggleText(bool isShowAllergy, string _allergyText){
+	public void ToggleAllergyShow(bool isShowAllergy, Allergies allergy){
 		allergyText.gameObject.SetActive(isShowAllergy);
-		if(string.Equals(_allergyText, "None")){
+		thoughtObject.gameObject.SetActive(isShowAllergy);
+
+		if(allergy == Allergies.None){
 			allergyText.text = "No allergies";
+			thoughtObject.gameObject.SetActive(false);	// Turn it off, dont need it
 		}
 		else{
-			allergyText.text = "Has " + _allergyText + " allergies";
+			allergyText.text = "Has " + allergy.ToString() + " allergies";
+			allergyImage.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(allergy);
 		}
 	}
 
