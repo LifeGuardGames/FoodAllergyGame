@@ -220,6 +220,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		// begin reading menu
 		state = CustomerStates.ReadingMenu;
 		StartCoroutine("ReadMenu");
+		AudioManager.Instance.PlayClip("readingMenu");
 		StopCoroutine("SatisfactionTimer");
 		customerAnim.SetReadingMenu(true);
 		GetComponentInParent<Table>().currentCustomerID = customerID;
@@ -228,6 +229,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	// Time spent reading menu before ordering
 	IEnumerator ReadMenu(){
 		yield return new WaitForSeconds(menuTimer);
+
 		customerAnim.SetReadingMenu(false);
 		//get food choices 
 		choices = FoodManager.Instance.GetMenuFoodsFromKeyword(desiredFood);
@@ -237,6 +239,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		StartCoroutine("SatisfactionTimer");
 		// now waiting for our order to be taken
 		state = CustomerStates.WaitForOrder;
+		AudioManager.Instance.PlayClip("orderTime");
 	}
 
 	// Gives the order to the waiter
@@ -292,6 +295,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		else{
 			state = CustomerStates.Eating;
 			StartCoroutine("EatingTimer");
+			AudioManager.Instance.PlayClip("eating");
 		}
 	}
 
@@ -306,6 +310,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		}
 		state = CustomerStates.WaitForCheck;
 		StartCoroutine("SatisfactionTimer");
+		AudioManager.Instance.PlayClip("readyForCheck");
 	}
 
 	// Tells the resturantManager that the customer is leaving and can be removed from the dictionary
@@ -347,7 +352,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		satisfaction = -10;
 		customerUI.UpdateSatisfaction(satisfaction);
 		customerAnim.SetSatisfaction(satisfaction);
-		AudioManager.Instance.PlayClip("Dead");
+		AudioManager.Instance.PlayClip("dead");
 		if(order.gameObject != null){
 			Destroy(order.gameObject);
 		}

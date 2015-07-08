@@ -23,6 +23,6 @@ public class FoodStockButton : MonoBehaviour {
 		else if(string.Equals(Application.loadedLevelName, SceneUtils.START)){
 			InfoManager.Instance.ShowDetail(InfoType.Food, foodID);
 		}
-		AudioManager.Instance.PlayClip("MenuButton");
+		AudioManager.Instance.PlayClip("menuButton");
 	}
 }

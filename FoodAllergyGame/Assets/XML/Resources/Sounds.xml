@@ -4,14 +4,19 @@
 	<Sound ID="customerEnter"></Sound>
 	<Sound ID="pop"></Sound>
 	<Sound ID="allergyAttack"></Sound>
-	<Sound ID="Dead"></Sound>
-	<Sound ID="EndOfDay"></Sound>
+	<Sound ID="dead"></Sound>
+	<Sound ID="endOfDay"></Sound>
 	<Sound ID="orderPickUp"></Sound>
-	<Sound ID="StartScreen"></Sound>
-	<Sound ID="MenuMusic"></Sound>
+	<Sound ID="startScreen"></Sound>
+	<Sound ID="menuMusic"></Sound>
 	<Sound ID="leaving"></Sound>
-	<Sound ID="GiveOrder"></Sound>
-	<Sound ID="MenuButton"></Sound>
-	<Sound ID="WriteDownOrder"></Sound>
-	<Sound ID="TutorialMusic"></Sound>
+	<Sound ID="giveOrder"></Sound>
+	<Sound ID="menuButton"></Sound>
+	<Sound ID="writeDownOrder"></Sound>
+	<Sound ID="tutorialMusic"></Sound>
+	<Sound ID="eating"></Sound>
+	<Sound ID="orderReady"></Sound>
+	<Sound ID="orderTime"></Sound>
+	<Sound ID="readingMenu"></Sound>
+	<Sound ID="readyForCheck"></Sound>
 </Sounds>

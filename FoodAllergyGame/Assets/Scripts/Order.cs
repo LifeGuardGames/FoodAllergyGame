@@ -52,6 +52,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 		IsCooked = true;
 		OrderImage.enabled = true;
 		GetComponentInChildren<Text>().enabled = true;
+		AudioManager.Instance.PlayClip("orderReady");
 		RestaurantManager.Instance.GetKitchen().Cooked(this.gameObject);
 	}
 
