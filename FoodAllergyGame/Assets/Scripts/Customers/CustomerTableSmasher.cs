@@ -2,6 +2,12 @@
 using System.Collections;
 
 public class CustomerTableSmasher : Customer {
+
+	public override void Init (int num, ImmutableDataEvents mode)
+	{
+		base.Init (num, mode);
+		type = CustomerTypes.TableSmasher;
+	}
 	//This customer will smash the table he is sitting at when he leaves unhappy
 	//to do this we need to override the NotifyLeave function
 	public override void NotifyLeave ()

@@ -11,7 +11,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	public int tableNum;
 	public float timer = 1.0f;
-
+	public CustomerTypes type = CustomerTypes.Normal;
 	public string customerID;			// The customer's id used for identification in the 
 	public CustomerStates state;		// The current state of the customer
 	public Allergies allergy;			// The allergy of the customer
@@ -103,9 +103,6 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 //				break;
 			}
 		}
-		CUDLR.Console.Log (customerID);
-		CUDLR.Console.Log(allergy.ToString ());
-		CUDLR.Console.Log(desiredFood.ToString());
 	}
 	// chooses an allergy cases where  specific allergy is noted we use a weighted random to get the desired result
 	private void SelectAllergy(string mode){
@@ -288,7 +285,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		yield return new WaitForSeconds(6.0f);
 		customerUI.ToggleStar(true);
 		customerAnim.SetEating(false);
-		attentionSpan = 16.0f * timer;
+		attentionSpan = 10.0f * timer;
 		if(order.gameObject != null){
 			Destroy(order.gameObject);
 		}

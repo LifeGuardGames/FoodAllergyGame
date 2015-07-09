@@ -2,6 +2,12 @@
 using System.Collections;
 
 public class CustomerAllergyAttack : Customer {
+
+	public override void Init (int num, ImmutableDataEvents mode)
+	{
+		base.Init (num, mode);
+		type = CustomerTypes.AllergyAttack;
+	}
 	// this customer always has an allergy attack so we override eating to make it so
 	public override void Eating(){
 		satisfaction++;

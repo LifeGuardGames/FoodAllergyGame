@@ -6,6 +6,7 @@ public class CustomerImpatient :Customer {
 	public override void Init (int num, ImmutableDataEvents mode)
 	{
 		base.Init (num, mode);
+		type = CustomerTypes.Impatient;
 		// this switch statement is simply meant to override the timer variable that the base class sets
 		switch(mode.CustomerMod){
 			case "0":

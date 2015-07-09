@@ -201,4 +201,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public KitchenManager GetKitchen(){
 		return kitchen;
 	}
+
+	public Dictionary<string, GameObject>.ValueCollection getCurrentCustomers(){
+		return customerHash.Values;
+	}
 }

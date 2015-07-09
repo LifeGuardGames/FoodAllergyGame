@@ -46,3 +46,13 @@ public enum WaiterHands{
 	Meal,
 }
 
+public enum CustomerTypes{
+	None,
+	Normal,
+	Impatient,
+	Eater,
+	TableSmasher,
+	AllergyAttack,
+	HospitalRunner,
+}
+
