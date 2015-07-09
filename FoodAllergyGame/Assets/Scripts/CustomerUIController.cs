@@ -12,9 +12,9 @@ public class CustomerUIController : MonoBehaviour {
 	public Image waiting;
 	public Image star;
 
-	public GameObject thoughtObject;
-	public Image allergyImage;
-	public Text allergyText;
+//	public GameObject thoughtObject;
+//	public Image allergyImage;
+//	public Text allergyText;
 
 	public void UpdateSatisfaction(int satisfaction){
 		if(satisfaction <= 0){
@@ -39,19 +39,19 @@ public class CustomerUIController : MonoBehaviour {
 		}
 	}
 
-	public void ToggleAllergyShow(bool isShowAllergy, Allergies allergy){
-		allergyText.gameObject.SetActive(isShowAllergy);
-		thoughtObject.gameObject.SetActive(isShowAllergy);
-
-		if(allergy == Allergies.None){
-			allergyText.text = "No allergies";
-			thoughtObject.gameObject.SetActive(false);	// Turn it off, dont need it
-		}
-		else{
-			allergyText.text = "Has " + allergy.ToString() + " allergies";
-			allergyImage.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(allergy);
-		}
-	}
+//	public void ToggleAllergyShow(bool isShowAllergy, Allergies allergy){
+//		allergyText.gameObject.SetActive(isShowAllergy);
+//		thoughtObject.gameObject.SetActive(isShowAllergy);
+//
+//		if(allergy == Allergies.None){
+//			allergyText.text = "No allergies";
+//			thoughtObject.gameObject.SetActive(false);	// Turn it off, dont need it
+//		}
+//		else{
+//			allergyText.text = "Has " + allergy.ToString() + " allergies";
+//			allergyImage.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(allergy);
+//		}
+//	}
 
 	public void ToggleWait(bool isWaiting){
 		waiting.gameObject.SetActive(isWaiting ? true : false);

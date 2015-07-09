@@ -39,7 +39,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		customerUI.ToggleWait(false);
 		customerUI.ToggleStar(false);
 		customerUI.ToggleAllergyAttack(false);
-		customerUI.ToggleAllergyShow(false, Allergies.None);
+//		customerUI.ToggleAllergyShow(false, Allergies.None); TODO safe to remove
 
 		// simple tempoary naming convention
 		customerID = "Customer" + num.ToString();
@@ -175,7 +175,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	// When completed removes one satisfaction from that customer
 	IEnumerator SatisfactionTimer(){
 		yield return new WaitForSeconds(attentionSpan);
-		Debug.Log("wait for seconds done " + gameObject.name);
+//		Debug.Log("wait for seconds done " + gameObject.name);
 		if(satisfaction > 0){
 			satisfaction--;
 			customerUI.UpdateSatisfaction(satisfaction);
@@ -233,8 +233,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				StopCoroutine("SatisfactionTimer");
 				// lock our waiter 
 				Waiter.Instance.canMove = false;
-				customerUI.ToggleAllergyShow(true, allergy);
-				RestaurantManager.Instance.GetMenuUiManager().ShowChoices(choices, tableNum);
+				RestaurantManager.Instance.GetMenuUiManager().ShowChoices(choices, tableNum, allergy);
 			}
 		}
 		else{
@@ -244,7 +243,6 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	// It's called when the button for food is hit get the customer to make his order and hand it to the waiter
 	public virtual void OrderTaken(ImmutableDataFood food){
 		customerUI.ToggleWait(false);
-		customerUI.ToggleAllergyShow(false, Allergies.None);
 		GameObject orderObj = GameObjectUtils.AddChildWithPositionAndScale(null, TempOrder);
 		orderObj.GetComponent<Order>().Init(food.ID, tableNum, food.AllergyList[0]);
 		RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().OrderObtained(orderObj);

@@ -15,7 +15,6 @@ public class TouchManager : Singleton<TouchManager> {
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			if(Physics.Raycast(ray, out hitObject)){
 				if(hitObject.collider != null){
-
 					// Tap objects NEED to have implemented IWaiterSelection
 					IWaiterSelection waiterSelection = hitObject.collider.gameObject.GetComponent<IWaiterSelection>();
 					if(waiterSelection != null){
