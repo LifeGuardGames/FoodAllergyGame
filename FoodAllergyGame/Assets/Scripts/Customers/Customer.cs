@@ -33,7 +33,6 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Basic intitialzation
 	public virtual void Init(int num, ImmutableDataEvents mode){
-
 		AudioManager.Instance.PlayClip("customerEnter");
 
 		customerUI.ToggleWait(false);
@@ -104,6 +103,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 //				break;
 			}
 		}
+		CUDLR.Console.Log (customerID);
+		CUDLR.Console.Log(allergy.ToString ());
+		CUDLR.Console.Log(desiredFood.ToString());
 	}
 	// chooses an allergy cases where  specific allergy is noted we use a weighted random to get the desired result
 	private void SelectAllergy(string mode){
@@ -169,6 +171,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				allergy = Allergies.Dairy;
 			}
 		}
+
 	}
 
 
