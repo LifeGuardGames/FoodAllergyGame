@@ -96,8 +96,7 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 	}
 
 	public void OnClicked(){
-		// Check if a GUI is clicked on, ignore this call if so
-		if(!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject(-1)){
+		if(!TouchManager.IsHoveringOverGUI()){
 			Waiter.Instance.MoveToLocation(waiterSpot.position, this);
 		}
 	}
