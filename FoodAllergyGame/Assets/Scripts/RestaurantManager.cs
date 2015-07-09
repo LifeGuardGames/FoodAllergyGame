@@ -45,7 +45,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		customerHash = new Dictionary<string, GameObject>();
 		satisfactionAI = new SatisfactionAI();
 		Debug.Log (currEvent);
-		ImmutableDataEvents test = DataLoaderEvents.GetData(currEvent);
+		ImmutableDataEvents test = DataLoaderEvents.GetData("Event00");
 		StartDay(test);
 //		FoodManager.Instance.GenerateMenu("Food00");
 //		FoodManager.Instance.GenerateMenu("Food01");
