@@ -81,15 +81,18 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		}
 	}
 	public void OnClicked(){
-		// Check if customers need to jump to the table
-		if(Waiter.Instance.currentLineCustomer != null && !inUse && !isBroken){
-			Waiter.Instance.currentLineCustomer.transform.localScale = Vector3.one;
-			Waiter.Instance.currentLineCustomer.GetComponent<Customer>().JumpToTable(tableNumber);
-			inUse = true;
-		}
-		// Move the waiter to the table to do what it does
-		else{
-			Waiter.Instance.MoveToLocation(waiterSpot.position, this);
+		// Check if a GUI is clicked on, ignore this call if so
+		if(!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject(-1)){
+			// Check if customers need to jump to the table
+			if(Waiter.Instance.currentLineCustomer != null && !inUse && !isBroken){
+				Waiter.Instance.currentLineCustomer.transform.localScale = Vector3.one;
+				Waiter.Instance.currentLineCustomer.GetComponent<Customer>().JumpToTable(tableNumber);
+				inUse = true;
+			}
+			// Move the waiter to the table to do what it does
+			else{
+				Waiter.Instance.MoveToLocation(waiterSpot.position, this);
+			}
 		}
 	}
 	#endregion
