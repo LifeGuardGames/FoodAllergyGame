@@ -242,20 +242,23 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 	// It's called when the button for food is hit get the customer to make his order and hand it to the waiter
 	public virtual void OrderTaken(ImmutableDataFood food){
-		customerUI.ToggleWait(false);
-		GameObject orderObj = GameObjectUtils.AddChildWithPositionAndScale(null, TempOrder);
-		orderObj.GetComponent<Order>().Init(food.ID, tableNum, food.AllergyList[0]);
-		RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().OrderObtained(orderObj);
-		state = CustomerStates.WaitForFood;
-		Waiter.Instance.Finished();
-		attentionSpan = 16.0f * timer;
-		//StopCoroutine("SatisfactionTimer");
-		IncreaseSatisfaction();
+		if(order == null){
+			order = TempOrder;
+			customerUI.ToggleWait(false);
+			GameObject orderObj = GameObjectUtils.AddChildWithPositionAndScale(null, TempOrder);
+			orderObj.GetComponent<Order>().Init(food.ID, tableNum, food.AllergyList[0]);
+			RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().OrderObtained(orderObj);
+			state = CustomerStates.WaitForFood;
+			Waiter.Instance.Finished();
+			attentionSpan = 20.0f * timer;
+			//StopCoroutine("SatisfactionTimer");
+			IncreaseSatisfaction();
 
-		customerUI.UpdateSatisfaction(satisfaction);
-		customerAnim.SetSatisfaction(satisfaction);
+			customerUI.UpdateSatisfaction(satisfaction);
+			customerAnim.SetSatisfaction(satisfaction);
 
-		StartCoroutine("SatisfactionTimer");
+			StartCoroutine("SatisfactionTimer");
+		}
 	}
 
 	// Tells the waiter the food has been delivered and begins eating
@@ -321,7 +324,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	// if they are saved they take a small penalty for making the mistake and the customer will want the check asap
 	public virtual void Saved(){
 		RestaurantManager.Instance.medicButton.GetComponent<Animator>().SetBool("TutMedic", false);
-		RestaurantManager.Instance.UpdateCash(-25f);
+		RestaurantManager.Instance.UpdateCash(-10f);
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
 		IncreaseSatisfaction();
 		customerAnim.SetSatisfaction(satisfaction);

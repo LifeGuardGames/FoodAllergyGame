@@ -13,6 +13,10 @@ public class SatisfactionAI{
 			missingCustomers++;
 		}
 		score = _satisfaction *5;
+		if(_satisfaction < 0)
+		{
+			_satisfaction = 0;
+		}
 		satisfaction += _satisfaction;
 		SatisfactionLevel(score);
 		return _satisfaction* 3.476f;
