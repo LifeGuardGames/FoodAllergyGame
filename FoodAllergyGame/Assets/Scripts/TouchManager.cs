@@ -28,7 +28,7 @@ public class TouchManager : Singleton<TouchManager> {
 		}
 	}
 
-//	public static bool IsHoveringOverGUI(){
+//	public static bool IsHoveringOverGUI(){ TODO broken
 //		if(UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject(-1) || 
 //		   UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()){
 //			return true;

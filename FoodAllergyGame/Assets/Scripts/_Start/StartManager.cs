@@ -21,6 +21,10 @@ public class StartManager : Singleton<StartManager>{
 		TransitionManager.Instance.TransitionScene(SceneUtils.MENUPLANNING);
 	}
 
+	public void OnComicButtonClicked(){
+		TransitionManager.Instance.TransitionScene(SceneUtils.COMICSCENE);
+	}
+
 	public void OnDecoButtonClicked(){
 
 	}
