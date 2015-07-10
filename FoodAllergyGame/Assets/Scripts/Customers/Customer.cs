@@ -312,6 +312,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		if(RestaurantManager.Instance.firstSickCustomer){
 			RestaurantManager.Instance.firstSickCustomer = false;
 			RestaurantManager.Instance.medicButton.GetComponent<Animator>().SetBool("TutMedic", true);
+			RestaurantManager.Instance.tutText.SetActive(true);
 		}
 		customerUI.ToggleAllergyAttack(true);
 		RestaurantManager.Instance.SickCustomers.Add(this.gameObject);
@@ -324,6 +325,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	// if they are saved they take a small penalty for making the mistake and the customer will want the check asap
 	public virtual void Saved(){
 		RestaurantManager.Instance.medicButton.GetComponent<Animator>().SetBool("TutMedic", false);
+		RestaurantManager.Instance.tutText.SetActive(false);
 		RestaurantManager.Instance.UpdateCash(-10f);
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
 		IncreaseSatisfaction();
@@ -338,6 +340,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	IEnumerator AllergyTimer(){
 		yield return new WaitForSeconds(5.0f);
 		RestaurantManager.Instance.medicButton.GetComponent<Animator>().SetBool("TutMedic", false);
+		RestaurantManager.Instance.tutText.SetActive(false);
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
 		satisfaction = -10;
 		customerUI.UpdateSatisfaction(satisfaction);
