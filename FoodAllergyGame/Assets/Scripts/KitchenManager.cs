@@ -96,9 +96,9 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 	}
 
 	public void OnClicked(){
-		if(!TouchManager.IsHoveringOverGUI()){
+//		if(!TouchManager.IsHoveringOverGUI()){
 			Waiter.Instance.MoveToLocation(waiterSpot.position, this);
-		}
+//		}
 	}
 	#endregion
 }

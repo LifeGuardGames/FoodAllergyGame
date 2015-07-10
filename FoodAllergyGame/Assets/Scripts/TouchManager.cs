@@ -28,13 +28,13 @@ public class TouchManager : Singleton<TouchManager> {
 		}
 	}
 
-	public static bool IsHoveringOverGUI(){
-		if(UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject(-1) || 
-		   UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()){
-			return true;
-		}
-		else{
-			return false;
-		}
-	}
+//	public static bool IsHoveringOverGUI(){
+//		if(UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject(-1) || 
+//		   UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()){
+//			return true;
+//		}
+//		else{
+//			return false;
+//		}
+//	}
 }

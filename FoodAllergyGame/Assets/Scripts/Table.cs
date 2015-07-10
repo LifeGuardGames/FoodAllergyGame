@@ -81,7 +81,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		}
 	}
 	public void OnClicked(){
-		if(!TouchManager.IsHoveringOverGUI()){
+//		if(!TouchManager.IsHoveringOverGUI()){
 			// Check if customers need to jump to the table
 			if(Waiter.Instance.currentLineCustomer != null && !inUse && !isBroken){
 				Waiter.Instance.currentLineCustomer.transform.localScale = Vector3.one;
@@ -92,7 +92,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 			else{
 				Waiter.Instance.MoveToLocation(waiterSpot.position, this);
 			}
-		}
+//		}
 	}
 	#endregion
 }
