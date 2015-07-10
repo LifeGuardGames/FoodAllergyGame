@@ -34,7 +34,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public LineController Line;
 	public MenuUIManager menuUiManager;
 	public KitchenManager kitchen;
-	public bool firstSickCustomer = true;
+	public bool firstSickCustomer = false;
 	public GameObject medicButton;
 	public GameObject tutText;
 	// RemoveCustomer removes the customer from a hashtable 
@@ -48,11 +48,6 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		Debug.Log (currEvent);
 		ImmutableDataEvents test = DataLoaderEvents.GetData("Event00");
 		StartDay(test);
-//		FoodManager.Instance.GenerateMenu("Food00");
-//		FoodManager.Instance.GenerateMenu("Food01");
-//		FoodManager.Instance.GenerateMenu("Food02");
-//		FoodManager.Instance.GenerateMenu("Food03");
-//		FoodManager.Instance.GenerateMenu("Food04");
 	}
 
 	// Called at the start of the game day begins the day tracker coroutine 
