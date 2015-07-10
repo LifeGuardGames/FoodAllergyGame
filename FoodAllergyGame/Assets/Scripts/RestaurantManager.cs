@@ -128,10 +128,10 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			cus.GetComponent<Customer>().Init(customerNumber, eventParam);
 			customerHash.Add(cus.GetComponent<Customer>().customerID,cus);
 			satisfactionAI.AddCustomer();
-			StartCoroutine("SpawnCustomer");
+			//StartCoroutine("SpawnCustomer");
 		}
 		else{
-			StartCoroutine("SpawnCustomer");
+		//	StartCoroutine("SpawnCustomer");
 		}
 	}
 
