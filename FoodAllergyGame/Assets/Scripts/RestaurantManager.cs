@@ -107,9 +107,9 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				case 4: 
 					test = DataLoaderCustomer.GetData("Customer05");
 					break;
-			//	case 5: 
-				//	test = DataLoaderCustomer.GetData("Customer06");
-				//	break;
+//				case 5: 
+//					test = DataLoaderCustomer.GetData("Customer06");
+//					break;
 
 				default:
 					test = DataLoaderCustomer.GetData("Customer02");
