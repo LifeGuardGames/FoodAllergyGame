@@ -207,10 +207,11 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		StopCoroutine("SatisfactionTimer");
 		customerAnim.SetReadingMenu(true);
 		GetComponentInParent<Table>().currentCustomerID = customerID;
+		this.GetComponent<SphereCollider>().enabled = false;
 	}
 
 	// Time spent reading menu before ordering
-	public virtual IEnumerator ReadMenu(){
+		IEnumerator ReadMenu(){
 		yield return new WaitForSeconds(menuTimer);
 
 		customerAnim.SetReadingMenu(false);
@@ -285,7 +286,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 
 	// Eating coroutine
-	public virtual IEnumerator EatingTimer(){
+		IEnumerator EatingTimer(){
 		yield return new WaitForSeconds(6.0f);
 		customerUI.ToggleStar(true);
 		customerAnim.SetEating(false);
