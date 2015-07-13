@@ -18,6 +18,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	public string currentCustomerID;
 	public bool isBroken;
 	public GameObject _canvas;
+	public bool isGossiped;
 
 	//facilitates talk between customer and waiter
 	public void TalkToConsumer(){
@@ -88,6 +89,11 @@ public class Table : MonoBehaviour, IWaiterSelection{
 				Waiter.Instance.currentLineCustomer.GetComponent<Customer>().JumpToTable(tableNumber);
 				inUse = true;
 			}
+
+			else if(isGossiped){
+			waiterSpot.GetChild(0).GetComponent<CustomerGossiper>().GoAway();
+			isGossiped = false;
+		}
 			// Move the waiter to the table to do what it does
 			else{
 				Waiter.Instance.MoveToLocation(waiterSpot.position, this);

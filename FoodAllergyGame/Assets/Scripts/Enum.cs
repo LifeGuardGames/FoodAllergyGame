@@ -1,4 +1,5 @@
-﻿public enum InfoType{
+﻿
+public enum InfoType{
 	None,
 	Food,
 	Customer
@@ -54,5 +55,6 @@ public enum CustomerTypes{
 	TableSmasher,
 	AllergyAttack,
 	HospitalRunner,
+	Gossiper,
 }
 

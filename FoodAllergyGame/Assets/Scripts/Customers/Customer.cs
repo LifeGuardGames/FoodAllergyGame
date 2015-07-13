@@ -210,7 +210,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 
 	// Time spent reading menu before ordering
-	IEnumerator ReadMenu(){
+	public virtual IEnumerator ReadMenu(){
 		yield return new WaitForSeconds(menuTimer);
 
 		customerAnim.SetReadingMenu(false);
@@ -285,7 +285,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 
 	// Eating coroutine
-	IEnumerator EatingTimer(){
+	public virtual IEnumerator EatingTimer(){
 		yield return new WaitForSeconds(6.0f);
 		customerUI.ToggleStar(true);
 		customerAnim.SetEating(false);

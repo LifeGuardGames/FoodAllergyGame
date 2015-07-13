@@ -36,4 +36,10 @@
 		<SpriteName>CustomerAllergyAttack</SpriteName>
 		<Script>CustomerAllergyAttack</Script>
 	</Customer>
+	<Customer ID="Customer06">
+	<CustomerNameKey>CustomerGossiper</CustomerNameKey>
+		<CustomerDesc>CustomerGossiperDesc</CustomerDesc>
+		<SpriteName>CustomerGossiper</SpriteName>
+		<Script>CustomerGossiper</Script>
+	</Customer>
 </Customers>

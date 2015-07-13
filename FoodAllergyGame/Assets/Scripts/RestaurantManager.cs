@@ -107,6 +107,9 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				case 4: 
 					test = DataLoaderCustomer.GetData("Customer05");
 					break;
+			//	case 5: 
+				//	test = DataLoaderCustomer.GetData("Customer06");
+				//	break;
 
 				default:
 					test = DataLoaderCustomer.GetData("Customer02");
@@ -123,10 +126,10 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			cus.GetComponent<Customer>().Init(customerNumber, eventParam);
 			customerHash.Add(cus.GetComponent<Customer>().customerID,cus);
 			satisfactionAI.AddCustomer();
-			//StartCoroutine("SpawnCustomer");
+			StartCoroutine("SpawnCustomer");
 		}
 		else{
-		//	StartCoroutine("SpawnCustomer");
+			StartCoroutine("SpawnCustomer");
 		}
 	}
 
