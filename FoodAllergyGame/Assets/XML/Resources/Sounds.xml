@@ -19,4 +19,7 @@
 	<Sound ID="orderTime"></Sound>
 	<Sound ID="readingMenu"></Sound>
 	<Sound ID="readyForCheck"></Sound>
+	<Sound ID="comicIntro"></Sound>
+	<Sound ID="comicPanic"></Sound>
+	<Sound ID="comicEnding"></Sound>
 </Sounds>
