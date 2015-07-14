@@ -42,4 +42,16 @@
 		<SpriteName>CustomerGossiper</SpriteName>
 		<Script>CustomerGossiper</Script>
 	</Customer>
+	<Customer ID="Customer07">
+	<CustomerNameKey>CustomerCoolKid</CustomerNameKey>
+		<CustomerDesc>CustomerCoolKidDesc</CustomerDesc>
+		<SpriteName>CustomerCoolKid</SpriteName>
+		<Script>CustomerCoolKid</Script>
+	</Customer>
+		<Customer ID="Customer08">
+	<CustomerNameKey>CustomerPlayful</CustomerNameKey>
+		<CustomerDesc>CustomerPlayfulDesc</CustomerDesc>
+		<SpriteName>CustomerPlayful</SpriteName>
+		<Script>CustomerPlayful</Script>
+	</Customer>
 </Customers>

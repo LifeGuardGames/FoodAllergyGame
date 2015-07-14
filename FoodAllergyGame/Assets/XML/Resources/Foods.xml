@@ -7,8 +7,8 @@
 		<Keywords>Drink,Dessert</Keywords>
 	</Food>
 	<Food ID="Food01">
-		<FoodNameKey>FoodSundae</FoodNameKey>
-		<SpriteName>FoodSundae</SpriteName>
+		<FoodNameKey>FoodYogurt</FoodNameKey>
+		<SpriteName>FoodYogurt</SpriteName>
 		<Allergies>Dairy</Allergies>
 		<Keywords>Dessert,Drink</Keywords>
 	</Food>
@@ -25,38 +25,38 @@
 		<Keywords>Meal,Drink</Keywords>
 	</Food>
 	<Food ID="Food04">
-		<FoodNameKey>FoodMousseCake</FoodNameKey>
-		<SpriteName>FoodMousseCake</SpriteName>
+		<FoodNameKey>FoodIceCream</FoodNameKey>
+		<SpriteName>FoodIcecream</SpriteName>
 		<Allergies>Dairy</Allergies>
 		<Keywords>Dessert,Meal</Keywords>
 	</Food>
 	<Food ID="Food05">
-		<FoodNameKey>FoodDumplings</FoodNameKey>
-		<SpriteName>FoodDumplings</SpriteName>
+		<FoodNameKey>FoodPeanutButterApple</FoodNameKey>
+		<SpriteName>FoodPeanutButterApple</SpriteName>
 		<Allergies>Peanut</Allergies>
 		<Keywords>Meal,Drink</Keywords>
 		</Food>
 	<Food ID="Food06">
-		<FoodNameKey>FoodBurger</FoodNameKey>
-		<SpriteName>FoodBurger</SpriteName>
+		<FoodNameKey>FoodVeggieSandwich</FoodNameKey>
+		<SpriteName>FoodVeggieSandwich</SpriteName>
 		<Allergies>Wheat</Allergies>
 		<Keywords>Meal,Dessert</Keywords>
 	</Food>
 	<Food ID="Food07">
-		<FoodNameKey>FoodPeanutDessert</FoodNameKey>
-		<SpriteName>FoodPeanutDessert</SpriteName>
+		<FoodNameKey>FoodRoastedPeanuts</FoodNameKey>
+		<SpriteName>FoodRoastedPeanuts</SpriteName>
 		<Allergies>Peanut</Allergies>
 		<Keywords>Meal,Drink</Keywords>
 	</Food>
 	<Food ID="Food08">
-		<FoodNameKey>FoodGrilledCheese</FoodNameKey>
-		<SpriteName>FoodGrilledCheese</SpriteName>
+		<FoodNameKey>FoodToast</FoodNameKey>
+		<SpriteName>FoodToast</SpriteName>
 		<Allergies>Wheat</Allergies>
 		<Keywords>Meal,Drink</Keywords>
 	</Food>
 	<Food ID="Food09">
-		<FoodNameKey>FoodMilkshake</FoodNameKey>
-		<SpriteName>FoodMilkshake</SpriteName>
+		<FoodNameKey>FoodMilk</FoodNameKey>
+		<SpriteName>FoodMilk</SpriteName>
 		<Allergies>Dairy</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
 	</Food>
