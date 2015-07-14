@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Foods>
 	<Food ID="Food00">
-		<FoodNameKey>FoodRootBeer</FoodNameKey>
-		<SpriteName>FoodRootBeer</SpriteName>
+		<FoodNameKey>FoodOrangeJuice</FoodNameKey>
+		<SpriteName>FoodOrangeJuice</SpriteName>
 		<Allergies>None</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
 	</Food>
@@ -13,20 +13,20 @@
 		<Keywords>Dessert,Drink</Keywords>
 	</Food>
 	<Food ID="Food02">
-		<FoodNameKey>FoodSalad</FoodNameKey>
-		<SpriteName>FoodSalad</SpriteName>
+		<FoodNameKey>FoodPeanutSalad</FoodNameKey>
+		<SpriteName>FoodPeanutSalad</SpriteName>
 		<Allergies>Peanut</Allergies>
 		<Keywords>Meal,Dessert</Keywords>
 	</Food>
 	<Food ID="Food03">
-		<FoodNameKey>FoodWings</FoodNameKey>
-		<SpriteName>FoodWings</SpriteName>
+		<FoodNameKey>FoodChickenWings</FoodNameKey>
+		<SpriteName>FoodChickenWings</SpriteName>
 		<Allergies>Wheat</Allergies>
 		<Keywords>Meal,Drink</Keywords>
 	</Food>
 	<Food ID="Food04">
 		<FoodNameKey>FoodIceCream</FoodNameKey>
-		<SpriteName>FoodIcecream</SpriteName>
+		<SpriteName>FoodIceCream</SpriteName>
 		<Allergies>Dairy</Allergies>
 		<Keywords>Dessert,Meal</Keywords>
 	</Food>
