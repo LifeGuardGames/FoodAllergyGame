@@ -14,7 +14,7 @@ public class CustomerEater : Customer {
 	public override void NotifyLeave ()
 	{
 		// check to make sure the customer isnt waiting for the check or waiting in line or else the line may get rather short
-		if(state != CustomerStates.WaitForCheck && state != CustomerStates.InLine){
+		if(state != CustomerStates.WaitForCheck){
 			//Debug.Log(state);
 			//check each table for a victi...meal to eat
 			for (int i = 0; i < 4; i++){
