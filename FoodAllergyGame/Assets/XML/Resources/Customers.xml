@@ -37,21 +37,27 @@
 		<Script>CustomerAllergyAttack</Script>
 	</Customer>
 	<Customer ID="Customer06">
-	<CustomerNameKey>CustomerGossiper</CustomerNameKey>
+		<CustomerNameKey>CustomerGossiper</CustomerNameKey>
 		<CustomerDesc>CustomerGossiperDesc</CustomerDesc>
 		<SpriteName>CustomerGossiper</SpriteName>
 		<Script>CustomerGossiper</Script>
 	</Customer>
 	<Customer ID="Customer07">
-	<CustomerNameKey>CustomerCoolKid</CustomerNameKey>
+		<CustomerNameKey>CustomerCoolKid</CustomerNameKey>
 		<CustomerDesc>CustomerCoolKidDesc</CustomerDesc>
 		<SpriteName>CustomerCoolKid</SpriteName>
 		<Script>CustomerCoolKid</Script>
 	</Customer>
-		<Customer ID="Customer08">
-	<CustomerNameKey>CustomerPlayful</CustomerNameKey>
+	<Customer ID="Customer08">
+		<CustomerNameKey>CustomerPlayful</CustomerNameKey>
 		<CustomerDesc>CustomerPlayfulDesc</CustomerDesc>
 		<SpriteName>CustomerPlayful</SpriteName>
 		<Script>CustomerPlayful</Script>
+	</Customer>
+	<Customer ID="Customer09">
+		<CustomerNameKey>CustomerBlackOut</CustomerNameKey>
+		<CustomerDesc>CustomerBlackOutDesc</CustomerDesc>
+		<SpriteName>CustomerBlackOut</SpriteName>
+		<Script>CustomerBlackOut</Script>
 	</Customer>
 </Customers>

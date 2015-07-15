@@ -37,6 +37,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public bool firstSickCustomer = false;
 	public GameObject medicButton;
 	public GameObject tutText;
+	public GameObject blackoutImg;
 	// RemoveCustomer removes the customer from a hashtable 
 	// and then if the day is over checks to see if the hastable is empty and if it is it ends the round
 
@@ -203,5 +204,25 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 	public Dictionary<string, GameObject>.ValueCollection getCurrentCustomers(){
 		return customerHash.Values;
+	}
+
+	public void Blackout(){
+		blackoutImg.SetActive(true);
+		List<GameObject> currCustomers = new List<GameObject>(getCurrentCustomers());
+		for (int i = 0; i < currCustomers.Count; i ++){
+			currCustomers[i].GetComponent<Customer>().customerUI.gameObject.SetActive(false);
+		}
+		StopCoroutine("SpawnCustomer");
+		StartCoroutine(LightsOut());
+	}
+
+	IEnumerator LightsOut(){
+		yield return new WaitForSeconds(5.0f);
+		blackoutImg.SetActive(false);
+		List<GameObject> currCustomers = new List<GameObject>(getCurrentCustomers());
+		for (int i = 0; i < currCustomers.Count; i ++){
+			currCustomers[i].GetComponent<Customer>().customerUI.gameObject.SetActive(true);
+		}
+		StartCoroutine("SpawnCustomer");
 	}
 }
