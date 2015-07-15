@@ -216,7 +216,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 		customerAnim.SetReadingMenu(false);
 		//get food choices 
-		choices = FoodManager.Instance.GetMenuFoodsFromKeyword(desiredFood);
+		choices = FoodManager.Instance.GetMenuFoodsFromKeyword(desiredFood, allergy);
 		customerUI.ToggleWait(true);
 		//stop the satisfaction timer, change the timer and then restart it
 		attentionSpan = 16.0f * timer;
