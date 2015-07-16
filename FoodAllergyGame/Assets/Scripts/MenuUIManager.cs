@@ -27,10 +27,9 @@ public class MenuUIManager : MonoBehaviour {
 	}
 
 	public void ShowChoices(List <ImmutableDataFood> customerFoodChoices, int customerTableNum, Allergies customerAllergy){
-		choices = customerFoodChoices;
 		tableNum = customerTableNum;
 		allergy = customerAllergy;
-
+		choices = new List<ImmutableDataFood>();
 		if(allergy == Allergies.None){
 			allergyPassParent.SetActive(true);
 			allergyFailParent.SetActive(false);
@@ -41,10 +40,13 @@ public class MenuUIManager : MonoBehaviour {
 			allergyImage.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(allergy);
 			allergyText.text = LocalizationText.GetText("AllergyFailPrefix") + LocalizationText.GetText(allergy.ToString());
 		}
-
-		button1Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(customerFoodChoices[0].SpriteName);
-		button2Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(customerFoodChoices[1].SpriteName);
-		
+		int rand = Random.Range (0, customerFoodChoices.Count);
+		button1Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(customerFoodChoices[rand].SpriteName);
+		choices.Add(customerFoodChoices[rand]);
+		customerFoodChoices.RemoveAt(rand);
+		rand = Random.Range (0, customerFoodChoices.Count);
+		button2Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(customerFoodChoices[rand].SpriteName);
+		choices.Add(customerFoodChoices[rand]);
 		menuTweenToggle.Show();
 	}
 

@@ -73,7 +73,20 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			Destroy(this.gameObject);
 		}
 		else{
-			this.gameObject.transform.SetParent(RestaurantManager.Instance.GetLine().NewCustomer());
+			if(Random.Range(0,10) > 8){
+				this.gameObject.transform.SetParent(RestaurantManager.Instance.GetTable(6).seat);
+				tableNum = 6;
+				state = CustomerStates.ReadingMenu;
+				StartCoroutine("ReadMenu");
+				AudioManager.Instance.PlayClip("readingMenu");
+				StopCoroutine("SatisfactionTimer");
+				customerAnim.SetReadingMenu(true);
+				GetComponentInParent<Table>().currentCustomerID = customerID;
+				this.GetComponent<SphereCollider>().enabled = false;
+			}
+			else{
+				this.gameObject.transform.SetParent(RestaurantManager.Instance.GetLine().NewCustomer());
+			}
 			this.gameObject.transform.position = transform.parent.position;
 			// choose allergy based on the event
 			SelectAllergy(mode.Allergy);
@@ -216,7 +229,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 		customerAnim.SetReadingMenu(false);
 		//get food choices 
-		choices = FoodManager.Instance.GetMenuFoodsFromKeyword(desiredFood);
+		choices = FoodManager.Instance.GetMenuFoodsFromKeyword(desiredFood, allergy);
 		customerUI.ToggleWait(true);
 		//stop the satisfaction timer, change the timer and then restart it
 		attentionSpan = 16.0f * timer;
@@ -264,6 +277,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Tells the waiter the food has been delivered and begins eating
 	public virtual void Eating(){
+		if(tableNum == 6){
+			NotifyLeave();
+		}
 		IncreaseSatisfaction();
 
 		customerUI.UpdateSatisfaction(satisfaction);
