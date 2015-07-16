@@ -15,7 +15,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	private int customerNumber = 0;
 	public float customerTimer;		//time it takes for a customer to spawn
 	public bool dayOver = false;	// bool controlling customer spawning depending on the stage of the day
-
+	public int actTables;
 	private float dayCash;			// The cash that is earn for the day
 	public float DayCash{
 		get{ return dayCash; }

@@ -264,6 +264,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Tells the waiter the food has been delivered and begins eating
 	public virtual void Eating(){
+		if(tableNum = 6){
+			NotifyLeave();
+		}
 		IncreaseSatisfaction();
 
 		customerUI.UpdateSatisfaction(satisfaction);

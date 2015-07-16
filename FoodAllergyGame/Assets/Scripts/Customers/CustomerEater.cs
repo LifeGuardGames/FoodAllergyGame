@@ -14,10 +14,10 @@ public class CustomerEater : Customer {
 	public override void NotifyLeave ()
 	{
 		// check to make sure the customer isnt waiting for the check or waiting in line or else the line may get rather short
-		if(state != CustomerStates.WaitForCheck){
+		if(state != CustomerStates.WaitForCheck && state != CustomerStates.InLine ){
 			//Debug.Log(state);
 			//check each table for a victi...meal to eat
-			for (int i = 0; i < 4; i++){
+			for (int i = 0; i < RestaurantManager.Instance.actTables; i++){
 				// check to see if the table is in use
 				if(RestaurantManager.Instance.GetTable(i).Seat.childCount > 0){
 					// check the customer to make sure they arn't ordering or arn't currently being eaten and of course make sure he isn't eating himself
@@ -33,8 +33,11 @@ public class CustomerEater : Customer {
 				}
 			}
 		}
+		else if(state == CustomerStates.InLine){
+
+		}
 		//if we need to just leave then leave
-		if(satisfaction == 0 || state == CustomerStates.WaitForCheck ||state == CustomerStates.InLine || state == CustomerStates.AllergyAttack){
+		if(satisfaction == 0 || state == CustomerStates.WaitForCheck  || state == CustomerStates.AllergyAttack){
 			ReallyLeave();
 		}
 	}
