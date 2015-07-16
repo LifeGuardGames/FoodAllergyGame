@@ -1,45 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Events>
-	<Event ID = "Event00">
-		<Menu>0</Menu>
-		<Kitchen>0</Kitchen>
-		<Customer>0</Customer>
-		<Day>0</Day>
+	<Event ID="Event00">	 <!-- Event name here -->
+		<MenuSet>0</MenuSet>
+		<KitchenTimer>0</KitchenTimer>
+		<CustomerSet>CustomerSet00</CustomerSet>
+		<CustomerTimer>0</CustomerTimer>
+		<DayLength>0</DayLength>
 		<Allergy>None</Allergy>
 	</Event>
-	<Event ID = "Event01">
-		<Menu>0</Menu>
-		<Kitchen>2</Kitchen>
-		<Customer>1</Customer>
-		<Day>2</Day>
+	<Event ID="Event01">
+		<MenuSet>0</MenuSet>
+		<KitchenTimer>2</KitchenTimer>
+		<CustomerSet>CustomerSet00</CustomerSet>
+		<CustomerTimer>1</CustomerTimer>
+		<DayLength>2</DayLength>
 		<Allergy>Peanut</Allergy>
 	</Event>
-	<Event ID = "Event02">
-		<Menu>0</Menu>
-		<Kitchen>1</Kitchen>
-		<Customer>0</Customer>
-		<Day>1</Day>
+	<Event ID="Event02">
+		<MenuSet>0</MenuSet>
+		<KitchenTimer>1</KitchenTimer>
+		<CustomerSet>CustomerSet00</CustomerSet>
+		<CustomerTimer>0</CustomerTimer>
+		<DayLength>1</DayLength>
 		<Allergy>Wheat</Allergy>
 	</Event>
-	<Event ID = "Event03">
-		<Menu>0</Menu>
-		<Kitchen>2</Kitchen>
-		<Customer>2</Customer>
-		<Day>2</Day>
+	<Event ID="Event03">
+		<MenuSet>0</MenuSet>
+		<KitchenTimer>2</KitchenTimer>
+		<CustomerSet>CustomerSet00</CustomerSet>
+		<CustomerTimer>2</CustomerTimer>
+		<DayLength>2</DayLength>
 		<Allergy>Dairy</Allergy>
 	</Event>
-	<Event ID = "Event04">
-		<Menu>0</Menu>
-		<Kitchen>0</Kitchen>
-		<Customer>2</Customer>
-		<Day>1</Day>
+	<Event ID="Event04">
+		<MenuSet>0</MenuSet>
+		<KitchenTimer>0</KitchenTimer>
+		<CustomerSet>CustomerSet00</CustomerSet>
+		<CustomerTimer>2</CustomerTimer>
+		<DayLength>1</DayLength>
 		<Allergy>None</Allergy>
 	</Event>
-	<Event ID = "Event05">
-		<Menu>0</Menu>
-		<Kitchen>1</Kitchen>
-		<Customer>1</Customer>
-		<Day>2</Day>
+	<Event ID="Event05">
+		<MenuSet>0</MenuSet>
+		<KitchenTimer>1</KitchenTimer>
+		<CustomerSet>CustomerSet00</CustomerSet>
+		<CustomerTimer>1</CustomerTimer>
+		<DayLength>2</DayLength>
 		<Allergy>None</Allergy>
 	</Event>
 </Events>

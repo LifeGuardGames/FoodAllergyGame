@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class CustomerImpatient :Customer {
@@ -8,7 +8,7 @@ public class CustomerImpatient :Customer {
 		base.Init (num, mode);
 		type = CustomerTypes.Impatient;
 		// this switch statement is simply meant to override the timer variable that the base class sets
-		switch(mode.CustomerMod){
+		switch(mode.CustomerTimerMod){
 			case "0":
 			timer = 0.5f;
 			break;

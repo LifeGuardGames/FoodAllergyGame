@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -54,7 +54,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	// Called at the start of the game day begins the day tracker coroutine 
 	public void StartDay(ImmutableDataEvents mode){
 		eventParam = mode;
-		switch (mode.DayMod){
+		switch (mode.DayLengthMod){
 		case "0":
 			//dayTime = dayTime;
 			break;
@@ -70,7 +70,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 		StartCoroutine("DayTracker");
 		StartCoroutine("SpawnCustomer");
-		KitchenManager.Instance.Init(mode.KitchenMod);
+		KitchenManager.Instance.Init(mode.KitchenTimerMod);
 	}
 
 	// When complete flips the dayOver bool once the bool is true customers will cease spawning and the game will be looking for the end point

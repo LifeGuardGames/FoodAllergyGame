@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<MenuSets>
+	<MenuSet ID="MenuSet00">
+		<FoodList>Food00,Food01,Food03</FoodList>
+	</MenuSet>
+</MenuSets>
