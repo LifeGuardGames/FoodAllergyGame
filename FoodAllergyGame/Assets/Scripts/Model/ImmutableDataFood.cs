@@ -19,7 +19,7 @@ public class ImmutableDataFood{
 		get{ return spriteName; }
 	}
 
-	private List<Allergies> allergyList;
+	private List<Allergies> allergyList;	// TODO NONE counts as an allergy type, need to fix
 	public List<Allergies> AllergyList {
 		get{ return allergyList; }
 	}

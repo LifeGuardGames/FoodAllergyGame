@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 public class MenuManager : Singleton<MenuManager>{
 
-	public int menuSize = 5;
+	public int menuSize;
 
-	public GameObject selectedMenuButtonPrefab;
 	public GameObject foodStockButtonPrefab;
 
 	public PanelInfoController panelInfoController;
@@ -15,99 +14,165 @@ public class MenuManager : Singleton<MenuManager>{
 	public GameObject foodStockGrid;
 	public GameObject EventDescription;
 	public string currEvent;
-	public List<Transform> selectedMenuParentList;
-	public List<string> selectedMenuList;	// Internal aux list keeping track of current selection
+
+	public List<string> foodStockList;			// All the foods that are allowed for today
+	public List<Transform> currentFoodStockSlotList;
+
+	public int foodStockPage = 0;
+	public int foodStockPageSize = 4;
+	public GameObject leftButton;
+	public GameObject rightButton;
+
+	public List<Transform> selectedMenuSlotList;
+	public List<string> selectedMenuStringList;	// Internal aux list keeping track of current selection
+
+	public Transform dragAux;
 
 	void Start(){
 		currEvent = DataManager.Instance.GetEvent();
+		InitSanityCheck();
+
 		EventDescription.SetActive(true);
 		ShowEventDescription();
+
+		// TODO Load the number of slots from DataManager
+		menuSize = 4;
+
+		//////////////////////////////
+	
+		PopulateStockGrid();
+	}
+
+	// Check certain values to see if they are consistent
+	private void InitSanityCheck(){
+		if(foodStockPageSize != currentFoodStockSlotList.Count){
+			Debug.LogError("Page size does not match up with food stock slot count");
+		}
+
+		// Add more here when needed
+
 	}
 
 	public void PopulateStockGrid(){
-		foreach(ImmutableDataFood foodData in DataLoaderFood.GetDataList()){
-			GameObject foodStockButton = 
-				GameObjectUtils.AddChildGUI(foodStockGrid, foodStockButtonPrefab);
+		foodStockList.Add("Food00");
+		foodStockList.Add("Food01");
+		foodStockList.Add("Food02");
+		foodStockList.Add("Food03");
+		foodStockList.Add("Food04");
+		foodStockList.Add("Food05");
+		foodStockList.Add("Food06");
+		foodStockList.Add("Food07");
+		foodStockList.Add("Food08");
+		foodStockList.Add("Food09");
+
+		// TODO Load the food stock set from the DataManager
+//		foodStockList = ...
+
+		for(int i = 0; i < foodStockPageSize; i++){
+			if(foodStockList.Count == i){		// Reached the end of list
+				break;
+			}
+			ImmutableDataFood foodData = DataLoaderFood.GetData(foodStockList[i]);
+			GameObject foodStockButton = GameObjectUtils.AddChildGUI(currentFoodStockSlotList[i].gameObject, foodStockButtonPrefab);
 			foodStockButton.GetComponent<FoodStockButton>().Init(foodData);
 		}
+
+		RefreshButtonShowStatus();
+	}
+
+	// Checks to see if the buttons need to appear
+	public void RefreshButtonShowStatus(){
+		// Check left most limit
+		if(foodStockPage == 0){
+			leftButton.SetActive(false);
+		}
+		else{
+			leftButton.SetActive(true);
+		}
+		// Check right most limit
+		if((foodStockPage * foodStockPageSize) + foodStockPageSize >= foodStockList.Count){
+			rightButton.SetActive(false);
+		}
+		else{
+			rightButton.SetActive(true);
+		}
+	}
+
+	public void PageButtonClicked(bool isRightButton){
+		if(isRightButton){
+			foodStockPage++;
+		}
+		else{
+			foodStockPage--;
+		}
+
+		// Destroy children beforehand
+		foreach(Transform slot in currentFoodStockSlotList){
+			foreach(Transform child in slot){	// Auto detect all/none children
+				Destroy(child.gameObject);
+			}
+		}
+
+		int startingIndex = foodStockPage * foodStockPageSize;
+		int endingIndex = startingIndex + foodStockPageSize;
+
+		for(int i = startingIndex; i < endingIndex; i++){
+			if(foodStockList.Count == i){		// Reached the end of list
+				break;
+			}
+			ImmutableDataFood foodData = DataLoaderFood.GetData(foodStockList[i]);
+			GameObject foodStockButton = GameObjectUtils.AddChildGUI(currentFoodStockSlotList[i % 4].gameObject, foodStockButtonPrefab);
+			foodStockButton.GetComponent<FoodStockButton>().Init(foodData);
+		}
+		RefreshButtonShowStatus();
 	}
 	
 	public bool AddFoodToMenuList(string foodID){
 		// Display info in panel
-		panelInfoController.ShowInfo(InfoType.Food, foodID);
+//		panelInfoController.ShowInfo(InfoType.Food, foodID);
 
-		if(selectedMenuList.Contains(foodID)){
+		if(selectedMenuStringList.Contains(foodID)){
 			Debug.LogWarning("Menu already contains food");
 			return false;
 		}
-		else if(selectedMenuList.Count >= menuSize){
+		else if(selectedMenuStringList.Count >= menuSize){
 			Debug.LogWarning("Menu list already at capacity");
 			return false;
 		}
 		else{
-			// Add id to selectedMenuList
-			selectedMenuList.Add(foodID);
+			// Add id to aux string list
+			selectedMenuStringList.Add(foodID);
 
-			// Spawn copy of selected menu prefab here with the food
-			Transform parentToPopulate = null;
-			foreach(Transform parent in selectedMenuParentList){	// Look for empty space in parents
-				if(parent.childCount == 0){
-					parentToPopulate = parent;
-					break;
-				}
-			}
-			GameObject menuButtonObject = 
-				GameObjectUtils.AddChildGUI(parentToPopulate.gameObject, selectedMenuButtonPrefab);
-
-			menuButtonObject.GetComponent<SelectedMenuButton>().Init(foodID);
-			allergiesChartController.UpdateChart(selectedMenuList);
+//			allergiesChartController.UpdateChart(selectedMenuStringList);
 			return true;
 		}
 	}
 
 	public void RemoveFoodFromMenuList(string foodID){
-		string stringToRemove = null;
-
-		// Remove the string from the aux list
-		foreach(string menuFoodID in selectedMenuList){
-			if(string.Equals(menuFoodID, foodID)){
-				stringToRemove = foodID;
-				break;
-			}
-		}
-
 		// Try to remove the string from the menu list
-		if(!selectedMenuList.Remove(stringToRemove)){
-			Debug.LogError("Error in removing food : " + stringToRemove);
+		if(!selectedMenuStringList.Remove(foodID)){
+			Debug.LogWarning("Food not removed in list : " + foodID);
 		}
 
-		// Remove the string from the parent transform
-		foreach(Transform parent in selectedMenuParentList){
-			Transform transformToRemove = parent.FindChild(stringToRemove);
-			if(transformToRemove != null){
-				Destroy(transformToRemove.gameObject);
-				break;
-			}
-		}
-
-		allergiesChartController.UpdateChart(selectedMenuList);
+//		allergiesChartController.UpdateChart(selectedMenuStringList);
 	}
 
 	public void OnMenuSelectionDone(){
 		// Check to see if we have all selection slots filled
-		if(selectedMenuList.Count == menuSize){
-			FoodManager.Instance.GenerateMenu(selectedMenuList);
+		if(selectedMenuStringList.Count == menuSize){
+			FoodManager.Instance.GenerateMenu(selectedMenuStringList);
 			TransitionManager.Instance.TransitionScene(SceneUtils.TUTSCENE);
 		}
 		else{
 			Debug.LogWarning("Menu not complete!");
 		}
 	}
+
 	public void ShowEventDescription(){
 		EventDescription.GetComponentInChildren<Text>().text = EventDescription.GetComponent<Localize>().GetText(DataLoaderEvents.GetData(currEvent).ID);
 	}
-	public void closeEventDescription(){
+
+	public void CloseEventDescription(){
 		EventDescription.SetActive(false);
-		PopulateStockGrid();
 	}
 }
