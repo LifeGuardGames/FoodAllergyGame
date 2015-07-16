@@ -83,11 +83,11 @@ public static class XMLUtils{
         return retVal;
     }
 
-	public static List<string> GetStringList(IXMLNode node){
+	public static string[] GetStringList(IXMLNode node){
 		return GetStringList(node, "");
 	}
 	
-	public static List<string> GetStringList(IXMLNode node, string defaultstring, string strError = null){
+	public static string[] GetStringList(IXMLNode node, string defaultstring, string strError = null){
 		string tempVal = defaultstring;
 		if(node != null){
 			if(node.Children.Count != 0)
@@ -97,7 +97,7 @@ public static class XMLUtils{
 		}
 		else if ( strError != null )
 			Debug.LogError(strError + "Required data is missing.");
-		List<string> retVal = new List<string>();
+		string[] retVal;
 		retVal = tempVal.Split(","[0]);
 		return retVal;
 	}
