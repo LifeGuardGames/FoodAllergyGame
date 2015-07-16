@@ -24,7 +24,7 @@ public class MenuDragSlot : MonoBehaviour, IDropHandler {
 				MenuDragHandler.itemBeingDragged.transform.localPosition = Vector3.zero;
 			}
 			else if(!isSelectedSlot){
-				MenuManager.Instance.RemoveFoodFromMenuList(foodButton.foodID);
+//				MenuManager.Instance.RemoveFoodFromMenuList(foodButton.foodID);
 				MenuDragHandler.itemBeingDragged.transform.SetParent(transform);
 				MenuDragHandler.itemBeingDragged.transform.localPosition = Vector3.zero;
 			}

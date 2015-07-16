@@ -29,14 +29,4 @@ public class FoodStockButton : MonoBehaviour {
 			allergy2.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(foodData.AllergyList[1]);
 		}
 	}
-
-	public void OnButtonClick(){
-		if(string.Equals(Application.loadedLevelName, SceneUtils.MENUPLANNING)){
-			MenuManager.Instance.AddFoodToMenuList(foodID);	// Add food to the selected menu
-		}
-		else if(string.Equals(Application.loadedLevelName, SceneUtils.START)){
-			InfoManager.Instance.ShowDetail(InfoType.Food, foodID);
-		}
-		AudioManager.Instance.PlayClip("menuButton");
-	}
 }

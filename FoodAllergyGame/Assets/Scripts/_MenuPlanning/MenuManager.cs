@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
+// TODO Nested list loop (menu x foodstock) in here, check run time
 public class MenuManager : Singleton<MenuManager>{
 
 	public int menuSize;
@@ -72,9 +73,11 @@ public class MenuManager : Singleton<MenuManager>{
 			if(foodStockList.Count == i){		// Reached the end of list
 				break;
 			}
-			ImmutableDataFood foodData = DataLoaderFood.GetData(foodStockList[i]);
-			GameObject foodStockButton = GameObjectUtils.AddChildGUI(currentFoodStockSlotList[i].gameObject, foodStockButtonPrefab);
-			foodStockButton.GetComponent<FoodStockButton>().Init(foodData);
+			if(!selectedMenuStringList.Contains(foodStockList[i])){
+				ImmutableDataFood foodData = DataLoaderFood.GetData(foodStockList[i]);
+				GameObject foodStockButton = GameObjectUtils.AddChildGUI(currentFoodStockSlotList[i].gameObject, foodStockButtonPrefab);
+				foodStockButton.GetComponent<FoodStockButton>().Init(foodData);
+			}
 		}
 
 		RefreshButtonShowStatus();
@@ -120,9 +123,11 @@ public class MenuManager : Singleton<MenuManager>{
 			if(foodStockList.Count == i){		// Reached the end of list
 				break;
 			}
-			ImmutableDataFood foodData = DataLoaderFood.GetData(foodStockList[i]);
-			GameObject foodStockButton = GameObjectUtils.AddChildGUI(currentFoodStockSlotList[i % 4].gameObject, foodStockButtonPrefab);
-			foodStockButton.GetComponent<FoodStockButton>().Init(foodData);
+			if(!selectedMenuStringList.Contains(foodStockList[i])){
+				ImmutableDataFood foodData = DataLoaderFood.GetData(foodStockList[i]);
+				GameObject foodStockButton = GameObjectUtils.AddChildGUI(currentFoodStockSlotList[i % 4].gameObject, foodStockButtonPrefab);
+				foodStockButton.GetComponent<FoodStockButton>().Init(foodData);
+			}
 		}
 		RefreshButtonShowStatus();
 	}
@@ -149,10 +154,8 @@ public class MenuManager : Singleton<MenuManager>{
 	}
 
 	public void RemoveFoodFromMenuList(string foodID){
-		// Try to remove the string from the menu list
-		if(!selectedMenuStringList.Remove(foodID)){
-			Debug.LogWarning("Food not removed in list : " + foodID);
-		}
+		// Soft remove - no error if doesnt find key
+		selectedMenuStringList.Remove(foodID);
 
 //		allergiesChartController.UpdateChart(selectedMenuStringList);
 	}

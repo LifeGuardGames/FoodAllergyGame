@@ -16,9 +16,13 @@ public class MenuDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	#region IBeginDragHandler implementation
 	public void OnBeginDrag(PointerEventData eventData){
 		itemBeingDragged = gameObject;
-		startPosition = transform.position;
+		startPosition = transform.localPosition;
 		startParent = transform.parent;
 		GetComponent<CanvasGroup>().blocksRaycasts = false;
+
+		// Remove the food from its attachment
+		FoodStockButton foodButton = itemBeingDragged.GetComponent<FoodStockButton>();
+		MenuManager.Instance.RemoveFoodFromMenuList(foodButton.foodID);
 	}
 	#endregion
 
@@ -30,11 +34,17 @@ public class MenuDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	#endregion
 
 	#region IEndDragHandler implementation
+	// NOTE Make sure this is called after OnDrop() from the slot class
 	public void OnEndDrag(PointerEventData eventData){
 		itemBeingDragged = null;
 		GetComponent<CanvasGroup>().blocksRaycasts = true;
-		if(transform.parent == startParent){
-			transform.position = startPosition;
+		if(transform.parent == dragAux){
+			transform.SetParent(startParent);
+			transform.localPosition = startPosition;
+		}
+		else{	// Save new parent
+			startParent = transform.parent;
+			startPosition = transform.localPosition;
 		}
 	}
 	#endregion
