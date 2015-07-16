@@ -82,6 +82,25 @@ public static class XMLUtils{
 		
         return retVal;
     }
+
+	public static List<string> GetStringList(IXMLNode node){
+		return GetStringList(node, "");
+	}
+	
+	public static List<string> GetStringList(IXMLNode node, string defaultstring, string strError = null){
+		string tempVal = defaultstring;
+		if(node != null){
+			if(node.Children.Count != 0)
+				tempVal = node.Children[0].value;
+			else
+				Debug.LogError("Incoming element has more than one child...can't get value: " + node + "(" + node.Children.Count + ")");
+		}
+		else if ( strError != null )
+			Debug.LogError(strError + "Required data is missing.");
+		List<string> retVal = new List<string>();
+		retVal = tempVal.Split(","[0]);
+		return retVal;
+	}
 	
 	/// <summary>
 	/// Gets the int value from a xml node. default to 0
