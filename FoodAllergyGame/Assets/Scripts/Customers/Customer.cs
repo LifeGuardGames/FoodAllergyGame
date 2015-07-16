@@ -73,7 +73,20 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			Destroy(this.gameObject);
 		}
 		else{
-			this.gameObject.transform.SetParent(RestaurantManager.Instance.GetLine().NewCustomer());
+			if(Random.Range(0,10) > 8){
+				this.gameObject.transform.SetParent(RestaurantManager.Instance.GetTable(6).seat);
+				tableNum = 6;
+				state = CustomerStates.ReadingMenu;
+				StartCoroutine("ReadMenu");
+				AudioManager.Instance.PlayClip("readingMenu");
+				StopCoroutine("SatisfactionTimer");
+				customerAnim.SetReadingMenu(true);
+				GetComponentInParent<Table>().currentCustomerID = customerID;
+				this.GetComponent<SphereCollider>().enabled = false;
+			}
+			else{
+				this.gameObject.transform.SetParent(RestaurantManager.Instance.GetLine().NewCustomer());
+			}
 			this.gameObject.transform.position = transform.parent.position;
 			// choose allergy based on the event
 			SelectAllergy(mode.Allergy);
