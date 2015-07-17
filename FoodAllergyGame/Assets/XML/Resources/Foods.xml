@@ -5,60 +5,70 @@
 		<SpriteName>FoodOrangeJuice</SpriteName>
 		<Allergies>None</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
+		<Tier>0</Tier>
 	</Food>
 	<Food ID="Food01">
 		<FoodNameKey>FoodYogurt</FoodNameKey>
 		<SpriteName>FoodYogurt</SpriteName>
 		<Allergies>Dairy</Allergies>
 		<Keywords>Dessert,Drink</Keywords>
+		<Tier>0</Tier>
 	</Food>
 	<Food ID="Food02">
 		<FoodNameKey>FoodPeanutSalad</FoodNameKey>
 		<SpriteName>FoodPeanutSalad</SpriteName>
 		<Allergies>Peanut</Allergies>
 		<Keywords>Meal,Dessert</Keywords>
+		<Tier>0</Tier>
 	</Food>
 	<Food ID="Food03">
 		<FoodNameKey>FoodChickenWings</FoodNameKey>
 		<SpriteName>FoodChickenWings</SpriteName>
 		<Allergies>Wheat</Allergies>
 		<Keywords>Meal,Drink</Keywords>
+		<Tier>0</Tier>
 	</Food>
 	<Food ID="Food04">
 		<FoodNameKey>FoodIceCream</FoodNameKey>
 		<SpriteName>FoodIceCream</SpriteName>
 		<Allergies>Dairy</Allergies>
 		<Keywords>Dessert,Meal</Keywords>
+		<Tier>0</Tier>
 	</Food>
 	<Food ID="Food05">
 		<FoodNameKey>FoodPeanutButterApple</FoodNameKey>
 		<SpriteName>FoodPeanutButterApple</SpriteName>
 		<Allergies>Peanut</Allergies>
 		<Keywords>Meal,Drink</Keywords>
+		<Tier>0</Tier>
 		</Food>
 	<Food ID="Food06">
 		<FoodNameKey>FoodVeggieSandwich</FoodNameKey>
 		<SpriteName>FoodVeggieSandwich</SpriteName>
 		<Allergies>Wheat</Allergies>
 		<Keywords>Meal,Dessert</Keywords>
+		<Tier>0</Tier>
 	</Food>
 	<Food ID="Food07">
 		<FoodNameKey>FoodRoastedPeanuts</FoodNameKey>
 		<SpriteName>FoodRoastedPeanuts</SpriteName>
 		<Allergies>Peanut</Allergies>
 		<Keywords>Meal,Drink</Keywords>
+		<Tier>0</Tier>
 	</Food>
 	<Food ID="Food08">
 		<FoodNameKey>FoodToast</FoodNameKey>
 		<SpriteName>FoodToast</SpriteName>
 		<Allergies>Wheat</Allergies>
 		<Keywords>Meal,Drink</Keywords>
+		<Tier>0</Tier>
 	</Food>
 	<Food ID="Food09">
 		<FoodNameKey>FoodMilk</FoodNameKey>
 		<SpriteName>FoodMilk</SpriteName>
 		<Allergies>Dairy</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
+		<Tier>0</Tier>
 	</Food>
 </Foods>
 

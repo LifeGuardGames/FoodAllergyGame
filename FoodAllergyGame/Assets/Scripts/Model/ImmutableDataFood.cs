@@ -28,7 +28,12 @@ public class ImmutableDataFood{
 	public List<FoodKeywords> KeywordList {
 		get{ return keywordList; }
 	}
-	
+
+	private int tier;
+	public int Tier{
+		get {return tier;}
+	}
+
 	public ImmutableDataFood(string id, IXMLNode xmlNode, string error){
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 		
@@ -55,5 +60,7 @@ public class ImmutableDataFood{
 				keywordList.Add((FoodKeywords)Enum.Parse(typeof(FoodKeywords), arrayAmounts[i]));
 			}
 		}
+
+		tier = XMLUtils.GetInt(hashElements["Tier"] as IXMLNode);
 	}
 }

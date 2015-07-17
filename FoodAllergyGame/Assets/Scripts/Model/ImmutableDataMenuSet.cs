@@ -13,6 +13,7 @@ public class ImmutableDataMenuSet{
 	public string[] MenuSet {
 		get{ return menuSet; }
 	}
+
 	public ImmutableDataMenuSet(string id, IXMLNode xmlNode, string error){
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 		this.id = id;
