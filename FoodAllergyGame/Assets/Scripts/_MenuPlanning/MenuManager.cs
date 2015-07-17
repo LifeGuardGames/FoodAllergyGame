@@ -171,6 +171,10 @@ public class MenuManager : Singleton<MenuManager>{
 		}
 	}
 
+	public void OnBackButtonClicked(){
+		TransitionManager.Instance.TransitionScene(SceneUtils.START);
+	}
+
 	public void ShowEventDescription(){
 		EventDescription.GetComponentInChildren<Text>().text = EventDescription.GetComponent<Localize>().GetText(DataLoaderEvents.GetData(currEvent).ID);
 	}
