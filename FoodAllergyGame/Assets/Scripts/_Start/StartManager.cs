@@ -9,7 +9,7 @@ public class StartManager : Singleton<StartManager>{
 
 	void Start(){
 		//TODO Generate event from data
-		DataManager.Instance.SetEvent( "Event0" + UnityEngine.Random.Range(0,6).ToString());
+//		DataManager.Instance.SetEvent( "Event0" + UnityEngine.Random.Range(0,6).ToString());
 
 
 		//TODO Set up visuals and appearances for that day

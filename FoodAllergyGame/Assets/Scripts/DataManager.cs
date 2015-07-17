@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using fastJSON;
 
 /// <summary>
 /// This class handles all game data. No game logic
@@ -8,10 +9,19 @@ using System;
 /// </summary>
 public class DataManager : Singleton<DataManager> {
 
+	public event EventHandler<EventArgs> OnGameDataLoaded;
+	public event EventHandler<EventArgs> OnGameDataSaved;
+
 	private static bool isCreated;
-	public bool isDebug;
-	public string eventID;
+	public bool isDebug = false;
+
+	private GameData gameData;		// Super class that stores all the game data
+	public GameData GameData{
+		get{ return gameData; }
+	}
+
 	void Awake(){
+
 		// Make object persistent
 		if(isCreated){
 			// If There is a duplicate in the scene. delete the object and jump Awake
@@ -20,18 +30,67 @@ public class DataManager : Singleton<DataManager> {
 		}
 		DontDestroyOnLoad(gameObject);
 		isCreated = true;
-		
 
+
+
+		PlayerPrefs.DeleteAll(); 	// TODO is this needed???
+
+		// JSON serializer setting
+		JSON.Instance.Parameters.UseExtensions = false;
+		JSON.Instance.Parameters.UseUTCDateTime = false;
+		JSON.Instance.Parameters.UseOptimizedDatasetSchema = true;
+
+		// Debug for an independent scene. Will initialize all data before other classes call DataManager
 		if(isDebug){
-			eventID = "Event0" + UnityEngine.Random.Range(0,6).ToString();
+			gameData = new GameData();
+		}
+		else{
+			// TODO Version check here
+
+			LoadGameData();
+		}
+	}
+
+	/// <summary>
+	/// Loads the game data from PlayerPrefs. If no game data is found from PlayerPrefs
+	/// a new game data will be initiated. This function should only be called once the game loads
+	/// </summary>
+	public void LoadGameData(){
+		if(gameData == null){
+			GameData newGameData = null;
+			string jsonString = PlayerPrefs.GetString("GameData", "");
+
+			// Check if json string is actuall loaded and not empty
+			if(!String.IsNullOrEmpty(jsonString)){
+
+			}
+			else{
+				// Initiate game data here because none is found in the PlayerPrefs
+				gameData = new GameData();
+				Deserialized();
+			}
 		}
 	}
 
 	public string GetEvent(){
-		return eventID;
+		return gameData.RestaurantEvent.CurrentEvent;
 	}
 
-	public void SetEvent(string _event){
-		eventID = _event;
+	/// <summary>
+	/// Called when game data has been deserialized. Could be successful or failure
+	/// </summary>
+	private void Deserialized(){
+		if(OnGameDataLoaded != null){
+			OnGameDataLoaded(this, EventArgs.Empty);
+		}
+	}
+	
+	/// <summary>
+	/// Called when game data has been serialized
+	/// </summary>
+	private void Serialized(){
+		if(OnGameDataSaved != null){
+			OnGameDataSaved(this, EventArgs.Empty);
+		}
 	}
 }
