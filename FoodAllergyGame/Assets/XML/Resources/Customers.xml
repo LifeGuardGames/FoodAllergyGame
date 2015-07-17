@@ -5,59 +5,69 @@
 		<CustomerDesc>CustomerDesc</CustomerDesc>
 		<SpriteName>Customer</SpriteName>
 		<Script>Customer</Script>
+		<Tier>0</Tier>
 	</Customer>
 	<Customer ID="Customer01">
 		<CustomerNameKey>CustomerImpatient</CustomerNameKey>
 		<CustomerDesc>CustomerImpatientDesc</CustomerDesc>
 		<SpriteName>CustomerImpatient</SpriteName>
 		<Script>CustomerImpatient</Script>
+		<Tier>0</Tier>
 	</Customer>
 	<Customer ID="Customer02">
 		<CustomerNameKey>CustomerEater</CustomerNameKey>
 		<CustomerDesc>CustomerEaterDesc</CustomerDesc>
 		<SpriteName>CustomerEater</SpriteName>
 		<Script>CustomerEater</Script>
+		<Tier>1</Tier>
 	</Customer>
 	<Customer ID="Customer03">
 		<CustomerNameKey>CustomerTableSmasher</CustomerNameKey>
 		<CustomerDesc>CustomerTableSmasherDesc</CustomerDesc>
 		<SpriteName>CustomerTableSmasher</SpriteName>
 		<Script>CustomerTableSmasher</Script>
+		<Tier>2</Tier>
 	</Customer>
 	<Customer ID="Customer04">
 		<CustomerNameKey>CustomerHospitalRunner</CustomerNameKey>
 		<CustomerDesc>CustomerHospitalRunnerDesc</CustomerDesc>
 		<SpriteName>CustomerHospitalRunner</SpriteName>
 		<Script>CustomerHospitalRunner</Script>
+		<Tier>2</Tier>
 	</Customer>
 	<Customer ID="Customer05">
 		<CustomerNameKey>CustomerAllergyAttack</CustomerNameKey>
 		<CustomerDesc>CustomerAllergyAttackDesc</CustomerDesc>
 		<SpriteName>CustomerAllergyAttack</SpriteName>
 		<Script>CustomerAllergyAttack</Script>
+		<Tier>3</Tier>
 	</Customer>
 	<Customer ID="Customer06">
 		<CustomerNameKey>CustomerGossiper</CustomerNameKey>
 		<CustomerDesc>CustomerGossiperDesc</CustomerDesc>
 		<SpriteName>CustomerGossiper</SpriteName>
 		<Script>CustomerGossiper</Script>
+		<Tier>3</Tier>
 	</Customer>
 	<Customer ID="Customer07">
 		<CustomerNameKey>CustomerCoolKid</CustomerNameKey>
 		<CustomerDesc>CustomerCoolKidDesc</CustomerDesc>
 		<SpriteName>CustomerCoolKid</SpriteName>
 		<Script>CustomerCoolKid</Script>
+		<Tier>5</Tier>
 	</Customer>
 	<Customer ID="Customer08">
 		<CustomerNameKey>CustomerPlayful</CustomerNameKey>
 		<CustomerDesc>CustomerPlayfulDesc</CustomerDesc>
 		<SpriteName>CustomerPlayful</SpriteName>
 		<Script>CustomerPlayful</Script>
+		<Tier>5</Tier>
 	</Customer>
 	<Customer ID="Customer09">
 		<CustomerNameKey>CustomerBlackOut</CustomerNameKey>
 		<CustomerDesc>CustomerBlackOutDesc</CustomerDesc>
 		<SpriteName>CustomerBlackOut</SpriteName>
 		<Script>CustomerBlackOut</Script>
+		<Tier>4</Tier>
 	</Customer>
 </Customers>

@@ -42,9 +42,9 @@ public class StartManager : Singleton<StartManager>{
 		else if (DataManager.Instance.GameData.Cash.TotalCash < 3600){
 			return 4;
 		}
-		else if (DataManager.Instance.GameData.Cash.TotalCash < 5000){
-			return 5;
-		}
+//		else if (DataManager.Instance.GameData.Cash.TotalCash < 5000){
+//			return 5;
+//		}
 		else{
 			return 0;
 		}

@@ -15,6 +15,11 @@ public class ImmutableDataEvents{
 		get{return menuSet;}
 	}
 
+	private string customerSet;
+	public string CustomerSet{
+		get{return customerSet;}
+	}
+
 	private string kitchenTimerMod;
 	public string KitchenTimerMod{
 		get{return kitchenTimerMod;}
@@ -41,6 +46,7 @@ public class ImmutableDataEvents{
 		this.id = id;
 		menuSet = XMLUtils.GetString(hashElements["MenuSet"] as IXMLNode, null, error);
 		kitchenTimerMod = XMLUtils.GetString(hashElements["KitchenTimer"] as IXMLNode, null, error);
+		customerSet = XMLUtils.GetString(hashElements["CustomerSet"] as IXMLNode);
 		customerTimerMod = XMLUtils.GetString(hashElements["CustomerTimer"] as IXMLNode, null, error);
 		dayLengthMod = XMLUtils.GetString(hashElements["DayLength"] as IXMLNode, null, error);
 		allergy = XMLUtils.GetString(hashElements["Allergy"] as IXMLNode, null , error);

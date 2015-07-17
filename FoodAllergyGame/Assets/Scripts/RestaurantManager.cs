@@ -38,6 +38,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public GameObject medicButton;
 	public GameObject tutText;
 	public GameObject blackoutImg;
+	List<string> currCusSet;
 	// RemoveCustomer removes the customer from a hashtable 
 	// and then if the day is over checks to see if the hastable is empty and if it is it ends the round
 
@@ -54,6 +55,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	// Called at the start of the game day begins the day tracker coroutine 
 	public void StartDay(ImmutableDataEvents mode){
 		eventParam = mode;
+		string currSet = mode.CustomerSet;
+		currCusSet = new List<string>(DataLoaderCustomerSet.GetData(currSet).customerSet);
 		switch (mode.DayLengthMod){
 		case "0":
 			//dayTime = dayTime;
@@ -91,34 +94,12 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		if(!dayOver && customerHash.Count < 8){
 			ImmutableDataCustomer test;
 			if(satisfactionAI.GetSatisfaction() > 13){
-				int rand = Random.Range(0,5);
-				switch(rand){
-				case 0:
-				 	test = DataLoaderCustomer.GetData("Customer01");
-					break;
-				case 1:
-					test = DataLoaderCustomer.GetData("Customer02");
-					break;
-				case 2: 
-					test = DataLoaderCustomer.GetData("Customer03");
-					break;
-				case 3: 
-					test = DataLoaderCustomer.GetData("Customer04");
-					break;
-				case 4: 
-					test = DataLoaderCustomer.GetData("Customer05");
-					break;
-//				case 5: 
-//					test = DataLoaderCustomer.GetData("Customer06");
-//					break;
-
-				default:
-					test = DataLoaderCustomer.GetData("Customer02");
-					break;
-				}
+				int rand = Random.Range(0,currCusSet.Count);
+				test = DataLoaderCustomer.GetData(currCusSet[rand]);
 			}
 			else{
-				 test = DataLoaderCustomer.GetData("Customer00");
+				Debug.Log (currCusSet[0]);
+				 test = DataLoaderCustomer.GetData(currCusSet[0]);
 			}
 
 			GameObject customerPrefab = Resources.Load(test.Script) as GameObject;

@@ -72,8 +72,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		if(RestaurantManager.Instance.GetLine().NewCustomer() == null){
 			Destroy(this.gameObject);
 		}
-		else{
-			if(Random.Range(0,10) > 8){
+	//	else{
+		/*	if(Random.Range(0,10) > 8){
 				this.gameObject.transform.SetParent(RestaurantManager.Instance.GetTable(6).seat);
 				tableNum = 6;
 				state = CustomerStates.ReadingMenu;
@@ -83,10 +83,10 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				customerAnim.SetReadingMenu(true);
 				GetComponentInParent<Table>().currentCustomerID = customerID;
 				this.GetComponent<SphereCollider>().enabled = false;
-			}
-			else{
+			}*/
+//			else{
 				this.gameObject.transform.SetParent(RestaurantManager.Instance.GetLine().NewCustomer());
-			}
+//			}
 			this.gameObject.transform.position = transform.parent.position;
 			// choose allergy based on the event
 			SelectAllergy(mode.Allergy);
@@ -116,7 +116,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 //				break;
 			}
 		}
-	}
+//	}
 	// chooses an allergy cases where  specific allergy is noted we use a weighted random to get the desired result
 	private void SelectAllergy(string mode){
 		if(mode == "None"){
