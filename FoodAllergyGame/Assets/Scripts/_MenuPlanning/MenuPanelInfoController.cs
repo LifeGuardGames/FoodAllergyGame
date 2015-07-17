@@ -10,20 +10,19 @@ public class MenuPanelInfoController : MonoBehaviour {
 	public Text foodAllergiesLabel;
 	public Image allergy1Image;
 
-	public void ToggleVisibility(bool isVisible, string foodID){
-		if(isVisible){
-			ShowInfo(foodID);
-			menuPanelInfoTween.Show();
-		}
-		else{
-			menuPanelInfoTween.Hide();
-		}
+	public void Show(string foodID){
+		ShowInfo(foodID);
+		menuPanelInfoTween.Show();
+	}
+
+	public void Hide(){
+		menuPanelInfoTween.Hide();
 	}
 	
 	private void ShowInfo(string foodID){
 		ImmutableDataFood foodData = DataLoaderFood.GetData(foodID);
 		foodImage.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(foodData.SpriteName);
-		foodTitleText.text = GetComponent<Localize>().GetText(foodData.FoodNameKey);
+		foodTitleText.text = foodTitleText.GetComponent<Localize>().GetText(foodData.FoodNameKey);
 		allergy1Image.enabled = false;
 		
 		// Concat the allergies list
