@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class StartManager : Singleton<StartManager>{
 
@@ -9,12 +10,16 @@ public class StartManager : Singleton<StartManager>{
 
 	void Start(){
 		//TODO Generate event from data
-//		DataManager.Instance.SetEvent( "Event0" + UnityEngine.Random.Range(0,6).ToString());
+		DataManager.Instance.SetEvent( "Event0" + UnityEngine.Random.Range(0,6).ToString());
+		//TODO Set up visuals and appearances for that day		
+	}
 
-
-		//TODO Set up visuals and appearances for that day
-
-
+	public void GenerateUnlockedFoodStock(){
+		List<ImmutableDataFood> foodStock = new List<ImmutableDataFood>(DataLoaderFood.GetDataList());
+		List<string> unlockedFoodStock = new List<string>();
+		for (int i = 0; i < foodStock.Count; i++){
+			
+		}
 	}
 
 	public void OnPlayButtonClicked(){
