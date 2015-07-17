@@ -10,7 +10,7 @@ public class MenuManager : Singleton<MenuManager>{
 
 	public GameObject foodStockButtonPrefab;
 
-	public PanelInfoController panelInfoController;
+	public MenuPanelInfoController menuPanelInfoController;
 	public AllergiesChartController allergiesChartController;
 	public GameObject foodStockGrid;
 	public GameObject EventDescription;
@@ -171,11 +171,23 @@ public class MenuManager : Singleton<MenuManager>{
 		}
 	}
 
+	public void OnBackButtonClicked(){
+		TransitionManager.Instance.TransitionScene(SceneUtils.START);
+	}
+
 	public void ShowEventDescription(){
 		EventDescription.GetComponentInChildren<Text>().text = EventDescription.GetComponent<Localize>().GetText(DataLoaderEvents.GetData(currEvent).ID);
 	}
 
 	public void CloseEventDescription(){
 		EventDescription.SetActive(false);
+	}
+
+	public void ShowFoodInfo(string foodID){
+		menuPanelInfoController.Show(foodID);
+	}
+
+	public void HideFoodInfo(){
+		menuPanelInfoController.Hide();
 	}
 }

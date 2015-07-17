@@ -18,15 +18,14 @@ public class MenuDragSlot : MonoBehaviour, IDropHandler {
 	#region IDropHandler implementation
 	public void OnDrop(PointerEventData eventData){
 		if(!item){
-			FoodStockButton foodButton = MenuDragHandler.itemBeingDragged.GetComponent<FoodStockButton>();
+			FoodStockButton foodButton = FoodStockButton.itemBeingDragged.GetComponent<FoodStockButton>();
 			if(isSelectedSlot && MenuManager.Instance.AddFoodToMenuList(foodButton.foodID)){
-				MenuDragHandler.itemBeingDragged.transform.SetParent(transform);
-				MenuDragHandler.itemBeingDragged.transform.localPosition = Vector3.zero;
+				FoodStockButton.itemBeingDragged.transform.SetParent(transform);
+				FoodStockButton.itemBeingDragged.transform.localPosition = Vector3.zero;
 			}
 			else if(!isSelectedSlot){
-//				MenuManager.Instance.RemoveFoodFromMenuList(foodButton.foodID);
-				MenuDragHandler.itemBeingDragged.transform.SetParent(transform);
-				MenuDragHandler.itemBeingDragged.transform.localPosition = Vector3.zero;
+				FoodStockButton.itemBeingDragged.transform.SetParent(transform);
+				FoodStockButton.itemBeingDragged.transform.localPosition = Vector3.zero;
 			}
 		}
 	}

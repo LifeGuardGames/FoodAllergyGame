@@ -45,8 +45,6 @@ public class DataManager : Singleton<DataManager> {
 			gameData = new GameData();
 		}
 		else{
-			// TODO Version check here
-
 			LoadGameData();
 		}
 	}
@@ -57,18 +55,43 @@ public class DataManager : Singleton<DataManager> {
 	/// </summary>
 	public void LoadGameData(){
 		if(gameData == null){
-			GameData newGameData = null;
 			string jsonString = PlayerPrefs.GetString("GameData", "");
 
 			// Check if json string is actuall loaded and not empty
 			if(!String.IsNullOrEmpty(jsonString)){
+				gameData = JSON.Instance.ToObject<GameData>(jsonString);
 
+				#if UNITY_EDITOR
+				Debug.Log("Deserialized: " + jsonString);
+				#endif
+				
+				Deserialized();
 			}
 			else{
 				// Initiate game data here because none is found in the PlayerPrefs
 				gameData = new GameData();
 				Deserialized();
 			}
+		}
+	}
+
+	/// <summary>
+	/// Serialize data into json string and store locally in PlayerPrefs
+	/// </summary>
+	public void SaveGameData(){
+		//Data will not be saved if gameData is empty
+		if(gameData != null){
+			string jsonString = JSON.Instance.ToJSON(gameData);
+			
+			#if UNITY_EDITOR
+			Debug.Log("SERIALIZED: " + jsonString);
+			#endif
+			
+			PlayerPrefs.SetString("GameData", jsonString);
+			Serialized();
+		}
+		else{
+			Debug.LogError("gameData is null, so data cannot be serialized");
 		}
 	}
 
