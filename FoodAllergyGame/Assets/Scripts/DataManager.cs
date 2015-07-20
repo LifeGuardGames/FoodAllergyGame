@@ -116,15 +116,4 @@ public class DataManager : Singleton<DataManager> {
 			OnGameDataSaved(this, EventArgs.Empty);
 		}
 	}
-
-	////////////////////////////////////////////////////////////
-
-	public void SaveCash(int dayCashNet, int dayCashRevenue){
-		gameData.Cash.CurrentCash += dayCashNet;
-		gameData.Cash.TotalCash += dayCashRevenue; 
-	}
-
-	public void SetShouldGenerateNewEvent(bool shouldGenerate){
-		gameData.RestaurantEvent.ShouldGenerateNewEvent = shouldGenerate;
-	}
 }
