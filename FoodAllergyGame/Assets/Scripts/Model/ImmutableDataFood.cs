@@ -19,7 +19,7 @@ public class ImmutableDataFood{
 		get{ return spriteName; }
 	}
 
-	private List<Allergies> allergyList;
+	private List<Allergies> allergyList;	// TODO NONE counts as an allergy type, need to fix
 	public List<Allergies> AllergyList {
 		get{ return allergyList; }
 	}
@@ -31,12 +31,12 @@ public class ImmutableDataFood{
 
 	private int tier;
 	public int Tier{
-		get { return tier; }
+		get {return tier;}
 	}
 
-	private int price;
-	public int Price{
-		get{ return price; }
+	private float cost;
+	public float Cost{
+		get {return cost;}
 	}
 
 	public ImmutableDataFood(string id, IXMLNode xmlNode, string error){
@@ -67,8 +67,6 @@ public class ImmutableDataFood{
 		}
 
 		tier = XMLUtils.GetInt(hashElements["Tier"] as IXMLNode);
-
-		// TODO Add price
-//		price = XMLUtils.GetInt(hashElements["Price"] as IXMLNode);
+		cost = XMLUtils.GetFloat(hashElements["Price"] as IXMLNode);
 	}
 }

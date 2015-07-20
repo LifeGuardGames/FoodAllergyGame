@@ -72,7 +72,13 @@ public class Order : MonoBehaviour, IWaiterSelection{
 
 	IEnumerator StartMicrowave(){
 		yield return new WaitForSeconds(2.5f);
-		isCooked = true;
+		if(isCooked){
+			isBurnt = true;
+		}
+		if(isCooked == false){
+			isCooked = true;
+			StartCoroutine("StartMicrowave");
+		}
 	}
 
 	#region IWaiterSelection implementation

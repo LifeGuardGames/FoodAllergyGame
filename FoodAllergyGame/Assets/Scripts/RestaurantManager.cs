@@ -93,10 +93,11 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			yield return new WaitForFixedUpdate();
 		}
 		yield return new WaitForSeconds(customerTimer);
+		int rand;		
 		if(!dayOver && customerHash.Count < 8){
 			ImmutableDataCustomer test;
 			if(satisfactionAI.DifficultyLevel > 13){
-				int rand = Random.Range(0,currCusSet.Count);
+			 	rand = Random.Range(0,currCusSet.Count);
 				test = DataLoaderCustomer.GetData(currCusSet[rand]);
 			}
 			else{
@@ -108,6 +109,10 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 			customerNumber++;
 			cus.GetComponent<Customer>().Init(customerNumber, eventParam);
+			rand = Random.Range(0,10);
+			if(rand > 7){
+				cus.GetComponent<Customer>().hasPowerUp = true;
+			}
 			customerHash.Add(cus.GetComponent<Customer>().customerID,cus);
 			satisfactionAI.AddCustomer();
 			StartCoroutine("SpawnCustomer");
