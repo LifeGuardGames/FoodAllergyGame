@@ -33,7 +33,7 @@ public class StartManager : Singleton<StartManager>{
 				unlockedFoodStock.Add(foodStock[i].ID);
 			}
 		}
-		ImmutableDataMenuSet currSet = DataLoaderMenuSet.GetData(DataLoaderEvents.GetData(DataManager.instance.GetEvent()).MenuSet);
+		ImmutableDataMenuSet currSet = DataLoaderMenuSet.GetData(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()).MenuSet);
 		for (int i = 0; i < currSet.menuSet.Length; i++){
 			unlockedFoodStock.Remove(currSet.menuSet[i]);
 		}

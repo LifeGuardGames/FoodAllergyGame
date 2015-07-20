@@ -355,7 +355,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public virtual void Saved(){
 		RestaurantManager.Instance.medicButton.GetComponent<Animator>().SetBool("TutMedic", false);
 		RestaurantManager.Instance.tutText.SetActive(false);
-		RestaurantManager.Instance.UpdateCash(-10f);
+		RestaurantManager.Instance.UpdateCash(-10);
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
 		IncreaseSatisfaction();
 		customerAnim.SetSatisfaction(satisfaction);
