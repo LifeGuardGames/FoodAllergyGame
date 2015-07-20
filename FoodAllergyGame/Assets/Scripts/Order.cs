@@ -11,6 +11,11 @@ public class Order : MonoBehaviour, IWaiterSelection{
 
 	public float cookTimer = 5.0f;
 
+	private bool isBurnt;
+	public bool IsBurnt{
+		get{return isBurnt;}
+	}
+
 	// Is this order cooked?
 	private bool isCooked;
 	public bool IsCooked{
@@ -59,6 +64,15 @@ public class Order : MonoBehaviour, IWaiterSelection{
 	public void Canceled(){
 		StopCoroutine("Cooking");
 		Destroy(this.gameObject);
+	}
+
+	public void CookInMicrowave(){
+		StartCoroutine("StartMicrowave");
+	}
+
+	IEnumerator StartMicrowave(){
+		yield return new WaitForSeconds(2.5f);
+		isCooked = true;
 	}
 
 	#region IWaiterSelection implementation

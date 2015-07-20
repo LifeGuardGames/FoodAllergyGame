@@ -137,6 +137,23 @@ public class Waiter : Singleton<Waiter>{
 		}
 	}
 
+	public GameObject QuickCook(){
+		GameObject tempOrder;
+		tempOrder = null;
+		if(hand1 == WaiterHands.Order){
+			tempOrder = hand1Object;
+			return tempOrder;
+		}
+		else if (hand2 == WaiterHands.Order){
+			tempOrder = hand2Object;
+			return tempOrder;
+		}
+		else{
+			return tempOrder;
+		}
+
+	}
+
 	public GameObject HandMeal(int tableNum){
 		if(hand1 == WaiterHands.Meal && hand1Object.GetComponent<Order>().tableNumber== tableNum){
 			GameObject tempFood = hand1Object;

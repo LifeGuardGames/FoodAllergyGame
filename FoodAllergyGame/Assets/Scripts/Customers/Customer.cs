@@ -304,15 +304,22 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	// Eating coroutine
 		IEnumerator EatingTimer(){
 		yield return new WaitForSeconds(6.0f);
-		customerUI.ToggleStar(true);
+		int rand = Random.Range(0,10);
 		customerAnim.SetEating(false);
-		attentionSpan = 10.0f * timer;
+		if(rand > 7){
+			Bathroom();
+		}
+		else{
+			customerUI.ToggleStar(true);
+			attentionSpan = 10.0f * timer;
+			state = CustomerStates.WaitForCheck;
+			StartCoroutine("SatisfactionTimer");
+			AudioManager.Instance.PlayClip("readyForCheck");
+		}
 		if(order.gameObject != null){
 			Destroy(order.gameObject);
 		}
-		state = CustomerStates.WaitForCheck;
-		StartCoroutine("SatisfactionTimer");
-		AudioManager.Instance.PlayClip("readyForCheck");
+
 	}
 
 	// Tells the resturantManager that the customer is leaving and can be removed from the dictionary
@@ -406,6 +413,30 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		if(satisfaction < 3){
 			satisfaction++;
 		}
+	}
+
+	public void Bathroom(){
+		customerUI.satisfaction1.gameObject.SetActive(false);
+		customerUI.satisfaction2.gameObject.SetActive(false);
+		customerUI.satisfaction3.gameObject.SetActive(false);
+		customerUI.ToggleStar(false);
+		customerAnim.gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
+		attentionSpan = (5.0f * timer);
+		StartCoroutine("UseBathroom");
+	}
+
+	IEnumerator UseBathroom(){
+		yield return new WaitForSeconds(attentionSpan);
+		customerUI.satisfaction1.gameObject.SetActive(true);
+		customerUI.satisfaction2.gameObject.SetActive(true);
+		customerUI.satisfaction3.gameObject.SetActive(true);
+		customerUI.ToggleStar(true);
+		customerAnim.gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
+		customerUI.ToggleStar(true);
+		attentionSpan = 10.0f * timer;
+		state = CustomerStates.WaitForCheck;
+		StartCoroutine("SatisfactionTimer");
+		AudioManager.Instance.PlayClip("readyForCheck");
 	}
 
 	#region IWaiterSelection implementation
