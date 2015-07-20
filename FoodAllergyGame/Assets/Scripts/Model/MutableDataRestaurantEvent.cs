@@ -8,7 +8,7 @@ public class MutableDataRestaurantEvent{
 	public bool ShouldGenerateNewEvent {get; set;}
 
 	public MutableDataRestaurantEvent(){
-		CurrentEvent = "Event00";
+		CurrentEvent = "Event0T";
 		MenuPlanningStock = new List<string>();
 		ShouldGenerateNewEvent = true;
 	}
