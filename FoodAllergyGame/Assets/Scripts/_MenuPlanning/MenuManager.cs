@@ -38,8 +38,6 @@ public class MenuManager : Singleton<MenuManager>{
 
 		// TODO Load the number of slots from DataManager
 		menuSize = 4;
-
-		//////////////////////////////
 	
 		PopulateStockGrid();
 	}
@@ -66,8 +64,13 @@ public class MenuManager : Singleton<MenuManager>{
 		foodStockList.Add("Food08");
 		foodStockList.Add("Food09");
 
-		// TODO Load the food stock set from the DataManager
-//		foodStockList = ...
+		// UNDONE Waiting for some debug stuff to be completed
+		// Load the food stock set from the DataManager
+//		foodStockList = DataManager.Instance.GameData.RestaurantEvent.MenuPlanningStock;
+
+		// UNDONE Waiting for food prices
+		// Sort the food stock list by price
+//		foodStockList.Sort((x,y) => DataLoaderFood.GetData(x).Price.CompareTo(DataLoaderFood.GetData(y).Price));
 
 		for(int i = 0; i < foodStockPageSize; i++){
 			if(foodStockList.Count == i){		// Reached the end of list
@@ -133,9 +136,6 @@ public class MenuManager : Singleton<MenuManager>{
 	}
 	
 	public bool AddFoodToMenuList(string foodID){
-		// Display info in panel
-//		panelInfoController.ShowInfo(InfoType.Food, foodID);
-
 		if(selectedMenuStringList.Contains(foodID)){
 			Debug.LogWarning("Menu already contains food");
 			return false;
@@ -147,8 +147,6 @@ public class MenuManager : Singleton<MenuManager>{
 		else{
 			// Add id to aux string list
 			selectedMenuStringList.Add(foodID);
-
-//			allergiesChartController.UpdateChart(selectedMenuStringList);
 			return true;
 		}
 	}
@@ -156,8 +154,6 @@ public class MenuManager : Singleton<MenuManager>{
 	public void RemoveFoodFromMenuList(string foodID){
 		// Soft remove - no error if doesnt find key
 		selectedMenuStringList.Remove(foodID);
-
-//		allergiesChartController.UpdateChart(selectedMenuStringList);
 	}
 
 	public void OnMenuSelectionDone(){

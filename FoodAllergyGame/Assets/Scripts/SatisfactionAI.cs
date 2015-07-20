@@ -1,49 +1,56 @@
 ﻿using System.Collections;
 
 public class SatisfactionAI{
-	private int score;
+	private int modifiedSatisfaction;
+	public int Score{
+		get{ return modifiedSatisfaction; }
+	}
+
 	private int numOfCustomers;
-	private float satisfactionLevel;
+	public int NumOfCustomers{
+		get{ return numOfCustomers; }
+	}
+
+	private float difficultyLevel;
+	public float DifficultyLevel{
+		get{ return difficultyLevel; }
+	}
+
 	private int missingCustomers;
-	private float satisfaction;
+	public int MissingCustomers{
+		get{ return missingCustomers; }
+	}
+
+	private float totalSatisfaction;
 
 	// Calculates the money given to the player once a customer leaves
-	public float CalculateCheck(int _satisfaction){
-		if(_satisfaction <= 0){
+	public float CalculateCheck(int incomingSatisfaction){
+		if(incomingSatisfaction <= 0){
 			missingCustomers++;
 		}
-		score = _satisfaction *5;
-		if(_satisfaction < 0)
+		modifiedSatisfaction = incomingSatisfaction * 5;
+		if(incomingSatisfaction < 0)
 		{
-			_satisfaction = 0;
+			incomingSatisfaction = 0;
 		}
-		satisfaction += _satisfaction;
-		SatisfactionLevel(score);
-		return _satisfaction* 3.476f;
+
+		CalculateDifficultyLevel(modifiedSatisfaction);
+
+		totalSatisfaction += incomingSatisfaction;
+		return incomingSatisfaction * 3.476f;
 	}
-	// Calcualtes the satisfaction level
-	private void SatisfactionLevel(int _satisfaction){
+
+	// Calculates the difficulty level
+	private void CalculateDifficultyLevel(int modifiedSatisfaction){
 		// using a random number to add some unpredictability into the system
-		satisfactionLevel += (_satisfaction/numOfCustomers) + UnityEngine.Random.Range(0,4);
-	}
-
-	public float GetSatisfaction(){
-		return satisfactionLevel;
-	}
-
-	public int GetScore(){
-		return score;
+		difficultyLevel += (modifiedSatisfaction/numOfCustomers) + UnityEngine.Random.Range(0,4);
 	}
 
 	public float AvgSatifaction(){
-		return satisfaction/ numOfCustomers;
+		return totalSatisfaction / numOfCustomers;
 	}
 
 	public void AddCustomer(){
 		numOfCustomers++;
-	}
-
-	public int GetMissingCustomers(){
-		return missingCustomers;
 	}
 }

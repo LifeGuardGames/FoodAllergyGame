@@ -16,16 +16,18 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public float customerTimer;		//time it takes for a customer to spawn
 	public bool dayOver = false;	// bool controlling customer spawning depending on the stage of the day
 	public int actTables;
-	private float dayCash;			// The cash that is earn for the day
-	public float DayCash{
-		get{ return dayCash; }
+
+	private float dayCashNet;			// The cash that is earned/lost for the day
+	public float DayCashNet{
+		get{ return dayCashNet; }
 	}
+
+	private float dayCashRevenue = 0;		// The total positive cashed gained for the day
 
 	//tracks customers via hashtable
 	private Dictionary<string, GameObject> customerHash;
 	// our satisfaction ai 
 	private SatisfactionAI satisfactionAI;
-	public GameObject dayOverUI;
 	public List<GameObject> SickCustomers;
 	public GameObject[] tableList;
 	public RestaurantUIManager restaurantUI;
@@ -69,7 +71,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			break;
 		}
 
-		dayCash = 0;
+		dayCashNet = 0;
 
 		StartCoroutine("DayTracker");
 		StartCoroutine("SpawnCustomer");
@@ -93,7 +95,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		yield return new WaitForSeconds(customerTimer);
 		if(!dayOver && customerHash.Count < 8){
 			ImmutableDataCustomer test;
-			if(satisfactionAI.GetSatisfaction() > 13){
+			if(satisfactionAI.DifficultyLevel > 13){
 				int rand = Random.Range(0,currCusSet.Count);
 				test = DataLoaderCustomer.GetData(currCusSet[rand]);
 			}
@@ -128,15 +130,18 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	}
 
 	public void UpdateCash(float money){
-		dayCash += money;
-		restaurantUI.UpdateCash(dayCash);
+		dayCashNet += money;
+		restaurantUI.UpdateCash(dayCashNet);
 	}
 
 	//Checks to see if all the customers let and if so completes the day
 	private void CheckForGameOver(){
 		if(dayOver){
 			if(customerHash.Count == 0){
-				DayComplete();
+				restaurantUI.DayComplete(dayCashNet, satisfactionAI.MissingCustomers, satisfactionAI.AvgSatifaction());
+
+				// Save data here
+				
 			}
 		}
 	}
@@ -163,16 +168,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		TransitionManager.Instance.TransitionScene(SceneUtils.START);
 	}
 
-	private void DayComplete(){
-		dayOverUI.SetActive(true);
-		dayOverUI.transform.GetChild(1).GetComponent<Text>().text += dayCash.ToString();
-		dayOverUI.transform.GetChild(2).GetComponent<Text>().text += satisfactionAI.GetMissingCustomers();
-		dayOverUI.transform.GetChild(3).GetComponent<Text>().text += satisfactionAI.AvgSatifaction().ToString();
-		AudioManager.Instance.PlayClip("EndOfDay");
-	}
-
 	public LineController GetLine(){
-		return  Line;
+		return Line;
 	}
 
 	public MenuUIManager GetMenuUiManager(){

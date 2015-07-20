@@ -8,10 +8,21 @@ public class StartManager : Singleton<StartManager>{
 	public TweenToggleDemux infoCategoriesDemux;
 	public TweenToggleDemux infoDetailDemux;
 
+	private ImmutableDataEvents currentEvent = null;
+
 	void Start(){
-		//TODO Generate event from data
-		//DataManager.Instance.SetEvent( "Event0" + UnityEngine.Random.Range(0,6).ToString());
-		//TODO Set up visuals and appearances for that day		
+		// Check to see if the previous day has been completed
+		if(DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent){
+			//TODO Generate event from data
+//			currentEvent = ....
+//			DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "...";
+			DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = false;
+		}
+		else{
+			currentEvent = DataLoaderEvents.GetData(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent);
+		}
+
+		//TODO Set up visuals and appearances for that day based on event
 	}
 
 	public void GenerateUnlockedFoodStock(){
@@ -26,7 +37,7 @@ public class StartManager : Singleton<StartManager>{
 		for (int i = 0; i < currSet.menuSet.Length; i++){
 			unlockedFoodStock.Remove(currSet.menuSet[i]);
 		}
-		DataManager.Instance.GameData.RestaurantEvent.menuPlanningStock = unlockedFoodStock;
+		DataManager.Instance.GameData.RestaurantEvent.MenuPlanningStock = unlockedFoodStock;
 	}
 
 	public int calculateTier(){
