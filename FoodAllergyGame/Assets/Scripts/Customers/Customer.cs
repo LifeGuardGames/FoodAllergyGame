@@ -30,6 +30,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public CustomerAnimController customerAnim;	// handles animations
 	public GameObject TempOrder;				// temp variable used for instatiation
 	public List <ImmutableDataFood> choices;	// a list containing possible options the user would like to eat
+	public bool hasPowerUp;
 
 	// Basic intitialzation
 	public virtual void Init(int num, ImmutableDataEvents mode){
@@ -324,6 +325,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Tells the resturantManager that the customer is leaving and can be removed from the dictionary
 	public virtual void NotifyLeave(){
+		if(hasPowerUp){
+			//Waiter.Instance.GivePowerUp();
+		}
 		RestaurantManager.Instance.CustomerLeft(customerID, satisfaction);
 		if(state != CustomerStates.InLine){
 			RestaurantManager.Instance.GetTable(tableNum).CustomerLeaving();

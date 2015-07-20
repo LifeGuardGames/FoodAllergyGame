@@ -214,9 +214,11 @@ public class Waiter : Singleton<Waiter>{
 				//Debug.Log("Hand2");
 			}
 		}
-
 			return false;
+	}
 
+	public void GivePowerUp(){
+		
 	}
 
 	public void WriteDownOrder(GameObject order){

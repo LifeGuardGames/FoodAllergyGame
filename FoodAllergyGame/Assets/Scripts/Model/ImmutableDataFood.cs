@@ -34,6 +34,11 @@ public class ImmutableDataFood{
 		get {return tier;}
 	}
 
+	private float cost;
+	public float Cost{
+		get {return cost;}
+	}
+
 	public ImmutableDataFood(string id, IXMLNode xmlNode, string error){
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 		
@@ -62,5 +67,6 @@ public class ImmutableDataFood{
 		}
 
 		tier = XMLUtils.GetInt(hashElements["Tier"] as IXMLNode);
+		cost = XMLUtils.GetFloat(hashElements["Price"] as IXMLNode);
 	}
 }
