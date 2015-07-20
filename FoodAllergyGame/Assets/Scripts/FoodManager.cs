@@ -10,7 +10,7 @@ public class FoodManager : Singleton<FoodManager>{
 	public List<ImmutableDataFood> foodStockList;	// List for the user to choose from in MenuPlanning scene
 	public List<ImmutableDataFood> menuList;		// Compiled chosen list for use in restuarant
 	public List<string> tempMenu;
-	public float totalCost;
+	public int totalCost;
 
 	void Awake(){
 		//test code

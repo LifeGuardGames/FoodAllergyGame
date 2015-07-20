@@ -6,7 +6,7 @@
 		<Allergies>None</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
 		<Tier>0</Tier>
-		<Price>2.99</Price>
+		<Price>3</Price>
 	</Food>
 	<Food ID="Food01">
 		<FoodNameKey>FoodYogurt</FoodNameKey>
@@ -14,7 +14,7 @@
 		<Allergies>Dairy</Allergies>
 		<Keywords>Dessert,Drink</Keywords>
 		<Tier>0</Tier>
-		<Price>3.99</Price>
+		<Price>3</Price>
 	</Food>
 	<Food ID="Food02">
 		<FoodNameKey>FoodPeanutSalad</FoodNameKey>
@@ -22,7 +22,7 @@
 		<Allergies>Peanut</Allergies>
 		<Keywords>Meal,Dessert</Keywords>
 		<Tier>0</Tier>
-		<Price>5.99</Price>
+		<Price>5</Price>
 	</Food>
 	<Food ID="Food03">
 		<FoodNameKey>FoodChickenWings</FoodNameKey>
@@ -30,7 +30,7 @@
 		<Allergies>Wheat</Allergies>
 		<Keywords>Meal,Drink</Keywords>
 		<Tier>0</Tier>
-		<Price>5.99</Price>
+		<Price>5</Price>
 	</Food>
 	<Food ID="Food04">
 		<FoodNameKey>FoodIceCream</FoodNameKey>
@@ -38,7 +38,7 @@
 		<Allergies>Dairy</Allergies>
 		<Keywords>Dessert,Meal</Keywords>
 		<Tier>0</Tier>
-		<Price>3.99</Price>
+		<Price>3</Price>
 	</Food>
 	<Food ID="Food05">
 		<FoodNameKey>FoodPeanutButterApple</FoodNameKey>
@@ -46,14 +46,14 @@
 		<Allergies>Peanut</Allergies>
 		<Keywords>Meal,Drink</Keywords>
 		<Tier>0</Tier>
-		<Price>4.99</Price>
+		<Price>4</Price>
 		</Food>
 	<Food ID="Food06">
 		<FoodNameKey>FoodVeggieSandwich</FoodNameKey>
 		<SpriteName>FoodVeggieSandwich</SpriteName>
 		<Allergies>Wheat</Allergies>
 		<Keywords>Meal,Dessert</Keywords>
-		<Price>5.99</Price>
+		<Price>5</Price>
 		<Tier>0</Tier>
 	</Food>
 	<Food ID="Food07">
@@ -62,7 +62,7 @@
 		<Allergies>Peanut</Allergies>
 		<Keywords>Meal,Drink</Keywords>
 		<Tier>0</Tier>
-		<Price>2.99</Price>
+		<Price>2</Price>
 	</Food>
 	<Food ID="Food08">
 		<FoodNameKey>FoodToast</FoodNameKey>
@@ -70,7 +70,7 @@
 		<Allergies>Wheat</Allergies>
 		<Keywords>Meal,Drink</Keywords>
 		<Tier>0</Tier>
-		<Price>3.99</Price>
+		<Price>3</Price>
 	</Food>
 	<Food ID="Food09">
 		<FoodNameKey>FoodMilk</FoodNameKey>
@@ -78,7 +78,7 @@
 		<Allergies>Dairy</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
 		<Tier>0</Tier>
-		<Price>0.99</Price>
+		<Price>1</Price>
 	</Food>
 </Foods>
 
