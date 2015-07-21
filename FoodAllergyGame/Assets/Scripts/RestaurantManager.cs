@@ -155,6 +155,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	}
 
 	public void DeployMedic(){
+		RestaurantManager.Instance.medicButton.GetComponent<Animator>().SetBool("TutMedic", false);
+		RestaurantManager.Instance.tutText.SetActive(false);
 		if(SickCustomers.Count > 0){
 			Medic.Instance.MoveToLocation(SickCustomers[0].transform.position);
 		}

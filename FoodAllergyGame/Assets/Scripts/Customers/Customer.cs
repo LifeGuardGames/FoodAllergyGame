@@ -307,10 +307,6 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			StartCoroutine("SatisfactionTimer");
 			AudioManager.Instance.PlayClip("readyForCheck");
 		}
-		if(order.gameObject != null){
-			Destroy(order.gameObject);
-		}
-
 	}
 
 	// Tells the resturantManager that the customer is leaving and can be removed from the dictionary
@@ -343,8 +339,6 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 	// if they are saved they take a small penalty for making the mistake and the customer will want the check asap
 	public virtual void Saved(){
-		RestaurantManager.Instance.medicButton.GetComponent<Animator>().SetBool("TutMedic", false);
-		RestaurantManager.Instance.tutText.SetActive(false);
 		RestaurantManager.Instance.UpdateCash(-10);
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
 		IncreaseSatisfaction();
@@ -421,6 +415,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	IEnumerator UseBathroom(){
 		yield return new WaitForSeconds(attentionSpan);
+		if(order.gameObject != null){
+			Destroy(order.gameObject);
+		}
 		customerUI.satisfaction1.gameObject.SetActive(true);
 		customerUI.satisfaction2.gameObject.SetActive(true);
 		customerUI.satisfaction3.gameObject.SetActive(true);
