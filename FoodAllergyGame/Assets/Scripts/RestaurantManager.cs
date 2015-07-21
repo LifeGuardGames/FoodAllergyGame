@@ -60,17 +60,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		string currSet = mode.CustomerSet;
 		Debug.Log (currSet);
 		currCusSet = new List<string>(DataLoaderCustomerSet.GetData(currSet).customerSet);
-		switch (mode.DayLengthMod){
-		case "0":
-			//dayTime = dayTime;
-			break;
-		case "1":
-			dayTime = dayTime * 2;
-			break;
-		case "2":
-			dayTime = dayTime /2;
-			break;
-		}
+		dayTime *= mode.DayLengthMod;
 
 		dayCashNet = 0;
 
