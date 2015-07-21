@@ -22,6 +22,7 @@ public class MenuDragSlot : MonoBehaviour, IDropHandler {
 			if(isSelectedSlot && MenuManager.Instance.AddFoodToMenuList(foodButton.foodID)){
 				FoodStockButton.itemBeingDragged.transform.SetParent(transform);
 				FoodStockButton.itemBeingDragged.transform.localPosition = Vector3.zero;
+				MenuManager.Instance.ChangeNetCash(foodButton.Cost * -1);
 			}
 			else if(!isSelectedSlot){
 				FoodStockButton.itemBeingDragged.transform.SetParent(transform);
