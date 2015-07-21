@@ -56,17 +56,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		customerUI.UpdateSatisfaction(satisfaction);
 		customerAnim.SetSatisfaction(satisfaction);
 		// used for events this switches the timer variable which directly affects the customer's satisfaction
-		switch(mode.CustomerTimerMod){
-		case "0":
-			timer = 1;
-			break;
-		case "1":
-			timer = 2;
-			break;
-		case "2":
-			timer = 0.8f;
-			break;
-		}
+		timer = mode.CustomerTimerMod;
 		//calculates the initial attentionSpan
 		attentionSpan = 10f * timer;
 		// customers refuse to line up out the door

@@ -8,17 +8,7 @@ public class CustomerImpatient :Customer {
 		base.Init (num, mode);
 		type = CustomerTypes.Impatient;
 		// this switch statement is simply meant to override the timer variable that the base class sets
-		switch(mode.CustomerTimerMod){
-			case "0":
-			timer = 0.5f;
-			break;
-			case "1":
-			timer = 0.8f;
-			break;
-			case "2":
-			timer = 0.3f;
-			break;
-		}
+		timer = mode.CustomerTimerMod/1.5f;
 
 	}
 }

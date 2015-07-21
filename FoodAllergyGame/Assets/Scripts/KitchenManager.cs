@@ -16,19 +16,8 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 
 
 	//changes the cooking time based off the event
-	public void Init(string mode){
-		switch(mode){
-		case "0":
-			cookTimer = 5.0f;
-			break;
-		
-		case "1":
-			cookTimer = 6.5f;
-			break;
-		case "2":
-			cookTimer = 3.0f;
-			break;
-		}
+	public void Init(float mode){
+		cookTimer = mode;
 	}
 
 	// takes the orders from the waiter and cooks them

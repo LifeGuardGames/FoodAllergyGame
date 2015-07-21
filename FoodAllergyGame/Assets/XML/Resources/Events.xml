@@ -2,58 +2,58 @@
 <Events>
 	<Event ID="Event0T">	 <!-- Event name here -->
 		<MenuSet>T</MenuSet>
-		<KitchenTimer>0</KitchenTimer>
+		<KitchenTimer>5</KitchenTimer>
 		<CustomerSet>CustomerSet0T</CustomerSet>
-		<CustomerTimer>1</CustomerTimer>
-		<DayLength>0</DayLength>
+		<CustomerTimer>2</CustomerTimer>
+		<DayLength>1</DayLength>
 		<Allergy>None</Allergy>
 	</Event>
 	<Event ID="Event00">	 <!-- Event name here -->
 		<MenuSet>0</MenuSet>
-		<KitchenTimer>0</KitchenTimer>
+		<KitchenTimer>5</KitchenTimer>
 		<CustomerSet>CustomerSet00</CustomerSet>
-		<CustomerTimer>0</CustomerTimer>
-		<DayLength>0</DayLength>
+		<CustomerTimer>1</CustomerTimer>
+		<DayLength>1</DayLength>
 		<Allergy>None</Allergy>
 	</Event>
 	<Event ID="Event01">
 		<MenuSet>0</MenuSet>
-		<KitchenTimer>2</KitchenTimer>
+		<KitchenTimer>3</KitchenTimer>
 		<CustomerSet>CustomerSet00</CustomerSet>
-		<CustomerTimer>1</CustomerTimer>
-		<DayLength>2</DayLength>
+		<CustomerTimer>2</CustomerTimer>
+		<DayLength>0.5</DayLength>
 		<Allergy>Peanut</Allergy>
 	</Event>
 	<Event ID="Event02">
 		<MenuSet>0</MenuSet>
-		<KitchenTimer>1</KitchenTimer>
+		<KitchenTimer>6.5</KitchenTimer>
 		<CustomerSet>CustomerSet00</CustomerSet>
-		<CustomerTimer>0</CustomerTimer>
-		<DayLength>1</DayLength>
+		<CustomerTimer>1</CustomerTimer>
+		<DayLength>2</DayLength>
 		<Allergy>Wheat</Allergy>
 	</Event>
 	<Event ID="Event03">
 		<MenuSet>0</MenuSet>
-		<KitchenTimer>2</KitchenTimer>
+		<KitchenTimer>3</KitchenTimer>
 		<CustomerSet>CustomerSet00</CustomerSet>
-		<CustomerTimer>2</CustomerTimer>
-		<DayLength>2</DayLength>
+		<CustomerTimer>0.7</CustomerTimer>
+		<DayLength>0.5</DayLength>
 		<Allergy>Dairy</Allergy>
 	</Event>
 	<Event ID="Event04">
 		<MenuSet>0</MenuSet>
-		<KitchenTimer>0</KitchenTimer>
+		<KitchenTimer>5</KitchenTimer>
 		<CustomerSet>CustomerSet00</CustomerSet>
-		<CustomerTimer>2</CustomerTimer>
-		<DayLength>1</DayLength>
+		<CustomerTimer>0.7</CustomerTimer>
+		<DayLength>2</DayLength>
 		<Allergy>None</Allergy>
 	</Event>
 	<Event ID="Event05">
 		<MenuSet>0</MenuSet>
-		<KitchenTimer>1</KitchenTimer>
+		<KitchenTimer>6.5</KitchenTimer>
 		<CustomerSet>CustomerSet00</CustomerSet>
-		<CustomerTimer>1</CustomerTimer>
-		<DayLength>2</DayLength>
+		<CustomerTimer>2</CustomerTimer>
+		<DayLength>0.5</DayLength>
 		<Allergy>None</Allergy>
 	</Event>
 </Events>
