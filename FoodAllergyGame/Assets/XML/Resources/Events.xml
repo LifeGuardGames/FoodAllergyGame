@@ -4,7 +4,7 @@
 		<MenuSet>T</MenuSet>
 		<KitchenTimer>0</KitchenTimer>
 		<CustomerSet>CustomerSet0T</CustomerSet>
-		<CustomerTimer>0</CustomerTimer>
+		<CustomerTimer>1</CustomerTimer>
 		<DayLength>0</DayLength>
 		<Allergy>None</Allergy>
 	</Event>

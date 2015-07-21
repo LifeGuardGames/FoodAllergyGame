@@ -17,12 +17,12 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public bool dayOver = false;	// bool controlling customer spawning depending on the stage of the day
 	public int actTables;
 
-	private int dayCashNet;			// The cash that is earned/lost for the day
-	public int DayCashNet{
+	private float dayCashNet;			// The cash that is earned/lost for the day
+	public float DayCashNet{
 		get{ return dayCashNet; }
 	}
 
-	private int dayCashRevenue = 0;		// The total positive cashed gained for the day
+	private float dayCashRevenue = 0;		// The total positive cashed gained for the day
 
 	//tracks customers via hashtable
 	private Dictionary<string, GameObject> customerHash;
@@ -50,14 +50,15 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		customerHash = new Dictionary<string, GameObject>();
 		satisfactionAI = new SatisfactionAI();
 		Debug.Log (currEvent);
-		ImmutableDataEvents test = DataLoaderEvents.GetData("Event00");
-		StartDay(test);
+		//ImmutableDataEvents test = DataLoaderEvents.GetData("Event00");
+		StartDay(DataLoaderEvents.GetData(currEvent));
 	}
 
 	// Called at the start of the game day begins the day tracker coroutine 
 	public void StartDay(ImmutableDataEvents mode){
 		eventParam = mode;
 		string currSet = mode.CustomerSet;
+		Debug.Log (currSet);
 		currCusSet = new List<string>(DataLoaderCustomerSet.GetData(currSet).customerSet);
 		switch (mode.DayLengthMod){
 		case "0":
@@ -134,14 +135,9 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		}
 	}
 
-	public void UpdateCash(int billAmount){
-		dayCashNet += billAmount;
+	public void UpdateCash(float money){
+		dayCashNet += money;
 		restaurantUI.UpdateCash(dayCashNet);
-
-		// Update revenue if positive bill
-		if(billAmount > 0){
-			dayCashRevenue += billAmount;
-		}
 	}
 
 	//Checks to see if all the customers let and if so completes the day
@@ -151,8 +147,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				restaurantUI.DayComplete(dayCashNet, satisfactionAI.MissingCustomers, satisfactionAI.AvgSatifaction());
 
 				// Save data here
-				DataManager.Instance.GameData.Cash.SaveCash(dayCashNet, dayCashRevenue);
-				DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
+				
 			}
 		}
 	}

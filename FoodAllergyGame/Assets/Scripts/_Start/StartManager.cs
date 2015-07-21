@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class StartManager : Singleton<StartManager>{
 
 	public TweenToggleDemux startDemux;
 	public TweenToggleDemux infoCategoriesDemux;
 	public TweenToggleDemux infoDetailDemux;
+
 
 	private ImmutableDataEvents currentEvent = null;
 
@@ -15,7 +17,7 @@ public class StartManager : Singleton<StartManager>{
 		if(DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent){
 			//TODO Generate event from data
 //			currentEvent = ....
-//			DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "...";
+			DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = DataLoaderEvents.GetData("Event0T").ID;
 			DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = false;
 		}
 		else{
@@ -63,7 +65,13 @@ public class StartManager : Singleton<StartManager>{
 	}
 
 	public void OnPlayButtonClicked(){
-		TransitionManager.Instance.TransitionScene(SceneUtils.MENUPLANNING);
+		if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "Event0T"){
+			FoodManager.Instance.GenerateMenu(DataLoaderMenuSet.GetData("MenuSet0T").menuSet.ToList());
+			TransitionManager.Instance.TransitionScene(SceneUtils.TUTSCENE);
+		}
+		else{
+			TransitionManager.Instance.TransitionScene(SceneUtils.MENUPLANNING);
+		}
 	}
 
 	public void OnComicButtonClicked(){
