@@ -7,8 +7,19 @@ using System.Collections.Generic;
 /// </summary>
 public class FoodManager : Singleton<FoodManager>{
 
-	public List<ImmutableDataFood> foodStockList;	// List for the user to choose from in MenuPlanning scene
-	public List<ImmutableDataFood> menuList;		// Compiled chosen list for use in restuarant
+	// List for the user to choose from in MenuPlanning scene
+	public List<ImmutableDataFood> foodStockList;
+	public List<ImmutableDataFood> FoodStockList{
+		get{ return foodStockList; }
+	}
+
+	// Compiled chosen list for use in restuarant
+	public List<ImmutableDataFood> menuList;
+	public List<ImmutableDataFood> MenuList{
+		get{ return menuList; }
+	}
+
+		
 	public List<string> tempMenu;
 	public int dayCashNetFromMenu;
 

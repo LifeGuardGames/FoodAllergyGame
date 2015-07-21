@@ -34,7 +34,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public string currEvent;
 	private ImmutableDataEvents eventParam;
 	public LineController Line;
-	public RestaurantMenuUIManager menuUIManager;
+	public RestaurantMenuUIController menuUIController;
+	public AllergyChartUIController allergyChartUIController;
 	public KitchenManager kitchen;
 	public bool firstSickCustomer = false;
 	public GameObject medicButton;
@@ -183,8 +184,12 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		return Line;
 	}
 
-	public RestaurantMenuUIManager GetMenuUiManager(){
-		return menuUIManager;
+	public RestaurantMenuUIController GetMenuUIController(){
+		return menuUIController;
+	}
+
+	public AllergyChartUIController GetAllergyUIController(){
+		return allergyChartUIController;
 	}
 
 	public KitchenManager GetKitchen(){

@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class RestaurantMenuUIManager : MonoBehaviour {
+public class RestaurantMenuUIController : MonoBehaviour {
 
 	public GameObject button1;
 	public Image button1Image;
