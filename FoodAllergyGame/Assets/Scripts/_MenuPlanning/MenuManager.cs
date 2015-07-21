@@ -72,9 +72,8 @@ public class MenuManager : Singleton<MenuManager>{
 		// Load the food stock set from the DataManager
 //		foodStockList = DataManager.Instance.GameData.RestaurantEvent.MenuPlanningStock;
 
-		// UNDONE Waiting for food prices
 		// Sort the food stock list by price
-//		foodStockList.Sort((x,y) => DataLoaderFood.GetData(x).Price.CompareTo(DataLoaderFood.GetData(y).Price));
+		foodStockList.Sort((x,y) => DataLoaderFood.GetData(x).Cost.CompareTo(DataLoaderFood.GetData(y).Cost));
 
 		for(int i = 0; i < foodStockPageSize; i++){
 			if(foodStockList.Count == i){		// Reached the end of list
