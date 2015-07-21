@@ -297,10 +297,10 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		yield return new WaitForSeconds(6.0f);
 		int rand = Random.Range(0,10);
 		customerAnim.SetEating(false);
-		if(rand > 7){
-			Bathroom();
-		}
-		else{
+//		if(rand > 7){
+//			Bathroom();
+//		}
+//		else{
 			if(order.gameObject != null){
 				Destroy(order.gameObject);
 			}
@@ -309,7 +309,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			state = CustomerStates.WaitForCheck;
 			StartCoroutine("SatisfactionTimer");
 			AudioManager.Instance.PlayClip("readyForCheck");
-		}
+//		}
 	}
 
 	// Tells the resturantManager that the customer is leaving and can be removed from the dictionary
