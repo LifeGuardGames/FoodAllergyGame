@@ -301,6 +301,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			Bathroom();
 		}
 		else{
+			if(order.gameObject != null){
+				Destroy(order.gameObject);
+			}
 			customerUI.ToggleStar(true);
 			attentionSpan = 10.0f * timer;
 			state = CustomerStates.WaitForCheck;
