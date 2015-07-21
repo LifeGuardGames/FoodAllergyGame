@@ -23,6 +23,12 @@ public class TouchManager : Singleton<TouchManager> {
 							Waiter.Instance.Finished();
 						}
 					}
+
+					// Check for other clickable objects
+					IClickObject clickObject = hitObject.collider.gameObject.GetComponent<IClickObject>();
+					if(clickObject != null){
+						clickObject.OnClicked();
+					}
 				}
 			}
 		}

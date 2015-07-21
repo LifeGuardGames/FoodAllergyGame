@@ -60,9 +60,9 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	//in the unfortunate circumstance a customer gets eaten we need to take care of the mess
 	public void CustomerEaten(){
 		if(foodSpot.childCount > 0){
-			Destroy (foodSpot.GetChild (0));
+			Destroy(foodSpot.GetChild(0));
 		}
-		RestaurantManager.Instance.GetMenuUiManager().CancelOrder(tableNumber);
+		RestaurantManager.Instance.GetMenuUIController().CancelOrder(tableNumber);
 		GetComponentInChildren<Customer>().state = CustomerStates.Invalid;
 		RestaurantManager.Instance.CustomerLeft(currentCustomerID, 0);
 		CustomerLeaving();

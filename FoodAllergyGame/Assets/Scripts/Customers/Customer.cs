@@ -248,7 +248,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				StopCoroutine("SatisfactionTimer");
 				// lock our waiter 
 				Waiter.Instance.canMove = false;
-				RestaurantManager.Instance.GetMenuUiManager().ShowChoices(choices, tableNum, allergy);
+				RestaurantManager.Instance.GetMenuUIController().ShowChoices(choices, tableNum, allergy);
 			}
 		}
 		else{
