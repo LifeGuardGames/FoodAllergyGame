@@ -10,7 +10,7 @@ public class FoodManager : Singleton<FoodManager>{
 	public List<ImmutableDataFood> foodStockList;	// List for the user to choose from in MenuPlanning scene
 	public List<ImmutableDataFood> menuList;		// Compiled chosen list for use in restuarant
 	public List<string> tempMenu;
-	public int totalCost;
+	public int dayCashNetFromMenu;
 
 	void Awake(){
 		//test code
@@ -25,6 +25,8 @@ public class FoodManager : Singleton<FoodManager>{
 		tempMenu.Add("Food07");
 		tempMenu.Add("Food08");
 		tempMenu.Add("Food09");
+
+		dayCashNetFromMenu = 0;
 		GenerateMenu(tempMenu);
 	}
 
@@ -39,7 +41,7 @@ public class FoodManager : Singleton<FoodManager>{
 		menuList = new List<ImmutableDataFood>();
 		foreach(string foodID in _menuList){
 			menuList.Add(DataLoaderFood.GetData(foodID));
-			totalCost += DataLoaderFood.GetData(foodID).Cost;
+			dayCashNetFromMenu -= DataLoaderFood.GetData(foodID).Cost;
 		}
 	}
 

@@ -29,6 +29,10 @@ public class MenuManager : Singleton<MenuManager>{
 
 	public Transform dragAux;
 
+	public Text textDayCashNet;
+	public Animation textCashAnimation;
+	private int dayCashNetAux = 0;
+
 	void Start(){
 		currEvent = DataManager.Instance.GetEvent();
 		InitSanityCheck();
@@ -151,9 +155,9 @@ public class MenuManager : Singleton<MenuManager>{
 		}
 	}
 
-	public void RemoveFoodFromMenuList(string foodID){
+	public bool RemoveFoodFromMenuList(string foodID){
 		// Soft remove - no error if doesnt find key
-		selectedMenuStringList.Remove(foodID);
+		return selectedMenuStringList.Remove(foodID);
 	}
 
 	public void OnMenuSelectionDone(){
@@ -185,5 +189,11 @@ public class MenuManager : Singleton<MenuManager>{
 
 	public void HideFoodInfo(){
 		menuPanelInfoController.Hide();
+	}
+
+	public void ChangeNetCash(int delta){
+		dayCashNetAux += delta;
+		textCashAnimation.Play();
+		textDayCashNet.text = "$" + dayCashNetAux.ToString();
 	}
 }
