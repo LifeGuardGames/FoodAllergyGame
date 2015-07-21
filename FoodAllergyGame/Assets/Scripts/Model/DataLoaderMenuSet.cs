@@ -24,6 +24,6 @@ public class DataLoaderMenuSet : XMLLoaderGeneric<DataLoaderMenuSet>{
 	}
 	
 	protected override void InitXMLLoader(){
-		xmlFileFolderPath = "MenuSet";
+		xmlFileFolderPath = "MenuSets";
 	}
 }

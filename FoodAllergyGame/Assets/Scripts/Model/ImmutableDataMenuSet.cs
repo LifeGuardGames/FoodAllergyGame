@@ -17,6 +17,6 @@ public class ImmutableDataMenuSet{
 	public ImmutableDataMenuSet(string id, IXMLNode xmlNode, string error){
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 		this.id = id;
-		menuSet = XMLUtils.GetStringList(hashElements["MenuSet"]as IXMLNode);
+		menuSet = XMLUtils.GetStringList(hashElements["FoodList"]as IXMLNode);
 	}
 }
