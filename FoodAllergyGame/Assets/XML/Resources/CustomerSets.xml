@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomerSets>
+	<CustomerSet ID="CustomerSet0T">
+		<CustomerList>Customer00</CustomerList>
+	</CustomerSet>
 	<CustomerSet ID="CustomerSet00">
 		<CustomerList>Customer00,Customer01,Customer02</CustomerList>
 	</CustomerSet>
