@@ -5,6 +5,13 @@ using System.Collections;
 public class RestaurantUIManager : MonoBehaviour {
 	public Text cashText;
 	public GameObject dayOverUI;
+	public Image dayProgressBar;
+
+	public void UpdateProgressBar(float totalTime, float timeLeft){
+		float timeElapsed = totalTime - timeLeft;
+		float percentage = timeElapsed / totalTime;
+		dayProgressBar.fillAmount = percentage;
+	}
 
 	public void UpdateCash(float cash){
 		cashText.text = cash.ToString();
