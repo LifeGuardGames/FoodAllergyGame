@@ -32,6 +32,7 @@ public class MenuManager : Singleton<MenuManager>{
 	public Text textDayCashNet;
 	public Animation textCashAnimation;
 	private int dayCashNetAux = 0;
+	public GameObject tutFinger;
 
 	void Start(){
 		currEvent = DataManager.Instance.GetEvent();
@@ -139,6 +140,7 @@ public class MenuManager : Singleton<MenuManager>{
 	}
 	
 	public bool AddFoodToMenuList(string foodID){
+		tutFinger.SetActive(false);
 		if(selectedMenuStringList.Contains(foodID)){
 			Debug.LogWarning("Menu already contains food");
 			return false;
