@@ -41,7 +41,7 @@ public class MenuManager : Singleton<MenuManager>{
 		ShowEventDescription();
 
 		// TODO Load the number of slots from DataManager
-		menuSize = 4;
+		menuSize = 5;
 	
 		PopulateStockGrid();
 	}
@@ -143,13 +143,14 @@ public class MenuManager : Singleton<MenuManager>{
 			Debug.LogWarning("Menu already contains food");
 			return false;
 		}
-		else if(selectedMenuStringList.Count >= menuSize){
+		else if(selectedMenuStringList.Count > menuSize){
 			Debug.LogWarning("Menu list already at capacity");
 			return false;
 		}
 		else{
 			// Add id to aux string list
 			selectedMenuStringList.Add(foodID);
+			Debug.Log("Added " + foodID);
 			return true;
 		}
 	}
