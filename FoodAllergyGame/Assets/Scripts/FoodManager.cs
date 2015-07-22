@@ -18,10 +18,13 @@ public class FoodManager : Singleton<FoodManager>{
 	public List<ImmutableDataFood> MenuList{
 		get{ return menuList; }
 	}
-
 		
 	public List<string> tempMenu;
+
 	public int dayCashNetFromMenu;
+	public int DayCashNetFromMenu{
+		get{ return dayCashNetFromMenu; }
+	}
 
 	void Awake(){
 		//test code

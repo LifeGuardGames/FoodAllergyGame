@@ -1,6 +1,6 @@
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class RestaurantManager : Singleton<RestaurantManager>{
@@ -11,18 +11,20 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	//amount of time in seconds that the days lasts
 	public bool isPaused;
 
-	public float dayTime;
+	public float dayTime;			// Total amount of time in the day
+	private float dayTimeLeft;		// Current amount of time left in the day
+
 	private int customerNumber = 0;
 	public float customerTimer;		//time it takes for a customer to spawn
 	public bool dayOver = false;	// bool controlling customer spawning depending on the stage of the day
 	public int actTables;
 
-	private float dayCashNet;			// The cash that is earned/lost for the day
-	public float DayCashNet{
+	private int dayCashNet;			// The cash that is earned/lost for the day
+	public int DayCashNet{
 		get{ return dayCashNet; }
 	}
 
-	private float dayCashRevenue = 0;		// The total positive cashed gained for the day
+	private int dayCashRevenue = 0;		// The total positive cashed gained for the day
 
 	//tracks customers via hashtable
 	private Dictionary<string, GameObject> customerHash;
@@ -32,7 +34,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public GameObject[] tableList;
 	public RestaurantUIManager restaurantUI;
 	public string currEvent;
-	private ImmutableDataEvents eventParam;
+	private ImmutableDataEvents eventData;
 	public LineController Line;
 	public RestaurantMenuUIController menuUIController;
 	public AllergyChartUIController allergyChartUIController;
@@ -56,27 +58,32 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	}
 
 	// Called at the start of the game day begins the day tracker coroutine 
-	public void StartDay(ImmutableDataEvents mode){
-		eventParam = mode;
-		string currSet = mode.CustomerSet;
+	public void StartDay(ImmutableDataEvents eventData){
+		this.eventData = eventData;
+		string currSet = eventData.CustomerSet;
 		Debug.Log (currSet);
 		currCusSet = new List<string>(DataLoaderCustomerSet.GetData(currSet).customerSet);
-		dayTime *= mode.DayLengthMod;
 
-		dayCashNet = 0;
+		dayTime *= eventData.DayLengthMod;
+		dayTimeLeft = dayTime;
 
-		StartCoroutine("DayTracker");
+		dayCashNet = FoodManager.Instance.DayCashNetFromMenu;
+		restaurantUI.UpdateCash(dayCashNet);
+
 		StartCoroutine("SpawnCustomer");
-		KitchenManager.Instance.Init(mode.KitchenTimerMod);
+		KitchenManager.Instance.Init(eventData.KitchenTimerMod);
 	}
 
 	// When complete flips the dayOver bool once the bool is true customers will cease spawning and the game will be looking for the end point
-	IEnumerator DayTracker(){
-		while(isPaused){
-			yield return new WaitForFixedUpdate();
+	void Update(){
+		if(!isPaused && dayOver == false){
+			dayTimeLeft -= Time.deltaTime;
+			restaurantUI.UpdateProgressBar(dayTime, dayTimeLeft);
+			if(dayTimeLeft < 0)
+			{
+				dayOver = true;
+			}
 		}
-		yield return new WaitForSeconds(dayTime);
-		dayOver = true;
 	}
 
 	// Spawns a customer after a given amount of timer then it restarts the coroutine
@@ -89,7 +96,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		if(!dayOver && customerHash.Count < 8){
 			ImmutableDataCustomer test;
 			if(satisfactionAI.DifficultyLevel > 13){
-			 	rand = Random.Range(0,currCusSet.Count);
+			 	rand = UnityEngine.Random.Range(0,currCusSet.Count);
 				test = DataLoaderCustomer.GetData(currCusSet[rand]);
 			}
 			else{
@@ -100,7 +107,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
 			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 			customerNumber++;
-			cus.GetComponent<Customer>().Init(customerNumber, eventParam);
+			cus.GetComponent<Customer>().Init(customerNumber, eventData);
 			rand = Random.Range(0,10);
 			if(rand > 7){
 				cus.GetComponent<Customer>().hasPowerUp = true;
@@ -126,9 +133,14 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		}
 	}
 
-	public void UpdateCash(float money){
-		dayCashNet += money;
+	public void UpdateCash(int billAmount){
+		dayCashNet += billAmount;
 		restaurantUI.UpdateCash(dayCashNet);
+
+		// Update revenue if positive bill
+		if(billAmount > 0){
+			dayCashRevenue += billAmount;
+		}
 	}
 
 	//Checks to see if all the customers let and if so completes the day
@@ -138,7 +150,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				restaurantUI.DayComplete(dayCashNet, satisfactionAI.MissingCustomers, satisfactionAI.AvgSatifaction());
 
 				// Save data here
-				
+				DataManager.Instance.GameData.Cash.SaveCash(dayCashNet, dayCashRevenue);
+				DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
 			}
 		}
 	}
