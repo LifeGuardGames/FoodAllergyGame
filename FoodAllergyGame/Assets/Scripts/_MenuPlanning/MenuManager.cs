@@ -163,7 +163,7 @@ public class MenuManager : Singleton<MenuManager>{
 		// Check to see if we have all selection slots filled
 		if(selectedMenuStringList.Count == menuSize){
 			FoodManager.Instance.GenerateMenu(selectedMenuStringList);
-			TransitionManager.Instance.TransitionScene(SceneUtils.MENUPLANNING);
+			TransitionManager.Instance.TransitionScene(SceneUtils.RESTAURANT);
 		}
 		else{
 			Debug.LogWarning("Menu not complete!");

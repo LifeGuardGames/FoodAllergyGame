@@ -5,6 +5,7 @@ using System.Collections;
 public class RestaurantUIManager : MonoBehaviour {
 	public Text cashText;
 	public GameObject dayOverUI;
+	public GameObject unlocked;
 	public Image dayProgressBar;
 
 	public void UpdateProgressBar(float totalTime, float timeLeft){
@@ -27,7 +28,7 @@ public class RestaurantUIManager : MonoBehaviour {
 
 	public void DayComplete(float dayCash, int missingCustomers, float averageSatisfaction){
 		if(DataManager.Instance.GetEvent() == "Event0T"){
-			GameObject.Find("unlocked").SetActive(true);
+			unlocked.SetActive(true);
 		}
 		dayOverUI.SetActive(true);
 		dayOverUI.transform.GetChild(1).GetComponent<Text>().text += dayCash.ToString();

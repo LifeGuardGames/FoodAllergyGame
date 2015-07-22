@@ -9,7 +9,7 @@
 		<Allergy>None</Allergy>
 	</Event>
 	<Event ID="EventT2">	 <!-- Event name here -->
-		<MenuSet>T2</MenuSet>
+		<MenuSet>0</MenuSet>
 		<KitchenTimer>5</KitchenTimer>
 		<CustomerSet>CustomerSet00</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
