@@ -17,7 +17,9 @@ public class StartManager : Singleton<StartManager>{
 		if(DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent){
 			//TODO Generate event from data
 //			currentEvent = ....
-			DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = DataLoaderEvents.GetData("Event0T").ID;
+			if(DataManager.Instance.GetEvent()!="EventT2"){
+				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = DataLoaderEvents.GetData("Event0T").ID;
+			}
 			DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = false;
 		}
 		else{
