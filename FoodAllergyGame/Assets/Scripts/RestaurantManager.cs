@@ -114,10 +114,10 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			}
 			customerHash.Add(cus.GetComponent<Customer>().customerID,cus);
 			satisfactionAI.AddCustomer();
-//			StartCoroutine("SpawnCustomer");
+			StartCoroutine("SpawnCustomer");
 		}
 		else{
-//			StartCoroutine("SpawnCustomer");
+			StartCoroutine("SpawnCustomer");
 		}
 	}
 
@@ -147,6 +147,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	private void CheckForGameOver(){
 		if(dayOver){
 			if(customerHash.Count == 0){
+
 				restaurantUI.DayComplete(dayCashNet, satisfactionAI.MissingCustomers, satisfactionAI.AvgSatifaction());
 
 				// Save data here
@@ -177,7 +178,13 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 	// TEMPORARY FOR PROTOTYPE
 	public void RestartGame(){
-		TransitionManager.Instance.TransitionScene(SceneUtils.START);
+		if(DataManager.Instance.GetEvent() == "Event0T"){
+			DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = DataLoaderEvents.GetData("EventT2").ID;
+			TransitionManager.Instance.TransitionScene(SceneUtils.MENUPLANNING);
+		}
+		else{
+			TransitionManager.Instance.TransitionScene(SceneUtils.START);
+		}
 	}
 
 	public LineController GetLine(){

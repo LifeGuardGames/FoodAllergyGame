@@ -26,6 +26,9 @@ public class RestaurantUIManager : MonoBehaviour {
 	}
 
 	public void DayComplete(float dayCash, int missingCustomers, float averageSatisfaction){
+		if(DataManager.Instance.GetEvent() == "Event0T"){
+			GameObject.Find("unlocked").SetActive(true);
+		}
 		dayOverUI.SetActive(true);
 		dayOverUI.transform.GetChild(1).GetComponent<Text>().text += dayCash.ToString();
 		dayOverUI.transform.GetChild(2).GetComponent<Text>().text += missingCustomers.ToString();
