@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class TierManager : MonoBehaviour {
+public class TierManager : Singleton<TierManager> {
 
 	private string tierXMLPrefix = "Tier";	// Prefix of the tier xml keys, ie. "Tier04"
 	private int tier;						// Cached tier for use throughout game

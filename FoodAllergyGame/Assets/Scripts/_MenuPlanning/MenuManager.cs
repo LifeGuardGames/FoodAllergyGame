@@ -11,6 +11,7 @@ public class MenuManager : Singleton<MenuManager>{
 	public GameObject foodStockButtonPrefab;
 
 	public AllergiesChartController allergiesChartController;
+	public SelectedMenuController selectedMenuController;
 	public GameObject foodStockGrid;
 	public GameObject EventDescription;
 
@@ -42,9 +43,9 @@ public class MenuManager : Singleton<MenuManager>{
 		EventDescription.SetActive(true);
 		ShowEventDescription();
 
-		// TODO Load the number of slots from DataManager
-
-		menuSize = 5;
+		// Load the number of slots from progress
+		menuSize = TierManager.Instance.GetMenuSlots();
+		selectedMenuController.Init(menuSize);
 	
 		PopulateStockGrid();
 
