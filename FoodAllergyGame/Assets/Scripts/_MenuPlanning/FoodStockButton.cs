@@ -64,7 +64,6 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 		if(MenuManager.Instance.RemoveFoodFromMenuList(foodID)){
 			MenuManager.Instance.ChangeNetCash(Cost);
 		}
-		MenuManager.Instance.ShowFoodInfo(foodID);
 	}
 	#endregion
 	
@@ -92,7 +91,6 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 			startParent = transform.parent;
 			startPosition = transform.localPosition;
 		}
-		MenuManager.Instance.HideFoodInfo();
 	}
 	#endregion
 }

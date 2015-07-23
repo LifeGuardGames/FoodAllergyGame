@@ -10,11 +10,13 @@ public class MenuManager : Singleton<MenuManager>{
 
 	public GameObject foodStockButtonPrefab;
 
-	public MenuPanelInfoController menuPanelInfoController;
 	public AllergiesChartController allergiesChartController;
+	public SelectedMenuController selectedMenuController;
 	public GameObject foodStockGrid;
 	public GameObject EventDescription;
-	public string currEvent;
+
+	private string currEvent;
+	private ImmutableDataEvents currEventData;
 
 	public List<string> foodStockList;			// All the foods that are allowed for today
 	public List<Transform> currentFoodStockSlotList;
@@ -36,15 +38,18 @@ public class MenuManager : Singleton<MenuManager>{
 
 	void Start(){
 		currEvent = DataManager.Instance.GetEvent();
-		InitSanityCheck();
+		currEventData = DataLoaderEvents.GetData(currEvent);
 
 		EventDescription.SetActive(true);
 		ShowEventDescription();
 
-		// TODO Load the number of slots from DataManager
-		menuSize = 5;
+		// Load the number of slots from progress
+		menuSize = TierManager.Instance.GetMenuSlots();
+		selectedMenuController.Init(menuSize);
 	
 		PopulateStockGrid();
+
+		InitSanityCheck();
 	}
 
 	// Check certain values to see if they are consistent
@@ -178,19 +183,11 @@ public class MenuManager : Singleton<MenuManager>{
 	}
 
 	public void ShowEventDescription(){
-		EventDescription.GetComponentInChildren<Text>().text = EventDescription.GetComponent<Localize>().GetText(DataLoaderEvents.GetData(currEvent).ID);
+		EventDescription.GetComponentInChildren<Text>().text = EventDescription.GetComponent<Localize>().GetText(currEventData.ID);
 	}
 
 	public void CloseEventDescription(){
 		EventDescription.SetActive(false);
-	}
-
-	public void ShowFoodInfo(string foodID){
-		menuPanelInfoController.Show(foodID);
-	}
-
-	public void HideFoodInfo(){
-		menuPanelInfoController.Hide();
 	}
 
 	public void ChangeNetCash(int delta){

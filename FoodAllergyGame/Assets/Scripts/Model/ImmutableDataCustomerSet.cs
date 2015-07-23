@@ -3,15 +3,16 @@ using System.Collections;
 
 public class ImmutableDataCustomerSet {
 
-	public string id;
+	private string id;
 	public string ID{
 		get { return id;}
 	}
 	
-	public string[] customerSet;
+	private string[] customerSet;
 	public string[] CustomerSet {
 		get{ return customerSet; }
 	}
+
 	public ImmutableDataCustomerSet(string id, IXMLNode xmlNode, string error){
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 		this.id = id;
