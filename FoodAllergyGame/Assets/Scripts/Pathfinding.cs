@@ -4,19 +4,20 @@ using System.Collections.Generic;
 
 public class Pathfinding : MonoBehaviour {
 
-	public int bestCost;
-	public GameObject targetNode;
-	public List<Node> openList;
-	public List<Node> closedList;
-	
+	public List <GameObject> pathNodes;
 
-////	public List<GameObject> FindPath(GameObject target, GameObject currNode){
-//		for (int i = 0; i < currNode.GetComponent<Node>().neighbors.Length; i ++){
-//			if(!openList.Contains(currNode.GetComponent<Node>().neighbors[i])){
-//				openList.Add(currNode.GetComponent<Node>().neighbors[i]);
-//				currNode.GetComponent<Node>().neighbors[i].distFromHome += (currNode.GetComponent<Node>().distFromHome + 1);
-//				currno
-//			}
-//		}
-//	}
+	public List<GameObject> findPath(GameObject startNode, GameObject targetNode){
+		pathNodes = new List<GameObject>();
+		GameObject currentNode = startNode;
+		while (currentNode != targetNode){
+			pathNodes.Add(currentNode);
+			if(Vector2.Distance(currentNode.GetComponent<Node>().neighbors[0].transform.position,targetNode.transform.position) < Vector2.Distance(currentNode.GetComponent<Node>().neighbors[1].transform.position,targetNode.transform.position)){
+				currentNode = currentNode.GetComponent<Node>().neighbors[0].gameObject;
+			}
+			else{
+				currentNode = currentNode.GetComponent<Node>().neighbors[1].gameObject;
+			}
+		}
+		return pathNodes;
+	}
 }
