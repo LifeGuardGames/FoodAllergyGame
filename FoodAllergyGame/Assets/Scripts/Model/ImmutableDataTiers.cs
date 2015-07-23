@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ImmutableDataTiers : MonoBehaviour {
+public class ImmutableDataTiers {
 
 	private string id;
 	public string ID{
