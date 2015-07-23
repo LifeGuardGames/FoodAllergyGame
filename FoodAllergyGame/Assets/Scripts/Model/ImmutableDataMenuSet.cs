@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System;
 
 public class ImmutableDataMenuSet{
-	public string id;
+
+	private string id;
 	public string ID{
 		get { return id;}
 	}
 
-	public string[] menuSet;
+	private string[] menuSet;
 	public string[] MenuSet {
 		get{ return menuSet; }
 	}

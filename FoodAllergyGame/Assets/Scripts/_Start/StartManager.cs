@@ -38,8 +38,8 @@ public class StartManager : Singleton<StartManager>{
 			}
 		}
 		ImmutableDataMenuSet currSet = DataLoaderMenuSet.GetData(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()).MenuSet);
-		for (int i = 0; i < currSet.menuSet.Length; i++){
-			unlockedFoodStock.Remove(currSet.menuSet[i]);
+		for (int i = 0; i < currSet.MenuSet.Length; i++){
+			unlockedFoodStock.Remove(currSet.MenuSet[i]);
 		}
 		DataManager.Instance.GameData.RestaurantEvent.MenuPlanningStock = unlockedFoodStock;
 	}
@@ -68,7 +68,7 @@ public class StartManager : Singleton<StartManager>{
 
 	public void OnPlayButtonClicked(){
 		if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "Event0T"){
-			FoodManager.Instance.GenerateMenu(DataLoaderMenuSet.GetData("MenuSet0T").menuSet.ToList());
+			FoodManager.Instance.GenerateMenu(DataLoaderMenuSet.GetData("MenuSet0T").MenuSet.ToList());
 			TransitionManager.Instance.TransitionScene(SceneUtils.TUTSCENE);
 		}
 		else{
