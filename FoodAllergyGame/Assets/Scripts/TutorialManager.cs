@@ -11,7 +11,7 @@ public class TutorialManager : MonoBehaviour{
 		// here we want to spawn the first tutorial scene so that we don't have a blank scene
 		currScene = Resources.Load("TuTObject0")as GameObject;
 		tutObject = GameObjectUtils.AddChildGUI(canvas, currScene);
-		tutObject.GetComponentInChildren<Button>().onClick.AddListener(() => ChangeScene(12));
+		tutObject.GetComponentInChildren<Button>().onClick.AddListener(() => ChangeScene(1));
 	}
 
 	//each time the user hits the button in the tutorial scene we will destroy the current scene load in a new scene 
@@ -38,7 +38,7 @@ public class TutorialManager : MonoBehaviour{
 			Destroy(tutObject);
 			currScene = Resources.Load("TuTObject" + (scene.ToString()))as GameObject;
 			tutObject = GameObjectUtils.AddChildGUI(canvas, currScene);
-			tutObject.GetComponentInChildren<Button>().onClick.AddListener(() => ChangeScene(1));
+			tutObject.GetComponentInChildren<Button>().onClick.AddListener(() => ChangeScene(5));
 			AudioManager.Instance.PlayClip("customerEnter");
 			break;
 		case 2:
@@ -59,7 +59,7 @@ public class TutorialManager : MonoBehaviour{
 			Destroy(tutObject);
 			currScene = Resources.Load("TuTObject" + (scene.ToString()))as GameObject;
 			tutObject = GameObjectUtils.AddChildGUI(canvas, currScene);
-			tutObject.GetComponentInChildren<Button>().onClick.AddListener(() => ChangeScene(5));
+			tutObject.GetComponentInChildren<Button>().onClick.AddListener(() => ChangeScene(12));
 			AudioManager.Instance.PlayClip("orderTime");
 			break;
 		case 5:
