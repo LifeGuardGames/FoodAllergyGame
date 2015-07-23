@@ -5,7 +5,7 @@
 		<KitchenTimer>5</KitchenTimer>
 		<CustomerSet>CustomerSet0T</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
-		<DayLength>1</DayLength>
+		<DayLength>72</DayLength>
 		<Allergy>None</Allergy>
 	</Event>
 	<Event ID="EventT2">	 <!-- Event name here -->
@@ -13,7 +13,7 @@
 		<KitchenTimer>5</KitchenTimer>
 		<CustomerSet>CustomerSet00</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
-		<DayLength>1</DayLength>
+		<DayLength>72</DayLength>
 		<Allergy>None</Allergy>
 	</Event>
 	<Event ID="Event01">
@@ -21,7 +21,7 @@
 		<KitchenTimer>3</KitchenTimer>
 		<CustomerSet>CustomerSet00</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
-		<DayLength>0.5</DayLength>
+		<DayLength>72</DayLength>
 		<Allergy>Peanut</Allergy>
 	</Event>
 	<Event ID="Event02">
@@ -29,7 +29,7 @@
 		<KitchenTimer>6.5</KitchenTimer>
 		<CustomerSet>CustomerSet00</CustomerSet>
 		<CustomerTimer>1</CustomerTimer>
-		<DayLength>2</DayLength>
+		<DayLength>72</DayLength>
 		<Allergy>Wheat</Allergy>
 	</Event>
 	<Event ID="Event03">
@@ -37,7 +37,7 @@
 		<KitchenTimer>3</KitchenTimer>
 		<CustomerSet>CustomerSet00</CustomerSet>
 		<CustomerTimer>0.7</CustomerTimer>
-		<DayLength>0.5</DayLength>
+		<DayLength>72</DayLength>
 		<Allergy>Dairy</Allergy>
 	</Event>
 	<Event ID="Event04">
@@ -45,7 +45,7 @@
 		<KitchenTimer>5</KitchenTimer>
 		<CustomerSet>CustomerSet00</CustomerSet>
 		<CustomerTimer>0.7</CustomerTimer>
-		<DayLength>2</DayLength>
+		<DayLength>72</DayLength>
 		<Allergy>None</Allergy>
 	</Event>
 	<Event ID="Event05">
@@ -53,7 +53,7 @@
 		<KitchenTimer>6.5</KitchenTimer>
 		<CustomerSet>CustomerSet00</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
-		<DayLength>0.5</DayLength>
+		<DayLength>72</DayLength>
 		<Allergy>None</Allergy>
 	</Event>
 </Events>
