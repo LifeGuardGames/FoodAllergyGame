@@ -13,17 +13,17 @@ public static class XMLUtils{
 	/// </summary>
 	/// <returns>The attributes.</returns>
 	/// <param name="node">Node.</param>
-    public static Hashtable GetAttributes(IXMLNode node){
-        Hashtable attributesHash = new Hashtable(); //Key: attribute name, Value: attribute value
+	public static Hashtable GetAttributes(IXMLNode node){
+		Hashtable attributesHash = new Hashtable(); //Key: attribute name, Value: attribute value
 
-        for(int i=0; i<node.Attributes.Count; i++){
-            XMLAttribute attr = node.Attributes[i];
-            string attrKey = attr.name;
-            string attrValue = attr.value;
-            attributesHash[attrKey] = attrValue;
-        }
-        return attributesHash;
-    }
+		for(int i=0; i<node.Attributes.Count; i++){
+			XMLAttribute attr = node.Attributes[i];
+			string attrKey = attr.name;
+			string attrValue = attr.value;
+			attributesHash[attrKey] = attrValue;
+		}
+		return attributesHash;
+	}
 	
 	/// <summary>
 	/// This returns the children of an xml node as a hashtable. 
@@ -31,16 +31,16 @@ public static class XMLUtils{
 	/// </summary>
 	/// <returns>The children.</returns>
 	/// <param name="node">Node.</param>
-    public static Hashtable GetChildren(IXMLNode node){
-        Hashtable childrenHash = new Hashtable(); //Key: name of the xml node, Value: xml node
+	public static Hashtable GetChildren(IXMLNode node){
+		Hashtable childrenHash = new Hashtable(); //Key: name of the xml node, Value: xml node
 
-        for(int i=0; i<node.Children.Count; i++){
-            IXMLNode childNode = node.Children[i];
-            string childNodeValue = childNode.value;
-            childrenHash[childNodeValue] = childNode;
-        }
-        return childrenHash;
-    }
+		for(int i=0; i<node.Children.Count; i++){
+			IXMLNode childNode = node.Children[i];
+			string childNodeValue = childNode.value;
+			childrenHash[childNodeValue] = childNode;
+		}
+		return childrenHash;
+	}
 	
 	/// <summary>
 	/// This returns the children of a xml node as a list. ONLY use this if 
@@ -48,40 +48,40 @@ public static class XMLUtils{
 	/// </summary>
 	/// <returns>The children list.</returns>
 	/// <param name="node">Node.</param>
-    public static List<IXMLNode> GetChildrenList(IXMLNode node){
-        List<IXMLNode> childrenList = new List<IXMLNode>();
+	public static List<IXMLNode> GetChildrenList(IXMLNode node){
+		List<IXMLNode> childrenList = new List<IXMLNode>();
 
-        for(int i=0; i<node.Children.Count; i++){
-           IXMLNode childNode = node.Children[i];
+		for(int i=0; i<node.Children.Count; i++){
+			IXMLNode childNode = node.Children[i];
            
-           childrenList.Add(childNode);
-        }
-        return childrenList;
-    }
+			childrenList.Add(childNode);
+		}
+		return childrenList;
+	}
 
-    //get the string value from a xml node. Default to empty string
+	//get the string value from a xml node. Default to empty string
 	/// <summary>
 	/// Gets the string value from a xml node. Default to empty string
 	/// </summary>
 	/// <returns>The string.</returns>
 	/// <param name="node">Node.</param>
-    public static string GetString(IXMLNode node){
-        return GetString(node, "");
-    }
+	public static string GetString(IXMLNode node){
+		return GetString(node, "");
+	}
 
-    public static string GetString(IXMLNode node, string defaultstring, string strError = null){
-        string retVal = defaultstring;
-        if(node != null){
-            if(node.Children.Count != 0)
-                retVal = node.Children[0].value;
-            else
-                Debug.LogError("Incoming element has more than one child...can't get value: " + node + "(" + node.Children.Count + ")");
-        }
-		else if ( strError != null )
+	public static string GetString(IXMLNode node, string defaultstring, string strError = null){
+		string retVal = defaultstring;
+		if(node != null){
+			if(node.Children.Count != 0)
+				retVal = node.Children[0].value;
+			else
+				Debug.LogError("Incoming element has more than one child...can't get value: " + node + "(" + node.Children.Count + ")");
+		}
+		else if(strError != null)
 			Debug.LogError(strError + "Required data is missing.");
 		
-        return retVal;
-    }
+		return retVal;
+	}
 
 	public static string[] GetStringList(IXMLNode node){
 		return GetStringList(node, "");
@@ -90,13 +90,17 @@ public static class XMLUtils{
 	public static string[] GetStringList(IXMLNode node, string defaultstring, string strError = null){
 		string tempVal = defaultstring;
 		if(node != null){
-			if(node.Children.Count != 0)
+			if(node.Children.Count != 0){
 				tempVal = node.Children[0].value;
-			else
-				Debug.LogError("Incoming element has more than one child...can't get value: " + node + "(" + node.Children.Count + ")");
+			}
+//			else{
+//				Debug.LogError("Incoming element has more than one or no child...can't get value: " + node + "(" + node.Children.Count + ")");
+//			}
 		}
-		else if ( strError != null )
+		else if(strError != null){
 			Debug.LogError(strError + "Required data is missing.");
+		}
+
 		string[] retVal;
 		retVal = tempVal.Split(","[0]);
 		return retVal;
@@ -107,9 +111,9 @@ public static class XMLUtils{
 	/// </summary>
 	/// <returns>The int.</returns>
 	/// <param name="node">Node.</param>
-    public static int GetInt(IXMLNode node){
-        return GetInt(node, 0);
-    }
+	public static int GetInt(IXMLNode node){
+		return GetInt(node, 0);
+	}
 
 	/// <summary>
 	/// Gets the int value from a xml node.
@@ -118,26 +122,26 @@ public static class XMLUtils{
 	/// <param name="node">Node.</param>
 	/// <param name="defaultValue">Default value.</param>
 	/// <param name="strError">String error.</param>
-    public static int GetInt(IXMLNode node, int defaultValue, string strError = null){
-        int retVal = defaultValue;
-        if(node != null){
-            if(node.Children.Count == 1)
-                retVal = Convert.ToInt32(node.Children[0].value);
-            else
-                Debug.LogError("Incoming element has more than one child...can't get value: " + node + "(" + node.Children.Count + ")");
-        }
-		else if ( strError != null )
+	public static int GetInt(IXMLNode node, int defaultValue, string strError = null){
+		int retVal = defaultValue;
+		if(node != null){
+			if(node.Children.Count == 1)
+				retVal = Convert.ToInt32(node.Children[0].value);
+			else
+				Debug.LogError("Incoming element has more than one child...can't get value: " + node + "(" + node.Children.Count + ")");
+		}
+		else if(strError != null)
 			Debug.LogError(strError + "Required data is missing.");
 		
-        return retVal;
-    }
+		return retVal;
+	}
 
 	/// <summary>
 	/// Gets the float value from xml node. default to 0
 	/// </summary>
 	/// <returns>The float.</returns>
 	/// <param name="node">Node.</param>
-	public static float GetFloat(IXMLNode node) {
+	public static float GetFloat(IXMLNode node){
 		return GetFloat(node, 0);		
 	}
 
@@ -150,16 +154,16 @@ public static class XMLUtils{
 	/// <param name="strError">String error.</param>
 	public static float GetFloat(IXMLNode node, float defaultValue, string strError = null){
 		float retVal = defaultValue;
-        if(node != null){
-            if(node.Children.Count == 1)
-                retVal = float.Parse(node.Children[0].value);
-            else
-                Debug.LogError("Incoming element has more than one child...can't get value: " + node + "(" + node.Children.Count + ")");
-        }
-		else if ( strError != null )
+		if(node != null){
+			if(node.Children.Count == 1)
+				retVal = float.Parse(node.Children[0].value);
+			else
+				Debug.LogError("Incoming element has more than one child...can't get value: " + node + "(" + node.Children.Count + ")");
+		}
+		else if(strError != null)
 			Debug.LogError(strError + "Required data is missing.");
 		
-        return retVal;		
+		return retVal;		
 	}
 
 	/// <summary>
@@ -168,15 +172,15 @@ public static class XMLUtils{
 	/// <returns><c>true</c>, if bool was gotten, <c>false</c> otherwise.</returns>
 	/// <param name="node">Node.</param>
 	/// <param name="defaultValue">If set to <c>true</c> default value.</param>
-    public static bool GetBool(IXMLNode node, bool defaultValue = true){
-        bool retVal = defaultValue;
-        if(node != null){
-            if(node.Children.Count == 1)
-                retVal = node.Children[0].value == "True";
-            else
-                Debug.LogError("Incoming element has more than one child...can't get value: " + node + "(" + node.Children.Count + ")");
-        }
-        return retVal;
+	public static bool GetBool(IXMLNode node, bool defaultValue = true){
+		bool retVal = defaultValue;
+		if(node != null){
+			if(node.Children.Count == 1)
+				retVal = node.Children[0].value == "True";
+			else
+				Debug.LogError("Incoming element has more than one child...can't get value: " + node + "(" + node.Children.Count + ")");
+		}
+		return retVal;
 
-    }
+	}
 }
