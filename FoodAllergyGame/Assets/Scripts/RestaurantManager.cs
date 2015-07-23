@@ -64,7 +64,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		Debug.Log (currSet);
 		currCusSet = new List<string>(DataLoaderCustomerSet.GetData(currSet).CustomerSet);
 
-		dayTime *= eventData.DayLengthMod;
+		dayTime = eventData.DayLengthMod;
 		dayTimeLeft = dayTime;
 
 		dayEarnedCash = 0;
