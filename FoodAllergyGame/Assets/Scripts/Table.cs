@@ -19,6 +19,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	public bool isBroken;
 	public GameObject _canvas;
 	public bool isGossiped;
+	public GameObject node;
 
 	//facilitates talk between customer and waiter
 	public void TalkToConsumer(){
@@ -97,11 +98,11 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		}
 			// Move the waiter to the table to do what it does
 			else{
-				Waiter.Instance.MoveToLocation(waiterSpot.position, this);
+				Waiter.Instance.FindRoute(node,this);
 			}
 		}
 		else{
-			Waiter.Instance.MoveToLocation(waiterSpot.position, this);
+			Waiter.Instance.FindRoute(node,this);
 		}
 //		}
 	}

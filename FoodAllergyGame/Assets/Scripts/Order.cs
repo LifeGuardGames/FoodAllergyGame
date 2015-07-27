@@ -91,7 +91,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 	}
 
 	public void OnClicked(){
-		Waiter.Instance.MoveToLocation(KitchenManager.Instance.waiterSpot.position, this);
+		Waiter.Instance.FindRoute(KitchenManager.Instance.waiterNode, this);
 	}
 	#endregion
 }

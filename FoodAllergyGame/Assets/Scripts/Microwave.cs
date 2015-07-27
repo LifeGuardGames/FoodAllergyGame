@@ -33,7 +33,7 @@ public class Microwave :Singleton<Microwave>, IWaiterSelection{
 	
 	public void OnClicked(){
 		//		if(!TouchManager.IsHoveringOverGUI()){
-		Waiter.Instance.MoveToLocation(waiterSpot.position, this);
+		Waiter.Instance.FindRoute(KitchenManager.Instance.waiterNode, this);
 		//		}
 	}
 	#endregion

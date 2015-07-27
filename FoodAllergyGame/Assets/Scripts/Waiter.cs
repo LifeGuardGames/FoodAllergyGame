@@ -21,6 +21,7 @@ public class Waiter : Singleton<Waiter>{
 	public float movingTime = 0.5f;
 	public GameObject currentLineCustomer;
 	public bool canMove = true;
+	public GameObject currentNode;
 
 	public WaiterAnimController waiterAnimController;
 
@@ -29,32 +30,44 @@ public class Waiter : Singleton<Waiter>{
 	void Start(){
 		ResetHands();
 	}
-
-	public void MoveToLocation(Vector3 location, MonoBehaviour caller){
-		if(canMove){
-			canMove = false;
-			currentCaller = (IWaiterSelection)caller;
-			if(currentCaller == null){
-				Debug.LogError("No IWaiterSelection script exists in the caller");
-			}
-
-			//If the waiter is already at its location, just call what it needs to call
-			if(transform.position == location){
-				MoveDoneCallback();
-			}
-			// Otherwise, move to the location and wait for callback
-			else{
-				moving = true;
-				waiterAnimController.SetMoving(true);
-
-				LeanTween.cancel(gameObject);
-				LeanTween.move(gameObject, location, movingTime)
-					.setEase(LeanTweenType.easeInOutQuad)
-						.setOnComplete(MoveDoneCallback);
-			}
+	public void FindRoute(GameObject testNode2, MonoBehaviour caller){
+		currentCaller = (IWaiterSelection)caller;
+		if(currentCaller == null){
+			Debug.LogError("No IWaiterSelection script exists in the caller");
+		}
+		if(currentNode == testNode2){
+			MoveDoneCallback();
+		}
+		else{
+		List <GameObject> pathList = Pathfinding.Instance.findPath(currentNode, testNode2);
+		currentNode = testNode2;
+		MoveToLocation(pathList, caller, 0);
 		}
 	}
-
+	public void MoveToLocation(Vector3 location, MonoBehaviour caller, int index){
+		if(canMove){
+			canMove = false;
+//			currentCaller = (IWaiterSelection)caller;
+//			if(currentCaller == null){
+//				Debug.LogError("No IWaiterSelection script exists in the caller");
+//				}
+		
+			//If the waiter is already at its location, just call what it needs to call
+//			if(transform.position == location){
+//				MoveDoneCallback();
+//			}
+			// Otherwise, move to the location and wait for callback
+//			else{
+			moving = true;
+			waiterAnimController.SetMoving(true);
+		
+			LeanTween.cancel(gameObject);
+			LeanTween.move(gameObject, location, movingTime)
+				.setEase(LeanTweenType.easeInOutQuad)
+						.setOnComplete(MoveDoneCallback);
+//			}
+		}
+	}
 	public void MoveDoneCallback(){
 		// Note: Set animations to false before OnWaiterArrived
 		moving = false;
