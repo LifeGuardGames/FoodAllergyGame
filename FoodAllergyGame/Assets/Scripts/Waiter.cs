@@ -22,6 +22,8 @@ public class Waiter : Singleton<Waiter>{
 	public GameObject currentLineCustomer;
 	public bool canMove = true;
 	public GameObject currentNode;
+	private List<GameObject> pathList;
+	private int index = 0;
 
 	public WaiterAnimController waiterAnimController;
 
@@ -39,7 +41,7 @@ public class Waiter : Singleton<Waiter>{
 			MoveDoneCallback();
 		}
 		else{
-		List <GameObject> pathList = Pathfinding.Instance.findPath(currentNode, testNode2);
+		pathList = Pathfinding.Instance.findPath(currentNode, testNode2);
 		currentNode = testNode2;
 		MoveToLocation(pathList, caller, 0);
 		}
