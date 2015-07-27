@@ -62,7 +62,7 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 		
 		// Remove the food from its attachment
 		if(MenuManager.Instance.RemoveFoodFromMenuList(foodID)){
-			MenuManager.Instance.ChangeNetCash(Cost);
+			MenuManager.Instance.ChangeNetCash(Cost * -1);
 		}
 	}
 	#endregion
@@ -84,7 +84,7 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 			transform.localPosition = startPosition;
 			if(startParent.gameObject.GetComponent<MenuDragSlot>().isSelectedSlot){
 				MenuManager.Instance.AddFoodToMenuList(foodID);
-				MenuManager.Instance.ChangeNetCash(Cost * -1);
+				MenuManager.Instance.ChangeNetCash(Cost);
 			}
 		}
 		else{	// Save new parent

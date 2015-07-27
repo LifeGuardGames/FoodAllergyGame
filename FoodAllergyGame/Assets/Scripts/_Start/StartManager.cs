@@ -9,7 +9,6 @@ public class StartManager : Singleton<StartManager>{
 	public TweenToggleDemux infoCategoriesDemux;
 	public TweenToggleDemux infoDetailDemux;
 
-
 	private ImmutableDataEvents currentEvent = null;
 
 	void Start(){
