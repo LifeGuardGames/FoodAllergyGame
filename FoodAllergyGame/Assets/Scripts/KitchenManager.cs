@@ -10,6 +10,7 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 	public Transform waiterSpot;	// position of the waiter
 	public List<Transform> orderSpotList;
 	public float cookTimer;			// times it takes to cook food
+	public GameObject waiterNode;
 
 	public Animator kitchenAnimator;
 	private int ordersCooking = 0;		// Keep an aux count for animation
@@ -86,7 +87,7 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 
 	public void OnClicked(){
 //		if(!TouchManager.IsHoveringOverGUI()){
-			Waiter.Instance.MoveToLocation(waiterSpot.position, this);
+			Waiter.Instance.FindRoute(waiterNode, this);
 //		}
 	}
 	#endregion
