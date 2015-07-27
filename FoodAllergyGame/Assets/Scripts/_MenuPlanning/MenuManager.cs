@@ -27,14 +27,21 @@ public class MenuManager : Singleton<MenuManager>{
 	public GameObject rightButton;
 
 	public List<Transform> selectedMenuSlotList;
-	public List<string> selectedMenuStringList;	// Internal aux list keeping track of current selection
+	private List<string> selectedMenuStringList = new List<string>();
+	public List<string> SelectedMenuStringList{
+		get{ return selectedMenuStringList; }
+	}
+
+	// Internal aux list keeping track of current selection
 
 	public Transform dragAux;
 
-	public Text textDayCashNet;
+	private int menuCost = 0;
+	public Text menuCostText;
 	public Animation textCashAnimation;
-	private int dayCashNetAux = 0;
 	public GameObject tutFinger;
+
+	public GameObject doneButton;
 
 	void Start(){
 		currEvent = DataManager.Instance.GetEvent();
@@ -46,10 +53,13 @@ public class MenuManager : Singleton<MenuManager>{
 		// Load the number of slots from progress
 		menuSize = TierManager.Instance.GetMenuSlots();
 		selectedMenuController.Init(menuSize);
-	
+		allergiesChartController.Init(menuSize);
+
 		PopulateStockGrid();
 
 		InitSanityCheck();
+
+		doneButton.SetActive(false);
 	}
 
 	// Check certain values to see if they are consistent
@@ -158,13 +168,24 @@ public class MenuManager : Singleton<MenuManager>{
 			// Add id to aux string list
 			selectedMenuStringList.Add(foodID);
 			Debug.Log("Added " + foodID);
+			allergiesChartController.UpdateChart();
+
+			if(selectedMenuStringList.Count == menuSize){
+				doneButton.SetActive(true);
+			}
 			return true;
 		}
 	}
 
 	public bool RemoveFoodFromMenuList(string foodID){
 		// Soft remove - no error if doesnt find key
-		return selectedMenuStringList.Remove(foodID);
+		bool isRemoved = selectedMenuStringList.Remove(foodID);
+		allergiesChartController.UpdateChart();
+
+		if(isRemoved){
+			doneButton.SetActive(false);
+		}
+		return isRemoved;
 	}
 
 	public void OnMenuSelectionDone(){
@@ -191,8 +212,8 @@ public class MenuManager : Singleton<MenuManager>{
 	}
 
 	public void ChangeNetCash(int delta){
-		dayCashNetAux += delta;
+		menuCost += delta;
 		textCashAnimation.Play();
-		textDayCashNet.text = "$" + dayCashNetAux.ToString();
+		menuCostText.text = "$" + menuCost.ToString();
 	}
 }
