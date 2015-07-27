@@ -23,7 +23,7 @@ public class Waiter : Singleton<Waiter>{
 	public bool canMove = true;
 	public GameObject currentNode;
 	private List<GameObject> pathList;
-	private int index = 1;
+	private int index = 0;
 
 	public WaiterAnimController waiterAnimController;
 
@@ -42,6 +42,7 @@ public class Waiter : Singleton<Waiter>{
 		}
 		else{
 		pathList = Pathfinding.Instance.findPath(currentNode, testNode2);
+		Debug.Log(pathList.Count);
 		currentNode = testNode2;
 		MoveToLocation(pathList, index);
 		}
@@ -62,7 +63,7 @@ public class Waiter : Singleton<Waiter>{
 //			else{
 			moving = true;
 			waiterAnimController.SetMoving(true);
-			Debug.Log (path[index].name);
+//			Debug.Log (path[index].name);
 			LeanTween.cancel(gameObject);
 			LeanTween.move(gameObject, path[index].transform.position, movingTime)
 				.setEase(LeanTweenType.easeInOutQuad)
@@ -71,7 +72,9 @@ public class Waiter : Singleton<Waiter>{
 		}
 	}
 	public void MoveDoneCallback(){
-		if(index == pathList.Count){
+		Debug.Log (currentNode);
+		Debug.Log(pathList[index]);
+		if(currentNode == pathList[index]){
 			// Note: Set animations to false before OnWaiterArrived
 			moving = false;
 			waiterAnimController.SetMoving(false);
@@ -82,6 +85,7 @@ public class Waiter : Singleton<Waiter>{
 			currentCaller.OnWaiterArrived();
 		}
 		else{
+			canMove = true;
 			index++;
 			MoveToLocation(pathList, index);
 		}
