@@ -6,7 +6,7 @@ public class TierManager : Singleton<TierManager> {
 
 	private string tierXMLPrefix = "Tier";	// Prefix of the tier xml keys, ie. "Tier04"
 
-	public int tier;						// Cached tier for use throughout game
+	private int tier;						// Cached tier for use throughout game
 	public int Tier{
 		get{ return tier; }
 	}

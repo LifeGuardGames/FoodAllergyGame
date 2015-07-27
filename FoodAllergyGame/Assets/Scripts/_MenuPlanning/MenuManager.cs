@@ -6,27 +6,27 @@ using UnityEngine.UI;
 // TODO Nested list loop (menu x foodstock) in here, check run time
 public class MenuManager : Singleton<MenuManager>{
 
-	public int menuSize;
+	private int menuSize;
 
 	public GameObject foodStockButtonPrefab;
 
 	public AllergiesChartController allergiesChartController;
 	public SelectedMenuController selectedMenuController;
 	public GameObject foodStockGrid;
-	public GameObject EventDescription;
+	public GameObject eventDescription;
 
 	private string currEvent;
 	private ImmutableDataEvents currEventData;
 
-	public List<string> foodStockList;			// All the foods that are allowed for today
-	public List<Transform> currentFoodStockSlotList;
+	private List<string> foodStockList = new List<string>();	// All the foods that are allowed for today
+	private List<Transform> currentFoodStockSlotList = new List<Transform>();
 
-	public int foodStockPage = 0;
-	public int foodStockPageSize = 4;
+	private int foodStockPage = 0;
+	private int foodStockPageSize = 4;
 	public GameObject leftButton;
 	public GameObject rightButton;
 
-	public List<Transform> selectedMenuSlotList;
+	private List<Transform> selectedMenuSlotList;
 	private List<string> selectedMenuStringList = new List<string>();
 	public List<string> SelectedMenuStringList{
 		get{ return selectedMenuStringList; }
@@ -47,7 +47,7 @@ public class MenuManager : Singleton<MenuManager>{
 		currEvent = DataManager.Instance.GetEvent();
 		currEventData = DataLoaderEvents.GetData(currEvent);
 
-		EventDescription.SetActive(true);
+		eventDescription.SetActive(true);
 		ShowEventDescription();
 
 		// Load the number of slots from progress
@@ -188,32 +188,32 @@ public class MenuManager : Singleton<MenuManager>{
 		return isRemoved;
 	}
 
-	public void OnMenuSelectionDone(){
-		// Check to see if we have all selection slots filled
-		if(selectedMenuStringList.Count == menuSize){
-			FoodManager.Instance.GenerateMenu(selectedMenuStringList);
-			TransitionManager.Instance.TransitionScene(SceneUtils.RESTAURANT);
-		}
-		else{
-			Debug.LogWarning("Menu not complete!");
-		}
-	}
-
 	public void OnBackButtonClicked(){
 		TransitionManager.Instance.TransitionScene(SceneUtils.START);
 	}
 
 	public void ShowEventDescription(){
-		EventDescription.GetComponentInChildren<Text>().text = EventDescription.GetComponent<Localize>().GetText(currEventData.ID);
+		eventDescription.GetComponentInChildren<Text>().text = eventDescription.GetComponent<Localize>().GetText(currEventData.ID);
 	}
 
 	public void CloseEventDescription(){
-		EventDescription.SetActive(false);
+		eventDescription.SetActive(false);
 	}
 
 	public void ChangeNetCash(int delta){
 		menuCost += delta;
 		textCashAnimation.Play();
 		menuCostText.text = "$" + menuCost.ToString();
+	}
+
+	public void OnMenuSelectionDone(){
+		// Check to see if we have all selection slots filled
+		if(selectedMenuStringList.Count == menuSize){
+			FoodManager.Instance.GenerateMenu(selectedMenuStringList, menuCost);
+			TransitionManager.Instance.TransitionScene(SceneUtils.RESTAURANT);
+		}
+		else{
+			Debug.LogWarning("Menu not complete!");
+		}
 	}
 }

@@ -8,6 +8,8 @@ public class RestaurantUIManager : MonoBehaviour {
 	public GameObject unlocked;
 	public Image dayProgressBar;
 
+	public DayOverUIController dayOverUIController;
+
 	public void UpdateProgressBar(float totalTime, float timeLeft){
 		float timeElapsed = totalTime - timeLeft;
 		float percentage = timeElapsed / totalTime;
@@ -26,14 +28,13 @@ public class RestaurantUIManager : MonoBehaviour {
 		RestaurantManager.Instance.DeployMedic();
 	}
 
-	public void DayComplete(float dayCash, int missingCustomers, float averageSatisfaction){
-		if(DataManager.Instance.GetEvent() == "Event0T"){
+	public void DayComplete(int customersMissed, float avgSatisfaction, int tips, int menuCost, int earningsNet, int totalCash){
+		if(DataManager.Instance.GetEvent() == "Event0T"){	// TODO abstract out
 			unlocked.SetActive(true);
 		}
+
+		dayOverUIController.Populate(customersMissed, avgSatisfaction, tips, menuCost, earningsNet, totalCash);
 		dayOverUI.SetActive(true);
-		dayOverUI.transform.GetChild(1).GetComponent<Text>().text += dayCash.ToString();
-		dayOverUI.transform.GetChild(2).GetComponent<Text>().text += missingCustomers.ToString();
-		dayOverUI.transform.GetChild(3).GetComponent<Text>().text += averageSatisfaction.ToString();
 		AudioManager.Instance.PlayClip("EndOfDay");
 	}
 }
