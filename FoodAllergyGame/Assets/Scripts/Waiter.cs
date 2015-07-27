@@ -23,7 +23,7 @@ public class Waiter : Singleton<Waiter>{
 	public bool canMove = true;
 	public GameObject currentNode;
 	private List<GameObject> pathList;
-	private int index = 0;
+	private int index = 1;
 
 	public WaiterAnimController waiterAnimController;
 
@@ -43,10 +43,10 @@ public class Waiter : Singleton<Waiter>{
 		else{
 		pathList = Pathfinding.Instance.findPath(currentNode, testNode2);
 		currentNode = testNode2;
-		MoveToLocation(pathList, caller, 0);
+		MoveToLocation(pathList, index);
 		}
 	}
-	public void MoveToLocation(Vector3 location, MonoBehaviour caller, int index){
+	public void MoveToLocation(List<GameObject> path, int index){
 		if(canMove){
 			canMove = false;
 //			currentCaller = (IWaiterSelection)caller;
@@ -62,23 +62,29 @@ public class Waiter : Singleton<Waiter>{
 //			else{
 			moving = true;
 			waiterAnimController.SetMoving(true);
-		
+			Debug.Log (path[index].name);
 			LeanTween.cancel(gameObject);
-			LeanTween.move(gameObject, location, movingTime)
+			LeanTween.move(gameObject, path[index].transform.position, movingTime)
 				.setEase(LeanTweenType.easeInOutQuad)
 						.setOnComplete(MoveDoneCallback);
 //			}
 		}
 	}
 	public void MoveDoneCallback(){
-		// Note: Set animations to false before OnWaiterArrived
-		moving = false;
-		waiterAnimController.SetMoving(false);
+		if(index == pathList.Count){
+			// Note: Set animations to false before OnWaiterArrived
+			moving = false;
+			waiterAnimController.SetMoving(false);
 
-		if(currentCaller == null){
-			Debug.LogError("No IWaiterSelection script currently exists");
+			if(currentCaller == null){
+				Debug.LogError("No IWaiterSelection script currently exists");
+			}
+			currentCaller.OnWaiterArrived();
 		}
-		currentCaller.OnWaiterArrived();
+		else{
+			index++;
+			MoveToLocation(pathList, index);
+		}
 	}
 
 
