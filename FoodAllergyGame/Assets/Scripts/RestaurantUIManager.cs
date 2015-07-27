@@ -4,10 +4,8 @@ using System.Collections;
 
 public class RestaurantUIManager : MonoBehaviour {
 	public Text cashText;
-	public GameObject dayOverUI;
 	public GameObject unlocked;
 	public Image dayProgressBar;
-
 	public DayOverUIController dayOverUIController;
 
 	public void UpdateProgressBar(float totalTime, float timeLeft){
@@ -34,7 +32,7 @@ public class RestaurantUIManager : MonoBehaviour {
 		}
 
 		dayOverUIController.Populate(customersMissed, avgSatisfaction, tips, menuCost, earningsNet, totalCash);
-		dayOverUI.SetActive(true);
+		dayOverUIController.gameObject.SetActive(true);
 		AudioManager.Instance.PlayClip("EndOfDay");
 	}
 }
