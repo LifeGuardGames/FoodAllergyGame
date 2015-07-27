@@ -21,13 +21,13 @@ public class FoodManager : Singleton<FoodManager>{
 		
 	public List<string> tempMenu;
 
-	public int dayCashNetFromMenu;
-	public int DayCashNetFromMenu{
-		get{ return dayCashNetFromMenu; }
+	private int menuCost;
+	public int MenuCost{
+		get{ return menuCost; }
 	}
 
 	void Awake(){
-		dayCashNetFromMenu = 0;
+		menuCost = 0;
 	}
 
 	////////////////////////////////////
@@ -37,12 +37,12 @@ public class FoodManager : Singleton<FoodManager>{
 	/// <summary>
 	/// Creates a list of possible menu items from the FoodLoader
 	/// </summary>
-	public void GenerateMenu(List<string> _menuList){
+	public void GenerateMenu(List<string> _menuList, int cost){
 		menuList = new List<ImmutableDataFood>();
 		foreach(string foodID in _menuList){
 			menuList.Add(DataLoaderFood.GetData(foodID));
-			dayCashNetFromMenu -= DataLoaderFood.GetData(foodID).Cost;
 		}
+		menuCost = cost;
 	}
 
 	#endregion

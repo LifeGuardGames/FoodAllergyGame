@@ -19,13 +19,13 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public bool dayOver = false;	// bool controlling customer spawning depending on the stage of the day
 	public int actTables;
 
-	private int dayEarnedCash;			// The cash that is earned for the day
+	private int dayEarnedCash;		// The cash that is earned for the day
 	public int DayEarnedCash{
 		get{ return dayEarnedCash; }
 	}
-
-	private int dayCashRevenue = 0;		// The total positive cashed gained for the day
-
+	
+	private int dayCashRevenue;		// The total positive cashed gained for the day
+	
 	//tracks customers via hashtable
 	private Dictionary<string, GameObject> customerHash;
 	// our satisfaction ai 
@@ -68,7 +68,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		dayTimeLeft = dayTime;
 
 		dayEarnedCash = 0;
-//		dayCashNet = FoodManager.Instance.DayCashNetFromMenu;
+		dayCashRevenue = 0;
+
 		restaurantUI.UpdateCash(dayEarnedCash);
 
 		StartCoroutine("SpawnCustomer");
@@ -137,7 +138,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public void UpdateCash(int billAmount){
 		dayEarnedCash += billAmount;
 		restaurantUI.UpdateCash(dayEarnedCash);
-
+		
 		// Update revenue if positive bill
 		if(billAmount > 0){
 			dayCashRevenue += billAmount;
@@ -148,12 +149,15 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	private void CheckForGameOver(){
 		if(dayOver){
 			if(customerHash.Count == 0){
-
-				restaurantUI.DayComplete(dayEarnedCash, satisfactionAI.MissingCustomers, satisfactionAI.AvgSatifaction());
-
 				// Save data here
-				DataManager.Instance.GameData.Cash.SaveCash(dayEarnedCash, dayCashRevenue);
+				int dayNetCash = dayEarnedCash - FoodManager.Instance.MenuCost;
+				DataManager.Instance.GameData.Cash.SaveCash(dayNetCash, dayCashRevenue);
 				DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
+
+				// Show day complete UI
+				restaurantUI.DayComplete(satisfactionAI.MissingCustomers, satisfactionAI.AvgSatifaction(), dayEarnedCash,
+				                         FoodManager.Instance.MenuCost, dayNetCash,
+				                         DataManager.Instance.GameData.Cash.CurrentCash);
 			}
 		}
 	}

@@ -12,6 +12,6 @@ public class MutableDataCash {
 
 	public void SaveCash(int dayCashNet, int dayCashRevenue){
 		CurrentCash += dayCashNet;
-		TotalCash += dayCashRevenue; 
+		TotalCash += dayCashRevenue;
 	}
 }
