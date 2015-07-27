@@ -75,6 +75,7 @@ public class Waiter : Singleton<Waiter>{
 		Debug.Log (currentNode);
 		Debug.Log(pathList[index]);
 		if(currentNode == pathList[index]){
+			index = 0;
 			// Note: Set animations to false before OnWaiterArrived
 			moving = false;
 			waiterAnimController.SetMoving(false);

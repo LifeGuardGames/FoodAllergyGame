@@ -18,9 +18,13 @@ public class Pathfinding : Singleton<Pathfinding> {
 					dist = Vector2.Distance(currentNode.GetComponent<Node>().neighbors[i].transform.position,targetNode.transform.position);
 					tempNode = currentNode.GetComponent<Node>().neighbors[i].gameObject;
 				}
+				else{
+					Debug.LogError("Too far");
+				}
 			}
 			currentNode = tempNode;
 			pathNodes.Add(currentNode);
+			dist = 100000f;
 		}
 		pathNodes.Add(targetNode);
 		return pathNodes;
