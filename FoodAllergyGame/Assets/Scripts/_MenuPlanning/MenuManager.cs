@@ -167,7 +167,6 @@ public class MenuManager : Singleton<MenuManager>{
 		else{
 			// Add id to aux string list
 			selectedMenuStringList.Add(foodID);
-			Debug.Log("Added " + foodID);
 			allergiesChartController.UpdateChart();
 
 			if(selectedMenuStringList.Count == menuSize){

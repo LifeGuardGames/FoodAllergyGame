@@ -66,8 +66,6 @@ public class AllergiesChartController : MonoBehaviour {
 
 	private void ChangeBar(Image image, int count){
 		// Change the color of the bar
-		Debug.Log(colorChunkLimit);
-
 		int colorTier = count / colorChunkLimit;
 		switch(colorTier){
 		case 0:	// Do nothing
