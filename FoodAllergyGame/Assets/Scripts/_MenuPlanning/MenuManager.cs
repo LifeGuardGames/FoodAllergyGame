@@ -18,8 +18,8 @@ public class MenuManager : Singleton<MenuManager>{
 	private string currEvent;
 	private ImmutableDataEvents currEventData;
 
+	public List<Transform> currentFoodStockSlotList;			// Slots of the menu food stock
 	private List<string> foodStockList = new List<string>();	// All the foods that are allowed for today
-	private List<Transform> currentFoodStockSlotList = new List<Transform>();
 
 	private int foodStockPage = 0;
 	private int foodStockPageSize = 4;
