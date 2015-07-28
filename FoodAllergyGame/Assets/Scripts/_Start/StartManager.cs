@@ -9,6 +9,8 @@ public class StartManager : Singleton<StartManager>{
 	public TweenToggleDemux infoCategoriesDemux;
 	public TweenToggleDemux infoDetailDemux;
 
+	public GameObject unlockParent;
+
 //	private ImmutableDataEvents currentEvent = null;
 
 	void Start(){
@@ -19,12 +21,15 @@ public class StartManager : Singleton<StartManager>{
 		if(DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent){
 			//TODO Generate event from data
 			if(DataManager.Instance.GameData.Tutorial.IsTutorial1Done == false){
+				unlockParent.SetActive(false);
 				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT1";
 			}
 			else if(DataManager.Instance.GameData.Tutorial.IsTutorial2Done == false){
+				unlockParent.SetActive(true);
 				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT2";
 			}
 			else{
+				unlockParent.SetActive(false);
 				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "Event00";
 			}
 

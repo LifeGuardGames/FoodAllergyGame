@@ -47,8 +47,8 @@ public class MenuManager : Singleton<MenuManager>{
 		currEvent = DataManager.Instance.GetEvent();
 		currEventData = DataLoaderEvents.GetData(currEvent);
 
-		eventDescription.SetActive(true);
-		ShowEventDescription();
+//		eventDescription.SetActive(true);
+//		ShowEventDescription();	// TODO taking this out for now
 
 		// Load the number of slots from progress
 		menuSize = TierManager.Instance.GetMenuSlots();
