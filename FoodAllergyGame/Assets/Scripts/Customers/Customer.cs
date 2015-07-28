@@ -327,11 +327,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	// called if the food's ingrediants match the allergy starts a timer in which the player must hit the save me button
 	public virtual void AllergyAttack(){
 //		attentionSpan = 5.0f;
-		if(RestaurantManager.Instance.firstSickCustomer){
-			RestaurantManager.Instance.firstSickCustomer = false;
-			RestaurantManager.Instance.medicButton.GetComponent<Animator>().SetBool("TutMedic", true);
-			RestaurantManager.Instance.tutText.SetActive(true);
-		}
+
 		customerUI.ToggleAllergyAttack(true);
 		RestaurantManager.Instance.SickCustomers.Add(this.gameObject);
 		AudioManager.Instance.PlayClip("allergyAttack");
@@ -340,6 +336,11 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		}
 		if(!RestaurantManager.Instance.firstSickCustomer){
 			StartCoroutine("AllergyTimer");
+		}
+		if(RestaurantManager.Instance.firstSickCustomer){
+			RestaurantManager.Instance.firstSickCustomer = false;
+			RestaurantManager.Instance.medicButton.GetComponent<Animator>().SetBool("TutMedic", true);
+			RestaurantManager.Instance.tutText.SetActive(true);
 		}
 	}
 	// if they are saved they take a small penalty for making the mistake and the customer will want the check asap
