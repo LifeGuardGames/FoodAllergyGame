@@ -23,7 +23,6 @@ public class AudioManager : LgAudioManager<AudioManager>{
 		yield return new WaitForSeconds(0.5f);
 		if(isMusicOn){
 			AudioClip backgroundClip = null;
-			Debug.Log("Loading " + backgroundMusic);
 			if(backgroundMusic != null){
 				backgroundClip = Resources.Load(backgroundMusic) as AudioClip;
 			}
