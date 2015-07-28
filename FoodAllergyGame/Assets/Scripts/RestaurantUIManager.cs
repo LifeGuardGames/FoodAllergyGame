@@ -4,7 +4,6 @@ using System.Collections;
 
 public class RestaurantUIManager : MonoBehaviour {
 	public Text cashText;
-	public GameObject unlocked;
 	public Image dayProgressBar;
 	public DayOverUIController dayOverUIController;
 
@@ -27,10 +26,6 @@ public class RestaurantUIManager : MonoBehaviour {
 	}
 
 	public void DayComplete(int customersMissed, float avgSatisfaction, int tips, int menuCost, int earningsNet, int totalCash){
-		if(DataManager.Instance.GetEvent() == "Event0T"){	// TODO abstract out
-			unlocked.SetActive(true);
-		}
-
 		dayOverUIController.Populate(customersMissed, avgSatisfaction, tips, menuCost, earningsNet, totalCash);
 		dayOverUIController.gameObject.SetActive(true);
 		AudioManager.Instance.PlayClip("EndOfDay");

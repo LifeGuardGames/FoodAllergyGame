@@ -32,8 +32,10 @@ public class DataManager : Singleton<DataManager> {
 		isCreated = true;
 
 
+		/////////
+		PlayerPrefs.DeleteAll(); 	// Restart on new game
+		/////////
 
-		PlayerPrefs.DeleteAll(); 	// TODO is this needed???
 
 		// JSON serializer setting
 		JSON.Instance.Parameters.UseExtensions = false;

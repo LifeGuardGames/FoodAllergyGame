@@ -9,7 +9,7 @@ public class StartManager : Singleton<StartManager>{
 	public TweenToggleDemux infoCategoriesDemux;
 	public TweenToggleDemux infoDetailDemux;
 
-	private ImmutableDataEvents currentEvent = null;
+//	private ImmutableDataEvents currentEvent = null;
 
 	void Start(){
 		// Refresh tier calculation
@@ -18,14 +18,21 @@ public class StartManager : Singleton<StartManager>{
 		// Check to see if the previous day has been completed
 		if(DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent){
 			//TODO Generate event from data
-//			currentEvent = ....
-			if(DataManager.Instance.GetEvent()!="EventT2"){
-				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = DataLoaderEvents.GetData("Event0T").ID;
+			if(DataManager.Instance.GameData.Tutorial.IsTutorial1Done == false){
+				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT1";
 			}
+			else if(DataManager.Instance.GameData.Tutorial.IsTutorial2Done == false){
+				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT2";
+			}
+			else{
+				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "Event00";
+			}
+
+			// Lock the generate event bool until day is completed
 			DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = false;
 		}
 		else{
-			currentEvent = DataLoaderEvents.GetData(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent);
+//			currentEvent = DataLoaderEvents.GetData(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent);
 		}
 
 		//TODO Set up visuals and appearances for that day based on event
@@ -48,8 +55,8 @@ public class StartManager : Singleton<StartManager>{
 
 	public void OnPlayButtonClicked(){
 		// TODO integrate with datamanager tutorial fields
-		if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "Event0T"){
-			FoodManager.Instance.GenerateMenu(DataLoaderMenuSet.GetData("MenuSet0T").MenuSet.ToList(), 0);
+		if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT1"){
+			FoodManager.Instance.GenerateMenu(DataLoaderMenuSet.GetData("MenuSetT1").MenuSet.ToList(), 0);
 			TransitionManager.Instance.TransitionScene(SceneUtils.TUTSCENE);
 		}
 		else{

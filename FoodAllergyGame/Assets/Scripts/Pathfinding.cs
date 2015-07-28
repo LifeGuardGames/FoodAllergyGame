@@ -19,7 +19,7 @@ public class Pathfinding : Singleton<Pathfinding> {
 					tempNode = currentNode.GetComponent<Node>().neighbors[i].gameObject;
 				}
 				else{
-					Debug.LogError("Too far");
+//					Debug.LogError("Too far");
 				}
 			}
 			currentNode = tempNode;

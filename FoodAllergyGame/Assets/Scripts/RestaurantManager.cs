@@ -152,7 +152,17 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				// Save data here
 				int dayNetCash = dayEarnedCash - FoodManager.Instance.MenuCost;
 				DataManager.Instance.GameData.Cash.SaveCash(dayNetCash, dayCashRevenue);
+
+				// Unlock new event generation for StartManager
 				DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
+
+				// Set tutorial to done if applies
+				if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT1"){
+					DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
+				}
+				else if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT2"){
+					DataManager.Instance.GameData.Tutorial.IsTutorial2Done = true;
+				}
 
 				// Show day complete UI
 				restaurantUI.DayComplete(satisfactionAI.MissingCustomers, satisfactionAI.AvgSatifaction(), dayEarnedCash,
@@ -183,13 +193,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 	// TEMPORARY FOR PROTOTYPE
 	public void RestartGame(){
-		if(DataManager.Instance.GetEvent() == "Event0T"){
-			DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = DataLoaderEvents.GetData("EventT2").ID;
-			TransitionManager.Instance.TransitionScene(SceneUtils.MENUPLANNING);
-		}
-		else{
-			TransitionManager.Instance.TransitionScene(SceneUtils.START);
-		}
+		TransitionManager.Instance.TransitionScene(SceneUtils.START);
 	}
 
 	public LineController GetLine(){

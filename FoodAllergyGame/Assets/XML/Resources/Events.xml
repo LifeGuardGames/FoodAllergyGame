@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Events>
-	<Event ID="Event0T">	 <!-- Event name here -->
-		<MenuSet>T</MenuSet>
+	<Event ID="EventT1">	 <!-- Tutorial 1 -->
+		<MenuSet>MenuSetT1</MenuSet>
 		<KitchenTimer>5</KitchenTimer>
 		<CustomerSet>CustomerSet0T</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
 		<DayLength>72</DayLength>
 		<Allergy>None</Allergy>
 	</Event>
-	<Event ID="EventT2">	 <!-- Event name here -->
-		<MenuSet>0</MenuSet>
+	<Event ID="EventT2">	 <!-- Tutorial 2 -->
+		<MenuSet>MenuSet00</MenuSet>
 		<KitchenTimer>5</KitchenTimer>
 		<CustomerSet>CustomerSet00</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
 		<DayLength>72</DayLength>
 		<Allergy>None</Allergy>
 	</Event>
-	<Event ID="Event01">
-		<MenuSet>0</MenuSet>
+	<Event ID="Event00">
+		<MenuSet>MenuSet00</MenuSet>
 		<KitchenTimer>3</KitchenTimer>
 		<CustomerSet>CustomerSet00</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
 		<DayLength>72</DayLength>
 		<Allergy>Peanut</Allergy>
 	</Event>
-	<Event ID="Event02">
-		<MenuSet>0</MenuSet>
+	<Event ID="Event01">
+		<MenuSet>MenuSet00</MenuSet>
 		<KitchenTimer>6.5</KitchenTimer>
 		<CustomerSet>CustomerSet00</CustomerSet>
 		<CustomerTimer>1</CustomerTimer>
 		<DayLength>72</DayLength>
 		<Allergy>Wheat</Allergy>
 	</Event>
-	<Event ID="Event03">
-		<MenuSet>0</MenuSet>
+	<Event ID="Event02">
+		<MenuSet>MenuSet00</MenuSet>
 		<KitchenTimer>3</KitchenTimer>
 		<CustomerSet>CustomerSet00</CustomerSet>
 		<CustomerTimer>0.7</CustomerTimer>
 		<DayLength>72</DayLength>
 		<Allergy>Dairy</Allergy>
 	</Event>
-	<Event ID="Event04">
-		<MenuSet>0</MenuSet>
+	<Event ID="Event03">
+		<MenuSet>MenuSet00</MenuSet>
 		<KitchenTimer>5</KitchenTimer>
 		<CustomerSet>CustomerSet00</CustomerSet>
 		<CustomerTimer>0.7</CustomerTimer>
 		<DayLength>72</DayLength>
 		<Allergy>None</Allergy>
 	</Event>
-	<Event ID="Event05">
-		<MenuSet>0</MenuSet>
+	<Event ID="Event04">
+		<MenuSet>MenuSet00</MenuSet>
 		<KitchenTimer>6.5</KitchenTimer>
 		<CustomerSet>CustomerSet00</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
