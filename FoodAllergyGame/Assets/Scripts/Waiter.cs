@@ -31,20 +31,22 @@ public class Waiter : Singleton<Waiter>{
 
 	void Start(){
 		ResetHands();
+		pathList = new List<GameObject>();
 	}
-	public void FindRoute(GameObject testNode2, MonoBehaviour caller){
+	public void FindRoute(GameObject targetNode, MonoBehaviour caller){
 		currentCaller = (IWaiterSelection)caller;
+		pathList.Clear();
 		if(currentCaller == null){
 			Debug.LogError("No IWaiterSelection script exists in the caller");
 		}
-		if(currentNode == testNode2){
+		if(currentNode == targetNode){
 			MoveDoneCallback();
 		}
 		else{
-		pathList = Pathfinding.Instance.findPath(currentNode, testNode2);
-		Debug.Log(pathList.Count);
-		currentNode = testNode2;
-		MoveToLocation(pathList, index);
+			pathList = Pathfinding.Instance.findPath(currentNode, targetNode);
+			Debug.Log(pathList.Count);
+			currentNode = targetNode;
+			MoveToLocation(pathList, index);
 		}
 	}
 	public void MoveToLocation(List<GameObject> path, int index){
@@ -72,9 +74,13 @@ public class Waiter : Singleton<Waiter>{
 		}
 	}
 	public void MoveDoneCallback(){
-		Debug.Log (currentNode);
-		Debug.Log(pathList[index]);
-		if(currentNode == pathList[index]){
+		if(pathList.Count == 0){
+			if(currentCaller == null){
+				Debug.LogError("No IWaiterSelection script currently exists");
+			}
+			currentCaller.OnWaiterArrived();
+		}
+		else if(currentNode == pathList[index]){
 			index = 0;
 			// Note: Set animations to false before OnWaiterArrived
 			moving = false;
