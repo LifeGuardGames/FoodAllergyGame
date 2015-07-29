@@ -215,15 +215,35 @@ public class Waiter : Singleton<Waiter>{
 
 	public void RemoveMeal(int table){
 		if(hand1 != WaiterHands.None){
-			if(hand1Object.GetComponent<Order>().tableNumber == table){
-				Destroy(hand1Object.gameObject);
-				hand1 = WaiterHands.None;
+			if(hand1Object != null){
+				if(hand1Object.GetComponent<Order>()!= null){
+					if(hand1Object.GetComponent<Order>().tableNumber == table){
+					Destroy(hand1Object.gameObject);
+					hand1 = WaiterHands.None;
+					}
+				}
+				else{
+					Debug.LogError("Object Name: " + hand1Object.name + " Table Number " + table);
+				}
+			}
+			else{
+				Debug.LogError("No Object in Hand");
 			}
 		}
 		if(hand2 != WaiterHands.None){
+			if(hand1Object != null){
+				if(hand1Object.GetComponent<Order>()!= null){
 			if(hand2Object.GetComponent<Order>().tableNumber == table){
 				Destroy(hand2Object.gameObject);
 				hand2 = WaiterHands.None;
+				}
+			}
+			else{
+					Debug.LogError("Object Name: " + hand1Object.name + " Table Number " + table);
+				}
+			}
+		else{
+			Debug.LogError("No Object in Hand");
 			}
 		}
 	}

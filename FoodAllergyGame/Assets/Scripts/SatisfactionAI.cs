@@ -11,7 +11,7 @@ public class SatisfactionAI{
 		get{ return numOfCustomers; }
 	}
 
-	private float difficultyLevel;
+	private float difficultyLevel = 10;
 	public float DifficultyLevel{
 		get{ return difficultyLevel; }
 	}

@@ -11,7 +11,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	// CustomerSpawning - spawns a customer adds it to the list
 	//amount of time in seconds that the days lasts
 	public bool isPaused;
-
+	private float customerSpawnTimer;
 	public float dayTime;			// Total amount of time in the day
 	private float dayTimeLeft;		// Current amount of time left in the day
 
@@ -26,7 +26,6 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	}
 	
 	private int dayCashRevenue;		// The total positive cashed gained for the day
-	
 	//tracks customers via hashtable
 	private Dictionary<string, GameObject> customerHash;
 	// our satisfaction ai 
@@ -75,7 +74,6 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		dayCashRevenue = 0;
 
 		restaurantUI.UpdateCash(dayEarnedCash);
-		restaurantUI.StartDay();
 
 		StartCoroutine("SpawnCustomer");
 		KitchenManager.Instance.Init(eventData.KitchenTimerMod);
@@ -85,11 +83,10 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	void Update(){
 		if(!isPaused && dayOver == false){
 			dayTimeLeft -= Time.deltaTime;
-			restaurantUI.UpdateClock(dayTime, dayTimeLeft);
+			restaurantUI.UpdateProgressBar(dayTime, dayTimeLeft);
 			if(dayTimeLeft < 0)
 			{
 				dayOver = true;
-				restaurantUI.FinishClock();
 			}
 		}
 	}
@@ -99,10 +96,12 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		while(isPaused){
 			yield return new WaitForFixedUpdate();
 		}
-		yield return new WaitForSeconds(customerTimer);
+		yield return new WaitForSeconds(customerSpawnTimer);
 		int rand;		
 		if(!dayOver && customerHash.Count < 8){
 			ImmutableDataCustomer test;
+
+			customerSpawnTimer = customerTimer / satisfactionAI.DifficultyLevel;
 			if(satisfactionAI.DifficultyLevel > 13){
 			 	rand = UnityEngine.Random.Range(0,currCusSet.Count);
 				test = DataLoaderCustomer.GetData(currCusSet[rand]);
@@ -210,8 +209,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		return menuUIController;
 	}
 
-	public void ShowAllergyChart(){
-		allergyChartUIController.OnOpenButton();
+	public AllergyChartUIController GetAllergyUIController(){
+		return allergyChartUIController;
 	}
 
 	public KitchenManager GetKitchen(){
