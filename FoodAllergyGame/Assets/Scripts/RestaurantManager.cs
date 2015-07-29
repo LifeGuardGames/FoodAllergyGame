@@ -83,7 +83,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	void Update(){
 		if(!isPaused && dayOver == false){
 			dayTimeLeft -= Time.deltaTime;
-			restaurantUI.UpdateProgressBar(dayTime, dayTimeLeft);
+			restaurantUI.UpdateClock(dayTime, dayTimeLeft);
 			if(dayTimeLeft < 0)
 			{
 				dayOver = true;

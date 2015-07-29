@@ -21,6 +21,7 @@ public class TouchManager : Singleton<TouchManager> {
 						IWaiterSelection waiterSelection = hitObject.collider.gameObject.GetComponent<IWaiterSelection>();
 						if(waiterSelection != null){
 							inputQueue.Enqueue(hitObject.collider.gameObject);
+							// used to dequeue
 							if(Waiter.Instance.canMove){
 								Waiter.Instance.Finished();
 							}

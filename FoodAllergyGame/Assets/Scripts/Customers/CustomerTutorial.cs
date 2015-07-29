@@ -13,16 +13,20 @@ public class CustomerTutorial : Customer {
 		tutFingers= GameObject.Find("TutHints");
 		StartCoroutine("ShowTuTFinger");
 	}
+
 	public override void JumpToTable (int tableN)
 	{
+		tutFingers.transform.GetChild(step-1).gameObject.SetActive(false);
 		StopCoroutine("ShowTuTFinger");
 		step++;
 		base.JumpToTable (tableN);
 	}
+
 	public override void GetOrder ()
 	{
 		base.GetOrder ();
 	}
+
 	public override void OrderTaken (ImmutableDataFood food)
 	{
 		base.OrderTaken (food);
