@@ -8,10 +8,10 @@ public class AllergyChartUIController : MonoBehaviour {
 	public GameObject chartEntryPrefab;
 
 	void Start(){
-//		foreach(ImmutableDataFood foodData in FoodManager.Instance.MenuList){
-//			GameObject entry = GameObjectUtils.AddChildGUI(grid, chartEntryPrefab);
-//			entry.GetComponent<AllergyChartUIEntry>().Init(foodData.ID);
-//		}
+		foreach(ImmutableDataFood foodData in FoodManager.Instance.MenuList){
+			GameObject entry = GameObjectUtils.AddChildGUI(grid, chartEntryPrefab);
+			entry.GetComponent<AllergyChartUIEntry>().Init(foodData.ID);
+		}
 	}
 
 	public void OnOpenButton(){
