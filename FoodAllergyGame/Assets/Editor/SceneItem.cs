@@ -16,11 +16,6 @@ public class SceneItem : Editor {
 		OpenScene(SceneUtils.START);
 	}
 
-	[MenuItem("Open Scene/TutScene")]
-	public static void OpenTutScene(){
-		OpenScene(SceneUtils.TUTSCENE);
-	}
-
 	[MenuItem("Open Scene/MenuPlanning")]
 	public static void OpenMenuPlanning(){
 		OpenScene(SceneUtils.MENUPLANNING);

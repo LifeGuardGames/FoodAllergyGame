@@ -8,7 +8,7 @@ public class UIHelper : EditorWindow {
 	private string currentScene = "";
 	private GameObject UIElementListObject;	// Object in the scene that keeps of all UIElements
 	private List<GameObject> UIElementsList;
-	private Dictionary<GameObject, bool> elementBoolList = new Dictionary<GameObject, bool>();
+	private List<bool> elementBoolList;
 	private bool isCompileAux = false;
 
 	[MenuItem("LGG/UIHelper")]
@@ -23,6 +23,7 @@ public class UIHelper : EditorWindow {
 		bool isFinishedCompiling = isCompileAux && !EditorApplication.isCompiling;
 
 		if(currentScene != EditorApplication.currentScene || isFinishedCompiling){
+//		if(currentScene != EditorApplication.currentScene){ 
 			isCompileAux = false;
 //			Debug.Log("Loading ui helpers");
 			Repaint();
@@ -31,11 +32,7 @@ public class UIHelper : EditorWindow {
 			tagsList = GameObject.FindGameObjectsWithTag("UIElementList");
 			if(tagsList.Length > 0){
 				UIElementsList = GameObject.FindGameObjectsWithTag("UIElementList")[0].GetComponent<UIHelperList>().UIElementList;
-
-				elementBoolList = new Dictionary<GameObject, bool>();
-				foreach(GameObject go in UIElementsList){
-					elementBoolList.Add(go, go.activeSelf);
-				}
+				elementBoolList = GameObject.FindGameObjectsWithTag("UIElementList")[0].GetComponent<UIHelperList>().defaultBools;
 			}
 		}
 	}
@@ -48,12 +45,12 @@ public class UIHelper : EditorWindow {
 				DisableUIElements();
 			}
 
-			foreach(GameObject go in UIElementsList){
+			for(int i = 0; i < UIElementsList.Count; i++){
 				GUILayout.BeginHorizontal();
-				GUILayout.Toggle(elementBoolList[go], "");
-				GUILayout.Label(go.name);
+				GUILayout.Toggle(elementBoolList[i], "");
+				GUILayout.Label(UIElementsList[i].name);
 				if(GUILayout.Button("Solo", GUILayout.Width(50))){
-					SoloUI(go);
+					SoloUI(UIElementsList[i]);
 				}
 				GUILayout.EndHorizontal();
 			}
@@ -80,8 +77,8 @@ public class UIHelper : EditorWindow {
 
 	// Go through the UI list and reset them to its original enable state
 	private void ResetUIElements(){
-		foreach(GameObject go in UIElementsList){
-			go.SetActive(elementBoolList[go]);
+		for(int i = 0; i < UIElementsList.Count; i++){
+			UIElementsList[i].SetActive(elementBoolList[i]);
 		}
 	}
 }

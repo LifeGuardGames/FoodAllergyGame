@@ -47,17 +47,17 @@ namespace CUDLR{
 		// List of supported files
 		// FIXME add an api to register new types
 		private static Dictionary<string, string> fileTypes = new Dictionary<string, string> {
-      {"js",   "application/javascript"},
-      {"json", "application/json"},
-      {"jpg",  "image/jpeg" },
-      {"jpeg", "image/jpeg"},
-      {"gif",  "image/gif"},
-      {"png",  "image/png"},
-      {"css",  "text/css"},
-      {"htm",  "text/html"},
-      {"html", "text/html"},
-      {"ico",  "image/x-icon"},
-    };
+			{"js",   "application/javascript"},
+			{"json", "application/json"},
+			{"jpg",  "image/jpeg" },
+			{"jpeg", "image/jpeg"},
+			{"gif",  "image/gif"},
+			{"png",  "image/png"},
+			{"css",  "text/css"},
+			{"htm",  "text/html"},
+			{"html", "text/html"},
+			{"ico",  "image/x-icon"},
+		};
 
 		public virtual void Awake(){
 			mainThread = Thread.CurrentThread;

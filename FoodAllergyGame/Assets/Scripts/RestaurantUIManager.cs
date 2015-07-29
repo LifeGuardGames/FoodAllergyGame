@@ -4,17 +4,37 @@ using System.Collections;
 
 public class RestaurantUIManager : MonoBehaviour {
 	public Text cashText;
-	public Image dayProgressBar;
 	public DayOverUIController dayOverUIController;
 
-	public void UpdateProgressBar(float totalTime, float timeLeft){
-		float timeElapsed = totalTime - timeLeft;
-		float percentage = timeElapsed / totalTime;
-		dayProgressBar.fillAmount = percentage;
+	public Image clockBarFill;
+	public RectTransform clockHand;
+	public GameObject clockFinishedText;
+	private bool isClockFinished;
+
+	public void StartDay(){
+		isClockFinished = false;
+		clockFinishedText.SetActive(false);
+		clockBarFill.fillAmount = 0f;
+	}
+
+	public void UpdateClock(float totalTime, float timeLeft){
+		if(!isClockFinished){
+			float timeElapsed = totalTime - timeLeft;
+			float percentage = timeElapsed / totalTime;
+			clockBarFill.fillAmount = percentage;
+			clockHand.transform.localEulerAngles = new Vector3(0, 0, -360f * percentage);
+		}
+		else{
+			Debug.LogWarning("Clock finished already but still updating");
+		}
+	}
+
+	public void FinishClock(){
+		clockFinishedText.SetActive(true);
 	}
 
 	public void UpdateCash(float cash){
-		cashText.text = cash.ToString();
+		cashText.text = "$" + cash.ToString();
 	}
 
 	public void OnRestartButton(){
