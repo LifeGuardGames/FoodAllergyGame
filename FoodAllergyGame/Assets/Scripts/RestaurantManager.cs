@@ -75,6 +75,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		dayCashRevenue = 0;
 
 		restaurantUI.UpdateCash(dayEarnedCash);
+		restaurantUI.StartDay();
 
 		StartCoroutine("SpawnCustomer");
 		KitchenManager.Instance.Init(eventData.KitchenTimerMod);
@@ -84,10 +85,11 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	void Update(){
 		if(!isPaused && dayOver == false){
 			dayTimeLeft -= Time.deltaTime;
-			restaurantUI.UpdateProgressBar(dayTime, dayTimeLeft);
+			restaurantUI.UpdateClock(dayTime, dayTimeLeft);
 			if(dayTimeLeft < 0)
 			{
 				dayOver = true;
+				restaurantUI.FinishClock();
 			}
 		}
 	}
