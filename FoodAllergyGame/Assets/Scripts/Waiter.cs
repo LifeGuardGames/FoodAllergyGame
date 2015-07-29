@@ -277,7 +277,10 @@ public class Waiter : Singleton<Waiter>{
 		canMove = true;
 		if(TouchManager.Instance.inputQueue.Count > 0){
 		//	if(TouchManager.Instance.inputQueue.Peek ().GetComponent<Table>().seat.GetComponentInChildren<Customer>().state != CustomerStates.WaitForOrder && Waiter.Instance.CheckHands()){
-			TouchManager.Instance.inputQueue.Dequeue().GetComponent<IWaiterSelection>().OnClicked();
+			GameObject dequeuedObject = TouchManager.Instance.inputQueue.Dequeue();
+			if(dequeuedObject != null){
+				dequeuedObject.GetComponent<IWaiterSelection>().OnClicked();
+			}
 			//}
 		}
 	}
