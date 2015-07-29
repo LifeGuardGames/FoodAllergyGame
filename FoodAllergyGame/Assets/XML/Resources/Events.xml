@@ -12,7 +12,7 @@
 		<MenuSet>MenuSet00</MenuSet>
 		<KitchenTimer>5</KitchenTimer>
 		<CustomerSet>CustomerSet00</CustomerSet>
-		<CustomerTimer>2</CustomerTimer>
+		<CustomerTimer>1</CustomerTimer>
 		<DayLength>72</DayLength>
 		<Allergy>None</Allergy>
 	</Event>
