@@ -62,7 +62,7 @@ public class StartManager : Singleton<StartManager>{
 		// TODO integrate with datamanager tutorial fields
 		if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT1"){
 			FoodManager.Instance.GenerateMenu(DataLoaderMenuSet.GetData("MenuSetT1").MenuSet.ToList(), 0);
-			TransitionManager.Instance.TransitionScene(SceneUtils.TUTSCENE);
+			TransitionManager.Instance.TransitionScene(SceneUtils.RESTAURANT);
 		}
 		else{
 			TransitionManager.Instance.TransitionScene(SceneUtils.MENUPLANNING);

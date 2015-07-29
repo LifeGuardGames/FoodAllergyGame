@@ -235,6 +235,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		if(state == CustomerStates.WaitForOrder){
 			// check to see if we have an open hand for the order
 			if(Waiter.Instance.CheckHands()){
+				TouchManager.Instance.pauseQueue();
 				StopCoroutine("SatisfactionTimer");
 				// lock our waiter 
 				Waiter.Instance.canMove = false;
@@ -254,6 +255,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			orderObj.GetComponent<Order>().Init(food.ID, tableNum, food.AllergyList[0]);
 			RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().OrderObtained(orderObj);
 			state = CustomerStates.WaitForFood;
+			TouchManager.Instance.pauseQueue();
 			Waiter.Instance.Finished();
 			attentionSpan = 20.0f * timer;
 			//StopCoroutine("SatisfactionTimer");

@@ -49,7 +49,6 @@ public class Waiter : Singleton<Waiter>{
 		}
 	}
 	public void MoveToLocation(List<GameObject> path, int index){
-		if(canMove){
 			canMove = false;
 //			currentCaller = (IWaiterSelection)caller;
 //			if(currentCaller == null){
@@ -68,7 +67,6 @@ public class Waiter : Singleton<Waiter>{
 			LeanTween.cancel(gameObject);
 			LeanTween.move(gameObject, path[index].transform.position, movingTime).setOnComplete(MoveDoneCallback);
 //			}
-		}
 	}
 	public void MoveDoneCallback(){
 		if(pathList.Count == 0){
@@ -89,7 +87,7 @@ public class Waiter : Singleton<Waiter>{
 			currentCaller.OnWaiterArrived();
 		}
 		else{
-			canMove = true;
+			//canMove = true;
 			index++;
 			MoveToLocation(pathList, index);
 		}
