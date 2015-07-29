@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class RestaurantManager : Singleton<RestaurantManager>{
 
@@ -33,7 +34,6 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public List<GameObject> SickCustomers;
 	public GameObject[] tableList;
 	public RestaurantUIManager restaurantUI;
-	public string currEvent;
 	private ImmutableDataEvents eventData;
 	public LineController Line;
 	public RestaurantMenuUIController menuUIController;
@@ -48,13 +48,17 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	// and then if the day is over checks to see if the hastable is empty and if it is it ends the round
 
 	void Start(){
-		currEvent = DataManager.Instance.GetEvent();
 		SickCustomers = new List<GameObject>();
 		customerHash = new Dictionary<string, GameObject>();
 		satisfactionAI = new SatisfactionAI();
-		Debug.Log (currEvent);
-		//ImmutableDataEvents test = DataLoaderEvents.GetData("Event00");
-		StartDay(DataLoaderEvents.GetData(currEvent));
+
+		if(DataManager.Instance.isDebug){
+			FoodManager.Instance.GenerateMenu(DataLoaderMenuSet.GetData("MenuSetT1").MenuSet.ToList(), 0);
+			StartDay(DataLoaderEvents.GetData("Event00"));
+		}
+		else{
+			StartDay(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()));
+		}
 	}
 
 	// Called at the start of the game day begins the day tracker coroutine 
