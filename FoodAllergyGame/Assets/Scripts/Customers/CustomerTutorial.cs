@@ -3,21 +3,20 @@ using System.Collections;
 
 public class CustomerTutorial : Customer {
 
-	private GameObject tutFingers;
+	public GameObject tutFingers;
 	public int step = 0;
 
 	public override void Init (int num, ImmutableDataEvents mode)
 	{
 		base.Init (num, mode);
 		satisfaction = 100;
-		tutFingers= GameObject.Find("TutHints");
-		StartCoroutine("ShowTuTFinger");
+		tutFingers= GameObject.Find("TuTFingers");
+		StartCoroutine("ShowTableFinger");
 	}
 
 	public override void JumpToTable (int tableN)
 	{
 		hideTableFinger();
-		StopCoroutine("ShowTuTFinger");
 		base.JumpToTable (tableN);
 	}
 
@@ -30,6 +29,12 @@ public class CustomerTutorial : Customer {
 	{
 		base.OrderTaken (food);
 		StartCoroutine("ShowTuTFinger");
+	}
+
+	public override void Eating ()
+	{
+		hideTableFinger();
+		base.Eating ();
 	}
 
 	public override void NotifyLeave ()
@@ -49,15 +54,18 @@ public class CustomerTutorial : Customer {
 	}
 
 	public void hideTableFinger(){
-		transform.GetChild (2).gameObject.SetActive(true);
+		transform.GetChild (2).gameObject.SetActive(false);
+		StopCoroutine("ShowTableFinger");
 	}
 
 	public void hideFinger(){
 		tutFingers.transform.GetChild(step).gameObject.SetActive(false);
+		StopCoroutine("ShowTuTFinger");
 	}
 
 	IEnumerator ShowTuTFinger(){
 		yield return new WaitForSeconds(5.0f);
+		Debug.Log (tutFingers.transform.GetChild(step).name);
 		tutFingers.transform.GetChild(step).gameObject.SetActive(true);
 	}
 

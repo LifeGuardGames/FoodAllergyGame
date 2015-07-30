@@ -43,7 +43,12 @@ public class SatisfactionAI{
 	// Calculates the difficulty level
 	private void CalculateDifficultyLevel(int modifiedSatisfaction){
 		// using a random number to add some unpredictability into the system
-		difficultyLevel += (modifiedSatisfaction/numOfCustomers) + UnityEngine.Random.Range(0,4);
+		if(RestaurantManager.Instance.isTutorial){
+			difficultyLevel = 10;
+		}
+		else{
+			difficultyLevel += (modifiedSatisfaction/numOfCustomers) + UnityEngine.Random.Range(0,4);
+		}
 	}
 
 	public float AvgSatifaction(){
