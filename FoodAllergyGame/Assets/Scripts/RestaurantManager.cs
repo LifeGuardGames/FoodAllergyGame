@@ -73,6 +73,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		dayEarnedCash = 0;
 		dayCashRevenue = 0;
 		restaurantUI.UpdateCash(dayEarnedCash);
+		restaurantUI.StartDay();
+		
 		if(eventData.ID == "EventT0"){
 			isTutorial = true;
 			customerSpawnTimer = customerTimer / satisfactionAI.DifficultyLevel;
@@ -92,6 +94,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			if(dayTimeLeft < 0)
 			{
 				dayOver = true;
+				restaurantUI.FinishClock();
 			}
 		}
 	}
