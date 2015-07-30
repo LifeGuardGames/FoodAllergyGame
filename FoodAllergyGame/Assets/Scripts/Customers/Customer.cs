@@ -28,7 +28,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	public CustomerUIController customerUI;		// ui controller for the customers handles hearts, timer icon and death icon
 	public CustomerAnimController customerAnim;	// handles animations
-	public GameObject TempOrder;				// temp variable used for instatiation
+	public GameObject OrderPrefab;				// temp variable used for instatiation
 	public List <ImmutableDataFood> choices;	// a list containing possible options the user would like to eat
 	public bool hasPowerUp;
 
@@ -256,11 +256,10 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	// It's called when the button for food is hit get the customer to make his order and hand it to the waiter
 	public virtual void OrderTaken(ImmutableDataFood food){
 		if(order == null){
-			order = TempOrder;
 			customerUI.ToggleWait(false);
-			GameObject orderObj = GameObjectUtils.AddChildWithPositionAndScale(null, TempOrder);
-			orderObj.GetComponent<Order>().Init(food.ID, tableNum, food.AllergyList[0]);
-			RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().OrderObtained(orderObj);
+			order = GameObjectUtils.AddChildWithPositionAndScale(null, OrderPrefab);
+			order.GetComponent<Order>().Init(food.ID, tableNum, food.AllergyList[0]);
+			RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().OrderObtained(order);
 			attentionSpan = 20.0f * timer;
 			//StopCoroutine("SatisfactionTimer");
 			IncreaseSatisfaction();
