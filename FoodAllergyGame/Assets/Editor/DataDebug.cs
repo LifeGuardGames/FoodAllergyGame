@@ -12,11 +12,12 @@ public class DataDebug : EditorWindow {
 	void OnGUI(){
 		GUILayout.Label("DataManager Fields", EditorStyles.boldLabel);
 		if(Application.isPlaying){
-			EditorGUILayout.TextField("Event", DataManager.Instance.GameData.RestaurantEvent.CurrentEvent);
-			EditorGUILayout.TextField("Current cash", DataManager.Instance.GameData.Cash.CurrentCash.ToString());
-			EditorGUILayout.TextField("Total cash", DataManager.Instance.GameData.Cash.TotalCash.ToString());
-			EditorGUILayout.TextField("Tier", TierManager.Instance.Tier.ToString());
-
+			if(Application.loadedLevelName != SceneUtils.COMICSCENE){
+				EditorGUILayout.TextField("Event", DataManager.Instance.GameData.RestaurantEvent.CurrentEvent);
+				EditorGUILayout.TextField("Current cash", DataManager.Instance.GameData.Cash.CurrentCash.ToString());
+				EditorGUILayout.TextField("Total cash", DataManager.Instance.GameData.Cash.TotalCash.ToString());
+				EditorGUILayout.TextField("Tier", TierManager.Instance.Tier.ToString());
+			}
 			if(Application.loadedLevelName == SceneUtils.RESTAURANT){
 				EditorGUILayout.TextField("Move queue count", TouchManager.Instance.inputQueue.Count.ToString());
 			}
