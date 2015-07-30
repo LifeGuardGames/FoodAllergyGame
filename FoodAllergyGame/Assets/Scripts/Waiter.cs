@@ -197,10 +197,10 @@ public class Waiter : Singleton<Waiter>{
 			hand2 = WaiterHands.None;
 			return tempFood;
 		}
-		//else{
-		return hand1Object;
-		// do nothing
-		//}
+		else{
+			Debug.LogWarning("No appropriate meal");
+			return null;
+		}
 	}
 
 	public bool CheckHands(){
@@ -230,15 +230,15 @@ public class Waiter : Singleton<Waiter>{
 			}
 		}
 		if(hand2 != WaiterHands.None){
-			if(hand1Object != null){
-				if(hand1Object.GetComponent<Order>() != null){
+			if(hand2Object != null){
+				if(hand2Object.GetComponent<Order>() != null){
 					if(hand2Object.GetComponent<Order>().tableNumber == table){
 						Destroy(hand2Object.gameObject);
 						hand2 = WaiterHands.None;
 					}
 				}
 				else{
-					Debug.LogError("Object Name: " + hand1Object.name + " Table Number " + table);
+					Debug.LogError("Object Name: " + hand2Object.name + " Table Number " + table);
 				}
 			}
 			else{
