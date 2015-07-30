@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Events>
+<Event ID="EventT0">	 <!-- Tutorial 1 -->
+		<MenuSet>MenuSetT1</MenuSet>
+		<KitchenTimer>5</KitchenTimer>
+		<CustomerSet>CustomerSet0T</CustomerSet>
+		<CustomerTimer>2</CustomerTimer>
+		<DayLength>27</DayLength>
+		<Allergy>None</Allergy>
+	</Event>
 	<Event ID="EventT1">	 <!-- Tutorial 1 -->
 		<MenuSet>MenuSetT1</MenuSet>
 		<KitchenTimer>5</KitchenTimer>

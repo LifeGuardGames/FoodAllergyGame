@@ -228,11 +228,17 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		// now waiting for our order to be taken
 		state = CustomerStates.WaitForOrder;
 		AudioManager.Instance.PlayClip("orderTime");
+		if(RestaurantManager.Instance.isTutorial){
+			this.GetComponent<CustomerTutorial>().NextTableFinger();
+		}
 	}
 
 	// Gives the order to the waiter
 	public virtual void GetOrder(){
 		if(state == CustomerStates.WaitForOrder){
+			if(RestaurantManager.Instance.isTutorial){
+				this.GetComponent<CustomerTutorial>().hideTableFinger();
+			}
 			// check to see if we have an open hand for the order
 			if(Waiter.Instance.CheckHands()){
 				TouchManager.Instance.pauseQueue();
@@ -311,6 +317,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			state = CustomerStates.WaitForCheck;
 			StartCoroutine("SatisfactionTimer");
 			AudioManager.Instance.PlayClip("readyForCheck");
+		if(RestaurantManager.Instance.isTutorial){
+			this.GetComponent<CustomerTutorial>().NextTableFinger();
+		}
 //		}
 	}
 

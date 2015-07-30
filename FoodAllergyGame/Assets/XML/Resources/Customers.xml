@@ -68,6 +68,13 @@
 		<CustomerDesc>CustomerBlackOutDesc</CustomerDesc>
 		<SpriteName>CustomerBlackOut</SpriteName>
 		<Script>CustomerBlackOut</Script>
-		<Tier>4</Tier>
+		<Tier>-1</Tier>
+	</Customer>
+	<Customer ID="Customer10">
+		<CustomerNameKey>CustomerTutorial</CustomerNameKey>
+		<CustomerDesc>CustomerTutorialDesc</CustomerDesc>
+		<SpriteName>CustomerTutorial</SpriteName>
+		<Script>CustomerTutorial</Script>
+		<Tier>-1</Tier>
 	</Customer>
 </Customers>

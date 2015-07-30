@@ -42,6 +42,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 		allergy = _allergy;
 		this.gameObject.GetComponentInChildren<Text>().text = tableNumber.ToString();
 		if(RestaurantManager.Instance.isTutorial){
+			RestaurantManager.Instance.GetTable(tableNumber).Seat.GetComponentInChildren<CustomerTutorial>().step = 0;
 			RestaurantManager.Instance.GetTable(tableNumber).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
 		}
 	}
@@ -65,6 +66,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 		RestaurantManager.Instance.GetKitchen().FinishCooking(this.gameObject);
 		AudioManager.Instance.PlayClip("orderReady");
 		if(RestaurantManager.Instance.isTutorial){
+			RestaurantManager.Instance.GetTable(tableNumber).Seat.GetComponentInChildren<CustomerTutorial>().step = 1;
 			RestaurantManager.Instance.GetTable(tableNumber).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
 		}
 	}

@@ -63,21 +63,24 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 	// Called at the start of the game day begins the day tracker coroutine 
 	public void StartDay(ImmutableDataEvents eventData){
+
 		this.eventData = eventData;
 		string currSet = eventData.CustomerSet;
 		Debug.Log (currSet);
 		currCusSet = new List<string>(DataLoaderCustomerSet.GetData(currSet).CustomerSet);
-
-		dayTime = eventData.DayLengthMod;
-		dayTimeLeft = dayTime;
-
+		KitchenManager.Instance.Init(eventData.KitchenTimerMod);
 		dayEarnedCash = 0;
 		dayCashRevenue = 0;
-
 		restaurantUI.UpdateCash(dayEarnedCash);
-
+		if(eventData.ID == "EventT0"){
+			isTutorial = true;
+		}
+		else{
+			isTutorial = false;
+			dayTime = eventData.DayLengthMod;
+			dayTimeLeft = dayTime;
+		}
 		StartCoroutine("SpawnCustomer");
-		KitchenManager.Instance.Init(eventData.KitchenTimerMod);
 	}
 
 	// When complete flips the dayOver bool once the bool is true customers will cease spawning and the game will be looking for the end point
@@ -98,34 +101,45 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			yield return new WaitForFixedUpdate();
 		}
 		yield return new WaitForSeconds(customerSpawnTimer);
-		int rand;		
-		if(!dayOver && customerHash.Count < 8){
+		if(isTutorial){
 			ImmutableDataCustomer test;
-
-			customerSpawnTimer = customerTimer / satisfactionAI.DifficultyLevel;
-			if(satisfactionAI.DifficultyLevel > 13){
-			 	rand = UnityEngine.Random.Range(0,currCusSet.Count);
-				test = DataLoaderCustomer.GetData(currCusSet[rand]);
-			}
-			else{
-				Debug.Log (currCusSet[0]);
-				 test = DataLoaderCustomer.GetData(currCusSet[0]);
-			}
-
+			test = DataLoaderCustomer.GetData(currCusSet[0]);
 			GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
 			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
-			customerNumber++;
 			cus.GetComponent<Customer>().Init(customerNumber, eventData);
-			rand = Random.Range(0,10);
-			if(rand > 7){
-				cus.GetComponent<Customer>().hasPowerUp = true;
-			}
 			customerHash.Add(cus.GetComponent<Customer>().customerID,cus);
-			satisfactionAI.AddCustomer();
-			StartCoroutine("SpawnCustomer");
+			customerNumber++;
 		}
 		else{
-			StartCoroutine("SpawnCustomer");
+			int rand;		
+			if(!dayOver && customerHash.Count < 8){
+				ImmutableDataCustomer test;
+
+				customerSpawnTimer = customerTimer / satisfactionAI.DifficultyLevel;
+				if(satisfactionAI.DifficultyLevel > 13){
+				 	rand = UnityEngine.Random.Range(0,currCusSet.Count);
+					test = DataLoaderCustomer.GetData(currCusSet[rand]);
+				}
+				else{
+					Debug.Log (currCusSet[0]);
+					 test = DataLoaderCustomer.GetData(currCusSet[0]);
+				}
+
+				GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
+				GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
+				customerNumber++;
+				cus.GetComponent<Customer>().Init(customerNumber, eventData);
+				rand = Random.Range(0,10);
+				if(rand > 7){
+					cus.GetComponent<Customer>().hasPowerUp = true;
+				}
+				customerHash.Add(cus.GetComponent<Customer>().customerID,cus);
+				satisfactionAI.AddCustomer();
+				StartCoroutine("SpawnCustomer");
+			}
+			else{
+				StartCoroutine("SpawnCustomer");
+			}
 		}
 	}
 

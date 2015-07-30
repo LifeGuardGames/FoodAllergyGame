@@ -22,7 +22,7 @@ public class StartManager : Singleton<StartManager>{
 			//TODO Generate event from data
 			if(DataManager.Instance.GameData.Tutorial.IsTutorial1Done == false){
 				unlockParent.SetActive(false);
-				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT1";
+				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT0";
 			}
 			else if(DataManager.Instance.GameData.Tutorial.IsTutorial2Done == false){
 				unlockParent.SetActive(true);
@@ -60,7 +60,7 @@ public class StartManager : Singleton<StartManager>{
 
 	public void OnPlayButtonClicked(){
 		// TODO integrate with datamanager tutorial fields
-		if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT1"){
+		if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT1" ||DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT0"){
 			FoodManager.Instance.GenerateMenu(DataLoaderMenuSet.GetData("MenuSetT1").MenuSet.ToList(), 0);
 			TransitionManager.Instance.TransitionScene(SceneUtils.RESTAURANT);
 		}
