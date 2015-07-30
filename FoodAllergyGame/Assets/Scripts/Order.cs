@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class Order : MonoBehaviour, IWaiterSelection{
 	// ID of the food
 	public string foodID;
-
 	// Table number that ordered the dish used to find which table this goes too.
 	public int tableNumber;
 
@@ -42,9 +41,15 @@ public class Order : MonoBehaviour, IWaiterSelection{
 		isCooked = false;
 		allergy = _allergy;
 		this.gameObject.GetComponentInChildren<Text>().text = tableNumber.ToString();
+		if(RestaurantManager.Instance.isTutorial){
+			RestaurantManager.Instance.GetTable(tableNumber).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
+		}
 	}
 
 	public void StartCooking(float _cookingTimer){
+		if(RestaurantManager.Instance.isTutorial){
+			RestaurantManager.Instance.GetTable(tableNumber).Seat.GetComponentInChildren<CustomerTutorial>().hideFinger();
+		}
 		cookTimer = _cookingTimer;
 		OrderImage.enabled = false;
 		GetComponentInChildren<Text>().enabled = false;
@@ -59,6 +64,9 @@ public class Order : MonoBehaviour, IWaiterSelection{
 		GetComponentInChildren<Text>().enabled = true;
 		RestaurantManager.Instance.GetKitchen().FinishCooking(this.gameObject);
 		AudioManager.Instance.PlayClip("orderReady");
+		if(RestaurantManager.Instance.isTutorial){
+			RestaurantManager.Instance.GetTable(tableNumber).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
+		}
 	}
 
 	public void Canceled(){
@@ -86,6 +94,9 @@ public class Order : MonoBehaviour, IWaiterSelection{
 		if(!Waiter.Instance.HaveMeal(tableNumber)){
 			Waiter.Instance.SetHand(gameObject);
 			AudioManager.Instance.PlayClip("orderPickUp");
+			if(RestaurantManager.Instance.isTutorial){
+				RestaurantManager.Instance.GetTable(tableNumber).Seat.GetComponentInChildren<CustomerTutorial>().hideFinger();
+			}
 		}
 		Waiter.Instance.Finished();
 	}

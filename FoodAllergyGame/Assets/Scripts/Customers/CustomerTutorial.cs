@@ -16,7 +16,7 @@ public class CustomerTutorial : Customer {
 
 	public override void JumpToTable (int tableN)
 	{
-		tutFingers.transform.GetChild(step-1).gameObject.SetActive(false);
+		hideFinger();
 		StopCoroutine("ShowTuTFinger");
 		step++;
 		base.JumpToTable (tableN);
@@ -38,8 +38,19 @@ public class CustomerTutorial : Customer {
 		base.NotifyLeave ();
 	}
 
+	public void nextHint(){
+		StartCoroutine("ShowTuTFinger");
+	}
+
+	public void hideFinger(){
+		tutFingers.transform.GetChild(step-1).gameObject.SetActive(false);
+	}
+
 	IEnumerator ShowTuTFinger(){
 		yield return new WaitForSeconds(5.0f);
+		if(step == 0){
+			tutFingers.transform.GetChild(step).SetParent(this.gameObject.transform);
+		}
 		tutFingers.transform.GetChild(step).gameObject.SetActive(true);
 		step++;
 	}
