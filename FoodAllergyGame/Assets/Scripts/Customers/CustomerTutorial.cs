@@ -39,9 +39,6 @@ public class CustomerTutorial : Customer {
 
 	public override void NotifyLeave ()
 	{
-		DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
-		DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT1";
-		RestaurantManager.Instance.StartDay(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()));
 		base.NotifyLeave ();
 	}
 

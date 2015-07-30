@@ -49,6 +49,10 @@ public class RestaurantMenuUIController : MonoBehaviour {
 		button2Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(customerFoodChoices[rand].SpriteName);
 		choices.Add(customerFoodChoices[rand]);
 		menuTweenToggle.Show();
+		if(RestaurantManager.Instance.isTutorial){
+			RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().step = 2;
+			RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
+		}
 	}
 
 	public void CancelOrder(int table){

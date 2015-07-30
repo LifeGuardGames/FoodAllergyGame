@@ -19,6 +19,7 @@ public class Waiter : Singleton<Waiter>{
 	public GameObject currentLineCustomer;
 	public bool canMove = true;
 	public GameObject currentNode;
+	public int currentTable;
 	private List<GameObject> pathList;
 	private int index = 0;
 	public WaiterAnimController waiterAnimController;

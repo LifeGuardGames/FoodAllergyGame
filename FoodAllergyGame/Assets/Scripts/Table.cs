@@ -23,6 +23,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 
 	//facilitates talk between customer and waiter
 	public void TalkToConsumer(){
+
 		if(inUse){
 			// CheckState will handle waiter finish
 			transform.GetComponentInChildren<Customer>().CheckState();
@@ -69,7 +70,9 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	#region IWaiterSelection implementation
 	public void OnWaiterArrived(){
 		if(!isBroken &&seat.childCount > 0){
+			Waiter.Instance.currentTable = tableNumber;
 			TalkToConsumer();
+
 		}
 		else{
 			Waiter.Instance.Finished();
