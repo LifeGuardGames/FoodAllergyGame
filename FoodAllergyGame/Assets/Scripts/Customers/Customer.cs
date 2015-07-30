@@ -241,14 +241,15 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			}
 			// check to see if we have an open hand for the order
 			if(Waiter.Instance.CheckHands()){
-				TouchManager.Instance.pauseQueue();
+				TouchManager.Instance.PauseQueue();
 				StopCoroutine("SatisfactionTimer");
-				// lock our waiter 
+				// lock our waiter
 				Waiter.Instance.canMove = false;
 				RestaurantManager.Instance.GetMenuUIController().ShowChoices(choices, tableNum, allergy);
 			}
 		}
 		else{
+			Debug.LogError("Wrong state for customer to get order: " + state.ToString());
 			Waiter.Instance.Finished();
 		}
 	}
@@ -260,9 +261,6 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			GameObject orderObj = GameObjectUtils.AddChildWithPositionAndScale(null, TempOrder);
 			orderObj.GetComponent<Order>().Init(food.ID, tableNum, food.AllergyList[0]);
 			RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().OrderObtained(orderObj);
-			state = CustomerStates.WaitForFood;
-			TouchManager.Instance.pauseQueue();
-			Waiter.Instance.Finished();
 			attentionSpan = 20.0f * timer;
 			//StopCoroutine("SatisfactionTimer");
 			IncreaseSatisfaction();
@@ -271,6 +269,15 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			customerAnim.SetSatisfaction(satisfaction);
 
 			StartCoroutine("SatisfactionTimer");
+
+			state = CustomerStates.WaitForFood;
+
+			// Unpause queue and continue waiter movement
+			TouchManager.Instance.UnpauseQueue();
+			Waiter.Instance.Finished();
+		}
+		else{
+			Debug.LogError("Order already exists: " + order.name);
 		}
 	}
 
@@ -388,27 +395,22 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		case CustomerStates.WaitForOrder:
 			if(Waiter.Instance.hand1 != WaiterHands.None && Waiter.Instance.hand2 != WaiterHands.None){
 				Waiter.Instance.Finished();
-				break;
-			}
-			GetOrder();
-			break;
-		case CustomerStates.WaitForFood:
-			if(Waiter.Instance.hand1 == WaiterHands.Meal || Waiter.Instance.hand2 == WaiterHands.Meal){
-				if(Waiter.Instance.HaveMeal(tableNum)){
-					Eating();
-				}
-				else{
-					Waiter.Instance.Finished();
-				}
 			}
 			else{
-				Waiter.Instance.Finished();
+				GetOrder(); 	// This calls Waiter.Instance.Finished by itself
 			}
+			break;
+		case CustomerStates.WaitForFood:
+			if(Waiter.Instance.HaveMeal(tableNum)){
+				Eating();
+			}
+			Waiter.Instance.Finished();
 			break;
 		case CustomerStates.WaitForCheck:
 			NotifyLeave();
+			Waiter.Instance.Finished();
 			break;
-		default:
+		default:	// All other states, nothing to do
 			Waiter.Instance.Finished();
 			break;
 		}

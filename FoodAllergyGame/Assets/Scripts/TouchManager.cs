@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class TouchManager : Singleton<TouchManager> {
 	public Queue <GameObject> inputQueue;
-	private bool isPaused = false;
+	public bool isPaused = false;
 
 	void Start(){
 		inputQueue = new Queue<GameObject>();
@@ -37,9 +37,14 @@ public class TouchManager : Singleton<TouchManager> {
 			}
 		}
 	}
-	public void pauseQueue(){
-		isPaused = ! isPaused;
+	public void PauseQueue(){
+		isPaused = true;
 	}
+
+	public void UnpauseQueue(){
+		isPaused = false;
+	}
+
 //	public static bool IsHoveringOverGUI(){ TODO broken
 //		if(UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject(-1) || 
 //		   UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()){

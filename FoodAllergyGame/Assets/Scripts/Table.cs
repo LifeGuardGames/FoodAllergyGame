@@ -24,17 +24,10 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	//facilitates talk between customer and waiter
 	public void TalkToConsumer(){
 		if(inUse){
+			// CheckState will handle waiter finish
 			transform.GetComponentInChildren<Customer>().CheckState();
 		}
-		if(seat.childCount > 0){
-			if(seat.GetComponentInChildren<Customer>().state != CustomerStates.WaitForOrder && Waiter.Instance.CheckHands()){
-				Waiter.Instance.Finished();
-			}
-			else if(seat.GetComponentInChildren<Customer>().state == CustomerStates.WaitForCheck){
-				Waiter.Instance.Finished();
-			}
-		}
-		else{
+		else{	// Nothing to do here
 			Waiter.Instance.Finished();
 		}
 	}
@@ -99,10 +92,12 @@ public class Table : MonoBehaviour, IWaiterSelection{
 			// Move the waiter to the table to do what it does
 			else{
 				Waiter.Instance.FindRoute(node,this);
+//				Waiter.Instance.MoveToLocation(waiterSpot.position, this);
 			}
 		}
 		else{
 			Waiter.Instance.FindRoute(node,this);
+//			Waiter.Instance.MoveToLocation(waiterSpot.position, this);
 		}
 //		}
 	}

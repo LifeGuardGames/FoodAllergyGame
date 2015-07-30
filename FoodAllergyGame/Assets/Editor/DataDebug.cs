@@ -16,6 +16,11 @@ public class DataDebug : EditorWindow {
 			EditorGUILayout.TextField("Current cash", DataManager.Instance.GameData.Cash.CurrentCash.ToString());
 			EditorGUILayout.TextField("Total cash", DataManager.Instance.GameData.Cash.TotalCash.ToString());
 			EditorGUILayout.TextField("Tier", TierManager.Instance.Tier.ToString());
+
+			if(Application.loadedLevelName == SceneUtils.RESTAURANT){
+				EditorGUILayout.TextField("Move queue count", TouchManager.Instance.inputQueue.Count.ToString());
+			}
+
 		}
 	}
 
