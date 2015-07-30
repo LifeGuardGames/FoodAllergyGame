@@ -68,7 +68,7 @@
 		<CustomerDesc>CustomerBlackOutDesc</CustomerDesc>
 		<SpriteName>CustomerBlackOut</SpriteName>
 		<Script>CustomerBlackOut</Script>
-		<Tier>-1</Tier>
+		<Tier>4</Tier>
 	</Customer>
 	<Customer ID="Customer10">
 		<CustomerNameKey>CustomerTutorial</CustomerNameKey>

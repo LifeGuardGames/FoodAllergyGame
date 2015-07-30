@@ -58,12 +58,13 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		}
 		else{
 			StartDay(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()));
+
 		}
 	}
 
 	// Called at the start of the game day begins the day tracker coroutine 
 	public void StartDay(ImmutableDataEvents eventData){
-
+		Debug.Log ("StartingDay");
 		this.eventData = eventData;
 		string currSet = eventData.CustomerSet;
 		Debug.Log (currSet);
@@ -74,9 +75,9 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		restaurantUI.UpdateCash(dayEarnedCash);
 		if(eventData.ID == "EventT0"){
 			isTutorial = true;
+			customerSpawnTimer = customerTimer / satisfactionAI.DifficultyLevel;
 		}
 		else{
-			isTutorial = false;
 			dayTime = eventData.DayLengthMod;
 			dayTimeLeft = dayTime;
 		}
@@ -109,12 +110,13 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			cus.GetComponent<Customer>().Init(customerNumber, eventData);
 			customerHash.Add(cus.GetComponent<Customer>().customerID,cus);
 			customerNumber++;
+			satisfactionAI.AddCustomer();
 		}
 		else{
 			int rand;		
 			if(!dayOver && customerHash.Count < 8){
 				ImmutableDataCustomer test;
-
+				Debug.Log (satisfactionAI.DifficultyLevel);
 				customerSpawnTimer = customerTimer / satisfactionAI.DifficultyLevel;
 				if(satisfactionAI.DifficultyLevel > 13){
 				 	rand = UnityEngine.Random.Range(0,currCusSet.Count);
@@ -148,7 +150,18 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		if(customerHash.ContainsKey(Id)){
 			UpdateCash(satisfactionAI.CalculateBill(satisfaction));
 			customerHash.Remove(Id);
-			CheckForGameOver();
+			if(isTutorial){
+				Debug.Log ("tutDOne");
+				DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
+				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT1";
+				isTutorial = false;
+				dayOver = false;
+				StopCoroutine("SpawnCustomer");
+				StartDay(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()));
+			}
+			else{
+				CheckForGameOver();
+			}
 		}
 		else{
 			Debug.LogError("Invalid call on " + Id);

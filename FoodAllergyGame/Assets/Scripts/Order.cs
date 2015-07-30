@@ -98,6 +98,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 			AudioManager.Instance.PlayClip("orderPickUp");
 			if(RestaurantManager.Instance.isTutorial){
 				RestaurantManager.Instance.GetTable(tableNumber).Seat.GetComponentInChildren<CustomerTutorial>().hideFinger();
+				RestaurantManager.Instance.GetTable(tableNumber).Seat.GetComponentInChildren<CustomerTutorial>().NextTableFinger();
 			}
 		}
 		Waiter.Instance.Finished();
