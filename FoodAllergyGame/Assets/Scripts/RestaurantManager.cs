@@ -156,6 +156,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT1";
 				isTutorial = false;
 				dayOver = false;
+				StopCoroutine("SpawnCustomer");
 				StartDay(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()));
 			}
 			else{
