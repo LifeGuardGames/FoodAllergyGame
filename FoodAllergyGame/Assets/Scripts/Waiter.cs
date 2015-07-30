@@ -10,13 +10,10 @@ public class Waiter : Singleton<Waiter>{
 	//UnHand hands off the item to the kitchen or customer
 	public WaiterHands hand1;
 	public WaiterHands hand2;
-
 	public Transform hand1Parent;
 	public Transform hand2Parent;
-
 	public GameObject hand1Object;
 	public GameObject hand2Object;
-
 	public bool moving;
 	public float movingTime = 0.3f;
 	public GameObject currentLineCustomer;
@@ -24,15 +21,14 @@ public class Waiter : Singleton<Waiter>{
 	public GameObject currentNode;
 	private List<GameObject> pathList;
 	private int index = 0;
-
 	public WaiterAnimController waiterAnimController;
-
 	private IWaiterSelection currentCaller;
 
 	void Start(){
 		ResetHands();
 		pathList = new List<GameObject>();
 	}
+
 	public void FindRoute(GameObject targetNode, MonoBehaviour caller){
 		currentCaller = (IWaiterSelection)caller;
 		pathList.Clear();
@@ -48,26 +44,28 @@ public class Waiter : Singleton<Waiter>{
 			MoveToLocation(pathList, index);
 		}
 	}
+
 	public void MoveToLocation(List<GameObject> path, int index){
-			canMove = false;
+		canMove = false;
 //			currentCaller = (IWaiterSelection)caller;
 //			if(currentCaller == null){
 //				Debug.LogError("No IWaiterSelection script exists in the caller");
 //				}
 		
-			//If the waiter is already at its location, just call what it needs to call
+		//If the waiter is already at its location, just call what it needs to call
 //			if(transform.position == location){
 //				MoveDoneCallback();
 //			}
-			// Otherwise, move to the location and wait for callback
+		// Otherwise, move to the location and wait for callback
 //			else{
-			moving = true;
-			waiterAnimController.SetMoving(true);
+		moving = true;
+		waiterAnimController.SetMoving(true);
 //			Debug.Log (path[index].name);
-			LeanTween.cancel(gameObject);
-			LeanTween.move(gameObject, path[index].transform.position, movingTime).setOnComplete(MoveDoneCallback);
+		LeanTween.cancel(gameObject);
+		LeanTween.move(gameObject, path[index].transform.position, movingTime).setOnComplete(MoveDoneCallback);
 //			}
 	}
+
 	public void MoveDoneCallback(){
 		if(pathList.Count == 0){
 			if(currentCaller == null){
@@ -93,7 +91,6 @@ public class Waiter : Singleton<Waiter>{
 		}
 	}
 
-
 	public void ResetHands(){
 		hand1 = WaiterHands.None;
 		hand2 = WaiterHands.None;
@@ -104,41 +101,43 @@ public class Waiter : Singleton<Waiter>{
 			if(!order.GetComponent<Order>().IsCooked){
 				hand1 = WaiterHands.Order;
 				hand1Object = order;
-				hand1Object.transform.SetParent(hand1Parent);
-				hand1Object.transform.localPosition = new Vector3(0,0,0);
-				//TODO show order in hand
+				hand1Object.transform.SetParent(hand1Parent);		// Show order in hand
+				hand1Object.transform.localPosition = new Vector3(0, 0, 0);
+
+				// Tell kitchen manager to highlight spinner
+				KitchenManager.Instance.NotifySpinnerHighlight();
 			}
 			else{
 				hand1 = WaiterHands.Meal;
 				hand1Object = order;
-				hand1Object.transform.SetParent(hand1Parent);
-				hand1Object.transform.localPosition = new Vector3(0,0,0);
-				//TODO show meal in hand
+				hand1Object.transform.SetParent(hand1Parent);		// Show order in hand
+				hand1Object.transform.localPosition = new Vector3(0, 0, 0);
 			}
 		}
 		else if(hand2 == WaiterHands.None){
 			if(!order.GetComponent<Order>().IsCooked){
 				hand2 = WaiterHands.Order;
 				hand2Object = order;
-				hand2Object.transform.SetParent(hand2Parent);
-				hand2Object.transform.localPosition = new Vector3(0,0,0);
-				//TODO show order in hand
+				hand2Object.transform.SetParent(hand2Parent);		// Show order in hand
+				hand2Object.transform.localPosition = new Vector3(0, 0, 0);
+
+				// Tell kitchen manager to highlight spinner
+				KitchenManager.Instance.NotifySpinnerHighlight();
 			}
 			else{
 				hand2 = WaiterHands.Meal;
 				hand2Object = order;
-				hand2Object.transform.SetParent(hand2Parent);
-				hand2Object.transform.localPosition = new Vector3(0,0,0);
-				//TODO show meal in hand
+				hand2Object.transform.SetParent(hand2Parent);		// Show order in hand
+				hand2Object.transform.localPosition = new Vector3(0, 0, 0);
 			}
 		}
 		else{
-			//TODO hands are full
+			// Hands are full
 		}
 	}
 
-	public List <GameObject> OrderChef(){
-		List <GameObject> tempOrderArr = new List<GameObject>();
+	public List<GameObject> OrderChef(){
+		List<GameObject> tempOrderArr = new List<GameObject>();
 		if(hand2 == WaiterHands.Order && hand1 == WaiterHands.Order){
 			tempOrderArr.Add(hand2Object);
 			tempOrderArr.Add(hand1Object);
@@ -171,7 +170,7 @@ public class Waiter : Singleton<Waiter>{
 			tempOrder = hand1Object;
 			return tempOrder;
 		}
-		else if (hand2 == WaiterHands.Order){
+		else if(hand2 == WaiterHands.Order){
 			tempOrder = hand2Object;
 			return tempOrder;
 		}
@@ -182,10 +181,10 @@ public class Waiter : Singleton<Waiter>{
 	}
 
 	public GameObject HandMeal(int tableNum){
-		if(hand1 == WaiterHands.Meal && hand1Object.GetComponent<Order>().tableNumber== tableNum){
+		if(hand1 == WaiterHands.Meal && hand1Object.GetComponent<Order>().tableNumber == tableNum){
 			GameObject tempFood = hand1Object;
 			tempFood.transform.SetParent(RestaurantManager.Instance.GetTable(tableNum).foodSpot);
-			tempFood.transform.localPosition = new Vector3 (0,0,0);
+			tempFood.transform.localPosition = new Vector3(0, 0, 0);
 			hand1Object = null;
 			hand1 = WaiterHands.None;
 			return tempFood;
@@ -193,14 +192,14 @@ public class Waiter : Singleton<Waiter>{
 		else if(hand2 == WaiterHands.Meal && hand2Object.GetComponent<Order>().tableNumber == tableNum){
 			GameObject tempFood = hand2Object;
 			tempFood.transform.SetParent(RestaurantManager.Instance.GetTable(tableNum).foodSpot);
-			tempFood.transform.localPosition = new Vector3 (0,0,0);
+			tempFood.transform.localPosition = new Vector3(0, 0, 0);
 			hand2Object = null;
 			hand2 = WaiterHands.None;
 			return tempFood;
 		}
 		//else{
-			return hand1Object;
-			// do nothing
+		return hand1Object;
+		// do nothing
 		//}
 	}
 
@@ -216,10 +215,10 @@ public class Waiter : Singleton<Waiter>{
 	public void RemoveMeal(int table){
 		if(hand1 != WaiterHands.None){
 			if(hand1Object != null){
-				if(hand1Object.GetComponent<Order>()!= null){
+				if(hand1Object.GetComponent<Order>() != null){
 					if(hand1Object.GetComponent<Order>().tableNumber == table){
-					Destroy(hand1Object.gameObject);
-					hand1 = WaiterHands.None;
+						Destroy(hand1Object.gameObject);
+						hand1 = WaiterHands.None;
 					}
 				}
 				else{
@@ -232,36 +231,36 @@ public class Waiter : Singleton<Waiter>{
 		}
 		if(hand2 != WaiterHands.None){
 			if(hand1Object != null){
-				if(hand1Object.GetComponent<Order>()!= null){
-			if(hand2Object.GetComponent<Order>().tableNumber == table){
-				Destroy(hand2Object.gameObject);
-				hand2 = WaiterHands.None;
+				if(hand1Object.GetComponent<Order>() != null){
+					if(hand2Object.GetComponent<Order>().tableNumber == table){
+						Destroy(hand2Object.gameObject);
+						hand2 = WaiterHands.None;
+					}
 				}
-			}
-			else{
+				else{
 					Debug.LogError("Object Name: " + hand1Object.name + " Table Number " + table);
 				}
 			}
-		else{
-			Debug.LogError("No Object in Hand");
+			else{
+				Debug.LogError("No Object in Hand");
 			}
 		}
 	}
 
 	public bool HaveMeal(int table){
 		if(hand1 != WaiterHands.None){
-			if(hand1Object.GetComponent<Order>().tableNumber == table && hand1Object.GetComponent<Order>().IsCooked ){
+			if(hand1Object.GetComponent<Order>().tableNumber == table && hand1Object.GetComponent<Order>().IsCooked){
 				//Debug.Log ("Hand1");
 				return true;
 			}
 		}
 		if(hand2 != WaiterHands.None){
-			if(hand2Object.GetComponent<Order>().tableNumber == table && hand2Object.GetComponent<Order>().IsCooked ){
+			if(hand2Object.GetComponent<Order>().tableNumber == table && hand2Object.GetComponent<Order>().IsCooked){
 				return true;
 				//Debug.Log("Hand2");
 			}
 		}
-			return false;
+		return false;
 	}
 
 	public void GivePowerUp(){
@@ -276,7 +275,7 @@ public class Waiter : Singleton<Waiter>{
 	public void Finished(){
 		canMove = true;
 		if(TouchManager.Instance.inputQueue.Count > 0){
-		//	if(TouchManager.Instance.inputQueue.Peek ().GetComponent<Table>().seat.GetComponentInChildren<Customer>().state != CustomerStates.WaitForOrder && Waiter.Instance.CheckHands()){
+			//	if(TouchManager.Instance.inputQueue.Peek ().GetComponent<Table>().seat.GetComponentInChildren<Customer>().state != CustomerStates.WaitForOrder && Waiter.Instance.CheckHands()){
 			GameObject dequeuedObject = TouchManager.Instance.inputQueue.Dequeue();
 			if(dequeuedObject != null){
 				dequeuedObject.GetComponent<IWaiterSelection>().OnClicked();

@@ -27,6 +27,7 @@ public class RestaurantMenuUIController : MonoBehaviour {
 	}
 
 	public void ShowChoices(List <ImmutableDataFood> customerFoodChoices, int customerTableNum, Allergies customerAllergy){
+		Debug.Log("SHOWING CHOICES + " + System.DateTime.Now);
 		tableNum = customerTableNum;
 		allergy = customerAllergy;
 		choices = new List<ImmutableDataFood>();
