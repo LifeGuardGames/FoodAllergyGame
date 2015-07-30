@@ -209,8 +209,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		return menuUIController;
 	}
 
-	public AllergyChartUIController GetAllergyUIController(){
-		return allergyChartUIController;
+	public void ShowAllergyChart(){
+		allergyChartUIController.OnOpenButton();
 	}
 
 	public KitchenManager GetKitchen(){
