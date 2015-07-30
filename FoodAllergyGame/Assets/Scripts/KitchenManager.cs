@@ -15,14 +15,17 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 	public Animator kitchenAnimator;
 	private int ordersCooking = 0;		// Keep an aux count for animation
 
+	public GameObject spinnerHighlight;
 
 	//changes the cooking time based off the event
 	public void Init(float mode){
 		cookTimer = mode;
+		spinnerHighlight.SetActive(false);
 	}
 
 	// takes the orders from the waiter and cooks them
 	public void CookOrder(List <GameObject> order){
+		spinnerHighlight.SetActive(false);
 		if(order.Count > 1){
 			order[0].transform.SetParent(this.gameObject.transform);
 			order[0].GetComponent<Order>().StartCooking(cookTimer);
@@ -89,6 +92,10 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 //		if(!TouchManager.IsHoveringOverGUI()){
 			Waiter.Instance.FindRoute(waiterNode, this);
 //		}
+	}
+
+	public void NotifySpinnerHighlight(){
+		spinnerHighlight.SetActive(true);
 	}
 	#endregion
 }
