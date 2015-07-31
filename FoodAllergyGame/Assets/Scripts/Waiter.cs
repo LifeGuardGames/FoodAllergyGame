@@ -249,13 +249,13 @@ public class Waiter : Singleton<Waiter>{
 	}
 
 	public bool HaveMeal(int table){
-		if(hand1 != WaiterHands.None){
+		if(hand1 == WaiterHands.Meal){
 			if(hand1Object.GetComponent<Order>().tableNumber == table && hand1Object.GetComponent<Order>().IsCooked){
 				//Debug.Log ("Hand1");
 				return true;
 			}
 		}
-		if(hand2 != WaiterHands.None){
+		if(hand2 == WaiterHands.Meal){
 			if(hand2Object.GetComponent<Order>().tableNumber == table && hand2Object.GetComponent<Order>().IsCooked){
 				return true;
 				//Debug.Log("Hand2");
