@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class TouchManager : Singleton<TouchManager> {
 	public Queue <GameObject> inputQueue;
+	public int queueLimit = 6;
 	public bool isPaused = false;
 
 	void Start(){
@@ -20,10 +21,12 @@ public class TouchManager : Singleton<TouchManager> {
 						// Tap objects NEED to have implemented IWaiterSelection
 						IWaiterSelection waiterSelection = hitObject.collider.gameObject.GetComponent<IWaiterSelection>();
 						if(waiterSelection != null){
-							inputQueue.Enqueue(hitObject.collider.gameObject);
-							// used to dequeue
-							if(Waiter.Instance.canMove){
-								Waiter.Instance.Finished();
+							if(inputQueue.Count < queueLimit){
+								inputQueue.Enqueue(hitObject.collider.gameObject);
+								// used to dequeue
+								if(Waiter.Instance.canMove){
+									Waiter.Instance.Finished();
+								}
 							}
 						}
 							
