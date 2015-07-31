@@ -12,11 +12,12 @@ public class CustomerTutorial : Customer {
 		satisfaction = 100;
 		tutFingers= GameObject.Find("TuTFingers");
 		StartCoroutine("ShowTableFinger");
+		allergy = Allergies.None;
 	}
 
 	public override void JumpToTable (int tableN)
 	{
-		hideTableFinger();
+		hideFinger();
 		base.JumpToTable (tableN);
 	}
 
@@ -27,6 +28,7 @@ public class CustomerTutorial : Customer {
 
 	public override void OrderTaken (ImmutableDataFood food)
 	{
+		hideFinger();
 		base.OrderTaken (food);
 		StartCoroutine("ShowTuTFinger");
 	}

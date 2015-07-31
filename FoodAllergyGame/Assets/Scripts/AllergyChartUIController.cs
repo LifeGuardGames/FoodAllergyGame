@@ -26,6 +26,8 @@ public class AllergyChartUIController : MonoBehaviour {
 	public void OnCloseButton(){
 		if(RestaurantManager.Instance.isTutorial){
 			RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<CustomerTutorial>().hideFinger();
+			RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<CustomerTutorial>().step = 5;
+			RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
 		}
 		tween.Hide();
 	}
