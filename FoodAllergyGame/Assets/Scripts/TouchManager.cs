@@ -21,11 +21,16 @@ public class TouchManager : Singleton<TouchManager> {
 						// Tap objects NEED to have implemented IWaiterSelection
 						IWaiterSelection waiterSelection = hitObject.collider.gameObject.GetComponent<IWaiterSelection>();
 						if(waiterSelection != null){
-							if(inputQueue.Count < queueLimit){
-								inputQueue.Enqueue(hitObject.collider.gameObject);
-								// used to dequeue
-								if(Waiter.Instance.canMove){
-									Waiter.Instance.Finished();
+							if(!waiterSelection.IsQueueable()){
+								waiterSelection.OnClicked();
+							}
+							else{
+								if(inputQueue.Count < queueLimit){
+									inputQueue.Enqueue(hitObject.collider.gameObject);
+									// used to dequeue
+									if(Waiter.Instance.canMove){
+										Waiter.Instance.Finished();
+									}
 								}
 							}
 						}
