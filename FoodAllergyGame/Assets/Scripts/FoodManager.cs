@@ -57,24 +57,26 @@ public class FoodManager : Singleton<FoodManager>{
 	public List<ImmutableDataFood> GetMenuFoodsFromKeyword(FoodKeywords keyword, Allergies _allergy){
 		List<ImmutableDataFood> desiredFoodList = new List<ImmutableDataFood>();
 	//	Debug.Log (menuList.Count);
+		bool allergyFood = false;
 		bool allergenAdded = false;
-		foreach(ImmutableDataFood foodData in menuList){
-		///	Debug.Log ("Middle Step");
-			foreach(FoodKeywords foodKeyword in foodData.KeywordList){
-				//Debug.Log(foodKeyword.ToString());
-				if(foodKeyword == keyword){
-					foreach ( Allergies allergen in foodData.AllergyList){
-						if(allergen == _allergy){
-							if(!allergenAdded){
-								allergenAdded = true;
-								//Debug.Log (foodData.ID.ToString());
-								desiredFoodList.Add(foodData);
-							}
-						}
-						else{
-							desiredFoodList.Add(foodData);
-						}
+		while(desiredFoodList.Count < 2){
+			allergyFood = false;
+			int rand = Random.Range(0,menuList.Count);
+			Debug.Log (menuList[rand].ID.ToString());
+			if(!desiredFoodList.Contains(menuList[rand])){
+				foreach(Allergies alg in menuList[rand].AllergyList){
+					if(_allergy == alg){
+						allergyFood = true;	
 					}
+				}
+				if(allergyFood){
+					if(!allergenAdded){
+						allergenAdded = true;
+						desiredFoodList.Add( menuList[rand]);
+					}
+				}
+				else{
+					desiredFoodList.Add(menuList[rand]);
 				}
 			}
 		}
