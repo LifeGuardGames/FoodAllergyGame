@@ -94,6 +94,10 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 //		}
 	}
 
+	public bool IsQueueable(){
+		return true;
+	}
+
 	public void NotifySpinnerHighlight(){
 		spinnerHighlight.SetActive(true);
 	}

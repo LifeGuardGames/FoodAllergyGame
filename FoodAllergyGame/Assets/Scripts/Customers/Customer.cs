@@ -454,6 +454,10 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		Waiter.Instance.Finished();
 	}
 
+	public bool IsQueueable(){
+		return false;
+	}
+
 	public void OnClicked(){
 		if(state == CustomerStates.InLine){
 			// If you were already selecting a customer, untween that

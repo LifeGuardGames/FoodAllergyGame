@@ -78,6 +78,16 @@ public class Table : MonoBehaviour, IWaiterSelection{
 			Waiter.Instance.Finished();
 		}
 	}
+
+	public bool IsQueueable(){
+		if(inUse){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
 	public void OnClicked(){
 //		if(!TouchManager.IsHoveringOverGUI()){
 			// Check if customers need to jump to the table

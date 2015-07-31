@@ -24,6 +24,10 @@ public class PlayArea : MonoBehaviour, IWaiterSelection {
 		}
 	}
 
+	public bool IsQueueable(){
+		return false;
+	}
+
 	public void OnWaiterArrived(){
 	
 	}

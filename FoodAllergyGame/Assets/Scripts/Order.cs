@@ -104,6 +104,10 @@ public class Order : MonoBehaviour, IWaiterSelection{
 		Waiter.Instance.Finished();
 	}
 
+	public bool IsQueueable(){
+		return true;
+	}
+
 	public void OnClicked(){
 		Waiter.Instance.FindRoute(KitchenManager.Instance.waiterNode, this);
 	}

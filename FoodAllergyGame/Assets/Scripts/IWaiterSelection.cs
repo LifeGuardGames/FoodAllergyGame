@@ -3,6 +3,7 @@
 /// </summary>
 interface IWaiterSelection{
 
+
 	/// <summary>
 	/// Raises the waiter arrived event.
 	/// This is called when the waiter actually arrives at its destination
@@ -14,4 +15,6 @@ interface IWaiterSelection{
 	/// Most of the time it will tell the waiter to move to that position
 	/// </summary>
 	void OnClicked();
+
+	bool IsQueueable();
 }

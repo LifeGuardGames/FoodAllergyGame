@@ -30,7 +30,11 @@ public class Microwave :Singleton<Microwave>, IWaiterSelection{
 		}
 		Waiter.Instance.Finished();
 	}
-	
+
+	public bool IsQueueable(){
+		return true;
+	}
+
 	public void OnClicked(){
 		//		if(!TouchManager.IsHoveringOverGUI()){
 		Waiter.Instance.FindRoute(KitchenManager.Instance.waiterNode, this);
