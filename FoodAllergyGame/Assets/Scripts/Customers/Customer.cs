@@ -472,9 +472,14 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			Waiter.Instance.currentLineCustomer = gameObject;
 			AudioManager.Instance.PlayClip("pop");
 			gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-			if(RestaurantManager.Instance.isTutorial){
+			if(RestaurantManager.Instance.isTutorial && !this.gameObject.GetComponent<CustomerTutorial>().isAllergy){
 				this.GetComponent<CustomerTutorial>().hideTableFinger();
 				this.GetComponent<CustomerTutorial>().step = 4;
+				this.GetComponent<CustomerTutorial>().nextHint();
+			}
+			else if(RestaurantManager.Instance.isTutorial && this.gameObject.GetComponent<CustomerTutorial>().isAllergy){
+				this.GetComponent<CustomerTutorial>().hideTableFinger();
+				this.GetComponent<CustomerTutorial>().step = 6;
 				this.GetComponent<CustomerTutorial>().nextHint();
 			}
 		}

@@ -153,18 +153,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		if(customerHash.ContainsKey(Id)){
 			UpdateCash(satisfactionAI.CalculateBill(satisfaction));
 			customerHash.Remove(Id);
-			if(isTutorial){
-				Debug.Log ("tutDOne");
-				DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
-				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT1";
-				isTutorial = false;
-				dayOver = false;
-				StopCoroutine("SpawnCustomer");
-				StartDay(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()));
-			}
-			else{
-				CheckForGameOver();
-			}
+			CheckForGameOver();
 		}
 		else{
 			Debug.LogError("Invalid call on " + Id);
@@ -185,25 +174,36 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	private void CheckForGameOver(){
 		if(dayOver){
 			if(customerHash.Count == 0){
-				// Save data here
-				int dayNetCash = dayEarnedCash - FoodManager.Instance.MenuCost;
-				DataManager.Instance.GameData.Cash.SaveCash(dayNetCash, dayCashRevenue);
-
-				// Unlock new event generation for StartManager
-				DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
-
-				// Set tutorial to done if applies
-				if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT1"){
+				if(isTutorial){
+					Debug.Log ("tutDone");
 					DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
+					DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT1";
+					isTutorial = false;
+					dayOver = false;
+					StopCoroutine("SpawnCustomer");
+					StartDay(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()));
 				}
-				else if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT2"){
-					DataManager.Instance.GameData.Tutorial.IsTutorial2Done = true;
-				}
+				else{
+					// Save data here
+					int dayNetCash = dayEarnedCash - FoodManager.Instance.MenuCost;
+					DataManager.Instance.GameData.Cash.SaveCash(dayNetCash, dayCashRevenue);
 
-				// Show day complete UI
-				restaurantUI.DayComplete(satisfactionAI.MissingCustomers, satisfactionAI.AvgSatifaction(), dayEarnedCash,
-				                         FoodManager.Instance.MenuCost, dayNetCash,
-				                         DataManager.Instance.GameData.Cash.CurrentCash);
+					// Unlock new event generation for StartManager
+					DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
+						
+					// Set tutorial to done if applies
+					if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT1"){
+						DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
+					}
+					else if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT2"){
+						DataManager.Instance.GameData.Tutorial.IsTutorial2Done = true;
+					}
+
+					// Show day complete UI
+					restaurantUI.DayComplete(satisfactionAI.MissingCustomers, satisfactionAI.AvgSatifaction(), dayEarnedCash,
+				 	                        FoodManager.Instance.MenuCost, dayNetCash,
+				 	                        DataManager.Instance.GameData.Cash.CurrentCash);
+				}
 			}
 		}
 	}
@@ -260,6 +260,17 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		}
 		StopCoroutine("SpawnCustomer");
 		StartCoroutine(LightsOut());
+	}
+	public void SpawnSecondTut(){
+		ImmutableDataCustomer test;
+		test = DataLoaderCustomer.GetData(currCusSet[0]);
+		GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
+		GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
+		cus.GetComponent<CustomerTutorial>().isAllergy = true;
+		cus.GetComponent<Customer>().Init(customerNumber, eventData);
+		customerHash.Add(cus.GetComponent<Customer>().customerID,cus);
+		customerNumber++;
+		satisfactionAI.AddCustomer();
 	}
 
 	IEnumerator LightsOut(){

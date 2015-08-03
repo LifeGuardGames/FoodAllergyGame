@@ -5,6 +5,7 @@ public class CustomerTutorial : Customer {
 
 	public GameObject tutFingers;
 	public int step = 0;
+	public bool isAllergy = false;
 
 	public override void Init (int num, ImmutableDataEvents mode)
 	{
@@ -12,7 +13,12 @@ public class CustomerTutorial : Customer {
 		satisfaction = 100;
 		tutFingers= GameObject.Find("TuTFingers");
 		StartCoroutine("ShowTableFinger");
-		allergy = Allergies.None;
+		if(!isAllergy){
+			allergy = Allergies.None;
+		}
+		else{
+			allergy = Allergies.Wheat;
+		}
 	}
 
 	public override void JumpToTable (int tableN)
@@ -37,6 +43,9 @@ public class CustomerTutorial : Customer {
 	{
 		hideTableFinger();
 		base.Eating ();
+		if(!isAllergy){
+			RestaurantManager.Instance.SpawnSecondTut();
+		}
 	}
 
 	public override void NotifyLeave ()
