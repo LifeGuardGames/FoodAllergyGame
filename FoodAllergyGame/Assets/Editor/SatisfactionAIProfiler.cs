@@ -30,8 +30,8 @@ public class SatisfactionAIProfiler : EditorWindow {
 	}
 
 	// Returns number of steps for a single test
-	private int SingleTest(SatisfactionAI ai){
-		Debug.Log("Count : ");
-		Debug.Log("Steps : ");
-	}
+//	private int SingleTest(SatisfactionAI ai){
+//		Debug.Log("Count : ");
+//		Debug.Log("Steps : ");
+//	}
 }
