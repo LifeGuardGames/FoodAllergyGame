@@ -45,8 +45,8 @@ public class RestaurantUIManager : MonoBehaviour {
 		RestaurantManager.Instance.DeployMedic();
 	}
 
-	public void DayComplete(int customersMissed, float avgSatisfaction, int tips, int menuCost, int earningsNet, int totalCash){
-		dayOverUIController.Populate(customersMissed, avgSatisfaction, tips, menuCost, earningsNet, totalCash);
+	public void DayComplete(int customersMissed, float avgSatisfaction, int tips, int menuCost, int earningsNet, int totalCash, int medicCost){
+		dayOverUIController.Populate(customersMissed, avgSatisfaction, tips, menuCost, earningsNet, totalCash, medicCost);
 		dayOverUIController.gameObject.SetActive(true);
 //		AudioManager.Instance.PlayClip("EndOfDay");
 	}

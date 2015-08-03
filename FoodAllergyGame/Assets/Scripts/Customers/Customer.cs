@@ -363,7 +363,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 	// if they are saved they take a small penalty for making the mistake and the customer will want the check asap
 	public virtual void Saved(){
-		RestaurantManager.Instance.UpdateCash(-10);
+		Medic.Instance.BillRestaurant(10);
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
 		IncreaseSatisfaction();
 		customerAnim.SetSatisfaction(satisfaction);
@@ -379,7 +379,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 //		RestaurantManager.Instance.medicButton.GetComponent<Animator>().SetBool("TutMedic", false);
 //		RestaurantManager.Instance.tutText.SetActive(false);
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
-		satisfaction = -10;
+		Medic.Instance.BillRestaurant(50);
+		satisfaction = 0;
 		customerUI.UpdateSatisfaction(satisfaction);
 		customerAnim.SetSatisfaction(satisfaction);
 		AudioManager.Instance.PlayClip("dead");

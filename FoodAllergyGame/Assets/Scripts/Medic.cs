@@ -4,6 +4,10 @@ using System.Collections;
 public class Medic : Singleton<Medic> {
 
 	public GameObject startPos;
+	public int medicCost;
+	public int MedicCost{
+		get{return medicCost;}
+	}
 	public WaiterAnimController waiterAnimController;
 
 	// the medic move toward the next customer on the list
@@ -36,6 +40,10 @@ public class Medic : Singleton<Medic> {
 	public void saveCustomer(){
 		StartCoroutine("TreatCustomer");
 
+	}
+
+	public void BillRestaurant (int expense){
+		medicCost += expense;
 	}
 
 	IEnumerator TreatCustomer(){
