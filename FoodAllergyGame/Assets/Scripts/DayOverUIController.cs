@@ -11,12 +11,12 @@ public class DayOverUIController : MonoBehaviour {
 	public Text textEarningsNet;
 	public Text textTotalCash;
 
-	public void Populate(int customersMissed, float avgSatisfaction, int tips, int menuCost, int earningsNet, int totalCash){
+	public void Populate(int customersMissed, float avgSatisfaction, int tips, int menuCost, int earningsNet, int totalCash, int medicalExpenses){
 		textCustomersMissed.text = customersMissed.ToString();
 		textAvgSatisfaction.text = avgSatisfaction.ToString("F2");	// Round to two decimal places
 		textTips.text = tips.ToString();
-		textMenuCost.text = menuCost.ToString();
-		textEarningsNet.text = earningsNet.ToString();
+		textMenuCost.text = (menuCost+ medicalExpenses).ToString();
+		textEarningsNet.text = (tips - menuCost -medicalExpenses).ToString();
 		textTotalCash.text = totalCash.ToString();
 	}
 }

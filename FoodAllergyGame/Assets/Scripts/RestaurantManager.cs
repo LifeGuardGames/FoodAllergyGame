@@ -202,7 +202,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 					// Show day complete UI
 					restaurantUI.DayComplete(satisfactionAI.MissingCustomers, satisfactionAI.AvgSatifaction(), dayEarnedCash,
 				 	                        FoodManager.Instance.MenuCost, dayNetCash,
-				 	                        DataManager.Instance.GameData.Cash.CurrentCash);
+				 	                        DataManager.Instance.GameData.Cash.CurrentCash,
+					                         Medic.Instance.MedicCost);
 				}
 			}
 		}
