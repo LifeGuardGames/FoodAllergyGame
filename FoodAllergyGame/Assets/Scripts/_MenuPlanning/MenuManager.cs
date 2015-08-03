@@ -42,10 +42,11 @@ public class MenuManager : Singleton<MenuManager>{
 
 	private int menuCost = 0;
 	public Text menuCostText;
+	public Text doneButtonCostText;
 	public Animation textCashAnimation;
 	public GameObject tutFinger;
 
-	public GameObject doneButton;
+	public GameObject doneButtonParent;
 
 	void Start(){
 		currEvent = DataManager.Instance.GetEvent();
@@ -59,11 +60,11 @@ public class MenuManager : Singleton<MenuManager>{
 		selectedMenuController.Init(menuSize);
 		allergiesChartController.Init(menuSize);
 
+		ChangeMenuCost(0);	// Reset text to zero
 		PopulateStockGrid();
-
 		InitSanityCheck();
 
-		doneButton.SetActive(false);
+		doneButtonParent.SetActive(false);
 	}
 
 	// Check certain values to see if they are consistent
@@ -186,7 +187,7 @@ public class MenuManager : Singleton<MenuManager>{
 			allergiesChartController.UpdateChart();
 
 			if(selectedMenuStringList.Count == menuSize){
-				doneButton.SetActive(true);
+				doneButtonParent.SetActive(true);
 				foodStockGrid.SetActive(false);
 				foodStockTitle.SetActive(false);
 				leftButton.SetActive(false);
@@ -202,7 +203,7 @@ public class MenuManager : Singleton<MenuManager>{
 		allergiesChartController.UpdateChart();
 
 		if(isRemoved){
-			doneButton.SetActive(false);
+			doneButtonParent.SetActive(false);
 			foodStockGrid.SetActive(true);
 			foodStockTitle.SetActive(true);
 			leftButton.SetActive(true);
@@ -233,10 +234,11 @@ public class MenuManager : Singleton<MenuManager>{
 		eventDescription.SetActive(false);
 	}
 
-	public void ChangeNetCash(int delta){
+	public void ChangeMenuCost(int delta){
 		menuCost += delta;
 		textCashAnimation.Play();
-		menuCostText.text = "$" + menuCost.ToString();
+		menuCostText.text = menuCost.ToString();
+		doneButtonCostText.text = menuCost.ToString();
 	}
 
 	public void OnMenuSelectionDone(){
