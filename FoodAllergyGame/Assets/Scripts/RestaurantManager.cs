@@ -51,7 +51,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		SickCustomers = new List<GameObject>();
 		customerHash = new Dictionary<string, GameObject>();
 		satisfactionAI = new SatisfactionAI();
-
+		CustomerSeated();
 		if(DataManager.Instance.isDebug){
 			FoodManager.Instance.GenerateMenu(DataLoaderMenuSet.GetData("MenuSetT1").MenuSet.ToList(), 0);
 			StartDay(DataLoaderEvents.GetData("Event00"));
@@ -250,6 +250,18 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 	public Dictionary<string, GameObject>.ValueCollection getCurrentCustomers(){
 		return customerHash.Values;
+	}
+
+	public void AvailableTables(){
+		for (int i = 0; i < 4; i++){
+			GetTable(i).TurnOnHighlight();
+		}
+	}
+
+	public void CustomerSeated(){
+		for (int i = 0; i < 4; i++){
+			GetTable(i).TurnOffHighlight();
+		}
 	}
 
 	public void Blackout(){

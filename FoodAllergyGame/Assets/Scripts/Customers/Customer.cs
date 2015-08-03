@@ -198,6 +198,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Jumps to the table given a table number
 	public virtual void JumpToTable(int tableN){
+		RestaurantManager.Instance.CustomerSeated();
 		Waiter.Instance.currentLineCustomer = null;
 		AudioManager.Instance.PlayClip("pop");
 		//sitting down
@@ -469,6 +470,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 					}
 				}
 			}
+			RestaurantManager.Instance.AvailableTables();
 			Waiter.Instance.currentLineCustomer = gameObject;
 			AudioManager.Instance.PlayClip("pop");
 			gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);

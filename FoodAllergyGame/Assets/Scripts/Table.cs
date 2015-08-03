@@ -20,6 +20,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	public GameObject _canvas;
 	public bool isGossiped;
 	public GameObject node;
+	public GameObject tableHighlight;
 
 	//facilitates talk between customer and waiter
 	public void TalkToConsumer(){
@@ -86,6 +87,16 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		else{
 			return false;
 		}
+	}
+
+	public void TurnOnHighlight(){
+		if(!inUse){
+			tableHighlight.SetActive(true);
+		}
+	}
+
+	public void TurnOffHighlight(){
+		tableHighlight.SetActive(false);
 	}
 
 	public void OnClicked(){
