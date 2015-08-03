@@ -8,12 +8,12 @@ public class RestaurantUIManager : MonoBehaviour {
 
 	public Image clockBarFill;
 	public RectTransform clockHand;
-	public GameObject clockFinishedText;
+	public GameObject clockFinishedImage;
 	private bool isClockFinished;
 
 	public void StartDay(){
 		isClockFinished = false;
-		clockFinishedText.SetActive(false);
+		clockFinishedImage.SetActive(false);
 		clockBarFill.fillAmount = 0f;
 	}
 
@@ -30,7 +30,7 @@ public class RestaurantUIManager : MonoBehaviour {
 	}
 
 	public void FinishClock(){
-		clockFinishedText.SetActive(true);
+		clockFinishedImage.SetActive(true);
 	}
 
 	public void UpdateCash(float cash){
