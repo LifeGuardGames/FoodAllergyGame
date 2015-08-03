@@ -34,7 +34,7 @@ public class RestaurantUIManager : MonoBehaviour {
 	}
 
 	public void UpdateCash(float cash){
-		cashText.text = "$" + cash.ToString();
+		cashText.text = cash.ToString();
 	}
 
 	public void OnRestartButton(){
