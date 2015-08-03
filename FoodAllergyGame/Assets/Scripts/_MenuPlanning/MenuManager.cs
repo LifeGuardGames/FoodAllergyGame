@@ -12,11 +12,15 @@ public class MenuManager : Singleton<MenuManager>{
 
 	public AllergiesChartController allergiesChartController;
 	public SelectedMenuController selectedMenuController;
+	public GameObject foodStockTitle;
 	public GameObject foodStockGrid;
 	public GameObject eventDescription;
 
 	private string currEvent;
 	private ImmutableDataEvents currEventData;
+
+	public TweenToggle trashTweenToggle;
+	public MenuDragSlotTrash trashSlot;
 
 	public List<Transform> currentFoodStockSlotList;			// Slots of the menu food stock
 	private List<string> foodStockList = new List<string>();	// All the foods that are allowed for today
@@ -105,6 +109,7 @@ public class MenuManager : Singleton<MenuManager>{
 		RefreshButtonShowStatus();
 	}
 
+	#region Food stock page functions
 	// Checks to see if the buttons need to appear
 	public void RefreshButtonShowStatus(){
 		// Check left most limit
@@ -131,16 +136,27 @@ public class MenuManager : Singleton<MenuManager>{
 			foodStockPage--;
 		}
 
+		ShowPage(foodStockPage);
+		RefreshButtonShowStatus();
+	}
+
+	// Used for the trash can, refresh current list
+	public void RefreshCurrentPage(){
+		ShowPage(foodStockPage);
+	}
+
+	// Either refreshes current page, or shows a new page given page number
+	private void ShowPage(int foodStockPage){
 		// Destroy children beforehand
 		foreach(Transform slot in currentFoodStockSlotList){
 			foreach(Transform child in slot){	// Auto detect all/none children
 				Destroy(child.gameObject);
 			}
 		}
-
+		
 		int startingIndex = foodStockPage * foodStockPageSize;
 		int endingIndex = startingIndex + foodStockPageSize;
-
+		
 		for(int i = startingIndex; i < endingIndex; i++){
 			if(foodStockList.Count == i){		// Reached the end of list
 				break;
@@ -151,8 +167,8 @@ public class MenuManager : Singleton<MenuManager>{
 				foodStockButton.GetComponent<FoodStockButton>().Init(foodData);
 			}
 		}
-		RefreshButtonShowStatus();
 	}
+	#endregion
 	
 	public bool AddFoodToMenuList(string foodID){
 		tutFinger.SetActive(false);
@@ -171,6 +187,10 @@ public class MenuManager : Singleton<MenuManager>{
 
 			if(selectedMenuStringList.Count == menuSize){
 				doneButton.SetActive(true);
+				foodStockGrid.SetActive(false);
+				foodStockTitle.SetActive(false);
+				leftButton.SetActive(false);
+				rightButton.SetActive(false);
 			}
 			return true;
 		}
@@ -183,8 +203,22 @@ public class MenuManager : Singleton<MenuManager>{
 
 		if(isRemoved){
 			doneButton.SetActive(false);
+			foodStockGrid.SetActive(true);
+			foodStockTitle.SetActive(true);
+			leftButton.SetActive(true);
+			rightButton.SetActive(true);
 		}
 		return isRemoved;
+	}
+
+	public void ShowTrashCan(){
+		trashTweenToggle.Show();
+		trashSlot.enabled = true;
+	}
+
+	public void HideTrashCan(){
+		trashTweenToggle.Hide();
+		trashSlot.enabled = false;	// Disable script incase of drag slot overlay
 	}
 
 	public void OnBackButtonClicked(){

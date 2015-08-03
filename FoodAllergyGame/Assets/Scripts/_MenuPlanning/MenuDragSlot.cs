@@ -20,13 +20,15 @@ public class MenuDragSlot : MonoBehaviour, IDropHandler {
 		if(!item){
 			FoodStockButton foodButton = FoodStockButton.itemBeingDragged.GetComponent<FoodStockButton>();
 			if(isSelectedSlot && MenuManager.Instance.AddFoodToMenuList(foodButton.foodID)){
-				FoodStockButton.itemBeingDragged.transform.SetParent(transform);
-				FoodStockButton.itemBeingDragged.transform.localPosition = Vector3.zero;
+				foodButton.InFoodStockSlot = false;
+				foodButton.transform.SetParent(transform);
+				foodButton.transform.localPosition = Vector3.zero;
 				MenuManager.Instance.ChangeNetCash(foodButton.Cost);
 			}
 			else if(!isSelectedSlot){
-				FoodStockButton.itemBeingDragged.transform.SetParent(transform);
-				FoodStockButton.itemBeingDragged.transform.localPosition = Vector3.zero;
+				foodButton.InFoodStockSlot = true;
+				foodButton.transform.SetParent(transform);
+				foodButton.transform.localPosition = Vector3.zero;
 			}
 		}
 	}

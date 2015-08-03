@@ -14,11 +14,19 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
 	public static GameObject itemBeingDragged;
 	private Transform dragAux;
+	private Transform trashAux;
 	private Vector3 startPosition;
 	private Transform startParent;
+
 	private int cost;
 	public int Cost{
 		get{ return cost; }
+	}
+
+	private bool inFoodStockSlot = true;
+	public bool InFoodStockSlot{
+		get{ return inFoodStockSlot; }
+		set{ inFoodStockSlot = value; }
 	}
 	
 	public void Init(ImmutableDataFood foodData){
@@ -51,6 +59,7 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
 	void Start(){
 		dragAux = MenuManager.Instance.dragAux;
+		trashAux = MenuManager.Instance.trashSlot.transform;
 	}
 	
 	#region IBeginDragHandler implementation
@@ -63,6 +72,11 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 		// Remove the food from its attachment
 		if(MenuManager.Instance.RemoveFoodFromMenuList(foodID)){
 			MenuManager.Instance.ChangeNetCash(Cost * -1);
+		}
+
+		// Show trash can if dragging from selected slot
+		if(!inFoodStockSlot){
+			MenuManager.Instance.ShowTrashCan();
 		}
 	}
 	#endregion
@@ -87,10 +101,21 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 				MenuManager.Instance.ChangeNetCash(Cost);
 			}
 		}
+		else if(transform.parent == trashAux){
+			StartCoroutine(DestroySelf());
+		}
 		else{	// Save new parent
 			startParent = transform.parent;
 			startPosition = transform.localPosition;
 		}
+
+		// Try to hide trash can no matter what
+		MenuManager.Instance.HideTrashCan();
 	}
 	#endregion
+
+	private IEnumerator DestroySelf(){
+		yield return new WaitForEndOfFrame();
+		Destroy(gameObject);
+	}
 }

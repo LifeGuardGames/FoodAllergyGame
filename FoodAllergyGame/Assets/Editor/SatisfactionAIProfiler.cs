@@ -25,7 +25,7 @@ public class SatisfactionAIProfiler : EditorWindow {
 		SatisfactionAI ai = new SatisfactionAI();
 		for(int i = 0; i < testsToRun; i++){
 			Debug.Log("Test " + i.ToString() + ":");
-			SingleTest(ai);
+//			SingleTest(ai);
 		}
 	}
 

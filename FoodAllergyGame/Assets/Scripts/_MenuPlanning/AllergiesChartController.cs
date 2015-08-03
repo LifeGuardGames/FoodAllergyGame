@@ -86,6 +86,6 @@ public class AllergiesChartController : MonoBehaviour {
 
 		// Change the size of the bar based on total menuSize count
 		float percentageHeight = (float)count / (float)menuSize;
-		image.rectTransform.sizeDelta = new Vector2(50f, percentageHeight * 275);
+		image.rectTransform.sizeDelta = new Vector2(50f, percentageHeight * 238);
 	}
 }
