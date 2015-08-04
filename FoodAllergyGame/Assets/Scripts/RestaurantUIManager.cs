@@ -5,7 +5,7 @@ using System.Collections;
 public class RestaurantUIManager : MonoBehaviour {
 	public Text cashText;
 	public DayOverUIController dayOverUIController;
-
+	public GameObject expenseMenu;
 	public Image clockBarFill;
 	public RectTransform clockHand;
 	public GameObject clockFinishedImage;
@@ -49,5 +49,13 @@ public class RestaurantUIManager : MonoBehaviour {
 		dayOverUIController.Populate(customersMissed, avgSatisfaction, tips, menuCost, earningsNet, totalCash, medicCost);
 		dayOverUIController.gameObject.SetActive(true);
 //		AudioManager.Instance.PlayClip("EndOfDay");
+	}
+
+	public void ShowExpense(){
+		expenseMenu.SetActive(true);
+	}
+
+	public void HideExpense(){
+		expenseMenu.SetActive(false);
 	}
 }
