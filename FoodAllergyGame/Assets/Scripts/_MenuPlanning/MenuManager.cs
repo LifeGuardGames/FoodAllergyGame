@@ -12,7 +12,6 @@ public class MenuManager : Singleton<MenuManager>{
 
 	public AllergiesChartController allergiesChartController;
 	public SelectedMenuController selectedMenuController;
-	public GameObject foodStockTitle;
 	public GameObject foodStockGrid;
 	public GameObject eventDescription;
 
@@ -46,7 +45,7 @@ public class MenuManager : Singleton<MenuManager>{
 	public Animation textCashAnimation;
 	public GameObject tutFinger;
 
-	public GameObject doneButtonParent;
+	public TweenToggle doneButtonTween;
 
 	void Start(){
 		currEvent = DataManager.Instance.GetEvent();
@@ -63,8 +62,6 @@ public class MenuManager : Singleton<MenuManager>{
 		ChangeMenuCost(0);	// Reset text to zero
 		PopulateStockGrid();
 		InitSanityCheck();
-
-		doneButtonParent.SetActive(false);
 	}
 
 	// Check certain values to see if they are consistent
@@ -187,9 +184,8 @@ public class MenuManager : Singleton<MenuManager>{
 			allergiesChartController.UpdateChart();
 
 			if(selectedMenuStringList.Count == menuSize){
-				doneButtonParent.SetActive(true);
+				doneButtonTween.Show();
 				foodStockGrid.SetActive(false);
-				foodStockTitle.SetActive(false);
 				leftButton.SetActive(false);
 				rightButton.SetActive(false);
 			}
@@ -203,9 +199,8 @@ public class MenuManager : Singleton<MenuManager>{
 		allergiesChartController.UpdateChart();
 
 		if(isRemoved){
-			doneButtonParent.SetActive(false);
+			doneButtonTween.Hide();
 			foodStockGrid.SetActive(true);
-			foodStockTitle.SetActive(true);
 			leftButton.SetActive(true);
 			rightButton.SetActive(true);
 		}
