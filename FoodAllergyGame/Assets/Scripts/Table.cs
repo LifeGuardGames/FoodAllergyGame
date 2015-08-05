@@ -11,6 +11,11 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	public Transform Seat{
 		get{ return seat; }
 	}
+	public int seatLayerOrder;	// Sprite order, should be one below table order
+	public int SeatLayerOrder{
+		get{ return seatLayerOrder; }
+	}
+
 	public bool isFlythrough;
 	public Transform waiterSpot;
 	public Transform foodSpot;
@@ -24,7 +29,6 @@ public class Table : MonoBehaviour, IWaiterSelection{
 
 	//facilitates talk between customer and waiter
 	public void TalkToConsumer(){
-
 		if(inUse){
 			// CheckState will handle waiter finish
 			transform.GetComponentInChildren<Customer>().CheckState();
@@ -63,6 +67,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		RestaurantManager.Instance.CustomerLeft(currentCustomerID, 0);
 		CustomerLeaving();
 	}
+
 	//for use by sir table smasher when he does his thing
 	public void TableSmashed(){
 		isBroken = true;
@@ -70,7 +75,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 
 	#region IWaiterSelection implementation
 	public void OnWaiterArrived(){
-		if(!isBroken &&seat.childCount > 0){
+		if(!isBroken && seat.childCount > 0){
 			Waiter.Instance.currentTable = tableNumber;
 			TalkToConsumer();
 
