@@ -36,6 +36,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 
 	// Initialize the order when it is first spawned
 	public void Init(string foodID, int tableNumber, Allergies _allergy){
+		this.gameObject.GetComponent<BoxCollider>().enabled = false;
 		this.foodID = foodID;
 		this.tableNumber = tableNumber;
 		isCooked = false;
@@ -63,6 +64,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 		IsCooked = true;
 		OrderImage.enabled = true;
 		GetComponentInChildren<Text>().enabled = true;
+		this.gameObject.GetComponent<BoxCollider>().enabled = true;
 		RestaurantManager.Instance.GetKitchen().FinishCooking(this.gameObject);
 		AudioManager.Instance.PlayClip("orderReady");
 		if(RestaurantManager.Instance.isTutorial){
