@@ -24,6 +24,9 @@ public class CustomerTutorial : Customer {
 	public override void JumpToTable (int tableN)
 	{
 		hideFinger();
+		if(isAllergy){
+			menuTimer *= 3; 
+		}
 		base.JumpToTable (tableN);
 	}
 
@@ -72,13 +75,13 @@ public class CustomerTutorial : Customer {
 	}
 
 	IEnumerator ShowTuTFinger(){
-		yield return new WaitForSeconds(2.0f);
+		yield return new WaitForSeconds(0.2f);
 		Debug.Log (tutFingers.transform.GetChild(step).name);
 		tutFingers.transform.GetChild(step).gameObject.SetActive(true);
 	}
 
 	IEnumerator ShowTableFinger(){
-		yield return new WaitForSeconds(2.0f);
+		yield return new WaitForSeconds(0.2f);
 		transform.GetChild (2).gameObject.SetActive(true);
 	}
 }
