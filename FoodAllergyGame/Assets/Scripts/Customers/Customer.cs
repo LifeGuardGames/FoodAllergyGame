@@ -15,7 +15,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public string customerID;			// The customer's id used for identification in the 
 	public CustomerStates state;		// The current state of the customer
 	public Allergies allergy;			// The allergy of the customer
-	private float menuTimer = 4.0f;		// Time spent looking at the menu
+	protected float menuTimer = 4.0f;		// Time spent looking at the menu
 	private float attentionSpan = 10.0f;// The attention timer
 
 	public int satisfaction;			// The satisfaction the customer has, everytime the attention span 
@@ -352,11 +352,16 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		if(order.gameObject != null){
 			Destroy(order.gameObject);
 		}
-		if(!RestaurantManager.Instance.firstSickCustomer){
+		if(DataManager.Instance.GameData.Tutorial.IsMedicTuT2Done){
 			StartCoroutine("AllergyTimer");
 		}
-		if(RestaurantManager.Instance.firstSickCustomer){
-			RestaurantManager.Instance.firstSickCustomer = false;
+		else{
+			if(!DataManager.Instance.GameData.Tutorial.IsMedicTuT1Done){
+				DataManager.Instance.GameData.Tutorial.IsMedicTuT1Done = true;
+			}
+			else{
+				DataManager.Instance.GameData.Tutorial.IsMedicTuT2Done = true;
+			}
 			RestaurantManager.Instance.medicButton.GetComponent<Animator>().SetBool("TutMedic", true);
 			RestaurantManager.Instance.tutText.SetActive(true);
 		}
