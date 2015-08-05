@@ -5,16 +5,18 @@ public class AllergyChartUIController : MonoBehaviour {
 
 	public TweenToggle tween;
 	public GameObject grid;
+	private GameObject entry;
 	public GameObject chartEntryPrefab;
 
+
 	void Start(){
-		foreach(ImmutableDataFood foodData in FoodManager.Instance.MenuList){
-			GameObject entry = GameObjectUtils.AddChildGUI(grid, chartEntryPrefab);
-			entry.GetComponent<AllergyChartUIEntry>().Init(foodData.ID);
-		}
+
 	}
 
 	public void OnOpenButton(){
+		entry = GameObjectUtils.AddChildGUI(grid, chartEntryPrefab);
+		entry.GetComponent<AllergyChartUIEntry>().Init( RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<Customer>().allergy);
+		
 		if(RestaurantManager.Instance.isTutorial && RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<CustomerTutorial>().isAllergy){
 			RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<CustomerTutorial>().hideFinger();
 			RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<CustomerTutorial>().step = 3;
@@ -32,6 +34,7 @@ public class AllergyChartUIController : MonoBehaviour {
 			RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<CustomerTutorial>().step = 5;
 			RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
 		}
+		Destroy(entry);
 		tween.Hide();
 	}
 }

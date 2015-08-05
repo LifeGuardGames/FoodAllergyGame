@@ -4,39 +4,36 @@ using System.Collections;
 
 public class AllergyChartUIEntry : MonoBehaviour {
 
-	public Image imageFood;
-	public Image imageAllergy1;
-	public Image imageAllergy2;
-	public Image imageAllergy3;
+	public Image imageAllergy;
+	public GameObject grid;
 	public Text textNone;
+	public Text textAllergy;
+	public GameObject equals;
 
-	public void Init(string foodID){
-		ImmutableDataFood foodData = DataLoaderFood.GetData(foodID);
-		imageFood.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(foodData.SpriteName);
-		if(foodData.AllergyList[0] == Allergies.None){
+	public void Init(Allergies alg){
+		Debug.Log (alg.ToString ());
+		if(alg == Allergies.None){
 			textNone.gameObject.SetActive(true);
-			imageAllergy1.gameObject.SetActive(false);
-			imageAllergy2.gameObject.SetActive(false);
-			imageAllergy3.gameObject.SetActive(false);
+			textAllergy.gameObject.SetActive(false);
+			equals.SetActive(false);
+			imageAllergy.gameObject.SetActive(false);
 		}
 		else{
-			if(foodData.AllergyList.Count == 1){
-				imageAllergy1.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(foodData.AllergyList[0]);
-				imageAllergy2.gameObject.SetActive(false);
-				imageAllergy3.gameObject.SetActive(false);
-				textNone.gameObject.SetActive(false);
-			}
-			else if(foodData.AllergyList.Count == 2){
-				imageAllergy1.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(foodData.AllergyList[0]);
-				imageAllergy2.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(foodData.AllergyList[1]);
-				imageAllergy3.gameObject.SetActive(false);
-				textNone.gameObject.SetActive(false);
-			}
-			else if(foodData.AllergyList.Count == 3){
-				imageAllergy1.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(foodData.AllergyList[0]);
-				imageAllergy2.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(foodData.AllergyList[1]);
-				imageAllergy3.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(foodData.AllergyList[2]);
-				textNone.gameObject.SetActive(false);
+			textAllergy.gameObject.SetActive(true);
+			textAllergy.text = alg.ToString ();
+			textNone.gameObject.SetActive(false);
+			imageAllergy.gameObject.SetActive(true);
+			equals.SetActive(true);
+			imageAllergy.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(alg);
+			foreach (ImmutableDataFood foodData in FoodManager.Instance.menuList){
+				if(foodData.AllergyList.Contains(alg)){
+					Debug.Log (foodData.ID);
+					GameObject foodImg = new GameObject();
+					foodImg.AddComponent<Image>();
+					foodImg.GetComponent<Image>().sprite = SpriteCacheManager.Instance.GetFoodSpriteData(foodData.SpriteName);
+					GameObject entry = GameObjectUtils.AddChildGUI(grid, foodImg);
+					Destroy(foodImg);
+				}
 			}
 		}
 	}
