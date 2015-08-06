@@ -40,7 +40,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public KitchenManager kitchen;
 	public bool firstSickCustomer = false;
 	public GameObject medicButton;
-	public GameObject tutText;
+	public GameObject medicTutorial;
 	public GameObject blackoutImg;
 	List<string> currCusSet;
 	public bool isTutorial;
@@ -222,7 +222,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 	public void DeployMedic(){
 		RestaurantManager.Instance.medicButton.GetComponent<Animator>().SetBool("TutMedic", false);
-		RestaurantManager.Instance.tutText.SetActive(false);
+		RestaurantManager.Instance.medicTutorial.SetActive(false);
 		if(SickCustomers.Count > 0){
 			Medic.Instance.MoveToLocation(SickCustomers[0].transform.position);
 		}
