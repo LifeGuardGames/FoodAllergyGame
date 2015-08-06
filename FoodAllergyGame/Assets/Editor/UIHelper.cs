@@ -2,6 +2,7 @@
 using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class UIHelper : EditorWindow {
 	private GameObject[] tagsList;
@@ -16,6 +17,16 @@ public class UIHelper : EditorWindow {
 		EditorWindow.GetWindow(typeof(UIHelper));
 	}
 
+	public void Reload(){
+		// Attempt to load
+		currentScene = EditorApplication.currentScene;
+		tagsList = GameObject.FindGameObjectsWithTag("UIElementList");
+		if(tagsList.Length > 0){
+			UIElementsList = GameObject.FindGameObjectsWithTag("UIElementList")[0].GetComponent<UIHelperList>().UIElementList;
+			elementBoolList = GameObject.FindGameObjectsWithTag("UIElementList")[0].GetComponent<UIHelperList>().defaultBools;
+		}
+	}
+
 	public void OnInspectorUpdate(){
 		if(EditorApplication.isCompiling){
 			isCompileAux = true;
@@ -23,40 +34,38 @@ public class UIHelper : EditorWindow {
 		bool isFinishedCompiling = isCompileAux && !EditorApplication.isCompiling;
 
 		if(currentScene != EditorApplication.currentScene || isFinishedCompiling){
-//		if(currentScene != EditorApplication.currentScene){ 
 			isCompileAux = false;
-//			Debug.Log("Loading ui helpers");
 			Repaint();
-			// Attempt to load
-			currentScene = EditorApplication.currentScene;
-			tagsList = GameObject.FindGameObjectsWithTag("UIElementList");
-			if(tagsList.Length > 0){
-				UIElementsList = GameObject.FindGameObjectsWithTag("UIElementList")[0].GetComponent<UIHelperList>().UIElementList;
-				elementBoolList = GameObject.FindGameObjectsWithTag("UIElementList")[0].GetComponent<UIHelperList>().defaultBools;
-			}
+			Reload();
 		}
 	}
 
 	void OnGUI(){
 		if(tagsList != null && tagsList.Length > 0){
-			GUILayout.Label("Toggle UI Elements", EditorStyles.boldLabel);
+			try{
+				GUILayout.Label("Toggle UI Elements", EditorStyles.boldLabel);
 
-			if(GUILayout.Button("Disable All")){
-				DisableUIElements();
-			}
-
-			for(int i = 0; i < UIElementsList.Count; i++){
-				GUILayout.BeginHorizontal();
-				GUILayout.Toggle(elementBoolList[i], "");
-				GUILayout.Label(UIElementsList[i].name);
-				if(GUILayout.Button("Solo", GUILayout.Width(50))){
-					SoloUI(UIElementsList[i]);
+				if(GUILayout.Button("Disable All")){
+					DisableUIElements();
 				}
-				GUILayout.EndHorizontal();
-			}
 
-			if(GUILayout.Button("Reset", GUILayout.Height(50))){
-				ResetUIElements();
+				for(int i = 0; i < UIElementsList.Count; i++){
+					GUILayout.BeginHorizontal();
+					GUILayout.Toggle(elementBoolList[i], "");
+					GUILayout.Label(UIElementsList[i].name);
+					if(GUILayout.Button("Solo", GUILayout.Width(50))){
+						SoloUI(UIElementsList[i]);
+					}
+					GUILayout.EndHorizontal();
+				}
+
+				if(GUILayout.Button("Reset", GUILayout.Height(50))){
+					ResetUIElements();
+				}
+			}
+			catch(Exception e){
+				Debug.LogWarning("GUIHelper exception caught, reloading..." + e.ToString());
+				Reload();
 			}
 		}
 	}
