@@ -15,7 +15,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public string customerID;			// The customer's id used for identification in the 
 	public CustomerStates state;		// The current state of the customer
 	public Allergies allergy;			// The allergy of the customer
-	protected float menuTimer = 4.0f;		// Time spent looking at the menu
+	protected float menuTimer = 4.0f;	// Time spent looking at the menu
 	private float attentionSpan = 10.0f;// The attention timer
 
 	public int satisfaction;			// The satisfaction the customer has, everytime the attention span 
@@ -344,14 +344,11 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 	// called if the food's ingrediants match the allergy starts a timer in which the player must hit the save me button
 	public virtual void AllergyAttack(){
-//		attentionSpan = 5.0f;
-
 		customerUI.ToggleAllergyAttack(true);
 		RestaurantManager.Instance.SickCustomers.Add(this.gameObject);
 		AudioManager.Instance.PlayClip("allergyAttack");
-		if(order.gameObject != null){
-			Destroy(order.gameObject);
-		}
+
+		// Show tutorial if needed
 		if(DataManager.Instance.GameData.Tutorial.IsMedicTuT2Done){
 			StartCoroutine("AllergyTimer");
 		}
@@ -363,7 +360,15 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				DataManager.Instance.GameData.Tutorial.IsMedicTuT2Done = true;
 			}
 			RestaurantManager.Instance.medicButton.GetComponent<Animator>().SetBool("TutMedic", true);
-			RestaurantManager.Instance.tutText.SetActive(true);
+			RestaurantManager.Instance.medicTutorial.SetActive(true);
+
+			string foodSpriteName = DataLoaderFood.GetData(order.GetComponent<Order>().foodID).SpriteName;
+			RestaurantManager.Instance.medicTutorial.GetComponent<SickTutorialController>().Show(allergy, foodSpriteName);
+		}
+
+		// Destroy the order
+		if(order.gameObject != null){
+			Destroy(order.gameObject);
 		}
 	}
 	// if they are saved they take a small penalty for making the mistake and the customer will want the check asap
