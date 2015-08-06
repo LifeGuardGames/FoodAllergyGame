@@ -284,7 +284,9 @@ public class Waiter : Singleton<Waiter>{
 			if(TouchManager.Instance.inputQueue.Peek ().GetComponent<Table>() != null){
 				//if it is and that table is full we deselect the customer
 				if(TouchManager.Instance.inputQueue.Peek ().GetComponent<Table>().inUse == true){
-					currentLineCustomer.GetComponent<Customer>().deselect();
+					if(currentLineCustomer != null){
+						currentLineCustomer.GetComponent<Customer>().deselect();
+					}
 				}
 			}
 			else{
