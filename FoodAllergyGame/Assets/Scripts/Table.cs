@@ -86,11 +86,11 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	}
 
 	public bool IsQueueable(){
-		if(inUse){
-			return true;
+		if(!inUse && Waiter.Instance.currentLineCustomer != null){
+			return false;
 		}
 		else{
-			return false;
+			return true;
 		}
 	}
 

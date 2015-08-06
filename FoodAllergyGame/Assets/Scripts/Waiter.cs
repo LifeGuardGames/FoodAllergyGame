@@ -20,7 +20,7 @@ public class Waiter : Singleton<Waiter>{
 	public bool canMove = true;
 	public GameObject currentNode;
 	public int currentTable;
-	private List<GameObject> pathList;
+	public List<GameObject> pathList;
 	private int index = 0;
 	public WaiterAnimController waiterAnimController;
 	private IWaiterSelection currentCaller;
@@ -277,6 +277,22 @@ public class Waiter : Singleton<Waiter>{
 		canMove = true;
 		if(TouchManager.Instance.inputQueue.Count > 0){
 			//	if(TouchManager.Instance.inputQueue.Peek ().GetComponent<Table>().seat.GetComponentInChildren<Customer>().state != CustomerStates.WaitForOrder && Waiter.Instance.CheckHands()){
+
+
+			//these statements allow a customer be seated if the next object in the queue is an empty table otherwise it will deselect the current customer
+			// need to make sure the next item in the queue is a table
+			if(TouchManager.Instance.inputQueue.Peek ().GetComponent<Table>() != null){
+				//if it is and that table is full we deselect the customer
+				if(TouchManager.Instance.inputQueue.Peek ().GetComponent<Table>().inUse == true){
+					currentLineCustomer.GetComponent<Customer>().deselect();
+				}
+			}
+			else{
+				//otherwise if we clicked on something else and we have a customer, we deselect them
+				if(currentLineCustomer != null){
+					currentLineCustomer.GetComponent<Customer>().deselect();
+				}
+			}
 			GameObject dequeuedObject = TouchManager.Instance.inputQueue.Dequeue();
 			if(dequeuedObject != null){
 				dequeuedObject.GetComponent<IWaiterSelection>().OnClicked();

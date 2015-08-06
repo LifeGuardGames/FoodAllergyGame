@@ -465,6 +465,11 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		return false;
 	}
 
+	public void deselect(){
+		gameObject.transform.localScale = new Vector3(1.0f,1.0f,1.0f);
+		Waiter.Instance.currentLineCustomer = null;
+	}
+
 	public void OnClicked(){
 		if(state == CustomerStates.InLine){
 			// If you were already selecting a customer, untween that
