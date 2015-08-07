@@ -83,8 +83,10 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	
 	#region IDragHandler implementation
 	public void OnDrag(PointerEventData eventData){
-		transform.SetParent(dragAux);
-		transform.position = Input.mousePosition;
+		if(Input.touchCount == 1){
+			transform.SetParent(dragAux);
+			transform.position = Input.mousePosition;
+		}
 	}
 	#endregion
 	
