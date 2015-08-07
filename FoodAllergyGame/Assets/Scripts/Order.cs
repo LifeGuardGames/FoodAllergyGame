@@ -95,7 +95,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 
 	#region IWaiterSelection implementation
 	public void OnWaiterArrived(){
-		if(!Waiter.Instance.HaveMeal(tableNumber)){
+		if(!Waiter.Instance.HaveMeal(tableNumber)&& Waiter.Instance.CheckHands){
 			Waiter.Instance.SetHand(gameObject);
 			AudioManager.Instance.PlayClip("orderPickUp");
 			if(RestaurantManager.Instance.isTutorial){
