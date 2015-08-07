@@ -178,7 +178,6 @@ public class Waiter : Singleton<Waiter>{
 		else{
 			return tempOrder;
 		}
-
 	}
 
 	public GameObject HandMeal(int tableNum){
@@ -199,7 +198,8 @@ public class Waiter : Singleton<Waiter>{
 			return tempFood;
 		}
 		else{
-			Debug.LogWarning("No appropriate meal");
+			Debug.LogError("No appropriate meal");
+			Debug.LogError("Table number " + tableNum + " | " + hand1.ToString() + " | " + hand2.ToString());
 			return null;
 		}
 	}
@@ -251,14 +251,12 @@ public class Waiter : Singleton<Waiter>{
 	public bool HaveMeal(int table){
 		if(hand1 == WaiterHands.Meal){
 			if(hand1Object.GetComponent<Order>().tableNumber == table && hand1Object.GetComponent<Order>().IsCooked){
-				//Debug.Log ("Hand1");
 				return true;
 			}
 		}
 		if(hand2 == WaiterHands.Meal){
 			if(hand2Object.GetComponent<Order>().tableNumber == table && hand2Object.GetComponent<Order>().IsCooked){
 				return true;
-				//Debug.Log("Hand2");
 			}
 		}
 		return false;
