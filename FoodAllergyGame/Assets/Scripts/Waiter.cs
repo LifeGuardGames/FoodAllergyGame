@@ -254,14 +254,12 @@ public class Waiter : Singleton<Waiter>{
 				return true;
 			}
 		}
-		else if(hand2 == WaiterHands.Meal){
+		 if(hand2 == WaiterHands.Meal){
 			if(hand2Object.GetComponent<Order>().tableNumber == table && hand2Object.GetComponent<Order>().IsCooked){
 				return true;
 			}
 		}
-		else{
-			return false;
-		}
+		return false;
 	}
 
 	public void GivePowerUp(){
