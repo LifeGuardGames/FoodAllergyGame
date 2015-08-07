@@ -52,30 +52,41 @@ public class RestaurantMenuUIController : MonoBehaviour {
 				allergyImage.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(allergy);
 				allergyText.text = LocalizationText.GetText("AllergyFailPrefix") + LocalizationText.GetText(allergy.ToString());
 			}
-			int rand = UnityEngine.Random.Range (0, customerFoodChoices.Count);
-			rand1 = rand;	////
-			choicesCount1 = customerFoodChoices.Count;	////
-			button1Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(customerFoodChoices[rand].SpriteName);
-			choices.Add(customerFoodChoices[rand]);
-			customerFoodChoices.RemoveAt(rand);
-			rand = UnityEngine.Random.Range (0, customerFoodChoices.Count);
-			rand2 = rand;	////
-			choicesCount2 = customerFoodChoices.Count;	////
-			button2Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(customerFoodChoices[rand].SpriteName);
-			choices.Add(customerFoodChoices[rand]);
-			menuTweenToggle.Show();
+
+
 			if(RestaurantManager.Instance.isTutorial && RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().isAllergy){
 				button1.SetActive(false);
 				button2.SetActive(false);
 				RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().step = 2;
 				RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
+				button2Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(customerFoodChoices[1].SpriteName);
+				button1Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(customerFoodChoices[0].SpriteName);
+				choices.Add(customerFoodChoices[1]);
+				choices.Add(customerFoodChoices[0]);
 			}
 			else if (RestaurantManager.Instance.isTutorial && !RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().isAllergy){
 
 				RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<CustomerTutorial>().step = 5;
 				RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
+				button2Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(customerFoodChoices[0].SpriteName);
+				button1Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(customerFoodChoices[1].SpriteName);
+				choices.Add(customerFoodChoices[0]);
+				choices.Add(customerFoodChoices[1]);
 			}
-
+			else{
+				int rand = UnityEngine.Random.Range (0, customerFoodChoices.Count);
+				rand1 = rand;	////
+				choicesCount1 = customerFoodChoices.Count;	////
+				button1Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(customerFoodChoices[rand].SpriteName);
+				choices.Add(customerFoodChoices[rand]);
+				customerFoodChoices.RemoveAt(rand);
+				rand = UnityEngine.Random.Range (0, customerFoodChoices.Count);
+				rand2 = rand;	////
+				choicesCount2 = customerFoodChoices.Count;	////
+				button2Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(customerFoodChoices[rand].SpriteName);
+				choices.Add(customerFoodChoices[rand]);
+			}
+			menuTweenToggle.Show();
 			auxAllergy = allergy;	////
 		}
 		catch(Exception e){

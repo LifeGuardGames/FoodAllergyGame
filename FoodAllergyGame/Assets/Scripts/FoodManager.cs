@@ -59,26 +59,34 @@ public class FoodManager : Singleton<FoodManager>{
 	//	Debug.Log (menuList.Count);
 		bool allergyFood = false;
 		bool allergenAdded = false;
-		while(desiredFoodList.Count < 2){
-			allergyFood = false;
-			int rand = Random.Range(0,menuList.Count);
-			Debug.Log (menuList[rand].ID.ToString());
-			if(!desiredFoodList.Contains(menuList[rand])){
-				foreach(Allergies alg in menuList[rand].AllergyList){
-					if(_allergy == alg){
-						allergyFood = true;	
+		if(!RestaurantManager.Instance.isTutorial){
+		
+			while(desiredFoodList.Count < 2){
+				allergyFood = false;
+				int rand = Random.Range(0,menuList.Count);
+				Debug.Log (menuList[rand].ID.ToString());
+				if(!desiredFoodList.Contains(menuList[rand])){
+					foreach(Allergies alg in menuList[rand].AllergyList){
+						if(_allergy == alg){
+							allergyFood = true;	
+						}
 					}
-				}
-				if(allergyFood){
-					if(!allergenAdded){
-						allergenAdded = true;
-						desiredFoodList.Add( menuList[rand]);
+					if(allergyFood){
+						if(!allergenAdded){
+							allergenAdded = true;
+							desiredFoodList.Add( menuList[rand]);
+						}
 					}
-				}
-				else{
-					desiredFoodList.Add(menuList[rand]);
+					else{
+						desiredFoodList.Add(menuList[rand]);
+					}
 				}
 			}
+		}
+		else{
+			desiredFoodList.Add(DataLoaderFood.GetData("Food00"));
+			desiredFoodList.Add(DataLoaderFood.GetData("Food03"));
+
 		}
 		return desiredFoodList;
 	}

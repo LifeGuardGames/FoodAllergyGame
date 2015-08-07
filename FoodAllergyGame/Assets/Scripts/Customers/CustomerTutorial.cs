@@ -25,7 +25,7 @@ public class CustomerTutorial : Customer {
 	{
 		hideFinger();
 		if(isAllergy){
-			menuTimer *= 3; 
+			menuTimer *= 2; 
 		}
 		base.JumpToTable (tableN);
 	}

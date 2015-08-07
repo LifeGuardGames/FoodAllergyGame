@@ -8,28 +8,28 @@
 		<StartArtAssets></StartArtAssets>
 	</Tier>
 	<Tier ID="Tier00">
-		<MenuSlots>4</MenuSlots>
+		<MenuSlots>5</MenuSlots>
 		<EventsUnlocked></EventsUnlocked>
 		<FoodsUnlocked></FoodsUnlocked>
 		<DecorationsUnlocked></DecorationsUnlocked>
 		<StartArtAssets></StartArtAssets>
 	</Tier>
 	<Tier ID="Tier01">
-		<MenuSlots>4</MenuSlots>
+		<MenuSlots>5</MenuSlots>
 		<EventsUnlocked></EventsUnlocked>
 		<FoodsUnlocked></FoodsUnlocked>
 		<DecorationsUnlocked></DecorationsUnlocked>
 		<StartArtAssets></StartArtAssets>
 	</Tier>
 	<Tier ID="Tier02">
-		<MenuSlots>4</MenuSlots>
+		<MenuSlots>5</MenuSlots>
 		<EventsUnlocked></EventsUnlocked>
 		<FoodsUnlocked></FoodsUnlocked>
 		<DecorationsUnlocked></DecorationsUnlocked>
 		<StartArtAssets></StartArtAssets>
 	</Tier>
 	<Tier ID="Tier03">
-		<MenuSlots>4</MenuSlots>
+		<MenuSlots>5</MenuSlots>
 		<EventsUnlocked></EventsUnlocked>
 		<FoodsUnlocked></FoodsUnlocked>
 		<DecorationsUnlocked></DecorationsUnlocked>

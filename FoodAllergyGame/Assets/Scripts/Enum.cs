@@ -58,3 +58,8 @@ public enum CustomerTypes{
 	Gossiper,
 }
 
+public enum PowerUpTypes{
+	None,
+
+}
+
