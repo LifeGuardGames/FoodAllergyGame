@@ -8,8 +8,15 @@ public class RestaurantMenuUIController : MonoBehaviour {
 
 	public GameObject button1;
 	public Image button1Image;
+	public GameObject allergyNode1;
+	public Image allergyNodeImage1;
+
 	public GameObject button2;
 	public Image button2Image;
+	public GameObject allergyNode2;
+	public Image allergyNodeImage2;
+
+	public Animation inspectAnimation;
 
 	public GameObject allergyPassParent;
 	public GameObject allergyFailParent;
@@ -30,13 +37,17 @@ public class RestaurantMenuUIController : MonoBehaviour {
 	public void ShowChoices(List <ImmutableDataFood> customerFoodChoices, int customerTableNum, Allergies customerAllergy){
 		Debug.Log("SHOWING CHOICES + " + System.DateTime.Now);
 
-		////
+		//// Used for debugging
 		Allergies auxAllergy = Allergies.None;
 		int rand1 = 0;
 		int choicesCount1 = 0;
 		int rand2 = 0;
 		int choicesCount2 = 0;
 		////
+
+		// Reset the nodes
+		allergyNode1.SetActive(false);
+		allergyNode2.SetActive(false);
 
 		try{
 			tableNum = customerTableNum;
@@ -87,11 +98,34 @@ public class RestaurantMenuUIController : MonoBehaviour {
 				choices.Add(customerFoodChoices[rand]);
 			}
 			menuTweenToggle.Show();
+			StartCoroutine(StartAnimation());
+
 			auxAllergy = allergy;	////
 		}
 		catch(Exception e){
 			Debug.LogError("MANUAL EXCEPTION CAUGHT : " + e.ToString());
 			Debug.LogError(auxAllergy.ToString() + " " + rand1.ToString() + " " + choicesCount1.ToString() + " | " + rand2.ToString() + " " + choicesCount2.ToString());
+		}
+	}
+
+	// Toggle the inspect food button when the user is pauses for x time
+	private IEnumerator StartAnimation(){
+		yield return new WaitForSeconds(2f);
+		inspectAnimation.Play();
+	}
+
+	public void InspectButtonClicked(){
+		inspectAnimation.Stop();
+		inspectAnimation.transform.localScale = new Vector3(1f, 1f, 1f);
+
+		// Show the food allergy nodes here
+		if(choices[0].AllergyList[0] != Allergies.None){
+			allergyNodeImage1.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(choices[0].AllergyList[0]);
+			allergyNode1.SetActive(true);
+		}
+		if(choices[1].AllergyList[0] != Allergies.None){
+			allergyNodeImage2.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(choices[1].AllergyList[0]);
+			allergyNode2.SetActive(true);
 		}
 	}
 
