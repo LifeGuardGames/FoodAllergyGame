@@ -96,7 +96,10 @@ public class RestaurantMenuUIController : MonoBehaviour {
 				choices.Add(customerFoodChoices[rand]);
 			}
 			menuTweenToggle.Show();
-			StartCoroutine("StartAnimation");
+
+			if(allergy != Allergies.None){
+				StartCoroutine("StartAnimation");
+			}
 
 			auxAllergy = allergy;	////
 		}
@@ -143,12 +146,8 @@ public class RestaurantMenuUIController : MonoBehaviour {
 
 	public void ProduceOrder(int choice){
 		menuTweenToggle.Hide();
+		inspectAnimation.Stop();
 
-		//if(Waiter.Instance.CheckHands()){
-		//Waiter.Instance.WriteDownOrder(orderObj);
-		//}
 		RestaurantManager.Instance.GetTable(tableNum).Seat.GetChild(0).gameObject.GetComponent<Customer>().OrderTaken(choices[choice]);
 	}
-
-
 }
