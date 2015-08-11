@@ -16,6 +16,21 @@ public class AllergiesChartController : MonoBehaviour {
 	public Image wheatBar;
 	public Image dairyBar;
 
+	public Transform peanutSpriteBase;
+	public Transform PeanutSpriteBase{
+		get{ return peanutSpriteBase; }
+	}
+
+	public Transform dairySpriteBase;
+	public Transform DairySpriteBase{
+		get{ return dairySpriteBase; }
+	}
+
+	public Transform wheatSpriteBase;
+	public Transform WheatSpriteBase{
+		get{ return wheatSpriteBase; }
+	}
+
 	private int colorChunkLimit;
 	private int menuSize;
 

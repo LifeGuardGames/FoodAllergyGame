@@ -4,7 +4,12 @@ using System.Collections;
 
 public class MenuDragSlot : MonoBehaviour, IDropHandler {
 
-	public bool isSelectedSlot = true; // If false, this is a food stock slot
+	public bool isSelectedSlot = true;
+	public bool IsSelectedSlot{
+		get{ return isSelectedSlot; }
+	}
+
+ // If false, this is a food stock slot
 
 	public GameObject item{
 		get{

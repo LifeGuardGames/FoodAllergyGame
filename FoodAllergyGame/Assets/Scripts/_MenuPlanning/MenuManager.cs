@@ -11,8 +11,11 @@ public class MenuManager : Singleton<MenuManager>{
 	public GameObject foodStockButtonPrefab;
 
 	public AllergiesChartController allergiesChartController;
+	public AllergiesChartController AllergiesChartController{
+		get{ return allergiesChartController; }
+	}
+
 	public SelectedMenuController selectedMenuController;
-	public GameObject foodStockGrid;
 	public GameObject eventDescription;
 
 	private string currEvent;
@@ -185,9 +188,6 @@ public class MenuManager : Singleton<MenuManager>{
 
 			if(selectedMenuStringList.Count == menuSize){
 				doneButtonTween.Show();
-				foodStockGrid.SetActive(false);
-				leftButton.SetActive(false);
-				rightButton.SetActive(false);
 			}
 			return true;
 		}
@@ -200,9 +200,6 @@ public class MenuManager : Singleton<MenuManager>{
 
 		if(isRemoved){
 			doneButtonTween.Hide();
-			foodStockGrid.SetActive(true);
-			leftButton.SetActive(true);
-			rightButton.SetActive(true);
 		}
 		return isRemoved;
 	}
