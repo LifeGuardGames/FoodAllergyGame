@@ -70,8 +70,8 @@ public class RestaurantMenuUIController : MonoBehaviour {
 				button2.SetActive(false);
 				RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().step = 2;
 				RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
-				button2Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(customerFoodChoices[1].SpriteName);
-				button1Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(customerFoodChoices[0].SpriteName);
+				button2Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(customerFoodChoices[0].SpriteName);
+				button1Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(customerFoodChoices[1].SpriteName);
 				choices.Add(customerFoodChoices[1]);
 				choices.Add(customerFoodChoices[0]);
 			}
@@ -98,7 +98,7 @@ public class RestaurantMenuUIController : MonoBehaviour {
 				choices.Add(customerFoodChoices[rand]);
 			}
 			menuTweenToggle.Show();
-			StartCoroutine(StartAnimation());
+			StartCoroutine("StartAnimation");
 
 			auxAllergy = allergy;	////
 		}
@@ -115,6 +115,15 @@ public class RestaurantMenuUIController : MonoBehaviour {
 	}
 
 	public void InspectButtonClicked(){
+		if(RestaurantManager.Instance.isTutorial){
+			GameObject MenuUi = GameObject.Find ("RestaurantMenu");
+			MenuUi.GetComponent<RestaurantMenuUIController>().button1.SetActive(true);
+			MenuUi.GetComponent<RestaurantMenuUIController>().button2.SetActive(true);
+			RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<CustomerTutorial>().hideFinger();
+			//RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<CustomerTutorial>().step = 5;
+			//RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
+		}
+		StopCoroutine("StartAnimation");
 		inspectAnimation.Stop();
 		inspectAnimation.transform.localScale = new Vector3(1f, 1f, 1f);
 
