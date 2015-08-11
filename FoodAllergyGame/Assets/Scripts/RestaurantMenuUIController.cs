@@ -64,10 +64,9 @@ public class RestaurantMenuUIController : MonoBehaviour {
 				allergyText.text = LocalizationText.GetText("AllergyFailPrefix") + LocalizationText.GetText(allergy.ToString());
 			}
 
-
 			if(RestaurantManager.Instance.isTutorial && RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().isAllergy){
-				button1.SetActive(false);
-				button2.SetActive(false);
+				button1.GetComponent<Button>().interactable = false;
+				button2.GetComponent<Button>().interactable = false;
 				RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().step = 2;
 				RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
 				button2Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(customerFoodChoices[0].SpriteName);
@@ -76,7 +75,6 @@ public class RestaurantMenuUIController : MonoBehaviour {
 				choices.Add(customerFoodChoices[0]);
 			}
 			else if (RestaurantManager.Instance.isTutorial && !RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().isAllergy){
-
 				RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<CustomerTutorial>().step = 5;
 				RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
 				button2Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(customerFoodChoices[0].SpriteName);
@@ -116,9 +114,8 @@ public class RestaurantMenuUIController : MonoBehaviour {
 
 	public void InspectButtonClicked(){
 		if(RestaurantManager.Instance.isTutorial){
-			GameObject MenuUi = GameObject.Find ("RestaurantMenu");
-			MenuUi.GetComponent<RestaurantMenuUIController>().button1.SetActive(true);
-			MenuUi.GetComponent<RestaurantMenuUIController>().button2.SetActive(true);
+			button1.GetComponent<Button>().interactable = true;
+			button2.GetComponent<Button>().interactable = true;
 			RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<CustomerTutorial>().hideFinger();
 			//RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<CustomerTutorial>().step = 5;
 			//RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
