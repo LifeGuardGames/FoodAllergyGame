@@ -24,15 +24,15 @@ public class Order : MonoBehaviour, IWaiterSelection{
 		set{
 			isCooked = value;
 			if(isCooked == true){
-				OrderImage.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(DataLoaderFood.GetData(foodID).SpriteName);
-				OrderImage.SetNativeSize();
+				orderImage.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(DataLoaderFood.GetData(foodID).SpriteName);
+				orderImage.SetNativeSize();
 			}
 		}
 	}
 
 	public Allergies allergy;
-
-	public Image OrderImage;
+	public Image orderImage;
+	public GameObject textParent;
 
 	// Initialize the order when it is first spawned
 	public void Init(string foodID, int tableNumber, Allergies _allergy){
@@ -41,7 +41,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 		this.tableNumber = tableNumber;
 		isCooked = false;
 		allergy = _allergy;
-		this.gameObject.GetComponentInChildren<Text>().text = tableNumber.ToString();
+		textParent.GetComponentInChildren<Text>().text = (tableNumber + 1).ToString();
 		if(RestaurantManager.Instance.isTutorial){
 			RestaurantManager.Instance.GetTable(tableNumber).Seat.GetComponentInChildren<CustomerTutorial>().step = 0;
 			RestaurantManager.Instance.GetTable(tableNumber).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
@@ -53,8 +53,8 @@ public class Order : MonoBehaviour, IWaiterSelection{
 			RestaurantManager.Instance.GetTable(tableNumber).Seat.GetComponentInChildren<CustomerTutorial>().hideFinger();
 		}
 		cookTimer = _cookingTimer;
-		OrderImage.enabled = false;
-		GetComponentInChildren<Text>().enabled = false;
+		orderImage.enabled = false;
+		ToggleShowOrderNumber(false);
 		StartCoroutine("Cooking");
 		cookTimer = _cookingTimer;
 	}
@@ -62,8 +62,8 @@ public class Order : MonoBehaviour, IWaiterSelection{
 	private IEnumerator Cooking(){
 		yield return new WaitForSeconds(cookTimer);
 		IsCooked = true;
-		OrderImage.enabled = true;
-		GetComponentInChildren<Text>().enabled = true;
+		orderImage.enabled = true;
+		ToggleShowOrderNumber(true);
 		this.gameObject.GetComponent<BoxCollider>().enabled = true;
 		RestaurantManager.Instance.GetKitchen().FinishCooking(this.gameObject);
 		AudioManager.Instance.PlayClip("orderReady");
@@ -91,6 +91,10 @@ public class Order : MonoBehaviour, IWaiterSelection{
 			isCooked = true;
 			StartCoroutine("StartMicrowave");
 		}
+	}
+
+	public void ToggleShowOrderNumber(bool isShown){
+		textParent.SetActive(isShown);
 	}
 
 	#region IWaiterSelection implementation
