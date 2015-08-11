@@ -97,6 +97,7 @@ public class RestaurantMenuUIController : MonoBehaviour {
 			}
 			menuTweenToggle.Show();
 
+			inspectAnimation.Stop();
 			if(allergy != Allergies.None){
 				StartCoroutine("StartAnimation");
 			}
