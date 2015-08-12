@@ -16,18 +16,19 @@ public class AllergiesChartController : MonoBehaviour {
 	public Image wheatBar;
 	public Image dairyBar;
 
-	public Transform peanutSpriteBase;
-	public Transform PeanutSpriteBase{
+
+	public RectTransform peanutSpriteBase;
+	public RectTransform PeanutSpriteBase{
 		get{ return peanutSpriteBase; }
 	}
 
-	public Transform dairySpriteBase;
-	public Transform DairySpriteBase{
+	public RectTransform dairySpriteBase;
+	public RectTransform DairySpriteBase{
 		get{ return dairySpriteBase; }
 	}
 
-	public Transform wheatSpriteBase;
-	public Transform WheatSpriteBase{
+	public RectTransform wheatSpriteBase;
+	public RectTransform WheatSpriteBase{
 		get{ return wheatSpriteBase; }
 	}
 

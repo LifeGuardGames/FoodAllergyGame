@@ -33,14 +33,15 @@ public class MenuManager : Singleton<MenuManager>{
 	public GameObject rightButton;
 
 	private List<Transform> selectedMenuSlotList;
+
+	// Internal aux list keeping track of current selection
 	private List<string> selectedMenuStringList = new List<string>();
 	public List<string> SelectedMenuStringList{
 		get{ return selectedMenuStringList; }
 	}
 
-	// Internal aux list keeping track of current selection
-
-	public Transform dragAux;
+	public RectTransform dragAux;
+	public RectTransform tweenAux;
 
 	private int menuCost = 0;
 	public Text menuCostText;
