@@ -5,6 +5,7 @@ using System.Collections;
 
 public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler{
 	public static GameObject itemBeingDragged;
+//	public static bool canDrag = true;			// Prevent item from being dragged before all animation is done
 
 	public string foodID;
 	public Image image;
@@ -16,6 +17,7 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	public GameObject allergyNode;
 	public Image allergyNodeImage;
 	public Image allergyNodeLine;
+	private Vector2 allergyNodeStartPosition;
 
 	private ImmutableDataFood foodData;
 	private Transform dragAux;
@@ -63,6 +65,7 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 			allergy2.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(foodData.AllergyList[1]);
 		}
 
+		allergyNodeStartPosition = (allergyNode.transform as RectTransform).anchoredPosition;
 		allergyNode.SetActive(false);
 	}
 
@@ -73,37 +76,44 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	
 	#region IBeginDragHandler implementation
 	public void OnBeginDrag(PointerEventData eventData){
-		itemBeingDragged = gameObject;
-		startPosition = transform.localPosition;
-		startParent = transform.parent;
-		GetComponent<CanvasGroup>().blocksRaycasts = false;
+//		if(canDrag){
+//			canDrag = false;
 
-		// Show allergy nodes if food as them
-		if(foodData.AllergyList[0] != Allergies.None){
-			allergyNode.SetActive(true);
-		}
+			itemBeingDragged = gameObject;
+			startPosition = transform.localPosition;
+			startParent = transform.parent;
+			GetComponent<CanvasGroup>().blocksRaycasts = false;
 
-		// Remove the food from its attachment
-		if(MenuManager.Instance.RemoveFoodFromMenuList(foodID)){
-			MenuManager.Instance.ChangeMenuCost(Cost * -1);
-		}
+			// Show allergy nodes if food as them
+			if(foodData.AllergyList[0] != Allergies.None){
+				allergyNode.SetActive(true);
+			}
 
-		// Show trash can if dragging from selected slot
-		if(!inFoodStockSlot){
-			MenuManager.Instance.ShowTrashCan();
-		}
+			// Remove the food from its attachment
+			if(MenuManager.Instance.RemoveFoodFromMenuList(foodID)){
+				MenuManager.Instance.ChangeMenuCost(Cost * -1);
+			}
+
+			// Show trash can if dragging from selected slot
+			if(!inFoodStockSlot){
+				MenuManager.Instance.ShowTrashCan();
+			}
+//		}
 	}
 	#endregion
 	
 	#region IDragHandler implementation
 	public void OnDrag(PointerEventData eventData){
-		transform.SetParent(dragAux);
+		// This is a frame check, clever workaround
+//		if(itemBeingDragged != null){
+			itemBeingDragged.transform.SetParent(dragAux);
 
-		#if UNITY_EDITOR
-		transform.position = Input.mousePosition;
-		#else
-		transform.position = Input.GetTouch(0).position;
-		#endif
+			#if UNITY_EDITOR
+			itemBeingDragged.transform.position = Input.mousePosition;
+			#else
+			itemBeingDragged.transform.position = Input.GetTouch(0).position;
+			#endif
+//		}
 	}
 	#endregion
 	
@@ -129,29 +139,29 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
 			if(foodData.AllergyList[0] != Allergies.None){
 				// Send the allergies into the chart
-//				if(transform.parent.GetComponent<MenuDragSlot>().IsSelectedSlot){
-//					allergyNode.transform.SetParent(transform.parent);
-//					AllergiesChartController chartController = MenuManager.Instance.allergiesChartController;
-//					Vector3 moveDestination = new Vector3();
-//
-//					if(foodData.AllergyList[0] == Allergies.Dairy){
-//						Debug.Log("Dairy");
-//						moveDestination = chartController.DairySpriteBase.position;
-//					}
-//					else if(foodData.AllergyList[0] == Allergies.Peanut){
-//						Debug.Log("Peanut");
-//						moveDestination = chartController.PeanutSpriteBase.position;
-//					}
-//					else if(foodData.AllergyList[0] == Allergies.Wheat){
-//						Debug.Log("Wheat");
-//						moveDestination = chartController.WheatSpriteBase.position;
-//					}
-//
-//					LeanTween.move(allergyNode.transform as RectTransform, new Vector2(moveDestination.x, moveDestination.y), 1f);
-//				}
-//				else{
+				if(transform.parent.GetComponent<MenuDragSlot>().IsSelectedSlot){
+					AllergiesChartController chartController = MenuManager.Instance.allergiesChartController;
+					Vector3 moveDestination = new Vector3();
+
+					// Set the node parent to chart, makes transforming much easier
+					allergyNode.transform.SetParent(MenuManager.Instance.tweenAux);
+
+					if(foodData.AllergyList[0] == Allergies.Dairy){
+						moveDestination = chartController.DairySpriteBase.position;
+					}
+					else if(foodData.AllergyList[0] == Allergies.Peanut){
+						moveDestination = chartController.PeanutSpriteBase.position;
+					}
+					else if(foodData.AllergyList[0] == Allergies.Wheat){
+						moveDestination = chartController.WheatSpriteBase.position;
+					}
+					LeanTween.move(allergyNode.transform as RectTransform, new Vector2(moveDestination.x, moveDestination.y), .5f)
+						.setEase(LeanTweenType.easeInOutQuad)
+							.setOnComplete(NodeDoneTweening);
+				}
+				else{
 					allergyNode.SetActive(false);
-//				}
+				}
 			}
 		}
 
@@ -159,6 +169,19 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 		MenuManager.Instance.HideTrashCan();
 	}
 	#endregion
+
+	private void NodeDoneTweening(){
+		// Dont actually delete the node when it flies to the bar, just hide it and reset position/parent
+		allergyNode.SetActive(false);
+		allergyNode.transform.SetParent(transform);
+		(allergyNode.transform as RectTransform).anchoredPosition = allergyNodeStartPosition;
+
+		// Update the chart accordingly after flying is done
+//		MenuManager.Instance.allergiesChartController.UpdateChart();
+
+		// Unlock drag here
+//		canDrag = true;
+	}
 
 	private IEnumerator DestroySelf(){
 		yield return new WaitForEndOfFrame();

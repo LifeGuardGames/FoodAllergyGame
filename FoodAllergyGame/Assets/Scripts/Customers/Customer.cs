@@ -294,7 +294,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 		order = transform.GetComponentInParent<Table>().FoodDelivered();
 		order.GetComponent<BoxCollider>().enabled = false;
-		order.GetComponentInChildren<UnityEngine.UI.Text>().text = "";
+		order.GetComponent<Order>().ToggleShowOrderNumber(false);
 		StopCoroutine("SatisfactionTimer");
 		if(order.GetComponent<Order>().allergy == allergy && allergy != Allergies.None){
 			state = CustomerStates.AllergyAttack;
