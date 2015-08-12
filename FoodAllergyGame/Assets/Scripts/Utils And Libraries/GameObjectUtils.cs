@@ -58,7 +58,7 @@ public static class GameObjectUtils{
 				}
 			}
 			else{
-				t.parent = null;	// Assign to root
+				t.SetParent(null);	// Assign to root
 			}
 			
 			t.localPosition = Vector3.zero;
