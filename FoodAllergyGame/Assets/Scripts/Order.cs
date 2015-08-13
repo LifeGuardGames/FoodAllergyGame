@@ -24,14 +24,14 @@ public class Order : MonoBehaviour, IWaiterSelection{
 		set{
 			isCooked = value;
 			if(isCooked == true){
-				orderImage.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(DataLoaderFood.GetData(foodID).SpriteName);
-				orderImage.SetNativeSize();
+				orderImage.GetComponent<SpriteRenderer>().sprite = SpriteCacheManager.Instance.GetFoodSpriteData(DataLoaderFood.GetData(foodID).SpriteName);
+				//orderImage.SetNativeSize();
 			}
 		}
 	}
 
 	public Allergies allergy;
-	public Image orderImage;
+	public GameObject orderImage;
 	public GameObject textParent;
 
 	// Initialize the order when it is first spawned
@@ -53,7 +53,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 			RestaurantManager.Instance.GetTable(tableNumber).Seat.GetComponentInChildren<CustomerTutorial>().hideFinger();
 		}
 		cookTimer = _cookingTimer;
-		orderImage.enabled = false;
+		orderImage.SetActive(false);
 		ToggleShowOrderNumber(false);
 		StartCoroutine("Cooking");
 		cookTimer = _cookingTimer;
@@ -62,7 +62,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 	private IEnumerator Cooking(){
 		yield return new WaitForSeconds(cookTimer);
 		IsCooked = true;
-		orderImage.enabled = true;
+		orderImage.SetActive(true);
 		ToggleShowOrderNumber(true);
 		this.gameObject.GetComponent<BoxCollider>().enabled = true;
 		RestaurantManager.Instance.GetKitchen().FinishCooking(this.gameObject);
