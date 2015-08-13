@@ -71,7 +71,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 			RestaurantManager.Instance.GetTable(tableNumber).Seat.GetComponentInChildren<CustomerTutorial>().step = 1;
 			RestaurantManager.Instance.GetTable(tableNumber).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
 		}
-	}
+	} 
 
 	public void Canceled(){
 		StopCoroutine("Cooking");

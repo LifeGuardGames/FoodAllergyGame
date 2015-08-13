@@ -63,3 +63,16 @@ public enum PowerUpTypes{
 
 }
 
+public enum DecoTypes{
+	None,
+	Table,
+	Floor,
+	Kitchen,
+	PlayArea,
+	VIPRoom,
+	FlyThru,
+	Microwave,
+}
+
+
+

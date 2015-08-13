@@ -6,4 +6,5 @@ public static class SceneUtils{
 	public static string MENUPLANNING = "MenuPlanning";
 	public static string RESTAURANT = "Restaurant";
 	public static string COMICSCENE = "ComicScene";
+	public static string DECO = "DecoScene";
 }

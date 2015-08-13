@@ -26,6 +26,11 @@ public class SceneItem : Editor {
 		OpenScene(SceneUtils.RESTAURANT);
 	}
 
+	[MenuItem("Open Scene/DecoScene")]
+	public static void OpenDeco(){
+		OpenScene(SceneUtils.DECO);
+	}
+
 	static void OpenScene(string name){
 		if(EditorApplication.SaveCurrentSceneIfUserWantsTo()){
 			EditorApplication.OpenScene("Assets/Scenes/" + name + ".unity");
