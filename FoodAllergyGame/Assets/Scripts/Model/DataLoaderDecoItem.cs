@@ -24,6 +24,6 @@ public class DataLoaderDecoItem: XMLLoaderGeneric<DataLoaderDecoItem> {
 	}
 	
 	protected override void InitXMLLoader(){
-		xmlFileFolderPath = "Foods";
+		xmlFileFolderPath = "DecoItem";
 	}
 }

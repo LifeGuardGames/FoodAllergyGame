@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<DecoItem>
+	<DecoItem ID = "Table00">
+		<Type>Table</Type>
+		<Price>100</Price>
+	</DecoItem>
+	<DecoItem ID = "Table01">
+		<Type>Table</Type>
+		<Price>1000</Price>
+	</DecoItem>
+	<DecoItem ID = "Table02">
+		<Type>Table</Type>
+		<Price>200</Price>
+	</DecoItem>
+</DecoItem>
