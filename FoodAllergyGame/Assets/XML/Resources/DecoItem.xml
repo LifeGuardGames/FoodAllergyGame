@@ -3,13 +3,61 @@
 	<DecoItem ID = "Table00">
 		<Type>Table</Type>
 		<Price>100</Price>
+		<Title>Default</Title>
+		<SpriteName>RestTable</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "Table01">
 		<Type>Table</Type>
-		<Price>1000</Price>
+		<Price>10000</Price>
+		<Title>Red</Title>
+		<SpriteName>RestTable2</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "Table02">
 		<Type>Table</Type>
 		<Price>200</Price>
+		<Title>Green</Title>
+		<SpriteName>RestTable3</SpriteName>
+	</DecoItem>
+	<DecoItem ID = "Table03">
+		<Type>Table</Type>
+		<Price>200</Price>
+		<Title>Green</Title>
+		<SpriteName>RestTable4</SpriteName>
+	</DecoItem>
+	<DecoItem ID = "Floor00">
+		<Type>Floor</Type>
+		<Price>100</Price>
+		<Title>Default</Title>
+		<SpriteName>RestBg</SpriteName>
+	</DecoItem>
+	<DecoItem ID = "Floor01">
+		<Type>Floor</Type>
+		<Price>10000</Price>
+		<Title>Green</Title>
+		<SpriteName>RestBg2</SpriteName>
+	</DecoItem>
+	<DecoItem ID = "Floor02">
+		<Type>Floor</Type>
+		<Price>200</Price>
+		<Title>Pink</Title>
+		<SpriteName>RestBg3</SpriteName>
+	</DecoItem>
+	<DecoItem ID = "Kitchen00">
+		<Type>Kitchen</Type>
+		<Price>100</Price>
+		<Title>Default</Title>
+		<SpriteName>RestKitchenDefault</SpriteName>
+	</DecoItem>
+	<DecoItem ID = "Kitchen01">
+		<Type>Kitchen</Type>
+		<Price>10000</Price>
+		<Title>Blue</Title>
+		<SpriteName>RestKitchenBlue</SpriteName>
+	</DecoItem>
+	<DecoItem ID = "Kitchen02">
+		<Type>Kitchen</Type>
+		<Price>200</Price>
+		<Title>Pink</Title>
+		<SpriteName>RestKitchenPink</SpriteName>
 	</DecoItem>
 </DecoItem>

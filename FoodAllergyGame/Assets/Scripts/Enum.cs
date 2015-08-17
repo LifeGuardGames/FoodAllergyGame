@@ -60,7 +60,6 @@ public enum CustomerTypes{
 
 public enum PowerUpTypes{
 	None,
-
 }
 
 public enum DecoTypes{

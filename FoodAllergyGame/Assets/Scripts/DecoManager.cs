@@ -5,66 +5,101 @@ using System.Collections.Generic;
 public class DecoManager : Singleton<DecoManager> {
 
 	public List <ImmutableDataDecoItem> itemList;
-	public List<GameObject> tableList;
+	public List<SpriteRenderer> tableList;
+	public List<SpriteRenderer> KitchenList;
 	public Dictionary <DecoTypes, GameObject> SceneObjects;
-	private int DecoPageSize = 4;
+	private int DecoPageSize = 3;
+	public int currentDecoPage = 0;
 	public GameObject DecoButtonPrefab;
 	public List<Transform> currentDecoSlotList;
+	public string currentTab = "Table";
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		itemList = DataLoaderDecoItem.GetDataList();
+		SceneObjects = new Dictionary<DecoTypes, GameObject>();
+		ChangeTables(Resources.Load <Sprite>(DataLoaderDecoItem.GetData(DataManager.Instance.GameData.Decoration.currDiner[DecoTypes.Table]).SpriteName));
 		PopulateDecoGrid();
 	}
 
 	public void PopulateDecoGrid(){
-		itemList.Sort((x,y) => DataLoaderDecoItem.GetData(x.id).Cost.CompareTo(DataLoaderDecoItem.GetData(y.id).Cost));
-		
+
+		List<ImmutableDataDecoItem> decoList = new List<ImmutableDataDecoItem>();
+		for(int i = 0; i < itemList.Count; i++){
+			if(itemList[i].Type.ToString () == currentTab){
+				decoList.Add(itemList[i]);
+			}
+		}
+		decoList.Sort((x,y) => DataLoaderDecoItem.GetData(x.id).Cost.CompareTo(DataLoaderDecoItem.GetData(y.id).Cost));
 		for(int i = 0; i < DecoPageSize; i++){
-			if(itemList.Count == i){		// Reached the end of list
+			Debug.Log(i);
+			if(currentDecoSlotList[i].childCount > 0){
+				Destroy(currentDecoSlotList[i].GetChild(0).gameObject);
+			}
+		}
+		for(int i = 0; i < DecoPageSize; i++){
+			Debug.Log(i);
+			if(decoList.Count <= i +currentDecoPage*3){		// Reached the end of list
 				break;
 			}
-			ImmutableDataDecoItem DecoData = DataLoaderDecoItem.GetData(itemList[i].id);
+			ImmutableDataDecoItem DecoData = DataLoaderDecoItem.GetData(decoList[i + currentDecoPage*3].id);
 			GameObject DecoButton = GameObjectUtils.AddChildGUI(currentDecoSlotList[i].gameObject, DecoButtonPrefab);
 			DecoButton.GetComponent<DecoButton>().Init(DecoData);
 		}
 	}
-	public void ChangeSet(string ty, string id){
-		DecoTypes type;
-		switch(ty){
-		case "Table":
-			type = DecoTypes.Table;
-			break;
-		case "Floor":
-			type = DecoTypes.Floor;
-			break;
-		case "Kitchen":
-			type = DecoTypes.Kitchen;
-			break;
-		case "PlayArea":
-			type = DecoTypes.PlayArea;
-			break;
-		case "Microwave":
-			type = DecoTypes.Microwave;
-			break;
-		case "FlyThru":
-			type = DecoTypes.FlyThru;
-			break;
-		default:
-			type = DecoTypes.None;
-			break;
-		}
+	public void ChangeSet(string id){
 		if(DataManager.Instance.GameData.Decoration.BoughtDeco.ContainsKey(id)){
-			DataManager.Instance.GameData.Decoration.currDiner.Remove(type);
-			DataManager.Instance.GameData.Decoration.currDiner.Add(type,id);
+			DataManager.Instance.GameData.Decoration.currDiner.Remove(DataLoaderDecoItem.GetData(id).Type);
+			DataManager.Instance.GameData.Decoration.currDiner.Add(DataLoaderDecoItem.GetData(id).Type,id);
+			if(DataLoaderDecoItem.GetData(id).Type != DecoTypes.Table && DataLoaderDecoItem.GetData(id).Type != DecoTypes.Kitchen){
+				ChangeItem(DataLoaderDecoItem.GetData(id).Type);
+			}
+			else if(DataLoaderDecoItem.GetData(id).Type == DecoTypes.Kitchen ){
+				ChangeKitchen(DataLoaderDecoItem.GetData(id).SpriteName);
+			}
+			else{
+				ChangeTables(Resources.Load<Sprite>(DataLoaderDecoItem.GetData(id).SpriteName));
+			}
 		}
 		else{
-			BuyItem(ty,id);
+			BuyItem(DataLoaderDecoItem.GetData(id).Type,id);
 		}
 	}
 
-	public void BuyItem(string ty, string decoID){
+	public void BuyItem(DecoTypes ty, string decoID){
 		DataManager.Instance.GameData.Decoration.BoughtDeco.Add(decoID, " ");
-		ChangeSet(ty,decoID);
+		ChangeSet(decoID);
+	}
+
+	public void ChangeTables(Sprite sprite){
+		for(int i = 0; i < tableList.Count; i++){
+			tableList[i].GetComponent<SpriteRenderer>().sprite = sprite;
+		}
+	}
+
+	public void ChangeKitchen(string SpriteSet){
+		KitchenList[0].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(SpriteSet + "00");
+		KitchenList[1].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(SpriteSet + "01");
+	}
+
+	public void ChangeItem(DecoTypes deco){
+		SceneObjects[deco].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(DataLoaderDecoItem.GetData(DataManager.Instance.GameData.Decoration.currDiner[deco]).SpriteName);
+	}
+
+	public void ChangeTab(string tabName){
+		currentTab = tabName;
+		PopulateDecoGrid();
+	}
+
+	public void changePage(bool isRight){
+		if(isRight){
+			currentDecoPage++;
+		}
+		else{
+			if(currentDecoPage >0){
+				currentDecoPage--;
+			}
+		}
+		PopulateDecoGrid();
 	}
 
 	//public int getItemCost(string id){

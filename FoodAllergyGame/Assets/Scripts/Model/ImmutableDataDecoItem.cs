@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 public class ImmutableDataDecoItem {
 
@@ -9,8 +10,8 @@ public class ImmutableDataDecoItem {
 		get{return id;}
 	}
 
-	public string type;
-	public string Type{
+	public DecoTypes type;
+	public DecoTypes Type{
 		get {return type;}
 	}
 
@@ -19,11 +20,24 @@ public class ImmutableDataDecoItem {
 		get {return cost;}
 	}
 
+	private string buttonTitle;
+	public string ButtonTitle{
+		get{return buttonTitle;}
+	}
+
+	private string spriteName;
+	public string SpriteName{
+		get { return spriteName;}
+	}
+
+
 	public ImmutableDataDecoItem(string id, IXMLNode xmlNode, string error){
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 
 		this.id = id;
-		type = XMLUtils.GetString(hashElements["Type"] as IXMLNode);
+		type = (DecoTypes)Enum.Parse(typeof(DecoTypes), XMLUtils.GetString(hashElements["Type"] as IXMLNode));
 		cost = XMLUtils.GetInt(hashElements["Price"] as IXMLNode);
+		buttonTitle = XMLUtils.GetString(hashElements["Title"] as IXMLNode);
+		spriteName = XMLUtils.GetString(hashElements["SpriteName"] as IXMLNode);
 	}
 }

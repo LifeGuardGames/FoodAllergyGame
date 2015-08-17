@@ -12,6 +12,7 @@ public class DecoMenuController : MonoBehaviour {
 	}
 
 	public void ShowUi(){
+		Debug.Log ("showing");
 		decoTweenToggle.Show();
 	}
 
