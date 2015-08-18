@@ -32,6 +32,9 @@ public class DecoManager : Singleton<DecoManager> {
 		decoList.Sort((x,y) => DataLoaderDecoItem.GetData(x.id).Cost.CompareTo(DataLoaderDecoItem.GetData(y.id).Cost));
 		for(int i = 0; i < DecoPageSize; i++){
 			Debug.Log(i);
+			if(decoList.Count <= currentDecoPage*3){	
+				break;
+			}
 			if(currentDecoSlotList[i].childCount > 0){
 				Destroy(currentDecoSlotList[i].GetChild(0).gameObject);
 			}
@@ -39,6 +42,7 @@ public class DecoManager : Singleton<DecoManager> {
 		for(int i = 0; i < DecoPageSize; i++){
 			Debug.Log(i);
 			if(decoList.Count <= i +currentDecoPage*3){		// Reached the end of list
+				currentDecoPage--;
 				break;
 			}
 			ImmutableDataDecoItem DecoData = DataLoaderDecoItem.GetData(decoList[i + currentDecoPage*3].id);
