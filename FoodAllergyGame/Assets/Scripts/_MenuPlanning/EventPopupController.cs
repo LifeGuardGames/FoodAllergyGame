@@ -11,7 +11,6 @@ public class EventPopupController : MonoBehaviour {
 	public void Init(ImmutableDataEvents eventData){
 		if(!string.IsNullOrEmpty(eventData.EventDescription)){
 			eventTitle.text = LocalizationText.GetText(eventData.ID);
-			Debug.Log(eventData.EventDescription);
 			eventDescription.text = LocalizationText.GetText(eventData.EventDescription);
 			eventPanelTween.Show();
 		}
