@@ -4,7 +4,7 @@ using System.Collections;
 
 public class SatisfactionAIProfiler : EditorWindow {
 	private int testsToRun = 10;
-	private int steps = 0;
+
 
 	[MenuItem("LGG/SatisfactionAIProfiler")]
 	public static void ShowWindow(){

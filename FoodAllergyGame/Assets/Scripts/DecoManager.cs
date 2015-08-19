@@ -80,6 +80,10 @@ public class DecoManager : Singleton<DecoManager> {
 		}
 	}
 
+	public string setUp(DecoTypes deco){
+		return DataManager.Instance.GameData.Decoration.currDiner[deco];
+	}
+
 	public void ChangeKitchen(string SpriteSet){
 		KitchenList[0].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(SpriteSet + "00");
 		KitchenList[1].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(SpriteSet + "01");

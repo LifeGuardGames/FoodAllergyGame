@@ -310,7 +310,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	// Eating coroutine
 		IEnumerator EatingTimer(){
 		yield return new WaitForSeconds(6.0f);
-		int rand = Random.Range(0,10);
+//		int rand = Random.Range(0,10);
 		customerAnim.SetEating(false);
 //		if(rand > 7){
 //			Bathroom();
