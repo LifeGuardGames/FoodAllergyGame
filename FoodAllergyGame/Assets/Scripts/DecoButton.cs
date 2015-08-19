@@ -16,7 +16,7 @@ public class DecoButton : MonoBehaviour {
 		decoID = _deco.ID;
 		this.GetComponentInChildren<Text>().text = _deco.ButtonTitle;
 		if(_deco.Type == DecoTypes.Kitchen){
-			this.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(_deco.SpriteName + "00");
+			this.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(_deco.SpriteName);
 			Debug.Log (_deco.SpriteName + "00");
 		}
 		else{
