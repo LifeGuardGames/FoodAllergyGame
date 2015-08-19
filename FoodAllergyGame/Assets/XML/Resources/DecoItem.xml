@@ -47,17 +47,20 @@
 		<Price>100</Price>
 		<Title>Default</Title>
 		<SpriteName>RestKitchenDefault</SpriteName>
+		<Secondary>RestKitchenDefaultBack</Secondary>
 	</DecoItem>
 	<DecoItem ID = "Kitchen01">
 		<Type>Kitchen</Type>
 		<Price>10000</Price>
 		<Title>Blue</Title>
 		<SpriteName>RestKitchenBlue</SpriteName>
+		<Secondary>RestKitchenBlueBack</Secondary>
 	</DecoItem>
 	<DecoItem ID = "Kitchen02">
 		<Type>Kitchen</Type>
 		<Price>200</Price>
 		<Title>Pink</Title>
 		<SpriteName>RestKitchenPink</SpriteName>
+		<Secondary>RestKitchenPinkBack</Secondary>
 	</DecoItem>
 </DecoItem>

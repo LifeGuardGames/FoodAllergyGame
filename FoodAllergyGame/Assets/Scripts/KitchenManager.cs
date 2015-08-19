@@ -17,10 +17,16 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 
 	public GameObject spinnerHighlight;
 
+	public SpriteRenderer front;
+	public SpriteRenderer back;
+
 	//changes the cooking time based off the event
 	public void Init(float mode){
 		cookTimer = mode;
 		spinnerHighlight.SetActive(false);
+		ImmutableDataDecoItem _sprite = DataLoaderDecoItem.GetData(RestaurantManager.Instance.GetCurrentSprite(DecoTypes.Kitchen));
+		front.sprite = Resources.Load<Sprite>(_sprite.SpriteName);
+		back.sprite = Resources.Load<Sprite>(_sprite.SecondarySprite);
 	}
 
 	// takes the orders from the waiter and cooks them

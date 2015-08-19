@@ -30,6 +30,11 @@ public class ImmutableDataDecoItem {
 		get { return spriteName;}
 	}
 
+	private string secondarySprite;
+	public string SecondarySprite{
+		get {return secondarySprite;}
+	}
+
 
 	public ImmutableDataDecoItem(string id, IXMLNode xmlNode, string error){
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
@@ -39,5 +44,8 @@ public class ImmutableDataDecoItem {
 		cost = XMLUtils.GetInt(hashElements["Price"] as IXMLNode);
 		buttonTitle = XMLUtils.GetString(hashElements["Title"] as IXMLNode);
 		spriteName = XMLUtils.GetString(hashElements["SpriteName"] as IXMLNode);
+		if(XMLUtils.GetString(hashElements["Secondary"] as IXMLNode) != null){
+			secondarySprite = XMLUtils.GetString(hashElements["Secondary"] as IXMLNode);
+		}
 	}
 }
