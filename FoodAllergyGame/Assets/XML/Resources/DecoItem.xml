@@ -47,6 +47,7 @@
 		<Price>100</Price>
 		<Title>Default</Title>
 		<SpriteName>RestKitchenDefault</SpriteName>
+		<Secondary>RestKitchenDefaultBack</Secondary>
 	</DecoItem>
 	<DecoItem ID = "Kitchen01">
 		<Type>Kitchen</Type>
