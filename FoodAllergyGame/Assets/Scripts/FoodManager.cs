@@ -8,26 +8,22 @@ using System.Collections.Generic;
 public class FoodManager : Singleton<FoodManager>{
 
 	// List for the user to choose from in MenuPlanning scene
-	public List<ImmutableDataFood> foodStockList;
+	private List<ImmutableDataFood> foodStockList;
 	public List<ImmutableDataFood> FoodStockList{
+		set{ foodStockList = value; }
 		get{ return foodStockList; }
 	}
 
 	// Compiled chosen list for use in restuarant
-	public List<ImmutableDataFood> menuList;
+	private List<ImmutableDataFood> menuList;
 	public List<ImmutableDataFood> MenuList{
 		get{ return menuList; }
 	}
-		
-	public List<string> tempMenu;
 
-	private int menuCost;
+	// Cost of building the menu, used for restaurant day over calculation
+	private int menuCost = 0;
 	public int MenuCost{
 		get{ return menuCost; }
-	}
-
-	void Awake(){
-		menuCost = 0;
 	}
 
 	////////////////////////////////////
@@ -56,7 +52,6 @@ public class FoodManager : Singleton<FoodManager>{
 	/// </summary>
 	public List<ImmutableDataFood> GetMenuFoodsFromKeyword(FoodKeywords keyword, Allergies _allergy){
 		List<ImmutableDataFood> desiredFoodList = new List<ImmutableDataFood>();
-	//	Debug.Log (menuList.Count);
 		bool allergyFood = false;
 		bool allergenAdded = false;
 		if(!RestaurantManager.Instance.isTutorial){
