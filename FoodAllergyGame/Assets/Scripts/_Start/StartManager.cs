@@ -19,17 +19,16 @@ public class StartManager : Singleton<StartManager>{
 
 		// Check to see if the previous day has been completed
 		if(DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent){
-			//TODO Generate event from data
 			if(DataManager.Instance.GameData.Tutorial.IsTutorial1Done == false){
-				unlockParent.SetActive(false);
-				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT0";
+				unlockParent.SetActive(false); // TODO clean this up
+				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT1";
 			}
 			else if(DataManager.Instance.GameData.Tutorial.IsTutorial2Done == false){
-				unlockParent.SetActive(true);
+				unlockParent.SetActive(true); // TODO clean this up
 				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT2";
 			}
 			else{
-				unlockParent.SetActive(false);
+				unlockParent.SetActive(false); // TODO clean this up
 				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "Event00";
 			}
 

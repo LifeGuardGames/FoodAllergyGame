@@ -40,6 +40,11 @@ public class ImmutableDataEvents{
 		get {return allergy;}
 	}
 
+	private string eventDescription;	// Optional
+	public string EventDescription{
+		get{return eventDescription;}
+	}
+
 	public ImmutableDataEvents(string id, IXMLNode xmlNode, string error){
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 		
@@ -50,5 +55,9 @@ public class ImmutableDataEvents{
 		customerTimerMod = XMLUtils.GetFloat(hashElements["CustomerTimer"] as IXMLNode);
 		dayLengthMod = XMLUtils.GetFloat(hashElements["DayLength"] as IXMLNode);
 		allergy = XMLUtils.GetString(hashElements["Allergy"] as IXMLNode, null , error);
+
+		if(hashElements.Contains("EventDescription")){
+			eventDescription = XMLUtils.GetString(hashElements["EventDescription"] as IXMLNode, "", error);		// Optional
+		}
 	}
 }

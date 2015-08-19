@@ -9,7 +9,7 @@ public class Localize : MonoBehaviour {
 
 	void Start(){
 		if(key != null && key != ""){
-			localizedText = GetText(key);
+			localizedText = LocalizationText.GetText(key);
 			textComponent = GetComponent<Text>();
 			textComponent.text = localizedText;
 		}
@@ -17,8 +17,4 @@ public class Localize : MonoBehaviour {
 	}
 
 	public virtual void _Start(){}
-
-	public string GetText(string key){
-		return LocalizationText.GetText(key);
-	}
 }

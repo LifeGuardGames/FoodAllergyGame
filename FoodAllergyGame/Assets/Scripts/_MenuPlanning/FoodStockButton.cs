@@ -40,7 +40,7 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 		this.foodData = foodData;
 		foodID = foodData.ID;
 		gameObject.name = foodData.ID;
-		label.text = GetComponent<Localize>().GetText(foodData.FoodNameKey);
+		label.text = LocalizationText.GetText(foodData.FoodNameKey);
 		image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(foodData.SpriteName);
 		cost = foodData.Cost;
 		textCost.text = "$" + cost.ToString();
