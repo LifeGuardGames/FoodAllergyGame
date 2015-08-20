@@ -63,10 +63,11 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		if(RestaurantManager.Instance.GetLine().NewCustomer() == null){
 			Destroy(this.gameObject);
 		}
-	//	else{
-		/*	if(Random.Range(0,10) > 8){
-				this.gameObject.transform.SetParent(RestaurantManager.Instance.GetTable(6).seat);
-				tableNum = 6;
+		else{
+			if(Random.Range(0,10) > 3 && !RestaurantManager.Instance.GetTable(5).inUse){
+				RestaurantManager.Instance.GetTable(5).inUse = true;
+				this.gameObject.transform.SetParent(RestaurantManager.Instance.GetTable(5).seat);
+				tableNum = 5;
 				state = CustomerStates.ReadingMenu;
 				StartCoroutine("ReadMenu");
 				AudioManager.Instance.PlayClip("readingMenu");
@@ -74,10 +75,10 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				customerAnim.SetReadingMenu(true);
 				GetComponentInParent<Table>().currentCustomerID = customerID;
 				this.GetComponent<SphereCollider>().enabled = false;
-			}*/
-//			else{
+			}
+			else{
 				this.gameObject.transform.SetParent(RestaurantManager.Instance.GetLine().NewCustomer());
-//			}
+			}
 			this.gameObject.transform.position = transform.parent.position;
 			// choose allergy based on the event
 			SelectAllergy(mode.Allergy);
@@ -93,21 +94,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			case 2:
 				desiredFood = FoodKeywords.Dessert;
 				break;
-//			case 3:
-//				desiredFood = FoodKeywords.Drink;
-//				break;
-//			case 4:
-//				desiredFood = FoodKeywords.Green;
-//				break;
-//			case 5:
-//				desiredFood = FoodKeywords.Meat;
-//				break;
-//			case 6:
-//				desiredFood = FoodKeywords.Nut;
-//				break;
 			}
 		}
-//	}
+	}
 	// chooses an allergy cases where  specific allergy is noted we use a weighted random to get the desired result
 	private void SelectAllergy(string mode){
 		if(mode == "None"){
@@ -283,39 +272,42 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Tells the waiter the food has been delivered and begins eating
 	public virtual void Eating(){
-		if(tableNum == 6){
+		if(tableNum == 5){
 			NotifyLeave();
 		}
-		IncreaseSatisfaction();
-
-		customerUI.UpdateSatisfaction(satisfaction);
-		customerAnim.SetSatisfaction(satisfaction);
-		customerAnim.SetEating(true);
-
-		order = transform.GetComponentInParent<Table>().FoodDelivered();
-		order.GetComponent<BoxCollider>().enabled = false;
-		order.GetComponent<Order>().ToggleShowOrderNumber(false);
-		StopCoroutine("SatisfactionTimer");
-		if(order.GetComponent<Order>().allergy == allergy && allergy != Allergies.None){
-			state = CustomerStates.AllergyAttack;
-			AllergyAttack();
-		}
 		else{
-			state = CustomerStates.Eating;
-			StartCoroutine("EatingTimer");
-			AudioManager.Instance.PlayClip("eating");
+			IncreaseSatisfaction();
+
+			customerUI.UpdateSatisfaction(satisfaction);
+			customerAnim.SetSatisfaction(satisfaction);
+			customerAnim.SetEating(true);
+
+			order = transform.GetComponentInParent<Table>().FoodDelivered();
+			order.GetComponent<BoxCollider>().enabled = false;
+			order.GetComponent<Order>().ToggleShowOrderNumber(false);
+			StopCoroutine("SatisfactionTimer");
+			if(order.GetComponent<Order>().allergy == allergy && allergy != Allergies.None){
+				state = CustomerStates.AllergyAttack;
+				AllergyAttack();
+			}
+			else{
+				state = CustomerStates.Eating;
+				StartCoroutine("EatingTimer");
+				AudioManager.Instance.PlayClip("eating");
+			}
 		}
 	}
 
 	// Eating coroutine
 		IEnumerator EatingTimer(){
 		yield return new WaitForSeconds(6.0f);
-//		int rand = Random.Range(0,10);
+		int rand = Random.Range(0,10);
 		customerAnim.SetEating(false);
-//		if(rand > 7){
-//			Bathroom();
-//		}
-//		else{
+		if(rand > 7){
+			Bathroom();
+			Debug.Log ("Table " + tableNum.ToString() +" has gone to the bathroom");
+		}
+		else{
 			if(order.gameObject != null){
 				Destroy(order.gameObject);
 			}
@@ -326,8 +318,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			AudioManager.Instance.PlayClip("readyForCheck");
 		if(RestaurantManager.Instance.isTutorial){
 			this.GetComponent<CustomerTutorial>().NextTableFinger();
+			}
 		}
-//		}
 	}
 
 	// Tells the resturantManager that the customer is leaving and can be removed from the dictionary
