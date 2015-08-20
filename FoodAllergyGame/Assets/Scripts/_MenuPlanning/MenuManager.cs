@@ -3,11 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-// TODO Nested list loop (menu x foodstock) in here, check run time
 public class MenuManager : Singleton<MenuManager>{
 
 	private int menuSize;
-
 	public GameObject foodStockButtonPrefab;
 
 	public AllergiesChartController allergiesChartController;
@@ -15,20 +13,16 @@ public class MenuManager : Singleton<MenuManager>{
 		get{ return allergiesChartController; }
 	}
 
+	public EventPopupController eventPopController;
 	public SelectedMenuController selectedMenuController;
-	public GameObject eventDescription;
-
-	private string currEvent;
-	private ImmutableDataEvents currEventData;
-
 	public TweenToggle trashTweenToggle;
 	public MenuDragSlotTrash trashSlot;
 
 	public List<Transform> currentFoodStockSlotList;			// Slots of the menu food stock
-	private List<string> foodStockList = new List<string>();	// All the foods that are allowed for today
-
+	private List<ImmutableDataFood> foodStockList = new List<ImmutableDataFood>();	// All the foods that are allowed for today
 	private int foodStockPage = 0;
 	private int foodStockPageSize = 4;
+
 	public GameObject leftButton;
 	public GameObject rightButton;
 
@@ -52,11 +46,13 @@ public class MenuManager : Singleton<MenuManager>{
 	public TweenToggle doneButtonTween;
 
 	void Start(){
-		currEvent = DataManager.Instance.GetEvent();
-		currEventData = DataLoaderEvents.GetData(currEvent);
-
-//		eventDescription.SetActive(true);
-//		ShowEventDescription();	// TODO taking this out for now
+		// Show the day's event notification
+		if(!DataManager.Instance.IsDebug){
+			eventPopController.Init(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()));
+		}
+		else{
+			eventPopController.Init(DataLoaderEvents.GetData("Event00"));
+		}
 
 		// Load the number of slots from progress
 		menuSize = TierManager.Instance.GetMenuSlots();
@@ -79,32 +75,25 @@ public class MenuManager : Singleton<MenuManager>{
 	}
 
 	public void PopulateStockGrid(){
-		foodStockList.Add("Food00");
-		foodStockList.Add("Food01");
-		foodStockList.Add("Food02");
-		foodStockList.Add("Food03");
-		foodStockList.Add("Food04");
-		foodStockList.Add("Food05");
-		foodStockList.Add("Food06");
-		foodStockList.Add("Food07");
-		foodStockList.Add("Food08");
-		foodStockList.Add("Food09");
-
-		// UNDONE Waiting for some debug stuff to be completed
-		// Load the food stock set from the DataManager
-//		foodStockList = DataManager.Instance.GameData.RestaurantEvent.MenuPlanningStock;
+		if(!DataManager.Instance.IsDebug){
+			// Load the food stock set from FoodManager
+			foodStockList = FoodManager.Instance.FoodStockList;
+		}
+		else{
+			foodStockList = DataLoaderFood.GetDataList();
+		}
 
 		// Sort the food stock list by price
-		foodStockList.Sort((x,y) => DataLoaderFood.GetData(x).Cost.CompareTo(DataLoaderFood.GetData(y).Cost));
+		foodStockList.Sort((x,y) => x.Cost.CompareTo(y.Cost));
 
+		// Populate the first page of the food stock
 		for(int i = 0; i < foodStockPageSize; i++){
 			if(foodStockList.Count == i){		// Reached the end of list
 				break;
 			}
-			if(!selectedMenuStringList.Contains(foodStockList[i])){
-				ImmutableDataFood foodData = DataLoaderFood.GetData(foodStockList[i]);
+			if(!selectedMenuStringList.Contains(foodStockList[i].ID)){
 				GameObject foodStockButton = GameObjectUtils.AddChildGUI(currentFoodStockSlotList[i].gameObject, foodStockButtonPrefab);
-				foodStockButton.GetComponent<FoodStockButton>().Init(foodData);
+				foodStockButton.GetComponent<FoodStockButton>().Init(foodStockList[i]);
 			}
 		}
 
@@ -163,10 +152,9 @@ public class MenuManager : Singleton<MenuManager>{
 			if(foodStockList.Count == i){		// Reached the end of list
 				break;
 			}
-			if(!selectedMenuStringList.Contains(foodStockList[i])){
-				ImmutableDataFood foodData = DataLoaderFood.GetData(foodStockList[i]);
+			if(!selectedMenuStringList.Contains(foodStockList[i].ID)){
 				GameObject foodStockButton = GameObjectUtils.AddChildGUI(currentFoodStockSlotList[i % 4].gameObject, foodStockButtonPrefab);
-				foodStockButton.GetComponent<FoodStockButton>().Init(foodData);
+				foodStockButton.GetComponent<FoodStockButton>().Init(foodStockList[i]);
 			}
 		}
 	}
@@ -183,7 +171,7 @@ public class MenuManager : Singleton<MenuManager>{
 			return false;
 		}
 		else{
-			// Add id to aux string list
+			// Add ID to aux string list
 			selectedMenuStringList.Add(foodID);
 			allergiesChartController.UpdateChart();
 
@@ -217,14 +205,6 @@ public class MenuManager : Singleton<MenuManager>{
 
 	public void OnBackButtonClicked(){
 		TransitionManager.Instance.TransitionScene(SceneUtils.START);
-	}
-
-	public void ShowEventDescription(){
-		eventDescription.GetComponentInChildren<Text>().text = eventDescription.GetComponent<Localize>().GetText(currEventData.ID);
-	}
-
-	public void CloseEventDescription(){
-		eventDescription.SetActive(false);
 	}
 
 	public void ChangeMenuCost(int delta){

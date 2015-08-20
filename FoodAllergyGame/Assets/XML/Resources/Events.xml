@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Events>
-<Event ID="EventT0">	 <!-- Tutorial 1 -->
-		<MenuSet>MenuSetT1</MenuSet>
-		<KitchenTimer>5</KitchenTimer>
-		<CustomerSet>CustomerSetT0</CustomerSet>
-		<CustomerTimer>2</CustomerTimer>
-		<DayLength>27</DayLength>
-		<Allergy>None</Allergy>
-	</Event>
 	<Event ID="EventT1">	 <!-- Tutorial 1 -->
 		<MenuSet>MenuSetT1</MenuSet>
 		<KitchenTimer>5</KitchenTimer>
@@ -31,6 +23,7 @@
 		<CustomerTimer>2</CustomerTimer>
 		<DayLength>72</DayLength>
 		<Allergy>Peanut</Allergy>
+		<EventDescription>EventDesc00</EventDescription>
 	</Event>
 	<Event ID="Event01">
 		<MenuSet>MenuSet00</MenuSet>
@@ -39,6 +32,7 @@
 		<CustomerTimer>1</CustomerTimer>
 		<DayLength>72</DayLength>
 		<Allergy>Wheat</Allergy>
+		<EventDescription>EventDesc01</EventDescription>
 	</Event>
 	<Event ID="Event02">
 		<MenuSet>MenuSet00</MenuSet>
@@ -47,6 +41,7 @@
 		<CustomerTimer>0.7</CustomerTimer>
 		<DayLength>72</DayLength>
 		<Allergy>Dairy</Allergy>
+		<EventDescription>EventDesc02</EventDescription>
 	</Event>
 	<Event ID="Event03">
 		<MenuSet>MenuSet00</MenuSet>
@@ -55,6 +50,7 @@
 		<CustomerTimer>0.7</CustomerTimer>
 		<DayLength>72</DayLength>
 		<Allergy>None</Allergy>
+		<EventDescription>EventDesc03</EventDescription>
 	</Event>
 	<Event ID="Event04">
 		<MenuSet>MenuSet00</MenuSet>
@@ -63,6 +59,7 @@
 		<CustomerTimer>2</CustomerTimer>
 		<DayLength>72</DayLength>
 		<Allergy>None</Allergy>
+		<EventDescription>EventDesc04</EventDescription>
 	</Event>
 </Events>
 

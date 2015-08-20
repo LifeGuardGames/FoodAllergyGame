@@ -13,7 +13,11 @@ public class DataManager : Singleton<DataManager> {
 	public event EventHandler<EventArgs> OnGameDataSaved;
 
 	private static bool isCreated;
+
 	public bool isDebug = false;
+	public bool IsDebug{
+		get{ return isDebug; }
+	}
 
 	private GameData gameData;		// Super class that stores all the game data
 	public GameData GameData{

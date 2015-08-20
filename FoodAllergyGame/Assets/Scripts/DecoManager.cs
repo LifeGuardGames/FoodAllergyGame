@@ -58,7 +58,7 @@ public class DecoManager : Singleton<DecoManager> {
 				ChangeItem(DataLoaderDecoItem.GetData(id).Type);
 			}
 			else if(DataLoaderDecoItem.GetData(id).Type == DecoTypes.Kitchen ){
-				ChangeKitchen(DataLoaderDecoItem.GetData(id).SpriteName);
+				ChangeKitchen(DataLoaderDecoItem.GetData(id).SpriteName,DataLoaderDecoItem.GetData(id).SecondarySprite);
 			}
 			else{
 				ChangeTables(Resources.Load<Sprite>(DataLoaderDecoItem.GetData(id).SpriteName));
@@ -80,9 +80,13 @@ public class DecoManager : Singleton<DecoManager> {
 		}
 	}
 
-	public void ChangeKitchen(string SpriteSet){
-		KitchenList[0].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(SpriteSet + "00");
-		KitchenList[1].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(SpriteSet + "01");
+	public string setUp(DecoTypes deco){
+		return DataManager.Instance.GameData.Decoration.currDiner[deco];
+	}
+
+	public void ChangeKitchen(string SpriteSet, string backsprite){
+		KitchenList[0].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(SpriteSet);
+		KitchenList[1].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(backsprite);
 	}
 
 	public void ChangeItem(DecoTypes deco){

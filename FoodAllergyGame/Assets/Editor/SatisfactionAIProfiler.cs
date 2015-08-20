@@ -3,8 +3,8 @@ using UnityEngine;
 using System.Collections;
 
 public class SatisfactionAIProfiler : EditorWindow {
-	private int testsToRun = 10;
-	private int steps = 0;
+//	private int testsToRun = 10;
+
 
 	[MenuItem("LGG/SatisfactionAIProfiler")]
 	public static void ShowWindow(){
@@ -22,11 +22,11 @@ public class SatisfactionAIProfiler : EditorWindow {
 
 	private void RunTest(){
 		Debug.Log("Running profile test...");
-		SatisfactionAI ai = new SatisfactionAI();
-		for(int i = 0; i < testsToRun; i++){
-			Debug.Log("Test " + i.ToString() + ":");
+//		SatisfactionAI ai = new SatisfactionAI();
+//		for(int i = 0; i < testsToRun; i++){
+//			Debug.Log("Test " + i.ToString() + ":");
 //			SingleTest(ai);
-		}
+//		}
 	}
 
 	// Returns number of steps for a single test

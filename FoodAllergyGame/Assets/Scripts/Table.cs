@@ -26,6 +26,12 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	public bool isGossiped;
 	public GameObject node;
 	public GameObject tableHighlight;
+	public SpriteRenderer tableSprite;
+
+	void Start(){
+		ImmutableDataDecoItem _sprite = DataLoaderDecoItem.GetData(RestaurantManager.Instance.GetCurrentSprite(DecoTypes.Table));
+		tableSprite.sprite = Resources.Load<Sprite>(_sprite.SpriteName);
+	}
 
 	//facilitates talk between customer and waiter
 	public void TalkToConsumer(){

@@ -43,6 +43,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public GameObject blackoutImg;
 	List<string> currCusSet;
 	public bool isTutorial;
+	public SpriteRenderer floorSprite;
 	// RemoveCustomer removes the customer from a hashtable 
 	// and then if the day is over checks to see if the hastable is empty and if it is it ends the round
 
@@ -59,6 +60,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			StartDay(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()));
 
 		}
+		ImmutableDataDecoItem _sprite = DataLoaderDecoItem.GetData(GetCurrentSprite(DecoTypes.Floor));
+		floorSprite.sprite = Resources.Load<Sprite>(_sprite.SpriteName);
 	}
 
 	// Called at the start of the game day begins the day tracker coroutine 
@@ -289,5 +292,9 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			currCustomers[i].GetComponent<Customer>().customerUI.gameObject.SetActive(true);
 		}
 		StartCoroutine("SpawnCustomer");
+	}
+
+	public string GetCurrentSprite(DecoTypes deco){
+		return DataManager.Instance.GameData.Decoration.currDiner[deco];
 	}
 }

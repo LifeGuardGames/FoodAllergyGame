@@ -19,17 +19,16 @@ public class StartManager : Singleton<StartManager>{
 
 		// Check to see if the previous day has been completed
 		if(DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent){
-			//TODO Generate event from data
 			if(DataManager.Instance.GameData.Tutorial.IsTutorial1Done == false){
-				unlockParent.SetActive(false);
-				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT0";
+				unlockParent.SetActive(false); // TODO clean this up
+				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT1";
 			}
 			else if(DataManager.Instance.GameData.Tutorial.IsTutorial2Done == false){
-				unlockParent.SetActive(true);
+				unlockParent.SetActive(true); // TODO clean this up
 				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT2";
 			}
 			else{
-				unlockParent.SetActive(false);
+				unlockParent.SetActive(false); // TODO clean this up
 				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "Event00";
 			}
 
@@ -41,21 +40,28 @@ public class StartManager : Singleton<StartManager>{
 		}
 
 		//TODO Set up visuals and appearances for that day based on event
+
+		GenerateUnlockedFoodStock();
 	}
 
 	public void GenerateUnlockedFoodStock(){
-		List<ImmutableDataFood> foodStock = new List<ImmutableDataFood>(DataLoaderFood.GetDataList());
-		List<string> unlockedFoodStock = new List<string>();
-		for (int i = 0; i < foodStock.Count; i++){
-			if(foodStock[i].Tier <= TierManager.Instance.Tier){
-				unlockedFoodStock.Add(foodStock[i].ID);
+		List<ImmutableDataFood> unlockedFoodStock = new List<ImmutableDataFood>();
+
+		// First add all the foods that are used for event
+		ImmutableDataMenuSet currSet = DataLoaderMenuSet.GetData(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()).MenuSet);
+		foreach(string foodID in currSet.MenuSet){
+			unlockedFoodStock.Add(DataLoaderFood.GetData(foodID));
+		}
+		
+		// Take out all the foods that doesnt satisfy current tier
+		foreach(ImmutableDataFood foodData in unlockedFoodStock){
+			if(foodData.Tier <= TierManager.Instance.Tier){
+				unlockedFoodStock.Remove(foodData);
 			}
 		}
-		ImmutableDataMenuSet currSet = DataLoaderMenuSet.GetData(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()).MenuSet);
-		for (int i = 0; i < currSet.MenuSet.Length; i++){
-			unlockedFoodStock.Remove(currSet.MenuSet[i]);
-		}
-		DataManager.Instance.GameData.RestaurantEvent.MenuPlanningStock = unlockedFoodStock;
+
+		// Populate in FoodManager for use in MenuPlanning
+		FoodManager.Instance.FoodStockList = unlockedFoodStock;
 	}
 
 	public void OnPlayButtonClicked(){
