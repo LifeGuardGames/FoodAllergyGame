@@ -53,6 +53,7 @@ public class RestaurantMenuUIController : MonoBehaviour {
 			tableNum = customerTableNum;
 			allergy = customerAllergy;
 			choices = new List<ImmutableDataFood>();
+
 			if(allergy == Allergies.None){
 				allergyPassParent.SetActive(true);
 				allergyFailParent.SetActive(false);
@@ -129,14 +130,11 @@ public class RestaurantMenuUIController : MonoBehaviour {
 		inspectAnimation.transform.localScale = new Vector3(1f, 1f, 1f);
 
 		// Show the food allergy nodes here
-		if(choices[0].AllergyList[0] != Allergies.None){
-			allergyNodeImage1.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(choices[0].AllergyList[0]);
-			allergyNode1.SetActive(true);
-		}
-		if(choices[1].AllergyList[0] != Allergies.None){
-			allergyNodeImage2.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(choices[1].AllergyList[0]);
-			allergyNode2.SetActive(true);
-		}
+		allergyNodeImage1.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(choices[0].AllergyList[0]);
+		allergyNode1.SetActive(true);
+
+		allergyNodeImage2.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(choices[1].AllergyList[0]);
+		allergyNode2.SetActive(true);
 	}
 
 	public void CancelOrder(int table){

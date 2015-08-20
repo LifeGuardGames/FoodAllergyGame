@@ -97,7 +97,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			}
 		}
 	}
-	// chooses an allergy cases where  specific allergy is noted we use a weighted random to get the desired result
+	// chooses an allergy cases where specific allergy is noted we use a weighted random to get the desired result
 	private void SelectAllergy(string mode){
 		if(mode == "None"){
 			int rand = Random.Range(0, 4);
