@@ -52,12 +52,17 @@ public class StartManager : Singleton<StartManager>{
 		foreach(string foodID in currSet.MenuSet){
 			unlockedFoodStock.Add(DataLoaderFood.GetData(foodID));
 		}
-		
+
 		// Take out all the foods that doesnt satisfy current tier
+		List<ImmutableDataFood> foodDataToDelete = new List<ImmutableDataFood>();
 		foreach(ImmutableDataFood foodData in unlockedFoodStock){
 			if(foodData.Tier <= TierManager.Instance.Tier){
-				unlockedFoodStock.Remove(foodData);
+				foodDataToDelete.Add(foodData);
 			}
+		}
+		foreach(ImmutableDataFood foodData in foodDataToDelete){
+			Debug.LogWarning("Removing food due to tier limit!");	// TODO just testing down the road to see if this works
+			unlockedFoodStock.Remove(foodData);
 		}
 
 		// Populate in FoodManager for use in MenuPlanning

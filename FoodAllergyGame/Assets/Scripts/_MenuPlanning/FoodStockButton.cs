@@ -47,16 +47,10 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
 		// Set allergy sprite indicators if present
 		if(foodData.AllergyList.Count == 1){
-			if(foodData.AllergyList[0] == Allergies.None){
-				allergy1.enabled = false;
-				allergy2.enabled = false;
-			}
-			else{
-				allergy1.enabled = true;
-				allergy1.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(foodData.AllergyList[0]);
-				allergy2.enabled = false;
-				allergyNodeImage.sprite = allergy1.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(foodData.AllergyList[0]);
-			}
+			allergy1.enabled = true;
+			allergy1.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(foodData.AllergyList[0]);
+			allergy2.enabled = false;
+			allergyNodeImage.sprite = allergy1.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(foodData.AllergyList[0]);
 		}
 		else if(foodData.AllergyList.Count == 2){
 			allergy1.enabled = true;
@@ -84,10 +78,8 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 			startParent = transform.parent;
 			GetComponent<CanvasGroup>().blocksRaycasts = false;
 
-			// Show allergy nodes if food as them
-			if(foodData.AllergyList[0] != Allergies.None){
-				allergyNode.SetActive(true);
-			}
+			// Show allergy nodes
+			allergyNode.SetActive(true);
 
 			// Remove the food from its attachment
 			if(MenuManager.Instance.RemoveFoodFromMenuList(foodID)){
@@ -137,32 +129,7 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 			startParent = transform.parent;
 			startPosition = transform.localPosition;
 
-			if(foodData.AllergyList[0] != Allergies.None){
-				// Send the allergies into the chart
-				if(transform.parent.GetComponent<MenuDragSlot>().IsSelectedSlot){
-					AllergiesChartController chartController = MenuManager.Instance.allergiesChartController;
-					Vector3 moveDestination = new Vector3();
-
-					// Set the node parent to chart, makes transforming much easier
-					allergyNode.transform.SetParent(MenuManager.Instance.tweenAux);
-
-					if(foodData.AllergyList[0] == Allergies.Dairy){
-						moveDestination = chartController.DairySpriteBase.position;
-					}
-					else if(foodData.AllergyList[0] == Allergies.Peanut){
-						moveDestination = chartController.PeanutSpriteBase.position;
-					}
-					else if(foodData.AllergyList[0] == Allergies.Wheat){
-						moveDestination = chartController.WheatSpriteBase.position;
-					}
-					LeanTween.move(allergyNode.transform as RectTransform, new Vector2(moveDestination.x, moveDestination.y), .5f)
-						.setEase(LeanTweenType.easeInOutQuad)
-							.setOnComplete(NodeDoneTweening);
-				}
-				else{
-					allergyNode.SetActive(false);
-				}
-			}
+			allergyNode.SetActive(false);
 		}
 
 		// Try to hide trash can no matter what
