@@ -42,6 +42,12 @@
 		<Title>Pink</Title>
 		<SpriteName>RestBg3</SpriteName>
 	</DecoItem>
+	<DecoItem ID = "Floor03">
+		<Type>Floor</Type>
+		<Price>200</Price>
+		<Title>Blue</Title>
+		<SpriteName>RestBg4</SpriteName>
+	</DecoItem>
 	<DecoItem ID = "Kitchen00">
 		<Type>Kitchen</Type>
 		<Price>100</Price>
@@ -62,5 +68,12 @@
 		<Title>Pink</Title>
 		<SpriteName>RestKitchenPink</SpriteName>
 		<Secondary>RestKitchenPinkBack</Secondary>
+	</DecoItem>
+		<DecoItem ID = "Kitchen03">
+		<Type>Kitchen</Type>
+		<Price>200</Price>
+		<Title>Purple</Title>
+		<SpriteName>RestKitchenPurple</SpriteName>
+		<Secondary>RestKitchenPurpleBack</Secondary>
 	</DecoItem>
 </DecoItem>

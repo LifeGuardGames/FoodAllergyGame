@@ -24,7 +24,7 @@ public class SatisfactionAI{
 	private float totalSatisfaction;
 
 	// Calculates the money given to the player once a customer leaves
-	public int CalculateBill(int incomingSatisfaction){
+	public int CalculateBill(int incomingSatisfaction, int priceMultiplier){
 		if(incomingSatisfaction <= 0){
 			missingCustomers++;
 		}
@@ -37,7 +37,7 @@ public class SatisfactionAI{
 		CalculateDifficultyLevel(modifiedSatisfaction);
 
 		totalSatisfaction += incomingSatisfaction;
-		return (int)((float)incomingSatisfaction * 3.476f);
+		return (int)((float)incomingSatisfaction * 3.476f * priceMultiplier);
 	}
 
 	// Calculates the difficulty level

@@ -121,7 +121,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			int rand;		
 			if(!dayOver && customerHash.Count < 8){
 				ImmutableDataCustomer test;
-				Debug.Log (satisfactionAI.DifficultyLevel);
+//				Debug.Log (satisfactionAI.DifficultyLevel);
 				customerSpawnTimer = customerTimer / satisfactionAI.DifficultyLevel;
 				if(satisfactionAI.DifficultyLevel > 13){
 				 	rand = UnityEngine.Random.Range(0,currCusSet.Count);
@@ -136,11 +136,12 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 				customerNumber++;
 				cus.GetComponent<Customer>().Init(customerNumber, eventData);
-				rand = Random.Range(0,10);
-				if(rand > 7){
-					cus.GetComponent<Customer>().hasPowerUp = true;
-				}
+//				rand = Random.Range(0,10);
+//				if(rand > 7){
+//					cus.GetComponent<Customer>().hasPowerUp = true;
+//				}
 				customerHash.Add(cus.GetComponent<Customer>().customerID,cus);
+				Debug.Log (cus.GetComponent<Customer>().customerID);
 				satisfactionAI.AddCustomer();
 				StartCoroutine("SpawnCustomer");
 			}
@@ -151,9 +152,9 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	}
 
 	// Removes a customer from the dictionary
-	public void CustomerLeft(string Id, int satisfaction){
+	public void CustomerLeft(string Id, int satisfaction,int priceMultiplier){
 		if(customerHash.ContainsKey(Id)){
-			UpdateCash(satisfactionAI.CalculateBill(satisfaction));
+			UpdateCash(satisfactionAI.CalculateBill(satisfaction,priceMultiplier));
 			customerHash.Remove(Id);
 			CheckForGameOver();
 		}
@@ -280,6 +281,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		cus.GetComponent<CustomerTutorial>().isAllergy = true;
 		cus.GetComponent<Customer>().Init(customerNumber, eventData);
 		customerHash.Add(cus.GetComponent<Customer>().customerID,cus);
+
 		customerNumber++;
 		satisfactionAI.AddCustomer();
 	}

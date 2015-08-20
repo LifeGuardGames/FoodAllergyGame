@@ -31,6 +31,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public GameObject OrderPrefab;				// temp variable used for instatiation
 	public List <ImmutableDataFood> choices;	// a list containing possible options the user would like to eat
 	public bool hasPowerUp;
+	private int priceMultiplier;
 
 	// Basic intitialzation
 	public virtual void Init(int num, ImmutableDataEvents mode){
@@ -78,13 +79,16 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			}
 			else{
 				this.gameObject.transform.SetParent(RestaurantManager.Instance.GetLine().NewCustomer());
+
 			}
 			this.gameObject.transform.position = transform.parent.position;
-			// choose allergy based on the event
-			SelectAllergy(mode.Allergy);
-			// gets the keyword to help narrow down the customer's choices
-			int rand = Random.Range(0, 3);
-			switch(rand){
+		}
+
+		// choose allergy based on the event
+		SelectAllergy(mode.Allergy);
+		// gets the keyword to help narrow down the customer's choices
+		int rand = Random.Range(0, 3);
+		switch(rand){
 			case 0:
 				desiredFood = FoodKeywords.Meal;
 				break;
@@ -94,7 +98,6 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			case 2:
 				desiredFood = FoodKeywords.Dessert;
 				break;
-			}
 		}
 	}
 	// chooses an allergy cases where  specific allergy is noted we use a weighted random to get the desired result
@@ -249,6 +252,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			customerUI.ToggleWait(false);
 			order = GameObjectUtils.AddChildWithPositionAndScale(null, OrderPrefab);
 			order.GetComponent<Order>().Init(food.ID, tableNum, food.AllergyList[0]);
+			priceMultiplier = food.Reward;
 			RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().OrderObtained(order);
 			attentionSpan = 20.0f * timer;
 			//StopCoroutine("SatisfactionTimer");
@@ -327,7 +331,12 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		if(hasPowerUp){
 			//Waiter.Instance.GivePowerUp();
 		}
-		RestaurantManager.Instance.CustomerLeft(customerID, satisfaction);
+		if(satisfaction > 0){
+			RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, priceMultiplier);
+		}
+		else{
+			RestaurantManager.Instance.CustomerLeft(customerID, satisfaction,1);
+		}
 		if(state != CustomerStates.InLine){
 			RestaurantManager.Instance.GetTable(tableNum).CustomerLeaving();
 		}

@@ -6,7 +6,8 @@
 		<Allergies>None</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
 		<Tier>0</Tier>
-		<Price>3</Price>
+		<Price>12</Price>
+		<Reward>1</Reward>
 	</Food>
 	<Food ID="Food01">
 		<FoodNameKey>FoodYogurt</FoodNameKey>
@@ -14,7 +15,8 @@
 		<Allergies>Dairy</Allergies>
 		<Keywords>Dessert,Drink</Keywords>
 		<Tier>0</Tier>
-		<Price>3</Price>
+		<Price>6</Price>
+		<Reward>2</Reward>
 	</Food>
 	<Food ID="Food02">
 		<FoodNameKey>FoodPeanutSalad</FoodNameKey>
@@ -22,7 +24,8 @@
 		<Allergies>Peanut</Allergies>
 		<Keywords>Meal,Dessert</Keywords>
 		<Tier>0</Tier>
-		<Price>5</Price>
+		<Price>10</Price>
+		<Reward>3</Reward>
 	</Food>
 	<Food ID="Food03">
 		<FoodNameKey>FoodChickenWings</FoodNameKey>
@@ -30,7 +33,8 @@
 		<Allergies>Wheat</Allergies>
 		<Keywords>Meal,Drink</Keywords>
 		<Tier>0</Tier>
-		<Price>5</Price>
+		<Price>10</Price>
+		<Reward>3</Reward>
 	</Food>
 	<Food ID="Food04">
 		<FoodNameKey>FoodIceCream</FoodNameKey>
@@ -38,7 +42,8 @@
 		<Allergies>Dairy</Allergies>
 		<Keywords>Dessert,Meal</Keywords>
 		<Tier>0</Tier>
-		<Price>3</Price>
+		<Price>6</Price>
+		<Reward>2</Reward>
 	</Food>
 	<Food ID="Food05">
 		<FoodNameKey>FoodPeanutButterApple</FoodNameKey>
@@ -46,15 +51,17 @@
 		<Allergies>Peanut</Allergies>
 		<Keywords>Meal,Drink</Keywords>
 		<Tier>0</Tier>
-		<Price>4</Price>
+		<Price>8</Price>
+		<Reward>3</Reward>
 		</Food>
 	<Food ID="Food06">
 		<FoodNameKey>FoodVeggieSandwich</FoodNameKey>
 		<SpriteName>FoodVeggieSandwich</SpriteName>
 		<Allergies>Wheat</Allergies>
 		<Keywords>Meal,Dessert</Keywords>
-		<Price>5</Price>
 		<Tier>0</Tier>
+		<Price>10</Price>
+		<Reward>3</Reward>
 	</Food>
 	<Food ID="Food07">
 		<FoodNameKey>FoodRoastedPeanuts</FoodNameKey>
@@ -62,7 +69,8 @@
 		<Allergies>Peanut</Allergies>
 		<Keywords>Meal,Drink</Keywords>
 		<Tier>0</Tier>
-		<Price>2</Price>
+		<Price>6</Price>
+		<Reward>2</Reward>
 	</Food>
 	<Food ID="Food08">
 		<FoodNameKey>FoodToast</FoodNameKey>
@@ -70,7 +78,8 @@
 		<Allergies>Wheat</Allergies>
 		<Keywords>Meal,Drink</Keywords>
 		<Tier>0</Tier>
-		<Price>3</Price>
+		<Price>6</Price>
+		<Reward>2</Reward>
 	</Food>
 	<Food ID="Food09">
 		<FoodNameKey>FoodMilk</FoodNameKey>
@@ -78,7 +87,8 @@
 		<Allergies>Dairy</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
 		<Tier>0</Tier>
-		<Price>1</Price>
+		<Price>6</Price>
+		<Reward>2</Reward>
 	</Food>
 </Foods>
 
