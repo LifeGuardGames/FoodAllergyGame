@@ -170,6 +170,7 @@ namespace CUDLR{
 			if(needs_www)
 				callback = WWWFileHandler;
 
+
 			downloadRoute.m_callback = delegate(RequestContext context){
 				callback(context, true);
 			};
@@ -177,17 +178,22 @@ namespace CUDLR{
 				callback(context, false);
 			};
 
+
 			registeredRoutes.Add(downloadRoute);
 			registeredRoutes.Add(fileRoute);
 		}
 
 		void OnEnable(){
 			// Capture Console Logs
+			#pragma warning disable 0618
 			Application.RegisterLogCallback(Console.LogCallback);
+			#pragma warning restore 0618
 		}
 
 		void OnDisable(){
+			#pragma warning disable 0618
 			Application.RegisterLogCallback(null);
+			#pragma warning restore 0618
 		}
 
 		void Update(){
