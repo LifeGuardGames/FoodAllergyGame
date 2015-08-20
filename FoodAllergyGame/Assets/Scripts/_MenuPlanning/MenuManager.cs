@@ -8,11 +8,6 @@ public class MenuManager : Singleton<MenuManager>{
 	private int menuSize;
 	public GameObject foodStockButtonPrefab;
 
-	public AllergiesChartController allergiesChartController;
-	public AllergiesChartController AllergiesChartController{
-		get{ return allergiesChartController; }
-	}
-
 	public EventPopupController eventPopController;
 	public SelectedMenuController selectedMenuController;
 	public TweenToggle trashTweenToggle;
@@ -57,7 +52,6 @@ public class MenuManager : Singleton<MenuManager>{
 		// Load the number of slots from progress
 		menuSize = TierManager.Instance.GetMenuSlots();
 		selectedMenuController.Init(menuSize);
-		allergiesChartController.Init(menuSize);
 
 		ChangeMenuCost(0);	// Reset text to zero
 		PopulateStockGrid();
@@ -173,7 +167,6 @@ public class MenuManager : Singleton<MenuManager>{
 		else{
 			// Add ID to aux string list
 			selectedMenuStringList.Add(foodID);
-			allergiesChartController.UpdateChart();
 
 			if(selectedMenuStringList.Count == menuSize){
 				doneButtonTween.Show();
@@ -185,7 +178,6 @@ public class MenuManager : Singleton<MenuManager>{
 	public bool RemoveFoodFromMenuList(string foodID){
 		// Soft remove - no error if doesnt find key
 		bool isRemoved = selectedMenuStringList.Remove(foodID);
-		allergiesChartController.UpdateChart();
 
 		if(isRemoved){
 			doneButtonTween.Hide();
