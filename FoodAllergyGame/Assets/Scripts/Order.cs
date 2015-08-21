@@ -60,6 +60,9 @@ public class Order : MonoBehaviour, IWaiterSelection{
 	}
 
 	private IEnumerator Cooking(){
+		while(RestaurantManager.Instance.isPaused){
+			yield return new WaitForFixedUpdate();
+		}
 		yield return new WaitForSeconds(cookTimer);
 		IsCooked = true;
 		orderImage.SetActive(true);
@@ -83,6 +86,9 @@ public class Order : MonoBehaviour, IWaiterSelection{
 	}
 
 	IEnumerator StartMicrowave(){
+		while(RestaurantManager.Instance.isPaused){
+			yield return new WaitForFixedUpdate();
+		}
 		yield return new WaitForSeconds(2.5f);
 		if(isCooked){
 			isBurnt = true;

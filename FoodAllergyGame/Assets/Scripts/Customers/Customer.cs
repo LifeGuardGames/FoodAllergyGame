@@ -170,6 +170,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// When completed removes one satisfaction from that customer
 	IEnumerator SatisfactionTimer(){
+		while(RestaurantManager.Instance.isPaused){
+			yield return new WaitForFixedUpdate();
+		}
 		yield return new WaitForSeconds(attentionSpan);
 //		Debug.Log("wait for seconds done " + gameObject.name);
 		if(satisfaction > 0){
@@ -209,6 +212,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Time spent reading menu before ordering
 		IEnumerator ReadMenu(){
+		while(RestaurantManager.Instance.isPaused){
+			yield return new WaitForFixedUpdate();
+		}
 		yield return new WaitForSeconds(menuTimer);
 
 		customerAnim.SetReadingMenu(false);
@@ -304,6 +310,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Eating coroutine
 		IEnumerator EatingTimer(){
+		while(RestaurantManager.Instance.isPaused){
+			yield return new WaitForFixedUpdate();
+		}
 		yield return new WaitForSeconds(6.0f);
 		int rand = Random.Range(0,10);
 		customerAnim.SetEating(false);
@@ -386,6 +395,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 	// when it runs out the customer is taken to the hospital and the player is slamed with the bill
 	IEnumerator AllergyTimer(){
+		while(RestaurantManager.Instance.isPaused){
+			yield return new WaitForFixedUpdate();
+		}
 		yield return new WaitForSeconds(5.0f);
 //		RestaurantManager.Instance.medicButton.GetComponent<Animator>().SetBool("TutMedic", false);
 //		RestaurantManager.Instance.tutText.SetActive(false);
@@ -445,6 +457,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 
 	IEnumerator UseBathroom(){
+		while(RestaurantManager.Instance.isPaused){
+			yield return new WaitForFixedUpdate();
+		}
 		yield return new WaitForSeconds(attentionSpan);
 		if(order.gameObject != null){
 			Destroy(order.gameObject);
@@ -513,6 +528,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 
 	IEnumerator PlayTime(){
+		while(RestaurantManager.Instance.isPaused){
+			yield return new WaitForFixedUpdate();
+		}
 		yield return new WaitForSeconds(10.0f);
 		this.transform.GetChild(0).gameObject.SetActive(true);
 		this.transform.GetChild(1).gameObject.SetActive(true);

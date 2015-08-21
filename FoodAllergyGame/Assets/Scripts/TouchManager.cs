@@ -12,6 +12,12 @@ public class TouchManager : Singleton<TouchManager> {
 	}
 
 	void Update(){
+		if(RestaurantManager.Instance.isPaused){
+			isPaused = true;
+		}
+		else{
+			isPaused = false;
+		}
 		if(Input.GetMouseButtonDown(0)){
 			if(!isPaused){
 				RaycastHit hitObject;

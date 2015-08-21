@@ -128,7 +128,6 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 					test = DataLoaderCustomer.GetData(currCusSet[rand]);
 				}
 				else{
-					Debug.Log (currCusSet[0]);
 					 test = DataLoaderCustomer.GetData(currCusSet[0]);
 				}
 
@@ -141,7 +140,6 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 //					cus.GetComponent<Customer>().hasPowerUp = true;
 //				}
 				customerHash.Add(cus.GetComponent<Customer>().customerID,cus);
-				Debug.Log (cus.GetComponent<Customer>().customerID);
 				satisfactionAI.AddCustomer();
 				StartCoroutine("SpawnCustomer");
 			}
@@ -178,7 +176,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		if(dayOver){
 			if(customerHash.Count == 0){
 				if(isTutorial){
-					Debug.Log ("tutDone");
+
 					DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
 					DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT1";
 					isTutorial = false;
@@ -298,5 +296,15 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 	public string GetCurrentSprite(DecoTypes deco){
 		return DataManager.Instance.GameData.Decoration.currDiner[deco];
+	}
+
+	public void PauseGame(){
+		if(isPaused == false){
+			isPaused = true;
+		}
+		else{
+			isPaused = false;
+		}
+
 	}
 }
