@@ -374,7 +374,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 	// if they are saved they take a small penalty for making the mistake and the customer will want the check asap
 	public virtual void Saved(){
-		Medic.Instance.BillRestaurant(10);
+		Medic.Instance.BillRestaurant(40);
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
 		IncreaseSatisfaction();
 		customerAnim.SetSatisfaction(satisfaction);

@@ -3,9 +3,6 @@
 <CustomerSet ID="CustomerSetT0">
 		<CustomerList>Customer10</CustomerList>
 	</CustomerSet>
-	<CustomerSet ID="CustomerSet0T">
-		<CustomerList>Customer00</CustomerList>
-	</CustomerSet>
 	<CustomerSet ID="CustomerSet00">
 		<CustomerList>Customer00,Customer01,Customer02</CustomerList>
 	</CustomerSet>
@@ -19,6 +16,10 @@
 		<CustomerList>Customer00,Customer01,Customer02</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSet04">
-		<CustomerList>Customer00,Customer01,Customer02</CustomerList>
+		<CustomerList>Customer04</CustomerList>
 	</CustomerSet>
+	<CustomerSet ID="CustomerSet05">
+		<CustomerList>Customer06</CustomerList>
+	</CustomerSet>
+	
 </CustomerSets>

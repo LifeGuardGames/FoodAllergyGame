@@ -56,7 +56,7 @@ public class StartManager : Singleton<StartManager>{
 		// Take out all the foods that doesnt satisfy current tier
 		List<ImmutableDataFood> foodDataToDelete = new List<ImmutableDataFood>();
 		foreach(ImmutableDataFood foodData in unlockedFoodStock){
-			if(foodData.Tier <= TierManager.Instance.Tier){
+			if(foodData.Tier < TierManager.Instance.Tier){
 				foodDataToDelete.Add(foodData);
 			}
 		}

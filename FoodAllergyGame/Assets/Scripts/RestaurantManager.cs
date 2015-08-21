@@ -78,7 +78,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		restaurantUI.UpdateCash(dayEarnedCash);
 		restaurantUI.StartDay();
 		
-		if(eventData.ID == "EventT0"){
+		if(eventData.ID == "EventT1"){
 			isTutorial = true;
 			customerSpawnTimer = customerTimer / satisfactionAI.DifficultyLevel;
 		}

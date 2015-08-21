@@ -3,10 +3,11 @@
 	<Event ID="EventT1">	 <!-- Tutorial 1 -->
 		<MenuSet>MenuSetT1</MenuSet>
 		<KitchenTimer>5</KitchenTimer>
-		<CustomerSet>CustomerSet0T</CustomerSet>
+		<CustomerSet>CustomerSetT0</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
 		<DayLength>27</DayLength>
 		<Allergy>None</Allergy>
+		<Title>TutEvent</Title>
 	</Event>
 	<Event ID="EventT2">	 <!-- Tutorial 2 -->
 		<MenuSet>MenuSet00</MenuSet>
@@ -15,6 +16,7 @@
 		<CustomerTimer>1</CustomerTimer>
 		<DayLength>72</DayLength>
 		<Allergy>None</Allergy>
+		<Title>TitleT2</Title>
 	</Event>
 	<Event ID="Event00">
 		<MenuSet>MenuSet00</MenuSet>
@@ -24,6 +26,7 @@
 		<DayLength>72</DayLength>
 		<Allergy>Peanut</Allergy>
 		<EventDescription>EventDesc00</EventDescription>
+		<Title>Title00</Title>
 	</Event>
 	<Event ID="Event01">
 		<MenuSet>MenuSet00</MenuSet>
@@ -33,6 +36,7 @@
 		<DayLength>72</DayLength>
 		<Allergy>Wheat</Allergy>
 		<EventDescription>EventDesc01</EventDescription>
+		<Title>Title01</Title>
 	</Event>
 	<Event ID="Event02">
 		<MenuSet>MenuSet00</MenuSet>
@@ -42,6 +46,7 @@
 		<DayLength>72</DayLength>
 		<Allergy>Dairy</Allergy>
 		<EventDescription>EventDesc02</EventDescription>
+		<Title>Title02</Title>
 	</Event>
 	<Event ID="Event03">
 		<MenuSet>MenuSet00</MenuSet>
@@ -51,6 +56,7 @@
 		<DayLength>72</DayLength>
 		<Allergy>None</Allergy>
 		<EventDescription>EventDesc03</EventDescription>
+		<Title>Title03</Title>
 	</Event>
 	<Event ID="Event04">
 		<MenuSet>MenuSet00</MenuSet>
@@ -60,6 +66,27 @@
 		<DayLength>72</DayLength>
 		<Allergy>None</Allergy>
 		<EventDescription>EventDesc04</EventDescription>
+		<Title>Title04</Title>
+	</Event>
+		<Event ID="Event05">
+		<MenuSet>MenuSet00</MenuSet>
+		<KitchenTimer>3</KitchenTimer>
+		<CustomerSet>CustomerSet04</CustomerSet>
+		<CustomerTimer>1</CustomerTimer>
+		<DayLength>72</DayLength>
+		<Allergy>None</Allergy>
+		<EventDescription>EventDesc05</EventDescription>
+		<Title>Title05</Title>
+	</Event>
+	<Event ID="Event05">
+		<MenuSet>MenuSet00</MenuSet>
+		<KitchenTimer>3</KitchenTimer>
+		<CustomerSet>CustomerSet05</CustomerSet>
+		<CustomerTimer>1</CustomerTimer>
+		<DayLength>72</DayLength>
+		<Allergy>None</Allergy>
+		<EventDescription>EventDesc07</EventDescription>
+		<Title>Title06</Title>
 	</Event>
 </Events>
 
