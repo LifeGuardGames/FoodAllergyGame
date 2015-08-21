@@ -35,7 +35,7 @@ public class TweenToggle : MonoBehaviour{
 	public LeanTweenType easeShow = LeanTweenType.easeOutBack;
 	protected Vector3 hiddenPos;
 	protected Vector3 showingPos;
-
+	public bool isUseEstimatedTime = false;
 	public Vector3 GetShowPos(){
 		return showingPos;
 	}

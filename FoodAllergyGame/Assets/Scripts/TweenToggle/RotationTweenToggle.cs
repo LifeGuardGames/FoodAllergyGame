@@ -54,13 +54,15 @@ public class RotationTweenToggle : TweenToggle {
 				LeanTween.rotate(GUIRectTransform, showingPos.z, time)
 					.setEase(easeShow)
 						.setDelay(showDelay)
-							.setOnComplete(ShowSendCallback);
+							.setUseEstimatedTime(isUseEstimatedTime)
+								.setOnComplete(ShowSendCallback);
 			}
 			else{
 				LeanTween.rotateLocal(gameObject, showingPos, time)
 					.setEase(easeShow)
 						.setDelay(showDelay)
-							.setOnComplete(ShowSendCallback);
+							.setUseEstimatedTime(isUseEstimatedTime)
+								.setOnComplete(ShowSendCallback);
 			}
 		}
 	}
@@ -79,13 +81,15 @@ public class RotationTweenToggle : TweenToggle {
 				LeanTween.rotate(GUIRectTransform, hiddenPos.z, time)
 					.setEase(easeHide)
 						.setDelay(hideDelay)
-							.setOnComplete(ShowSendCallback);
+							.setUseEstimatedTime(isUseEstimatedTime)
+								.setOnComplete(ShowSendCallback);
 			}
 			else{
 				LeanTween.rotateLocal(gameObject, hiddenPos, time)
 					.setEase(easeHide)
 						.setDelay(hideDelay)
-							.setOnComplete(HideSendCallback);
+							.setUseEstimatedTime(isUseEstimatedTime)
+								.setOnComplete(HideSendCallback);
 			}
 		}
 	}

@@ -51,13 +51,15 @@ public class ScaleTweenToggle : TweenToggle {
 				LeanTween.scale(GUIRectTransform, showingPos, time)
 					.setEase(easeShow)
 						.setDelay(showDelay)
-							.setOnComplete(ShowSendCallback);
+							.setUseEstimatedTime(isUseEstimatedTime)
+								.setOnComplete(ShowSendCallback);
 			}
 			else{
 				LeanTween.scale(gameObject, showingPos, time)
 					.setEase(easeShow)
 						.setDelay(showDelay)
-							.setOnComplete(ShowSendCallback);
+							.setUseEstimatedTime(isUseEstimatedTime)
+								.setOnComplete(ShowSendCallback);
 			}
 		}
 	}
@@ -73,13 +75,15 @@ public class ScaleTweenToggle : TweenToggle {
 				LeanTween.scale(GUIRectTransform, hiddenPos, time)
 					.setEase(easeHide)
 						.setDelay(hideDelay)
-							.setOnComplete(HideSendCallback);
+							.setUseEstimatedTime(isUseEstimatedTime)
+								.setOnComplete(HideSendCallback);
 			}
 			else{
 				LeanTween.scale(gameObject, hiddenPos, time)
 					.setEase(easeHide)
 						.setDelay(hideDelay)
-							.setOnComplete(HideSendCallback);
+							.setUseEstimatedTime(isUseEstimatedTime)
+								.setOnComplete(HideSendCallback);
 			}
 		}
 	}

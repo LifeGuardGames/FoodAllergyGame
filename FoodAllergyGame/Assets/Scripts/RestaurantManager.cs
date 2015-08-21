@@ -297,12 +297,14 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	}
 
 	public void PauseGame(){
+		pauseMenu.isUseEstimatedTime = true;
 		pauseMenu.Show();
 		Time.timeScale = 0.0f;
 		isPaused = true;
 	}
 
 	public void UnpauseGame(){
+		pauseMenu.isUseEstimatedTime = false;
 		Time.timeScale = 1.0f;
 		pauseMenu.Hide();
 		isPaused = false;

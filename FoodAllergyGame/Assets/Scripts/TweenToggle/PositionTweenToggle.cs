@@ -51,14 +51,14 @@ public class PositionTweenToggle : TweenToggle {
 				LeanTween.move(GUIRectTransform, showingPos, time)
 					.setEase(easeShow)
 						.setDelay(showDelay)
-							.setUseEstimatedTime(true)
+							.setUseEstimatedTime(isUseEstimatedTime)
 								.setOnComplete(ShowSendCallback);
 			}
 			else{
 				LeanTween.moveLocal(gameObject, showingPos, time)
 					.setEase(easeShow)
 						.setDelay(showDelay)
-							.setUseEstimatedTime(true)
+							.setUseEstimatedTime(isUseEstimatedTime)
 								.setOnComplete(ShowSendCallback);
 			}
 		}
@@ -75,13 +75,15 @@ public class PositionTweenToggle : TweenToggle {
 				LeanTween.move(GUIRectTransform, hiddenPos, time)
 					.setEase(easeHide)
 						.setDelay(hideDelay)
-							.setOnComplete(HideSendCallback);
+							.setUseEstimatedTime(isUseEstimatedTime)
+								.setOnComplete(HideSendCallback);
 			}
 			else{
 				LeanTween.moveLocal(gameObject, hiddenPos, time)
 					.setEase(easeHide)
 						.setDelay(hideDelay)
-							.setOnComplete(HideSendCallback);
+							.setUseEstimatedTime(isUseEstimatedTime)
+								.setOnComplete(HideSendCallback);
 			}
 		}
 	}
