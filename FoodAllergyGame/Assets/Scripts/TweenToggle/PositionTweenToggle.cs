@@ -51,13 +51,15 @@ public class PositionTweenToggle : TweenToggle {
 				LeanTween.move(GUIRectTransform, showingPos, time)
 					.setEase(easeShow)
 						.setDelay(showDelay)
-							.setOnComplete(ShowSendCallback);
+							.setUseEstimatedTime(true)
+								.setOnComplete(ShowSendCallback);
 			}
 			else{
 				LeanTween.moveLocal(gameObject, showingPos, time)
 					.setEase(easeShow)
 						.setDelay(showDelay)
-							.setOnComplete(ShowSendCallback);
+							.setUseEstimatedTime(true)
+								.setOnComplete(ShowSendCallback);
 			}
 		}
 	}

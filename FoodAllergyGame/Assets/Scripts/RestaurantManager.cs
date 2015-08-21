@@ -44,6 +44,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	List<string> currCusSet;
 	public bool isTutorial;
 	public SpriteRenderer floorSprite;
+	public TweenToggle pauseMenu;
 	// RemoveCustomer removes the customer from a hashtable 
 	// and then if the day is over checks to see if the hastable is empty and if it is it ends the round
 
@@ -103,9 +104,6 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 	// Spawns a customer after a given amount of timer then it restarts the coroutine
 	IEnumerator SpawnCustomer(){
-		while(isPaused){
-			yield return new WaitForFixedUpdate();
-		}
 		yield return new WaitForSeconds(customerSpawnTimer);
 		if(isTutorial){
 			ImmutableDataCustomer test;
@@ -299,12 +297,18 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	}
 
 	public void PauseGame(){
-		if(isPaused == false){
-			isPaused = true;
-		}
-		else{
-			isPaused = false;
-		}
+		pauseMenu.Show();
+		Time.timeScale = 0.0f;
+		isPaused = true;
+	}
 
+	public void UnpauseGame(){
+		Time.timeScale = 1.0f;
+		pauseMenu.Hide();
+		isPaused = false;
+	}
+
+	public void QuitGame(){
+		Application.LoadLevel(SceneUtils.START);
 	}
 }

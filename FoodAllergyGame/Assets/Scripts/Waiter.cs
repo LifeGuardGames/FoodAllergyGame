@@ -68,10 +68,7 @@ public class Waiter : Singleton<Waiter>{
 	}
 
 	public void MoveDoneCallback(){
-		if(RestaurantManager.Instance.isPaused){
-			StartCoroutine("PauseMovement");
-		}
-		else if(pathList.Count == 0){
+		if(pathList.Count == 0){
 			if(currentCaller == null){
 				Debug.LogError("No IWaiterSelection script currently exists");
 			}
@@ -304,10 +301,4 @@ public class Waiter : Singleton<Waiter>{
 		}
 	}
 
-	IEnumerator PauseMovement(){
-		while(RestaurantManager.Instance.isPaused){
-			yield return new WaitForFixedUpdate();
-		}
-		MoveDoneCallback();
-	}
 }
