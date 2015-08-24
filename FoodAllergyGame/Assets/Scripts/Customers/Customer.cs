@@ -64,25 +64,25 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		if(RestaurantManager.Instance.GetLine().NewCustomer() == null){
 			Destroy(this.gameObject);
 		}
-		else{
-			if(Random.Range(0,10) > 3 && !RestaurantManager.Instance.GetTable(5).inUse){
-				RestaurantManager.Instance.GetTable(5).inUse = true;
-				this.gameObject.transform.SetParent(RestaurantManager.Instance.GetTable(5).seat);
-				tableNum = 5;
-				state = CustomerStates.ReadingMenu;
-				StartCoroutine("ReadMenu");
-				AudioManager.Instance.PlayClip("readingMenu");
-				StopCoroutine("SatisfactionTimer");
-				customerAnim.SetReadingMenu(true);
-				GetComponentInParent<Table>().currentCustomerID = customerID;
-				this.GetComponent<SphereCollider>().enabled = false;
-			}
+//		else{
+//			if(Random.Range(0,10) > 3 && !RestaurantManager.Instance.GetTable(5).inUse){
+//				RestaurantManager.Instance.GetTable(5).inUse = true;
+//				this.gameObject.transform.SetParent(RestaurantManager.Instance.GetTable(5).seat);
+//				tableNum = 5;
+//				state = CustomerStates.ReadingMenu;
+//				StartCoroutine("ReadMenu");
+//				AudioManager.Instance.PlayClip("readingMenu");
+//				StopCoroutine("SatisfactionTimer");
+//				customerAnim.SetReadingMenu(true);
+//				GetComponentInParent<Table>().currentCustomerID = customerID;
+//				this.GetComponent<SphereCollider>().enabled = false;
+//			}
 			else{
 				this.gameObject.transform.SetParent(RestaurantManager.Instance.GetLine().NewCustomer());
 
 			}
 			this.gameObject.transform.position = transform.parent.position;
-		}
+//		}
 
 		// choose allergy based on the event
 		SelectAllergy(mode.Allergy);
@@ -305,13 +305,13 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	// Eating coroutine
 		IEnumerator EatingTimer(){
 		yield return new WaitForSeconds(6.0f);
-		int rand = Random.Range(0,10);
+//		int rand = Random.Range(0,10);
 		customerAnim.SetEating(false);
-		if(rand > 7){
-			Bathroom();
-			Debug.Log ("Table " + tableNum.ToString() +" has gone to the bathroom");
-		}
-		else{
+//		if(rand > 7){
+//			Bathroom();
+//			Debug.Log ("Table " + tableNum.ToString() +" has gone to the bathroom");
+//		}
+//		else{
 			if(order.gameObject != null){
 				Destroy(order.gameObject);
 			}
@@ -322,7 +322,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			AudioManager.Instance.PlayClip("readyForCheck");
 		if(RestaurantManager.Instance.isTutorial){
 			this.GetComponent<CustomerTutorial>().NextTableFinger();
-			}
+//			}
 		}
 	}
 

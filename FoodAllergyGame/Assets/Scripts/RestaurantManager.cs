@@ -174,7 +174,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				if(isTutorial){
 
 					DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
-					DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT1";
+					DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT2";
 					isTutorial = false;
 					dayOver = false;
 					StopCoroutine("SpawnCustomer");
