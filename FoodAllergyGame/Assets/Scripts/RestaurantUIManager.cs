@@ -2,12 +2,10 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class RestaurantUIManager : MonoBehaviour {
-	public Text cashText;
+public class RestaurantUIManager : MonoBehaviour{
 	public DayOverUIController dayOverUIController;
 	public GameObject expenseMenu;
 	public Image clockBarFill;
-	public RectTransform clockHand;
 	public GameObject clockFinishedImage;
 	private bool isClockFinished;
 
@@ -22,7 +20,6 @@ public class RestaurantUIManager : MonoBehaviour {
 			float timeElapsed = totalTime - timeLeft;
 			float percentage = timeElapsed / totalTime;
 			clockBarFill.fillAmount = percentage;
-			clockHand.transform.localEulerAngles = new Vector3(0, 0, -360f * percentage);
 		}
 		else{
 			Debug.LogWarning("Clock finished already but still updating");
@@ -31,10 +28,6 @@ public class RestaurantUIManager : MonoBehaviour {
 
 	public void FinishClock(){
 		clockFinishedImage.SetActive(true);
-	}
-
-	public void UpdateCash(float cash){
-		cashText.text = cash.ToString();
 	}
 
 	public void OnRestartButton(){

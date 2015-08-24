@@ -59,7 +59,7 @@ public class FoodManager : Singleton<FoodManager>{
 			while(desiredFoodList.Count < 2){
 				allergyFood = false;
 				int rand = Random.Range(0,menuList.Count);
-				Debug.Log (menuList[rand].ID.ToString());
+//				Debug.Log (menuList[rand].ID.ToString());
 				if(!desiredFoodList.Contains(menuList[rand])){
 					foreach(Allergies alg in menuList[rand].AllergyList){
 						if(_allergy == alg){
