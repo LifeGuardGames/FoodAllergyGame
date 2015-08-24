@@ -35,7 +35,7 @@ public class RestaurantMenuUIController : MonoBehaviour {
 	}
 
 	public void ShowChoices(List <ImmutableDataFood> customerFoodChoices, int customerTableNum, Allergies customerAllergy){
-		Debug.Log("SHOWING CHOICES + " + System.DateTime.Now);
+//		Debug.Log("SHOWING CHOICES + " + System.DateTime.Now);
 
 		//// Used for debugging
 		Allergies auxAllergy = Allergies.None;

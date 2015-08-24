@@ -75,7 +75,6 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		KitchenManager.Instance.Init(eventData.KitchenTimerMod);
 		dayEarnedCash = 0;
 		dayCashRevenue = 0;
-		restaurantUI.UpdateCash(dayEarnedCash);
 		restaurantUI.StartDay();
 		
 		if(eventData.ID == "EventT1"){
@@ -161,7 +160,6 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 	public void UpdateCash(int billAmount){
 		dayEarnedCash += billAmount;
-		restaurantUI.UpdateCash(dayEarnedCash);
 		
 		// Update revenue if positive bill
 		if(billAmount > 0){
