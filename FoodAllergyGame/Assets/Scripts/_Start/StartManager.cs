@@ -25,7 +25,7 @@ public class StartManager : Singleton<StartManager>{
 			}
 			else if(DataManager.Instance.GameData.Tutorial.IsTutorial2Done == false){
 				unlockParent.SetActive(true); // TODO clean this up
-				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT2";
+				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT3";
 			}
 			else{
 				unlockParent.SetActive(false); // TODO clean this up

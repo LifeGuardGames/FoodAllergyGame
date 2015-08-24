@@ -192,7 +192,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 					if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT1"){
 						DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
 					}
-					else if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT2"){
+					else if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT3"){
 						DataManager.Instance.GameData.Tutorial.IsTutorial2Done = true;
 					}
 
