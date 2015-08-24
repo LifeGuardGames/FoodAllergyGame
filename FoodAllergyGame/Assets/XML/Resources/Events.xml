@@ -78,7 +78,7 @@
 		<EventDescription>EventDesc05</EventDescription>
 		<Title>Title05</Title>
 	</Event>
-	<Event ID="Event05">
+	<Event ID="Event06">
 		<MenuSet>MenuSet00</MenuSet>
 		<KitchenTimer>3</KitchenTimer>
 		<CustomerSet>CustomerSet05</CustomerSet>
@@ -87,6 +87,17 @@
 		<Allergy>None</Allergy>
 		<EventDescription>EventDesc07</EventDescription>
 		<Title>Title06</Title>
+	</Event>
+		
+	<Event ID="Event07">
+	<MenuSet>MenuSet00</MenuSet>
+		<KitchenTimer>3</KitchenTimer>
+		<CustomerSet>CustomerSet06</CustomerSet>
+		<CustomerTimer>1</CustomerTimer>
+		<DayLength>72</DayLength>
+		<Allergy>None</Allergy>
+		<EventDescription>EventDesc08</EventDescription>
+		<Title>Title07</Title>
 	</Event>
 </Events>
 

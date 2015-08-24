@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class Pathfinding : Singleton<Pathfinding> {
 
 	public List <GameObject> pathNodes;
+	public bool showPath = true;
 
 	public List<GameObject> findPath(GameObject startNode, GameObject targetNode){
 		pathNodes = new List<GameObject>();

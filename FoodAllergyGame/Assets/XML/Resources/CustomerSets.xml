@@ -21,5 +21,8 @@
 	<CustomerSet ID="CustomerSet05">
 		<CustomerList>Customer06</CustomerList>
 	</CustomerSet>
+	<CustomerSet ID="CustomerSet06">
+		<CustomerList>Customer09</CustomerList>	
+	</CustomerSet>
 	
 </CustomerSets>
