@@ -30,8 +30,8 @@ public class RestaurantUIManager : MonoBehaviour{
 		clockFinishedImage.SetActive(true);
 	}
 
-	public void OnRestartButton(){
-		RestaurantManager.Instance.RestartGame();
+	public void OnPauseButton(){
+		RestaurantManager.Instance.PauseGame();
 	}
 
 	public void OnMedicButton(){
