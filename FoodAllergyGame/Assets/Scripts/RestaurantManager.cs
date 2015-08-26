@@ -79,7 +79,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		
 		if(eventData.ID == "EventT1"){
 			isTutorial = true;
-			customerSpawnTimer = customerTimer / satisfactionAI.DifficultyLevel;
+			customerSpawnTimer = customerTimer / satisfactionAI.DifficultyLevel + 1;
 		}
 		else{
 			dayTime = eventData.DayLengthMod;
@@ -119,14 +119,16 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			if(!dayOver && customerHash.Count < 8){
 				ImmutableDataCustomer test;
 //				Debug.Log (satisfactionAI.DifficultyLevel);
-				customerSpawnTimer = customerTimer / satisfactionAI.DifficultyLevel;
+				customerSpawnTimer = customerTimer / satisfactionAI.DifficultyLevel+1;
 				if(satisfactionAI.DifficultyLevel > 13){
-				 	rand = UnityEngine.Random.Range(0,currCusSet.Count);
-					test = DataLoaderCustomer.GetData(currCusSet[rand]);
+					customerSpawnTimer = customerTimer / satisfactionAI.DifficultyLevel+1;
 				}
 				else{
-					 test = DataLoaderCustomer.GetData(currCusSet[0]);
+					customerSpawnTimer = customerTimer / satisfactionAI.DifficultyLevel+2;
 				}
+					rand = UnityEngine.Random.Range(0,currCusSet.Count);
+					test = DataLoaderCustomer.GetData(currCusSet[rand]);
+			
 
 				GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
 				GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);

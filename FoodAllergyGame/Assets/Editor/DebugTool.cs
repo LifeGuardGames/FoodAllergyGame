@@ -10,7 +10,7 @@ using System.Xml.Serialization;
 public class DebugTool : EditorWindow {
 
 
-	private string CRITICAL_PATH = "/XML/Resources/Constants/_Criticl.xml";
+	private string CRITICAL_PATH = "/XML/Resources/_Critical.xml";
 	private List<Constant> critList;
 	private CriticalConstants criticalConstants;
 
@@ -33,7 +33,10 @@ public class DebugTool : EditorWindow {
 		GUILayout.Label("Debug fields" , EditorStyles.boldLabel);
 		if(critList != null){
 			foreach(Constant constant in critList){
-//				switch (constant
+				constant.ConstantValue = EditorGUILayout.TextField(constant.Name, constant.ConstantValue);
+			}
+			if(GUILayout.Button("Save")){
+				Serialize<CriticalConstants>(CRITICAL_PATH, criticalConstants);
 			}
 		}
 

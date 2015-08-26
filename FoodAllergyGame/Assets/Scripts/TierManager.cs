@@ -13,11 +13,16 @@ public class TierManager : Singleton<TierManager> {
 
 	// Recalculate the tier given a certain algorithm, should be done on StartScene only
 	public void RecalculateTier(){
-		int progress = DataManager.Instance.GameData.Cash.TotalCash;
-		tier = progress / 200;
+		if(Constants.GetConstant<string>("Tier Number")!= default(string)){
+			tier = int.Parse(Constants.GetConstant<string>("Tier Number"));
+		}
+		else{
+			int progress = DataManager.Instance.GameData.Cash.TotalCash;
+			tier = progress / 200;
 
-		// Print out tier
-		Debug.Log("Recalculated tier: " + tier + "     total cash: " + progress);
+			// Print out tier
+			Debug.Log("Recalculated tier: " + tier + "     total cash: " + progress);
+		}
 	}
 
 	public int GetMenuSlots(){
@@ -75,5 +80,10 @@ public class TierManager : Singleton<TierManager> {
 			}
 		}
 		return startArtAssets;
+	}
+
+	public string GetNewEvent(){
+		List <string> eventList = GetEventsUnlocked();
+		return eventList[Random.Range(0, eventList.Count)];
 	}
 }

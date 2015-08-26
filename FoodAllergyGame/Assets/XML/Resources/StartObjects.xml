@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<StartObjects>
+	<StartObject ID="StartObject00">
+		<spriteName>object0</spriteName>
+		<animation>object0</animation>
+	</StartObject>
+	<StartObject ID="StartObject01">
+		<spriteName>object1</spriteName>
+		<animation>object1</animation>
+	</StartObject>
+	<StartObject ID="StartObject02">
+		<spriteName>object2</spriteName>
+		<animation>object2</animation>
+	</StartObject>
+	<StartObject ID="StartObject03">
+		<spriteName>object3</spriteName>
+		<animation>object3</animation>
+	</StartObject>
+	<StartObject ID="StartObject04">
+		<spriteName>object3</spriteName>
+		<animation>object3</animation>
+	</StartObject>
+</StartObjects>

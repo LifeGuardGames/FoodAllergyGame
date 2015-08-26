@@ -6,6 +6,7 @@ public class GameData {
 	public MutableDataDayTracker DayTracker {get; set;}
 	public MutableDataTutorial Tutorial {get; set;}
 	public MutableDataDecoration Decoration {get; set;}
+	public MutableDataStartObject StartObject{get; set;}
 
 	public GameData(){
 		Init();
@@ -17,5 +18,6 @@ public class GameData {
 		DayTracker = new MutableDataDayTracker();
 		Tutorial = new MutableDataTutorial();
 		Decoration = new MutableDataDecoration();
+		StartObject = new MutableDataStartObject();
 	}
 }

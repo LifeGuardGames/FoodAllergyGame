@@ -16,9 +16,11 @@ public class StartManager : Singleton<StartManager>{
 	void Start(){
 		// Refresh tier calculation
 		TierManager.Instance.RecalculateTier();
-
+		if(Constants.GetConstant<string>("EventID")!= default(string)){
+			DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = Constants.GetConstant<string>("EventID");
+		}
 		// Check to see if the previous day has been completed
-		if(DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent){
+		else if(DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent){
 			if(DataManager.Instance.GameData.Tutorial.IsTutorial1Done == false){
 				unlockParent.SetActive(false); // TODO clean this up
 				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT1";
@@ -29,7 +31,7 @@ public class StartManager : Singleton<StartManager>{
 			}
 			else{
 				unlockParent.SetActive(false); // TODO clean this up
-				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "Event00";
+				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = TierManager.Instance.GetNewEvent();
 			}
 
 			// Lock the generate event bool until day is completed
