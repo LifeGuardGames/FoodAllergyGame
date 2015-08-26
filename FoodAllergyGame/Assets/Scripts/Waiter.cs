@@ -24,71 +24,95 @@ public class Waiter : Singleton<Waiter>{
 	private int index = 0;
 	public WaiterAnimController waiterAnimController;
 	private IWaiterSelection currentCaller;
+	public GameObject targetNode;
 
 	void Start(){
 		ResetHands();
 		pathList = new List<GameObject>();
 	}
 
-	public void FindRoute(GameObject targetNode, MonoBehaviour caller){
+	public void FindRoute(GameObject _targetNode, MonoBehaviour caller){
+		canMove = false;
 		currentCaller = (IWaiterSelection)caller;
 		pathList.Clear();
 		if(currentCaller == null){
 			Debug.LogError("No IWaiterSelection script exists in the caller");
 		}
-		if(currentNode == targetNode){
-			MoveDoneCallback();
+		if(currentNode == _targetNode){
+			moving = true;
 		}
 		else{
-			pathList = Pathfinding.Instance.findPath(currentNode, targetNode);
-			currentNode = targetNode;
-			MoveToLocation(pathList, index);
+			pathList = Pathfinding.Instance.findPath(currentNode, _targetNode);
+			targetNode = _targetNode;
+			moving = true;
 		}
 	}
 
-	public void MoveToLocation(List<GameObject> path, int index){
-		canMove = false;
-//			currentCaller = (IWaiterSelection)caller;
+//	public void MoveToLocation(List<GameObject> path, int index){
+//		canMove = false;
+////			currentCaller = (IWaiterSelection)caller;
+////			if(currentCaller == null){
+////				Debug.LogError("No IWaiterSelection script exists in the caller");
+////				}
+//		
+//		//If the waiter is already at its location, just call what it needs to call
+////			if(transform.position == location){
+////				MoveDoneCallback();
+////			}
+//		// Otherwise, move to the location and wait for callback
+////			else{
+//		moving = true;
+//		waiterAnimController.SetMoving(true);
+////			Debug.Log (path[index].name);
+//		LeanTween.cancel(gameObject);
+//		LeanTween.move(gameObject, path[index].transform.position, movingTime).setOnComplete(MoveDoneCallback);
+////			}
+//	}
+//
+//	public void MoveDoneCallback(){
+//		if(pathList.Count == 0){
 //			if(currentCaller == null){
-//				Debug.LogError("No IWaiterSelection script exists in the caller");
-//				}
-		
-		//If the waiter is already at its location, just call what it needs to call
-//			if(transform.position == location){
-//				MoveDoneCallback();
+//				Debug.LogError("No IWaiterSelection script currently exists");
 //			}
-		// Otherwise, move to the location and wait for callback
-//			else{
-		moving = true;
-		waiterAnimController.SetMoving(true);
-//			Debug.Log (path[index].name);
-		LeanTween.cancel(gameObject);
-		LeanTween.move(gameObject, path[index].transform.position, movingTime).setOnComplete(MoveDoneCallback);
+//			currentCaller.OnWaiterArrived();
+//		}
+//		else if(currentNode == pathList[index]){
+//			index = 0;
+//			// Note: Set animations to false before OnWaiterArrived
+//			moving = false;
+//			waiterAnimController.SetMoving(false);
+//
+//			if(currentCaller == null){
+//				Debug.LogError("No IWaiterSelection script currently exists");
 //			}
-	}
+//			currentCaller.OnWaiterArrived();
+//		}
+//		else{
+//			//canMove = true;
+//			index++;
+//			MoveToLocation(pathList, index);
+//		}
+//	}
 
-	public void MoveDoneCallback(){
-		if(pathList.Count == 0){
-			if(currentCaller == null){
-				Debug.LogError("No IWaiterSelection script currently exists");
+	void FixedUpdate(){
+		if(moving == true){
+			if(pathList.Count == 0){
+				moving = false;
+				currentCaller.OnWaiterArrived();
 			}
-			currentCaller.OnWaiterArrived();
-		}
-		else if(currentNode == pathList[index]){
-			index = 0;
-			// Note: Set animations to false before OnWaiterArrived
-			moving = false;
-			waiterAnimController.SetMoving(false);
-
-			if(currentCaller == null){
-				Debug.LogError("No IWaiterSelection script currently exists");
+			else if(currentNode == targetNode){
+				waiterAnimController.SetMoving(false);
+				moving = false;
+				index = 0;
+				currentCaller.OnWaiterArrived();
 			}
-			currentCaller.OnWaiterArrived();
-		}
-		else{
-			//canMove = true;
-			index++;
-			MoveToLocation(pathList, index);
+			else if (transform.position == pathList[index].transform.position){
+				currentNode = pathList[index];
+				index++;
+			}
+			else{
+				transform.position = Vector3.MoveTowards(transform.position, pathList[index].transform.position,10);
+			}
 		}
 	}
 

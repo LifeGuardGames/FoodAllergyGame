@@ -204,7 +204,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		StopCoroutine("SatisfactionTimer");
 		customerAnim.SetReadingMenu(true);
 		GetComponentInParent<Table>().currentCustomerID = customerID;
-		this.GetComponent<SphereCollider>().enabled = false;
+		this.GetComponent<BoxCollider>().enabled = false;
 	}
 
 	// Time spent reading menu before ordering
