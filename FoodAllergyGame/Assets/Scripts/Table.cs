@@ -17,7 +17,6 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	}
 
 	public bool isFlythrough;
-	public Transform waiterSpot;
 	public Transform foodSpot;
 	public bool inUse = false;
 	public string currentCustomerID;
@@ -121,7 +120,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 			}
 
 			else if(isGossiped){
-			waiterSpot.GetChild(0).GetComponent<CustomerGossiper>().GoAway();
+			node.transform.GetChild(0).GetComponent<CustomerGossiper>().GoAway();
 			isGossiped = false;
 		}
 			// Move the waiter to the table to do what it does
