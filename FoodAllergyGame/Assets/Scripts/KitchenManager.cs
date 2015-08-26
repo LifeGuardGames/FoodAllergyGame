@@ -7,7 +7,6 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 	// CookOrder runs coroutines on orders to cook them once the coroutine is finished the food will be ready for pick up shown by 
 	// MenuUIManager populates the menu sidebar for food selection
 
-	public Transform waiterSpot;	// position of the waiter
 	public List<Transform> orderSpotList;
 	public float cookTimer;			// times it takes to cook food
 	public GameObject waiterNode;

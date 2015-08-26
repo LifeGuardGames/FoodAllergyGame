@@ -29,7 +29,7 @@ public class CustomerGossiper : Customer{
 		int rand = Random.Range(0,4);
 		//Debug.Log ("Goissping " + rand.ToString());
 		if(!RestaurantManager.Instance.GetTable(rand).isGossiped && RestaurantManager.Instance.GetTable(rand).inUse && rand != tableNum){
-			transform.SetParent(RestaurantManager.Instance.GetTable(rand).waiterSpot);
+			transform.SetParent(RestaurantManager.Instance.GetTable(rand).node.transform);
 			transform.localPosition = Vector3.zero;
 			RestaurantManager.Instance.GetTable(rand).isGossiped = true;
 		}
