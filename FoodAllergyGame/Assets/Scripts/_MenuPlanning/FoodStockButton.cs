@@ -19,7 +19,6 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	public Image allergyNodeLine;
 	private Vector2 allergyNodeStartPosition;
 
-	private ImmutableDataFood foodData;
 	private Transform dragAux;
 	private Transform trashAux;
 	private Vector3 startPosition;
@@ -37,7 +36,6 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	}
 	
 	public void Init(ImmutableDataFood foodData){
-		this.foodData = foodData;
 		foodID = foodData.ID;
 		gameObject.name = foodData.ID;
 		label.text = LocalizationText.GetText(foodData.FoodNameKey);

@@ -8,6 +8,7 @@ public class StartManager : Singleton<StartManager>{
 	public TweenToggleDemux startDemux;
 	public TweenToggleDemux infoCategoriesDemux;
 	public TweenToggleDemux infoDetailDemux;
+	public AlphaTweenToggle infoFadeBackground;
 
 	public GameObject unlockParent;
 
@@ -98,6 +99,7 @@ public class StartManager : Singleton<StartManager>{
 		infoDetailDemux.Hide();
 		infoCategoriesDemux.Hide();
 		startDemux.Show();
+		infoFadeBackground.Hide();
 	}
 	
 	public void ShowInfoCategoriesDemux(){
@@ -105,6 +107,7 @@ public class StartManager : Singleton<StartManager>{
 		infoCategoriesDemux.Show();
 		startDemux.Hide();
 		InfoManager.Instance.ClearDetail();
+		infoFadeBackground.Show();
 	}
 	
 	public void ShowInfoDetailDemux(){
