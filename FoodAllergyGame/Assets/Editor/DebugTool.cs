@@ -33,7 +33,15 @@ public class DebugTool : EditorWindow {
 		GUILayout.Label("Debug fields" , EditorStyles.boldLabel);
 		if(critList != null){
 			foreach(Constant constant in critList){
-				constant.ConstantValue = EditorGUILayout.TextField(constant.Name, constant.ConstantValue);
+				switch(constant.ConstantType){
+				case "Bool":
+					bool toggleState = EditorGUILayout.Toggle(constant.Name, bool.Parse(constant.ConstantValue));
+					constant.ConstantValue = toggleState.ToString();
+					break;
+				case "String":
+					constant.ConstantValue = EditorGUILayout.TextField(constant.Name, constant.ConstantValue);
+					break;
+				}
 			}
 			if(GUILayout.Button("Save")){
 				Serialize<CriticalConstants>(CRITICAL_PATH, criticalConstants);

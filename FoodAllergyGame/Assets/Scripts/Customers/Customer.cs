@@ -305,13 +305,13 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	// Eating coroutine
 		IEnumerator EatingTimer(){
 		yield return new WaitForSeconds(6.0f);
-//		int rand = Random.Range(0,10);
+		int rand = Random.Range(0,10);
 		customerAnim.SetEating(false);
-//		if(rand > 7){
-//			Bathroom();
-//			Debug.Log ("Table " + tableNum.ToString() +" has gone to the bathroom");
-//		}
-//		else{
+		if(rand > 7){
+			Bathroom();
+			Debug.Log ("Table " + tableNum.ToString() +" has gone to the bathroom");
+		}
+		else{
 			if(order.gameObject != null){
 				Destroy(order.gameObject);
 			}
@@ -322,7 +322,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			AudioManager.Instance.PlayClip("readyForCheck");
 		if(RestaurantManager.Instance.isTutorial){
 			this.GetComponent<CustomerTutorial>().NextTableFinger();
-//			}
+			}
 		}
 	}
 
@@ -435,13 +435,15 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 
 	public void Bathroom(){
-		customerUI.satisfaction1.gameObject.SetActive(false);
-		customerUI.satisfaction2.gameObject.SetActive(false);
-		customerUI.satisfaction3.gameObject.SetActive(false);
-		customerUI.ToggleStar(false);
-		customerAnim.gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
-		attentionSpan = (5.0f * timer);
-		StartCoroutine("UseBathroom");
+		if(Constants.GetConstant<bool>("BathRoomOn")){
+			customerUI.satisfaction1.gameObject.SetActive(false);
+			customerUI.satisfaction2.gameObject.SetActive(false);
+			customerUI.satisfaction3.gameObject.SetActive(false);
+			customerUI.ToggleStar(false);
+			customerAnim.gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
+			attentionSpan = (5.0f * timer);
+			StartCoroutine("UseBathroom");
+		}
 	}
 
 	IEnumerator UseBathroom(){

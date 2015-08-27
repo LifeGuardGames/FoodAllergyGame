@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -13,8 +13,8 @@ public class TierManager : Singleton<TierManager> {
 
 	// Recalculate the tier given a certain algorithm, should be done on StartScene only
 	public void RecalculateTier(){
-		if(Constants.GetConstant<string>("Tier Number")!= default(string)){
-			tier = int.Parse(Constants.GetConstant<string>("Tier Number"));
+		if(Constants.GetDebugConstant<string>("Tier Number")!= default(string)){
+			tier = int.Parse(Constants.GetDebugConstant<string>("Tier Number"));
 		}
 		else{
 			int progress = DataManager.Instance.GameData.Cash.TotalCash;
