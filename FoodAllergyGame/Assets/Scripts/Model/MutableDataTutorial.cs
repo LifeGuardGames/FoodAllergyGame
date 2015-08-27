@@ -8,8 +8,8 @@ public class MutableDataTutorial{
 	public bool IsMedicTuT2Done{get; set;}
 
 	public MutableDataTutorial(){
-		IsTutorial1Done = false;
-		IsTutorial2Done = false;
+		Constants.GetDebugConstant<bool>("IsTut1Done");
+		Constants.GetDebugConstant<bool>("IsTut2Done");
 		IsMedicTuT1Done = false;
 		IsMedicTuT2Done = false;
 	}
