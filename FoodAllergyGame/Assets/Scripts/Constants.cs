@@ -10,7 +10,7 @@ using System.Collections.Generic;
 public class Constants{
 	private static Hashtable hashConstants;
 	
-	public static T GetConstant<T>(string strKey){
+	public static T GetDebugConstant<T>(string strKey){
 		if(DataManager.Instance.IsDebug){
 			if(hashConstants == null)
 				SetUpData();
@@ -26,6 +26,19 @@ public class Constants{
 		else{
 			return default(T);
 		}
+	}
+
+	public static T GetConstant<T>(string strKey){
+		if(hashConstants == null)
+			SetUpData();
+			
+		T data = default(T);
+		if(hashConstants.ContainsKey(strKey))
+			data = (T)hashConstants[strKey];
+		else
+			Debug.LogError("No such constant for key " + strKey);
+			
+		return data;
 	}
 	
 	public static Vector3 ParseVector3(string vectorString){

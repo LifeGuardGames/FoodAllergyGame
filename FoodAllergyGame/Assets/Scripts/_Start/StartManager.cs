@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +17,8 @@ public class StartManager : Singleton<StartManager>{
 	void Start(){
 		// Refresh tier calculation
 		TierManager.Instance.RecalculateTier();
-		if(Constants.GetConstant<string>("EventID")!= default(string)){
-			DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = Constants.GetConstant<string>("EventID");
+		if(Constants.GetDebugConstant<string>("EventID")!= default(string)){
+			DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = Constants.GetDebugConstant<string>("EventID");
 		}
 		// Check to see if the previous day has been completed
 		else if(DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent){

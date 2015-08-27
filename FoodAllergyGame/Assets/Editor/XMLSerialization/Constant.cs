@@ -10,6 +10,9 @@ public class Constant{
 	
 	[XmlAttribute("Value")]
 	public string ConstantValue{get; set;}
+
+	[XmlAttribute("Debug")]
+	public string ConstantDebug{get; set;}
 	
 	//XML format that our parser read is different from what XML Serializer output
 	//need this inner text variable to output a closing tag <Constant></Constant> instead of just

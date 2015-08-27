@@ -29,6 +29,14 @@ public class Table : MonoBehaviour, IWaiterSelection{
 
 	void Start(){
 		ImmutableDataDecoItem _sprite = DataLoaderDecoItem.GetData(RestaurantManager.Instance.GetCurrentSprite(DecoTypes.Table));
+		if(tableNumber == 5){
+			this.gameObject.SetActive(Constants.GetConstant<bool>("FlythruOn"));
+			// _sprite = DataLoaderDecoItem.GetData(RestaurantManager.Instance.GetCurrentSprite(DecoTypes.FlyThru));
+		}
+		else if(tableNumber == 4 ){
+			this.gameObject.SetActive(Constants.GetConstant<bool>("VIPRoomOn"));
+			// _sprite = DataLoaderDecoItem.GetData(RestaurantManager.Instance.GetCurrentSprite(DecoTypes.VIPRoom));
+		}
 		tableSprite.sprite = Resources.Load<Sprite>(_sprite.SpriteName);
 	}
 
