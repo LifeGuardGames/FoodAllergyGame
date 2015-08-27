@@ -33,21 +33,41 @@ public class DebugTool : EditorWindow {
 		GUILayout.Label("Debug fields" , EditorStyles.boldLabel);
 		if(critList != null){
 			foreach(Constant constant in critList){
-				switch(constant.ConstantType){
-				case "Bool":
-					bool toggleState = EditorGUILayout.Toggle(constant.Name, bool.Parse(constant.ConstantValue));
-					constant.ConstantValue = toggleState.ToString();
-					break;
-				case "String":
-					constant.ConstantValue = EditorGUILayout.TextField(constant.Name, constant.ConstantValue);
-					break;
+				if(constant.ConstantDebug == "True"){
+					switch(constant.ConstantType){
+					case "Bool":
+						bool toggleState = EditorGUILayout.Toggle(constant.Name, bool.Parse(constant.ConstantValue));
+						constant.ConstantValue = toggleState.ToString();
+						break;
+					case "String":
+						constant.ConstantValue = EditorGUILayout.TextField(constant.Name, constant.ConstantValue);
+						break;
+					}
 				}
 			}
 			if(GUILayout.Button("Save")){
 				Serialize<CriticalConstants>(CRITICAL_PATH, criticalConstants);
 			}
 		}
-
+		GUILayout.Label("Debug fields" , EditorStyles.boldLabel);
+		if(critList != null){
+			foreach(Constant constant in critList){
+				if(constant.ConstantDebug == "False"){
+					switch(constant.ConstantType){
+					case "Bool":
+						bool toggleState = EditorGUILayout.Toggle(constant.Name, bool.Parse(constant.ConstantValue));
+						constant.ConstantValue = toggleState.ToString();
+						break;
+					case "String":
+						constant.ConstantValue = EditorGUILayout.TextField(constant.Name, constant.ConstantValue);
+						break;
+					}
+				}
+			}
+			if(GUILayout.Button("Save")){
+				Serialize<CriticalConstants>(CRITICAL_PATH, criticalConstants);
+			}
+		}
 	}
 
 	private void Serialize<T>(string filePath, object xmlData){

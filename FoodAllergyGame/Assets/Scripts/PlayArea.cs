@@ -9,6 +9,8 @@ public class PlayArea : MonoBehaviour, IWaiterSelection {
 	// Use this for initialization
 	void Start () {
 		maxLimit = 2;
+		this.gameObject.SetActive(Constants.GetConstant<bool>("PlayAreaOn"));
+		//ImmutableDataDecoItem _sprite = DataLoaderDecoItem.GetData(RestaurantManager.Instance.GetCurrentSprite(DecoTypes.PlayArea));
 	}
 	
 	// Update is called once per frame

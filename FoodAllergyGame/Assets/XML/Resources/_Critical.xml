@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Constants xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Constant Name="EventID" Type="String" Value="Event06"> </Constant>
-  <Constant Name="Tier Number" Type="String" Value="10"> </Constant>
-  <Constant Name="BathRoomOn" Type="Bool" Value="False"> </Constant>
-  <Constant Name="IsTut1Done" Type="Bool" Value="True"> </Constant>
-  <Constant Name="IsTut2Done" Type="Bool" Value="True"> </Constant>
+  <Constant Name="EventID" Type="String" Value="Event06" Debug="True"> </Constant>
+  <Constant Name="Tier Number" Type="String" Value="0" Debug="True"> </Constant>
+  <Constant Name="BathRoomOn" Type="Bool" Value="False" Debug="False"> </Constant>
+  <Constant Name="IsTut1Done" Type="Bool" Value="True" Debug="True"> </Constant>
+  <Constant Name="IsTut2Done" Type="Bool" Value="True" Debug="True"> </Constant>
+  <Constant Name="PlayAreaOn" Type="Bool" Value="True" Debug="False"> </Constant>
+  <Constant Name="VIPRoomOn" Type="Bool" Value="True" Debug="False"> </Constant>
+  <Constant Name="FlythruOn" Type="Bool" Value="True" Debug="False"> </Constant>
 </Constants>
