@@ -444,6 +444,16 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			attentionSpan = (5.0f * timer);
 			StartCoroutine("UseBathroom");
 		}
+		else{
+			if(order.gameObject != null){
+				Destroy(order.gameObject);
+			}
+			customerUI.ToggleStar(true);
+			attentionSpan = 10.0f * timer;
+			state = CustomerStates.WaitForCheck;
+			StartCoroutine("SatisfactionTimer");
+			AudioManager.Instance.PlayClip("readyForCheck");
+		}
 	}
 
 	IEnumerator UseBathroom(){

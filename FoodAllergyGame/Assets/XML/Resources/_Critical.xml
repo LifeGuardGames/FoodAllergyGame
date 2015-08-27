@@ -2,5 +2,5 @@
 <Constants xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Constant Name="EventID" Type="String" Value="Event06"> </Constant>
   <Constant Name="Tier Number" Type="String" Value="10"> </Constant>
-  <Constant Name="BathRoomOn" Type="Bool" Value="True"> </Constant>
+  <Constant Name="BathRoomOn" Type="Bool" Value="False"> </Constant>
 </Constants>
