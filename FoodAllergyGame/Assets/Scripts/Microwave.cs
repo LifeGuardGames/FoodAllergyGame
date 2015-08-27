@@ -9,6 +9,10 @@ public class Microwave :Singleton<Microwave>, IWaiterSelection{
 	public bool isCooking;
 	public GameObject currentlyCooking;
 
+	void Start(){
+		this.gameObject.SetActive(Constants.GetConstant<bool>("MicrowaveOn"));
+	}
+
 	public void CookOrder(GameObject order){
 		if( order != null){
 			currentlyCooking = order;
