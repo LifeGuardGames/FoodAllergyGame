@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Table : MonoBehaviour, IWaiterSelection{
@@ -89,7 +89,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	#region IWaiterSelection implementation
 	public void OnWaiterArrived(){
 		if(!isBroken && seat.childCount > 0){
-			Waiter.Instance.currentTable = tableNumber;
+			Waiter.Instance.CurrentTable = tableNumber;
 			TalkToConsumer();
 
 		}
@@ -99,7 +99,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	}
 
 	public bool IsQueueable(){
-		if(!inUse && Waiter.Instance.currentLineCustomer != null){
+		if(!inUse && Waiter.Instance.CurrentLineCustomer != null){
 			return false;
 		}
 		else{
@@ -121,9 +121,9 @@ public class Table : MonoBehaviour, IWaiterSelection{
 //		if(!TouchManager.IsHoveringOverGUI()){
 			// Check if customers need to jump to the table
 		if(!isFlythrough){
-			if(Waiter.Instance.currentLineCustomer != null && !inUse && !isBroken){
-				Waiter.Instance.currentLineCustomer.transform.localScale = Vector3.one;
-				Waiter.Instance.currentLineCustomer.GetComponent<Customer>().JumpToTable(tableNumber);
+			if(Waiter.Instance.CurrentLineCustomer != null && !inUse && !isBroken){
+				Waiter.Instance.CurrentLineCustomer.transform.localScale = Vector3.one;
+				Waiter.Instance.CurrentLineCustomer.GetComponent<Customer>().JumpToTable(tableNumber);
 				inUse = true;
 			}
 

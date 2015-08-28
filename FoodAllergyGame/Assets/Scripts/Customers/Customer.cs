@@ -191,7 +191,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	// Jumps to the table given a table number
 	public virtual void JumpToTable(int tableN){
 		RestaurantManager.Instance.CustomerSeated();
-		Waiter.Instance.currentLineCustomer = null;
+		Waiter.Instance.CurrentLineCustomer = null;
 		AudioManager.Instance.PlayClip("pop");
 		//sitting down
 		tableNum = tableN;
@@ -237,7 +237,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				TouchManager.Instance.PauseQueue();
 				StopCoroutine("SatisfactionTimer");
 				// lock our waiter
-				Waiter.Instance.canMove = false;
+				Waiter.Instance.CanMove = false;
 				RestaurantManager.Instance.GetMenuUIController().ShowChoices(choices, tableNum, allergy);
 			}
 		}
@@ -405,7 +405,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public virtual void CheckState(){
 		switch(state){
 		case CustomerStates.WaitForOrder:
-			if(Waiter.Instance.hand1 != WaiterHands.None && Waiter.Instance.hand2 != WaiterHands.None){
+			if(Waiter.Instance.Hand1 != WaiterHands.None && Waiter.Instance.Hand2 != WaiterHands.None){
 				Waiter.Instance.Finished();
 			}
 			else{
@@ -485,14 +485,14 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	public void deselect(){
 		gameObject.transform.localScale = new Vector3(1.0f,1.0f,1.0f);
-		Waiter.Instance.currentLineCustomer = null;
+		Waiter.Instance.CurrentLineCustomer = null;
 	}
 
 	public void OnClicked(){
 		if(state == CustomerStates.InLine){
 			// If you were already selecting a customer, untween that
-			if(Waiter.Instance.currentLineCustomer != null){
-				Customer otherCustomerScript = Waiter.Instance.currentLineCustomer.GetComponent<Customer>();
+			if(Waiter.Instance.CurrentLineCustomer != null){
+				Customer otherCustomerScript = Waiter.Instance.CurrentLineCustomer.GetComponent<Customer>();
 				if(otherCustomerScript != null){
 					if(otherCustomerScript.state == CustomerStates.InLine){
 						otherCustomerScript.transform.localScale = Vector3.one;
@@ -500,7 +500,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				}
 			}
 			RestaurantManager.Instance.AvailableTables();
-			Waiter.Instance.currentLineCustomer = gameObject;
+			Waiter.Instance.CurrentLineCustomer = gameObject;
 			AudioManager.Instance.PlayClip("pop");
 			gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
 			if(RestaurantManager.Instance.isTutorial && !this.gameObject.GetComponent<CustomerTutorial>().isAllergy){

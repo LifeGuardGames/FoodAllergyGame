@@ -76,8 +76,8 @@ public class RestaurantMenuUIController : MonoBehaviour {
 				choices.Add(customerFoodChoices[0]);
 			}
 			else if (RestaurantManager.Instance.isTutorial && !RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().isAllergy){
-				RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<CustomerTutorial>().step = 5;
-				RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
+				RestaurantManager.Instance.GetTable(Waiter.Instance.CurrentTable).Seat.GetComponentInChildren<CustomerTutorial>().step = 5;
+				RestaurantManager.Instance.GetTable(Waiter.Instance.CurrentTable).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
 				button2Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(customerFoodChoices[0].SpriteName);
 				button1Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(customerFoodChoices[1].SpriteName);
 				choices.Add(customerFoodChoices[0]);
@@ -121,7 +121,7 @@ public class RestaurantMenuUIController : MonoBehaviour {
 		if(RestaurantManager.Instance.isTutorial){
 			button1.GetComponent<Button>().interactable = true;
 			button2.GetComponent<Button>().interactable = true;
-			RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<CustomerTutorial>().hideFinger();
+			RestaurantManager.Instance.GetTable(Waiter.Instance.CurrentTable).Seat.GetComponentInChildren<CustomerTutorial>().hideFinger();
 			//RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<CustomerTutorial>().step = 5;
 			//RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
 		}

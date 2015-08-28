@@ -3,28 +3,48 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Waiter : Singleton<Waiter>{
+	private WaiterHands hand1;
+	public WaiterHands Hand1{
+		get{ return hand1; }
+	}
 
-	//MoveToLocation moves the waiter to a specified location
-	//SetHand populates first free had with enum
-	//ResetHand restores hand to empty state
-	//UnHand hands off the item to the kitchen or customer
-	public WaiterHands hand1;
-	public WaiterHands hand2;
+	private WaiterHands hand2;
+	public WaiterHands Hand2{
+		get{ return hand2; }
+	}
+
 	public Transform hand1Parent;
 	public Transform hand2Parent;
-	public GameObject hand1Object;
-	public GameObject hand2Object;
-	public bool moving;
-	public float movingTime = 0.3f;
-	public GameObject currentLineCustomer;
-	public bool canMove = true;
-	public GameObject currentNode;
-	public int currentTable;
-	public List<GameObject> pathList;
-	private int index = 0;
+	private GameObject hand1Object;
+	private GameObject hand2Object;
+
+	private GameObject currentLineCustomer;
+	public GameObject CurrentLineCustomer{
+		get{ return currentLineCustomer; }
+		set{ currentLineCustomer = value; }
+	}
+
+	private int currentTable;
+	public int CurrentTable{
+		get{ return currentTable; }
+		set{ currentTable = value; }
+	}
+
+	private bool canMove = true;
+	public bool CanMove{
+		get{ return canMove; }
+		set{ canMove = value; }
+	}
+
 	public WaiterAnimController waiterAnimController;
+	public SpriteRenderer waiterSprite;
+
+	public GameObject currentNode;
+	private bool moving;
+	private int pathIndex = 0;
+	private List<GameObject> pathList;
+	private GameObject targetNode;
 	private IWaiterSelection currentCaller;
-	public GameObject targetNode;
 
 	void Start(){
 		ResetHands();
@@ -32,7 +52,7 @@ public class Waiter : Singleton<Waiter>{
 	}
 
 	public void FindRoute(GameObject _targetNode, MonoBehaviour caller){
-		canMove = false;
+		CanMove = false;
 		currentCaller = (IWaiterSelection)caller;
 		pathList.Clear();
 		if(currentCaller == null){
@@ -96,31 +116,44 @@ public class Waiter : Singleton<Waiter>{
 
 	void FixedUpdate(){
 		if(moving == true){
+			// Already at the target node
 			if(pathList.Count == 0){
 				moving = false;
 				currentCaller.OnWaiterArrived();
 			}
-			else if(currentNode == targetNode){
-				waiterAnimController.SetMoving(false);
-				moving = false;
-				index = 0;
-				currentCaller.OnWaiterArrived();
+			// Arrived at the next node
+			else if(transform.position == pathList[pathIndex].transform.position){
+				currentNode = pathList[pathIndex];
+
+				// At the target node
+				if(currentNode == targetNode){
+					waiterAnimController.SetMoving(false);
+					moving = false;
+					pathIndex = 0;
+					currentCaller.OnWaiterArrived();
+				}
+				// Not at the target node, start move to next one
+				else{
+					pathIndex++;
+				}
+
+				// Change the waiter image layer order
+				waiterSprite.sortingOrder = currentNode.GetComponent<Node>().layerOrderBase;
 			}
-			else if (transform.position == pathList[index].transform.position){
-				currentNode = pathList[index];
-				index++;
-			}
+			// Keep moving
 			else{
-				transform.position = Vector3.MoveTowards(transform.position, pathList[index].transform.position,10);
+				transform.position = Vector3.MoveTowards(transform.position, pathList[pathIndex].transform.position,10);
 			}
 		}
 	}
 
+	// Restores hand to empty state
 	public void ResetHands(){
 		hand1 = WaiterHands.None;
 		hand2 = WaiterHands.None;
 	}
 
+	// Populates first free hand with enum
 	public void SetHand(GameObject order){
 		if(hand1 == WaiterHands.None){
 			if(!order.GetComponent<Order>().IsCooked){
@@ -296,7 +329,7 @@ public class Waiter : Singleton<Waiter>{
 	}
 
 	public void Finished(){
-		canMove = true;
+		CanMove = true;
 		if(TouchManager.Instance.inputQueue.Count > 0){
 			//	if(TouchManager.Instance.inputQueue.Peek ().GetComponent<Table>().seat.GetComponentInChildren<Customer>().state != CustomerStates.WaitForOrder && Waiter.Instance.CheckHands()){
 
@@ -306,15 +339,15 @@ public class Waiter : Singleton<Waiter>{
 			if(TouchManager.Instance.inputQueue.Peek ().GetComponent<Table>() != null){
 				//if it is and that table is full we deselect the customer
 				if(TouchManager.Instance.inputQueue.Peek ().GetComponent<Table>().inUse == true){
-					if(currentLineCustomer != null){
-						currentLineCustomer.GetComponent<Customer>().deselect();
+					if(CurrentLineCustomer != null){
+						CurrentLineCustomer.GetComponent<Customer>().deselect();
 					}
 				}
 			}
 			else{
 				//otherwise if we clicked on something else and we have a customer, we deselect them
-				if(currentLineCustomer != null){
-					currentLineCustomer.GetComponent<Customer>().deselect();
+				if(CurrentLineCustomer != null){
+					CurrentLineCustomer.GetComponent<Customer>().deselect();
 				}
 			}
 			GameObject dequeuedObject = TouchManager.Instance.inputQueue.Dequeue();
