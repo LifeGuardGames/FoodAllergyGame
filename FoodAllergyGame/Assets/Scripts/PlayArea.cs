@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class PlayArea : MonoBehaviour, IWaiterSelection {
@@ -18,11 +18,11 @@ public class PlayArea : MonoBehaviour, IWaiterSelection {
 	
 	}
 	public void OnClicked(){
-		if(Waiter.Instance.currentLineCustomer != null && currCus < maxLimit){
-			Waiter.Instance.currentLineCustomer.transform.localScale = Vector3.one;
+		if(Waiter.Instance.CurrentLineCustomer != null && currCus < maxLimit){
+			Waiter.Instance.CurrentLineCustomer.transform.localScale = Vector3.one;
 			currCus++;
 			StartCoroutine("PlayTime");
-			Waiter.Instance.currentLineCustomer.GetComponent<Customer>().Playing();
+			Waiter.Instance.CurrentLineCustomer.GetComponent<Customer>().Playing();
 		}
 	}
 

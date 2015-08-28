@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -28,7 +28,7 @@ public class TouchManager : Singleton<TouchManager> {
 								if(inputQueue.Count < queueLimit){
 									inputQueue.Enqueue(hitObject.collider.gameObject);
 									// used to dequeue
-									if(Waiter.Instance.canMove){
+									if(Waiter.Instance.CanMove){
 										Waiter.Instance.Finished();
 									}
 								}
