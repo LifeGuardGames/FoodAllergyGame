@@ -19,9 +19,9 @@ public class InfoManager : Singleton<InfoManager>{
 		case InfoType.Food:
 			// Instantiate list here
 			foreach(ImmutableDataFood foodData in DataLoaderFood.GetDataList()){
-				GameObject foodStockButton = 
+				GameObject foodInfoButton = 
 					GameObjectUtils.AddChildGUI(grid, foodStockButtonPrefab);
-				foodStockButton.GetComponent<FoodStockButton>().Init(foodData);
+				foodInfoButton.GetComponent<FoodInfoButton>().Init(foodData);
 			}
 
 			// Show content
