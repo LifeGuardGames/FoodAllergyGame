@@ -69,10 +69,38 @@
 		<SpriteName>RestKitchenPink</SpriteName>
 		<Secondary>RestKitchenPinkBack</Secondary>
 	</DecoItem>
-		<DecoItem ID = "Kitchen03">
+	<DecoItem ID = "Kitchen03">
 		<Type>Kitchen</Type>
 		<Price>200</Price>
 		<Title>Purple</Title>
+		<SpriteName>RestKitchenPurple</SpriteName>
+		<Secondary>RestKitchenPurpleBack</Secondary>
+	</DecoItem>
+	<DecoItem ID = "VIP00">
+		<Type>VIP</Type>
+		<Price>200</Price>
+		<Title>None</Title>
+		<SpriteName>RestKitchenPurple</SpriteName>
+		<Secondary>RestKitchenPurpleBack</Secondary>
+	</DecoItem>
+		<DecoItem ID = "PlayArea00">
+		<Type>PlayArea</Type>
+		<Price>200</Price>
+		<Title>None</Title>
+		<SpriteName>RestKitchenPurple</SpriteName>
+		<Secondary>RestKitchenPurpleBack</Secondary>
+	</DecoItem>
+		<DecoItem ID = "Microwave00">
+		<Type>Microwave</Type>
+		<Price>200</Price>
+		<Title>None</Title>
+		<SpriteName>RestKitchenPurple</SpriteName>
+		<Secondary>RestKitchenPurpleBack</Secondary>
+	</DecoItem>
+		<DecoItem ID = "FlyThru00">
+		<Type>FlyThru</Type>
+		<Price>200</Price>
+		<Title>None</Title>
 		<SpriteName>RestKitchenPurple</SpriteName>
 		<Secondary>RestKitchenPurpleBack</Secondary>
 	</DecoItem>
