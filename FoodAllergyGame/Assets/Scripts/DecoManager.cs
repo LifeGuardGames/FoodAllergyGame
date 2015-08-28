@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Analytics;
 
 public class DecoManager : Singleton<DecoManager>{
 
@@ -72,6 +73,9 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	public void BuyItem(DecoTypes ty, string decoID){
+		Analytics.CustomEvent("Item Bought", new Dictionary<string, object>{
+			{"Item: ", decoID}
+		});
 		DataManager.Instance.GameData.Decoration.BoughtDeco.Add(decoID, " ");
 		ChangeSet(decoID);
 	}
