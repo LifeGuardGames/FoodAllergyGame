@@ -11,6 +11,7 @@ public class UIHelper : EditorWindow {
 	private List<GameObject> UIElementsList;
 	private List<bool> elementBoolList;
 	private bool isCompileAux = false;
+	private Vector2 scrollPosition = Vector2.zero;
 
 	[MenuItem("LGG/UIHelper")]
 	public static void ShowWindow(){
@@ -43,6 +44,8 @@ public class UIHelper : EditorWindow {
 	void OnGUI(){
 		if(tagsList != null && tagsList.Length > 0){
 			try{
+				scrollPosition = GUILayout.BeginScrollView(scrollPosition, false, false);
+
 				GUILayout.Label("Toggle UI Elements", EditorStyles.boldLabel);
 
 				if(GUILayout.Button("Disable All")){
@@ -62,6 +65,8 @@ public class UIHelper : EditorWindow {
 				if(GUILayout.Button("Reset", GUILayout.Height(50))){
 					ResetUIElements();
 				}
+
+				GUILayout.EndScrollView();
 			}
 			catch(Exception e){
 				Debug.LogWarning("GUIHelper exception caught, reloading..." + e.ToString());

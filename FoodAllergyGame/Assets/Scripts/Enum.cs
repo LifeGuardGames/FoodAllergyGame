@@ -68,7 +68,7 @@ public enum DecoTypes{
 	Floor,
 	Kitchen,
 	PlayArea,
-	VIPRoom,
+	VIP,
 	FlyThru,
 	Microwave,
 }

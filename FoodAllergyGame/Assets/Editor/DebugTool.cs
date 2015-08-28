@@ -9,10 +9,10 @@ using System.Xml.Serialization;
 
 public class DebugTool : EditorWindow {
 
-
 	private string CRITICAL_PATH = "/XML/Resources/_Critical.xml";
 	private List<Constant> critList;
 	private CriticalConstants criticalConstants;
+	private Vector2 scrollPosition = Vector2.zero;
 
 	[MenuItem("LGG/Custom Debug Tool")]
 	public static void ShowWindow(){
@@ -25,6 +25,8 @@ public class DebugTool : EditorWindow {
 	}
 
 	void OnGUI(){
+		scrollPosition = GUILayout.BeginScrollView(scrollPosition, false, false);
+
 		GUILayout.Label("Plist Editor", EditorStyles.boldLabel);
 		if(GUILayout.Button("Delete Plist")){
 			PlayerPrefs.DeleteAll();
@@ -68,6 +70,8 @@ public class DebugTool : EditorWindow {
 				Serialize<CriticalConstants>(CRITICAL_PATH, criticalConstants);
 			}
 		}
+
+		GUILayout.EndScrollView();
 	}
 
 	private void Serialize<T>(string filePath, object xmlData){

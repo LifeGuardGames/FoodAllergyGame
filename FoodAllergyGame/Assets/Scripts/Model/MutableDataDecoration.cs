@@ -14,6 +14,6 @@ public class MutableDataDecoration{
 		currDiner.Add(DecoTypes.FlyThru, "FlyThru00");
 		currDiner.Add(DecoTypes.PlayArea, "PlayArea00");
 		currDiner.Add(DecoTypes.Microwave, "Microwave00");
-		currDiner.Add(DecoTypes.VIPRoom, "VIP00");
+		currDiner.Add(DecoTypes.VIP, "VIP00");
 	}
 }
