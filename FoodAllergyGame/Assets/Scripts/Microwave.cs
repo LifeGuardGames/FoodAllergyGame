@@ -8,6 +8,7 @@ public class Microwave :Singleton<Microwave>, IWaiterSelection{
 	public Transform waiterSpot;
 	public bool isCooking;
 	public GameObject currentlyCooking;
+	public GameObject microwaveNode;
 
 	void Start(){
 		this.gameObject.SetActive(Constants.GetConstant<bool>("MicrowaveOn"));
