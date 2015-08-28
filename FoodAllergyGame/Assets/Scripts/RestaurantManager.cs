@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.Analytics;
 
 public class RestaurantManager : Singleton<RestaurantManager>{
 
@@ -19,6 +20,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public float customerTimer;		//time it takes for a customer to spawn
 	public bool dayOver = false;	// bool controlling customer spawning depending on the stage of the day
 	public int actTables;
+	public int MedicUsed;
 
 	private int dayEarnedCash;		// The cash that is earned for the day
 	public int DayEarnedCash{
@@ -45,6 +47,12 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public bool isTutorial;
 	public SpriteRenderer floorSprite;
 	public TweenToggle pauseMenu;
+
+#region Analytics
+	//analytics
+	private int attempted;
+	public int savedCustomers;
+#endregion
 	// RemoveCustomer removes the customer from a hashtable 
 	// and then if the day is over checks to see if the hastable is empty and if it is it ends the round
 
@@ -197,7 +205,16 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 					else if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT3"){
 						DataManager.Instance.GameData.Tutorial.IsTutorial2Done = true;
 					}
-
+					Analytics.CustomEvent("End Of day Report", new Dictionary<string, object> {
+						{"Tier", TierManager.Instance.Tier},
+						{"Event", DataManager.Instance.GameData.RestaurantEvent.CurrentEvent},
+						{"Missed Customers", satisfactionAI.MissingCustomers},
+						{"Avg. Satisfaction", satisfactionAI.AvgSatifaction()},
+						{"Cash Earned",DayEarnedCash},
+						{"Cash Lost", FoodManager.Instance.MenuCost + Medic.Instance.MedicCost},
+						{"Medic Saved", savedCustomers},
+						{"Attempted Rescues", attempted}
+					});
 					// Show day complete UI
 					restaurantUI.DayComplete(satisfactionAI.MissingCustomers, satisfactionAI.AvgSatifaction(), dayEarnedCash,
 				 	                        FoodManager.Instance.MenuCost, dayNetCash,
@@ -223,6 +240,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		RestaurantManager.Instance.medicButton.GetComponent<Animator>().SetBool("TutMedic", false);
 		RestaurantManager.Instance.medicTutorial.SetActive(false);
 		if(SickCustomers.Count > 0){
+			attempted += SickCustomers.Count;
 			Medic.Instance.MoveToLocation(SickCustomers[0].transform.position);
 		}
 	}

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Analytics;
 
 public class Customer : MonoBehaviour, IWaiterSelection{
 	// ID an id given on creation
@@ -328,6 +329,12 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Tells the resturantManager that the customer is leaving and can be removed from the dictionary
 	public virtual void NotifyLeave(){
+		Analytics.CustomEvent("Customer Left", new Dictionary <string, object>{
+			{"Type", this.GetType().ToString()},
+			{"state", state.ToString()},
+			{"Satisfaction", satisfaction}
+		});
+
 		if(hasPowerUp){
 			//Waiter.Instance.GivePowerUp();
 		}
@@ -374,6 +381,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 	// if they are saved they take a small penalty for making the mistake and the customer will want the check asap
 	public virtual void Saved(){
+		RestaurantManager.Instance.savedCustomers++;
 		Medic.Instance.BillRestaurant(40);
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
 		IncreaseSatisfaction();
@@ -390,7 +398,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 //		RestaurantManager.Instance.medicButton.GetComponent<Animator>().SetBool("TutMedic", false);
 //		RestaurantManager.Instance.tutText.SetActive(false);
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
-		Medic.Instance.BillRestaurant(50);
+		Medic.Instance.BillRestaurant(100);
 		satisfaction = 0;
 		customerUI.UpdateSatisfaction(satisfaction);
 		customerAnim.SetSatisfaction(satisfaction);
