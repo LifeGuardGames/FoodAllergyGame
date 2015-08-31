@@ -9,14 +9,13 @@ public class DecoManager : Singleton<DecoManager>{
 	public List<SpriteRenderer> tableList;
 	public List<SpriteRenderer> KitchenList;
 	public Dictionary <DecoTypes, GameObject> SceneObjects;
-	private int DecoPageSize = 3;
+	private int DecoPageSize = 4;
 	public int currentDecoPage = 0;
 	public GameObject DecoButtonPrefab;
-	public List<Transform> currentDecoSlotList;
+	public Transform grid;
 	public string currentTab = "Table";
 	public TweenToggle decoTweenToggle;
 
-	// Use this for initialization
 	void Awake(){
 		itemList = DataLoaderDecoItem.GetDataList();
 		SceneObjects = new Dictionary<DecoTypes, GameObject>();
@@ -25,30 +24,26 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	public void PopulateDecoGrid(){
+		// Delete any existing buttons in the grid
+		foreach(Transform child in grid){
+			Destroy(child.gameObject);
+		}
+
 		List<ImmutableDataDecoItem> decoList = new List<ImmutableDataDecoItem>();
 		for(int i = 0; i < itemList.Count; i++){
 			if(itemList[i].Type.ToString() == currentTab){
 				decoList.Add(itemList[i]);
 			}
 		}
-		decoList.Sort((x,y) => DataLoaderDecoItem.GetData(x.id).Cost.CompareTo(DataLoaderDecoItem.GetData(y.id).Cost));
+		decoList.Sort((x,y) => DataLoaderDecoItem.GetData(x.ID).Cost.CompareTo(DataLoaderDecoItem.GetData(y.ID).Cost));
+
 		for(int i = 0; i < DecoPageSize; i++){
-			Debug.Log(i);
-			if(decoList.Count <= currentDecoPage * 3){	
-				break;
-			}
-			if(currentDecoSlotList[i].childCount > 0){
-				Destroy(currentDecoSlotList[i].GetChild(0).gameObject);
-			}
-		}
-		for(int i = 0; i < DecoPageSize; i++){
-			Debug.Log(i);
-			if(decoList.Count <= i + currentDecoPage * 3){		// Reached the end of list
+			if(decoList.Count <= i + currentDecoPage * DecoPageSize){		// Reached the end of list
 				currentDecoPage--;
 				break;
 			}
-			ImmutableDataDecoItem DecoData = DataLoaderDecoItem.GetData(decoList[i + currentDecoPage * 3].id);
-			GameObject DecoButton = GameObjectUtils.AddChildGUI(currentDecoSlotList[i].gameObject, DecoButtonPrefab);
+			ImmutableDataDecoItem DecoData = DataLoaderDecoItem.GetData(decoList[i + currentDecoPage * DecoPageSize].ID);
+			GameObject DecoButton = GameObjectUtils.AddChildGUI(grid.gameObject, DecoButtonPrefab);
 			DecoButton.GetComponent<DecoButton>().Init(DecoData);
 		}
 	}
@@ -101,6 +96,9 @@ public class DecoManager : Singleton<DecoManager>{
 
 	public void ChangeTab(string tabName){
 		currentTab = tabName;
+		PopulateDecoGrid();
+	}
+	public void ChangeTab2(DecoTypes tabName){
 		PopulateDecoGrid();
 	}
 

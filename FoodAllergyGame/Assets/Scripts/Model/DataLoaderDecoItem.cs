@@ -13,7 +13,7 @@ public class DataLoaderDecoItem: XMLLoaderGeneric<DataLoaderDecoItem> {
 		instance.InitXMLLoader();
 		return instance.GetDataList<ImmutableDataDecoItem>();
 	}
-	
+
 	protected override void XMLNodeHandler(string id, IXMLNode xmlNode, Hashtable hashData, string errorMessage){
 		ImmutableDataDecoItem data = new ImmutableDataDecoItem(id, xmlNode, errorMessage);
 		// Store the data

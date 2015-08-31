@@ -5,12 +5,12 @@ using System;
 
 public class ImmutableDataDecoItem {
 
-	public string id;
+	private string id;
 	public string ID{
 		get{return id;}
 	}
 
-	public DecoTypes type;
+	private DecoTypes type;
 	public DecoTypes Type{
 		get {return type;}
 	}
