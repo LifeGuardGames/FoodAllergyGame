@@ -181,8 +181,11 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	private void CheckForGameOver(){
 		if(dayOver){
 			if(customerHash.Count == 0){
+				if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT2"){
+					Analytics.CustomEvent("Finished 4 Customer Tutorial", new Dictionary<string,object>{});
+				}
 				if(isTutorial){
-
+					Analytics.CustomEvent("Finished First Tutorial", new Dictionary<string,object>{});
 					DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
 					DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT2";
 					isTutorial = false;
@@ -204,6 +207,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 					}
 					else if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT3"){
 						DataManager.Instance.GameData.Tutorial.IsTutorial2Done = true;
+						Analytics.CustomEvent("Menu Tutorial Day Complete", new Dictionary<string, object>{});
 					}
 					Analytics.CustomEvent("End Of day Report", new Dictionary<string, object> {
 						{"Tier", TierManager.Instance.Tier},
