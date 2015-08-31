@@ -14,6 +14,18 @@ public class DataLoaderDecoItem: XMLLoaderGeneric<DataLoaderDecoItem> {
 		return instance.GetDataList<ImmutableDataDecoItem>();
 	}
 
+	public static List<ImmutableDataDecoItem> GetDecoDataByType(DecoTypes type){
+		List<ImmutableDataDecoItem> itemList = GetDataList();
+		List<ImmutableDataDecoItem> decoList = new List<ImmutableDataDecoItem>();
+		for(int i = 0; i < itemList.Count; i++){
+			if(itemList[i].Type == type){
+				decoList.Add(itemList[i]);
+			}
+		}
+		decoList.Sort((x,y) => GetData(x.ID).Cost.CompareTo(GetData(y.ID).Cost));
+		return decoList;
+	}
+
 	protected override void XMLNodeHandler(string id, IXMLNode xmlNode, Hashtable hashData, string errorMessage){
 		ImmutableDataDecoItem data = new ImmutableDataDecoItem(id, xmlNode, errorMessage);
 		// Store the data
