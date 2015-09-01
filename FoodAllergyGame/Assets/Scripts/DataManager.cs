@@ -2,6 +2,8 @@
 using System.Collections;
 using System;
 using fastJSON;
+using System.Collections.Generic;
+using UnityEngine.Analytics;
 
 /// <summary>
 /// This class handles all game data. No game logic
@@ -121,5 +123,10 @@ public class DataManager : Singleton<DataManager> {
 		if(OnGameDataSaved != null){
 			OnGameDataSaved(this, EventArgs.Empty);
 		}
+	}
+	void OnApplicationPause(){
+		Analytics.CustomEvent("Quit Game", new Dictionary<string, object>{
+			{"Scene: ", Application.loadedLevelName} 
+		});
 	}
 }
