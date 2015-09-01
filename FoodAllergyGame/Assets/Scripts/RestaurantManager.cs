@@ -46,7 +46,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	List<string> currCusSet;
 	public bool isTutorial;
 	public SpriteRenderer floorSprite;
-	public TweenToggle pauseMenu;
+	public PauseUIController pauseUI;
 
 #region Analytics
 	//analytics
@@ -241,7 +241,6 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	}
 
 	public void DeployMedic(){
-		RestaurantManager.Instance.medicButton.GetComponent<Animator>().SetBool("TutMedic", false);
 		RestaurantManager.Instance.medicTutorial.SetActive(false);
 		if(SickCustomers.Count > 0){
 			attempted += SickCustomers.Count;
@@ -318,21 +317,24 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		return DataManager.Instance.GameData.Decoration.currDiner[deco];
 	}
 
+	#region PausingUI functions
+	// Called from RestaurantUIManager
 	public void PauseGame(){
-		pauseMenu.isUseEstimatedTime = true;
-		pauseMenu.Show();
 		Time.timeScale = 0.0f;
+		pauseUI.Show();
 		isPaused = true;
 	}
 
-	public void UnpauseGame(){
-		pauseMenu.isUseEstimatedTime = false;
+	// Called from PauseUIController
+	public void ResumeGame(){
 		Time.timeScale = 1.0f;
-		pauseMenu.Hide();
+		pauseUI.Hide();
 		isPaused = false;
 	}
 
+	// Called from PauseUIController
 	public void QuitGame(){
 		Application.LoadLevel(SceneUtils.START);
 	}
+	#endregion
 }
