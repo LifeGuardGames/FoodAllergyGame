@@ -492,6 +492,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 
 	public void deselect(){
+		RestaurantManager.Instance.CustomerSeated();
 		gameObject.transform.localScale = new Vector3(1.0f,1.0f,1.0f);
 		Waiter.Instance.CurrentLineCustomer = null;
 	}
@@ -526,16 +527,19 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	#endregion
 
 	public virtual void Playing(){
-		this.transform.GetChild(0).gameObject.SetActive(false);
-		this.transform.GetChild(1).gameObject.SetActive(false);
+	//	this.transform.GetChild(0).gameObject.SetActive(false);
+	//	this.transform.GetChild(1).gameObject.SetActive(false);
 		StopCoroutine("SatisfactionTimer");
+		deselect();
+		this.GetComponent<BoxCollider>().enabled = false;
 		StartCoroutine("PlayTime");
 	}
 
 	IEnumerator PlayTime(){
 		yield return new WaitForSeconds(10.0f);
-		this.transform.GetChild(0).gameObject.SetActive(true);
-		this.transform.GetChild(1).gameObject.SetActive(true);
+		//this.transform.GetChild(0).gameObject.SetActive(true);
+	//	this.transform.GetChild(1).gameObject.SetActive(true);
+		this.GetComponent<BoxCollider>().enabled = true;
 		StartCoroutine("SatisfactionTimer");
 	}
 }
