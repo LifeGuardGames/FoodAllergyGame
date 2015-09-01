@@ -333,6 +333,21 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	}
 
 	public void QuitGame(){
+		if(dayOver){
+			Analytics.CustomEvent("Finished Day" , new Dictionary<string, object>{});
+		}
+		else{
+			Analytics.CustomEvent("Quit Day" , new Dictionary<string, object>{
+				{"Time Left ", dayTimeLeft},
+				{"Tier", TierManager.Instance.Tier},
+				{"Event", DataManager.Instance.GameData.RestaurantEvent.CurrentEvent},
+				{"Difficulty Level", satisfactionAI.DifficultyLevel},
+				{"Missed Customers", satisfactionAI.MissingCustomers},
+				{"Avg. Satisfaction", satisfactionAI.AvgSatifaction()},
+				{"Cash Earned",DayEarnedCash},
+				{"Cash Lost", FoodManager.Instance.MenuCost + Medic.Instance.MedicCost},
+			});
+		}
 		Application.LoadLevel(SceneUtils.START);
 	}
 }
