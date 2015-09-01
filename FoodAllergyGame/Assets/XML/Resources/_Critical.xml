@@ -5,7 +5,7 @@
   <Constant Name="BathRoomOn" Type="Bool" Value="False" Debug="False"> </Constant>
   <Constant Name="IsTut1Done" Type="Bool" Value="True" Debug="True"> </Constant>
   <Constant Name="IsTut2Done" Type="Bool" Value="True" Debug="True"> </Constant>
-  <Constant Name="PlayAreaOn" Type="Bool" Value="False" Debug="False"> </Constant>
+  <Constant Name="PlayAreaOn" Type="Bool" Value="True" Debug="False"> </Constant>
   <Constant Name="VIPRoomOn" Type="Bool" Value="False" Debug="False"> </Constant>
   <Constant Name="FlythruOn" Type="Bool" Value="False" Debug="False"> </Constant>
   <Constant Name="MicrowaveOn" Type="Bool" Value="False" Debug="False"> </Constant>
