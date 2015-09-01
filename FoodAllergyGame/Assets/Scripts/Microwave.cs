@@ -16,6 +16,7 @@ public class Microwave :Singleton<Microwave>, IWaiterSelection{
 
 	public void CookOrder(GameObject order){
 		if( order != null){
+			RestaurantManager.Instance.MicrowaveUses++;
 			currentlyCooking = order;
 			order.transform.SetParent(this.gameObject.transform);
 			order.GetComponent<Order>().StartCooking(cookTimer);

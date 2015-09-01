@@ -210,6 +210,9 @@ public class MenuManager : Singleton<MenuManager>{
 	public void OnMenuSelectionDone(){
 		// Check to see if we have all selection slots filled
 		if(selectedMenuStringList.Count == menuSize){
+			Analytics.CustomEvent("Menu", new Dictionary<string, object>{
+				{"Menu Items", selectedMenuStringList}
+			});
 			FoodManager.Instance.GenerateMenu(selectedMenuStringList, menuCost);
 			TransitionManager.Instance.TransitionScene(SceneUtils.RESTAURANT);
 		}

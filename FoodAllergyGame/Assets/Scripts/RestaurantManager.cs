@@ -52,6 +52,21 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	//analytics
 	private int attempted;
 	public int savedCustomers;
+	private int playAreaUses;
+	public int PlayAreaUses{
+		set{playAreaUses = value;}
+		get {return playAreaUses;}
+	}
+	private int vipUse;
+	public int VIPUses{
+		set{vipUse = value;}
+		get {return vipUse;}
+	}
+	private int microwaveUses;
+	public int MicrowaveUses{
+		set{microwaveUses = value;}
+		get {return microwaveUses;}
+	}
 #endregion
 	// RemoveCustomer removes the customer from a hashtable 
 	// and then if the day is over checks to see if the hastable is empty and if it is it ends the round
@@ -217,7 +232,10 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 						{"Cash Earned",DayEarnedCash},
 						{"Cash Lost", FoodManager.Instance.MenuCost + Medic.Instance.MedicCost},
 						{"Medic Saved", savedCustomers},
-						{"Attempted Rescues", attempted}
+						{"Attempted Rescues", attempted},
+						{"Play Area Uses", playAreaUses},
+						{"VIP Uses", vipUse},
+						{"Microwave Uses", microwaveUses}
 					});
 					// Show day complete UI
 					restaurantUI.DayComplete(satisfactionAI.MissingCustomers, satisfactionAI.AvgSatifaction(), dayEarnedCash,

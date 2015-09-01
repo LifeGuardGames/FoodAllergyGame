@@ -191,6 +191,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Jumps to the table given a table number
 	public virtual void JumpToTable(int tableN){
+		if(tableN == 4){
+			RestaurantManager.Instance.VIPUses++;
+		}
 		RestaurantManager.Instance.CustomerSeated();
 		Waiter.Instance.CurrentLineCustomer = null;
 		AudioManager.Instance.PlayClip("pop");
@@ -529,6 +532,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public virtual void Playing(){
 	//	this.transform.GetChild(0).gameObject.SetActive(false);
 	//	this.transform.GetChild(1).gameObject.SetActive(false);
+		RestaurantManager.Instance.PlayAreaUses++;
 		StopCoroutine("SatisfactionTimer");
 		deselect();
 		this.GetComponent<BoxCollider>().enabled = false;

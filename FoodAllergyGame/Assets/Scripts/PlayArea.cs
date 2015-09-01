@@ -12,6 +12,7 @@ public class PlayArea : MonoBehaviour, IWaiterSelection {
 	private bool spot2Available = true;
 	private List<bool> availability;
 
+
 	// Use this for initialization
 	void Start () {
 		maxLimit = 2;
@@ -48,7 +49,6 @@ public class PlayArea : MonoBehaviour, IWaiterSelection {
 	}
 
 	public void OnWaiterArrived(){
-	
 	}
 
 	IEnumerator PlayTime(){
