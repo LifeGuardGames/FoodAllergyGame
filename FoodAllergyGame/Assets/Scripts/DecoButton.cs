@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -18,7 +18,7 @@ public class DecoButton : MonoBehaviour {
 	public void Init(ImmutableDataDecoItem decoData){
 		decoID = decoData.ID;
 		gameObject.name = decoData.ID;
-		decoNameText.text = decoData.ButtonTitle;
+		decoNameText.text = LocalizationText.GetText(decoData.ButtonTitleKey);
 		costAux = decoData.Cost;
 
 		if(decoData.SpriteName != "None"){

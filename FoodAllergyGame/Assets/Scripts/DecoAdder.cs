@@ -18,7 +18,7 @@ public class DecoAdder : MonoBehaviour {
 			ImmutableDataDecoItem decoData = DataManager.Instance.GetActiveDecoData(type);
 			sprite.sprite = sprite.sprite = SpriteCacheManager.GetDecoSpriteData(decoData.SpriteName);
 			if(kitchenBack != null){
-				kitchenBack.sprite = SpriteCacheManager.GetDecoSpriteData(decoData.SpriteName);
+				kitchenBack.sprite = SpriteCacheManager.GetDecoSpriteData(decoData.SecondarySprite);
 			}
 		}
 	}

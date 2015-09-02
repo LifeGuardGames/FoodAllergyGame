@@ -3,89 +3,88 @@
 	<DecoItem ID = "Table00">
 		<Type>Table</Type>
 		<Price>100</Price>
-		<Title>Default</Title>
-		<SpriteName>RestTable</SpriteName>
+		<TitleKey>TableBlue</TitleKey>
+		<SpriteName>RestTableBlue</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "Table01">
 		<Type>Table</Type>
 		<Price>10000</Price>
-		<Title>Red</Title>
-		<SpriteName>RestTable2</SpriteName>
+		<TitleKey>TablePurple</TitleKey>
+		<SpriteName>RestTablePurple</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "Table02">
 		<Type>Table</Type>
 		<Price>200</Price>
-		<Title>Green</Title>
-		<SpriteName>RestTable3</SpriteName>
+		<TitleKey>TableRed</TitleKey>
+		<SpriteName>RestTableRed</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "Table03">
 		<Type>Table</Type>
 		<Price>200</Price>
-		<Title>Green</Title>
-		<SpriteName>RestTable4</SpriteName>
+		<TitleKey>TableYellow</TitleKey>
+		<SpriteName>RestTableYellow</SpriteName>
 	</DecoItem>
 	
 	
 	<DecoItem ID = "Floor00">
 		<Type>Floor</Type>
 		<Price>100</Price>
-		<Title>Default</Title>
-		<SpriteName>RestBg</SpriteName>
+		<TitleKey>FloorBlue</TitleKey>
+		<SpriteName>RestFloorBlue</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "Floor01">
 		<Type>Floor</Type>
 		<Price>10000</Price>
-		<Title>Green</Title>
-		<SpriteName>RestBg2</SpriteName>
+		<TitleKey>FloorAqua</TitleKey>
+		<SpriteName>RestFloorAqua</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "Floor02">
 		<Type>Floor</Type>
 		<Price>200</Price>
-		<Title>Pink</Title>
-		<SpriteName>RestBg3</SpriteName>
+		<TitleKey>FloorGreen</TitleKey>
+		<SpriteName>RestFloorGreen</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "Floor03">
 		<Type>Floor</Type>
 		<Price>200</Price>
-		<Title>Blue</Title>
-		<SpriteName>RestBg4</SpriteName>
+		<TitleKey>FloorPink</TitleKey>
+		<SpriteName>RestFloorPink</SpriteName>
+	</DecoItem>
+	<DecoItem ID = "Floor04">
+		<Type>Floor</Type>
+		<Price>200</Price>
+		<TitleKey>FloorRed</TitleKey>
+		<SpriteName>RestFloorRed</SpriteName>
 	</DecoItem>
 	
 	
 	<DecoItem ID = "Kitchen00">
 		<Type>Kitchen</Type>
 		<Price>100</Price>
-		<Title>Default</Title>
-		<SpriteName>RestKitchenDefault</SpriteName>
-		<Secondary>RestKitchenDefaultBack</Secondary>
+		<TitleKey>KitchenBlue</TitleKey>
+		<SpriteName>RestKitchenBlue</SpriteName>
+		<Secondary>RestKitchenBlueBack</Secondary>
 	</DecoItem>
 	<DecoItem ID = "Kitchen01">
 		<Type>Kitchen</Type>
 		<Price>10000</Price>
-		<Title>Blue</Title>
-		<SpriteName>RestKitchenBlue</SpriteName>
-		<Secondary>RestKitchenBlueBack</Secondary>
+		<TitleKey>KitchenPink</TitleKey>
+		<SpriteName>RestKitchenPink</SpriteName>
+		<Secondary>RestKitchenPinkBack</Secondary>
 	</DecoItem>
 	<DecoItem ID = "Kitchen02">
 		<Type>Kitchen</Type>
 		<Price>200</Price>
-		<Title>Pink</Title>
-		<SpriteName>RestKitchenPink</SpriteName>
-		<Secondary>RestKitchenPinkBack</Secondary>
-	</DecoItem>
-	<DecoItem ID = "Kitchen03">
-		<Type>Kitchen</Type>
-		<Price>200</Price>
-		<Title>Purple</Title>
-		<SpriteName>RestKitchenPurple</SpriteName>
-		<Secondary>RestKitchenPurpleBack</Secondary>
+		<TitleKey>KitchenGreen</TitleKey>
+		<SpriteName>RestKitchenGreen</SpriteName>
+		<Secondary>RestKitchenGreenBack</Secondary>
 	</DecoItem>
 	
 	
 	<DecoItem ID = "VIP00">
 		<Type>VIP</Type>
 		<Price>200</Price>
-		<Title>None</Title>
+		<TitleKey>None</TitleKey>
 		<SpriteName>RestVIPArea</SpriteName>
 	</DecoItem>
 	
@@ -93,21 +92,20 @@
 	<DecoItem ID = "PlayArea00">
 		<Type>PlayArea</Type>
 		<Price>0</Price>
-		<Title>None</Title>
+		<TitleKey>None</TitleKey>
 		<SpriteName>None</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "PlayArea01">
 		<Type>PlayArea</Type>
-		<Price>0</Price>
-		<Title>Default</Title>
+		<Price>1</Price>
+		<TitleKey>PlayAreaClaw</TitleKey>
 		<SpriteName>RestPlayArea</SpriteName>
 	</DecoItem>
-	
 	
 	<DecoItem ID = "Microwave00">
 		<Type>Microwave</Type>
 		<Price>200</Price>
-		<Title>None</Title>
+		<TitleKey>None</TitleKey>
 		<SpriteName>RestMicrowave</SpriteName>
 	</DecoItem>
 	
@@ -115,7 +113,7 @@
 	<DecoItem ID = "FlyThru00">
 		<Type>FlyThru</Type>
 		<Price>200</Price>
-		<Title>None</Title>
+		<TitleKey>None</TitleKey>
 		<SpriteName>RestTable</SpriteName>
 	</DecoItem>
 </DecoItem>

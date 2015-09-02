@@ -83,7 +83,7 @@ public class DecoManager : Singleton<DecoManager>{
 		Analytics.CustomEvent("Item Bought", new Dictionary<string, object>{
 			{"Item: ", decoID}
 		});
-		DataManager.Instance.GameData.Decoration.BoughtDeco.Add(decoID, " ");
+		DataManager.Instance.GameData.Decoration.BoughtDeco.Add(decoID, "");
 		SetDeco(decoID);
 	}
 
