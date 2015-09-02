@@ -145,4 +145,8 @@ public class DecoManager : Singleton<DecoManager>{
 			decoTweenToggle.Show();
 		}
 	}
+
+	public void OnExitButtonClicked(){
+		TransitionManager.Instance.TransitionScene(SceneUtils.START);
+	}
 }

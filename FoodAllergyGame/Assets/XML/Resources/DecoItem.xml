@@ -85,7 +85,7 @@
 		<Type>VIP</Type>
 		<Price>200</Price>
 		<TitleKey>None</TitleKey>
-		<SpriteName>RestVIPArea</SpriteName>
+		<SpriteName>None</SpriteName>
 	</DecoItem>
 	
 	
@@ -102,11 +102,12 @@
 		<SpriteName>RestPlayArea</SpriteName>
 	</DecoItem>
 	
+	
 	<DecoItem ID = "Microwave00">
 		<Type>Microwave</Type>
 		<Price>200</Price>
 		<TitleKey>None</TitleKey>
-		<SpriteName>RestMicrowave</SpriteName>
+		<SpriteName>None</SpriteName>
 	</DecoItem>
 	
 	
@@ -114,6 +115,6 @@
 		<Type>FlyThru</Type>
 		<Price>200</Price>
 		<TitleKey>None</TitleKey>
-		<SpriteName>RestTable</SpriteName>
+		<SpriteName>None</SpriteName>
 	</DecoItem>
 </DecoItem>

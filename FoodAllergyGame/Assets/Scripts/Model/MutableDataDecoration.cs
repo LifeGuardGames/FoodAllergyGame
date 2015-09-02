@@ -11,7 +11,12 @@ public class MutableDataDecoration{
 		BoughtDeco.Add("Floor00", "");
 		BoughtDeco.Add("Table00", "");
 		BoughtDeco.Add("Kitchen00", "");
+
+		// Add none defaults
 		BoughtDeco.Add("PlayArea00", "");
+		BoughtDeco.Add("VIP00", "");
+		BoughtDeco.Add("Microwave00", "");
+		BoughtDeco.Add("FlyThru00", "");
 
 		ActiveDeco = new Dictionary<DecoTypes, string>();
 		// Add default decos
@@ -19,10 +24,10 @@ public class MutableDataDecoration{
 		ActiveDeco.Add(DecoTypes.Table, "Table00");
 		ActiveDeco.Add(DecoTypes.Kitchen, "Kitchen00");
 
-		// TODO Turn this off in live
-		ActiveDeco.Add(DecoTypes.FlyThru, "FlyThru00");
+		// Add none defaults
 		ActiveDeco.Add(DecoTypes.PlayArea, "PlayArea00");
-		ActiveDeco.Add(DecoTypes.Microwave, "Microwave00");
 		ActiveDeco.Add(DecoTypes.VIP, "VIP00");
+		ActiveDeco.Add(DecoTypes.Microwave, "Microwave00");
+		ActiveDeco.Add(DecoTypes.FlyThru, "FlyThru00");
 	}
 }
