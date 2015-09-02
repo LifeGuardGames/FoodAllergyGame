@@ -36,7 +36,7 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	public void PopulateDecoGrid(){
-		currentDecoPage = 0;
+
 		// Delete any existing buttons in the grid
 		foreach(Transform child in grid){
 			Destroy(child.gameObject);
@@ -103,6 +103,7 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	public void ChangeTab(string tabName){
+		currentDecoPage = 0;
 		currentTab = tabName;
 		PopulateDecoGrid();
 	}
