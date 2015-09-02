@@ -24,13 +24,13 @@
 //			textNone.gameObject.SetActive(false);
 //			imageAllergy.gameObject.SetActive(true);
 //			equals.SetActive(true);
-//			imageAllergy.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(alg);
+//			imageAllergy.sprite = SpriteCacheManager.GetAllergySpriteData(alg);
 //			foreach (ImmutableDataFood foodData in FoodManager.Instance.menuList){
 //				if(foodData.AllergyList.Contains(alg)){
 //					Debug.Log (foodData.ID);
 //					GameObject foodImg = new GameObject();
 //					foodImg.AddComponent<Image>();
-//					foodImg.GetComponent<Image>().sprite = SpriteCacheManager.Instance.GetFoodSpriteData(foodData.SpriteName);
+//					foodImg.GetComponent<Image>().sprite = SpriteCacheManager.GetFoodSpriteData(foodData.SpriteName);
 //					GameObject entry = GameObjectUtils.AddChildGUI(grid, foodImg);
 //					Destroy(foodImg);
 //				}

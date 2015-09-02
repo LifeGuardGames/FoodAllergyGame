@@ -28,7 +28,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	public SpriteRenderer tableSprite;
 
 	void Start(){
-		ImmutableDataDecoItem _sprite = DataLoaderDecoItem.GetData(RestaurantManager.Instance.GetCurrentSprite(DecoTypes.Table));
+		ImmutableDataDecoItem decoData = DataManager.Instance.GetActiveDecoData(DecoTypes.Table);
 		if(tableNumber == 5){
 			this.gameObject.SetActive(Constants.GetConstant<bool>("FlythruOn"));
 			// _sprite = DataLoaderDecoItem.GetData(RestaurantManager.Instance.GetCurrentSprite(DecoTypes.FlyThru));
@@ -37,7 +37,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 			this.gameObject.SetActive(Constants.GetConstant<bool>("VIPRoomOn"));
 			// _sprite = DataLoaderDecoItem.GetData(RestaurantManager.Instance.GetCurrentSprite(DecoTypes.VIPRoom));
 		}
-		tableSprite.sprite = Resources.Load<Sprite>(_sprite.SpriteName);
+		tableSprite.sprite = Resources.Load<Sprite>(decoData.SpriteName);
 	}
 
 	//facilitates talk between customer and waiter

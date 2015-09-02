@@ -21,7 +21,7 @@
 //	
 //	private void ShowInfo(string foodID){
 //		ImmutableDataFood foodData = DataLoaderFood.GetData(foodID);
-//		foodImage.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(foodData.SpriteName);
+//		foodImage.sprite = SpriteCacheManager.GetFoodSpriteData(foodData.SpriteName);
 //		foodTitleText.text = foodTitleText.GetComponent<Localize>().GetText(foodData.FoodNameKey);
 //		allergy1Image.enabled = false;
 //		
@@ -32,7 +32,7 @@
 //			foodAllergiesLabel.text = foodData.AllergyList[0].ToString();
 //			if(foodData.AllergyList[0] != Allergies.None){
 //				allergy1Image.enabled = true;
-//				allergy1Image.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(foodData.AllergyList[0]);
+//				allergy1Image.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[0]);
 //			}
 //		}
 //	}

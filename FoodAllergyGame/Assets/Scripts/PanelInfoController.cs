@@ -49,7 +49,7 @@ public class PanelInfoController : MonoBehaviour {
 		switch(infoType){
 		case InfoType.Food:
 			ImmutableDataFood foodData = DataLoaderFood.GetData(ID);
-			foodImage.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(foodData.SpriteName);
+			foodImage.sprite = SpriteCacheManager.GetFoodSpriteData(foodData.SpriteName);
 			foodTitleText.text = LocalizationText.GetText(foodData.FoodNameKey);
 			allergy1Image.enabled = false;
 
@@ -59,7 +59,7 @@ public class PanelInfoController : MonoBehaviour {
 				// UNDONE Only show one allergy text and image for now, index 0
 				foodAllergiesLabel.text = foodData.AllergyList[0].ToString();
 				allergy1Image.enabled = true;
-				allergy1Image.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(foodData.AllergyList[0]);
+				allergy1Image.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[0]);
 
 			}
 			ToggleVisibility(true, infoType);
@@ -67,7 +67,7 @@ public class PanelInfoController : MonoBehaviour {
 
 		case InfoType.Customer:
 			ImmutableDataCustomer customerData = DataLoaderCustomer.GetData(ID);
-			customerImage.sprite = SpriteCacheManager.Instance.GetCustomerSpriteData(customerData.SpriteName);
+			customerImage.sprite = SpriteCacheManager.GetCustomerSpriteData(customerData.SpriteName);
 			customerTitleText.text = LocalizationText.GetText(customerData.CustomerNameKey);
 			customerDescriptionText.text = LocalizationText.GetText(customerData.CustomerDescription);
 			ToggleVisibility(true, infoType);

@@ -39,22 +39,22 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 		foodID = foodData.ID;
 		gameObject.name = foodData.ID;
 		label.text = LocalizationText.GetText(foodData.FoodNameKey);
-		image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(foodData.SpriteName);
+		image.sprite = SpriteCacheManager.GetFoodSpriteData(foodData.SpriteName);
 		cost = foodData.Cost;
 		textCost.text = "$" + cost.ToString();
 
 		// Set allergy sprite indicators if present
 		if(foodData.AllergyList.Count == 1){
 			allergy1.enabled = true;
-			allergy1.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(foodData.AllergyList[0]);
+			allergy1.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[0]);
 			allergy2.enabled = false;
-			allergyNodeImage.sprite = allergy1.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(foodData.AllergyList[0]);
+			allergyNodeImage.sprite = allergy1.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[0]);
 		}
 		else if(foodData.AllergyList.Count == 2){
 			allergy1.enabled = true;
-			allergy1.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(foodData.AllergyList[0]);
+			allergy1.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[0]);
 			allergy2.enabled = true;
-			allergy2.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(foodData.AllergyList[1]);
+			allergy2.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[1]);
 		}
 
 		allergyNodeStartPosition = (allergyNode.transform as RectTransform).anchoredPosition;

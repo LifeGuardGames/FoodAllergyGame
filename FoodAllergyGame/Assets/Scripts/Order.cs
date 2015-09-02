@@ -24,7 +24,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 		set{
 			isCooked = value;
 			if(isCooked == true){
-				orderImage.GetComponent<SpriteRenderer>().sprite = SpriteCacheManager.Instance.GetFoodSpriteData(DataLoaderFood.GetData(foodID).SpriteName);
+				orderImage.GetComponent<SpriteRenderer>().sprite = SpriteCacheManager.GetFoodSpriteData(DataLoaderFood.GetData(foodID).SpriteName);
 				//orderImage.SetNativeSize();
 			}
 		}

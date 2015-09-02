@@ -61,7 +61,7 @@ public class RestaurantMenuUIController : MonoBehaviour {
 			else{
 				allergyPassParent.SetActive(false);
 				allergyFailParent.SetActive(true);
-				allergyImage.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(allergy);
+				allergyImage.sprite = SpriteCacheManager.GetAllergySpriteData(allergy);
 				allergyText.text = LocalizationText.GetText("AllergyFailPrefix") + LocalizationText.GetText(allergy.ToString());
 			}
 
@@ -70,16 +70,16 @@ public class RestaurantMenuUIController : MonoBehaviour {
 				button2.GetComponent<Button>().interactable = false;
 				RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().step = 2;
 				RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
-				button2Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(customerFoodChoices[0].SpriteName);
-				button1Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(customerFoodChoices[1].SpriteName);
+				button2Image.sprite = SpriteCacheManager.GetFoodSpriteData(customerFoodChoices[0].SpriteName);
+				button1Image.sprite = SpriteCacheManager.GetFoodSpriteData(customerFoodChoices[1].SpriteName);
 				choices.Add(customerFoodChoices[1]);
 				choices.Add(customerFoodChoices[0]);
 			}
 			else if (RestaurantManager.Instance.isTutorial && !RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().isAllergy){
 				RestaurantManager.Instance.GetTable(Waiter.Instance.CurrentTable).Seat.GetComponentInChildren<CustomerTutorial>().step = 5;
 				RestaurantManager.Instance.GetTable(Waiter.Instance.CurrentTable).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
-				button2Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(customerFoodChoices[0].SpriteName);
-				button1Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(customerFoodChoices[1].SpriteName);
+				button2Image.sprite = SpriteCacheManager.GetFoodSpriteData(customerFoodChoices[0].SpriteName);
+				button1Image.sprite = SpriteCacheManager.GetFoodSpriteData(customerFoodChoices[1].SpriteName);
 				choices.Add(customerFoodChoices[0]);
 				choices.Add(customerFoodChoices[1]);
 			}
@@ -87,13 +87,13 @@ public class RestaurantMenuUIController : MonoBehaviour {
 				int rand = UnityEngine.Random.Range (0, customerFoodChoices.Count);
 				rand1 = rand;	////
 				choicesCount1 = customerFoodChoices.Count;	////
-				button1Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(customerFoodChoices[rand].SpriteName);
+				button1Image.sprite = SpriteCacheManager.GetFoodSpriteData(customerFoodChoices[rand].SpriteName);
 				choices.Add(customerFoodChoices[rand]);
 				customerFoodChoices.RemoveAt(rand);
 				rand = UnityEngine.Random.Range (0, customerFoodChoices.Count);
 				rand2 = rand;	////
 				choicesCount2 = customerFoodChoices.Count;	////
-				button2Image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(customerFoodChoices[rand].SpriteName);
+				button2Image.sprite = SpriteCacheManager.GetFoodSpriteData(customerFoodChoices[rand].SpriteName);
 				choices.Add(customerFoodChoices[rand]);
 			}
 			menuTweenToggle.Show();
@@ -130,10 +130,10 @@ public class RestaurantMenuUIController : MonoBehaviour {
 		inspectAnimation.transform.localScale = new Vector3(1f, 1f, 1f);
 
 		// Show the food allergy nodes here
-		allergyNodeImage1.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(choices[0].AllergyList[0]);
+		allergyNodeImage1.sprite = SpriteCacheManager.GetAllergySpriteData(choices[0].AllergyList[0]);
 		allergyNode1.SetActive(true);
 
-		allergyNodeImage2.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(choices[1].AllergyList[0]);
+		allergyNodeImage2.sprite = SpriteCacheManager.GetAllergySpriteData(choices[1].AllergyList[0]);
 		allergyNode2.SetActive(true);
 	}
 

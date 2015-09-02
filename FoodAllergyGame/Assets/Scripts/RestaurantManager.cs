@@ -84,8 +84,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			StartDay(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()));
 
 		}
-		ImmutableDataDecoItem _sprite = DataLoaderDecoItem.GetData(GetCurrentSprite(DecoTypes.Floor));
-		floorSprite.sprite = Resources.Load<Sprite>(_sprite.SpriteName);
+		ImmutableDataDecoItem decoData = DataManager.Instance.GetActiveDecoData(DecoTypes.Floor);
+		floorSprite.sprite = Resources.Load<Sprite>(decoData.SpriteName);
 	}
 
 	// Called at the start of the game day begins the day tracker coroutine 
@@ -329,10 +329,6 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			currCustomers[i].GetComponent<Customer>().customerUI.gameObject.SetActive(true);
 		}
 		StartCoroutine("SpawnCustomer");
-	}
-
-	public string GetCurrentSprite(DecoTypes deco){
-		return DataManager.Instance.GameData.Decoration.currDiner[deco];
 	}
 
 	#region PausingUI functions

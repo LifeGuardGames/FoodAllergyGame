@@ -12,7 +12,7 @@ public class FoodInfoButton : MonoBehaviour {
 		foodID = foodData.ID;
 		gameObject.name = foodData.ID;
 		label.text = LocalizationText.GetText(foodData.FoodNameKey);
-		image.sprite = SpriteCacheManager.Instance.GetFoodSpriteData(foodData.SpriteName);
+		image.sprite = SpriteCacheManager.GetFoodSpriteData(foodData.SpriteName);
 	}
 	
 	public void OnButtonClick(){

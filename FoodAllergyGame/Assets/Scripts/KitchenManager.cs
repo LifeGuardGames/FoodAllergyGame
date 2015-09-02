@@ -23,9 +23,10 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 	public void Init(float mode){
 		cookTimer = mode;
 		spinnerHighlight.SetActive(false);
-		ImmutableDataDecoItem _sprite = DataLoaderDecoItem.GetData(RestaurantManager.Instance.GetCurrentSprite(DecoTypes.Kitchen));
-		front.sprite = Resources.Load<Sprite>(_sprite.SpriteName);
-		back.sprite = Resources.Load<Sprite>(_sprite.SecondarySprite);
+
+		ImmutableDataDecoItem decoData = DataManager.Instance.GetActiveDecoData(DecoTypes.Kitchen);
+		front.sprite = Resources.Load<Sprite>(decoData.SpriteName);
+		back.sprite = Resources.Load<Sprite>(decoData.SecondarySprite);
 	}
 
 	// takes the orders from the waiter and cooks them
