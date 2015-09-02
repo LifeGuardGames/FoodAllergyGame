@@ -84,8 +84,13 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			StartDay(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()));
 
 		}
+<<<<<<< HEAD
+		ImmutableDataDecoItem _sprite = DataLoaderDecoItem.GetData(GetCurrentSprite(DecoTypes.Floor));
+		floorSprite.sprite = SpriteCacheManager.Instance.GetDecoSpriteData(_sprite.SpriteName);
+=======
 		ImmutableDataDecoItem decoData = DataManager.Instance.GetActiveDecoData(DecoTypes.Floor);
-		floorSprite.sprite = SpriteCacheManager.Instance.GetDecoSpriteData(decoData.SpriteName);
+		floorSprite.sprite = Resources.Load<Sprite>(decoData.SpriteName);
+>>>>>>> d852599334b01b76977e8976ab944147c9d78539
 	}
 
 	// Called at the start of the game day begins the day tracker coroutine 

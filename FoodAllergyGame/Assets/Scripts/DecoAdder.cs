@@ -10,14 +10,15 @@ public class DecoAdder : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if(type == DecoTypes.Table){
-			sprite.sprite = SpriteCacheManager.Instance.GetDecoSpriteData(DataLoaderDecoItem.GetData(DataManager.Instance.GameData.Decoration.currDiner[DecoTypes.Table]).SpriteName);
+			ImmutableDataDecoItem activeDeco = DataManager.Instance.GetActiveDecoData(DecoTypes.Table);
+			sprite.sprite = SpriteCacheManager.Instance.GetDecoSpriteData(activeDeco.SpriteName);
 		}
 		else{
 			DecoManager.Instance.sceneObjects.Add(type, this.gameObject);
-			ImmutableDataDecoItem _sprite = DataLoaderDecoItem.GetData(DecoManager.Instance.SetUp(type));
-			sprite.sprite = SpriteCacheManager.Instance.GetDecoSpriteData(_sprite.SpriteName);
+			ImmutableDataDecoItem decoData = DataManager.Instance.GetActiveDecoData(type);
+			sprite.sprite = sprite.sprite = SpriteCacheManager.Instance.GetDecoSpriteData(activeDeco.SpriteName);
 			if(kitchenBack != null){
-				kitchenBack.sprite = SpriteCacheManager.Instance.GetDecoSpriteData(_sprite.SecondarySprite);
+				kitchenBack.sprite = SpriteCacheManager.Instance.GetDecoSpriteData(activeDeco.SpriteName);
 			}
 		}
 	}

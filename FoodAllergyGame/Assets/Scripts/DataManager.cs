@@ -124,9 +124,19 @@ public class DataManager : Singleton<DataManager> {
 			OnGameDataSaved(this, EventArgs.Empty);
 		}
 	}
+
 	void OnApplicationPause(){
 		Analytics.CustomEvent("Quit Game", new Dictionary<string, object>{
 			{"Scene: ", Application.loadedLevelName} 
 		});
 	}
+
+	#region Multi-scene Data Handling
+
+	// This is called from both Restaurant and Deco scene, have this datamanager handle this
+	public ImmutableDataDecoItem GetActiveDecoData(DecoTypes deco){
+		return DataLoaderDecoItem.GetData(GameData.Decoration.ActiveDeco[deco]);
+	}
+
+	#endregion
 }

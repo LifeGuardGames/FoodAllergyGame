@@ -49,7 +49,7 @@ public class CustomerUIController : MonoBehaviour {
 //		}
 //		else{
 //			allergyText.text = "Has " + allergy.ToString() + " allergies";
-//			allergyImage.sprite = SpriteCacheManager.Instance.GetAllergySpriteData(allergy);
+//			allergyImage.sprite = SpriteCacheManager.GetAllergySpriteData(allergy);
 //		}
 //	}
 

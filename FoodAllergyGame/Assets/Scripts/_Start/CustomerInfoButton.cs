@@ -12,7 +12,7 @@ public class CustomerInfoButton : MonoBehaviour {
 		customerID = customerData.ID;
 		gameObject.name = customerData.ID;
 		label.text = LocalizationText.GetText(customerData.CustomerNameKey);
-		image.sprite = SpriteCacheManager.Instance.GetCustomerSpriteData(customerData.SpriteName);
+		image.sprite = SpriteCacheManager.GetCustomerSpriteData(customerData.SpriteName);
 	}
 	
 	public void OnButtonClick(){

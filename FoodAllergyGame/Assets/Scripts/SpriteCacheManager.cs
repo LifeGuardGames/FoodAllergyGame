@@ -25,22 +25,22 @@ public class SpriteCacheManager : Singleton<SpriteCacheManager> {
 //		return foodSpriteDictionary[spriteName];
 //	}
 
-	public Sprite GetFoodSpriteData(string spriteName){
+	public static Sprite GetFoodSpriteData(string spriteName){
 		Sprite sprite = Resources.Load<Sprite>(spriteName);
 		return sprite;
 	}
 
-	public Sprite GetCustomerSpriteData(string spriteName){
+	public static Sprite GetCustomerSpriteData(string spriteName){
 		Sprite sprite = Resources.Load<Sprite>(spriteName);
 		return sprite;
 	}
 
-	public Sprite GetDecoSpriteData(string spriteName){
+	public static Sprite GetDecoSpriteData(string spriteName){
 		Sprite sprite = Resources.Load<Sprite>(spriteName);
 		return sprite;
 	}
 
-	public Sprite GetAllergySpriteData(Allergies allergyEnum){
+	public static Sprite GetAllergySpriteData(Allergies allergyEnum){
 		Sprite sprite = Resources.Load<Sprite>("Allergy" + allergyEnum.ToString());
 		return sprite;
 	}
