@@ -17,8 +17,9 @@ public class DecoButton : MonoBehaviour {
 		decoID = decoData.ID;
 		gameObject.name = decoData.ID;
 		decoNameText.text = decoData.ButtonTitle;
-		decoImage.sprite = SpriteCacheManager.Instance.GetDecoSpriteData(decoData.SpriteName);
-
+		if(decoData.SpriteName != "None"){
+			decoImage.sprite = SpriteCacheManager.Instance.GetDecoSpriteData(decoData.SpriteName);
+		}
 		// Check if it was bought already or show the price
 		if(DataManager.Instance.GameData.Decoration.BoughtDeco.ContainsKey(decoID)){
 			isBought = true;

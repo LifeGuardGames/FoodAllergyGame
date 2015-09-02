@@ -26,6 +26,7 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	public void PopulateDecoGrid(){
+		currentDecoPage = 0;
 		// Delete any existing buttons in the grid
 		foreach(Transform child in grid){
 			Destroy(child.gameObject);

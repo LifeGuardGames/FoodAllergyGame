@@ -92,8 +92,14 @@
 	
 	<DecoItem ID = "PlayArea00">
 		<Type>PlayArea</Type>
-		<Price>200</Price>
+		<Price>0</Price>
 		<Title>None</Title>
+		<SpriteName>None</SpriteName>
+	</DecoItem>
+	<DecoItem ID = "PlayArea01">
+		<Type>PlayArea</Type>
+		<Price>0</Price>
+		<Title>Default</Title>
 		<SpriteName>RestPlayArea</SpriteName>
 	</DecoItem>
 	
