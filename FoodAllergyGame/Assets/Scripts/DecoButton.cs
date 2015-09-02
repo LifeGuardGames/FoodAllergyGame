@@ -11,6 +11,7 @@ public class DecoButton : MonoBehaviour {
 	public Text priceText;
 	public Text decoNameText;
 
+	public Sprite removeSprite;
 	public Sprite unboughtSprite;
 	public Sprite unequippedSprite;
 	public Sprite equippedSprite;
@@ -24,6 +25,9 @@ public class DecoButton : MonoBehaviour {
 		if(decoData.SpriteName != "None"){
 			string spriteName = decoData.SpriteName;
 			decoImage.sprite = SpriteCacheManager.GetDecoSpriteData(spriteName);
+		}
+		else{
+			decoImage.sprite = removeSprite;
 		}
 
 		RefreshButtonState();
