@@ -17,7 +17,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	private float dayTimeLeft;		// Current amount of time left in the day
 
 	private int customerNumber = 0;
-	public float customerTimer;		//time it takes for a customer to spawn
+	private float customerTimer;		//time it takes for a customer to spawn
 	public bool dayOver = false;	// bool controlling customer spawning depending on the stage of the day
 	public int actTables;
 	public int MedicUsed;
@@ -47,6 +47,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public bool isTutorial;
 	public SpriteRenderer floorSprite;
 	public PauseUIController pauseUI;
+	public float baseCustomerTimer;
 
 #region Analytics
 	//analytics
@@ -102,12 +103,13 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		
 		if(eventData.ID == "EventT1"){
 			isTutorial = true;
-			customerSpawnTimer = customerTimer / satisfactionAI.DifficultyLevel + 1;
+			//customerSpawnTimer = customerTimer / satisfactionAI.DifficultyLevel + 1;
 		}
 		else{
 			dayTime = eventData.DayLengthMod;
 			dayTimeLeft = dayTime;
 		}
+		customerTimer = 1.0f;
 		StartCoroutine("SpawnCustomer");
 	}
 
@@ -127,6 +129,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	// Spawns a customer after a given amount of timer then it restarts the coroutine
 	IEnumerator SpawnCustomer(){
 		yield return new WaitForSeconds(customerSpawnTimer);
+
 		if(isTutorial){
 			ImmutableDataCustomer test;
 			test = DataLoaderCustomer.GetData(currCusSet[0]);
@@ -144,15 +147,13 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 //				Debug.Log (satisfactionAI.DifficultyLevel);
 				customerSpawnTimer = customerTimer / satisfactionAI.DifficultyLevel+1;
 				if(satisfactionAI.DifficultyLevel > 13){
-					customerSpawnTimer = customerTimer / satisfactionAI.DifficultyLevel+1;
+					customerSpawnTimer = baseCustomerTimer / satisfactionAI.DifficultyLevel+1;
 				}
 				else{
-					customerSpawnTimer = customerTimer / satisfactionAI.DifficultyLevel+2;
+					customerSpawnTimer = baseCustomerTimer / satisfactionAI.DifficultyLevel+2;
 				}
-					rand = UnityEngine.Random.Range(0,currCusSet.Count);
-					test = DataLoaderCustomer.GetData(currCusSet[rand]);
-			
-
+				rand = UnityEngine.Random.Range(0,currCusSet.Count);
+				test = DataLoaderCustomer.GetData(currCusSet[rand]);
 				GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
 				GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 				customerNumber++;
