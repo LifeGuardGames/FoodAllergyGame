@@ -11,14 +11,14 @@ public class DecoAdder : MonoBehaviour {
 	void Start () {
 		if(type == DecoTypes.Table){
 			ImmutableDataDecoItem activeDeco = DataManager.Instance.GetActiveDecoData(DecoTypes.Table);
-			sprite.sprite = SpriteCacheManager.Instance.GetDecoSpriteData(activeDeco.SpriteName);
+			sprite.sprite = SpriteCacheManager.GetDecoSpriteData(activeDeco.SpriteName);
 		}
 		else{
 			DecoManager.Instance.sceneObjects.Add(type, this.gameObject);
 			ImmutableDataDecoItem decoData = DataManager.Instance.GetActiveDecoData(type);
-			sprite.sprite = sprite.sprite = SpriteCacheManager.Instance.GetDecoSpriteData(activeDeco.SpriteName);
+			sprite.sprite = sprite.sprite = SpriteCacheManager.GetDecoSpriteData(decoData.SpriteName);
 			if(kitchenBack != null){
-				kitchenBack.sprite = SpriteCacheManager.Instance.GetDecoSpriteData(activeDeco.SpriteName);
+				kitchenBack.sprite = SpriteCacheManager.GetDecoSpriteData(decoData.SpriteName);
 			}
 		}
 	}
