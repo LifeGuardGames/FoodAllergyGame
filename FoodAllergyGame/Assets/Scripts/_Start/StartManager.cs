@@ -99,7 +99,7 @@ public class StartManager : Singleton<StartManager>{
 	}
 
 	public void DecoButtonClicked(){
-		DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance = true;
+		DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance = false;
 		TransitionManager.Instance.TransitionScene(SceneUtils.DECO);
 	}
 
