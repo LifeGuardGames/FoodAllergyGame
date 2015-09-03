@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 
 public class MutableDataDecoration{
+	public bool IsFirstTimeEntrance;
 	public Dictionary<DecoTypes, string> ActiveDeco;
-	public Dictionary <string, string> BoughtDeco;
+	public Dictionary<string, string> BoughtDeco;
 
 	public MutableDataDecoration(){
+		IsFirstTimeEntrance = true;
+
 		BoughtDeco = new Dictionary<string, string>();
 		// Add default decos
 		BoughtDeco.Add("Floor00", "");

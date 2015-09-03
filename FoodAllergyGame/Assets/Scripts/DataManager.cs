@@ -27,7 +27,6 @@ public class DataManager : Singleton<DataManager> {
 	}
 
 	void Awake(){
-
 		// Make object persistent
 		if(isCreated){
 			// If There is a duplicate in the scene. delete the object and jump Awake
@@ -36,17 +35,16 @@ public class DataManager : Singleton<DataManager> {
 		}
 		DontDestroyOnLoad(gameObject);
 		isCreated = true;
-
-
-		/////////
-		PlayerPrefs.DeleteAll(); 	// Restart on new game
-		/////////
-
-
+		
 		// JSON serializer setting
 		JSON.Instance.Parameters.UseExtensions = false;
 		JSON.Instance.Parameters.UseUTCDateTime = false;
 		JSON.Instance.Parameters.UseOptimizedDatasetSchema = true;
+
+		// Clear data if development build
+		#if DEVELOPMENT_BUILD
+		PlayerPrefs.DeleteAll();
+		#endif
 
 		// Debug for an independent scene. Will initialize all data before other classes call DataManager
 		if(isDebug){

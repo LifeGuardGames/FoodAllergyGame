@@ -77,7 +77,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		customerHash = new Dictionary<string, GameObject>();
 		satisfactionAI = new SatisfactionAI();
 		CustomerSeated();
-		if(DataManager.Instance.isDebug){
+		if(DataManager.Instance.IsDebug){
 			FoodManager.Instance.GenerateMenu(DataLoaderMenuSet.GetData("MenuSetT1").MenuSet.ToList(), 0);
 			StartDay(DataLoaderEvents.GetData("Event00"));
 		}
@@ -242,7 +242,10 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 					restaurantUI.DayComplete(satisfactionAI.MissingCustomers, satisfactionAI.AvgSatifaction(), dayEarnedCash,
 				 	                        FoodManager.Instance.MenuCost, dayNetCash,
 				 	                        DataManager.Instance.GameData.Cash.CurrentCash,
-					                         Medic.Instance.MedicCost);
+					                        Medic.Instance.MedicCost);
+
+					// Save game data
+					DataManager.Instance.SaveGameData();
 				}
 			}
 		}
@@ -309,6 +312,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		StopCoroutine("SpawnCustomer");
 		StartCoroutine(LightsOut());
 	}
+
 	public void SpawnSecondTut(){
 		ImmutableDataCustomer test;
 		test = DataLoaderCustomer.GetData(currCusSet[0]);

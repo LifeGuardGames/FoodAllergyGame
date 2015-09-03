@@ -12,32 +12,42 @@ public class StartManager : Singleton<StartManager>{
 	public AlphaTweenToggle infoFadeBackground;
 
 	public GameObject unlockParent;
+	public DecoEntranceUIController decoEntranceUIController;
 
 //	private ImmutableDataEvents currentEvent = null;
 
 	void Start(){
 		// Refresh tier calculation
 		TierManager.Instance.RecalculateTier();
-		if(Constants.GetDebugConstant<string>("EventID")!= default(string)){
+		if(Constants.GetDebugConstant<string>("EventID") != default(string)){
 			DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = Constants.GetDebugConstant<string>("EventID");
 		}
 		// Check to see if the previous day has been completed
 		else if(DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent){
 			if(DataManager.Instance.GameData.Tutorial.IsTutorial1Done == false){
+				decoEntranceUIController.Hide();
 				unlockParent.SetActive(false); // TODO clean this up
 				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT1";
 			}
 			else if(DataManager.Instance.GameData.Tutorial.IsTutorial2Done == false){
+				decoEntranceUIController.Hide();
 				unlockParent.SetActive(true); // TODO clean this up
 				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT3";
 			}
 			else{
+				// Show the deco entrance
+				bool isFirstTimeEntrance = DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance;
+				decoEntranceUIController.Show(isFirstTimeEntrance);
+
 				unlockParent.SetActive(false); // TODO clean this up
 				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = TierManager.Instance.GetNewEvent();
 			}
 
 			// Lock the generate event bool until day is completed
 			DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = false;
+
+			// Save game data again, lock down on an event
+			DataManager.Instance.SaveGameData();
 		}
 		else{
 //			currentEvent = DataLoaderEvents.GetData(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent);
@@ -88,7 +98,8 @@ public class StartManager : Singleton<StartManager>{
 		TransitionManager.Instance.TransitionScene(SceneUtils.COMICSCENE);
 	}
 
-	public void OnDecoButtonClicked(){
+	public void DecoButtonClicked(){
+		DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance = true;
 		TransitionManager.Instance.TransitionScene(SceneUtils.DECO);
 	}
 
