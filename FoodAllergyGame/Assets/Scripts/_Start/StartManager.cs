@@ -89,7 +89,7 @@ public class StartManager : Singleton<StartManager>{
 	}
 
 	public void OnDecoButtonClicked(){
-
+		TransitionManager.Instance.TransitionScene(SceneUtils.DECO);
 	}
 
 	public void OnInfoButtonClicked(){
