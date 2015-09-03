@@ -18,8 +18,8 @@ public class TierManager : Singleton<TierManager> {
 		}
 		else{
 			int progress = DataManager.Instance.GameData.Cash.TotalCash;
-			tier = progress / 200;
-
+//			tier = progress / 200;
+			tier = 0;
 			// Print out tier
 			Debug.Log("Recalculated tier: " + tier + "     total cash: " + progress);
 		}
