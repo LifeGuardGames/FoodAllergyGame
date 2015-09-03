@@ -16,7 +16,6 @@ public class DecoManager : Singleton<DecoManager>{
 	private string currentTab = "Table";
 	public GameObject leftButton;
 	public GameObject rightButton;
-	public TweenToggle decoTweenToggle;
 	private List<ImmutableDataDecoItem> decoList;
 
 	#region Static functions
@@ -134,15 +133,6 @@ public class DecoManager : Singleton<DecoManager>{
 		}
 		else{
 			rightButton.SetActive(true);
-		}
-	}
-	
-	public void ToggleUI(){
-		if(decoTweenToggle.IsShown){
-			decoTweenToggle.Hide();
-		}
-		else{
-			decoTweenToggle.Show();
 		}
 	}
 
