@@ -18,6 +18,8 @@ public class DecoManager : Singleton<DecoManager>{
 	public GameObject rightButton;
 	private List<ImmutableDataDecoItem> decoList;
 
+	public GameObject decoTutorial;
+
 	#region Static functions
 	public static bool IsDecoBought(string decoID){
 		return DataManager.Instance.GameData.Decoration.BoughtDeco.ContainsKey(decoID);
@@ -75,7 +77,16 @@ public class DecoManager : Singleton<DecoManager>{
 		}
 		else{
 			BuyItem(decoID);
+
+			// HACK for prototyping only
+			if(decoID == "PlayArea01"){
+				Invoke("ShowTutorial", 1.5f);
+			}
 		}
+	}
+
+	public void ShowTutorial(){
+		decoTutorial.SetActive(true);
 	}
 
 	private void BuyItem(string decoID){
