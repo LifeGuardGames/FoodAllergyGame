@@ -16,9 +16,17 @@ public class PlayArea : MonoBehaviour, IWaiterSelection {
 	// Use this for initialization
 	void Start () {
 		maxLimit = 2;
-		this.gameObject.SetActive(Constants.GetConstant<bool>("PlayAreaOn"));
+		if(DataManager.Instance.IsDebug){
+			this.gameObject.SetActive(Constants.GetConstant<bool>("PlayAreaOn"));
+		}
 		availability = new List<bool>();
-		//ImmutableDataDecoItem _sprite = DataLoaderDecoItem.GetData(RestaurantManager.Instance.GetCurrentSprite(DecoTypes.PlayArea));
+		ImmutableDataDecoItem _sprite = DataManager.Instance.GetActiveDecoData(DecoTypes.PlayArea);
+		if(_sprite.SpriteName == "None"){
+			this.gameObject.SetActive(false);
+		}
+		else{
+			this.GetComponent<SpriteRenderer>().sprite = SpriteCacheManager.GetDecoSpriteData(_sprite.SpriteName);
+		}
 	}
 	
 	// Update is called once per frame
