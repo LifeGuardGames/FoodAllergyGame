@@ -266,7 +266,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		RestaurantManager.Instance.medicTutorial.SetActive(false);
 		if(SickCustomers.Count > 0){
 			attempted += SickCustomers.Count;
-			Medic.Instance.MoveToLocation(SickCustomers[0].transform.position);
+			Medic.Instance.SetOutFromHome(SickCustomers[0].transform.position);
 		}
 	}
 

@@ -86,6 +86,16 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		isBroken = true;
 	}
 
+	public void TurnOnHighlight(){
+		if(!inUse){
+			tableHighlight.SetActive(true);
+		}
+	}
+	
+	public void TurnOffHighlight(){
+		tableHighlight.SetActive(false);
+	}
+
 	#region IWaiterSelection implementation
 	public void OnWaiterArrived(){
 		if(!isBroken && seat.childCount > 0){
@@ -107,16 +117,6 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		}
 	}
 
-	public void TurnOnHighlight(){
-		if(!inUse){
-			tableHighlight.SetActive(true);
-		}
-	}
-
-	public void TurnOffHighlight(){
-		tableHighlight.SetActive(false);
-	}
-
 	public void OnClicked(){
 //		if(!TouchManager.IsHoveringOverGUI()){
 			// Check if customers need to jump to the table
@@ -126,22 +126,18 @@ public class Table : MonoBehaviour, IWaiterSelection{
 				Waiter.Instance.CurrentLineCustomer.GetComponent<Customer>().JumpToTable(tableNumber);
 				inUse = true;
 			}
-
 			else if(isGossiped){
 			node.transform.GetChild(0).GetComponent<CustomerGossiper>().GoAway();
 			isGossiped = false;
-		}
+			}
 			// Move the waiter to the table to do what it does
 			else{
 				Waiter.Instance.FindRoute(node,this);
-//				Waiter.Instance.MoveToLocation(waiterSpot.position, this);
 			}
 		}
 		else{
 			Waiter.Instance.FindRoute(node,this);
-//			Waiter.Instance.MoveToLocation(waiterSpot.position, this);
 		}
-//		}
 	}
 	#endregion
 }

@@ -370,7 +370,6 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			else{
 				DataManager.Instance.GameData.Tutorial.IsMedicTuT2Done = true;
 			}
-			RestaurantManager.Instance.medicButton.GetComponent<Animator>().SetBool("TutMedic", true);
 			RestaurantManager.Instance.medicTutorial.SetActive(true);
 
 			string foodSpriteName = DataLoaderFood.GetData(order.GetComponent<Order>().foodID).SpriteName;
