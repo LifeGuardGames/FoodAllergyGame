@@ -38,6 +38,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	private ImmutableDataEvents eventData;
 	public LineController Line;
 	public RestaurantMenuUIController menuUIController;
+	public DoorController doorController;
 	public KitchenManager kitchen;
 	public bool firstSickCustomer = false;
 	public GameObject medicButton;
@@ -129,6 +130,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	// Spawns a customer after a given amount of timer then it restarts the coroutine
 	IEnumerator SpawnCustomer(){
 		yield return new WaitForSeconds(customerSpawnTimer);
+
+		doorController.OpenAndCloseDoor();
 
 		if(isTutorial){
 			ImmutableDataCustomer test;
