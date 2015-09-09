@@ -19,7 +19,7 @@ public class StartManager : Singleton<StartManager>{
 	void Start(){
 		// Refresh tier calculation
 		TierManager.Instance.RecalculateTier();
-		if(Constants.GetDebugConstant<string>("EventID") != default(string)){
+		if(DataManager.Instance.IsDebug && Constants.GetDebugConstant<string>("EventID") != default(string)){
 			DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = Constants.GetDebugConstant<string>("EventID");
 		}
 		// Check to see if the previous day has been completed
@@ -29,7 +29,7 @@ public class StartManager : Singleton<StartManager>{
 				unlockParent.SetActive(false); // TODO clean this up
 				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT1";
 			}
-			else if(DataManager.Instance.GameData.Tutorial.IsTutorial2Done == false){
+			else if(DataManager.Instance.GameData.Tutorial.IsTutorial3Done == false){
 				decoEntranceUIController.Hide();
 				unlockParent.SetActive(true); // TODO clean this up
 				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT3";

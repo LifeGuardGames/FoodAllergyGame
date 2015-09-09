@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Net;
@@ -7,7 +7,7 @@ public static class Commands {
 
 	[CUDLR.Command("list active customers", "Lists customers info")]
 	public static void ListCustomer(){
-		List<GameObject> customers = new List<GameObject>(RestaurantManager.Instance.getCurrentCustomers());
+		List<GameObject> customers = new List<GameObject>(RestaurantManager.Instance.GetCurrentCustomers());
 		foreach (GameObject go in customers){
 			CUDLR.Console.Log("Type " + go.GetComponent<Customer>().type);
 			CUDLR.Console.Log("Sate " + go.GetComponent<Customer>().state.ToString());

@@ -4,11 +4,6 @@ using System.Collections.Generic;
 using UnityEngine.Analytics;
 
 public class Customer : MonoBehaviour, IWaiterSelection{
-	// ID an id given on creation
-	// Select food keyword based off allergen and random rolls
-	// Allergen random between wheat, dairy and peanut
-	// State the current state of the customer
-	// NotifyLeave gives the user money based of satifation and then passes the id to the dayManager
 
 	public int tableNum;
 	public float timer = 1.0f;
@@ -493,7 +488,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		return false;
 	}
 
-	public void deselect(){
+	public void Deselect(){
 		RestaurantManager.Instance.CustomerSeated();
 		gameObject.transform.localScale = new Vector3(1.0f,1.0f,1.0f);
 		Waiter.Instance.CurrentLineCustomer = null;
@@ -528,21 +523,21 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 	#endregion
 
-	public virtual void Playing(){
-	//	this.transform.GetChild(0).gameObject.SetActive(false);
-	//	this.transform.GetChild(1).gameObject.SetActive(false);
+	public virtual void GoToPlayArea(Vector3 playAreaSpot){
+		transform.position = playAreaSpot;
+		GetComponent<BoxCollider>().enabled = false;
 		RestaurantManager.Instance.PlayAreaUses++;
 		StopCoroutine("SatisfactionTimer");
-		deselect();
-		this.GetComponent<BoxCollider>().enabled = false;
-		StartCoroutine("PlayTime");
+		Deselect();
+		StartCoroutine(PlayTime());
 	}
 
-	IEnumerator PlayTime(){
+	private IEnumerator PlayTime(){
 		yield return new WaitForSeconds(10.0f);
-		//this.transform.GetChild(0).gameObject.SetActive(true);
-	//	this.transform.GetChild(1).gameObject.SetActive(true);
-		this.GetComponent<BoxCollider>().enabled = true;
+
+		// End play
+		transform.localPosition = Vector3.zero;	// Move the customer back to its position in line
+		GetComponent<BoxCollider>().enabled = true;
 		StartCoroutine("SatisfactionTimer");
 	}
 }

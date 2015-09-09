@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class CustomerCoolKid : Customer {
 
-	public override void Playing(){
+	public override void GoToPlayArea(Vector3 playAreaSpot){
 		satisfaction--;
-		base.Playing();
+		base.GoToPlayArea(playAreaSpot);
 	}
 }
