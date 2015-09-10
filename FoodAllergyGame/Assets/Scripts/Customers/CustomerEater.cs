@@ -29,8 +29,7 @@ public class CustomerEater : Customer {
 							// otherwise enjoy the meal
 							Destroy(RestaurantManager.Instance.GetTable(i).Seat.GetChild(0).gameObject);
 							RestaurantManager.Instance.GetTable(i).CustomerEaten();
-							satisfaction++;
-							customerUI.UpdateSatisfaction(satisfaction);
+							UpdateSatisfaction(1);
 							break;
 						}
 					}
