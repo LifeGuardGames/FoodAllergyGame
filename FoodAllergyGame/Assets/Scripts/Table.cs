@@ -28,6 +28,9 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	public SpriteRenderer tableSprite;
 
 	void Start(){
+		// Add youself to the list of tables
+		RestaurantManager.Instance.TableList.Add(gameObject);
+
 		ImmutableDataDecoItem decoData = DataManager.Instance.GetActiveDecoData(DecoTypes.Table);
 		if(tableNumber == 5){
 			this.gameObject.SetActive(Constants.GetConstant<bool>("FlythruOn"));

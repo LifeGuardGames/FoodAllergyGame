@@ -14,6 +14,7 @@ public class MutableDataDecoration{
 		BoughtDeco.Add("Floor00", "");
 		BoughtDeco.Add("Table00", "");
 		BoughtDeco.Add("Kitchen00", "");
+		BoughtDeco.Add("Bathroom00", "");
 
 		// Add none defaults
 		BoughtDeco.Add("PlayArea00", "");
@@ -26,6 +27,7 @@ public class MutableDataDecoration{
 		ActiveDeco.Add(DecoTypes.Floor, "Floor00");
 		ActiveDeco.Add(DecoTypes.Table, "Table00");
 		ActiveDeco.Add(DecoTypes.Kitchen, "Kitchen00");
+		ActiveDeco.Add(DecoTypes.Bathroom, "Bathroom00");
 
 		// Add none defaults
 		ActiveDeco.Add(DecoTypes.PlayArea, "PlayArea00");

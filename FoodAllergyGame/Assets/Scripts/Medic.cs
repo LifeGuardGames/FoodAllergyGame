@@ -47,7 +47,7 @@ public class Medic : Singleton<Medic> {
 
 	// Stops the customer from having an allergy attack
 	public void SaveCustomer(){
-		StartCoroutine(TreatCustomer());
+		StartCoroutine("TreatCustomer");
 
 	}
 

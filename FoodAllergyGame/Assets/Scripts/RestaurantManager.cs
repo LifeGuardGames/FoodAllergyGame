@@ -28,7 +28,12 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	// our satisfaction ai 
 	private SatisfactionAI satisfactionAI;
 	public List<GameObject> SickCustomers;
-	public GameObject[] tableList;
+
+	private List<GameObject> tableList = new List<GameObject>();
+	public List<GameObject> TableList{
+		get{ return tableList; }
+	}
+
 	public RestaurantUIManager restaurantUI;
 	private ImmutableDataEvents eventData;
 	public LineController Line;

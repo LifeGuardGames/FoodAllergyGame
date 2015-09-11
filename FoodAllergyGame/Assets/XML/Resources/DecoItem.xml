@@ -81,6 +81,14 @@
 	</DecoItem>
 	
 	
+	<DecoItem ID = "Bathroom00">
+		<Type>Bathroom</Type>
+		<Price>0</Price>
+		<TitleKey>BathroomBasic</TitleKey>
+		<SpriteName>RestBathroomBasic</SpriteName>
+	</DecoItem>
+	
+	
 	<DecoItem ID = "VIP00">
 		<Type>VIP</Type>
 		<Price>200</Price>

@@ -28,6 +28,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public List <ImmutableDataFood> choices;	// a list containing possible options the user would like to eat
 	public bool hasPowerUp;
 	private int priceMultiplier;
+	private int playAreaIndexAux;				// For use in coroutine, needs parameter with string call
 
 	// Basic intitialzation
 	public virtual void Init(int num, ImmutableDataEvents mode){
@@ -319,7 +320,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		int rand = Random.Range(0,10);
 		customerAnim.SetEating(false);
 		if(rand > 7){
-			Bathroom();
+			UseBathroom();
 			Debug.Log ("Table " + tableNum.ToString() +" has gone to the bathroom");
 		}
 		else{
@@ -446,7 +447,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		}
 	}
 
-	public void Bathroom(){
+	public void UseBathroom(){
 		if(Constants.GetConstant<bool>("BathRoomOn")){
 			customerUI.satisfaction1.gameObject.SetActive(false);
 			customerUI.satisfaction2.gameObject.SetActive(false);
@@ -454,7 +455,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			customerUI.ToggleStar(false);
 			customerAnim.gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
 			attentionSpan = (5.0f * timer);
-			StartCoroutine("UseBathroom");
+			StartCoroutine("InBathroom");
 		}
 		else{
 			if(order.gameObject != null){
@@ -468,7 +469,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		}
 	}
 
-	IEnumerator UseBathroom(){
+	private IEnumerator InBathroom(){
 		yield return new WaitForSeconds(attentionSpan);
 		if(order.gameObject != null){
 			Destroy(order.gameObject);
@@ -537,14 +538,15 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		GetComponent<BoxCollider>().enabled = false;
 		StopCoroutine("SatisfactionTimer");
 		Deselect();
-		StartCoroutine(PlayTime(spotIndex));
+		playAreaIndexAux = spotIndex;
+		StartCoroutine("PlayTime");
 	}
 
-	private IEnumerator PlayTime(int spotIndex){
+	private IEnumerator PlayTime(){
 		yield return new WaitForSeconds(10.0f);
 
 		// End play
-		PlayArea.Instance.EndPlayTime(spotIndex);
+		PlayArea.Instance.EndPlayTime(playAreaIndexAux);
 		transform.localPosition = Vector3.zero;	// Move the customer back to its position in line
 		GetComponent<BoxCollider>().enabled = true;
 		StartCoroutine("SatisfactionTimer");
