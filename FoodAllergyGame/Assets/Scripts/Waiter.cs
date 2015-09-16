@@ -62,7 +62,7 @@ public class Waiter : Singleton<Waiter>{
 			moving = true;
 		}
 		else{
-			pathList = Pathfinding.Instance.findPath(currentNode, _targetNode);
+			pathList = Pathfinding.Instance.FindPath(currentNode, _targetNode);
 			targetNode = _targetNode;
 			moving = true;
 		}

@@ -3,7 +3,11 @@ using System.Collections;
 
 public class MedicArea : MonoBehaviour, IWaiterSelection{
 
-	public GameObject node;
+	private GameObject node;
+
+	void Start(){
+		node = Pathfinding.Instance.NodeMedic;
+	}
 
 	#region IWaiterSelection implementation
 	public void OnWaiterArrived(){

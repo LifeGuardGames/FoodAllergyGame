@@ -9,20 +9,20 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 	public bool isPaused;
 	private float customerSpawnTimer;
-	public float dayTime;			// Total amount of time in the day
-	private float dayTimeLeft;		// Current amount of time left in the day
+	public float dayTime;					// Total amount of time in the day
+	private float dayTimeLeft;				// Current amount of time left in the day
 
 	private int customerNumber = 0;
-	private float customerTimer;	// time it takes for a customer to spawn
-	public bool dayOver = false;	// bool controlling customer spawning depending on the stage of the day
+	private float customerTimer;			// time it takes for a customer to spawn
+	public bool dayOver = false;			// bool controlling customer spawning depending on the stage of the day
 	public int actTables;
 	public int MedicUsed;
-	private int dayEarnedCash;		// The cash that is earned for the day
+	private int dayEarnedCash;				// The cash that is earned for the day
 	public int DayEarnedCash{
 		get{ return dayEarnedCash; }
 	}
 	
-	private int dayCashRevenue;		// The total positive cashed gained for the day
+	private int dayCashRevenue;				// The total positive cashed gained for the day
 	//tracks customers via hashtable
 	private Dictionary<string, GameObject> customerHash;
 	// our satisfaction ai 
@@ -33,6 +33,9 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public List<GameObject> TableList{
 		get{ return tableList; }
 	}
+
+	private Table flyThruTable = null;		// Cached table position
+	private bool isFlyThruTableCached = false;
 
 	public RestaurantUIManager restaurantUI;
 	private ImmutableDataEvents eventData;
@@ -128,6 +131,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 	// Spawns a customer after a given amount of timer then it restarts the coroutine
 	IEnumerator SpawnCustomer(){
+		yield return 0;
 		yield return new WaitForSeconds(customerSpawnTimer);
 
 		if(isTutorial){
@@ -261,6 +265,20 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		}
 		Debug.LogWarning("Can not find table " + tableNum);
 		return null;
+	}
+
+	// Script is ran and cached for the first time
+	public Table GetFlyThruTable(){
+		if(!isFlyThruTableCached){
+			foreach(GameObject table in tableList){
+				Table tableScript = table.GetComponent<Table>();
+				if(tableScript.tableType == Table.TableType.VIP){
+					flyThruTable = tableScript;	// Save it to cache
+				}
+			}
+		}
+		isFlyThruTableCached = true;
+		return flyThruTable;
 	}
 
 	public void DeployMedic(){

@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections;
 
 public class BathroomLoader : DecoLoader {
-	void Awake(){
-		debugDecoID = "BathroomArea00";
+	protected override void DecoInit(){
+		isDebugEnableDeco = Constants.GetDebugConstant<bool>("BathroomOn");
+		debugDecoID = Constants.GetDebugConstant<string>("BathroomID");
 	}
 }

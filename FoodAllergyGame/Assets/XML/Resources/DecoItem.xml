@@ -85,7 +85,6 @@
 		<Type>Bathroom</Type>
 		<Price>0</Price>
 		<TitleKey>BathroomBasic</TitleKey>
-		<SpriteName>RestBathroomBasic</SpriteName>
 	</DecoItem>
 	
 	
@@ -93,7 +92,11 @@
 		<Type>VIP</Type>
 		<Price>200</Price>
 		<TitleKey>None</TitleKey>
-		<SpriteName>None</SpriteName>
+	</DecoItem>
+	<DecoItem ID = "VIP01">
+		<Type>VIP</Type>
+		<Price>200</Price>
+		<TitleKey>VIP Room</TitleKey>
 	</DecoItem>
 	
 	
@@ -101,13 +104,11 @@
 		<Type>PlayArea</Type>
 		<Price>0</Price>
 		<TitleKey>None</TitleKey>
-		<SpriteName>None</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "PlayArea01">
 		<Type>PlayArea</Type>
 		<Price>1</Price>
 		<TitleKey>PlayAreaClaw</TitleKey>
-		<SpriteName>RestPlayArea</SpriteName>
 	</DecoItem>
 	
 	
@@ -115,7 +116,11 @@
 		<Type>Microwave</Type>
 		<Price>200</Price>
 		<TitleKey>None</TitleKey>
-		<SpriteName>None</SpriteName>
+	</DecoItem>
+	<DecoItem ID = "Microwave01">
+		<Type>Microwave</Type>
+		<Price>200</Price>
+		<TitleKey>Black Box</TitleKey>
 	</DecoItem>
 	
 	
@@ -123,6 +128,10 @@
 		<Type>FlyThru</Type>
 		<Price>200</Price>
 		<TitleKey>None</TitleKey>
-		<SpriteName>None</SpriteName>
+	</DecoItem>
+	<DecoItem ID = "FlyThru01">
+		<Type>FlyThru</Type>
+		<Price>200</Price>
+		<TitleKey>Fly Thru 1</TitleKey>
 	</DecoItem>
 </DecoItem>

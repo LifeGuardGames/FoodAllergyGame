@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class PlayAreaLoader : DecoLoader {
-	void Awake(){
-		debugDecoID = "PlayArea01";
+	protected override void DecoInit(){
+		isDebugEnableDeco = Constants.GetDebugConstant<bool>("PlayAreaOn");
+		debugDecoID = Constants.GetDebugConstant<string>("PlayAreaID");
 	}
 }

@@ -1,29 +1,39 @@
 using UnityEngine;
 using System.Collections;
 
+//Handles the interaction between the customer and the waiter telling the waiter what action to perform based on the customers state
 public class Table : MonoBehaviour, IWaiterSelection{
 
-	//Handles the interaction between the customer and the waiter telling the waiter what action to perform based on the customers state
-	//Table Number hard coded number to distinguish between tables
-	public int tableNumber;
+	public enum TableType{
+		Normal,
+		VIP,
+		FlyThru,
+	}
+
+	public TableType tableType;
+	public int tableNumber;		// Table Number hard coded number to distinguish between tables
 
 	public Transform seat;
 	public Transform Seat{
 		get{ return seat; }
 	}
+
 	public int seatLayerOrder;	// Sprite order, should be one below table order
 	public int SeatLayerOrder{
 		get{ return seatLayerOrder; }
 	}
 
-	public bool isFlythrough;
+	private GameObject node;
+	public GameObject Node{
+		get{ return node; }
+	}
+
 	public Transform foodSpot;
 	public bool inUse = false;
 	public string currentCustomerID;
 	public bool isBroken;
 	public GameObject _canvas;
 	public bool isGossiped;
-	public GameObject node;
 	public GameObject tableHighlight;
 	public SpriteRenderer tableSprite;
 
@@ -31,15 +41,29 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		// Add youself to the list of tables
 		RestaurantManager.Instance.TableList.Add(gameObject);
 
+		// Get its node dynamically, which are pre-populated
+		switch(tableType){
+		case TableType.Normal:
+			node = Pathfinding.Instance.GetNormalTableNode(tableNumber);
+			break;
+		case TableType.VIP:
+			node = Pathfinding.Instance.NodeVIP;
+			break;
+		case TableType.FlyThru:
+			node = Pathfinding.Instance.NodeFlyThru;
+			break;
+		}
+
 		ImmutableDataDecoItem decoData = DataManager.Instance.GetActiveDecoData(DecoTypes.Table);
-		if(tableNumber == 5){
-			this.gameObject.SetActive(Constants.GetConstant<bool>("FlythruOn"));
-			// _sprite = DataLoaderDecoItem.GetData(RestaurantManager.Instance.GetCurrentSprite(DecoTypes.FlyThru));
-		}
-		else if(tableNumber == 4 ){
-			this.gameObject.SetActive(Constants.GetConstant<bool>("VIPRoomOn"));
-			// _sprite = DataLoaderDecoItem.GetData(RestaurantManager.Instance.GetCurrentSprite(DecoTypes.VIPRoom));
-		}
+		// TODO Take this out for now
+//		if(tableNumber == 5){
+//			this.gameObject.SetActive(Constants.GetConstant<bool>("FlythruOn"));
+//			// _sprite = DataLoaderDecoItem.GetData(RestaurantManager.Instance.GetCurrentSprite(DecoTypes.FlyThru));
+//		}
+//		else if(tableNumber == 4){
+//			this.gameObject.SetActive(Constants.GetConstant<bool>("VIPRoomOn"));
+//			// _sprite = DataLoaderDecoItem.GetData(RestaurantManager.Instance.GetCurrentSprite(DecoTypes.VIPRoom));
+//		}
 		tableSprite.sprite = SpriteCacheManager.GetDecoSpriteData(decoData.SpriteName);
 	}
 
@@ -121,9 +145,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	}
 
 	public void OnClicked(){
-//		if(!TouchManager.IsHoveringOverGUI()){
-			// Check if customers need to jump to the table
-		if(!isFlythrough){
+		if(tableType != TableType.FlyThru){
 			if(Waiter.Instance.CurrentLineCustomer != null && !inUse && !isBroken){
 				Waiter.Instance.CurrentLineCustomer.transform.localScale = Vector3.one;
 				Waiter.Instance.CurrentLineCustomer.GetComponent<Customer>().JumpToTable(tableNumber);

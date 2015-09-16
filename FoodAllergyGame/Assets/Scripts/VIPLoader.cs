@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class VIPLoader : DecoLoader {
-	void Awake(){
-		debugDecoID = "VIP01";
+	protected override void DecoInit(){
+		isDebugEnableDeco = Constants.GetDebugConstant<bool>("VIPOn");
+		debugDecoID = Constants.GetDebugConstant<string>("VIPID");
 	}
 }

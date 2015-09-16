@@ -65,7 +65,13 @@ public class DecoManager : Singleton<DecoManager>{
 
 			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(decoType);
 			DataManager.Instance.GameData.Decoration.ActiveDeco.Add(decoType, decoID);
-			if(decoType != DecoTypes.Table && decoType != DecoTypes.Kitchen){
+
+			// HACK only integrated this half way so far... loading prefabs instead of textures
+			if(decoType == DecoTypes.Bathroom || decoType == DecoTypes.PlayArea || decoType == DecoTypes.FlyThru || 
+			   decoType == DecoTypes.VIP || decoType == DecoTypes.Microwave){
+				ChangeItemPrefab(decoType);
+			}
+			else if(decoType != DecoTypes.Table && decoType != DecoTypes.Kitchen){
 				ChangeItem(decoType);
 			}
 			else if(decoType == DecoTypes.Kitchen){
@@ -108,8 +114,14 @@ public class DecoManager : Singleton<DecoManager>{
 		kitchenList[1].GetComponent<SpriteRenderer>().sprite = SpriteCacheManager.GetDecoSpriteData(backsprite);
 	}
 
+	// TODO remove support for this function
 	private void ChangeItem(DecoTypes deco){
+		// Refresh sprite
 		sceneObjects[deco].GetComponent<SpriteRenderer>().sprite = SpriteCacheManager.GetDecoSpriteData(DataLoaderDecoItem.GetData(DataManager.Instance.GameData.Decoration.ActiveDeco[deco]).SpriteName);
+	}
+
+	private void ChangeItemPrefab(DecoTypes deco){
+		
 	}
 
 	public void ChangeTab(string tabName){

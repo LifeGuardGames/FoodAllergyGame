@@ -61,9 +61,11 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			Destroy(this.gameObject);
 		}
 		else{
-			if(Random.Range(0,10) > 3 && !RestaurantManager.Instance.GetTable(5).inUse && Constants.GetConstant<bool>("FlythruOn")){
-				RestaurantManager.Instance.GetTable(5).inUse = true;
-				this.gameObject.transform.SetParent(RestaurantManager.Instance.GetTable(5).seat);
+			// Check for fly thru table
+			Table flyThruTable = RestaurantManager.Instance.GetFlyThruTable();
+			if((flyThruTable != null) && Random.Range(0,10) > 3 && !flyThruTable.inUse && Constants.GetConstant<bool>("FlythruOn")){
+				flyThruTable.inUse = true;
+				this.gameObject.transform.SetParent(flyThruTable.seat);
 				tableNum = 5;
 				state = CustomerStates.ReadingMenu;
 				StartCoroutine("ReadMenu");
@@ -448,7 +450,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 
 	public void UseBathroom(){
-		if(Constants.GetConstant<bool>("BathRoomOn")){
+		if(Constants.GetConstant<bool>("BathroomOn")){
 			customerUI.satisfaction1.gameObject.SetActive(false);
 			customerUI.satisfaction2.gameObject.SetActive(false);
 			customerUI.satisfaction3.gameObject.SetActive(false);
