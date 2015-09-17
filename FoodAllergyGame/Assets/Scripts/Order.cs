@@ -65,7 +65,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 		orderImage.SetActive(true);
 		ToggleShowOrderNumber(true);
 		this.gameObject.GetComponent<BoxCollider>().enabled = true;
-		RestaurantManager.Instance.GetKitchen().FinishCooking(this.gameObject);
+		RestaurantManager.Instance.Kitchen.FinishCooking(this.gameObject);
 		AudioManager.Instance.PlayClip("orderReady");
 		if(RestaurantManager.Instance.isTutorial){
 			RestaurantManager.Instance.GetTable(tableNumber).Seat.GetComponentInChildren<CustomerTutorial>().step = 1;

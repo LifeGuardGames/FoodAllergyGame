@@ -5,52 +5,57 @@ public abstract class DecoLoader : MonoBehaviour {
 
 	protected bool isDebugEnableDeco;		// Is the deco turned on in critcal xml
 	protected string debugDecoID;			// DecoID to load when debug is turned on
-	private bool isDecoScene = false;				// Logic for different scenes
+	protected DecoTypes decoType;			// Type of decoration this is
+	protected GameObject loadedObject;		// Aux for post load
+	protected bool isDecoScene = false;		// Logic for different scenes
+
+	protected virtual void DecoInit(){}
 
 	void Start(){
-		DecoInit();
+		DecoInit();	// Initialize all type specific variables in children
 
 		if(Application.loadedLevelName == SceneUtils.DECO){
 			isDecoScene = true;
-		}
-
-		// Delete any objects attached to this parent
-		foreach(Transform child in transform){
-			Destroy(child.gameObject);
+			DecoManager.Instance.DecoLoaderHash.Add(decoType, this);
 		}
 		
 		if(DataManager.Instance.IsDebug){
 			if(isDebugEnableDeco){
 				ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(debugDecoID);
-				if(decoData.ButtonTitleKey != "None"){
-					// Load the basic bathroom if debug
-					LoadPrefab(debugDecoID);
-				}
-				else{
-					// Dont load anything if the sprite name is None
-				}
+				LoadDeco(decoData);
 			}
 			else{
 				// Dont load anything if critical is not ticked on
 			}
 		}
 		else{
-			ImmutableDataDecoItem decoData = DataManager.Instance.GetActiveDecoData(DecoTypes.PlayArea);
-			if(decoData.ButtonTitleKey != "None"){	// Dont load if it is None
-				LoadPrefab(decoData.ID);
-			}
+			ImmutableDataDecoItem decoData = DataManager.Instance.GetActiveDecoData(decoType);
+			LoadDeco(decoData);
 		}
 	}
 
-	protected virtual void DecoInit(){}
+	// Load the deco, accounts for "None" as well, deletes the parent's children as well
+	public virtual void LoadDeco(ImmutableDataDecoItem decoData){
+		// Floors loads textures
+		if(decoData.Type == DecoTypes.Floor){
 
-	protected void LoadPrefab(string prefabName){
-		GameObject prefab = Resources.Load(prefabName) as GameObject;
-		GameObject loadedObject = GameObjectUtils.AddChild(gameObject, prefab);
+		}
+		// Everything else loads prefabs
+		else{
+			// Delete any objects attached to this parent
+			foreach(Transform child in transform){
+				Destroy(child.gameObject);
+			}
 
-		// HACK Delete colliders while not in deco scene
-		if(isDecoScene){
-			loadedObject.GetComponent<Collider2D>().enabled = false;
+			if(decoData.ButtonTitleKey != "None"){
+				GameObject prefab = Resources.Load(decoData.ID) as GameObject;
+				loadedObject = GameObjectUtils.AddChild(gameObject, prefab);
+			
+				// HACK Delete colliders while not in deco scene
+				if(isDecoScene){
+					loadedObject.GetComponent<Collider>().enabled = false;
+				}
+			}
 		}
 	}
 }

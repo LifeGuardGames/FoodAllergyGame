@@ -42,7 +42,13 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public LineController Line;
 	public RestaurantMenuUIController menuUIController;
 	public DoorController doorController;
+
 	public KitchenManager kitchen;
+	public KitchenManager Kitchen{
+		get{ return kitchen; }
+		set{ kitchen = value; }
+	}
+
 	public bool firstSickCustomer = false;
 	public GameObject medicButton;
 	public GameObject medicTutorial;
@@ -80,7 +86,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		SickCustomers = new List<GameObject>();
 		customerHash = new Dictionary<string, GameObject>();
 		satisfactionAI = new SatisfactionAI();
-		CustomerSeated();
+
 		if(DataManager.Instance.IsDebug){
 			FoodManager.Instance.GenerateMenu(DataLoaderMenuSet.GetData("MenuSetT1").MenuSet.ToList(), 0);
 			StartDay(DataLoaderEvents.GetData("Event00"));
@@ -259,7 +265,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public Table GetTable(int tableNum){
 		foreach(GameObject table in tableList){
 			Table tableScript = table.GetComponent<Table>();
-			if(tableScript.tableNumber == tableNum){
+			if(tableScript.TableNumber == tableNum){
 				return tableScript;
 			}
 		}
@@ -295,10 +301,6 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 	public RestaurantMenuUIController GetMenuUIController(){
 		return menuUIController;
-	}
-
-	public KitchenManager GetKitchen(){
-		return kitchen;
 	}
 
 	public Dictionary<string, GameObject>.ValueCollection GetCurrentCustomers(){

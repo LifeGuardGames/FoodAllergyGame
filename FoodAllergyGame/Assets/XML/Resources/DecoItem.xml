@@ -85,18 +85,21 @@
 		<Type>Bathroom</Type>
 		<Price>0</Price>
 		<TitleKey>BathroomBasic</TitleKey>
+		<SpriteName>RestBathroom00</SpriteName>
 	</DecoItem>
 	
 	
 	<DecoItem ID = "VIP00">
 		<Type>VIP</Type>
-		<Price>200</Price>
+		<Price>0</Price>
 		<TitleKey>None</TitleKey>
+		<SpriteName>None</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "VIP01">
 		<Type>VIP</Type>
 		<Price>200</Price>
-		<TitleKey>VIP Room</TitleKey>
+		<TitleKey>VIP01</TitleKey>
+		<SpriteName>RestVIP01</SpriteName>
 	</DecoItem>
 	
 	
@@ -104,34 +107,40 @@
 		<Type>PlayArea</Type>
 		<Price>0</Price>
 		<TitleKey>None</TitleKey>
+		<SpriteName>None</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "PlayArea01">
 		<Type>PlayArea</Type>
 		<Price>1</Price>
-		<TitleKey>PlayAreaClaw</TitleKey>
+		<TitleKey>PlayArea01</TitleKey>
+		<SpriteName>RestPlayArea01</SpriteName>
 	</DecoItem>
 	
 	
 	<DecoItem ID = "Microwave00">
 		<Type>Microwave</Type>
-		<Price>200</Price>
+		<Price>0</Price>
 		<TitleKey>None</TitleKey>
+		<SpriteName>None</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "Microwave01">
 		<Type>Microwave</Type>
 		<Price>200</Price>
-		<TitleKey>Black Box</TitleKey>
+		<TitleKey>Microwave01</TitleKey>
+		<SpriteName>RestMicrowave01</SpriteName>
 	</DecoItem>
 	
 	
 	<DecoItem ID = "FlyThru00">
 		<Type>FlyThru</Type>
-		<Price>200</Price>
+		<Price>0</Price>
 		<TitleKey>None</TitleKey>
+		<SpriteName>None</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "FlyThru01">
 		<Type>FlyThru</Type>
 		<Price>200</Price>
-		<TitleKey>Fly Thru 1</TitleKey>
+		<TitleKey>FlyThru01</TitleKey>
+		<SpriteName>RestTableRed</SpriteName>
 	</DecoItem>
 </DecoItem>

@@ -5,5 +5,6 @@ public class MicrowaveLoader : DecoLoader {
 	protected override void DecoInit(){
 		isDebugEnableDeco = Constants.GetDebugConstant<bool>("MicrowaveOn");
 		debugDecoID = Constants.GetDebugConstant<string>("MicrowaveID");
+		decoType = DecoTypes.Microwave;
 	}
 }

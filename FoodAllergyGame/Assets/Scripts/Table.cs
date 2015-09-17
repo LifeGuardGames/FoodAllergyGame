@@ -11,7 +11,13 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	}
 
 	public TableType tableType;
-	public int tableNumber;		// Table Number hard coded number to distinguish between tables
+
+	// Table Number hard coded number to distinguish between tables, from TableLoader
+	public int tableNumber;
+	public int TableNumber{
+		get{ return tableNumber; }
+		set{ tableNumber = value; }
+	}
 
 	public Transform seat;
 	public Transform Seat{
@@ -38,33 +44,24 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	public SpriteRenderer tableSprite;
 
 	void Start(){
-		// Add youself to the list of tables
-		RestaurantManager.Instance.TableList.Add(gameObject);
+		if(Application.loadedLevelName == SceneUtils.RESTAURANT){
+			// Add youself to the list of tables
+			RestaurantManager.Instance.TableList.Add(gameObject);
 
-		// Get its node dynamically, which are pre-populated
-		switch(tableType){
-		case TableType.Normal:
-			node = Pathfinding.Instance.GetNormalTableNode(tableNumber);
-			break;
-		case TableType.VIP:
-			node = Pathfinding.Instance.NodeVIP;
-			break;
-		case TableType.FlyThru:
-			node = Pathfinding.Instance.NodeFlyThru;
-			break;
+			// Get its node dynamically, which are pre-populated
+			switch(tableType){
+			case TableType.Normal:
+				node = Pathfinding.Instance.GetNormalTableNode(tableNumber);
+				break;
+			case TableType.VIP:
+				node = Pathfinding.Instance.NodeVIP;
+				break;
+			case TableType.FlyThru:
+				node = Pathfinding.Instance.NodeFlyThru;
+				break;
+			}
 		}
-
-		ImmutableDataDecoItem decoData = DataManager.Instance.GetActiveDecoData(DecoTypes.Table);
-		// TODO Take this out for now
-//		if(tableNumber == 5){
-//			this.gameObject.SetActive(Constants.GetConstant<bool>("FlythruOn"));
-//			// _sprite = DataLoaderDecoItem.GetData(RestaurantManager.Instance.GetCurrentSprite(DecoTypes.FlyThru));
-//		}
-//		else if(tableNumber == 4){
-//			this.gameObject.SetActive(Constants.GetConstant<bool>("VIPRoomOn"));
-//			// _sprite = DataLoaderDecoItem.GetData(RestaurantManager.Instance.GetCurrentSprite(DecoTypes.VIPRoom));
-//		}
-		tableSprite.sprite = SpriteCacheManager.GetDecoSpriteData(decoData.SpriteName);
+		TurnOffHighlight();
 	}
 
 	//facilitates talk between customer and waiter
@@ -84,7 +81,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		return Waiter.Instance.HandMeal(tableNumber);
 	}
 
-	//Passes order drom customer to waiter
+	//Passes order from customer to waiter
 	public void OrderObtained(GameObject order){
 		Waiter.Instance.WriteDownOrder(order);
 		_canvas.SetActive(true);
@@ -94,7 +91,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	public void CustomerLeaving(){
 		inUse = false;
 		Waiter.Instance.RemoveMeal(tableNumber);
-		RestaurantManager.Instance.GetKitchen().CancelOrder(tableNumber);
+		RestaurantManager.Instance.Kitchen.CancelOrder(tableNumber);
 	}
 
 	//in the unfortunate circumstance a customer gets eaten we need to take care of the mess
@@ -114,13 +111,15 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	}
 
 	public void TurnOnHighlight(){
-		if(!inUse){
+		if(tableHighlight != null && !inUse){
 			tableHighlight.SetActive(true);
 		}
 	}
 	
 	public void TurnOffHighlight(){
-		tableHighlight.SetActive(false);
+		if(tableHighlight != null){
+			tableHighlight.SetActive(false);
+		}
 	}
 
 	#region IWaiterSelection implementation
