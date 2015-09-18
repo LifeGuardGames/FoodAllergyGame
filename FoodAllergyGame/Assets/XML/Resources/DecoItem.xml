@@ -72,7 +72,7 @@
 		<TitleKey>Comfortable Bathroom</TitleKey>
 		<SpriteName>RestBathroom01</SpriteName>
 	</DecoItem>
-	<DecoItem ID = "Bathroom01">
+	<DecoItem ID = "Bathroom02">
 		<Type>Bathroom</Type>
 		<Price>0</Price>
 		<TitleKey>Fast Bathroom</TitleKey>
@@ -97,11 +97,11 @@
 		<TitleKey>up scaled</TitleKey>
 		<SpriteName>RestVIP02</SpriteName>
 	</DecoItem>
-	<DecoItem ID = "VIP01">
+	<DecoItem ID = "VIP03">
 		<Type>VIP</Type>
 		<Price>200</Price>
 		<TitleKey>The classiest</TitleKey>
-		<SpriteName>RestVIP01</SpriteName>
+		<SpriteName>RestVIP03</SpriteName>
 	</DecoItem>
 	
 	<DecoItem ID = "PlayArea00">
@@ -168,4 +168,4 @@
 		<TitleKey>FlyThru01</TitleKey>
 		<SpriteName>RestTableRed</SpriteName>
 	</DecoItem>
-</DecoItem>
+</DecoItem>so
