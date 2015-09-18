@@ -18,7 +18,6 @@ public class TableLoader : DecoLoader {
 			foreach(Transform child in tableParentList[i].transform){
 				Destroy(child.gameObject);
 			}
-
 			GameObject prefab = Resources.Load(decoData.ID) as GameObject;
 			loadedObject = GameObjectUtils.AddChild(tableParentList[i], prefab);
 			

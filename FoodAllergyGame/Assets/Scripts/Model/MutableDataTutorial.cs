@@ -9,8 +9,8 @@ public class MutableDataTutorial{
 	public bool IsDecoTuTDone {get;set;}
 
 	public MutableDataTutorial(){
-		IsTutorial1Done = Constants.GetDebugConstant<bool>("IsTut1Done");
-		IsTutorial3Done = Constants.GetDebugConstant<bool>("IsTut3Done");
+		IsTutorial1Done = DataManager.Instance.IsDebug ? Constants.GetDebugConstant<bool>("IsTut1Done") : false;
+		IsTutorial3Done = DataManager.Instance.IsDebug ? Constants.GetDebugConstant<bool>("IsTut3Done") : false;
 		IsMedicTuT1Done = false;
 		IsMedicTuT2Done = false;
 		IsDecoTuTDone =  false;

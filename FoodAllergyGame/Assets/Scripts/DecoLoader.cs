@@ -36,25 +36,18 @@ public abstract class DecoLoader : MonoBehaviour {
 
 	// Load the deco, accounts for "None" as well, deletes the parent's children as well
 	public virtual void LoadDeco(ImmutableDataDecoItem decoData){
-		// Floors loads textures
-		if(decoData.Type == DecoTypes.Floor){
-
+		// Delete any objects attached to this parent
+		foreach(Transform child in transform){
+			Destroy(child.gameObject);
 		}
-		// Everything else loads prefabs
-		else{
-			// Delete any objects attached to this parent
-			foreach(Transform child in transform){
-				Destroy(child.gameObject);
-			}
 
-			if(decoData.ButtonTitleKey != "None"){
-				GameObject prefab = Resources.Load(decoData.ID) as GameObject;
-				loadedObject = GameObjectUtils.AddChild(gameObject, prefab);
-			
-				// HACK Delete colliders while not in deco scene
-				if(isDecoScene){
-					loadedObject.GetComponent<Collider>().enabled = false;
-				}
+		if(decoData.ButtonTitleKey != "None"){
+			GameObject prefab = Resources.Load(decoData.ID) as GameObject;
+			loadedObject = GameObjectUtils.AddChild(gameObject, prefab);
+		
+			// HACK Delete colliders while not in deco scene
+			if(isDecoScene){
+				loadedObject.GetComponent<Collider>().enabled = false;
 			}
 		}
 	}

@@ -2,27 +2,15 @@
 <DecoItem>
 	<DecoItem ID = "Table00">
 		<Type>Table</Type>
-		<Price>100</Price>
+		<Price>0</Price>
 		<TitleKey>TableBlue</TitleKey>
 		<SpriteName>RestTableBlue</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "Table01">
 		<Type>Table</Type>
-		<Price>10000</Price>
-		<TitleKey>TablePurple</TitleKey>
-		<SpriteName>RestTablePurple</SpriteName>
-	</DecoItem>
-	<DecoItem ID = "Table02">
-		<Type>Table</Type>
 		<Price>200</Price>
 		<TitleKey>TableRed</TitleKey>
 		<SpriteName>RestTableRed</SpriteName>
-	</DecoItem>
-	<DecoItem ID = "Table03">
-		<Type>Table</Type>
-		<Price>200</Price>
-		<TitleKey>TableYellow</TitleKey>
-		<SpriteName>RestTableYellow</SpriteName>
 	</DecoItem>
 	
 	
@@ -63,21 +51,12 @@
 		<Price>100</Price>
 		<TitleKey>KitchenBlue</TitleKey>
 		<SpriteName>RestKitchenBlue</SpriteName>
-		<Secondary>RestKitchenBlueBack</Secondary>
 	</DecoItem>
 	<DecoItem ID = "Kitchen01">
 		<Type>Kitchen</Type>
 		<Price>10000</Price>
 		<TitleKey>KitchenPink</TitleKey>
 		<SpriteName>RestKitchenPink</SpriteName>
-		<Secondary>RestKitchenPinkBack</Secondary>
-	</DecoItem>
-	<DecoItem ID = "Kitchen02">
-		<Type>Kitchen</Type>
-		<Price>200</Price>
-		<TitleKey>KitchenGreen</TitleKey>
-		<SpriteName>RestKitchenGreen</SpriteName>
-		<Secondary>RestKitchenGreenBack</Secondary>
 	</DecoItem>
 	
 	
