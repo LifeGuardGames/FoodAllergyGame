@@ -87,7 +87,18 @@
 		<TitleKey>BathroomBasic</TitleKey>
 		<SpriteName>RestBathroom00</SpriteName>
 	</DecoItem>
-	
+	<DecoItem ID = "Bathroom01">
+		<Type>Bathroom</Type>
+		<Price>0</Price>
+		<TitleKey>Comfortable Bathroom</TitleKey>
+		<SpriteName>RestBathroom01</SpriteName>
+	</DecoItem>
+	<DecoItem ID = "Bathroom01">
+		<Type>Bathroom</Type>
+		<Price>0</Price>
+		<TitleKey>Fast Bathroom</TitleKey>
+		<SpriteName>RestBathroom02</SpriteName>
+	</DecoItem>
 	
 	<DecoItem ID = "VIP00">
 		<Type>VIP</Type>
@@ -98,10 +109,21 @@
 	<DecoItem ID = "VIP01">
 		<Type>VIP</Type>
 		<Price>200</Price>
-		<TitleKey>VIP01</TitleKey>
+		<TitleKey>Regular</TitleKey>
 		<SpriteName>RestVIP01</SpriteName>
 	</DecoItem>
-	
+	<DecoItem ID = "VIP02">
+		<Type>VIP</Type>
+		<Price>200</Price>
+		<TitleKey>up scaled</TitleKey>
+		<SpriteName>RestVIP02</SpriteName>
+	</DecoItem>
+	<DecoItem ID = "VIP01">
+		<Type>VIP</Type>
+		<Price>200</Price>
+		<TitleKey>The classiest</TitleKey>
+		<SpriteName>RestVIP01</SpriteName>
+	</DecoItem>
 	
 	<DecoItem ID = "PlayArea00">
 		<Type>PlayArea</Type>
@@ -112,8 +134,20 @@
 	<DecoItem ID = "PlayArea01">
 		<Type>PlayArea</Type>
 		<Price>1</Price>
-		<TitleKey>PlayArea01</TitleKey>
+		<TitleKey>PlayAreaBasic</TitleKey>
 		<SpriteName>RestPlayArea01</SpriteName>
+	</DecoItem>
+	<DecoItem ID = "PlayArea02">
+		<Type>PlayArea</Type>
+		<Price>1</Price>
+		<TitleKey>Challengeing game</TitleKey>
+		<SpriteName>RestPlayArea02</SpriteName>
+	</DecoItem>
+	<DecoItem ID = "PlayArea03">
+		<Type>PlayArea</Type>
+		<Price>1</Price>
+		<TitleKey>Arcade</TitleKey>
+		<SpriteName>RestPlayArea03</SpriteName>
 	</DecoItem>
 	
 	
@@ -128,6 +162,18 @@
 		<Price>200</Price>
 		<TitleKey>Microwave01</TitleKey>
 		<SpriteName>RestMicrowave01</SpriteName>
+	</DecoItem>
+	<DecoItem ID = "Microwave02">
+		<Type>Microwave</Type>
+		<Price>400</Price>
+		<TitleKey>speed microwave</TitleKey>
+		<SpriteName>RestMicrowave02</SpriteName>
+	</DecoItem>
+	<DecoItem ID = "Microwave03">
+		<Type>Microwave</Type>
+		<Price>600</Price>
+		<TitleKey>Slow Cooker</TitleKey>
+		<SpriteName>RestMicrowave03</SpriteName>
 	</DecoItem>
 	
 	

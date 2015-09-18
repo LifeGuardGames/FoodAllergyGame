@@ -208,6 +208,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public virtual void JumpToTable(int tableN){
 		if(tableN == 4){
 			RestaurantManager.Instance.VIPUses++;
+			timer /= RestaurantManager.Instance.GetTable(tableNum).VIPMultiplier;
 		}
 		RestaurantManager.Instance.CustomerSeated();
 		Waiter.Instance.CurrentLineCustomer = null;
@@ -352,7 +353,12 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			//Waiter.Instance.GivePowerUp();
 		}
 		if(satisfaction > 0){
-			RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, priceMultiplier);
+			if(tableNum == 4){
+				RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, priceMultiplier * RestaurantManager.Instance.GetTable(tableNum).VIPMultiplier);
+			}
+			else{
+				RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, priceMultiplier);
+			}
 		}
 		else{
 			RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, 1);
@@ -456,7 +462,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			customerUI.satisfaction3.gameObject.SetActive(false);
 			customerUI.ToggleStar(false);
 			customerAnim.gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
-			attentionSpan = (5.0f * timer);
+			attentionSpan = (5.0f * timer * BathRoom.Instance.timerMultipier);
 			StartCoroutine("InBathroom");
 		}
 		else{
@@ -480,6 +486,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		customerUI.satisfaction2.gameObject.SetActive(true);
 		customerUI.satisfaction3.gameObject.SetActive(true);
 		customerUI.ToggleStar(true);
+		satisfaction += BathRoom.Instance.deltaSatisfaction;
 		customerAnim.gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
 		customerUI.ToggleStar(true);
 		attentionSpan = 10.0f * timer;
@@ -545,7 +552,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 
 	private IEnumerator PlayTime(){
-		yield return new WaitForSeconds(10.0f);
+		yield return new WaitForSeconds(10.0f * PlayArea.Instance.timeMultiplier);
 
 		// End play
 		PlayArea.Instance.EndPlayTime(playAreaIndexAux);

@@ -33,6 +33,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	public GameObject Node{
 		get{ return node; }
 	}
+	public int VIPMultiplier;
 
 	public Transform foodSpot;
 	public bool inUse = false;

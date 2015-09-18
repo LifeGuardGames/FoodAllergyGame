@@ -8,6 +8,9 @@ public class PlayArea : Singleton<PlayArea>, IWaiterSelection {
 	public int deltaSatisfaction = 0;			// Changes to the customers heart
 
 	private int maxSpots;
+	public float timeMultiplier = 1.0f;
+	public int breakdownChance = 0;
+	public bool isBroken;
 	private List<bool> spotAvailabilityList;	// Populated at runtime, keep track of spot occupancy
 	
 	void Start(){
@@ -22,7 +25,7 @@ public class PlayArea : Singleton<PlayArea>, IWaiterSelection {
 
 	public void OnClicked(){
 		int availableSpotIndex = spotAvailabilityList.IndexOf(true);
-		if(Waiter.Instance.CurrentLineCustomer != null && availableSpotIndex != -1){
+		if(Waiter.Instance.CurrentLineCustomer != null && availableSpotIndex != -1 && !isBroken){
 			Customer selectedCustomer = Waiter.Instance.CurrentLineCustomer.GetComponent<Customer>();
 			selectedCustomer.transform.localScale = Vector3.one;
 
@@ -44,5 +47,15 @@ public class PlayArea : Singleton<PlayArea>, IWaiterSelection {
 	// Play time ended, reset the availability
 	public void EndPlayTime(int spotIndex){
 		spotAvailabilityList[spotIndex] = true;
+		if(breakdownChance > 0){
+			if(Random.Range(0,10) < breakdownChance){
+				isBroken = true;
+				StartCoroutine("RepairProtocal");
+			}
+		}
+	}
+	IEnumerator RepairProtocal(){
+		yield return new WaitForSeconds(5.0f);
+		isBroken = false;
 	}
 }
