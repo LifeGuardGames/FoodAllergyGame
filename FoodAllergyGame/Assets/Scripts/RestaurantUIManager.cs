@@ -34,10 +34,6 @@ public class RestaurantUIManager : MonoBehaviour{
 		RestaurantManager.Instance.PauseGame();
 	}
 
-	public void OnMedicButton(){
-		RestaurantManager.Instance.DeployMedic();
-	}
-
 	public void DayComplete(int customersMissed, float avgSatisfaction, int tips, int menuCost, int earningsNet, int totalCash, int medicCost){
 		dayOverUIController.Populate(customersMissed, avgSatisfaction, tips, menuCost, earningsNet, totalCash, medicCost);
 		dayOverUIController.gameObject.SetActive(true);

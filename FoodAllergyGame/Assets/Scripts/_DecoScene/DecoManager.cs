@@ -18,6 +18,12 @@ public class DecoManager : Singleton<DecoManager>{
 	public GameObject rightButton;
 	private List<ImmutableDataDecoItem> decoList;
 
+	// Reference of all the deco loaders, dynamically assigned on start
+	private Dictionary<DecoTypes, DecoLoader> decoLoaderHash = new Dictionary<DecoTypes, DecoLoader>();
+	public Dictionary<DecoTypes, DecoLoader> DecoLoaderHash{
+		get{ return decoLoaderHash; }
+	}
+
 	public GameObject decoTutorial;
 
 	#region Static functions
@@ -32,7 +38,6 @@ public class DecoManager : Singleton<DecoManager>{
 
 	void Awake(){
 		sceneObjects = new Dictionary<DecoTypes, GameObject>();
-		ChangeTables(SpriteCacheManager.GetDecoSpriteData(DataManager.Instance.GetActiveDecoData(DecoTypes.Table).SpriteName));
 		PopulateDecoGrid();
 	}
 
@@ -65,14 +70,17 @@ public class DecoManager : Singleton<DecoManager>{
 
 			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(decoType);
 			DataManager.Instance.GameData.Decoration.ActiveDeco.Add(decoType, decoID);
-			if(decoType != DecoTypes.Table && decoType != DecoTypes.Kitchen){
+
+			// HACK only integrated this half way so far... loading prefabs instead of textures
+			if(decoType == DecoTypes.Bathroom || decoType == DecoTypes.PlayArea || decoType == DecoTypes.FlyThru || 
+			   decoType == DecoTypes.VIP || decoType == DecoTypes.Microwave || decoType == DecoTypes.Table){
+				RefreshItemPrefab(decoType);
+			}
+			else if(decoType != DecoTypes.Table && decoType != DecoTypes.Kitchen){
 				ChangeItem(decoType);
 			}
 			else if(decoType == DecoTypes.Kitchen){
 				ChangeKitchen(decoData.SpriteName, decoData.SecondarySprite);
-			}
-			else{
-				ChangeTables(SpriteCacheManager.GetDecoSpriteData(decoData.SpriteName));
 			}
 		}
 		else{
@@ -97,19 +105,23 @@ public class DecoManager : Singleton<DecoManager>{
 		SetDeco(decoID);
 	}
 
-	private void ChangeTables(Sprite sprite){
-		for(int i = 0; i < tableList.Count; i++){
-			tableList[i].GetComponent<SpriteRenderer>().sprite = sprite;
-		}
-	}
-
 	private void ChangeKitchen(string spriteSet, string backsprite){
 		kitchenList[0].GetComponent<SpriteRenderer>().sprite = SpriteCacheManager.GetDecoSpriteData(spriteSet);
 		kitchenList[1].GetComponent<SpriteRenderer>().sprite = SpriteCacheManager.GetDecoSpriteData(backsprite);
 	}
 
+	// TODO remove support for this function
 	private void ChangeItem(DecoTypes deco){
+		// Refresh sprite
 		sceneObjects[deco].GetComponent<SpriteRenderer>().sprite = SpriteCacheManager.GetDecoSpriteData(DataLoaderDecoItem.GetData(DataManager.Instance.GameData.Decoration.ActiveDeco[deco]).SpriteName);
+	}
+
+	// Garantees valid deco type added (no None to account for)
+	private void RefreshItemPrefab(DecoTypes deco){
+		DecoLoader loader = decoLoaderHash[deco];	// Get the loader script by type
+
+		ImmutableDataDecoItem decoData = DataManager.Instance.GetActiveDecoData(deco);
+		loader.LoadDeco(decoData);
 	}
 
 	public void ChangeTab(string tabName){

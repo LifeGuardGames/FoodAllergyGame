@@ -52,14 +52,4 @@ public class TouchManager : Singleton<TouchManager> {
 	public void UnpauseQueue(){
 		isPaused = false;
 	}
-
-//	public static bool IsHoveringOverGUI(){ TODO broken
-//		if(UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject(-1) || 
-//		   UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()){
-//			return true;
-//		}
-//		else{
-//			return false;
-//		}
-//	}
 }

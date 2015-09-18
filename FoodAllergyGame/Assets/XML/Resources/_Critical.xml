@@ -2,11 +2,18 @@
 <Constants xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Constant Name="EventID" Type="String" Value="Event06" Debug="True"> </Constant>
   <Constant Name="Tier Number" Type="String" Value="0" Debug="True"> </Constant>
-  <Constant Name="BathRoomOn" Type="Bool" Value="False" Debug="False"> </Constant>
-  <Constant Name="IsTut1Done" Type="Bool" Value="False" Debug="True"> </Constant>
-  <Constant Name="IsTut2Done" Type="Bool" Value="False" Debug="True"> </Constant>
+  <Constant Name="IsTut1Done" Type="Bool" Value="True" Debug="True"> </Constant>
+  <Constant Name="IsTut3Done" Type="Bool" Value="False" Debug="True"> </Constant>
+  <Constant Name="TableID" Type="String" Value="Table00" Debug="True"> </Constant>
+  <Constant Name="KitchenID" Type="String" Value="Kitchen00" Debug="True"> </Constant>
+  <Constant Name="BathroomOn" Type="Bool" Value="False" Debug="False"> </Constant>
+  <Constant Name="BathroomID" Type="String" Value="Bathroom00" Debug="True"> </Constant>
   <Constant Name="PlayAreaOn" Type="Bool" Value="False" Debug="False"> </Constant>
-  <Constant Name="VIPRoomOn" Type="Bool" Value="False" Debug="False"> </Constant>
-  <Constant Name="FlythruOn" Type="Bool" Value="False" Debug="False"> </Constant>
+  <Constant Name="PlayAreaID" Type="String" Value="PlayArea01" Debug="True"> </Constant>
+  <Constant Name="VIPOn" Type="Bool" Value="True" Debug="False"> </Constant>
+  <Constant Name="VIPID" Type="String" Value="VIP01" Debug="True"> </Constant>
+  <Constant Name="FlyThruOn" Type="Bool" Value="False" Debug="False"> </Constant>
+  <Constant Name="FlyThruID" Type="String" Value="FlyThru01" Debug="True"> </Constant>
   <Constant Name="MicrowaveOn" Type="Bool" Value="False" Debug="False"> </Constant>
+  <Constant Name="MicrowaveID" Type="String" Value="Microwave01" Debug="True"> </Constant>
 </Constants>

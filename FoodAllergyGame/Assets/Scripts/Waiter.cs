@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -62,7 +62,7 @@ public class Waiter : Singleton<Waiter>{
 			moving = true;
 		}
 		else{
-			pathList = Pathfinding.Instance.findPath(currentNode, _targetNode);
+			pathList = Pathfinding.Instance.FindPath(currentNode, _targetNode);
 			targetNode = _targetNode;
 			moving = true;
 		}
@@ -340,14 +340,14 @@ public class Waiter : Singleton<Waiter>{
 				//if it is and that table is full we deselect the customer
 				if(TouchManager.Instance.inputQueue.Peek ().GetComponent<Table>().inUse == true){
 					if(CurrentLineCustomer != null){
-						CurrentLineCustomer.GetComponent<Customer>().deselect();
+						CurrentLineCustomer.GetComponent<Customer>().Deselect();
 					}
 				}
 			}
 			else{
 				//otherwise if we clicked on something else and we have a customer, we deselect them
 				if(CurrentLineCustomer != null){
-					CurrentLineCustomer.GetComponent<Customer>().deselect();
+					CurrentLineCustomer.GetComponent<Customer>().Deselect();
 				}
 			}
 			GameObject dequeuedObject = TouchManager.Instance.inputQueue.Dequeue();

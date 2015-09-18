@@ -31,7 +31,7 @@ public class TierManager : Singleton<TierManager> {
 
 	// Loops through all previous events for a compiled list
 	public List<string> GetEventsUnlocked(){
-		List<string> eventsUnlocked = null;
+		List<string> eventsUnlocked = new List<string>();
 		if(tier >= 0){
 			for(int i = 0; i <= tier; i++){
 				string[] eventsAtTier = DataLoaderTiers.GetData(tierXMLPrefix + StringUtils.FormatIntToDoubleDigitString(i)).EventsUnlocked;

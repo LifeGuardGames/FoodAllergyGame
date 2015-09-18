@@ -15,9 +15,21 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 	private int ordersCooking = 0;		// Keep an aux count for animation
 
 	public GameObject spinnerHighlight;
+	public GameObject chefParent;
 
 	public SpriteRenderer front;
 	public SpriteRenderer back;
+
+	void Start(){
+		if(Application.loadedLevelName == SceneUtils.RESTAURANT){
+			// Connect scene variables
+			waiterNode = Pathfinding.Instance.NodeKitchen;
+			RestaurantManager.Instance.Kitchen = this;
+		}
+		else{
+			chefParent.SetActive(false);
+		}
+	}
 
 	//changes the cooking time based off the event
 	public void Init(float mode){

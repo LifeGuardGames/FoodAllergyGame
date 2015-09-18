@@ -22,7 +22,7 @@ public class DecoButton : MonoBehaviour {
 		decoNameText.text = LocalizationText.GetText(decoData.ButtonTitleKey);
 		costAux = decoData.Cost;
 
-		if(decoData.SpriteName != "None"){
+		if(decoData.ButtonTitleKey != "None"){
 			string spriteName = decoData.SpriteName;
 			decoImage.sprite = SpriteCacheManager.GetDecoSpriteData(spriteName);
 		}

@@ -4,11 +4,6 @@ using System.Collections.Generic;
 using UnityEngine.Analytics;
 
 public class Customer : MonoBehaviour, IWaiterSelection{
-	// ID an id given on creation
-	// Select food keyword based off allergen and random rolls
-	// Allergen random between wheat, dairy and peanut
-	// State the current state of the customer
-	// NotifyLeave gives the user money based of satifation and then passes the id to the dayManager
 
 	public int tableNum;
 	public float timer = 1.0f;
@@ -33,6 +28,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public List <ImmutableDataFood> choices;	// a list containing possible options the user would like to eat
 	public bool hasPowerUp;
 	private int priceMultiplier;
+	private int playAreaIndexAux;				// For use in coroutine, needs parameter with string call
 
 	// Basic intitialzation
 	public virtual void Init(int num, ImmutableDataEvents mode){
@@ -41,9 +37,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		customerUI.ToggleWait(false);
 		customerUI.ToggleStar(false);
 		customerUI.ToggleAllergyAttack(false);
-//		customerUI.ToggleAllergyShow(false, Allergies.None); TODO safe to remove
 
-		// simple tempoary naming convention
+		// simple temporary naming convention
 		customerID = "Customer" + num.ToString();
 		gameObject.name = "Customer" + num.ToString();
 		// customer starts inline
@@ -66,9 +61,11 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			Destroy(this.gameObject);
 		}
 		else{
-			if(Random.Range(0,10) > 3 && !RestaurantManager.Instance.GetTable(5).inUse && Constants.GetConstant<bool>("FlythruOn")){
-				RestaurantManager.Instance.GetTable(5).inUse = true;
-				this.gameObject.transform.SetParent(RestaurantManager.Instance.GetTable(5).seat);
+			// Check for fly thru table
+			Table flyThruTable = RestaurantManager.Instance.GetFlyThruTable();
+			if((flyThruTable != null) && Random.Range(0,10) > 3 && !flyThruTable.inUse && Constants.GetConstant<bool>("FlyThruOn")){
+				flyThruTable.inUse = true;
+				this.gameObject.transform.SetParent(flyThruTable.seat);
 				tableNum = 5;
 				state = CustomerStates.ReadingMenu;
 				StartCoroutine("ReadMenu");
@@ -101,6 +98,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				break;
 		}
 	}
+
 	// chooses an allergy cases where specific allergy is noted we use a weighted random to get the desired result
 	private void SelectAllergy(string mode){
 		if(mode == "None"){
@@ -165,26 +163,43 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				allergy = Allergies.Dairy;
 			}
 		}
-
 	}
 
+	// Note: Not capped
+	public void SetSatisfaction(int _satisfaction){
+		satisfaction = _satisfaction;
+		customerUI.UpdateSatisfaction(satisfaction);
+		customerAnim.SetSatisfaction(satisfaction);
 
-	// When completed removes one satisfaction from that customer
-	IEnumerator SatisfactionTimer(){
-		yield return new WaitForSeconds(attentionSpan);
-//		Debug.Log("wait for seconds done " + gameObject.name);
-		if(satisfaction > 0){
-			satisfaction--;
-			customerUI.UpdateSatisfaction(satisfaction);
-			customerAnim.SetSatisfaction(satisfaction);
-		}
-		// then if satisfaction is 0 we need to leave cause the service is rubbish
-		if(satisfaction == 0){
+		// If satisfaction is 0 or negative, we need to leave cause the service is rubbish
+		if(satisfaction <= 0){
 			if(order != null){
 				Destroy(order.gameObject);
 			}
 			NotifyLeave();
 		}
+	}
+
+	// Note: Not capped
+	public void UpdateSatisfaction(int delta){
+		satisfaction += delta;
+		customerUI.UpdateSatisfaction(satisfaction);
+		customerAnim.SetSatisfaction(satisfaction);
+
+		// If satisfaction is 0 or negative, we need to leave cause the service is rubbish
+		if(satisfaction <= 0){
+			if(order != null){
+				Destroy(order.gameObject);
+			}
+			NotifyLeave();
+		}
+	}
+
+	// When completed removes one satisfaction from that customer
+	IEnumerator SatisfactionTimer(){
+		yield return new WaitForSeconds(attentionSpan);
+		UpdateSatisfaction(-1);
+		
 		// if we still have satisfaction left we start the timer again
 		StartCoroutine("SatisfactionTimer");
 	}
@@ -212,7 +227,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 
 	// Time spent reading menu before ordering
-		IEnumerator ReadMenu(){
+	IEnumerator ReadMenu(){
 		yield return new WaitForSeconds(menuTimer);
 
 		customerAnim.SetReadingMenu(false);
@@ -250,6 +265,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			Waiter.Instance.Finished();
 		}
 	}
+
 	// It's called when the button for food is hit get the customer to make his order and hand it to the waiter
 	public virtual void OrderTaken(ImmutableDataFood food){
 		if(order == null){
@@ -259,11 +275,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			priceMultiplier = food.Reward;
 			RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().OrderObtained(order);
 			attentionSpan = 20.0f * timer;
-			//StopCoroutine("SatisfactionTimer");
-			IncreaseSatisfaction();
 
-			customerUI.UpdateSatisfaction(satisfaction);
-			customerAnim.SetSatisfaction(satisfaction);
+			UpdateSatisfaction(1);
 
 			StartCoroutine("SatisfactionTimer");
 
@@ -284,10 +297,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			NotifyLeave();
 		}
 		else{
-			IncreaseSatisfaction();
-
-			customerUI.UpdateSatisfaction(satisfaction);
-			customerAnim.SetSatisfaction(satisfaction);
+			UpdateSatisfaction(1);
 			customerAnim.SetEating(true);
 
 			order = transform.GetComponentInParent<Table>().FoodDelivered();
@@ -307,12 +317,12 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 
 	// Eating coroutine
-		IEnumerator EatingTimer(){
+	IEnumerator EatingTimer(){
 		yield return new WaitForSeconds(6.0f);
 		int rand = Random.Range(0,10);
 		customerAnim.SetEating(false);
 		if(rand > 7){
-			Bathroom();
+			UseBathroom();
 			Debug.Log ("Table " + tableNum.ToString() +" has gone to the bathroom");
 		}
 		else{
@@ -345,7 +355,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, priceMultiplier);
 		}
 		else{
-			RestaurantManager.Instance.CustomerLeft(customerID, satisfaction,1);
+			RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, 1);
 		}
 		if(state != CustomerStates.InLine){
 			RestaurantManager.Instance.GetTable(tableNum).CustomerLeaving();
@@ -353,6 +363,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		AudioManager.Instance.PlayClip("leaving");
 		Destroy(this.gameObject);
 	}
+
 	// called if the food's ingrediants match the allergy starts a timer in which the player must hit the save me button
 	public virtual void AllergyAttack(){
 		customerUI.ToggleAllergyAttack(true);
@@ -370,7 +381,6 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			else{
 				DataManager.Instance.GameData.Tutorial.IsMedicTuT2Done = true;
 			}
-			RestaurantManager.Instance.medicButton.GetComponent<Animator>().SetBool("TutMedic", true);
 			RestaurantManager.Instance.medicTutorial.SetActive(true);
 
 			string foodSpriteName = DataLoaderFood.GetData(order.GetComponent<Order>().foodID).SpriteName;
@@ -382,19 +392,19 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			Destroy(order.gameObject);
 		}
 	}
+
 	// if they are saved they take a small penalty for making the mistake and the customer will want the check asap
 	public virtual void Saved(){
 		RestaurantManager.Instance.savedCustomers++;
 		Medic.Instance.BillRestaurant(40);
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
-		IncreaseSatisfaction();
-		customerAnim.SetSatisfaction(satisfaction);
+		UpdateSatisfaction(1);
 		customerUI.ToggleAllergyAttack(false);
-		customerUI.UpdateSatisfaction(satisfaction);
 		customerUI.ToggleStar(true);
 		state = CustomerStates.WaitForCheck;
 		StopCoroutine("AllergyTimer");
 	}
+
 	// when it runs out the customer is taken to the hospital and the player is slamed with the bill
 	IEnumerator AllergyTimer(){
 		yield return new WaitForSeconds(5.0f);
@@ -402,9 +412,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 //		RestaurantManager.Instance.tutText.SetActive(false);
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
 		Medic.Instance.BillRestaurant(100);
-		satisfaction = 0;
-		customerUI.UpdateSatisfaction(satisfaction);
-		customerAnim.SetSatisfaction(satisfaction);
+
+		SetSatisfaction(0);
+
 		AudioManager.Instance.PlayClip("dead");
 		if(order.gameObject != null){
 			Destroy(order.gameObject);
@@ -439,21 +449,15 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		}
 	}
 
-	public void IncreaseSatisfaction(){
-		if(satisfaction < 3){
-			satisfaction++;
-		}
-	}
-
-	public void Bathroom(){
-		if(Constants.GetConstant<bool>("BathRoomOn")){
+	public void UseBathroom(){
+		if(Constants.GetConstant<bool>("BathroomOn")){
 			customerUI.satisfaction1.gameObject.SetActive(false);
 			customerUI.satisfaction2.gameObject.SetActive(false);
 			customerUI.satisfaction3.gameObject.SetActive(false);
 			customerUI.ToggleStar(false);
 			customerAnim.gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
 			attentionSpan = (5.0f * timer);
-			StartCoroutine("UseBathroom");
+			StartCoroutine("InBathroom");
 		}
 		else{
 			if(order.gameObject != null){
@@ -467,7 +471,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		}
 	}
 
-	IEnumerator UseBathroom(){
+	private IEnumerator InBathroom(){
 		yield return new WaitForSeconds(attentionSpan);
 		if(order.gameObject != null){
 			Destroy(order.gameObject);
@@ -494,7 +498,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		return false;
 	}
 
-	public void deselect(){
+	public void Deselect(){
 		RestaurantManager.Instance.CustomerSeated();
 		gameObject.transform.localScale = new Vector3(1.0f,1.0f,1.0f);
 		Waiter.Instance.CurrentLineCustomer = null;
@@ -529,21 +533,24 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 	#endregion
 
-	public virtual void Playing(){
-	//	this.transform.GetChild(0).gameObject.SetActive(false);
-	//	this.transform.GetChild(1).gameObject.SetActive(false);
+	public virtual void GoToPlayArea(Vector3 playAreaSpot, int spotIndex, int deltaSatisfaction){
+		UpdateSatisfaction(deltaSatisfaction);
 		RestaurantManager.Instance.PlayAreaUses++;
+		transform.position = playAreaSpot;
+		GetComponent<BoxCollider>().enabled = false;
 		StopCoroutine("SatisfactionTimer");
-		deselect();
-		this.GetComponent<BoxCollider>().enabled = false;
+		Deselect();
+		playAreaIndexAux = spotIndex;
 		StartCoroutine("PlayTime");
 	}
 
-	IEnumerator PlayTime(){
+	private IEnumerator PlayTime(){
 		yield return new WaitForSeconds(10.0f);
-		//this.transform.GetChild(0).gameObject.SetActive(true);
-	//	this.transform.GetChild(1).gameObject.SetActive(true);
-		this.GetComponent<BoxCollider>().enabled = true;
+
+		// End play
+		PlayArea.Instance.EndPlayTime(playAreaIndexAux);
+		transform.localPosition = Vector3.zero;	// Move the customer back to its position in line
+		GetComponent<BoxCollider>().enabled = true;
 		StartCoroutine("SatisfactionTimer");
 	}
 }

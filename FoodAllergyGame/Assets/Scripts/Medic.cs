@@ -10,24 +10,32 @@ public class Medic : Singleton<Medic> {
 	}
 	public WaiterAnimController waiterAnimController;
 
-	// the medic move toward the next customer on the list
+	private Vector3 firstCustomerPositionAux;
+
+	// Have the medic leave its base before moving to customers	
+	public void SetOutFromHome(Vector3 customerPosition){
+		firstCustomerPositionAux = customerPosition;
+		LeanTween.cancel(gameObject);
+		LeanTween.move(gameObject, new Vector3(transform.position.x + 300f, transform.position.y, transform.position.z), 0.5f)
+			.setOnComplete(OnSetOutFromHomeFinished);
+	}
+
+	private void OnSetOutFromHomeFinished(){
+		MoveToLocation(firstCustomerPositionAux);
+	}
+
+	// Move toward the next customer on the list
 	public void MoveToLocation(Vector3 customer){
-
-			//If the waiter is already at its location, just call what it needs to call
-			if(transform.position == customer){
-				saveCustomer();
-			}
-			// Otherwise, move to the location and wait for callback
-			else{
-
-			//	moving = true;
-//				waiterAnimController.SetMoving(true);
-				
-				LeanTween.cancel(gameObject);
-				LeanTween.move(gameObject, customer, 0.5f)
-				.setEase(LeanTweenType.easeInOutQuad)
-					.setOnComplete(saveCustomer);
-						
+		//If the waiter is already at its location, just call what it needs to call
+		if(transform.position == customer){
+			SaveCustomer();
+		}
+		// Otherwise, move to the location and wait for callback
+		else{
+			LeanTween.cancel(gameObject);
+			LeanTween.move(gameObject, customer, 0.5f)
+			.setEase(LeanTweenType.easeInOutQuad)
+				.setOnComplete(SaveCustomer);
 		}
 	}
 	// if no one is sick theres no need for the medic to leave his office so he goes back
@@ -36,8 +44,9 @@ public class Medic : Singleton<Medic> {
 		LeanTween.move(gameObject, startPos.transform.position, 0.5f)
 			.setEase(LeanTweenType.easeInOutQuad);
 	}
+
 	// Stops the customer from having an allergy attack
-	public void saveCustomer(){
+	public void SaveCustomer(){
 		StartCoroutine("TreatCustomer");
 
 	}
@@ -46,15 +55,19 @@ public class Medic : Singleton<Medic> {
 		medicCost += expense;
 	}
 
-	IEnumerator TreatCustomer(){
+	private IEnumerator TreatCustomer(){
 		yield return new WaitForSeconds(1.0f);
-		if(RestaurantManager.Instance.SickCustomers.Count >0){
+
+		// Saved the person in time
+		if(RestaurantManager.Instance.SickCustomers.Count > 0){
 			RestaurantManager.Instance.SickCustomers[0].GetComponent<Customer>().Saved();
 		}
+		// Missed the person... oh well
 		else{
 			MoveHome();
 		}
-		//RestaurantManager.Instance.SickCustomers.RemoveAt(index);
+
+		// Check if there are other customers that needs to be saved
 		if(	RestaurantManager.Instance.SickCustomers.Count == 0){
 			MoveHome();
 		}

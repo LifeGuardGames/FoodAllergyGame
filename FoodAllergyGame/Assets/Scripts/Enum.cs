@@ -67,6 +67,7 @@ public enum DecoTypes{
 	Table,
 	Floor,
 	Kitchen,
+	Bathroom,
 	PlayArea,
 	VIP,
 	FlyThru,
