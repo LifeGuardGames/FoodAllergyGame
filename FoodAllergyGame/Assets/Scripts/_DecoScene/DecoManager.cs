@@ -13,7 +13,7 @@ public class DecoManager : Singleton<DecoManager>{
 	private int currentDecoPage = 0;
 	public GameObject decoButtonPrefab;
 	public Transform grid;
-	private string currentTab = "Table";
+	private DecoTypes currentTabType = DecoTypes.Table;
 	public GameObject leftButton;
 	public GameObject rightButton;
 	private List<ImmutableDataDecoItem> decoList;
@@ -48,7 +48,7 @@ public class DecoManager : Singleton<DecoManager>{
 			Destroy(child.gameObject);
 		}
 		//creates a list of deco based on a type, to do this the dataloader first creates the list of all the items then sorts it by type and cost before returning it
-		decoList = DataLoaderDecoItem.GetDecoDataByType((DecoTypes)Enum.Parse(typeof(DecoTypes), currentTab));
+		decoList = DataLoaderDecoItem.GetDecoDataByType(currentTabType);
 
 		for(int i = 0; i < decoPageSize; i++){
 			if(decoList.Count <= i + currentDecoPage * decoPageSize){		// Reached the end of list
@@ -66,22 +66,9 @@ public class DecoManager : Singleton<DecoManager>{
 		if(IsDecoBought(decoID)){
 			// Cache local data
 			ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
-			DecoTypes decoType = decoData.Type;
-
-			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(decoType);
-			DataManager.Instance.GameData.Decoration.ActiveDeco.Add(decoType, decoID);
-
-			// HACK only integrated this half way so far... loading prefabs instead of textures
-			if(decoType == DecoTypes.Bathroom || decoType == DecoTypes.PlayArea || decoType == DecoTypes.FlyThru || 
-			   decoType == DecoTypes.VIP || decoType == DecoTypes.Microwave || decoType == DecoTypes.Table){
-				RefreshItemPrefab(decoType);
-			}
-			else if(decoType != DecoTypes.Table && decoType != DecoTypes.Kitchen){
-				ChangeItem(decoType);
-			}
-			else if(decoType == DecoTypes.Kitchen){
-				ChangeKitchen(decoData.SpriteName, decoData.SecondarySprite);
-			}
+			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(decoData.Type);
+			DataManager.Instance.GameData.Decoration.ActiveDeco.Add(decoData.Type, decoID);
+			RefreshItem(decoData.Type);
 		}
 		else{
 			BuyItem(decoID);
@@ -91,6 +78,12 @@ public class DecoManager : Singleton<DecoManager>{
 				Invoke("ShowTutorial", 1.5f);
 			}
 		}
+	}
+
+	private void RefreshItem(DecoTypes deco){
+		DecoLoader loader = decoLoaderHash[deco];	// Get the loader script by type
+		ImmutableDataDecoItem decoData = DataManager.Instance.GetActiveDecoData(deco);
+		loader.LoadDeco(decoData);
 	}
 
 	public void ShowTutorial(){
@@ -105,28 +98,9 @@ public class DecoManager : Singleton<DecoManager>{
 		SetDeco(decoID);
 	}
 
-	private void ChangeKitchen(string spriteSet, string backsprite){
-		kitchenList[0].GetComponent<SpriteRenderer>().sprite = SpriteCacheManager.GetDecoSpriteData(spriteSet);
-		kitchenList[1].GetComponent<SpriteRenderer>().sprite = SpriteCacheManager.GetDecoSpriteData(backsprite);
-	}
-
-	// TODO remove support for this function
-	private void ChangeItem(DecoTypes deco){
-		// Refresh sprite
-		sceneObjects[deco].GetComponent<SpriteRenderer>().sprite = SpriteCacheManager.GetDecoSpriteData(DataLoaderDecoItem.GetData(DataManager.Instance.GameData.Decoration.ActiveDeco[deco]).SpriteName);
-	}
-
-	// Garantees valid deco type added (no None to account for)
-	private void RefreshItemPrefab(DecoTypes deco){
-		DecoLoader loader = decoLoaderHash[deco];	// Get the loader script by type
-
-		ImmutableDataDecoItem decoData = DataManager.Instance.GetActiveDecoData(deco);
-		loader.LoadDeco(decoData);
-	}
-
 	public void ChangeTab(string tabName){
 		currentDecoPage = 0;
-		currentTab = tabName;
+		currentTabType = (DecoTypes)Enum.Parse(typeof(DecoTypes), tabName);
 		PopulateDecoGrid();
 	}
 

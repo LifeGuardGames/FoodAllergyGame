@@ -3,12 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
-
-	// CookOrder runs coroutines on orders to cook them once the coroutine is finished the food will be ready for pick up shown by 
-	// MenuUIManager populates the menu sidebar for food selection
-
 	public List<Transform> orderSpotList;
-	public float cookTimer;			// times it takes to cook food
+	public float cookTimer;				// times it takes to cook food
 	public GameObject waiterNode;
 
 	public Animator kitchenAnimator;
@@ -29,16 +25,12 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 		else{
 			chefParent.SetActive(false);
 		}
+		spinnerHighlight.SetActive(false);
 	}
 
-	//changes the cooking time based off the event
+	// changes the cooking time based off the event
 	public void Init(float mode){
 		cookTimer = mode;
-		spinnerHighlight.SetActive(false);
-
-		ImmutableDataDecoItem decoData = DataManager.Instance.GetActiveDecoData(DecoTypes.Kitchen);
-		front.sprite = SpriteCacheManager.GetDecoSpriteData(decoData.SpriteName);
-		back.sprite = SpriteCacheManager.GetDecoSpriteData(decoData.SecondarySprite);
 	}
 
 	// takes the orders from the waiter and cooks them
@@ -47,31 +39,26 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 		if(order.Count > 1){
 			order[0].transform.SetParent(this.gameObject.transform);
 			order[0].GetComponent<Order>().StartCooking(cookTimer);
-			//order[0].SetActive(false);
-			//StartCoroutine(Cooking(order[0]));
 			order[1].transform.SetParent(this.gameObject.transform);
 			order[1].GetComponent<Order>().StartCooking(cookTimer);
 			AnimSetCooking(1);
-			//order[1].SetActive(false);
-			//StartCoroutine(Cooking(order[1]));
+
 			AudioManager.Instance.PlayClip("giveOrder");
 		}
 		else if(order.Count == 1){
 			order[0].transform.SetParent(this.gameObject.transform);
-			//StartCoroutine(Cooking(order[0]));
 			order[0].GetComponent<Order>().StartCooking(cookTimer);
 			AnimSetCooking(1);
-			//order[0].SetActive(false);
+
 			AudioManager.Instance.PlayClip("giveOrder");
 		}
 	}
 
-	//when the order is cooked it is placed on the counter 
+	// when the order is cooked it is placed on the counter 
 	public void FinishCooking(GameObject order){
 		AnimSetCooking(-1);
 		for(int i = 0; i < orderSpotList.Count; i ++){
 			if(orderSpotList[i].transform.childCount == 0){
-				//order.SetActive(true);
 				order.transform.SetParent(orderSpotList[i].transform);
 				order.transform.localPosition = new Vector3(0, 0, 0);
 			}
@@ -83,7 +70,6 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 		for(int i = 0; i < orderSpotList.Count; i++){
 			if(orderSpotList[i].childCount > 0){
 				if(orderSpotList[i].GetComponentInChildren<Order>().tableNumber == tableNum){
-					//StopCoroutine(Cooking(orderSpotList[i].GetChild(0).gameObject));
 					orderSpotList[i].GetChild(0).GetComponent<Order>().Canceled();
 					AnimSetCooking(-1);
 				}
@@ -107,9 +93,7 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 	}
 
 	public void OnClicked(){
-//		if(!TouchManager.IsHoveringOverGUI()){
-			Waiter.Instance.FindRoute(waiterNode, this);
-//		}
+		Waiter.Instance.FindRoute(waiterNode, this);
 	}
 
 	public bool IsQueueable(){

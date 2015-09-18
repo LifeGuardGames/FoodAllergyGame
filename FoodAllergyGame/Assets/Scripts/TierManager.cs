@@ -13,12 +13,12 @@ public class TierManager : Singleton<TierManager> {
 
 	// Recalculate the tier given a certain algorithm, should be done on StartScene only
 	public void RecalculateTier(){
-		if(Constants.GetDebugConstant<string>("Tier Number")!= default(string)){
+		if(DataManager.Instance.IsDebug && Constants.GetDebugConstant<string>("Tier Number") != default(string)){
 			tier = int.Parse(Constants.GetDebugConstant<string>("Tier Number"));
 		}
 		else{
 			int progress = DataManager.Instance.GameData.Cash.TotalCash;
-//			tier = progress / 200;
+//			tier = progress / 200; //TODO enable?
 			tier = 0;
 			// Print out tier
 			Debug.Log("Recalculated tier: " + tier + "     total cash: " + progress);

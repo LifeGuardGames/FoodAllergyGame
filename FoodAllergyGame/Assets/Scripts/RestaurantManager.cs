@@ -6,7 +6,6 @@ using System.Linq;
 using UnityEngine.Analytics;
 
 public class RestaurantManager : Singleton<RestaurantManager>{
-
 	public bool isPaused;
 	private float customerSpawnTimer;
 	public float dayTime;					// Total amount of time in the day
@@ -55,7 +54,6 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public GameObject blackoutImg;
 	private List<string> currCusSet;
 	public bool isTutorial;
-	public SpriteRenderer floorSprite;
 	public PauseUIController pauseUI;
 	public float baseCustomerTimer;
 
@@ -93,10 +91,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		}
 		else{
 			StartDay(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()));
-
 		}
-		ImmutableDataDecoItem decoData = DataManager.Instance.GetActiveDecoData(DecoTypes.Floor);
-		floorSprite.sprite = SpriteCacheManager.GetDecoSpriteData(decoData.SpriteName);
 	}
 
 	// Called at the start of the game day begins the day tracker coroutine 

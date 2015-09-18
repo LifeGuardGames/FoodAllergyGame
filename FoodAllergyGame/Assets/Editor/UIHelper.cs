@@ -13,7 +13,7 @@ public class UIHelper : EditorWindow {
 	private bool isCompileAux = false;
 	private Vector2 scrollPosition = Vector2.zero;
 
-	[MenuItem("LGG/UIHelper")]
+	[MenuItem("LGG/UI Helper")]
 	public static void ShowWindow(){
 		EditorWindow.GetWindow(typeof(UIHelper));
 	}
