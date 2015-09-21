@@ -11,7 +11,7 @@
   <Constant Name="BathroomID" Type="String" Value="Bathroom00" Debug="True"> </Constant>
   <Constant Name="PlayAreaOn" Type="Bool" Value="False" Debug="False"> </Constant>
   <Constant Name="PlayAreaID" Type="String" Value="PlayArea01" Debug="True"> </Constant>
-  <Constant Name="VIPOn" Type="Bool" Value="True" Debug="False"> </Constant>
+  <Constant Name="VIPOn" Type="Bool" Value="False" Debug="False"> </Constant>
   <Constant Name="VIPID" Type="String" Value="VIP01" Debug="True"> </Constant>
   <Constant Name="FlyThruOn" Type="Bool" Value="False" Debug="False"> </Constant>
   <Constant Name="FlyThruID" Type="String" Value="FlyThru01" Debug="True"> </Constant>
