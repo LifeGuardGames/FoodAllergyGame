@@ -10,7 +10,7 @@ public class CustomerTutorial : Customer{
 	public override void Init(int num, ImmutableDataEvents mode){
 		base.Init(num, mode);
 		satisfaction = 100;
-		tutFingers = GameObject.Find("TuTFingers");
+		tutFingers = GameObject.Find("TutFingers");
 		StartCoroutine("ShowTableFinger");
 		if(!isAllergy){
 			allergy = Allergies.None;
@@ -35,7 +35,7 @@ public class CustomerTutorial : Customer{
 	public override void OrderTaken(ImmutableDataFood food){
 		hideFinger();
 		base.OrderTaken(food);
-		StartCoroutine("ShowTuTFinger");
+		StartCoroutine("ShowTutFinger");
 	}
 
 	public override void Eating(){
@@ -51,7 +51,7 @@ public class CustomerTutorial : Customer{
 	}
 
 	public void nextHint(){
-		StartCoroutine("ShowTuTFinger");
+		StartCoroutine("ShowTutFinger");
 	}
 
 	public void NextTableFinger(){
@@ -65,10 +65,10 @@ public class CustomerTutorial : Customer{
 
 	public void hideFinger(){
 		tutFingers.transform.GetChild(step).gameObject.SetActive(false);
-		StopCoroutine("ShowTuTFinger");
+		StopCoroutine("ShowTutFinger");
 	}
 
-	IEnumerator ShowTuTFinger(){
+	IEnumerator ShowTutFinger(){
 		yield return new WaitForSeconds(0.2f);
 		Debug.Log(tutFingers.transform.GetChild(step).name);
 		tutFingers.transform.GetChild(step).gameObject.SetActive(true);
