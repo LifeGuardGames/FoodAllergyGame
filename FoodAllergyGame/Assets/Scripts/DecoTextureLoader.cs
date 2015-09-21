@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TextureLoader : DecoLoader {
+public class DecoTextureLoader : DecoLoader {
 	public SpriteRenderer floorSpriteRenderer;
 
 	protected override void DecoInit(){
