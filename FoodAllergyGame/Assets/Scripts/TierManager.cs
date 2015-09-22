@@ -84,6 +84,7 @@ public class TierManager : Singleton<TierManager> {
 
 	public string GetNewEvent(){
 		List <string> eventList = GetEventsUnlocked();
+		Debug.Log (eventList.Count);
 		return eventList[Random.Range(0, eventList.Count)];
 	}
 }

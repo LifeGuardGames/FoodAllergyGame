@@ -9,42 +9,42 @@
 	</Tier>
 	<Tier ID="Tier00">
 		<MenuSlots>5</MenuSlots>
-		<EventsUnlocked></EventsUnlocked>
+		<EventsUnlocked>Event00, Event01, Event02, Event03</EventsUnlocked>
 		<FoodsUnlocked></FoodsUnlocked>
 		<DecorationsUnlocked></DecorationsUnlocked>
 		<StartArtAssets></StartArtAssets>
 	</Tier>
 	<Tier ID="Tier01">
 		<MenuSlots>6</MenuSlots>
-		<EventsUnlocked></EventsUnlocked>
+		<EventsUnlocked>Event00, Event01, Event02, Event03</EventsUnlocked>
 		<FoodsUnlocked></FoodsUnlocked>
 		<DecorationsUnlocked></DecorationsUnlocked>
 		<StartArtAssets></StartArtAssets>
 	</Tier>
 	<Tier ID="Tier02">
 		<MenuSlots>7</MenuSlots>
-		<EventsUnlocked></EventsUnlocked>
+		<EventsUnlocked>Event00, Event01, Event02, Event03</EventsUnlocked>
 		<FoodsUnlocked></FoodsUnlocked>
 		<DecorationsUnlocked></DecorationsUnlocked>
 		<StartArtAssets></StartArtAssets>
 	</Tier>
 	<Tier ID="Tier03">
 		<MenuSlots>8</MenuSlots>
-		<EventsUnlocked></EventsUnlocked>
+		<EventsUnlocked>Event00, Event01, Event02, Event03</EventsUnlocked>
 		<FoodsUnlocked></FoodsUnlocked>
 		<DecorationsUnlocked></DecorationsUnlocked>
 		<StartArtAssets></StartArtAssets>
 	</Tier>
 	<Tier ID="Tier04">
 		<MenuSlots>9</MenuSlots>
-		<EventsUnlocked></EventsUnlocked>
+		<EventsUnlocked>Event00,Event01,Event02,Event03</EventsUnlocked>
 		<FoodsUnlocked></FoodsUnlocked>
 		<DecorationsUnlocked></DecorationsUnlocked>
 		<StartArtAssets></StartArtAssets>
 	</Tier>
 	<Tier ID="Tier05">
 		<MenuSlots>10</MenuSlots>
-		<EventsUnlocked></EventsUnlocked>
+		<EventsUnlocked>Event00, Event01, Event02, Event03</EventsUnlocked>
 		<FoodsUnlocked></FoodsUnlocked>
 		<DecorationsUnlocked></DecorationsUnlocked>
 		<StartArtAssets></StartArtAssets>

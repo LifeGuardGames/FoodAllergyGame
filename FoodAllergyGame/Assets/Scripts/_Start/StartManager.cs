@@ -52,7 +52,6 @@ public class StartManager : Singleton<StartManager>{
 
 	public void GenerateUnlockedFoodStock(){
 		List<ImmutableDataFood> unlockedFoodStock = new List<ImmutableDataFood>();
-
 		// First add all the foods that are used for event
 		ImmutableDataMenuSet currSet = DataLoaderMenuSet.GetData(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()).MenuSet);
 		foreach(string foodID in currSet.MenuSet){
