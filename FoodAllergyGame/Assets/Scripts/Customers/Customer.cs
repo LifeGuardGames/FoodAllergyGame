@@ -51,7 +51,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		//init satisfaction and update the ui
 		satisfaction = 3;
 		customerUI.UpdateSatisfaction(satisfaction);
-		customerAnim.SetSatisfaction(satisfaction);
+		customerAnim.SetWaitingInLine();
 		// used for events this switches the timer variable which directly affects the customer's satisfaction
 		timer = mode.CustomerTimerMod;
 		//calculates the initial attentionSpan
@@ -71,7 +71,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				StartCoroutine("ReadMenu");
 				AudioManager.Instance.PlayClip("readingMenu");
 				StopCoroutine("SatisfactionTimer");
-				customerAnim.SetReadingMenu(true);
+				customerAnim.SetReadingMenu();
 				GetComponentInParent<Table>().currentCustomerID = customerID;
 				this.GetComponent<BoxCollider>().enabled = false;
 			}
@@ -166,10 +166,10 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 
 	// Note: Not capped
+	//TODO Change character animation here???
 	public void SetSatisfaction(int _satisfaction){
 		satisfaction = _satisfaction;
 		customerUI.UpdateSatisfaction(satisfaction);
-		customerAnim.SetSatisfaction(satisfaction);
 
 		// If satisfaction is 0 or negative, we need to leave cause the service is rubbish
 		if(satisfaction <= 0){
@@ -184,7 +184,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public void UpdateSatisfaction(int delta){
 		satisfaction += delta;
 		customerUI.UpdateSatisfaction(satisfaction);
-		customerAnim.SetSatisfaction(satisfaction);
+		customerAnim.UpdateSatisfaction(delta);
 
 		// If satisfaction is 0 or negative, we need to leave cause the service is rubbish
 		if(satisfaction <= 0){
@@ -205,24 +205,29 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 
 	// Jumps to the table given a table number
-	public virtual void JumpToTable(int tableN){
-		if(tableN == 4){
+	public virtual void JumpToTable(int _tableNum){
+		if(_tableNum == 4){	// TODO connect this with logic rather than number
 			RestaurantManager.Instance.VIPUses++;
-			timer /= RestaurantManager.Instance.GetTable(tableNum).VIPMultiplier;
+			timer /= RestaurantManager.Instance.GetTable(_tableNum).VIPMultiplier;
 		}
+
 		RestaurantManager.Instance.CustomerSeated();
 		Waiter.Instance.CurrentLineCustomer = null;
 		AudioManager.Instance.PlayClip("pop");
+
 		//sitting down
-		tableNum = tableN;
-		transform.SetParent(RestaurantManager.Instance.GetTable(tableNum).Seat);
+		tableNum = _tableNum;
+		transform.SetParent(RestaurantManager.Instance.GetTable(_tableNum).Seat);
 		transform.localPosition = Vector3.zero;
+
 		// begin reading menu
 		state = CustomerStates.ReadingMenu;
+		customerAnim.SetReadingMenu();
 		StartCoroutine("ReadMenu");
 		AudioManager.Instance.PlayClip("readingMenu");
 		StopCoroutine("SatisfactionTimer");
-		customerAnim.SetReadingMenu(true);
+
+		// Table connection setup
 		GetComponentInParent<Table>().currentCustomerID = customerID;
 		this.GetComponent<BoxCollider>().enabled = false;
 	}
@@ -231,15 +236,16 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	IEnumerator ReadMenu(){
 		yield return new WaitForSeconds(menuTimer);
 
-		customerAnim.SetReadingMenu(false);
 		//get food choices 
 		choices = FoodManager.Instance.GetMenuFoodsFromKeyword(desiredFood, allergy);
 		customerUI.ToggleWait(true);
 		//stop the satisfaction timer, change the timer and then restart it
 		attentionSpan = 16.0f * timer;
 		StartCoroutine("SatisfactionTimer");
+
 		// now waiting for our order to be taken
 		state = CustomerStates.WaitForOrder;
+		customerAnim.SetWaitingForOrder();
 		AudioManager.Instance.PlayClip("orderTime");
 		if(RestaurantManager.Instance.isTutorial){
 			this.GetComponent<CustomerTutorial>().NextTableFinger();
@@ -270,7 +276,11 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	// It's called when the button for food is hit get the customer to make his order and hand it to the waiter
 	public virtual void OrderTaken(ImmutableDataFood food){
 		if(order == null){
+			state = CustomerStates.WaitForFood;
+			customerAnim.SetWaitingForFood();
+
 			customerUI.ToggleWait(false);
+
 			order = GameObjectUtils.AddChildWithPositionAndScale(null, OrderPrefab);
 			order.GetComponent<Order>().Init(food.ID, tableNum, food.AllergyList[0]);
 			priceMultiplier = food.Reward;
@@ -281,7 +291,6 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 			StartCoroutine("SatisfactionTimer");
 
-			state = CustomerStates.WaitForFood;
 
 			// Unpause queue and continue waiter movement
 			TouchManager.Instance.UnpauseQueue();
@@ -299,7 +308,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		}
 		else{
 			UpdateSatisfaction(1);
-			customerAnim.SetEating(true);
+			customerAnim.SetEating();
 
 			order = transform.GetComponentInParent<Table>().FoodDelivered();
 			order.GetComponent<BoxCollider>().enabled = false;
@@ -321,7 +330,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	IEnumerator EatingTimer(){
 		yield return new WaitForSeconds(6.0f);
 		int rand = Random.Range(0,10);
-		customerAnim.SetEating(false);
+		customerAnim.SetWaitingForCheck();
 		if(rand > 7){
 			UseBathroom();
 			Debug.Log ("Table " + tableNum.ToString() +" has gone to the bathroom");
