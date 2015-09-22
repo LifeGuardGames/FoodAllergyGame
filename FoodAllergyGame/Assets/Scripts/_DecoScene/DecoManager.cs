@@ -72,9 +72,10 @@ public class DecoManager : Singleton<DecoManager>{
 		}
 		else{
 			BuyItem(decoID);
-
+			ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
 			// HACK for prototyping only
-			if(decoID == "PlayArea01"){
+			if(!DataManager.Instance.GameData.Decoration.DecoTut.Contains(decoData.Type)){
+				decoTutorial.GetComponent<DecoTutorialController>().Init(decoData.Type);
 				Invoke("ShowTutorial", 1.5f);
 			}
 		}

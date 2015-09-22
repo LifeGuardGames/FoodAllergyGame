@@ -5,10 +5,15 @@ public class MutableDataDecoration{
 	public bool IsFirstTimeEntrance;
 	public Dictionary<DecoTypes, string> ActiveDeco;
 	public Dictionary<string, string> BoughtDeco;
+	public List<DecoTypes> DecoTut;
 
 	public MutableDataDecoration(){
 		IsFirstTimeEntrance = true;
-
+		DecoTut = new List<DecoTypes>();
+		DecoTut.Add(DecoTypes.Floor);
+		DecoTut.Add(DecoTypes.Bathroom);
+		DecoTut.Add(DecoTypes.Kitchen);
+		DecoTut.Add(DecoTypes.Table);
 		BoughtDeco = new Dictionary<string, string>();
 		// Add default decos
 		BoughtDeco.Add("Floor00", "");
