@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 //Handles the interaction between the customer and the waiter telling the waiter what action to perform based on the customers state
 public class Table : MonoBehaviour, IWaiterSelection{
@@ -63,6 +64,10 @@ public class Table : MonoBehaviour, IWaiterSelection{
 			}
 		}
 		TurnOffHighlight();
+		// can't get reference to diabled objects during runtime
+		_canvas.SetActive(true);
+		_canvas.GetComponentInChildren<Text>().text = (tableNumber + 1).ToString();
+		_canvas.SetActive(false);
 	}
 
 	//facilitates talk between customer and waiter
