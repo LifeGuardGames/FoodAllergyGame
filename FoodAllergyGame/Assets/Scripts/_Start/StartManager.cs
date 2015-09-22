@@ -31,6 +31,7 @@ public class StartManager : Singleton<StartManager>{
 			}
 			else{
 				// Show the deco entrance
+				Debug.Log (DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance);
 				bool isFirstTimeEntrance = DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance;
 				decoEntranceUIController.Show(isFirstTimeEntrance);
 
