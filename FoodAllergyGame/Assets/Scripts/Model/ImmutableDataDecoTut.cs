@@ -25,6 +25,6 @@ public class ImmutableDataDecoTut{
 		
 		this.id = id;
 		image = XMLUtils.GetString(hashElements["Image"] as IXMLNode, null, error);
-		text = XMLUtils.GetFloat(hashElements["Text"] as IXMLNode);
+		text = XMLUtils.GetString(hashElements["Text"] as IXMLNode);
 	}
 }

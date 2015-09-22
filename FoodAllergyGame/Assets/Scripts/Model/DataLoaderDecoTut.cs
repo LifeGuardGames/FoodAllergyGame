@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class DataLoaderDecoTut : XMLLoaderGeneric<DataLoaderDecoTut>{
 
-public static ImmutableDataFood GetData(string id){
+public static ImmutableDataDecoTut GetData(string id){
 		instance.InitXMLLoader();
 		return instance.GetData<ImmutableDataDecoTut>(id);
 	}
