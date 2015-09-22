@@ -398,7 +398,7 @@ public static class SkeletonBaker {
 		Object[] objs = AssetDatabase.LoadAllAssetsAtPath(controllerPath);
 
 		Dictionary<string, AnimationClip> clipTable = new Dictionary<string, AnimationClip>();
-		Dictionary<string, Spine.SpineAnimation> animTable = new Dictionary<string, Spine.SpineAnimation>();
+		Dictionary<string, Spine.Animation> animTable = new Dictionary<string, Spine.Animation>();
 
 		foreach (var o in objs) {
 			if (o is AnimationClip) {
@@ -958,7 +958,7 @@ public static class SkeletonBaker {
 
 		return angle;
 	}
-	static void BakeBone (Bone bone, Spine.SpineAnimation animation, AnimationClip clip) {
+	static void BakeBone (Bone bone, Spine.Animation animation, AnimationClip clip) {
 		Skeleton skeleton = bone.Skeleton;
 		bool inheritRotation = bone.Data.InheritRotation;
 

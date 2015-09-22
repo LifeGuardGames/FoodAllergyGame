@@ -35,7 +35,7 @@ using System.Collections.Generic;
 namespace Spine {
 	public class AnimationStateData {
 		internal SkeletonData skeletonData;
-		private Dictionary<KeyValuePair<SpineAnimation, SpineAnimation>, float> animationToMixTime = new Dictionary<KeyValuePair<SpineAnimation, SpineAnimation>, float>();
+		private Dictionary<KeyValuePair<Animation, Animation>, float> animationToMixTime = new Dictionary<KeyValuePair<Animation, Animation>, float>();
 		internal float defaultMix;
 
 		public SkeletonData SkeletonData { get { return skeletonData; } }
@@ -46,23 +46,23 @@ namespace Spine {
 		}
 
 		public void SetMix (String fromName, String toName, float duration) {
-			SpineAnimation from = skeletonData.FindAnimation(fromName);
+			Animation from = skeletonData.FindAnimation(fromName);
 			if (from == null) throw new ArgumentException("Animation not found: " + fromName);
-			SpineAnimation to = skeletonData.FindAnimation(toName);
+			Animation to = skeletonData.FindAnimation(toName);
 			if (to == null) throw new ArgumentException("Animation not found: " + toName);
 			SetMix(from, to, duration);
 		}
 
-		public void SetMix (SpineAnimation from, SpineAnimation to, float duration) {
+		public void SetMix (Animation from, Animation to, float duration) {
 			if (from == null) throw new ArgumentNullException("from cannot be null.");
 			if (to == null) throw new ArgumentNullException("to cannot be null.");
-			KeyValuePair<SpineAnimation, SpineAnimation> key = new KeyValuePair<SpineAnimation, SpineAnimation>(from, to);
+			KeyValuePair<Animation, Animation> key = new KeyValuePair<Animation, Animation>(from, to);
 			animationToMixTime.Remove(key);
 			animationToMixTime.Add(key, duration);
 		}
 
-		public float GetMix (SpineAnimation from, SpineAnimation to) {
-			KeyValuePair<SpineAnimation, SpineAnimation> key = new KeyValuePair<SpineAnimation, SpineAnimation>(from, to);
+		public float GetMix (Animation from, Animation to) {
+			KeyValuePair<Animation, Animation> key = new KeyValuePair<Animation, Animation>(from, to);
 			float duration;
 			if (animationToMixTime.TryGetValue(key, out duration)) return duration;
 			return defaultMix;

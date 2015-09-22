@@ -40,7 +40,7 @@ namespace Spine {
 		internal ExposedList<Skin> skins = new ExposedList<Skin>();
 		internal Skin defaultSkin;
 		internal ExposedList<EventData> events = new ExposedList<EventData>();
-		internal ExposedList<SpineAnimation> animations = new ExposedList<SpineAnimation>();
+		internal ExposedList<Animation> animations = new ExposedList<Animation>();
 		internal ExposedList<IkConstraintData> ikConstraints = new ExposedList<IkConstraintData>();
 		internal float width, height;
 		internal String version, hash, imagesPath;
@@ -52,7 +52,7 @@ namespace Spine {
 		/// <summary>May be null.</summary>
 		public Skin DefaultSkin { get { return defaultSkin; } set { defaultSkin = value; } }
 		public ExposedList<EventData> Events { get { return events; } set { events = value; } }
-		public ExposedList<SpineAnimation> Animations { get { return animations; } set { animations = value; } }
+		public ExposedList<Animation> Animations { get { return animations; } set { animations = value; } }
 		public ExposedList<IkConstraintData> IkConstraints { get { return ikConstraints; } set { ikConstraints = value; } }
 		public float Width { get { return width; } set { width = value; } }
 		public float Height { get { return height; } set { height = value; } }
@@ -127,11 +127,11 @@ namespace Spine {
 		// --- Animations.
 
 		/// <returns>May be null.</returns>
-		public SpineAnimation FindAnimation (String animationName) {
+		public Animation FindAnimation (String animationName) {
 			if (animationName == null) throw new ArgumentNullException("animationName cannot be null.");
-			ExposedList<SpineAnimation> animations = this.animations;
+			ExposedList<Animation> animations = this.animations;
 			for (int i = 0, n = animations.Count; i < n; i++) {
-				SpineAnimation animation = animations.Items[i];
+				Animation animation = animations.Items[i];
 				if (animation.name == animationName) return animation;
 			}
 			return null;

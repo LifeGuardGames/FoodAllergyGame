@@ -185,13 +185,13 @@ namespace Spine {
 		}
 
 		public TrackEntry SetAnimation (int trackIndex, String animationName, bool loop) {
-			SpineAnimation animation = data.skeletonData.FindAnimation(animationName);
+			Animation animation = data.skeletonData.FindAnimation(animationName);
 			if (animation == null) throw new ArgumentException("Animation not found: " + animationName);
 			return SetAnimation(trackIndex, animation, loop);
 		}
 
 		/// <summary>Set the current animation. Any queued animations are cleared.</summary>
-		public TrackEntry SetAnimation (int trackIndex, SpineAnimation animation, bool loop) {
+		public TrackEntry SetAnimation (int trackIndex, Animation animation, bool loop) {
 			if (animation == null) throw new ArgumentException("animation cannot be null.");
 			TrackEntry entry = new TrackEntry();
 			entry.animation = animation;
@@ -203,14 +203,14 @@ namespace Spine {
 		}
 
 		public TrackEntry AddAnimation (int trackIndex, String animationName, bool loop, float delay) {
-			SpineAnimation animation = data.skeletonData.FindAnimation(animationName);
+			Animation animation = data.skeletonData.FindAnimation(animationName);
 			if (animation == null) throw new ArgumentException("Animation not found: " + animationName);
 			return AddAnimation(trackIndex, animation, loop, delay);
 		}
 
 		/// <summary>Adds an animation to be played delay seconds after the current or last queued animation.</summary>
 		/// <param name="delay">May be <= 0 to use duration of previous animation minus any mix duration plus the negative delay.</param>
-		public TrackEntry AddAnimation (int trackIndex, SpineAnimation animation, bool loop, float delay) {
+		public TrackEntry AddAnimation (int trackIndex, Animation animation, bool loop, float delay) {
 			if (animation == null) throw new ArgumentException("animation cannot be null.");
 			TrackEntry entry = new TrackEntry();
 			entry.animation = animation;
@@ -258,12 +258,12 @@ namespace Spine {
 
 	public class TrackEntry {
 		internal TrackEntry next, previous;
-		internal SpineAnimation animation;
+		internal Animation animation;
 		internal bool loop;
 		internal float delay, time, lastTime = -1, endTime, timeScale = 1;
 		internal float mixTime, mixDuration, mix = 1;
 
-		public SpineAnimation Animation { get { return animation; } }
+		public Animation Animation { get { return animation; } }
 		public float Delay { get { return delay; } set { delay = value; } }
 		public float Time { get { return time; } set { time = value; } }
 		public float LastTime { get { return lastTime; } set { lastTime = value; } }

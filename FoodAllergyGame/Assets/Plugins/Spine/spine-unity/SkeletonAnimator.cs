@@ -44,7 +44,7 @@ public class SkeletonAnimator : SkeletonRenderer, ISkeletonAnimation {
 		}
 	}
 
-	Dictionary<int, Spine.SpineAnimation> animationTable = new Dictionary<int, Spine.SpineAnimation>();
+	Dictionary<int, Spine.Animation> animationTable = new Dictionary<int, Spine.Animation>();
 	Dictionary<AnimationClip, int> clipNameHashCodeTable = new Dictionary<AnimationClip, int>();
 	Animator animator;
 	float lastTime;

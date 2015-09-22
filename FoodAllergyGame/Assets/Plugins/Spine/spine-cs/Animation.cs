@@ -33,7 +33,7 @@ using System;
 using System.Collections.Generic;
 
 namespace Spine {
-	public class SpineAnimation {
+	public class Animation {
 		internal ExposedList<Timeline> timelines;
 		internal float duration;
 		internal String name;
@@ -42,7 +42,7 @@ namespace Spine {
 		public ExposedList<Timeline> Timelines { get { return timelines; } set { timelines = value; } }
 		public float Duration { get { return duration; } set { duration = value; } }
 
-		public SpineAnimation (String name, ExposedList<Timeline> timelines, float duration) {
+		public Animation (String name, ExposedList<Timeline> timelines, float duration) {
 			if (name == null) throw new ArgumentNullException("name cannot be null.");
 			if (timelines == null) throw new ArgumentNullException("timelines cannot be null.");
 			this.name = name;
@@ -249,7 +249,7 @@ namespace Spine {
 			}
 
 			// Interpolate between the previous frame and the current frame.
-			int frameIndex = SpineAnimation.binarySearch(frames, time, 2);
+			int frameIndex = Animation.binarySearch(frames, time, 2);
 			float prevFrameValue = frames[frameIndex - 1];
 			float frameTime = frames[frameIndex];
 			float percent = 1 - (time - frameTime) / (frames[frameIndex + PREV_FRAME_TIME] - frameTime);
@@ -306,7 +306,7 @@ namespace Spine {
 			}
 
 			// Interpolate between the previous frame and the current frame.
-			int frameIndex = SpineAnimation.binarySearch(frames, time, 3);
+			int frameIndex = Animation.binarySearch(frames, time, 3);
 			float prevFrameX = frames[frameIndex - 2];
 			float prevFrameY = frames[frameIndex - 1];
 			float frameTime = frames[frameIndex];
@@ -335,7 +335,7 @@ namespace Spine {
 			}
 
 			// Interpolate between the previous frame and the current frame.
-			int frameIndex = SpineAnimation.binarySearch(frames, time, 3);
+			int frameIndex = Animation.binarySearch(frames, time, 3);
 			float prevFrameX = frames[frameIndex - 2];
 			float prevFrameY = frames[frameIndex - 1];
 			float frameTime = frames[frameIndex];
@@ -389,7 +389,7 @@ namespace Spine {
 				a = frames[i];
 			} else {
 				// Interpolate between the previous frame and the current frame.
-				int frameIndex = SpineAnimation.binarySearch(frames, time, 5);
+				int frameIndex = Animation.binarySearch(frames, time, 5);
 				float prevFrameR = frames[frameIndex - 4];
 				float prevFrameG = frames[frameIndex - 3];
 				float prevFrameB = frames[frameIndex - 2];
@@ -447,7 +447,7 @@ namespace Spine {
 			} else if (lastTime > time) //
 				lastTime = -1;
 
-			int frameIndex = (time >= frames[frames.Length - 1] ? frames.Length : SpineAnimation.binarySearch(frames, time)) - 1;
+			int frameIndex = (time >= frames[frames.Length - 1] ? frames.Length : Animation.binarySearch(frames, time)) - 1;
 			if (frames[frameIndex] < lastTime) return;
 
 			String attachmentName = attachmentNames[frameIndex];
@@ -492,7 +492,7 @@ namespace Spine {
 			if (lastTime < frames[0])
 				frameIndex = 0;
 			else {
-				frameIndex = SpineAnimation.binarySearch(frames, lastTime);
+				frameIndex = Animation.binarySearch(frames, lastTime);
 				float frame = frames[frameIndex];
 				while (frameIndex > 0) { // Fire multiple events with the same frame.
 					if (frames[frameIndex - 1] != frame) break;
@@ -532,7 +532,7 @@ namespace Spine {
 			if (time >= frames[frames.Length - 1]) // Time is after last frame.
 				frameIndex = frames.Length - 1;
 			else
-				frameIndex = SpineAnimation.binarySearch(frames, time) - 1;
+				frameIndex = Animation.binarySearch(frames, time) - 1;
 
 			ExposedList<Slot> drawOrder = skeleton.drawOrder;
 			ExposedList<Slot> slots = skeleton.slots;
@@ -602,7 +602,7 @@ namespace Spine {
 			}
 
 			// Interpolate between the previous frame and the current frame.
-			int frameIndex = SpineAnimation.binarySearch(frames, time);
+			int frameIndex = Animation.binarySearch(frames, time);
 			float frameTime = frames[frameIndex];
 			float percent = 1 - (time - frameTime) / (frames[frameIndex - 1] - frameTime);
 			percent = GetCurvePercent(frameIndex - 1, percent < 0 ? 0 : (percent > 1 ? 1 : percent));
@@ -663,7 +663,7 @@ namespace Spine {
 			}
 
 			// Interpolate between the previous frame and the current frame.
-			int frameIndex = SpineAnimation.binarySearch(frames, time, 3);
+			int frameIndex = Animation.binarySearch(frames, time, 3);
 			float prevFrameMix = frames[frameIndex + PREV_FRAME_MIX];
 			float frameTime = frames[frameIndex];
 			float percent = 1 - (time - frameTime) / (frames[frameIndex + PREV_FRAME_TIME] - frameTime);
@@ -702,7 +702,7 @@ namespace Spine {
 			} else if (lastTime > time) //
 				lastTime = -1;
 
-			int frameIndex = (time >= frames[frames.Length - 2] ? frames.Length : SpineAnimation.binarySearch(frames, time, 2)) - 2;
+			int frameIndex = (time >= frames[frames.Length - 2] ? frames.Length : Animation.binarySearch(frames, time, 2)) - 2;
 			if (frames[frameIndex] < lastTime) return;
 
 			SetFlip(skeleton.bones.Items[boneIndex], frames[frameIndex + 1] != 0);

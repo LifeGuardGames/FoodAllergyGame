@@ -626,7 +626,7 @@ namespace Spine {
 			}
 
 			timelines.TrimExcess();
-			skeletonData.animations.Add(new SpineAnimation(name, timelines, duration));
+			skeletonData.animations.Add(new Animation(name, timelines, duration));
 		}
 
 		private void ReadCurve (CurveTimeline timeline, int frameIndex, Dictionary<String, Object> valueMap) {

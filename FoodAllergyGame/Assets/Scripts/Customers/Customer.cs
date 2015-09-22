@@ -382,6 +382,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	// called if the food's ingrediants match the allergy starts a timer in which the player must hit the save me button
 	public virtual void AllergyAttack(){
 		customerUI.ToggleAllergyAttack(true);
+		customerAnim.SetRandomAllergyAttack();
 		RestaurantManager.Instance.SickCustomers.Add(this.gameObject);
 		AudioManager.Instance.PlayClip("allergyAttack");
 

@@ -306,7 +306,7 @@ public class SkeletonDataAssetInspector : Editor {
 		}
 
 		EditorGUILayout.LabelField("Name", "Duration");
-		foreach (Spine.SpineAnimation a in m_skeletonData.Animations) {
+		foreach (Spine.Animation a in m_skeletonData.Animations) {
 			GUILayout.BeginHorizontal();
 
 			if (m_skeletonAnimation != null && m_skeletonAnimation.state != null) {
@@ -508,7 +508,7 @@ public class SkeletonDataAssetInspector : Editor {
 
 		m_skeletonAnimation.state.SetAnimation(0, animName, loop);
 
-		Spine.SpineAnimation a = m_skeletonAnimation.state.GetCurrent(0).Animation;
+		Spine.Animation a = m_skeletonAnimation.state.GetCurrent(0).Animation;
 		foreach (Timeline t in a.Timelines) {
 			if (t.GetType() == typeof(EventTimeline)) {
 				EventTimeline et = (EventTimeline)t;
