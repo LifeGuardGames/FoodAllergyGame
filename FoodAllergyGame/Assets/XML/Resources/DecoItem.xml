@@ -85,7 +85,7 @@
 	<DecoItem ID = "PlayArea01">
 		<Type>PlayArea</Type>
 		<Price>1</Price>
-		<TitleKey>PlayAreaBasic</TitleKey>
+		<TitleKey>PlayArea01</TitleKey>
 		<SpriteName>RestPlayArea01</SpriteName>
 	</DecoItem>
 	

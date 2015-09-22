@@ -8,8 +8,10 @@ public class DecoButton : MonoBehaviour {
 
 	public Image buttonImage;
 	public Image decoImage;
-	public Text priceText;
 	public Text decoNameText;
+
+	public GameObject priceParent;
+	public Text priceText;
 
 	public Sprite removeSprite;
 	public Sprite unboughtSprite;
@@ -37,7 +39,7 @@ public class DecoButton : MonoBehaviour {
 	public void RefreshButtonState(){
 		// Check if it was bought already or show the price
 		if(DecoManager.IsDecoBought(decoID)){
-			priceText.gameObject.SetActive(false);
+			priceParent.gameObject.SetActive(false);
 			if(DecoManager.IsDecoActive(decoID)){
 				buttonImage.sprite = equippedSprite;
 			}
@@ -46,7 +48,7 @@ public class DecoButton : MonoBehaviour {
 			}
 		}
 		else{
-			priceText.gameObject.SetActive(true);
+			priceParent.gameObject.SetActive(true);
 			priceText.text = costAux.ToString();
 			buttonImage.sprite = unboughtSprite;
 		}
