@@ -306,11 +306,19 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		for(int i = 0; i < 4; i++){
 			GetTable(i).TurnOnHighlight();
 		}
+
+		if(PlayArea.Instance != null){
+			PlayArea.Instance.HighLightSpots();
+		}
 	}
 
 	public void CustomerSeated(){
 		for(int i = 0; i < 4; i++){
 			GetTable(i).TurnOffHighlight();
+		}
+
+		if(PlayArea.Instance != null){
+			PlayArea.Instance.TurnOffHighLights();
 		}
 	}
 

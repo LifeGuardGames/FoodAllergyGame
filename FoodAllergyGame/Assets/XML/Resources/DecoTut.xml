@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<DecoTut>
+	<DecoTut ID = "PlayArea">
+		<Image>PlayAreaTut</Image>
+		<ImageMid>PlayAreaTutMid</ImageMid>
+		<ImageEnd>PlayAreaTutEnd</ImageEnd>
+		<Text>PlayAreaTut</Text>
+	</DecoTut>
+</DecoTut>
+

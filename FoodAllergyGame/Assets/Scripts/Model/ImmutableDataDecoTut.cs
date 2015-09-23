@@ -15,6 +15,16 @@ public class ImmutableDataDecoTut{
 		get{return image;}
 	}
 
+	private string imageMid;
+	public string ImageMid{
+		get{return imageMid;}
+	}
+
+	private string imageEnd;
+	public string ImageEnd{
+		get{return imageEnd;}
+	}
+
 	private string text;
 	public string Text{
 		get { return text;}
@@ -25,6 +35,8 @@ public class ImmutableDataDecoTut{
 		
 		this.id = id;
 		image = XMLUtils.GetString(hashElements["Image"] as IXMLNode, null, error);
+		imageMid = XMLUtils.GetString(hashElements["ImageMid"] as IXMLNode, null, error);
+		imageEnd = XMLUtils.GetString(hashElements["ImageEnd"] as IXMLNode, null, error);
 		text = XMLUtils.GetString(hashElements["Text"] as IXMLNode);
 	}
 }
