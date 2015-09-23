@@ -12,6 +12,6 @@ public class FirstStartManager : Singleton<FirstStartManager> {
 	}
 
 	public void FinishedAnimation(){
-		TransitionManager.Instance.TransitionScene(SceneUtils.COMICSCENE);
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.COMICSCENE);
 	}
 }

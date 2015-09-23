@@ -136,6 +136,6 @@ public class DecoManager : Singleton<DecoManager>{
 
 	public void OnExitButtonClicked(){
 		DataManager.Instance.SaveGameData();
-		TransitionManager.Instance.TransitionScene(SceneUtils.START);
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
 	}
 }

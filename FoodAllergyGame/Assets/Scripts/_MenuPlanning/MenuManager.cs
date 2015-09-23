@@ -197,7 +197,7 @@ public class MenuManager : Singleton<MenuManager>{
 	}
 
 	public void OnBackButtonClicked(){
-		TransitionManager.Instance.TransitionScene(SceneUtils.START);
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
 	}
 
 	public void ChangeMenuCost(int delta){
@@ -214,7 +214,7 @@ public class MenuManager : Singleton<MenuManager>{
 				{"Menu Items", selectedMenuStringList}
 			});
 			FoodManager.Instance.GenerateMenu(selectedMenuStringList, menuCost);
-			TransitionManager.Instance.TransitionScene(SceneUtils.RESTAURANT);
+			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT);
 		}
 		else{
 			Debug.LogWarning("Menu not complete!");
