@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Constants xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Constant Name="EventID" Type="String" Value="" Debug="True"> </Constant>
-  <Constant Name="Tier Number" Type="String" Value="0" Debug="True"> </Constant>
-  <Constant Name="IsTut1Done" Type="Bool" Value="False" Debug="True"> </Constant>
+  <Constant Name="EventID" Type="String" Value="EventT2" Debug="True"> </Constant>
+  <Constant Name="Tier Number" Type="String" Value="5" Debug="True"> </Constant>
+  <Constant Name="IsTut1Done" Type="Bool" Value="True" Debug="True"> </Constant>
   <Constant Name="IsTut3Done" Type="Bool" Value="False" Debug="True"> </Constant>
   <Constant Name="TableID" Type="String" Value="Table00" Debug="True"> </Constant>
   <Constant Name="KitchenID" Type="String" Value="Kitchen00" Debug="True"> </Constant>

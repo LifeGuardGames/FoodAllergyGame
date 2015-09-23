@@ -1,0 +1,146 @@
+
+skeleton.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Body
+  rotate: false
+  xy: 2, 183
+  size: 153, 327
+  orig: 153, 327
+  offset: 0, 0
+  index: -1
+Eyeball
+  rotate: false
+  xy: 363, 414
+  size: 88, 96
+  orig: 88, 96
+  offset: 0, 0
+  index: -1
+Food_Piece
+  rotate: true
+  xy: 298, 223
+  size: 38, 36
+  orig: 38, 36
+  offset: 0, 0
+  index: -1
+Foot_L
+  rotate: false
+  xy: 458, 344
+  size: 49, 30
+  orig: 49, 30
+  offset: 0, 0
+  index: -1
+Hair_Back
+  rotate: false
+  xy: 157, 314
+  size: 153, 196
+  orig: 153, 196
+  offset: 0, 0
+  index: -1
+Lid_Bottom
+  rotate: true
+  xy: 430, 340
+  size: 72, 26
+  orig: 72, 26
+  offset: 0, 0
+  index: -1
+MouthBIGSwollen
+  rotate: false
+  xy: 458, 376
+  size: 46, 51
+  orig: 46, 51
+  offset: 0, 0
+  index: -1
+Mouth_Swollen
+  rotate: false
+  xy: 74, 38
+  size: 65, 41
+  orig: 65, 41
+  offset: 0, 0
+  index: -1
+Mouth_Swollen_Lipspsd
+  rotate: false
+  xy: 363, 338
+  size: 65, 74
+  orig: 65, 74
+  offset: 0, 0
+  index: -1
+Shin_R_Fix
+  rotate: true
+  xy: 74, 2
+  size: 34, 65
+  orig: 34, 65
+  offset: 0, 0
+  index: -1
+Thigh_L
+  rotate: true
+  xy: 157, 188
+  size: 33, 81
+  orig: 33, 81
+  offset: 0, 0
+  index: -1
+Thigh_R
+  rotate: false
+  xy: 453, 429
+  size: 33, 81
+  orig: 33, 81
+  offset: 0, 0
+  index: -1
+arm1
+  rotate: false
+  xy: 312, 327
+  size: 49, 183
+  orig: 49, 183
+  offset: 0, 0
+  index: -1
+foot_R
+  rotate: true
+  xy: 298, 263
+  size: 49, 30
+  orig: 49, 30
+  offset: 0, 0
+  index: -1
+lid
+  rotate: true
+  xy: 74, 81
+  size: 100, 70
+  orig: 100, 70
+  offset: 0, 0
+  index: -1
+menu_stand_in
+  rotate: true
+  xy: 157, 223
+  size: 89, 139
+  orig: 89, 139
+  offset: 0, 0
+  index: -1
+mouth
+  rotate: true
+  xy: 302, 177
+  size: 44, 29
+  orig: 44, 29
+  offset: 0, 0
+  index: -1
+mouth_Open
+  rotate: true
+  xy: 330, 281
+  size: 44, 29
+  orig: 44, 29
+  offset: 0, 0
+  index: -1
+pupil
+  rotate: true
+  xy: 240, 179
+  size: 42, 60
+  orig: 42, 60
+  offset: 0, 0
+  index: -1
+sunglasses
+  rotate: true
+  xy: 2, 17
+  size: 164, 70
+  orig: 164, 70
+  offset: 0, 0
+  index: -1
