@@ -13,7 +13,7 @@ public static ImmutableDataDecoTut GetData(string id){
 		instance.InitXMLLoader();
 		return instance.GetDataList<ImmutableDataDecoTut>();
 	}
-	
+
 	protected override void XMLNodeHandler(string id, IXMLNode xmlNode, Hashtable hashData, string errorMessage){
 		ImmutableDataDecoTut data = new ImmutableDataDecoTut(id, xmlNode, errorMessage);
 		// Store the data

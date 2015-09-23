@@ -12,7 +12,9 @@ public class PlayArea : Singleton<PlayArea>, IWaiterSelection {
 	public int breakdownChance = 0;
 	public bool isBroken;
 	private List<bool> spotAvailabilityList;	// Populated at runtime, keep track of spot occupancy
-	
+	public GameObject highLightSpot1;
+	public GameObject highLightSpot2;
+
 	void Start(){
 		maxSpots = spotList.Count;
 
@@ -21,6 +23,20 @@ public class PlayArea : Singleton<PlayArea>, IWaiterSelection {
 		for(int i = 0; i < maxSpots; i++){
 			spotAvailabilityList.Add(true);
 		}
+	}
+
+	public void HighLightSpots(){
+		if(spotAvailabilityList[0] == true){
+			highLightSpot1.SetActive(true);
+		}
+		if(spotAvailabilityList[1] == true){
+			highLightSpot2.SetActive(true);
+		}
+	}
+
+	public void TurnOffHighLights(){
+		highLightSpot1.SetActive(false);
+		highLightSpot2.SetActive(false);
 	}
 
 	public void OnClicked(){

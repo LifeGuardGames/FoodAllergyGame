@@ -5,13 +5,17 @@ using UnityEngine.UI;
 public class DecoTutorialController : MonoBehaviour {
 
 	public Image sprite;
-	public Image sprite2;
+	public Image spriteMid;
+	public Image spriteEnd;
 	public Localize loc;
 
 	public void Init(DecoTypes type){
-		sprite.sprite = Resources.Load<Sprite>(type.ToString() + "Tut");
-		sprite2.sprite = Resources.Load<Sprite>(type.ToString() + "Tut2");
-		loc.key = type.ToString() + "Tut";
+		ImmutableDataDecoTut tutData = DataLoaderDecoTut.GetData(type.ToString());
+		sprite.sprite = Resources.Load<Sprite>(tutData.Image);
+		Debug.Log (tutData.ImageMid);
+		spriteMid.sprite = Resources.Load<Sprite>(tutData.ImageMid);
+		spriteEnd.sprite = Resources.Load<Sprite>(tutData.ImageEnd);
+		loc.key = tutData.Text;
 	}
 
 	public void OnOkayButtonClicked(){
