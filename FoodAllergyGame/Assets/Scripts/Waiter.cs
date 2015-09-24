@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Waiter : Singleton<Waiter>{
+public class Waiter: Singleton<Waiter>{
 	private WaiterHands hand1;
 	public WaiterHands Hand1{
 		get{ return hand1; }

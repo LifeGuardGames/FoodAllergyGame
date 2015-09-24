@@ -357,20 +357,19 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			{"state", state.ToString()},
 			{"Satisfaction", satisfaction}
 		});
-
 		if(hasPowerUp){
 			//Waiter.Instance.GivePowerUp();
 		}
 		if(satisfaction > 0){
 			if(tableNum == 4){
-				RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, priceMultiplier * RestaurantManager.Instance.GetTable(tableNum).VIPMultiplier);
+				RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, priceMultiplier * RestaurantManager.Instance.GetTable(tableNum).VIPMultiplier, transform.position);
 			}
 			else{
-				RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, priceMultiplier);
+				RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, priceMultiplier, transform.position);
 			}
 		}
 		else{
-			RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, 1);
+			RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, 1, transform.position);
 		}
 		if(state != CustomerStates.InLine){
 			RestaurantManager.Instance.GetTable(tableNum).CustomerLeaving();

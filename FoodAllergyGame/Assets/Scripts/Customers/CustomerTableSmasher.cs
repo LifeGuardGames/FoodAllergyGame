@@ -18,7 +18,7 @@ public class CustomerTableSmasher : Customer {
 			//flips the isBroken bool customers cannot be placed at tables where isBroken is true
 			RestaurantManager.Instance.GetTable(tableNum).TableSmashed();
 			//general customer leaving things
-			RestaurantManager.Instance.CustomerLeft(customerID, satisfaction,1);
+			RestaurantManager.Instance.CustomerLeft(customerID, satisfaction,1, transform.position);
 			Waiter.Instance.RemoveMeal(tableNum);
 			GameObject.Find("Kitchen").GetComponent<KitchenManager>().CancelOrder(tableNum);
 			Destroy(this.gameObject);

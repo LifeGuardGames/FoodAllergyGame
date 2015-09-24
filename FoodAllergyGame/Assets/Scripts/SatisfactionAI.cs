@@ -24,7 +24,7 @@ public class SatisfactionAI{
 	private float totalSatisfaction;
 
 	// Calculates the money given to the player once a customer leaves
-	public int CalculateBill(int incomingSatisfaction, int priceMultiplier){
+	public int CalculateBill(int incomingSatisfaction, int priceMultiplier, UnityEngine.Vector3 pos){
 		if(incomingSatisfaction <= 0){
 			missingCustomers++;
 		}
@@ -37,6 +37,7 @@ public class SatisfactionAI{
 		CalculateDifficultyLevel(modifiedSatisfaction);
 
 		totalSatisfaction += incomingSatisfaction;
+		ParticleAndFloatyManager.Instance.PlayMoneyFloaty(pos,((int)((float)incomingSatisfaction * 3.476f * priceMultiplier)));
 		return (int)((float)incomingSatisfaction * 3.476f * priceMultiplier);
 	}
 
