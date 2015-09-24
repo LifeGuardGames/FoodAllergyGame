@@ -4,26 +4,26 @@ using System.Collections;
 
 public class DecoUIToggleController : MonoBehaviour {
 
-	public TweenToggle decoTweenToggle;
+	public TweenToggleDemux decoTweenToggle;
 	public Image imageSymbol;
 	public Sprite upSprite;
 	public Sprite downSprite;
-	public GameObject decoTuT;
+	public GameObject decoTut;
 
 	void Start(){
 		if(DataManager.Instance.GameData.Tutorial.IsDecoTuTDone){
-			decoTuT.SetActive(false);
+			decoTut.SetActive(false);
 		}
 	}
 
 	public void OnToggleButtonClicked(){
-		if(decoTweenToggle.IsShown){
+		if(decoTweenToggle.IsShowing){
 			decoTweenToggle.Hide();
 			imageSymbol.sprite = upSprite;
 		}
 		else{
 			if(!DataManager.Instance.GameData.Tutorial.IsDecoTuTDone){
-				decoTuT.SetActive(false);
+				decoTut.SetActive(false);
 				DataManager.Instance.GameData.Tutorial.IsDecoTuTDone = true;
 			}
 			decoTweenToggle.Show();
