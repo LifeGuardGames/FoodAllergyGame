@@ -69,7 +69,7 @@ public class UIHelper : EditorWindow {
 				GUILayout.EndScrollView();
 			}
 			catch(Exception e){
-				Debug.LogWarning("GUIHelper exception caught, reloading..." + e.ToString());
+				Debug.LogWarning("UIHelper exception caught, reloading..." + e.ToString());
 				Reload();
 			}
 		}

@@ -25,6 +25,7 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	public GameObject decoTutorial;
+	public DecoCameraTween cameraTween;
 
 	#region Static functions
 	public static bool IsDecoBought(string decoID){
@@ -42,7 +43,6 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	public void PopulateDecoGrid(){
-
 		// Delete any existing buttons in the grid
 		foreach(Transform child in grid){
 			Destroy(child.gameObject);
@@ -99,9 +99,14 @@ public class DecoManager : Singleton<DecoManager>{
 		SetDeco(decoID);
 	}
 
+	public void ResetCamera(){
+		cameraTween.TweenCamera(DecoTypes.None);
+	}
+
 	public void ChangeTab(string tabName){
 		currentDecoPage = 0;
 		currentTabType = (DecoTypes)Enum.Parse(typeof(DecoTypes), tabName);
+		cameraTween.TweenCamera(currentTabType);
 		PopulateDecoGrid();
 	}
 
@@ -136,6 +141,6 @@ public class DecoManager : Singleton<DecoManager>{
 
 	public void OnExitButtonClicked(){
 		DataManager.Instance.SaveGameData();
-		TransitionManager.Instance.TransitionScene(SceneUtils.START);
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
 	}
 }

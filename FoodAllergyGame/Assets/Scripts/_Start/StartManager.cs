@@ -79,20 +79,20 @@ public class StartManager : Singleton<StartManager>{
 		// TODO integrate with datamanager tutorial fields
 		if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT1" ||DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT0"){
 			FoodManager.Instance.GenerateMenu(DataLoaderMenuSet.GetData("MenuSetT1").MenuSet.ToList(), 0);
-			TransitionManager.Instance.TransitionScene(SceneUtils.RESTAURANT);
+			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT);
 		}
 		else{
-			TransitionManager.Instance.TransitionScene(SceneUtils.MENUPLANNING);
+			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.MENUPLANNING);
 		}
 	}
 
 	public void OnComicButtonClicked(){
-		TransitionManager.Instance.TransitionScene(SceneUtils.COMICSCENE);
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.COMICSCENE);
 	}
 
 	public void DecoButtonClicked(){
 		DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance = false;
-		TransitionManager.Instance.TransitionScene(SceneUtils.DECO);
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.DECO);
 	}
 
 	public void OnInfoButtonClicked(){
