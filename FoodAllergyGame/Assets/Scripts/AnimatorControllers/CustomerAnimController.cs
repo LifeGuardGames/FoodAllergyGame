@@ -52,7 +52,8 @@ public class CustomerAnimController : MonoBehaviour {
 	}
 
 	public void SetSavedAllergyAttack(){
-		skeleton.state.SetAnimation(0, "SavedAllergy", false);
-		skeleton.state.SetAnimation(1, "WaitingActive", true);
+		skeleton.state.SetAnimation(0, "Reset", false);
+		skeleton.state.SetAnimation(1, "SavedAllergy", false);
+		skeleton.state.SetAnimation(2, "WaitingActive", true);
 	}
 }
