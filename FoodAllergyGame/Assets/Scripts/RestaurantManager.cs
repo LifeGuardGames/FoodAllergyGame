@@ -388,7 +388,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				{"Cash Lost", FoodManager.Instance.MenuCost + Medic.Instance.MedicCost},
 			});
 		}
-		Application.LoadLevel(SceneUtils.START);
+
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
 	}
 	#endregion
 }
