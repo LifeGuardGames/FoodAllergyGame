@@ -259,6 +259,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				this.GetComponent<CustomerTutorial>().hideTableFinger();
 			}
 			// check to see if we have an open hand for the order
+			Debug.Log (Waiter.Instance.CheckHands());
 			if(Waiter.Instance.CheckHands()){
 				TouchManager.Instance.PauseQueue();
 				StopCoroutine("SatisfactionTimer");
@@ -443,6 +444,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		switch(state){
 		case CustomerStates.WaitForOrder:
 			if(Waiter.Instance.Hand1 != WaiterHands.None && Waiter.Instance.Hand2 != WaiterHands.None){
+				ParticleAndFloatyManager.Instance.PlayHandsFullFloaty(Waiter.Instance.transform.position);
 				Waiter.Instance.Finished();
 			}
 			else{

@@ -190,6 +190,7 @@ public class Waiter: Singleton<Waiter>{
 			}
 		}
 		else{
+			Debug.Log ("Empty Hands");
 			ParticleAndFloatyManager.Instance.PlayHandsFullFloaty(this.transform.position);
 			// Hands are full
 		}
@@ -267,6 +268,8 @@ public class Waiter: Singleton<Waiter>{
 			return true;
 		}
 		else{
+			Debug.Log ("empty hands");
+			ParticleAndFloatyManager.Instance.PlayHandsFullFloaty(this.transform.position);
 			return false;
 		}
 	}
