@@ -4,12 +4,14 @@
 		<Type>Table</Type>
 		<Price>0</Price>
 		<TitleKey>TableBlue</TitleKey>
+		<DescriptionKey>TableBlueDesc</DescriptionKey>
 		<SpriteName>RestTableBlue</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "Table01">
 		<Type>Table</Type>
 		<Price>200</Price>
 		<TitleKey>TableRed</TitleKey>
+		<DescriptionKey>TableRedDesc</DescriptionKey>
 		<SpriteName>RestTableRed</SpriteName>
 	</DecoItem>
 	
@@ -18,30 +20,35 @@
 		<Type>Floor</Type>
 		<Price>100</Price>
 		<TitleKey>FloorBlue</TitleKey>
+		<DescriptionKey>FloorBlueDesc</DescriptionKey>
 		<SpriteName>RestFloorBlue</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "Floor01">
 		<Type>Floor</Type>
 		<Price>10000</Price>
 		<TitleKey>FloorAqua</TitleKey>
+		<DescriptionKey>FloorAquaDesc</DescriptionKey>
 		<SpriteName>RestFloorAqua</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "Floor02">
 		<Type>Floor</Type>
 		<Price>200</Price>
 		<TitleKey>FloorGreen</TitleKey>
+		<DescriptionKey>FloorGreenDesc</DescriptionKey>
 		<SpriteName>RestFloorGreen</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "Floor03">
 		<Type>Floor</Type>
 		<Price>200</Price>
 		<TitleKey>FloorPink</TitleKey>
+		<DescriptionKey>FloorPinkDesc</DescriptionKey>
 		<SpriteName>RestFloorPink</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "Floor04">
 		<Type>Floor</Type>
 		<Price>200</Price>
 		<TitleKey>FloorRed</TitleKey>
+		<DescriptionKey>FloorRedDesc</DescriptionKey>
 		<SpriteName>RestFloorRed</SpriteName>
 	</DecoItem>
 	
@@ -50,12 +57,14 @@
 		<Type>Kitchen</Type>
 		<Price>100</Price>
 		<TitleKey>KitchenBlue</TitleKey>
+		<DescriptionKey>KitchenBlueDesc</DescriptionKey>
 		<SpriteName>RestKitchenBlue</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "Kitchen01">
 		<Type>Kitchen</Type>
 		<Price>10000</Price>
 		<TitleKey>KitchenPink</TitleKey>
+		<DescriptionKey>KitchenPinkDesc</DescriptionKey>
 		<SpriteName>RestKitchenPink</SpriteName>
 	</DecoItem>
 	
@@ -64,6 +73,7 @@
 		<Type>Bathroom</Type>
 		<Price>0</Price>
 		<TitleKey>BathroomBasic</TitleKey>
+		<DescriptionKey>BathroomBasicDesc</DescriptionKey>
 		<SpriteName>RestBathroom00</SpriteName>
 	</DecoItem>
 	
@@ -72,6 +82,7 @@
 		<Type>VIP</Type>
 		<Price>0</Price>
 		<TitleKey>None</TitleKey>
+		<DescriptionKey>NoneDesc</DescriptionKey>
 		<SpriteName>None</SpriteName>
 	</DecoItem>
 
@@ -80,12 +91,14 @@
 		<Type>PlayArea</Type>
 		<Price>0</Price>
 		<TitleKey>None</TitleKey>
+		<DescriptionKey>NoneDesc</DescriptionKey>
 		<SpriteName>None</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "PlayArea01">
 		<Type>PlayArea</Type>
 		<Price>1</Price>
 		<TitleKey>PlayArea01</TitleKey>
+		<DescriptionKey>PlayArea01Desc</DescriptionKey>
 		<SpriteName>RestPlayArea01</SpriteName>
 	</DecoItem>
 	
@@ -94,6 +107,7 @@
 		<Type>Microwave</Type>
 		<Price>0</Price>
 		<TitleKey>None</TitleKey>
+		<DescriptionKey>NoneDesc</DescriptionKey>
 		<SpriteName>None</SpriteName>
 	</DecoItem>
 
@@ -103,6 +117,7 @@
 		<Type>FlyThru</Type>
 		<Price>0</Price>
 		<TitleKey>None</TitleKey>
+		<DescriptionKey>NoneDesc</DescriptionKey>
 		<SpriteName>None</SpriteName>
 	</DecoItem>
 

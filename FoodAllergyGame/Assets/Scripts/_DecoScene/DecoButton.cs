@@ -23,10 +23,10 @@ public class DecoButton : MonoBehaviour {
 	public void Init(ImmutableDataDecoItem decoData){
 		decoID = decoData.ID;
 		gameObject.name = decoData.ID;
-		decoNameText.text = LocalizationText.GetText(decoData.ButtonTitleKey);
+		decoNameText.text = LocalizationText.GetText(decoData.TitleKey);
 		costAux = decoData.Cost;
 
-		if(decoData.ButtonTitleKey != "None"){
+		if(decoData.TitleKey != "None"){
 			string spriteName = decoData.SpriteName;
 			decoImage.sprite = SpriteCacheManager.GetDecoSpriteData(spriteName);
 		}

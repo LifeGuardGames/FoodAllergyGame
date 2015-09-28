@@ -20,9 +20,14 @@ public class ImmutableDataDecoItem {
 		get {return cost;}
 	}
 
-	private string buttonTitleKey;
-	public string ButtonTitleKey{
-		get{return buttonTitleKey;}
+	private string titleKey;
+	public string TitleKey{
+		get{return titleKey;}
+	}
+
+	private string descriptionKey;
+	public string DescriptionKey{
+		get{return descriptionKey;}
 	}
 
 	private string spriteName;
@@ -41,7 +46,7 @@ public class ImmutableDataDecoItem {
 		this.id = id;
 		type = (DecoTypes)Enum.Parse(typeof(DecoTypes), XMLUtils.GetString(hashElements["Type"] as IXMLNode));
 		cost = XMLUtils.GetInt(hashElements["Price"] as IXMLNode);
-		buttonTitleKey = XMLUtils.GetString(hashElements["TitleKey"] as IXMLNode);
+		titleKey = XMLUtils.GetString(hashElements["TitleKey"] as IXMLNode);
 
 		if(XMLUtils.GetString(hashElements["SpriteName"] as IXMLNode) != null){
 			spriteName = XMLUtils.GetString(hashElements["SpriteName"] as IXMLNode);

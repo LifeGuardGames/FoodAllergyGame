@@ -1,5 +1,4 @@
 ﻿//// Copyright (c) 2015 LifeGuard Games Inc.
-
 using UnityEngine;
 using System.Collections;
 
@@ -7,33 +6,28 @@ using System.Collections;
 /// Move tween toggle demultiplexer.
 /// Packs multiple objects that needs to be move tweened into one compact call
 /// </summary>
-
-public class TweenToggleDemux : MonoBehaviour {
+public class TweenToggleDemux : MonoBehaviour{
 
 	public GameObject[] GoList;
 	public Vector2 testButtonPos;
 	public bool isDebug = false;
 	public bool startsHidden = false;
-
 	public GameObject lastFinishedShowObject;	// For lock
 	private TweenToggle lastFinishedShowObjectScript;
 	public GameObject lastFinishedHideObject;	// For lock
 	private TweenToggle lastFinishedHideObjectScript;
-	
 	public bool isShowFinishedCallback = true;	// Call callback after the end of the tween instead of the beginning
 	public GameObject ShowTarget;
 	public string ShowFunctionName;
 	public bool ShowIncludeChildren = false;
-	
 	public bool isHideFinishedCallback = true;	// Call callback after the end of the tween instead of the beginning
 	public GameObject HideTarget;
 	public string HideFunctionName;
 	public bool HideIncludeChildren = false;
-	
 	public bool hideImmediately = false;
-	
 	private bool isShown; // Active lock
 	public bool IsShowing{ get { return isShown; } }
+
 	private bool isMoving; // Move lock
 	public bool IsMoving{ get { return isMoving; } }
 	
@@ -44,7 +38,8 @@ public class TweenToggleDemux : MonoBehaviour {
 		if(startsHidden){
 			isShown = false;
 			isMoving = false;
-		}else{
+		}
+		else{
 			isShown = true;
 			isMoving = false;
 		}
@@ -197,12 +192,15 @@ public class TweenToggleDemux : MonoBehaviour {
 //	 }
 	
 	void ShowSendCallback(){
-		if (string.IsNullOrEmpty(ShowFunctionName)) return;
-		if (ShowTarget == null) ShowTarget = gameObject;
-
-		if (ShowIncludeChildren){
+		if(string.IsNullOrEmpty(ShowFunctionName)){
+			return;
+		}
+		if(ShowTarget == null){
+			ShowTarget = gameObject;
+		}
+		if(ShowIncludeChildren){
 			Transform[] transforms = ShowTarget.GetComponentsInChildren<Transform>();
-			for (int i = 0, imax = transforms.Length; i < imax; ++i){
+			for(int i = 0, imax = transforms.Length; i < imax; ++i){
 				Transform t = transforms[i];
 				t.gameObject.SendMessage(ShowFunctionName, gameObject, SendMessageOptions.DontRequireReceiver);
 			}
@@ -213,12 +211,15 @@ public class TweenToggleDemux : MonoBehaviour {
 	}
 	
 	void HideSendCallback(){
-		if (string.IsNullOrEmpty(HideFunctionName)) return;
-		if (HideTarget == null) HideTarget = gameObject;
-
-		if (HideIncludeChildren){
+		if(string.IsNullOrEmpty(HideFunctionName)){
+			return;
+		}
+		if(HideTarget == null){
+			HideTarget = gameObject;
+		}
+		if(HideIncludeChildren){
 			Transform[] transforms = HideTarget.GetComponentsInChildren<Transform>();
-			for (int i = 0, imax = transforms.Length; i < imax; ++i){
+			for(int i = 0, imax = transforms.Length; i < imax; ++i){
 				Transform t = transforms[i];
 				t.gameObject.SendMessage(HideFunctionName, gameObject, SendMessageOptions.DontRequireReceiver);
 			}
