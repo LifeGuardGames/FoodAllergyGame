@@ -27,7 +27,7 @@ public static class ParticleUtils  {
 	}
 
 	static public void  PlayHandsFullFloaty(Vector3 pos){
-		GameObject go = Resources.Load("HandsFullFloaty") as GameObject;
+		GameObject go = Resources.Load("HandsFull") as GameObject;
 		GameObject Instance = GameObject.Instantiate(go, pos, go.transform.rotation) as GameObject;
 	}
 }
