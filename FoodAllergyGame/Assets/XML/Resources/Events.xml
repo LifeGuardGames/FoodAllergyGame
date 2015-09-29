@@ -40,9 +40,9 @@
 	<Event ID="Event00">
 		<MenuSet>MenuSet00</MenuSet>
 		<KitchenTimer>3</KitchenTimer>
-		<CustomerSet>CustomerSetTP</CustomerSet>
+		<CustomerSet>CustomerSet00</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
-		<DayLength>4</DayLength>
+		<DayLength>72</DayLength>
 		<Allergy>Peanut</Allergy>
 		<EventDescription>EventDesc00</EventDescription>
 		<Title>Title00</Title>
