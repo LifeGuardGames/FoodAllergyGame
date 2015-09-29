@@ -18,6 +18,11 @@ public class ShowcaseController : MonoBehaviour {
 	private string auxCallbackString = "StartCurrentDeco";	// Toggles the callback on showcaseDemux if present
 															// Save aux copy, turn off in preview mode
 
+	public void ShowInfo(string decoID){
+		ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
+		ShowInfo(decoData);
+	}
+
 	public void ShowInfo(ImmutableDataDecoItem decoData){
 		// Initial case, first start, just show all data immediately
 		if(string.IsNullOrEmpty(currentDeco)){
@@ -34,7 +39,9 @@ public class ShowcaseController : MonoBehaviour {
 	// Callback - An item is clicked, show the showcase UI plus its buttons
 	private void StartCurrentDeco(ImmutableDataDecoItem decoData){
 		fadeTween.Show();
-
+		
+		Debug.Log(decoData.ID);
+		Debug.Log(decoData.DescriptionKey );
 		decoImage.sprite = SpriteCacheManager.GetDecoSpriteData(decoData.SpriteName);
 		titleText.text = LocalizationText.GetText(decoData.TitleKey);
 		descriptionText.text = LocalizationText.GetText(decoData.DescriptionKey);

@@ -43,7 +43,11 @@ public class DecoManager : Singleton<DecoManager>{
 
 	void Awake(){
 		sceneObjects = new Dictionary<DecoTypes, GameObject>();
-		PopulateDecoGrid();
+	}
+
+	void Start(){
+		// Start with table tab
+		ChangeTab("Table");
 	}
 
 	public void PopulateDecoGrid(){
@@ -64,6 +68,11 @@ public class DecoManager : Singleton<DecoManager>{
 			decoButton.GetComponent<DecoButton>().Init(decoData);
 			RefreshButtonShowStatus();
 		}
+	}
+
+	public void ShowcaseDeco(string decoID){
+		ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
+		showcaseController.ShowInfo(decoData);
 	}
 
 	public void SetDeco(string decoID){
@@ -112,6 +121,9 @@ public class DecoManager : Singleton<DecoManager>{
 		currentTabType = (DecoTypes)Enum.Parse(typeof(DecoTypes), tabName);
 		cameraTween.TweenCamera(currentTabType);
 		PopulateDecoGrid();
+
+		// Showcase the first deco
+
 	}
 
 	public void ChangePage(bool isRight){
