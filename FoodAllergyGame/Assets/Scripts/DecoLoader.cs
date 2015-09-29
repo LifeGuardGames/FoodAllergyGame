@@ -35,16 +35,21 @@ public abstract class DecoLoader : MonoBehaviour {
 	}
 
 	// Load the deco, accounts for "None" as well, deletes the parent's children as well
-	public virtual void LoadDeco(ImmutableDataDecoItem decoData){
+	public virtual void LoadDeco(ImmutableDataDecoItem decoData, bool isPlayPoof = false){
 		// Delete any objects attached to this parent
 		foreach(Transform child in transform){
 			Destroy(child.gameObject);
+		}
+
+		if(isPlayPoof){
+			ParticleUtils.PlayDecoChangePoof(transform.position);
 		}
 
 		if(decoData.TitleKey != "None"){
 			GameObject prefab = Resources.Load(decoData.ID) as GameObject;
 			loadedObject = GameObjectUtils.AddChild(gameObject, prefab);
 		
+
 			// HACK Delete colliders while not in deco scene
 			if(isDecoScene){
 				loadedObject.GetComponent<Collider>().enabled = false;

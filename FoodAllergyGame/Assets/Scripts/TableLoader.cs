@@ -12,7 +12,7 @@ public class TableLoader : DecoLoader {
 	}
 
 	// Overrided parent function, special case
-	public override void LoadDeco(ImmutableDataDecoItem decoData){
+	public override void LoadDeco(ImmutableDataDecoItem decoData, bool isPlayPoof = false){
 		for(int i = 0; i < tableParentList.Count; i++){
 			// Delete any objects attached to each parent
 			foreach(Transform child in tableParentList[i].transform){
@@ -20,7 +20,11 @@ public class TableLoader : DecoLoader {
 			}
 			GameObject prefab = Resources.Load(decoData.ID) as GameObject;
 			loadedObject = GameObjectUtils.AddChild(tableParentList[i], prefab);
-			
+
+			if(isPlayPoof){
+				ParticleUtils.PlayDecoChangePoof(tableParentList[i].transform.position);
+			}
+
 			// HACK Delete colliders while not in deco scene
 			if(isDecoScene){
 				loadedObject.GetComponent<Collider>().enabled = false;

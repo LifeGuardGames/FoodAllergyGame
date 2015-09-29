@@ -60,12 +60,6 @@ public class DecoButton : MonoBehaviour {
 	}
 
 	public void OnButtonClicked(){
-		DecoManager.Instance.SetDeco(decoID);
-		BroadcastToDecoButtons();
-	}
-
-	// Tell all other decoButtons to refresh their states
-	public void BroadcastToDecoButtons(){
-		transform.parent.gameObject.BroadcastMessage("RefreshButtonState", SendMessageOptions.DontRequireReceiver);
+		DecoManager.Instance.ShowcaseDeco(decoID);
 	}
 }

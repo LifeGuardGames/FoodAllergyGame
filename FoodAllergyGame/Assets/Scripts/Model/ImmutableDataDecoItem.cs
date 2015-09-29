@@ -47,6 +47,7 @@ public class ImmutableDataDecoItem {
 		type = (DecoTypes)Enum.Parse(typeof(DecoTypes), XMLUtils.GetString(hashElements["Type"] as IXMLNode));
 		cost = XMLUtils.GetInt(hashElements["Price"] as IXMLNode);
 		titleKey = XMLUtils.GetString(hashElements["TitleKey"] as IXMLNode);
+		descriptionKey = XMLUtils.GetString(hashElements["DescriptionKey"] as IXMLNode);
 
 		if(XMLUtils.GetString(hashElements["SpriteName"] as IXMLNode) != null){
 			spriteName = XMLUtils.GetString(hashElements["SpriteName"] as IXMLNode);

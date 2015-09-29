@@ -30,6 +30,8 @@ public class DecoManager : Singleton<DecoManager>{
 	// Use these two references to tween and init them
 	public ShowcaseController showcaseController;
 	public TweenToggleDemux selectionPanelTween;
+	public TweenToggle exitButtonTween;
+	public TweenToggle backButtonTween;	// Exits out of view mode
 
 	#region Static functions
 	public static bool IsDecoBought(string decoID){
@@ -43,7 +45,11 @@ public class DecoManager : Singleton<DecoManager>{
 
 	void Awake(){
 		sceneObjects = new Dictionary<DecoTypes, GameObject>();
-		PopulateDecoGrid();
+	}
+
+	void Start(){
+		// Start with table tab
+		ChangeTab("Table");
 	}
 
 	public void PopulateDecoGrid(){
@@ -66,13 +72,34 @@ public class DecoManager : Singleton<DecoManager>{
 		}
 	}
 
+	public void ShowcaseDeco(string decoID){
+		ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
+		showcaseController.ShowInfo(decoData);
+	}
+
+//	public bool PreviewDeco(string decoID){
+		// TODO for down the road, Save an aux dummy instance and delete it when you exit preview mode.
+		// Dont touch datamanager though
+//	}
+
+	// TODO Return false if you dont have enough money
 	public void SetDeco(string decoID){
 		if(IsDecoBought(decoID)){
 			// Cache local data
 			ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
 			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(decoData.Type);
 			DataManager.Instance.GameData.Decoration.ActiveDeco.Add(decoData.Type, decoID);
-			RefreshItem(decoData.Type);
+
+			// Refresh deco buttons of the update
+			RefreshButtonState();
+
+			// Enter view mode
+			showcaseController.EnterViewMode();
+			selectionPanelTween.Hide();
+			exitButtonTween.Hide();
+			backButtonTween.Show();
+
+			StartCoroutine(RefreshItem(decoData.Type));
 		}
 		else{
 			BuyItem(decoID);
@@ -85,10 +112,11 @@ public class DecoManager : Singleton<DecoManager>{
 		}
 	}
 
-	private void RefreshItem(DecoTypes deco){
+	private IEnumerator RefreshItem(DecoTypes deco){
+		yield return new WaitForSeconds(.8f);
 		DecoLoader loader = decoLoaderHash[deco];	// Get the loader script by type
 		ImmutableDataDecoItem decoData = DataManager.Instance.GetActiveDecoData(deco);
-		loader.LoadDeco(decoData);
+		loader.LoadDeco(decoData, isPlayPoof: true);
 	}
 
 	public void ShowTutorial(){
@@ -112,6 +140,9 @@ public class DecoManager : Singleton<DecoManager>{
 		currentTabType = (DecoTypes)Enum.Parse(typeof(DecoTypes), tabName);
 		cameraTween.TweenCamera(currentTabType);
 		PopulateDecoGrid();
+
+		// Showcase the first deco
+		showcaseController.ShowInfo(tabName + "00");
 	}
 
 	public void ChangePage(bool isRight){
@@ -141,6 +172,18 @@ public class DecoManager : Singleton<DecoManager>{
 		else{
 			rightButton.SetActive(true);
 		}
+	}
+
+	public void RefreshButtonState(){
+		grid.gameObject.BroadcastMessage("RefreshButtonState", SendMessageOptions.DontRequireReceiver);
+	}
+
+	// Exit view mode
+	public void OnBackButtonClicked(){
+		showcaseController.ExitViewMode();
+		selectionPanelTween.Show();
+		exitButtonTween.Show();
+		backButtonTween.Hide();
 	}
 
 	public void OnExitButtonClicked(){

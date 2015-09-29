@@ -11,7 +11,10 @@ public class DecoTextureLoader : DecoLoader {
 	}
 
 	// Overrided parent function, special case
-	public override void LoadDeco(ImmutableDataDecoItem decoData){
+	public override void LoadDeco(ImmutableDataDecoItem decoData, bool isPlayPoof = false){
+		if(isPlayPoof){
+			ParticleUtils.PlayDecoChangePoof(transform.position);
+		}
 		floorSpriteRenderer.sprite = SpriteCacheManager.GetDecoSpriteData(decoData.SpriteName);
 	}
 }
