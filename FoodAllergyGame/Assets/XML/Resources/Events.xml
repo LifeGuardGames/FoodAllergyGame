@@ -27,12 +27,22 @@
 		<Allergy>None</Allergy>
 		<Title>TitleT2</Title>
 	</Event>
-	<Event ID="Event00">
+	<Event ID="EventTP">
 		<MenuSet>MenuSet00</MenuSet>
 		<KitchenTimer>3</KitchenTimer>
 		<CustomerSet>CustomerSet00</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
-		<DayLength>72</DayLength>
+		<DayLength>4</DayLength>
+		<Allergy>Peanut</Allergy>
+		<EventDescription>EventDesc00</EventDescription>
+		<Title>Title00</Title>
+	</Event>
+	<Event ID="Event00">
+		<MenuSet>MenuSet00</MenuSet>
+		<KitchenTimer>3</KitchenTimer>
+		<CustomerSet>CustomerSetTP</CustomerSet>
+		<CustomerTimer>2</CustomerTimer>
+		<DayLength>4</DayLength>
 		<Allergy>Peanut</Allergy>
 		<EventDescription>EventDesc00</EventDescription>
 		<Title>Title00</Title>

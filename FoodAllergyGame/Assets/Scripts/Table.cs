@@ -45,7 +45,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	public GameObject tableHighlight;
 	public SpriteRenderer tableSprite;
 
-	void Start(){
+	void Awake(){
 		if(Application.loadedLevelName == SceneUtils.RESTAURANT){
 			// Add youself to the list of tables
 			RestaurantManager.Instance.TableList.Add(gameObject);

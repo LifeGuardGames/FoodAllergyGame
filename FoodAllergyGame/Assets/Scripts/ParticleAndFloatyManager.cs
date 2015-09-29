@@ -13,5 +13,6 @@ public class ParticleAndFloatyManager : Singleton<ParticleAndFloatyManager> {
 
 	public void  PlayHandsFullFloaty(Vector3 pos){
 		ParticleUtils.PlayHandsFullFloaty(pos);
+		AudioManager.Instance.PlayClip("HandsFull");
 	}
 }

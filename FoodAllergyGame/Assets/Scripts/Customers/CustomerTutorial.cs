@@ -78,4 +78,11 @@ public class CustomerTutorial : Customer{
 		yield return new WaitForSeconds(0.2f);
 		transform.GetChild(2).gameObject.SetActive(true);
 	}
+
+	public override void GoToPlayArea (Vector3 playAreaSpot, int spotIndex, int deltaSatisfaction)
+	{
+		base.GoToPlayArea (playAreaSpot, spotIndex, deltaSatisfaction);
+		tutFingers.transform.GetChild(step).gameObject.SetActive(false);
+	}
+
 }

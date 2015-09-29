@@ -523,7 +523,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		Waiter.Instance.CurrentLineCustomer = null;
 	}
 
-	public void OnClicked(){
+	public virtual void OnClicked(){
 		if(state == CustomerStates.InLine){
 			// If you were already selecting a customer, untween that
 			if(Waiter.Instance.CurrentLineCustomer != null){

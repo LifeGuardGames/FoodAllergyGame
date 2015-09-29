@@ -6,6 +6,9 @@
 	<CustomerSet ID="CustomerSetT2">
 		<CustomerList>Customer00</CustomerList>
 	</CustomerSet>
+	<CustomerSet ID="CustomerSetTP">
+		<CustomerList>Customer00,Customer11</CustomerList>
+	</CustomerSet>
 	<CustomerSet ID="CustomerSet00">
 		<CustomerList>Customer00,Customer01,Customer02</CustomerList>
 	</CustomerSet>

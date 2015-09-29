@@ -105,10 +105,15 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		dayEarnedCash = 0;
 		dayCashRevenue = 0;
 		restaurantUI.StartDay();
-		
+		Debug.Log(eventData.ID);
 		if(eventData.ID == "EventT1"){
 			isTutorial = true;
 			//customerSpawnTimer = customerTimer / satisfactionAI.DifficultyLevel + 1;
+		}
+		else if (eventData.ID == "EventTP"){
+			dayTime = eventData.DayLengthMod;
+			dayTimeLeft = dayTime;
+			RunPlayAreaTut();
 		}
 		else{
 			dayTime = eventData.DayLengthMod;
@@ -160,7 +165,12 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 					customerSpawnTimer = baseCustomerTimer / satisfactionAI.DifficultyLevel + 2;
 				}
 				rand = UnityEngine.Random.Range(0, currCusSet.Count);
-				customerData = DataLoaderCustomer.GetData(currCusSet[rand]);
+				if (eventData.ID == "EventTP"){
+					customerData = DataLoaderCustomer.GetData(currCusSet[1]);
+				}
+				else{
+					customerData = DataLoaderCustomer.GetData(currCusSet[rand]);
+				}
 				GameObject customerPrefab = Resources.Load(customerData.Script) as GameObject;
 				GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 				customerNumber++;
@@ -353,6 +363,20 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			currCustomers[i].GetComponent<Customer>().customerUI.gameObject.SetActive(true);
 		}
 		StartCoroutine(SpawnCustomer());
+	}
+
+	private void RunPlayAreaTut(){
+		for (int i = 0; i < 4; i++){
+			ImmutableDataCustomer test;
+			test = DataLoaderCustomer.GetData(currCusSet[0]);
+			GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
+			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
+			cus.GetComponent<Customer>().Init(customerNumber, eventData);
+			customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
+			customerNumber++;
+			satisfactionAI.AddCustomer();
+			cus.GetComponent<Customer>().JumpToTable(i);
+		}
 	}
 
 	#region PausingUI functions

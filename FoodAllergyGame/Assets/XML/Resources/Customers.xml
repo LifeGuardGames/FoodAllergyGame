@@ -77,4 +77,11 @@
 		<Script>CustomerTutorial</Script>
 		<Tier>-1</Tier>
 	</Customer>
+	<Customer ID="Customer11">
+		<CustomerNameKey>CustomerPlayAreaTut</CustomerNameKey>
+		<CustomerDesc>CustomerPlayAreaTut</CustomerDesc>
+		<SpriteName>CustomerPlayAreaTut</SpriteName>
+		<Script>CustomerPlayAreaTut</Script>
+		<Tier>-1</Tier>
+	</Customer>
 </Customers>
