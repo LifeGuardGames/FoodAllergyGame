@@ -9,6 +9,7 @@ public class MutableDataDecoration{
 	public List<string> DecoTutQueue;
 
 	public MutableDataDecoration(){
+		DecoTutQueue = new List<string>();
 		IsFirstTimeEntrance = true;
 		DecoTut = new List<DecoTypes>();
 		DecoTut.Add(DecoTypes.Floor);

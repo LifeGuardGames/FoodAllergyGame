@@ -30,7 +30,7 @@
 	<Event ID="EventTP">
 		<MenuSet>MenuSet00</MenuSet>
 		<KitchenTimer>3</KitchenTimer>
-		<CustomerSet>CustomerSet00</CustomerSet>
+		<CustomerSet>CustomerSetTP</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
 		<DayLength>4</DayLength>
 		<Allergy>Peanut</Allergy>

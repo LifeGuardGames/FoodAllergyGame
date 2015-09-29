@@ -104,6 +104,14 @@ public class DecoManager : Singleton<DecoManager>{
 		else{
 			BuyItem(decoID);
 			ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
+			switch(decoData.Type){
+			case DecoTypes.PlayArea:
+				DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTP");
+				DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
+				break;
+			default:
+				break;
+			}
 			// HACK for prototyping only
 			if(!DataManager.Instance.GameData.Decoration.DecoTut.Contains(decoData.Type)){
 				decoTutorial.GetComponent<DecoTutorialController>().Init(decoData.Type);

@@ -31,5 +31,6 @@ public class CustomerPlayAreaTut : Customer {
 	{
 		base.GoToPlayArea (playAreaSpot, spotIndex, deltaSatisfaction);
 		tutFingers.transform.GetChild(6).gameObject.SetActive(false);
+		usedPlayArea = true;
 	}
 }

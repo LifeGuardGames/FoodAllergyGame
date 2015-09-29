@@ -163,8 +163,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 					customerSpawnTimer = baseCustomerTimer / satisfactionAI.DifficultyLevel + 2;
 				}
 				rand = UnityEngine.Random.Range(0, currCusSet.Count);
-				if (eventData.ID == "EventTP"){
-					customerData = DataLoaderCustomer.GetData(currCusSet[1]);
+				if(eventData.ID == "EventTP"){
+					customerData = DataLoaderCustomer.GetData(currCusSet[0]);
 				}
 				else{
 					customerData = DataLoaderCustomer.GetData(currCusSet[rand]);
@@ -373,7 +373,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		yield return (0);
 		for (int i = 0; i < 4; i++){
 			ImmutableDataCustomer test;
-			test = DataLoaderCustomer.GetData(currCusSet[0]);
+			test = DataLoaderCustomer.GetData(currCusSet[1]);
 			GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
 			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 			cus.GetComponent<Customer>().Init(customerNumber, eventData);
@@ -381,6 +381,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			customerNumber++;
 			satisfactionAI.AddCustomer();
 			cus.GetComponent<Customer>().JumpToTable(i);
+			GetTable(i).inUse = true;
 		}
 	}
 
