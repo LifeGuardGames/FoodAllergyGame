@@ -87,11 +87,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 		if(DataManager.Instance.IsDebug){
 			FoodManager.Instance.GenerateMenu(DataLoaderMenuSet.GetData("MenuSetT1").MenuSet.ToList(), 0);
-			StartDay(DataLoaderEvents.GetData("Event00"));
 		}
-		else{
-			StartDay(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()));
-		}
+		StartDay(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()));
 	}
 
 	// Called at the start of the game day begins the day tracker coroutine 
@@ -118,6 +115,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		else{
 			dayTime = eventData.DayLengthMod;
 			dayTimeLeft = dayTime;
+
 		}
 		customerTimer = 1.0f;
 		StartCoroutine(SpawnCustomer());
@@ -294,6 +292,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 	public void DeployMedic(){
 		RestaurantManager.Instance.medicTutorial.SetActive(false);
+		Waiter.Instance.isMedicTut = false;
 		if(SickCustomers.Count > 0){
 			attempted += SickCustomers.Count;
 			Medic.Instance.SetOutFromHome(SickCustomers[0].transform.position);

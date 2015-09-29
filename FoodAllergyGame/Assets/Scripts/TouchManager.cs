@@ -52,4 +52,8 @@ public class TouchManager : Singleton<TouchManager> {
 	public void UnpauseQueue(){
 		isPaused = false;
 	}
+
+	public void EmptyQueue(){
+		inputQueue = new Queue<GameObject>();
+	}
 }

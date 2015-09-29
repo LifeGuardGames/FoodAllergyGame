@@ -25,7 +25,8 @@ public class MedicArea : MonoBehaviour, IWaiterSelection{
 	}
 	
 	public void OnClicked(){
-			Waiter.Instance.FindRoute(node, this);
+		TouchManager.Instance.UnpauseQueue();
+		Waiter.Instance.FindRoute(node, this);
 	}
 	#endregion
 }

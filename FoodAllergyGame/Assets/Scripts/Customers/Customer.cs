@@ -259,7 +259,6 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				this.GetComponent<CustomerTutorial>().hideTableFinger();
 			}
 			// check to see if we have an open hand for the order
-			Debug.Log (Waiter.Instance.CheckHands());
 			if(Waiter.Instance.CheckHands()){
 				TouchManager.Instance.PauseQueue();
 				StopCoroutine("SatisfactionTimer");
@@ -323,6 +322,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				state = CustomerStates.Eating;
 				StartCoroutine("EatingTimer");
 				AudioManager.Instance.PlayClip("eating");
+				Waiter.Instance.Finished();
 			}
 		}
 	}
@@ -397,8 +397,10 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			else{
 				DataManager.Instance.GameData.Tutorial.IsMedicTuT2Done = true;
 			}
+			Waiter.Instance.isMedicTut = true;
+			Waiter.Instance.CancelMove();
 			RestaurantManager.Instance.medicTutorial.SetActive(true);
-
+			//TouchManager.Instance.PauseQueue();
 			string foodSpriteName = DataLoaderFood.GetData(order.GetComponent<Order>().foodID).SpriteName;
 			RestaurantManager.Instance.medicTutorial.GetComponent<SickTutorialController>().Show(allergy, foodSpriteName);
 		}
@@ -455,7 +457,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			if(Waiter.Instance.HaveMeal(tableNum)){
 				Eating();
 			}
-			Waiter.Instance.Finished();
+			else{
+				Waiter.Instance.Finished();
+			}
 			break;
 		case CustomerStates.WaitForCheck:
 			NotifyLeave();

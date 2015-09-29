@@ -38,7 +38,7 @@ public class Waiter: Singleton<Waiter>{
 
 	public WaiterAnimController waiterAnimController;
 	public SpriteRenderer waiterSprite;
-
+	public bool isMedicTut;
 	public GameObject currentNode;
 	private bool moving;
 	private int pathIndex = 0;
@@ -333,31 +333,41 @@ public class Waiter: Singleton<Waiter>{
 	public void Finished(){
 		CanMove = true;
 		if(TouchManager.Instance.inputQueue.Count > 0){
+			if(TouchManager.Instance.inputQueue.Peek().GetComponent<MedicArea>() == null && isMedicTut){
+				TouchManager.Instance.inputQueue.Dequeue();
+				Finished ();
+			}
 			//	if(TouchManager.Instance.inputQueue.Peek ().GetComponent<Table>().seat.GetComponentInChildren<Customer>().state != CustomerStates.WaitForOrder && Waiter.Instance.CheckHands()){
-
-
-			//these statements allow a customer be seated if the next object in the queue is an empty table otherwise it will deselect the current customer
-			// need to make sure the next item in the queue is a table
-			if(TouchManager.Instance.inputQueue.Peek ().GetComponent<Table>() != null){
-				//if it is and that table is full we deselect the customer
-				if(TouchManager.Instance.inputQueue.Peek ().GetComponent<Table>().inUse == true){
+			else{
+				//these statements allow a customer be seated if the next object in the queue is an empty table otherwise it will deselect the current customer
+				// need to make sure the next item in the queue is a table
+				 if(TouchManager.Instance.inputQueue.Peek ().GetComponent<Table>() != null){
+					//if it is and that table is full we deselect the customer
+					if(TouchManager.Instance.inputQueue.Peek ().GetComponent<Table>().inUse == true){
+						if(CurrentLineCustomer != null){
+							CurrentLineCustomer.GetComponent<Customer>().Deselect();
+						}
+					}
+				}
+				else{
+					//otherwise if we clicked on something else and we have a customer, we deselect them
 					if(CurrentLineCustomer != null){
 						CurrentLineCustomer.GetComponent<Customer>().Deselect();
 					}
 				}
-			}
-			else{
-				//otherwise if we clicked on something else and we have a customer, we deselect them
-				if(CurrentLineCustomer != null){
-					CurrentLineCustomer.GetComponent<Customer>().Deselect();
+				GameObject dequeuedObject = TouchManager.Instance.inputQueue.Dequeue();
+				if(dequeuedObject != null){
+					dequeuedObject.GetComponent<IWaiterSelection>().OnClicked();
 				}
-			}
-			GameObject dequeuedObject = TouchManager.Instance.inputQueue.Dequeue();
-			if(dequeuedObject != null){
-				dequeuedObject.GetComponent<IWaiterSelection>().OnClicked();
 			}
 			//}
 		}
 	}
-
+	public void CancelMove(){
+		moving = false;
+		pathList = new List<GameObject>();
+		currentCaller = null;
+		TouchManager.Instance.EmptyQueue();
+		Finished();
+	}
 }

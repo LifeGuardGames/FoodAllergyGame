@@ -6,6 +6,7 @@ public class MutableDataDecoration{
 	public Dictionary<DecoTypes, string> ActiveDeco;
 	public Dictionary<string, string> BoughtDeco;
 	public List<DecoTypes> DecoTut;
+	public List<string> DecoTutQueue;
 
 	public MutableDataDecoration(){
 		IsFirstTimeEntrance = true;

@@ -83,8 +83,13 @@ public class TierManager : Singleton<TierManager> {
 	}
 
 	public string GetNewEvent(){
-		List <string> eventList = GetEventsUnlocked();
-		Debug.Log (eventList.Count);
-		return eventList[Random.Range(0, eventList.Count)];
+		if(DataManager.Instance.GameData.Decoration.DecoTutQueue.Count != 0){
+			return DataManager.Instance.GameData.Decoration.DecoTutQueue[0];
+		}
+		else{
+			List <string> eventList = GetEventsUnlocked();
+			Debug.Log (eventList.Count);
+			return eventList[Random.Range(0, eventList.Count)];
+		}
 	}
 }

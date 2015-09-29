@@ -150,7 +150,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	}
 
 	public void OnClicked(){
-		Debug.Log (node.name);
+
 		if(tableType != TableType.FlyThru){
 			if(Waiter.Instance.CurrentLineCustomer != null && !inUse && !isBroken){
 				Waiter.Instance.CurrentLineCustomer.transform.localScale = Vector3.one;
