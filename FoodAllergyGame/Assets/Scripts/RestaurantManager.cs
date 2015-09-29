@@ -118,6 +118,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		else{
 			dayTime = eventData.DayLengthMod;
 			dayTimeLeft = dayTime;
+			RunPlayAreaTut();
 		}
 		customerTimer = 1.0f;
 		StartCoroutine(SpawnCustomer());
@@ -366,6 +367,12 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	}
 
 	private void RunPlayAreaTut(){
+		StartCoroutine("WaitASec");
+		//cus.GetComponent<Customer>().JumpToTable(i);
+	}
+
+	IEnumerator WaitASec(){
+		yield return (0);
 		for (int i = 0; i < 4; i++){
 			ImmutableDataCustomer test;
 			test = DataLoaderCustomer.GetData(currCusSet[0]);
