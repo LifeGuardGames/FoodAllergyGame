@@ -37,7 +37,7 @@ public class SatisfactionAI{
 		CalculateDifficultyLevel(modifiedSatisfaction);
 
 		totalSatisfaction += incomingSatisfaction;
-		ParticleAndFloatyManager.Instance.PlayMoneyFloaty(pos,((int)((float)incomingSatisfaction * 3.476f * priceMultiplier)));
+		ParticleUtils.PlayMoneyFloaty(pos,((int)((float)incomingSatisfaction * 3.476f * priceMultiplier)));
 		return (int)((float)incomingSatisfaction * 3.476f * priceMultiplier);
 	}
 

@@ -444,7 +444,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		switch(state){
 		case CustomerStates.WaitForOrder:
 			if(Waiter.Instance.Hand1 != WaiterHands.None && Waiter.Instance.Hand2 != WaiterHands.None){
-				ParticleAndFloatyManager.Instance.PlayHandsFullFloaty(Waiter.Instance.transform.position);
+				ParticleUtils.PlayHandsFullFloaty(Waiter.Instance.transform.position);
 				Waiter.Instance.Finished();
 			}
 			else{
