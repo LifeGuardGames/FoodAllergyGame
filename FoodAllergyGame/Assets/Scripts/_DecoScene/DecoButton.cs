@@ -18,13 +18,15 @@ public class DecoButton : MonoBehaviour {
 	public Sprite unequippedSprite;
 	public Sprite equippedSprite;
 
+	public GameObject checkMark;
+
 	public void Init(ImmutableDataDecoItem decoData){
 		decoID = decoData.ID;
 		gameObject.name = decoData.ID;
-		decoNameText.text = LocalizationText.GetText(decoData.ButtonTitleKey);
+		decoNameText.text = LocalizationText.GetText(decoData.TitleKey);
 		costAux = decoData.Cost;
 
-		if(decoData.ButtonTitleKey != "None"){
+		if(decoData.TitleKey != "None"){
 			string spriteName = decoData.SpriteName;
 			decoImage.sprite = SpriteCacheManager.GetDecoSpriteData(spriteName);
 		}
@@ -42,12 +44,15 @@ public class DecoButton : MonoBehaviour {
 			priceParent.gameObject.SetActive(false);
 			if(DecoManager.IsDecoActive(decoID)){
 				buttonImage.sprite = equippedSprite;
+				checkMark.SetActive(true);
 			}
 			else{
 				buttonImage.sprite = unequippedSprite;
+				checkMark.SetActive(false);
 			}
 		}
 		else{
+			checkMark.SetActive(false);
 			priceParent.gameObject.SetActive(true);
 			priceText.text = costAux.ToString();
 			buttonImage.sprite = unboughtSprite;

@@ -27,6 +27,10 @@ public class DecoManager : Singleton<DecoManager>{
 	public GameObject decoTutorial;
 	public DecoCameraTween cameraTween;
 
+	// Use these two references to tween and init them
+	public ShowcaseController showcaseController;
+	public TweenToggleDemux selectionPanelTween;
+
 	#region Static functions
 	public static bool IsDecoBought(string decoID){
 		return DataManager.Instance.GameData.Decoration.BoughtDeco.ContainsKey(decoID);

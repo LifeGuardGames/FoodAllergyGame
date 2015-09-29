@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public abstract class DecoLoader : MonoBehaviour {
@@ -41,7 +41,7 @@ public abstract class DecoLoader : MonoBehaviour {
 			Destroy(child.gameObject);
 		}
 
-		if(decoData.ButtonTitleKey != "None"){
+		if(decoData.TitleKey != "None"){
 			GameObject prefab = Resources.Load(decoData.ID) as GameObject;
 			loadedObject = GameObjectUtils.AddChild(gameObject, prefab);
 		
