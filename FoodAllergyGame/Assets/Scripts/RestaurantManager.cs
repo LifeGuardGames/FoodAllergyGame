@@ -118,7 +118,6 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		else{
 			dayTime = eventData.DayLengthMod;
 			dayTimeLeft = dayTime;
-			RunPlayAreaTut();
 		}
 		customerTimer = 1.0f;
 		StartCoroutine(SpawnCustomer());
