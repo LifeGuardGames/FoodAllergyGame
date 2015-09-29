@@ -45,7 +45,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	public GameObject tableHighlight;
 	public SpriteRenderer tableSprite;
 
-	void Awake(){
+	void Start(){
 		if(Application.loadedLevelName == SceneUtils.RESTAURANT){
 			// Add youself to the list of tables
 			RestaurantManager.Instance.TableList.Add(gameObject);
@@ -150,6 +150,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	}
 
 	public void OnClicked(){
+		Debug.Log (node.name);
 		if(tableType != TableType.FlyThru){
 			if(Waiter.Instance.CurrentLineCustomer != null && !inUse && !isBroken){
 				Waiter.Instance.CurrentLineCustomer.transform.localScale = Vector3.one;
