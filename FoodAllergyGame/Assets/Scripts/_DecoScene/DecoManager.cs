@@ -102,20 +102,22 @@ public class DecoManager : Singleton<DecoManager>{
 			StartCoroutine(RefreshItem(decoData.Type));
 		}
 		else{
-			BuyItem(decoID);
-			ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
-			switch(decoData.Type){
-			case DecoTypes.PlayArea:
-				DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTP");
-				DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
-				break;
-			default:
-				break;
-			}
-			// HACK for prototyping only
-			if(!DataManager.Instance.GameData.Decoration.DecoTut.Contains(decoData.Type)){
-				decoTutorial.GetComponent<DecoTutorialController>().Init(decoData.Type);
-				Invoke("ShowTutorial", 1.5f);
+			if(BuyItem(decoID)){
+				ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
+				switch(decoData.Type){
+				case DecoTypes.PlayArea:
+					DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTP");
+					DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
+					break;
+				default:
+					break;
+				}
+				// HACK for prototyping only
+				if(!DataManager.Instance.GameData.Decoration.DecoTut.Contains(decoData.Type)){
+					decoTutorial.GetComponent<DecoTutorialController>().Init(decoData.Type);
+					Invoke("ShowTutorial", 1.5f);
+				}
+				DataManager.Instance.SaveGameData();
 			}
 		}
 	}
@@ -131,12 +133,20 @@ public class DecoManager : Singleton<DecoManager>{
 		decoTutorial.SetActive(true);
 	}
 
-	private void BuyItem(string decoID){
-		Analytics.CustomEvent("Item Bought", new Dictionary<string, object>{
-			{"Item: ", decoID}
-		});
-		DataManager.Instance.GameData.Decoration.BoughtDeco.Add(decoID, "");
-		SetDeco(decoID);
+	private bool BuyItem(string decoID){
+		if(DataLoaderDecoItem.GetData(decoID).Cost < DataManager.Instance.GameData.Cash.CurrentCash){
+			DataManager.Instance.GameData.Cash.CurrentCash -= DataLoaderDecoItem.GetData(decoID).Cost;
+			HUDAnitmator.Instance.CoinsEarned(-DataLoaderDecoItem.GetData(decoID).Cost, GameObject.Find ("ButtonBuy").transform.position);
+			Analytics.CustomEvent("Item Bought", new Dictionary<string, object>{
+				{"Item: ", decoID}
+			});
+			DataManager.Instance.GameData.Decoration.BoughtDeco.Add(decoID, "");
+			SetDeco(decoID);
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 	public void ResetCamera(){
@@ -195,7 +205,7 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	public void OnExitButtonClicked(){
-		DataManager.Instance.SaveGameData();
+
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
 	}
 }

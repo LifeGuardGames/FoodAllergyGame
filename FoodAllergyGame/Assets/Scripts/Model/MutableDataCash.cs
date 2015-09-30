@@ -5,8 +5,8 @@ public class MutableDataCash {
 	public int CurrentCash {get; set;}
 
 	public MutableDataCash(){
-		TotalCash = 0;
-		CurrentCash = 0;
+		TotalCash = 1000;
+		CurrentCash = 1000;
 	}
 
 	public void SaveCash(int dayCashNet, int dayCashRevenue){

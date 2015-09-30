@@ -14,13 +14,14 @@ public class HUDAnitmator : Singleton<HUDAnitmator> {
 
 	void Start(){
 		Coin = GameObject.Find("Cash");
+		Coin.GetComponentInChildren<Text>().text = DataManager.Instance.GameData.Cash.CurrentCash.ToString();
 	}
 
-	public void CoinsEarned(int amount){
-		CalculateCoins(amount, new Vector3 (500,500,0));
+	public void CoinsEarned(int amount, Vector3 floatyPosition){
+		CalculateCoins(amount, new Vector3 (500,500,0), floatyPosition);
 	}
 
-	public void CalculateCoins (int amount, Vector3 startPos){
+	public void CalculateCoins (int amount, Vector3 startPos, Vector3 floatyPos){
 		difference = amount;
 		currCash = DataManager.Instance.GameData.Cash.TotalCash;
 		DataManager.Instance.GameData.Cash.TotalCash = currCash + amount;
@@ -31,7 +32,7 @@ public class HUDAnitmator : Singleton<HUDAnitmator> {
 		// after we start a corutine that will end when the first coin reaches the Hud
 		StartCoroutine("ChangeMoney");
 		StartCoroutine ("MakeMoney");
-
+		ParticleUtils.PlayMoneyFloaty(floatyPos,amount);
 		// then we will keep spawning coins as the hud changes
 		// the last coin should reach about the same time as the hud reaches it's target
 	}
@@ -58,9 +59,9 @@ public class HUDAnitmator : Singleton<HUDAnitmator> {
 
 	IEnumerator ChangeMoney(){
 		yield return new WaitForSeconds(coinTravelTime);
-		int step = 1;
+		int step = 2;
 		if(difference < 0){
-			step = -1;
+			step = -2;
 		}
 		while (currCash != DataManager.Instance.GameData.Cash.TotalCash){
 			if(difference > 0){

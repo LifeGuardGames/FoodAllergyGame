@@ -23,7 +23,7 @@ public class CustomerPlayAreaTut : Customer {
 		base.OnClicked ();
 		if(!usedPlayArea){
 			hideTableFinger();
-			tutFingers.transform.GetChild(6).gameObject.SetActive(true);
+			tutFingers.transform.GetChild(7).gameObject.SetActive(true);
 		}
 	}
 
