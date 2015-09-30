@@ -10,15 +10,37 @@ public class CustomerAnimController : MonoBehaviour {
 		currentWaitingStateString = "WaitingInLine";
 	}
 
+	void OnGUI(){
+		if(GUI.Button(new Rect(100, 100, 100, 100), "1")){
+			skeleton.skeleton.SetToSetupPose();
+		}
+		if(GUI.Button(new Rect(200, 100, 100, 100), "2")){
+			skeleton.state.SetAnimation(0, "LosingHeart", false);
+		}
+		if(GUI.Button(new Rect(300, 100, 100, 100), "3")){
+			skeleton.state.SetAnimation(1, "Reset", false);
+		}
+	}
+
+	public void ResetListener(Spine.AnimationState state, int trackIndex){
+		Debug.Log("Resetting");
+//		skeleton.skeleton.SetToSetupPose();
+		skeleton.state.SetAnimation(0, "Reset", false);
+
+	}
+
 	public void UpdateSatisfaction(int delta){
 		if(delta > 0){
 			// TODO get new animation
 		}
 		else if(delta < 0){
-			skeleton.state.ClearTracks();
 			skeleton.state.SetAnimation(0, "LosingHeart", false);
-			skeleton.state.SetAnimation(1, "Reset", false);
-			skeleton.state.SetAnimation(2, currentWaitingStateString, true);
+			skeleton.state.AddAnimation(0, currentWaitingStateString, true, 0).Start += delegate {
+				Debug.Log("SDF");
+				skeleton.skeleton.SetToSetupPose();
+				skeleton.skeleton.SetBonesToSetupPose();
+				skeleton.skeleton.SetSlotsToSetupPose();
+			};
 		}
 	}
 	
