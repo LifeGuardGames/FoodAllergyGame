@@ -29,6 +29,6 @@ public static class ParticleUtils{
 	static public void  PlayHandsFullFloaty(Vector3 pos){
 		GameObject go = Resources.Load("HandsFull") as GameObject;
 		GameObject.Instantiate(go, pos, go.transform.rotation);
-		AudioManager.Instance.PlayClip("HandsFull");
+		AudioManager.Instance.PlayClip("hFull");
 	}
 }
