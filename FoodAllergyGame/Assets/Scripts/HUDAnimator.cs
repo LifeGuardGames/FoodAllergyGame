@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class HUDAnitmator : Singleton<HUDAnitmator> {
+public class HUDAnimator : Singleton<HUDAnimator> {
 
 	public GameObject Coin;
 	public GameObject coinPrefab;

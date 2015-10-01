@@ -142,7 +142,8 @@ public class DecoManager : Singleton<DecoManager>{
 	private bool BuyItem(string decoID){
 		if(DataLoaderDecoItem.GetData(decoID).Cost < DataManager.Instance.GameData.Cash.CurrentCash){
 			DataManager.Instance.GameData.Cash.CurrentCash -= DataLoaderDecoItem.GetData(decoID).Cost;
-			HUDAnitmator.Instance.CoinsEarned(-DataLoaderDecoItem.GetData(decoID).Cost, GameObject.Find ("ButtonBuy").transform.position);
+			Debug.Log (HUDAnimator.Instance.name);
+			HUDAnimator.Instance.CoinsEarned(-DataLoaderDecoItem.GetData(decoID).Cost, GameObject.Find ("ButtonBuy").transform.position);
 			Analytics.CustomEvent("Item Bought", new Dictionary<string, object>{
 				{"Item: ", decoID}
 			});
