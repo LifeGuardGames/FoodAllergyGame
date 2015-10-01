@@ -32,6 +32,7 @@ public class DecoManager : Singleton<DecoManager>{
 	public TweenToggleDemux selectionPanelTween;
 	public TweenToggle exitButtonTween;
 	public TweenToggle backButtonTween;	// Exits out of view mode
+	public Animation backButtonPulseAnim;
 
 	#region Static functions
 	public static bool IsDecoBought(string decoID){
@@ -75,6 +76,11 @@ public class DecoManager : Singleton<DecoManager>{
 	public void ShowcaseDeco(string decoID){
 		ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
 		showcaseController.ShowInfo(decoData);
+		Invoke("PulseBackButton", 2.5f);
+	}
+
+	private void PulseBackButton(){
+		backButtonPulseAnim.Play();
 	}
 
 //	public bool PreviewDeco(string decoID){
@@ -150,13 +156,13 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	public void ResetCamera(){
-		cameraTween.TweenCamera(DecoTypes.None);
+//		cameraTween.TweenCamera(DecoTypes.None);
 	}
 
 	public void ChangeTab(string tabName){
 		currentDecoPage = 0;
 		currentTabType = (DecoTypes)Enum.Parse(typeof(DecoTypes), tabName);
-		cameraTween.TweenCamera(currentTabType);
+//		cameraTween.TweenCamera(currentTabType);
 		PopulateDecoGrid();
 
 		// Showcase the first deco
@@ -202,6 +208,7 @@ public class DecoManager : Singleton<DecoManager>{
 		selectionPanelTween.Show();
 		exitButtonTween.Show();
 		backButtonTween.Hide();
+		backButtonPulseAnim.Stop();
 	}
 
 	public void OnExitButtonClicked(){

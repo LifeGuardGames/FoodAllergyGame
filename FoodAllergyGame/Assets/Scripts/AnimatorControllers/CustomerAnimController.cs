@@ -10,17 +10,17 @@ public class CustomerAnimController : MonoBehaviour {
 		currentWaitingStateString = "WaitingInLine";
 	}
 
-	void OnGUI(){
-		if(GUI.Button(new Rect(100, 100, 100, 100), "1")){
-			skeleton.skeleton.SetToSetupPose();
-		}
-		if(GUI.Button(new Rect(200, 100, 100, 100), "2")){
-			skeleton.state.SetAnimation(0, "LosingHeart", false);
-		}
-		if(GUI.Button(new Rect(300, 100, 100, 100), "3")){
-			skeleton.state.SetAnimation(1, "Reset", false);
-		}
-	}
+//	void OnGUI(){
+//		if(GUI.Button(new Rect(100, 100, 100, 100), "1")){
+//			skeleton.skeleton.SetToSetupPose();
+//		}
+//		if(GUI.Button(new Rect(200, 100, 100, 100), "2")){
+//			skeleton.state.SetAnimation(0, "LosingHeart", false);
+//		}
+//		if(GUI.Button(new Rect(300, 100, 100, 100), "3")){
+//			skeleton.state.SetAnimation(1, "Reset", false);
+//		}
+//	}
 
 	public void ResetListener(Spine.AnimationState state, int trackIndex){
 		Debug.Log("Resetting");
@@ -35,8 +35,8 @@ public class CustomerAnimController : MonoBehaviour {
 		}
 		else if(delta < 0){
 			skeleton.state.SetAnimation(0, "LosingHeart", false);
-			skeleton.state.AddAnimation(0, currentWaitingStateString, true, 0).Start += delegate {
-				Debug.Log("SDF");
+//			skeleton.state.AddAnimation(0, currentWaitingStateString, true, 0)
+			skeleton.state.AddAnimation(0, currentWaitingStateString, true, 0.2f).Start += delegate {
 				skeleton.skeleton.SetToSetupPose();
 				skeleton.skeleton.SetBonesToSetupPose();
 				skeleton.skeleton.SetSlotsToSetupPose();
@@ -75,7 +75,15 @@ public class CustomerAnimController : MonoBehaviour {
 
 	public void SetSavedAllergyAttack(){
 		skeleton.state.SetAnimation(0, "Reset", false);
-		skeleton.state.SetAnimation(1, "SavedAllergy", false);
-		skeleton.state.SetAnimation(2, "WaitingActive", true);
+		skeleton.state.AddAnimation(0, "SavedAllergy", false, 0.2f).Start += delegate {
+			skeleton.skeleton.SetToSetupPose();
+			skeleton.skeleton.SetBonesToSetupPose();
+			skeleton.skeleton.SetSlotsToSetupPose();
+		};;
+		skeleton.state.AddAnimation(0, "WaitingActive", true, 0.2f).Start += delegate {
+			skeleton.skeleton.SetToSetupPose();
+			skeleton.skeleton.SetBonesToSetupPose();
+			skeleton.skeleton.SetSlotsToSetupPose();
+		};;
 	}
 }

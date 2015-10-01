@@ -12,6 +12,7 @@ public class ShowcaseController : MonoBehaviour {
 
 	public Text titleText;
 	public Text descriptionText;
+	public Text costText;
 	public Image decoImage;
 
 	private ImmutableDataDecoItem currentDeco = null;
@@ -50,6 +51,7 @@ public class ShowcaseController : MonoBehaviour {
 		decoImage.sprite = SpriteCacheManager.GetDecoSpriteData(decoData.SpriteName);
 		titleText.text = LocalizationText.GetText(decoData.TitleKey);
 		descriptionText.text = LocalizationText.GetText(decoData.DescriptionKey);
+		costText.text = decoData.Cost.ToString();
 
 		// Show the corrosponding buttons based on item state
 		if(DecoManager.IsDecoBought(decoData.ID)){

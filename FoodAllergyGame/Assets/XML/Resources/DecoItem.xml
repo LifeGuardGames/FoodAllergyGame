@@ -9,10 +9,17 @@
 	</DecoItem>
 	<DecoItem ID = "Table01">
 		<Type>Table</Type>
-		<Price>200</Price>
+		<Price>100</Price>
 		<TitleKey>TableRed</TitleKey>
 		<DescriptionKey>TableRedDesc</DescriptionKey>
 		<SpriteName>RestTableRed</SpriteName>
+	</DecoItem>
+	<DecoItem ID = "Table02">
+		<Type>Table</Type>
+		<Price>100</Price>
+		<TitleKey>TableCute</TitleKey>
+		<DescriptionKey>TableCuteDesc</DescriptionKey>
+		<SpriteName>RestTableCute</SpriteName>
 	</DecoItem>
 	
 	
@@ -62,10 +69,17 @@
 	</DecoItem>
 	<DecoItem ID = "Kitchen01">
 		<Type>Kitchen</Type>
-		<Price>10000</Price>
-		<TitleKey>KitchenPink</TitleKey>
-		<DescriptionKey>KitchenPinkDesc</DescriptionKey>
-		<SpriteName>RestKitchenPink</SpriteName>
+		<Price>100</Price>
+		<TitleKey>KitchenRed</TitleKey>
+		<DescriptionKey>KitchenRedDesc</DescriptionKey>
+		<SpriteName>RestKitchenRed</SpriteName>
+	</DecoItem>
+	<DecoItem ID = "Kitchen02">
+		<Type>Kitchen</Type>
+		<Price>100</Price>
+		<TitleKey>KitchenCute</TitleKey>
+		<DescriptionKey>KitchenCuteDesc</DescriptionKey>
+		<SpriteName>RestKitchenCute</SpriteName>
 	</DecoItem>
 	
 	
