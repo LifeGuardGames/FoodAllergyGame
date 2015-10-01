@@ -416,6 +416,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		RestaurantManager.Instance.savedCustomers++;
 		customerAnim.SetSavedAllergyAttack();
 		Medic.Instance.BillRestaurant(40);
+		ParticleUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(tableNum).gameObject.transform.position,-40);
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
 		UpdateSatisfaction(1);
 		customerUI.ToggleAllergyAttack(false);
@@ -430,8 +431,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 //		RestaurantManager.Instance.medicButton.GetComponent<Animator>().SetBool("TutMedic", false);
 //		RestaurantManager.Instance.tutText.SetActive(false);
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
-		Medic.Instance.BillRestaurant(100);
-
+		Medic.Instance.BillRestaurant(-100);
+		ParticleUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(tableNum).gameObject.transform.position,100);
 		SetSatisfaction(0);
 
 		AudioManager.Instance.PlayClip("dead");

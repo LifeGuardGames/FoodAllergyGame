@@ -30,7 +30,7 @@ public class CustomerPlayAreaTut : Customer {
 	public override void GoToPlayArea (Vector3 playAreaSpot, int spotIndex, int deltaSatisfaction)
 	{
 		base.GoToPlayArea (playAreaSpot, spotIndex, deltaSatisfaction);
-		tutFingers.transform.GetChild(6).gameObject.SetActive(false);
+		tutFingers.transform.GetChild(7).gameObject.SetActive(false);
 		usedPlayArea = true;
 	}
 }
