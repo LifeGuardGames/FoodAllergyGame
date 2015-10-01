@@ -25,7 +25,7 @@
 	</DecoItem>
 	<DecoItem ID = "Floor01">
 		<Type>Floor</Type>
-		<Price>10000</Price>
+		<Price>100</Price>
 		<TitleKey>FloorAqua</TitleKey>
 		<DescriptionKey>FloorAquaDesc</DescriptionKey>
 		<SpriteName>RestFloorAqua</SpriteName>
@@ -62,7 +62,7 @@
 	</DecoItem>
 	<DecoItem ID = "Kitchen01">
 		<Type>Kitchen</Type>
-		<Price>10000</Price>
+		<Price>100</Price>
 		<TitleKey>KitchenPink</TitleKey>
 		<DescriptionKey>KitchenPinkDesc</DescriptionKey>
 		<SpriteName>RestKitchenPink</SpriteName>
@@ -96,7 +96,7 @@
 	</DecoItem>
 	<DecoItem ID = "PlayArea01">
 		<Type>PlayArea</Type>
-		<Price>1</Price>
+		<Price></Price>
 		<TitleKey>PlayArea01</TitleKey>
 		<DescriptionKey>PlayArea01Desc</DescriptionKey>
 		<SpriteName>RestPlayArea01</SpriteName>
