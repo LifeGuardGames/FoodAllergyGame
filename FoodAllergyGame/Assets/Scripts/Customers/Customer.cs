@@ -388,6 +388,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 		// Show tutorial if needed
 		if(DataManager.Instance.GameData.Tutorial.IsMedicTuT2Done){
+			Waiter.Instance.Finished();
 			StartCoroutine("AllergyTimer");
 		}
 		else{
