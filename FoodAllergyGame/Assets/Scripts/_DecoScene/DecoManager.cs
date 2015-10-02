@@ -31,8 +31,6 @@ public class DecoManager : Singleton<DecoManager>{
 	public ShowcaseController showcaseController;
 	public TweenToggleDemux selectionPanelTween;
 	public TweenToggle exitButtonTween;
-	public TweenToggle backButtonTween;	// Exits out of view mode
-	public Animation backButtonPulseAnim;
 
 	#region Static functions
 	public static bool IsDecoBought(string decoID){
@@ -73,14 +71,9 @@ public class DecoManager : Singleton<DecoManager>{
 		}
 	}
 
-	public void ShowcaseDeco(string decoID){
+	public void ShowCaseDeco(string decoID){
 		ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
 		showcaseController.ShowInfo(decoData);
-		Invoke("PulseBackButton", 2.5f);
-	}
-
-	private void PulseBackButton(){
-		backButtonPulseAnim.Play();
 	}
 
 //	public bool PreviewDeco(string decoID){
@@ -103,9 +96,9 @@ public class DecoManager : Singleton<DecoManager>{
 			showcaseController.EnterViewMode();
 			selectionPanelTween.Hide();
 			exitButtonTween.Hide();
-			backButtonTween.Show();
 
 			StartCoroutine(RefreshItem(decoData.Type));
+			StartCoroutine(ExitViewMode());
 		}
 		else{
 			if(BuyItem(decoID)){
@@ -126,6 +119,13 @@ public class DecoManager : Singleton<DecoManager>{
 				DataManager.Instance.SaveGameData();
 			}
 		}
+	}
+
+	private IEnumerator ExitViewMode(){
+		yield return new WaitForSeconds(2.5f);
+		showcaseController.ExitViewMode();
+		selectionPanelTween.Show();
+		exitButtonTween.Show();
 	}
 
 	private IEnumerator RefreshItem(DecoTypes deco){
@@ -154,10 +154,6 @@ public class DecoManager : Singleton<DecoManager>{
 		else{
 			return false;
 		}
-	}
-
-	public void ResetCamera(){
-//		cameraTween.TweenCamera(DecoTypes.None);
 	}
 
 	public void ChangeTab(string tabName){
@@ -201,15 +197,6 @@ public class DecoManager : Singleton<DecoManager>{
 
 	public void RefreshButtonState(){
 		grid.gameObject.BroadcastMessage("RefreshButtonState", SendMessageOptions.DontRequireReceiver);
-	}
-
-	// Exit view mode
-	public void OnBackButtonClicked(){
-		showcaseController.ExitViewMode();
-		selectionPanelTween.Show();
-		exitButtonTween.Show();
-		backButtonTween.Hide();
-		backButtonPulseAnim.Stop();
 	}
 
 	public void OnExitButtonClicked(){

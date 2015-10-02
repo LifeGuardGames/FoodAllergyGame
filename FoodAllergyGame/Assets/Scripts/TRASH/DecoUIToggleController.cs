@@ -20,7 +20,6 @@ public class DecoUIToggleController : MonoBehaviour {
 		if(decoTweenToggle.IsShowing){
 			decoTweenToggle.Hide();
 			imageSymbol.sprite = upSprite;
-			DecoManager.Instance.ResetCamera();
 		}
 		else{
 			if(!DataManager.Instance.GameData.Tutorial.IsDecoTuTDone){

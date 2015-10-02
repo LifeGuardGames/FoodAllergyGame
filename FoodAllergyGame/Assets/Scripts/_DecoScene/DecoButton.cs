@@ -4,19 +4,18 @@ using System.Collections;
 
 public class DecoButton : MonoBehaviour {
 	private string decoID;
-	private int costAux;
 
-	public Image buttonImage;
+	public Image buttonImageTop;
+	public Image buttonImageBottom;
+
 	public Image decoImage;
 	public Text decoNameText;
 
-	public GameObject priceParent;
-	public Text priceText;
-
 	public Sprite removeSprite;
-	public Sprite unboughtSprite;
-	public Sprite unequippedSprite;
-	public Sprite equippedSprite;
+	public Sprite unboughtSpriteTop;
+	public Sprite unboughtSpriteBottom;
+	public Sprite boughtSpriteTop;
+	public Sprite boughtSpriteBottom;
 
 	public GameObject checkMark;
 
@@ -24,7 +23,6 @@ public class DecoButton : MonoBehaviour {
 		decoID = decoData.ID;
 		gameObject.name = decoData.ID;
 		decoNameText.text = LocalizationText.GetText(decoData.TitleKey);
-		costAux = decoData.Cost;
 
 		if(decoData.TitleKey != "None"){
 			string spriteName = decoData.SpriteName;
@@ -39,27 +37,20 @@ public class DecoButton : MonoBehaviour {
 
 	// Change button colors based on the state of the decoration
 	public void RefreshButtonState(){
-		// Check if it was bought already or show the price
+		// Check if it was bought already
 		if(DecoManager.IsDecoBought(decoID)){
-			priceParent.gameObject.SetActive(false);
-			if(DecoManager.IsDecoActive(decoID)){
-				buttonImage.sprite = equippedSprite;
-				checkMark.SetActive(true);
-			}
-			else{
-				buttonImage.sprite = unequippedSprite;
-				checkMark.SetActive(false);
-			}
+			buttonImageTop.sprite = boughtSpriteTop;
+			buttonImageBottom.sprite = boughtSpriteBottom;
+			checkMark.SetActive(DecoManager.IsDecoActive(decoID) ? true : false);
 		}
 		else{
 			checkMark.SetActive(false);
-			priceParent.gameObject.SetActive(true);
-			priceText.text = costAux.ToString();
-			buttonImage.sprite = unboughtSprite;
+			buttonImageTop.sprite = unboughtSpriteTop;
+			buttonImageBottom.sprite = unboughtSpriteBottom;
 		}
 	}
 
 	public void OnButtonClicked(){
-		DecoManager.Instance.ShowcaseDeco(decoID);
+		DecoManager.Instance.ShowCaseDeco(decoID);
 	}
 }
