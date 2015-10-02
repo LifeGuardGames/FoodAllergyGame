@@ -387,16 +387,16 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		AudioManager.Instance.PlayClip("allergyAttack");
 
 		// Show tutorial if needed
-		if(DataManager.Instance.GameData.Tutorial.IsMedicTuT2Done){
+		if(DataManager.Instance.GameData.Tutorial.IsMedicTut2Done){
 			Waiter.Instance.Finished();
 			StartCoroutine("AllergyTimer");
 		}
 		else{
-			if(!DataManager.Instance.GameData.Tutorial.IsMedicTuT1Done){
-				DataManager.Instance.GameData.Tutorial.IsMedicTuT1Done = true;
+			if(!DataManager.Instance.GameData.Tutorial.IsMedicTut1Done){
+				DataManager.Instance.GameData.Tutorial.IsMedicTut1Done = true;
 			}
 			else{
-				DataManager.Instance.GameData.Tutorial.IsMedicTuT2Done = true;
+				DataManager.Instance.GameData.Tutorial.IsMedicTut2Done = true;
 			}
 			Waiter.Instance.isMedicTut = true;
 			Waiter.Instance.CancelMove();
