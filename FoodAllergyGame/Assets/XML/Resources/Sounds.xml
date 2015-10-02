@@ -25,4 +25,5 @@
 	<Sound ID="comicPanic"></Sound>
 	<Sound ID="comicEnding"></Sound>
 	<Sound ID="hFull"></Sound>
+	<Sound ID="ArcadeOver"></Sound>
 </Sounds>

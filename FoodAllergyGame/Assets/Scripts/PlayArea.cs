@@ -69,6 +69,7 @@ public class PlayArea : Singleton<PlayArea>, IWaiterSelection {
 				StartCoroutine("RepairProtocal");
 			}
 		}
+		AudioManager.Instance.PlayClip("ArcadeOver");
 	}
 	IEnumerator RepairProtocal(){
 		yield return new WaitForSeconds(5.0f);
