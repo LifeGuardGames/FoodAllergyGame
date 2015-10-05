@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class LoadLevelManager : Singleton<LoadLevelManager>{
@@ -6,7 +7,7 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 	private static bool isCreated;
 
 	public TweenToggleDemux loadDemux;
-
+	public Text loadText;
 	private string levelToLoad;
 
 	void Awake(){
@@ -25,6 +26,14 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 	/// </summary>
 	/// <param name="levelName">Level to be loaded</param>
 	public void StartLoadTransition(string levelName){
+
+		if(levelName == SceneUtils.DECO){
+			loadText.text = "Shop";
+		}
+		else{
+			loadText.text = "";
+		}
+
 		levelToLoad = levelName;
 		loadDemux.Show();
 	}
