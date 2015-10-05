@@ -50,7 +50,12 @@ public class ShowcaseController : MonoBehaviour {
 		decoImage.enabled = decoData.SpriteName == "None" ? false : true;
 		decoImage.sprite = SpriteCacheManager.GetDecoSpriteData(decoData.SpriteName);
 		titleText.text = LocalizationText.GetText(decoData.TitleKey);
+
 		descriptionText.text = LocalizationText.GetText(decoData.DescriptionKey);
+		if(descriptionText.text.Contains("No text for ")){	// Hard code ignore empty text
+			descriptionText.text = "";
+		}
+
 		costText.text = decoData.Cost.ToString();
 
 		// Show the corrosponding buttons based on item state
