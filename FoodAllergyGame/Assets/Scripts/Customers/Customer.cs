@@ -211,7 +211,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			timer /= RestaurantManager.Instance.GetTable(_tableNum).VIPMultiplier;
 		}
 
-		RestaurantManager.Instance.CustomerSeated();
+		RestaurantManager.Instance.CustomerLineSelectHighlightOff();
 		Waiter.Instance.CurrentLineCustomer = null;
 		AudioManager.Instance.PlayClip("pop");
 
@@ -372,8 +372,15 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		else{
 			RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, 1, transform.position);
 		}
+
 		if(state != CustomerStates.InLine){
 			RestaurantManager.Instance.GetTable(tableNum).CustomerLeaving();
+		}
+		else if(state == CustomerStates.InLine){
+			// Turn off customer highlights throughout the restaurant if it left and is selected
+			if(Waiter.Instance.CurrentLineCustomer == this.gameObject){
+				RestaurantManager.Instance.CustomerLineSelectHighlightOff();
+			}
 		}
 		AudioManager.Instance.PlayClip("leaving");
 		Destroy(this.gameObject);
@@ -524,7 +531,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 
 	public void Deselect(){
-		RestaurantManager.Instance.CustomerSeated();
+		RestaurantManager.Instance.CustomerLineSelectHighlightOff();
 		gameObject.transform.localScale = new Vector3(1.0f,1.0f,1.0f);
 		Waiter.Instance.CurrentLineCustomer = null;
 	}
@@ -540,7 +547,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 					}
 				}
 			}
-			RestaurantManager.Instance.AvailableTables();
+			RestaurantManager.Instance.CustomerLineSelectHighlightOn();
 			Waiter.Instance.CurrentLineCustomer = gameObject;
 			AudioManager.Instance.PlayClip("pop");
 			gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);

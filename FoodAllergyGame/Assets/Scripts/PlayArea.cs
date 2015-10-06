@@ -50,6 +50,9 @@ public class PlayArea : Singleton<PlayArea>, IWaiterSelection {
 			spotAvailabilityList[availableSpotIndex] = false;
 
 			selectedCustomer.GoToPlayArea(playAreaSpot, availableSpotIndex, deltaSatisfaction);
+
+			// Turn off the active customer highlights
+			RestaurantManager.Instance.CustomerLineSelectHighlightOff();
 		}
 	}
 
@@ -73,6 +76,7 @@ public class PlayArea : Singleton<PlayArea>, IWaiterSelection {
 		AudioManager.Instance.PlayClip("ArcadeOver");
 		doneParticle.Play();
 	}
+
 	IEnumerator RepairProtocal(){
 		yield return new WaitForSeconds(5.0f);
 		isBroken = false;
