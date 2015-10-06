@@ -330,13 +330,13 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	// Eating coroutine
 	IEnumerator EatingTimer(){
 		yield return new WaitForSeconds(6.0f);
-		int rand = Random.Range(0,10);
 		customerAnim.SetWaitingForCheck();
-		if(rand > 7){
-			UseBathroom();
-			Debug.Log ("Table " + tableNum.ToString() +" has gone to the bathroom");
-		}
-		else{
+//		int rand = Random.Range(0,10);
+//		if(rand > 7){	// TODO taking out bathroom completely here
+//			UseBathroom();
+//			Debug.Log ("Table " + tableNum.ToString() +" has gone to the bathroom");
+//		}
+//		else{
 			if(order.gameObject != null){
 				Destroy(order.gameObject);
 			}
@@ -345,10 +345,10 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			state = CustomerStates.WaitForCheck;
 			StartCoroutine("SatisfactionTimer");
 			AudioManager.Instance.PlayClip("readyForCheck");
-		if(RestaurantManager.Instance.isTutorial){
-			this.GetComponent<CustomerTutorial>().NextTableFinger();
+			if(RestaurantManager.Instance.isTutorial){
+				this.GetComponent<CustomerTutorial>().NextTableFinger();
 			}
-		}
+//		}
 	}
 
 	// Tells the resturantManager that the customer is leaving and can be removed from the dictionary
