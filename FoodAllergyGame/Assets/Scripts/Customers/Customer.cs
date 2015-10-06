@@ -441,13 +441,14 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
 		Medic.Instance.BillRestaurant(-100);
 		ParticleUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(tableNum).gameObject.transform.position,-100);
-		SetSatisfaction(0);
+
 
 		AudioManager.Instance.PlayClip("dead");
 		if(order.gameObject != null){
 			Destroy(order.gameObject);
 		}
-		NotifyLeave();
+		SetSatisfaction(0);
+
 	}
 
 	// Checks the current state and runs the appropriate function called by table when waiter approaches
