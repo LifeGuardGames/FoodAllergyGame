@@ -19,7 +19,7 @@ public class DayOverUIController : MonoBehaviour {
 		textAvgSatisfaction.text = avgSatisfaction.ToString("F2");	// Round to two decimal places
 		textTips.text = tips.ToString();
 		textMenuCost.text = (menuCost + medicalExpenses).ToString();
-		textEarningsNet.text = (tips - menuCost - medicalExpenses).ToString();
+		textEarningsNet.text = (tips - menuCost + medicalExpenses).ToString();
 		textTotalCash.text = totalCash.ToString();
 		textMedcCost.text = medicalExpenses.ToString();
 		textActMenuCost.text = menuCost.ToString();
