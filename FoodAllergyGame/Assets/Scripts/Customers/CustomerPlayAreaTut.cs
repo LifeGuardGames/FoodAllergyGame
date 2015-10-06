@@ -10,9 +10,9 @@ public class CustomerPlayAreaTut : Customer {
 		tutFingers = GameObject.Find("TutFingers");
 		transform.GetChild(2).gameObject.SetActive(true);
 		base.Init(num, mode);
-		satisfaction = 1;
+		//satisfaction = 1;
 		StopCoroutine("SatisfactionTimer");
-		//UpdateSatisfaction(1);
+		UpdateSatisfaction(-2);
 	}
 
 	public override void JumpToTable (int _tableNum)
