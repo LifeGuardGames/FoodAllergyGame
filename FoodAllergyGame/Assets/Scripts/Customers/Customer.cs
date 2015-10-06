@@ -416,7 +416,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public virtual void Saved(){
 		RestaurantManager.Instance.savedCustomers++;
 		customerAnim.SetSavedAllergyAttack();
-		Medic.Instance.BillRestaurant(40);
+		Medic.Instance.BillRestaurant(-40);
 		ParticleUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(tableNum).gameObject.transform.position,-40);
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
 		UpdateSatisfaction(1);
@@ -428,12 +428,12 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// when it runs out the customer is taken to the hospital and the player is slamed with the bill
 	IEnumerator AllergyTimer(){
-		yield return new WaitForSeconds(5.0f);
+		yield return new WaitForSeconds(10.0f);
 //		RestaurantManager.Instance.medicButton.GetComponent<Animator>().SetBool("TutMedic", false);
 //		RestaurantManager.Instance.tutText.SetActive(false);
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
 		Medic.Instance.BillRestaurant(-100);
-		ParticleUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(tableNum).gameObject.transform.position,100);
+		ParticleUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(tableNum).gameObject.transform.position,-100);
 		SetSatisfaction(0);
 
 		AudioManager.Instance.PlayClip("dead");
