@@ -142,7 +142,6 @@ public class DecoManager : Singleton<DecoManager>{
 	private bool BuyItem(string decoID){
 		if(DataLoaderDecoItem.GetData(decoID).Cost < DataManager.Instance.GameData.Cash.CurrentCash){
 			DataManager.Instance.GameData.Cash.CurrentCash -= DataLoaderDecoItem.GetData(decoID).Cost;
-			Debug.Log (HUDAnimator.Instance.name);
 			HUDAnimator.Instance.CoinsEarned(-DataLoaderDecoItem.GetData(decoID).Cost, GameObject.Find ("ButtonBuy").transform.position);
 			Analytics.CustomEvent("Item Bought", new Dictionary<string, object>{
 				{"Item: ", decoID}
@@ -159,7 +158,6 @@ public class DecoManager : Singleton<DecoManager>{
 	public void ChangeTab(string tabName){
 		currentDecoPage = 0;
 		currentTabType = (DecoTypes)Enum.Parse(typeof(DecoTypes), tabName);
-//		cameraTween.TweenCamera(currentTabType);
 		PopulateDecoGrid();
 
 		// Showcase the first deco

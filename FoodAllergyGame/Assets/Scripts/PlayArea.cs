@@ -14,6 +14,7 @@ public class PlayArea : Singleton<PlayArea>, IWaiterSelection {
 	private List<bool> spotAvailabilityList;	// Populated at runtime, keep track of spot occupancy
 	public GameObject highLightSpot1;
 	public GameObject highLightSpot2;
+	public ParticleSystem doneParticle;
 
 	void Start(){
 		maxSpots = spotList.Count;
@@ -70,6 +71,7 @@ public class PlayArea : Singleton<PlayArea>, IWaiterSelection {
 			}
 		}
 		AudioManager.Instance.PlayClip("ArcadeOver");
+		doneParticle.Play();
 	}
 	IEnumerator RepairProtocal(){
 		yield return new WaitForSeconds(5.0f);
