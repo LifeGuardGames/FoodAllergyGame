@@ -38,7 +38,7 @@ public class FoodManager : Singleton<FoodManager>{
 		foreach(string foodID in _menuList){
 			menuList.Add(DataLoaderFood.GetData(foodID));
 		}
-		menuCost = cost;
+		menuCost = -cost;
 	}
 
 	#endregion
