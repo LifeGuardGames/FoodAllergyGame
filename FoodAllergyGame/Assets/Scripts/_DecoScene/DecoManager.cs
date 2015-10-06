@@ -51,13 +51,16 @@ public class DecoManager : Singleton<DecoManager>{
 		ChangeTab("Table");
 	}
 
-	public void PopulateDecoGrid(){
+	// Populates the deco grid and returns the first unbought deco if any
+	public ImmutableDataDecoItem PopulateDecoGrid(){
 		// Delete any existing buttons in the grid
 		foreach(Transform child in grid){
 			Destroy(child.gameObject);
 		}
 		//creates a list of deco based on a type, to do this the dataloader first creates the list of all the items then sorts it by type and cost before returning it
 		decoList = DataLoaderDecoItem.GetDecoDataByType(currentTabType);
+
+		ImmutableDataDecoItem firstUnboughtDeco = null;
 
 		for(int i = 0; i < decoPageSize; i++){
 			if(decoList.Count <= i + currentDecoPage * decoPageSize){		// Reached the end of list
@@ -68,7 +71,12 @@ public class DecoManager : Singleton<DecoManager>{
 			GameObject decoButton = GameObjectUtils.AddChildGUI(grid.gameObject, decoButtonPrefab);
 			decoButton.GetComponent<DecoButton>().Init(decoData);
 			RefreshButtonShowStatus();
+
+			if(firstUnboughtDeco == null && !IsDecoBought(decoData.ID)){
+				firstUnboughtDeco = decoData;
+			}
 		}
+		return firstUnboughtDeco;
 	}
 
 	public void ShowCaseDeco(string decoID){
@@ -158,10 +166,12 @@ public class DecoManager : Singleton<DecoManager>{
 	public void ChangeTab(string tabName){
 		currentDecoPage = 0;
 		currentTabType = (DecoTypes)Enum.Parse(typeof(DecoTypes), tabName);
-		PopulateDecoGrid();
 
-		// Showcase the first deco
-		showcaseController.ShowInfo(tabName + "00");
+		// Repopulate the grid and get the first unbought deco
+		ImmutableDataDecoItem firstUnboughtDeco = PopulateDecoGrid();
+		
+		// Showcase the first deco if there is any
+		showcaseController.ShowInfo(firstUnboughtDeco != null ? firstUnboughtDeco.ID : tabName + "00");
 	}
 
 	public void ChangePage(bool isRight){
@@ -198,7 +208,6 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	public void OnExitButtonClicked(){
-
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
 	}
 }
