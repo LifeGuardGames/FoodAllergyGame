@@ -20,7 +20,6 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 		if(Application.loadedLevelName == SceneUtils.RESTAURANT){
 			// Connect scene variables
 			waiterNode = Pathfinding.Instance.NodeKitchen;
-			RestaurantManager.Instance.Kitchen = this;
 		}
 		else{
 			chefParent.SetActive(false);

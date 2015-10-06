@@ -15,7 +15,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	private float customerTimer;			// time it takes for a customer to spawn
 	public bool dayOver = false;			// bool controlling customer spawning depending on the stage of the day
 	public int actTables;
-	public int MedicUsed;
+	public int medicUsed;
 	private int dayEarnedCash;				// The cash that is earned for the day
 	public int DayEarnedCash{
 		get{ return dayEarnedCash; }
@@ -38,15 +38,9 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 	public RestaurantUIManager restaurantUI;
 	private ImmutableDataEvents eventData;
-	public LineController Line;
+	public LineController lineController;
 	public RestaurantMenuUIController menuUIController;
 	public DoorController doorController;
-
-	public KitchenManager kitchen;
-	public KitchenManager Kitchen{
-		get{ return kitchen; }
-		set{ kitchen = value; }
-	}
 
 	public bool firstSickCustomer = false;
 	public GameObject medicButton;
@@ -304,7 +298,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	}
 
 	public LineController GetLine(){
-		return Line;
+		return lineController;
 	}
 
 	public RestaurantMenuUIController GetMenuUIController(){
@@ -315,21 +309,19 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		return customerHash.Values;
 	}
 
-	public void AvailableTables(){
+	public void CustomerLineSelectHighlightOn(){
 		for(int i = 0; i < 4; i++){
 			GetTable(i).TurnOnHighlight();
 		}
-
 		if(PlayArea.Instance != null){
 			PlayArea.Instance.HighLightSpots();
 		}
 	}
 
-	public void CustomerSeated(){
+	public void CustomerLineSelectHighlightOff(){
 		for(int i = 0; i < 4; i++){
 			GetTable(i).TurnOffHighlight();
 		}
-
 		if(PlayArea.Instance != null){
 			PlayArea.Instance.TurnOffHighLights();
 		}
@@ -358,7 +350,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		satisfactionAI.AddCustomer();
 	}
 
-	IEnumerator LightsOut(){
+	private IEnumerator LightsOut(){
 		yield return new WaitForSeconds(5.0f);
 		blackoutImg.SetActive(false);
 		List<GameObject> currCustomers = new List<GameObject>(GetCurrentCustomers());

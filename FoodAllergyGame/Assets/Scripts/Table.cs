@@ -97,7 +97,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	public void CustomerLeaving(){
 		inUse = false;
 		Waiter.Instance.RemoveMeal(tableNumber);
-		RestaurantManager.Instance.Kitchen.CancelOrder(tableNumber);
+		KitchenManager.Instance.CancelOrder(tableNumber);
 	}
 
 	//in the unfortunate circumstance a customer gets eaten we need to take care of the mess
