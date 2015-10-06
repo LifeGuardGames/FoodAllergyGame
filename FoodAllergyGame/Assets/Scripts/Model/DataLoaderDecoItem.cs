@@ -24,7 +24,7 @@ public class DataLoaderDecoItem: XMLLoaderGeneric<DataLoaderDecoItem> {
 		}
 
 		// Sort by cost
-		decoList.Sort((x,y) => GetData(x.ID).Cost.CompareTo(GetData(y.ID).Cost));
+		decoList.Sort((x,y) => x.ID.CompareTo(y.ID));
 		return decoList;
 	}
 
