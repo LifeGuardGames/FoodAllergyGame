@@ -14,7 +14,13 @@ public class CustomerPlayAreaTut : Customer {
 		StopCoroutine("SatisfactionTimer");
 		//UpdateSatisfaction(1);
 	}
-	
+
+	public override void JumpToTable (int _tableNum)
+	{
+		tutFingers.transform.GetChild(7).gameObject.SetActive(false);
+		base.JumpToTable (_tableNum);
+	}
+
 	public void hideTableFinger(){
 		transform.GetChild(2).gameObject.SetActive(false);
 	}

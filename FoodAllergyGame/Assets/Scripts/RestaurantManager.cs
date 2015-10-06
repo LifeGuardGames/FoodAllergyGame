@@ -54,6 +54,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public GameObject blackoutImg;
 	private List<string> currCusSet;
 	public bool isTutorial;
+	public bool isVIPTut;
 	public PauseUIController pauseUI;
 	public float baseCustomerTimer;
 
@@ -164,6 +165,9 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				}
 				rand = UnityEngine.Random.Range(0, currCusSet.Count);
 				if(eventData.ID == "EventTP"){
+					customerData = DataLoaderCustomer.GetData(currCusSet[0]);
+				}
+				else if (eventData.ID == "EventTVIP"){
 					customerData = DataLoaderCustomer.GetData(currCusSet[0]);
 				}
 				else{
