@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CustomerVIPTut : Customer {
+public class CustomerGenericTut : Customer {
 
 	public GameObject tutFingers;
+	public int tutNumber = 0;
 	// Use this for initialization
 	public override void Init (int num, ImmutableDataEvents mode){
 		tutFingers = GameObject.Find("TutFingers");
@@ -23,8 +24,6 @@ public class CustomerVIPTut : Customer {
 	{
 		base.OnClicked ();
 		hideCustomerFinger();
-		tutFingers.transform.GetChild(8).gameObject.SetActive(true);
+		tutFingers.transform.GetChild(tutNumber).gameObject.SetActive(true);
 	}
-
-
 }

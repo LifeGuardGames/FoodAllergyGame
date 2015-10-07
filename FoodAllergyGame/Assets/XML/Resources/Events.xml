@@ -33,7 +33,27 @@
 		<CustomerSet>CustomerSetTP</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
 		<DayLength>4</DayLength>
-		<Allergy>Peanut</Allergy>
+		<Allergy>None</Allergy>
+		<EventDescription>EventDesc00</EventDescription>
+		<Title>Title00</Title>
+	</Event>
+	<Event ID="EventTF">
+		<MenuSet>MenuSet00</MenuSet>
+		<KitchenTimer>3</KitchenTimer>
+		<CustomerSet>CustomerSetTF</CustomerSet>
+		<CustomerTimer>2</CustomerTimer>
+		<DayLength>4</DayLength>
+		<Allergy>None</Allergy>
+		<EventDescription>EventDesc00</EventDescription>
+		<Title>Title00</Title>
+	</Event>
+	<Event ID="EventTV">
+		<MenuSet>MenuSet00</MenuSet>
+		<KitchenTimer>3</KitchenTimer>
+		<CustomerSet>CustomerSetTV</CustomerSet>
+		<CustomerTimer>2</CustomerTimer>
+		<DayLength>4</DayLength>
+		<Allergy>None</Allergy>
 		<EventDescription>EventDesc00</EventDescription>
 		<Title>Title00</Title>
 	</Event>

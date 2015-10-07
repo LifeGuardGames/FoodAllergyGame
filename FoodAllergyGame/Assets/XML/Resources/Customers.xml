@@ -84,4 +84,18 @@
 		<Script>CustomerPlayAreaTut</Script>
 		<Tier>-1</Tier>
 	</Customer>
+	<Customer ID="Customer12">
+		<CustomerNameKey>CustomerVIPTut</CustomerNameKey>
+		<CustomerDesc>CustomerVIPTut</CustomerDesc>
+		<SpriteName>CustomerVIPTut</SpriteName>
+		<Script>CustomerVIPTut</Script>
+		<Tier>-1</Tier>
+	</Customer>
+	<Customer ID="Customer13">
+		<CustomerNameKey>CustomerFlythroughTut</CustomerNameKey>
+		<CustomerDesc>CustomerFlythroughTut</CustomerDesc>
+		<SpriteName>CustomerFlythroughTut</SpriteName>
+		<Script>CustomerFlythroughTut</Script>
+		<Tier>-1</Tier>
+	</Customer>
 </Customers>

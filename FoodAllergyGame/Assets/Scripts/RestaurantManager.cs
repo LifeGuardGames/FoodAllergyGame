@@ -340,18 +340,6 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		StartCoroutine(LightsOut());
 	}
 
-	public void SpawnSecondTut(){
-		ImmutableDataCustomer test;
-		test = DataLoaderCustomer.GetData(currCusSet[0]);
-		GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
-		GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
-		cus.GetComponent<CustomerTutorial>().isAllergy = true;
-		cus.GetComponent<Customer>().Init(customerNumber, eventData);
-		customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
-
-		customerNumber++;
-		satisfactionAI.AddCustomer();
-	}
 
 	private IEnumerator LightsOut(){
 		yield return new WaitForSeconds(5.0f);
@@ -361,6 +349,19 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			currCustomers[i].GetComponent<Customer>().customerUI.gameObject.SetActive(true);
 		}
 		StartCoroutine(SpawnCustomer());
+	}
+
+	public void SpawnSecondTut(){
+		ImmutableDataCustomer test;
+		test = DataLoaderCustomer.GetData(currCusSet[0]);
+		GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
+		GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
+		cus.GetComponent<CustomerTutorial>().isAllergy = true;
+		cus.GetComponent<Customer>().Init(customerNumber, eventData);
+		customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
+		
+		customerNumber++;
+		satisfactionAI.AddCustomer();
 	}
 
 	private void RunPlayAreaTut(){

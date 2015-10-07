@@ -63,7 +63,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		else{
 			// Check for fly thru table
 			Table flyThruTable = RestaurantManager.Instance.GetFlyThruTable();
-			if((flyThruTable != null) && Random.Range(0,10) > 3 && !flyThruTable.inUse && Constants.GetConstant<bool>("FlyThruOn")){
+			if((flyThruTable != null) && Random.Range(0,10) > 3 && !flyThruTable.inUse && Constants.GetConstant<bool>("FlyThruOn")|| mode.ID == "EventTF"){
 				flyThruTable.inUse = true;
 				this.gameObject.transform.SetParent(flyThruTable.seat);
 				tableNum = 5;
@@ -182,16 +182,33 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Note: Not capped
 	public void UpdateSatisfaction(int delta){
-		satisfaction += delta;
-		customerUI.UpdateSatisfaction(satisfaction);
-		customerAnim.UpdateSatisfaction(delta);
-
-		// If satisfaction is 0 or negative, we need to leave cause the service is rubbish
-		if(satisfaction <= 0){
-			if(order != null){
-				Destroy(order.gameObject);
+		if(tableNum == 4){
+			if(delta < 0){
+				satisfaction += delta;
+				customerUI.UpdateSatisfaction(satisfaction);
+				customerAnim.UpdateSatisfaction(delta);
+					
+				// If satisfaction is 0 or negative, we need to leave cause the service is rubbish
+				if(satisfaction <= 0){
+					if(order != null){
+						Destroy(order.gameObject);
+					}
+					NotifyLeave();
+				}
 			}
-			NotifyLeave();
+		}
+		else{
+			satisfaction += delta;
+			customerUI.UpdateSatisfaction(satisfaction);
+			customerAnim.UpdateSatisfaction(delta);
+			
+			// If satisfaction is 0 or negative, we need to leave cause the service is rubbish
+			if(satisfaction <= 0){
+				if(order != null){
+					Destroy(order.gameObject);
+				}
+				NotifyLeave();
+			}
 		}
 	}
 
@@ -209,6 +226,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		if(_tableNum == 4){	// TODO connect this with logic rather than number
 			RestaurantManager.Instance.VIPUses++;
 			timer /= RestaurantManager.Instance.GetTable(_tableNum).VIPMultiplier;
+			SetSatisfaction(4);
 		}
 
 		RestaurantManager.Instance.CustomerLineSelectHighlightOff();
