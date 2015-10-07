@@ -70,7 +70,6 @@ public class CustomerTutorial : Customer{
 
 	IEnumerator ShowTutFinger(){
 		yield return new WaitForSeconds(0.2f);
-		Debug.Log(tutFingers.transform.GetChild(step).name);
 		tutFingers.transform.GetChild(step).gameObject.SetActive(true);
 	}
 

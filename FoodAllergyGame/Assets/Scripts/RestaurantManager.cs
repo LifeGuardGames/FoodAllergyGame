@@ -88,16 +88,14 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 	// Called at the start of the game day begins the day tracker coroutine 
 	public void StartDay(ImmutableDataEvents eventData){
-		Debug.Log("StartingDay");
 		this.eventData = eventData;
 		string currSet = eventData.CustomerSet;
-		Debug.Log(currSet);
 		currCusSet = new List<string>(DataLoaderCustomerSet.GetData(currSet).CustomerSet);
 		KitchenManager.Instance.Init(eventData.KitchenTimerMod);
 		dayEarnedCash = 0;
 		dayCashRevenue = 0;
 		restaurantUI.StartDay();
-		Debug.Log(eventData.ID);
+		Debug.Log("Starting Day - Event:" +  eventData.ID + ", Customer Set:" + currSet);
 		if(eventData.ID == "EventT1"){
 			isTutorial = true;
 			//customerSpawnTimer = customerTimer / satisfactionAI.DifficultyLevel + 1;
