@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class Order : MonoBehaviour, IWaiterSelection{
 	// ID of the food
@@ -30,12 +31,12 @@ public class Order : MonoBehaviour, IWaiterSelection{
 		}
 	}
 
-	public Allergies allergy;
+	public List<Allergies> allergy;
 	public GameObject orderImage;
 	public GameObject textParent;
 
 	// Initialize the order when it is first spawned
-	public void Init(string foodID, int tableNumber, Allergies _allergy){
+	public void Init(string foodID, int tableNumber, List<Allergies> _allergy){
 		this.gameObject.GetComponent<BoxCollider>().enabled = false;
 		this.foodID = foodID;
 		this.tableNumber = tableNumber;

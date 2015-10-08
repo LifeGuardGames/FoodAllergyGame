@@ -300,7 +300,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			customerUI.ToggleWait(false);
 
 			order = GameObjectUtils.AddChildWithPositionAndScale(null, OrderPrefab);
-			order.GetComponent<Order>().Init(food.ID, tableNum, food.AllergyList[0]);
+			order.GetComponent<Order>().Init(food.ID, tableNum, food.AllergyList);
 			priceMultiplier = food.Reward;
 			RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().OrderObtained(order);
 			attentionSpan = 20.0f * timer;
@@ -332,7 +332,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			order.GetComponent<BoxCollider>().enabled = false;
 			order.GetComponent<Order>().ToggleShowOrderNumber(false);
 			StopCoroutine("SatisfactionTimer");
-			if(order.GetComponent<Order>().allergy == allergy && allergy != Allergies.None){
+			if(order.GetComponent<Order>().allergy.Contains(allergy) && allergy != Allergies.None){
 				state = CustomerStates.AllergyAttack;
 				AllergyAttack();
 			}

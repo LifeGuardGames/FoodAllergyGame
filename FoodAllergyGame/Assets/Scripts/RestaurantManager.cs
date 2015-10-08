@@ -383,6 +383,15 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		}
 	}
 
+	public bool IsTableAvilable(){
+		for(int i = 0; i < 4; i++){
+			if(!GetTable(i).inUse){
+				return true;
+			}
+		}
+		return false;
+	}
+
 	#region PausingUI functions
 	// Called from RestaurantUIManager
 	public void PauseGame(){

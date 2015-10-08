@@ -30,7 +30,9 @@ public class CustomerPlayAreaTut : Customer {
 		base.OnClicked ();
 		//if(!usedPlayArea){
 			hideTableFinger();
+		if(!RestaurantManager.Instance.IsTableAvilable()){
 			tutFingers.transform.GetChild(7).gameObject.SetActive(true);
+		}
 		//}
 	}
 
