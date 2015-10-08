@@ -28,7 +28,7 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 	public void StartLoadTransition(string levelName){
 
 		if(levelName == SceneUtils.DECO){
-			loadText.text = "Shop";
+			loadText.text = "Decorate";
 		}
 		else{
 			loadText.text = "";
