@@ -4,11 +4,9 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class Order : MonoBehaviour, IWaiterSelection{
-	// ID of the food
-	public string foodID;
-	// Table number that ordered the dish used to find which table this goes too.
-	public int tableNumber;
 
+	public string foodID;
+	public int tableNumber;		// Table number that ordered the dish used to find which table this goes too.
 	public float cookTimer = 5.0f;
 
 	private bool isBurnt;
@@ -16,8 +14,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 		get{return isBurnt;}
 	}
 
-	// Is this order cooked?
-	private bool isCooked;
+	private bool isCooked;		// Is this order cooked?
 	public bool IsCooked{
 		get{
 			return isCooked;
@@ -26,7 +23,6 @@ public class Order : MonoBehaviour, IWaiterSelection{
 			isCooked = value;
 			if(isCooked == true){
 				orderImage.GetComponent<SpriteRenderer>().sprite = SpriteCacheManager.GetFoodSpriteData(DataLoaderFood.GetData(foodID).SpriteName);
-				//orderImage.SetNativeSize();
 			}
 		}
 	}
@@ -42,7 +38,11 @@ public class Order : MonoBehaviour, IWaiterSelection{
 		this.tableNumber = tableNumber;
 		isCooked = false;
 		allergy = _allergy;
+
+		// Set table number and hide it for now
 		textParent.GetComponentInChildren<Text>().text = (tableNumber + 1).ToString();
+		ToggleShowOrderNumber(false);
+
 		if(RestaurantManager.Instance.isTutorial){
 			RestaurantManager.Instance.GetTable(tableNumber).Seat.GetComponentInChildren<CustomerTutorial>().step = 0;
 			RestaurantManager.Instance.GetTable(tableNumber).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
@@ -55,7 +55,6 @@ public class Order : MonoBehaviour, IWaiterSelection{
 		}
 		cookTimer = _cookingTimer;
 		orderImage.SetActive(false);
-		ToggleShowOrderNumber(false);
 		StartCoroutine("Cooking");
 		cookTimer = _cookingTimer;
 	}
