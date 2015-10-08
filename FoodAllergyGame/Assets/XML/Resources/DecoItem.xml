@@ -26,13 +26,13 @@
 	<DecoItem ID = "Floor00">
 		<Type>Floor</Type>
 		<Price>100</Price>
-		<TitleKey>FloorBlue</TitleKey>
-		<DescriptionKey>FloorBlueDesc</DescriptionKey>
-		<SpriteName>RestFloorBlue</SpriteName>
+		<TitleKey>FloorBasic</TitleKey>
+		<DescriptionKey>FloorBasicDesc</DescriptionKey>
+		<SpriteName>RestFloorBasic</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "Floor01">
 		<Type>Floor</Type>
-		<Price>10000</Price>
+		<Price>100</Price>
 		<TitleKey>FloorAqua</TitleKey>
 		<DescriptionKey>FloorAquaDesc</DescriptionKey>
 		<SpriteName>RestFloorAqua</SpriteName>
