@@ -51,6 +51,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public bool isVIPTut;
 	public PauseUIController pauseUI;
 	public float baseCustomerTimer;
+	public float customerTimerDiffMod;
 
 	#region Analytics
 	private int attempted;
@@ -88,6 +89,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 	// Called at the start of the game day begins the day tracker coroutine 
 	public void StartDay(ImmutableDataEvents eventData){
+		customerTimerDiffMod = DataManager.Instance.GameData.DayTracker.AvgDifficulty;
 		this.eventData = eventData;
 		string currSet = eventData.CustomerSet;
 		currCusSet = new List<string>(DataLoaderCustomerSet.GetData(currSet).CustomerSet);
@@ -148,13 +150,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				doorController.OpenAndCloseDoor();
 
 				ImmutableDataCustomer customerData;
-				customerSpawnTimer = customerTimer / satisfactionAI.DifficultyLevel + 1;
-				if(satisfactionAI.DifficultyLevel > 13){
-					customerSpawnTimer = baseCustomerTimer / satisfactionAI.DifficultyLevel + 1;
-				}
-				else{
-					customerSpawnTimer = baseCustomerTimer / satisfactionAI.DifficultyLevel + 2;
-				}
+				customerSpawnTimer = baseCustomerTimer / customerTimerDiffMod;
 				rand = UnityEngine.Random.Range(0, currCusSet.Count);
 				if(eventData.ID == "EventTP"){
 					customerData = DataLoaderCustomer.GetData(currCusSet[0]);
@@ -176,6 +172,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
 				satisfactionAI.AddCustomer();
 				StartCoroutine(SpawnCustomer());
+
 			}
 			else{
 				// Call self to loop
@@ -223,6 +220,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 					StartDay(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()));
 				}
 				else{
+					DataManager.Instance.GameData.DayTracker.AvgDifficulty = ((DataManager.Instance.GameData.DayTracker.AvgDifficulty + satisfactionAI.DifficultyLevel)/2)-3;
 					// Save data here
 					int dayNetCash = dayEarnedCash - FoodManager.Instance.MenuCost;
 					DataManager.Instance.GameData.Cash.SaveCash(dayNetCash, dayCashRevenue);

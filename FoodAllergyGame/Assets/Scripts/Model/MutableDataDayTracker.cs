@@ -6,7 +6,7 @@ public class MutableDataDayTracker{
 	public int DaysPlayed {get; set;}
 
 	public MutableDataDayTracker(){
-		AvgDifficulty = 0.0f;
+		AvgDifficulty = 10.0f;
 		DaysPlayed = 0;
 	}
 }
