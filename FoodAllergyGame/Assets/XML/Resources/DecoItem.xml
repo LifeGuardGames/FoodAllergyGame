@@ -26,37 +26,23 @@
 	<DecoItem ID = "Floor00">
 		<Type>Floor</Type>
 		<Price>100</Price>
-		<TitleKey>FloorBasic</TitleKey>
-		<DescriptionKey>FloorBasicDesc</DescriptionKey>
-		<SpriteName>RestFloorBasic</SpriteName>
+		<TitleKey>FloorBasicAqua</TitleKey>
+		<DescriptionKey>FloorBasicAquaDesc</DescriptionKey>
+		<SpriteName>RestFloorBasicAqua</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "Floor01">
 		<Type>Floor</Type>
 		<Price>100</Price>
-		<TitleKey>FloorAqua</TitleKey>
-		<DescriptionKey>FloorAquaDesc</DescriptionKey>
-		<SpriteName>RestFloorAqua</SpriteName>
+		<TitleKey>FloorBasicPurple</TitleKey>
+		<DescriptionKey>FloorBasicPurpleDesc</DescriptionKey>
+		<SpriteName>RestFloorBasicPurple</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "Floor02">
 		<Type>Floor</Type>
 		<Price>200</Price>
-		<TitleKey>FloorGreen</TitleKey>
-		<DescriptionKey>FloorGreenDesc</DescriptionKey>
-		<SpriteName>RestFloorGreen</SpriteName>
-	</DecoItem>
-	<DecoItem ID = "Floor03">
-		<Type>Floor</Type>
-		<Price>200</Price>
-		<TitleKey>FloorPink</TitleKey>
-		<DescriptionKey>FloorPinkDesc</DescriptionKey>
-		<SpriteName>RestFloorPink</SpriteName>
-	</DecoItem>
-	<DecoItem ID = "Floor04">
-		<Type>Floor</Type>
-		<Price>200</Price>
-		<TitleKey>FloorRed</TitleKey>
-		<DescriptionKey>FloorRedDesc</DescriptionKey>
-		<SpriteName>RestFloorRed</SpriteName>
+		<TitleKey>FloorBasicRed</TitleKey>
+		<DescriptionKey>FloorBasicRedDesc</DescriptionKey>
+		<SpriteName>RestFloorBasicRed</SpriteName>
 	</DecoItem>
 	
 	
