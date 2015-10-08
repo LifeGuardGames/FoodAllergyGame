@@ -23,7 +23,7 @@
 		<KitchenTimer>5</KitchenTimer>
 		<CustomerSet>CustomerSet00</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
-		<DayLength>72</DayLength>
+		<DayLength>33</DayLength>
 		<Allergy>None</Allergy>
 		<Title>TitleT2</Title>
 	</Event>
