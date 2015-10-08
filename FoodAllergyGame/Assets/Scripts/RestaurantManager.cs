@@ -10,7 +10,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	private float customerSpawnTimer;
 	public float dayTime;					// Total amount of time in the day
 	private float dayTimeLeft;				// Current amount of time left in the day
-
+	public int lineCount = 0;
 	private int customerNumber = 0;
 	private float customerTimer;			// time it takes for a customer to spawn
 	public bool dayOver = false;			// bool controlling customer spawning depending on the stage of the day
@@ -145,12 +145,15 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		}
 		else{
 			int rand;		
-			if(!dayOver && customerHash.Count < 8){
+			if(!dayOver && lineCount < 8){
 				
 				doorController.OpenAndCloseDoor();
 
 				ImmutableDataCustomer customerData;
 				customerSpawnTimer = baseCustomerTimer / customerTimerDiffMod;
+				if(customerSpawnTimer < 3){
+					customerSpawnTimer = 3;
+				}
 				rand = UnityEngine.Random.Range(0, currCusSet.Count);
 				if(eventData.ID == "EventTP"){
 					customerData = DataLoaderCustomer.GetData(currCusSet[0]);
