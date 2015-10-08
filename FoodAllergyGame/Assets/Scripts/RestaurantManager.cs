@@ -10,7 +10,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	private float customerSpawnTimer;
 	public float dayTime;					// Total amount of time in the day
 	private float dayTimeLeft;				// Current amount of time left in the day
-
+	public int lineCount = 0;
 	private int customerNumber = 0;
 	private float customerTimer;			// time it takes for a customer to spawn
 	public bool dayOver = false;			// bool controlling customer spawning depending on the stage of the day
@@ -51,6 +51,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public bool isVIPTut;
 	public PauseUIController pauseUI;
 	public float baseCustomerTimer;
+	public float customerTimerDiffMod;
 
 	#region Analytics
 	private int attempted;
@@ -88,6 +89,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 	// Called at the start of the game day begins the day tracker coroutine 
 	public void StartDay(ImmutableDataEvents eventData){
+		customerTimerDiffMod = DataManager.Instance.GameData.DayTracker.AvgDifficulty;
 		this.eventData = eventData;
 		string currSet = eventData.CustomerSet;
 		currCusSet = new List<string>(DataLoaderCustomerSet.GetData(currSet).CustomerSet);
@@ -143,17 +145,14 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		}
 		else{
 			int rand;		
-			if(!dayOver && customerHash.Count < 8){
+			if(!dayOver && lineCount < 8){
 				
 				doorController.OpenAndCloseDoor();
 
 				ImmutableDataCustomer customerData;
-				customerSpawnTimer = customerTimer / satisfactionAI.DifficultyLevel + 1;
-				if(satisfactionAI.DifficultyLevel > 13){
-					customerSpawnTimer = baseCustomerTimer / satisfactionAI.DifficultyLevel + 1;
-				}
-				else{
-					customerSpawnTimer = baseCustomerTimer / satisfactionAI.DifficultyLevel + 2;
+				customerSpawnTimer = baseCustomerTimer / customerTimerDiffMod;
+				if(customerSpawnTimer < 3){
+					customerSpawnTimer = 3;
 				}
 				rand = UnityEngine.Random.Range(0, currCusSet.Count);
 				if(eventData.ID == "EventTP"){
@@ -176,6 +175,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
 				satisfactionAI.AddCustomer();
 				StartCoroutine(SpawnCustomer());
+
 			}
 			else{
 				// Call self to loop
@@ -223,6 +223,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 					StartDay(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()));
 				}
 				else{
+					DataManager.Instance.GameData.DayTracker.AvgDifficulty = ((DataManager.Instance.GameData.DayTracker.AvgDifficulty + satisfactionAI.DifficultyLevel)/2)-3;
 					// Save data here
 					int dayNetCash = dayEarnedCash - FoodManager.Instance.MenuCost;
 					DataManager.Instance.GameData.Cash.SaveCash(dayNetCash, dayCashRevenue);

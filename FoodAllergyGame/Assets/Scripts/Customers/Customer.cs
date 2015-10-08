@@ -77,7 +77,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			}
 			else{
 				this.gameObject.transform.SetParent(RestaurantManager.Instance.GetLine().NewCustomer());
-
+				RestaurantManager.Instance.lineCount++;
 			}
 			this.gameObject.transform.position = transform.parent.position;
 		}
@@ -228,7 +228,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			timer /= RestaurantManager.Instance.GetTable(_tableNum).VIPMultiplier;
 			SetSatisfaction(4);
 		}
-
+		RestaurantManager.Instance.lineCount--;
 		RestaurantManager.Instance.CustomerLineSelectHighlightOff();
 		Waiter.Instance.CurrentLineCustomer = null;
 		AudioManager.Instance.PlayClip("pop");
@@ -371,6 +371,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Tells the resturantManager that the customer is leaving and can be removed from the dictionary
 	public virtual void NotifyLeave(){
+		if(state == CustomerStates.InLine){
+			RestaurantManager.Instance.lineCount--;
+		}
 		Analytics.CustomEvent("Customer Left", new Dictionary <string, object>{
 			{"Type", this.GetType().ToString()},
 			{"state", state.ToString()},
