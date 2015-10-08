@@ -3,23 +3,30 @@
 	<DecoItem ID = "Table00">
 		<Type>Table</Type>
 		<Price>0</Price>
-		<TitleKey>TableBlue</TitleKey>
-		<DescriptionKey>TableBlueDesc</DescriptionKey>
-		<SpriteName>RestTableBlue</SpriteName>
+		<TitleKey>TableBasicAqua</TitleKey>
+		<DescriptionKey>TableBasicAquaDesc</DescriptionKey>
+		<SpriteName>RestTableBasicAqua</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "Table01">
 		<Type>Table</Type>
 		<Price>100</Price>
-		<TitleKey>TableRed</TitleKey>
-		<DescriptionKey>TableRedDesc</DescriptionKey>
-		<SpriteName>RestTableRed</SpriteName>
+		<TitleKey>TableBasicPurple</TitleKey>
+		<DescriptionKey>TableBasicPurpleDesc</DescriptionKey>
+		<SpriteName>RestTableBasicPurple</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "Table02">
 		<Type>Table</Type>
 		<Price>100</Price>
-		<TitleKey>TableCute</TitleKey>
-		<DescriptionKey>TableCuteDesc</DescriptionKey>
-		<SpriteName>RestTableCute</SpriteName>
+		<TitleKey>TableBasicRed</TitleKey>
+		<DescriptionKey>TableBasicRedDesc</DescriptionKey>
+		<SpriteName>RestTableBasicRed</SpriteName>
+	</DecoItem>
+	<DecoItem ID = "Table03">
+		<Type>Table</Type>
+		<Price>100</Price>
+		<TitleKey>TableBasicGreen</TitleKey>
+		<DescriptionKey>TableBasicGreenDesc</DescriptionKey>
+		<SpriteName>RestTableBasicGreen</SpriteName>
 	</DecoItem>
 	
 	
