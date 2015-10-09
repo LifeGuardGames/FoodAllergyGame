@@ -56,23 +56,30 @@
 	<DecoItem ID = "Kitchen00">
 		<Type>Kitchen</Type>
 		<Price>100</Price>
-		<TitleKey>KitchenBlue</TitleKey>
-		<DescriptionKey>KitchenBlueDesc</DescriptionKey>
-		<SpriteName>RestKitchenBlue</SpriteName>
+		<TitleKey>KitchenBasicAqua</TitleKey>
+		<DescriptionKey>KitchenBasicAquaDesc</DescriptionKey>
+		<SpriteName>RestKitchenBasicAqua</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "Kitchen01">
 		<Type>Kitchen</Type>
 		<Price>100</Price>
-		<TitleKey>KitchenRed</TitleKey>
-		<DescriptionKey>KitchenRedDesc</DescriptionKey>
-		<SpriteName>RestKitchenRed</SpriteName>
+		<TitleKey>KitchenBasicPurple</TitleKey>
+		<DescriptionKey>KitchenBasicPurpleDesc</DescriptionKey>
+		<SpriteName>RestKitchenBasicPurple</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "Kitchen02">
 		<Type>Kitchen</Type>
 		<Price>100</Price>
-		<TitleKey>KitchenCute</TitleKey>
-		<DescriptionKey>KitchenCuteDesc</DescriptionKey>
-		<SpriteName>RestKitchenCute</SpriteName>
+		<TitleKey>KitchenBasicRed</TitleKey>
+		<DescriptionKey>KitchenBasicRedDesc</DescriptionKey>
+		<SpriteName>RestKitchenBasicRed</SpriteName>
+	</DecoItem>
+	<DecoItem ID = "Kitchen03">
+		<Type>Kitchen</Type>
+		<Price>100</Price>
+		<TitleKey>KitchenBasicGreen</TitleKey>
+		<DescriptionKey>KitchenBasicGreenDesc</DescriptionKey>
+		<SpriteName>RestKitchenBasicGreen</SpriteName>
 	</DecoItem>
 	
 	
