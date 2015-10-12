@@ -17,6 +17,18 @@ public static class GameObjectUtils{
 		go.transform.localScale = Vector3.one;
 	}
 
+	static public void CopyRectTransform(RectTransform target, RectTransform source){
+		target.anchoredPosition3D = source.anchoredPosition3D;
+		target.anchorMax = source.anchorMax;
+		target.anchorMin = source.anchorMin;
+		target.offsetMax = source.offsetMax;
+		target.offsetMin = source.offsetMin;
+		target.pivot = source.pivot;
+		target.sizeDelta = source.sizeDelta;
+		target.localEulerAngles = source.localEulerAngles;
+		target.localScale = source.localScale;
+	}
+
 	/// <summary>
 	/// Instantiate an object and add it to the specified parent.
 	/// </summary>

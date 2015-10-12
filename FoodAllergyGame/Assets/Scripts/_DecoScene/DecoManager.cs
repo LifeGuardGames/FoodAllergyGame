@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine.Analytics;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 public class DecoManager : Singleton<DecoManager>{
-
 	public List<SpriteRenderer> tableList;
 	public List<SpriteRenderer> kitchenList;
 	public Dictionary <DecoTypes, GameObject> sceneObjects;
@@ -32,6 +32,14 @@ public class DecoManager : Singleton<DecoManager>{
 	public TweenToggleDemux selectionPanelTween;
 	public TweenToggle exitButtonTween;
 
+	// For use with the uGUI layer ordering
+	public Transform tabGroupActive;
+	public Transform tabGroupInactive;
+	public Sprite tabActiveSprite;
+	public Sprite tabInactiveSprite;
+	private Transform currentTabTransform;
+	private Dictionary<string, Transform> tabGroupInactiveSearchTable;
+
 	#region Static functions
 	public static bool IsDecoBought(string decoID){
 		return DataManager.Instance.GameData.Decoration.BoughtDeco.ContainsKey(decoID);
@@ -44,6 +52,17 @@ public class DecoManager : Singleton<DecoManager>{
 
 	void Awake(){
 		sceneObjects = new Dictionary<DecoTypes, GameObject>();
+
+		// Position fixes for tweening
+		GameObjectUtils.CopyRectTransform((RectTransform)tabGroupActive.transform, (RectTransform)tabGroupInactive.transform);
+
+		// Populate the child list to search for tab changing order rendering
+		tabGroupInactiveSearchTable = new Dictionary<string, Transform>();
+		foreach(Transform child in tabGroupInactive){
+			if(child.gameObject.activeSelf){
+				tabGroupInactiveSearchTable.Add(child.name, child);
+			}
+		}
 	}
 
 	void Start(){
@@ -165,13 +184,30 @@ public class DecoManager : Singleton<DecoManager>{
 
 	public void ChangeTab(string tabName){
 		currentDecoPage = 0;
-		currentTabType = (DecoTypes)Enum.Parse(typeof(DecoTypes), tabName);
 
-		// Repopulate the grid and get the first unbought deco
-		ImmutableDataDecoItem firstUnboughtDeco = PopulateDecoGrid();
-		
-		// Showcase the first deco if there is any
-		showcaseController.ShowInfo(firstUnboughtDeco != null ? firstUnboughtDeco.ID : tabName + "00");
+		if(currentTabType.ToString() != tabName){
+			currentTabType = (DecoTypes)Enum.Parse(typeof(DecoTypes), tabName);
+			Transform topSprite;
+
+			// Reset any existing tabs to inactive parent
+			if(currentTabTransform != null){
+				currentTabTransform.SetParent(tabGroupInactive);
+				topSprite = currentTabTransform.FindChild("Top");
+				topSprite.GetComponent<Image>().sprite = tabInactiveSprite;
+			}
+
+			// Sort the ordering of the tab to active parent
+			currentTabTransform = tabGroupInactiveSearchTable["Tab" + tabName];
+			currentTabTransform.SetParent(tabGroupActive);
+			topSprite = currentTabTransform.FindChild("Top");
+			topSprite.GetComponent<Image>().sprite = tabActiveSprite;
+
+			// Repopulate the grid and get the first unbought deco
+			ImmutableDataDecoItem firstUnboughtDeco = PopulateDecoGrid();
+			
+			// Showcase the first buyable deco if there is any
+			showcaseController.ShowInfo(firstUnboughtDeco != null ? firstUnboughtDeco.ID : tabName + "00");
+		}
 	}
 
 	public void ChangePage(bool isRight){
