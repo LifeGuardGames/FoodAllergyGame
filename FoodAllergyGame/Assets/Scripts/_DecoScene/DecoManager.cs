@@ -75,11 +75,9 @@ public class DecoManager : Singleton<DecoManager>{
 		}
 		//creates a list of deco based on a type, to do this the dataloader first creates the list of all the items then sorts it by cost before returning it
 		decoList = DataLoaderDecoItem.GetDecoDataByType(currentTabType);
-		Debug.Log("count " + decoList.Count);
 		ImmutableDataDecoItem firstUnboughtDeco = null;
 
 		for(int i = 0; i < decoPageSize; i++){
-			Debug.Log(i);
 			if(decoList.Count <= i + currentDecoPage * decoPageSize){		// Reached the end of list
 				currentDecoPage--;
 				break;

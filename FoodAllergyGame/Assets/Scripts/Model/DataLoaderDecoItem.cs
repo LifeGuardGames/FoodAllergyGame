@@ -22,7 +22,7 @@ public class DataLoaderDecoItem: XMLLoaderGeneric<DataLoaderDecoItem> {
 				decoList.Add(itemList[i]);
 			}
 		}
-		Debug.Log("old deco count " + decoList.Count);
+
 		// Sort by cost
 		decoList.Sort((x,y) => x.ID.CompareTo(y.ID));
 		return decoList;
