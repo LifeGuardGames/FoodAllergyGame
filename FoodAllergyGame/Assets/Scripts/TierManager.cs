@@ -18,7 +18,7 @@ public class TierManager : Singleton<TierManager> {
 		}
 		else{
 			int progress = DataManager.Instance.GameData.Cash.TotalCash;
-			if(tier+1 < progress / 1000){
+			if(tier+1 < progress / 1000.0f){
 				tier++;
 				UnlockTier();
 			}
