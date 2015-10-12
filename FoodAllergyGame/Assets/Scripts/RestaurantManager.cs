@@ -12,7 +12,6 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	private float dayTimeLeft;				// Current amount of time left in the day
 	public int lineCount = 0;
 	private int customerNumber = 0;
-	private float customerTimer;			// time it takes for a customer to spawn
 	public bool dayOver = false;			// bool controlling customer spawning depending on the stage of the day
 	public int actTables;
 	public int medicUsed;
@@ -84,7 +83,12 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		if(DataManager.Instance.IsDebug){
 			FoodManager.Instance.GenerateMenu(DataLoaderMenuSet.GetData("MenuSetT1").MenuSet.ToList(), 0);
 		}
-		StartDay(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()));
+		if(DataManager.Instance.GetEvent() == "EventTP"){
+
+		}
+		else{
+			StartDay(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()));
+		}
 	}
 
 	// Called at the start of the game day begins the day tracker coroutine 
@@ -112,7 +116,6 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			dayTimeLeft = dayTime;
 
 		}
-		customerTimer = 1.0f;
 		StartCoroutine(SpawnCustomer());
 	}
 

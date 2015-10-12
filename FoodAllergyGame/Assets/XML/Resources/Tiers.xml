@@ -18,21 +18,21 @@
 		<MenuSlots>6</MenuSlots>
 		<EventsUnlocked>Event00,Event01,Event02,Event03</EventsUnlocked>
 		<FoodsUnlocked></FoodsUnlocked>
-		<DecorationsUnlocked></DecorationsUnlocked>
+		<DecorationsUnlocked>Table01,Floor01,PlayArea01,Kitchen01</DecorationsUnlocked>
 		<StartArtAssets></StartArtAssets>
 	</Tier>
 	<Tier ID="Tier02">
 		<MenuSlots>7</MenuSlots>
 		<EventsUnlocked>Event00,Event01,Event02,Event03</EventsUnlocked>
 		<FoodsUnlocked></FoodsUnlocked>
-		<DecorationsUnlocked></DecorationsUnlocked>
+		<DecorationsUnlocked>Table02,PlayArea02,Kitchen02</DecorationsUnlocked>
 		<StartArtAssets></StartArtAssets>
 	</Tier>
 	<Tier ID="Tier03">
 		<MenuSlots>8</MenuSlots>
 		<EventsUnlocked>Event00,Event01,Event02,Event03</EventsUnlocked>
 		<FoodsUnlocked></FoodsUnlocked>
-		<DecorationsUnlocked></DecorationsUnlocked>
+		<DecorationsUnlocked>Floor02,Kitchen03,Flythrough01</DecorationsUnlocked>
 		<StartArtAssets></StartArtAssets>
 	</Tier>
 	<Tier ID="Tier04">

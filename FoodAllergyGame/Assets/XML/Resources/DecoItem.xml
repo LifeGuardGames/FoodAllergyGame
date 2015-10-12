@@ -6,6 +6,7 @@
 		<TitleKey>TableBlue</TitleKey>
 		<DescriptionKey>TableBlueDesc</DescriptionKey>
 		<SpriteName>RestTableBlue</SpriteName>
+		<Tier>0</Tier>
 	</DecoItem>
 	<DecoItem ID = "Table01">
 		<Type>Table</Type>
@@ -13,6 +14,7 @@
 		<TitleKey>TableRed</TitleKey>
 		<DescriptionKey>TableRedDesc</DescriptionKey>
 		<SpriteName>RestTableRed</SpriteName>
+		<Tier>1</Tier>
 	</DecoItem>
 	<DecoItem ID = "Table02">
 		<Type>Table</Type>
@@ -20,6 +22,7 @@
 		<TitleKey>TableCute</TitleKey>
 		<DescriptionKey>TableCuteDesc</DescriptionKey>
 		<SpriteName>RestTableCute</SpriteName>
+		<Tier>2</Tier>
 	</DecoItem>
 	
 	
@@ -29,6 +32,7 @@
 		<TitleKey>FloorBasicAqua</TitleKey>
 		<DescriptionKey>FloorBasicAquaDesc</DescriptionKey>
 		<SpriteName>RestFloorBasicAqua</SpriteName>
+		<Tier>0</Tier>
 	</DecoItem>
 	<DecoItem ID = "Floor01">
 		<Type>Floor</Type>
@@ -36,6 +40,7 @@
 		<TitleKey>FloorBasicPurple</TitleKey>
 		<DescriptionKey>FloorBasicPurpleDesc</DescriptionKey>
 		<SpriteName>RestFloorBasicPurple</SpriteName>
+		<Tier>1</Tier>
 	</DecoItem>
 	<DecoItem ID = "Floor02">
 		<Type>Floor</Type>
@@ -43,6 +48,7 @@
 		<TitleKey>FloorBasicRed</TitleKey>
 		<DescriptionKey>FloorBasicRedDesc</DescriptionKey>
 		<SpriteName>RestFloorBasicRed</SpriteName>
+		<Tier>3</Tier>
 	</DecoItem>
 	
 	
@@ -52,6 +58,7 @@
 		<TitleKey>KitchenBlue</TitleKey>
 		<DescriptionKey>KitchenBlueDesc</DescriptionKey>
 		<SpriteName>RestKitchenBlue</SpriteName>
+		<Tier>0</Tier>
 	</DecoItem>
 	<DecoItem ID = "Kitchen01">
 		<Type>Kitchen</Type>

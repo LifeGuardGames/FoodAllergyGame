@@ -18,7 +18,7 @@ public class DataLoaderDecoItem: XMLLoaderGeneric<DataLoaderDecoItem> {
 		List<ImmutableDataDecoItem> itemList = GetDataList();
 		List<ImmutableDataDecoItem> decoList = new List<ImmutableDataDecoItem>();
 		for(int i = 0; i < itemList.Count; i++){
-			if(itemList[i].Type == type){
+			if(itemList[i].Type == type && itemList[i].Tier == TierManager.Instance.Tier){
 				decoList.Add(itemList[i]);
 			}
 		}
