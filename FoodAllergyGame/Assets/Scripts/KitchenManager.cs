@@ -13,9 +13,6 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 	public GameObject spinnerHighlight;
 	public GameObject chefParent;
 
-	public SpriteRenderer front;
-	public SpriteRenderer back;
-
 	void Start(){
 		if(Application.loadedLevelName == SceneUtils.RESTAURANT){
 			// Connect scene variables

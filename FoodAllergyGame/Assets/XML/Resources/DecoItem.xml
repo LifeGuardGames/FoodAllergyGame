@@ -3,26 +3,33 @@
 	<DecoItem ID = "Table00">
 		<Type>Table</Type>
 		<Price>0</Price>
-		<TitleKey>TableBlue</TitleKey>
-		<DescriptionKey>TableBlueDesc</DescriptionKey>
-		<SpriteName>RestTableBlue</SpriteName>
+		<TitleKey>TableBasicAqua</TitleKey>
+		<DescriptionKey>TableBasicAquaDesc</DescriptionKey>
+		<SpriteName>RestTableBasicAqua</SpriteName>
 		<Tier>0</Tier>
 	</DecoItem>
 	<DecoItem ID = "Table01">
 		<Type>Table</Type>
 		<Price>100</Price>
-		<TitleKey>TableRed</TitleKey>
-		<DescriptionKey>TableRedDesc</DescriptionKey>
-		<SpriteName>RestTableRed</SpriteName>
+		<TitleKey>TableBasicPurple</TitleKey>
+		<DescriptionKey>TableBasicPurpleDesc</DescriptionKey>
+		<SpriteName>RestTableBasicPurple</SpriteName>
 		<Tier>1</Tier>
 	</DecoItem>
 	<DecoItem ID = "Table02">
 		<Type>Table</Type>
 		<Price>100</Price>
-		<TitleKey>TableCute</TitleKey>
-		<DescriptionKey>TableCuteDesc</DescriptionKey>
-		<SpriteName>RestTableCute</SpriteName>
+		<TitleKey>TableBasicRed</TitleKey>
+		<DescriptionKey>TableBasicRedDesc</DescriptionKey>
+		<SpriteName>RestTableBasicRed</SpriteName>
 		<Tier>2</Tier>
+	</DecoItem>
+	<DecoItem ID = "Table03">
+		<Type>Table</Type>
+		<Price>100</Price>
+		<TitleKey>TableBasicGreen</TitleKey>
+		<DescriptionKey>TableBasicGreenDesc</DescriptionKey>
+		<SpriteName>RestTableBasicGreen</SpriteName>
 	</DecoItem>
 	
 	
@@ -55,24 +62,31 @@
 	<DecoItem ID = "Kitchen00">
 		<Type>Kitchen</Type>
 		<Price>100</Price>
-		<TitleKey>KitchenBlue</TitleKey>
-		<DescriptionKey>KitchenBlueDesc</DescriptionKey>
-		<SpriteName>RestKitchenBlue</SpriteName>
+		<TitleKey>KitchenBasicAqua</TitleKey>
+		<DescriptionKey>KitchenBasicAquaDesc</DescriptionKey>
+		<SpriteName>RestKitchenBasicAqua</SpriteName>
 		<Tier>0</Tier>
 	</DecoItem>
 	<DecoItem ID = "Kitchen01">
 		<Type>Kitchen</Type>
 		<Price>100</Price>
-		<TitleKey>KitchenRed</TitleKey>
-		<DescriptionKey>KitchenRedDesc</DescriptionKey>
-		<SpriteName>RestKitchenRed</SpriteName>
+		<TitleKey>KitchenBasicPurple</TitleKey>
+		<DescriptionKey>KitchenBasicPurpleDesc</DescriptionKey>
+		<SpriteName>RestKitchenBasicPurple</SpriteName>
 	</DecoItem>
 	<DecoItem ID = "Kitchen02">
 		<Type>Kitchen</Type>
 		<Price>100</Price>
-		<TitleKey>KitchenCute</TitleKey>
-		<DescriptionKey>KitchenCuteDesc</DescriptionKey>
-		<SpriteName>RestKitchenCute</SpriteName>
+		<TitleKey>KitchenBasicRed</TitleKey>
+		<DescriptionKey>KitchenBasicRedDesc</DescriptionKey>
+		<SpriteName>RestKitchenBasicRed</SpriteName>
+	</DecoItem>
+	<DecoItem ID = "Kitchen03">
+		<Type>Kitchen</Type>
+		<Price>100</Price>
+		<TitleKey>KitchenBasicGreen</TitleKey>
+		<DescriptionKey>KitchenBasicGreenDesc</DescriptionKey>
+		<SpriteName>RestKitchenBasicGreen</SpriteName>
 	</DecoItem>
 	
 	
