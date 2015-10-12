@@ -76,7 +76,7 @@ public class StartManager : Singleton<StartManager>{
 
 	public void OnPlayButtonClicked(){
 		// TODO integrate with datamanager tutorial fields
-		if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT1" ||DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT0"){
+		if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT1" ||DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT0" || DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventTP"|| DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventTF"|| DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventTV"){
 			FoodManager.Instance.GenerateMenu(DataLoaderMenuSet.GetData("MenuSetT1").MenuSet.ToList(), 0);
 			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT);
 		}

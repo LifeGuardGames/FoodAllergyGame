@@ -30,6 +30,7 @@
 		<TitleKey>TableBasicGreen</TitleKey>
 		<DescriptionKey>TableBasicGreenDesc</DescriptionKey>
 		<SpriteName>RestTableBasicGreen</SpriteName>
+		<Tier>3</Tier>
 	</DecoItem>
 	
 	
