@@ -18,8 +18,10 @@ public class TierManager : Singleton<TierManager> {
 		}
 		else{
 			int progress = DataManager.Instance.GameData.Cash.TotalCash;
-//			tier = progress / 200; //TODO enable?
-			tier = 0;
+			if(tier+1 < progress / 1000){
+				tier++;
+				UnlockTier();
+			}
 			// Print out tier
 			Debug.Log("Recalculated tier: " + tier + "     total cash: " + progress);
 		}
@@ -89,6 +91,17 @@ public class TierManager : Singleton<TierManager> {
 		else{
 			List <string> eventList = GetEventsUnlocked();
 			return eventList[Random.Range(0, eventList.Count)];
+		}
+	}
+
+	public void UnlockTier(){
+		//TODO unlock logic here
+		if(tier == 1){
+			ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData("PlayArea01");
+			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(decoData.Type);
+			DataManager.Instance.GameData.Decoration.ActiveDeco.Add(decoData.Type, decoData.ID);
+			DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTP");
+			DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
 		}
 	}
 }

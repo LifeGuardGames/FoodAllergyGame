@@ -40,6 +40,11 @@ public class ImmutableDataDecoItem {
 		get {return secondarySprite;}
 	}
 
+	private int tier;
+	public int Tier{
+		get{return tier;}
+	}
+
 	public ImmutableDataDecoItem(string id, IXMLNode xmlNode, string error){
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 
@@ -55,5 +60,6 @@ public class ImmutableDataDecoItem {
 		if(XMLUtils.GetString(hashElements["Secondary"] as IXMLNode) != null){
 			secondarySprite = XMLUtils.GetString(hashElements["Secondary"] as IXMLNode);
 		}
+		tier = XMLUtils.GetInt(hashElements["Tier"] as IXMLNode);
 	}
 }
