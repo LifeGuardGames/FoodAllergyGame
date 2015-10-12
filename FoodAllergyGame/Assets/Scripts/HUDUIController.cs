@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class HUDUIController : MonoBehaviour {
-
 	public TweenToggleDemux hudDemux;
 
 	public void ShowHUD(){
