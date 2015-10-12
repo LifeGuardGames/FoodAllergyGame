@@ -13,7 +13,7 @@ public class DecoManager : Singleton<DecoManager>{
 	private int currentDecoPage = 0;
 	public GameObject decoButtonPrefab;
 	public Transform grid;
-	private DecoTypes currentTabType = DecoTypes.Table;
+	private DecoTypes currentTabType = DecoTypes.None;
 	public GameObject leftButton;
 	public GameObject rightButton;
 	private List<ImmutableDataDecoItem> decoList;
@@ -23,9 +23,6 @@ public class DecoManager : Singleton<DecoManager>{
 	public Dictionary<DecoTypes, DecoLoader> DecoLoaderHash{
 		get{ return decoLoaderHash; }
 	}
-
-	public GameObject decoTutorial;
-	public DecoCameraTween cameraTween;
 
 	// Use these two references to tween and init them
 	public ShowcaseController showcaseController;
@@ -76,12 +73,13 @@ public class DecoManager : Singleton<DecoManager>{
 		foreach(Transform child in grid){
 			Destroy(child.gameObject);
 		}
-		//creates a list of deco based on a type, to do this the dataloader first creates the list of all the items then sorts it by type and cost before returning it
+		//creates a list of deco based on a type, to do this the dataloader first creates the list of all the items then sorts it by cost before returning it
 		decoList = DataLoaderDecoItem.GetDecoDataByType(currentTabType);
-
+		Debug.Log("count " + decoList.Count);
 		ImmutableDataDecoItem firstUnboughtDeco = null;
 
 		for(int i = 0; i < decoPageSize; i++){
+			Debug.Log(i);
 			if(decoList.Count <= i + currentDecoPage * decoPageSize){		// Reached the end of list
 				currentDecoPage--;
 				break;
@@ -138,11 +136,7 @@ public class DecoManager : Singleton<DecoManager>{
 				default:
 					break;
 				}
-				// HACK for prototyping only
-				if(!DataManager.Instance.GameData.Decoration.DecoTut.Contains(decoData.Type)){
-					decoTutorial.GetComponent<DecoTutorialController>().Init(decoData.Type);
-					Invoke("ShowTutorial", 1.5f);
-				}
+
 				DataManager.Instance.SaveGameData();
 			}
 		}
@@ -160,10 +154,6 @@ public class DecoManager : Singleton<DecoManager>{
 		DecoLoader loader = decoLoaderHash[deco];	// Get the loader script by type
 		ImmutableDataDecoItem decoData = DataManager.Instance.GetActiveDecoData(deco);
 		loader.LoadDeco(decoData, isPlayPoof: true);
-	}
-
-	public void ShowTutorial(){
-		decoTutorial.SetActive(true);
 	}
 
 	private bool BuyItem(string decoID){
