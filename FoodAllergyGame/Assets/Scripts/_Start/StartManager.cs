@@ -5,6 +5,11 @@ using System.Linq;
 using UnityEngine.Analytics;
 
 public class StartManager : Singleton<StartManager>{
+	public GameObject sceneObjectParent;
+	public GameObject SceneObjectParent{
+		get{ return sceneObjectParent; }
+	}
+
 	public TweenToggleDemux startDemux;
 	public TweenToggleDemux infoCategoriesDemux;
 	public TweenToggleDemux infoDetailDemux;

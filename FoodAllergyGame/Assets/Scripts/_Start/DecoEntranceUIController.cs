@@ -8,9 +8,9 @@ public class DecoEntranceUIController : MonoBehaviour {
 
 	public void Show(bool isFirstTime){
 		gameObject.SetActive(true);
-		if(isFirstTime && !DataManager.Instance.IsDebug){
-			// Show the tutorial finger
-			tutorialFinger.SetActive(true);
+		if(isFirstTime){
+			PlayAppearAnimation();
+
 		}
 		else{
 			tutorialFinger.SetActive(false);
@@ -31,7 +31,12 @@ public class DecoEntranceUIController : MonoBehaviour {
 //		}
 //	}
 
-	public void PlayAppearAnimation(){
+	private void PlayAppearAnimation(){
 		animator.Play("ShopAppear");
+	}
+
+	public void AppearAnimationDoneEvent(){
+		// Show the tutorial finger
+		tutorialFinger.SetActive(true);
 	}
 }
