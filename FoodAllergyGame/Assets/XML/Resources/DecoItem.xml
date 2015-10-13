@@ -74,6 +74,7 @@
 		<TitleKey>KitchenBasicPurple</TitleKey>
 		<DescriptionKey>KitchenBasicPurpleDesc</DescriptionKey>
 		<SpriteName>RestKitchenBasicPurple</SpriteName>
+		<Tier>1</Tier>
 	</DecoItem>
 	<DecoItem ID = "Kitchen02">
 		<Type>Kitchen</Type>
@@ -81,6 +82,7 @@
 		<TitleKey>KitchenBasicRed</TitleKey>
 		<DescriptionKey>KitchenBasicRedDesc</DescriptionKey>
 		<SpriteName>RestKitchenBasicRed</SpriteName>
+		<Tier>1</Tier>
 	</DecoItem>
 	<DecoItem ID = "Kitchen03">
 		<Type>Kitchen</Type>
