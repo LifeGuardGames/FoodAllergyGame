@@ -28,7 +28,10 @@ public class DecoManager : Singleton<DecoManager>{
 	public ShowcaseController showcaseController;
 	public TweenToggleDemux selectionPanelTween;
 	public TweenToggle exitButtonTween;
-
+	public GameObject tutObj1;
+	public GameObject tutObj2;
+	public GameObject tutObj3;
+	public GameObject tutObj4;
 	// For use with the uGUI layer ordering
 	public Transform tabGroupActive;
 	public Transform tabGroupInactive;
@@ -36,7 +39,7 @@ public class DecoManager : Singleton<DecoManager>{
 	public Sprite tabInactiveSprite;
 	private Transform currentTabTransform;
 	private Dictionary<string, Transform> tabGroupInactiveSearchTable;
-
+	public bool isTutroial;
 	#region Static functions
 	public static bool IsDecoBought(string decoID){
 		return DataManager.Instance.GameData.Decoration.BoughtDeco.ContainsKey(decoID);
@@ -63,6 +66,10 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	void Start(){
+		if (!DataManager.Instance.GameData.Tutorial.IsDecoTuTDone){
+			isTutroial = true;
+			tutObj1.SetActive(true);
+		}
 		// Start with table tab
 		ChangeTab("Table");
 	}
@@ -95,6 +102,14 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	public void ShowCaseDeco(string decoID){
+		if(isTutroial && decoID == "PlayArea00" && tutObj4.activeSelf != true){
+			tutObj2.SetActive(false);
+			tutObj3.SetActive(true);
+		}
+		else if(isTutroial && tutObj3.activeSelf == true && decoID != "PlayArea00" && tutObj4.activeSelf != true){
+			tutObj2.SetActive(true);
+			tutObj3.SetActive(false);
+		}
 		ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
 		showcaseController.ShowInfo(decoData);
 	}
@@ -107,6 +122,10 @@ public class DecoManager : Singleton<DecoManager>{
 	// TODO Return false if you dont have enough money
 	public void SetDeco(string decoID){
 		if(IsDecoBought(decoID)){
+			if(isTutroial && decoID == "PlayArea00"){
+				tutObj3.SetActive(false);
+				StartCoroutine(WaitASec());
+			}
 			// Cache local data
 			ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
 			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(decoData.Type);
@@ -172,6 +191,15 @@ public class DecoManager : Singleton<DecoManager>{
 
 	public void ChangeTab(string tabName){
 		currentDecoPage = 0;
+		if(isTutroial && tabName == "PlayArea" && tutObj1.activeSelf == true){
+			tutObj1.SetActive(false);
+			tutObj2.SetActive(true);
+		}
+		else if (isTutroial && tabName != "PlayArea" && tutObj4.activeSelf != true){
+			tutObj1.SetActive(true);
+			tutObj2.SetActive(false);
+			tutObj3.SetActive(false);
+		}
 
 		if(currentTabType.ToString() != tabName){
 			currentTabType = (DecoTypes)Enum.Parse(typeof(DecoTypes), tabName);
@@ -232,6 +260,14 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	public void OnExitButtonClicked(){
+		if(isTutroial && tutObj4.activeSelf == true){
+			DataManager.Instance.GameData.Tutorial.IsDecoTuTDone = true;
+		}
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
+	}
+
+	IEnumerator WaitASec(){
+		yield return new WaitForSeconds(3.0f);
+		tutObj4.SetActive(true);
 	}
 }
