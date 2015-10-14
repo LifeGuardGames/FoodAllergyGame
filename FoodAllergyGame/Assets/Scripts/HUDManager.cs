@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class HUDManager : MonoBehaviour {
-	public TweenToggleDemux coinDemux;
-	public TweenToggleDemux tierDemux;
+	public TweenToggle coinTween;
+	public TweenToggle tierTween;
 
 	void Start(){
 		ShowHUD();
@@ -43,19 +43,19 @@ public class HUDManager : MonoBehaviour {
 
 	private void ToggleCoin(bool isShow){
 		if(isShow){
-			coinDemux.Show();
+			coinTween.Show();
 		}
 		else{
-			coinDemux.Hide();
+			coinTween.Hide();
 		}
 	}
 
 	private void ToggleTier(bool isShow){
 		if(isShow){
-			tierDemux.Show();
+			tierTween.Show();
 		}
 		else{
-			tierDemux.Hide();
+			tierTween.Hide();
 		}
 	}
 }
