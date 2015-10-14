@@ -59,6 +59,9 @@ public class Table : MonoBehaviour, IWaiterSelection{
 				node = Pathfinding.Instance.NodeVIP;
 				break;
 			case TableType.FlyThru:
+				if(DataManager.Instance.GetEvent() == "EventTF"){
+					GameObject.Find("TutFingers").transform.GetChild(9).gameObject.SetActive(true);
+				}
 				node = Pathfinding.Instance.NodeFlyThru;
 				break;
 			}
@@ -72,6 +75,9 @@ public class Table : MonoBehaviour, IWaiterSelection{
 
 	//facilitates talk between customer and waiter
 	public void TalkToConsumer(){
+		if(DataManager.Instance.GetEvent() == "EventTF"){
+			GameObject.Find("TutFingers").transform.GetChild(9).gameObject.SetActive(false);
+		}
 		if(inUse){
 			// CheckState will handle waiter finish
 			transform.GetComponentInChildren<Customer>().CheckState();

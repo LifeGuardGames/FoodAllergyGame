@@ -83,8 +83,9 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		if(DataManager.Instance.IsDebug){
 			FoodManager.Instance.GenerateMenu(DataLoaderMenuSet.GetData("MenuSetT1").MenuSet.ToList(), 0);
 		}
-		if(DataManager.Instance.GetEvent() == "EventTP"){
-
+		if(DataManager.Instance.GetEvent() == "EventTP"||DataManager.Instance.GetEvent() == "EventTF"){
+			//TODO remove this and active tut screen
+			StartDay(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()));
 		}
 		else{
 			StartDay(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()));
