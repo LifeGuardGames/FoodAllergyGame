@@ -17,6 +17,10 @@ public class StartManager : Singleton<StartManager>{
 
 	public GameObject unlockParent;
 	public DecoEntranceUIController decoEntranceUIController;
+	public NewItemUIController newItemUIController;
+	public NewItemUIController NewItemUIController{
+		get{ return newItemUIController; }
+	}
 
 	void Start(){
 		// Refresh tier calculation
@@ -50,11 +54,23 @@ public class StartManager : Singleton<StartManager>{
 			DataManager.Instance.SaveGameData();
 		}
 
-		//TODO Set up visuals and appearances for that day based on event
+
+		//TODO Set up pre-existing visuals and appearances for that day based on event
+
+
+		//TODO Set up any new notifications here (through NotificationManager)
+		// Check if any new deco types are unlocked at this tier
+		string specialItemID = TierManager.Instance.SpecialItemID;
+		if(!string.IsNullOrEmpty(specialItemID)){
+			NotificationQueueDataNewItem itemNotif = new NotificationQueueDataNewItem(SceneUtils.START, specialItemID);
+			NotificationManager.Instance.AddNotification(itemNotif);
+		}
+
 
 		GenerateUnlockedFoodStock();
 	}
 
+	// Given the event, generate a few set of food stocks, capped by event menussets and tier
 	public void GenerateUnlockedFoodStock(){
 		List<ImmutableDataFood> unlockedFoodStock = new List<ImmutableDataFood>();
 		// First add all the foods that are used for event

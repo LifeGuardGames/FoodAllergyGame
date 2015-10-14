@@ -16,7 +16,7 @@ public class NotificationQueueDataNewItem : NotificationQueueData {
 
 			// Prepare finished delegate
 
-			giftInstance.GetComponent<NewItemsUIController>().Init(this, itemIDToShow);
+			giftInstance.GetComponent<AnimationNewItem>().Init(this, itemIDToShow);
 		}
 		else{
 			Finish();

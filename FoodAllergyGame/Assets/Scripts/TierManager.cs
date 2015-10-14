@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -11,17 +12,26 @@ public class TierManager : Singleton<TierManager> {
 		get{ return tier; }
 	}
 
+	private string specialItemID;				// Special item IDs used for start notifications
+	public string SpecialItemID{
+		get{ return specialItemID; }
+	}
+
 	// Recalculate the tier given a certain algorithm, should be done on StartScene only
 	public void RecalculateTier(){
+		specialItemID = "";
 		if(DataManager.Instance.IsDebug && Constants.GetDebugConstant<string>("Tier Number") != default(string)){
 			tier = int.Parse(Constants.GetDebugConstant<string>("Tier Number"));
 		}
 		else{
 			int progress = DataManager.Instance.GameData.Cash.TotalCash;
-			if(tier+1 < progress / 1000.0f){
+
+			// NOTE: If there is a change in tier, run logic
+			if(tier + 1 < progress / 1000.0f){
 				tier++;
-				UnlockTier();
+				SpecialTierUnlock();
 			}
+
 			// Print out tier
 			Debug.Log("Recalculated tier: " + tier + "     total cash: " + progress);
 		}
@@ -90,18 +100,21 @@ public class TierManager : Singleton<TierManager> {
 		}
 		else{
 			List <string> eventList = GetEventsUnlocked();
-			return eventList[Random.Range(0, eventList.Count)];
+			return eventList[UnityEngine.Random.Range(0, eventList.Count)];
 		}
 	}
 
-	public void UnlockTier(){
-		//TODO unlock logic here
+	// Checks any special case for unlocking a tier
+	// NOTE: Make sure to set specialDecoID so notificationManager can pick it up!
+	public void SpecialTierUnlock(){
 		if(tier == 1){
-			ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData("PlayArea01");
+			specialItemID = "PlayArea01";
+			ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(specialItemID);
 			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(decoData.Type);
 			DataManager.Instance.GameData.Decoration.ActiveDeco.Add(decoData.Type, decoData.ID);
 			DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTP");
 			DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
 		}
+		//TODO More special unlock logic here
 	}
 }

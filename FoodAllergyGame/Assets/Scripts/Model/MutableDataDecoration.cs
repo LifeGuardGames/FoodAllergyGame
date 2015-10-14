@@ -11,11 +11,13 @@ public class MutableDataDecoration{
 	public MutableDataDecoration(){
 		DecoTutQueue = new List<string>();
 		IsFirstTimeEntrance = true;
+
 		DecoTut = new List<DecoTypes>();
 		DecoTut.Add(DecoTypes.Floor);
 		DecoTut.Add(DecoTypes.Bathroom);
 		DecoTut.Add(DecoTypes.Kitchen);
 		DecoTut.Add(DecoTypes.Table);
+
 		BoughtDeco = new Dictionary<string, string>();
 		// Add default decos
 		BoughtDeco.Add("Floor00", "");
