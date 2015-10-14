@@ -2,9 +2,9 @@
 using System.Collections;
 
 public static class SceneUtils{
-	public static string START = "StartScene";
-	public static string MENUPLANNING = "MenuPlanning";
-	public static string RESTAURANT = "Restaurant";
-	public static string COMICSCENE = "ComicScene";
-	public static string DECO = "DecoScene";
+	public const string START = "StartScene";
+	public const string MENUPLANNING = "MenuPlanning";
+	public const string RESTAURANT = "Restaurant";
+	public const string COMICSCENE = "ComicScene";
+	public const string DECO = "DecoScene";
 }

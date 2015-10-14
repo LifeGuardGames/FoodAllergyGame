@@ -7,7 +7,17 @@ public class ImmutableDataTiers {
 	public string ID{
 		get { return id;}
 	}
-	
+
+	private int tierNumber;
+	public int TierNumber{
+		get{ return tierNumber; }
+	}
+
+	private int cashCutoffFloor;		// If TotalCash is higher than this, then is unlocked
+	public int CashCutoffFloor{
+		get{ return cashCutoffFloor; }
+	}
+
 	private int menuSlots;
 	public int MenuSlots{
 		get{ return menuSlots; }
@@ -36,7 +46,8 @@ public class ImmutableDataTiers {
 	public ImmutableDataTiers(string id, IXMLNode xmlNode, string error){
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 		this.id = id;
-
+		tierNumber = XMLUtils.GetInt(hashElements["TierNumber"] as IXMLNode);
+		cashCutoffFloor = XMLUtils.GetInt(hashElements["CashCutoffFloor"] as IXMLNode);
 		menuSlots = XMLUtils.GetInt(hashElements["MenuSlots"] as IXMLNode);
 		eventsUnlocked = XMLUtils.GetStringList(hashElements["EventsUnlocked"] as IXMLNode);
 		foodsUnlocked = XMLUtils.GetStringList(hashElements["FoodsUnlocked"] as IXMLNode);

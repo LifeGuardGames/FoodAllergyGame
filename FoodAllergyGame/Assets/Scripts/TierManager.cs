@@ -17,23 +17,24 @@ public class TierManager : Singleton<TierManager> {
 		get{ return specialItemID; }
 	}
 
-	// Recalculate the tier given a certain algorithm, should be done on StartScene only
+	// Recalculate the tier given a certain algorithm
+	// NOTE: Should be done on StartScene ONLY
 	public void RecalculateTier(){
 		specialItemID = "";
 		if(DataManager.Instance.IsDebug && Constants.GetDebugConstant<string>("Tier Number") != default(string)){
 			tier = int.Parse(Constants.GetDebugConstant<string>("Tier Number"));
 		}
 		else{
-			int progress = DataManager.Instance.GameData.Cash.TotalCash;
+			int newTier = DataLoaderTiers.GetTierFromCash(DataManager.Instance.GameData.Cash.TotalCash);
 
 			// NOTE: If there is a change in tier, run logic
-			if(tier + 1 < progress / 1000.0f){
-				tier++;
-				SpecialTierUnlock();
+			if(tier < newTier){
+				tier = newTier;
+				SpecialTierUnlock();	// TODO support multiple tier increments
 			}
 
 			// Print out tier
-			Debug.Log("Recalculated tier: " + tier + "     total cash: " + progress);
+			Debug.Log("Recalculated tier: " + tier + "     total cash: " + DataManager.Instance.GameData.Cash.TotalCash);
 		}
 	}
 
@@ -105,7 +106,7 @@ public class TierManager : Singleton<TierManager> {
 	}
 
 	// Checks any special case for unlocking a tier
-	// NOTE: Make sure to set specialDecoID so notificationManager can pick it up!
+	// IMPORTANT NOTE: Make sure to set specialDecoID so notificationManager can pick it up!
 	public void SpecialTierUnlock(){
 		if(tier == 1){
 			specialItemID = "PlayArea01";
