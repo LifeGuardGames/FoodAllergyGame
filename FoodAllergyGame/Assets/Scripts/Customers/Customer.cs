@@ -322,6 +322,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	// Tells the waiter the food has been delivered and begins eating
 	public virtual void Eating(){
 		if(tableNum == 5){
+			Waiter.Instance.Finished();
 			NotifyLeave();
 		}
 		else{

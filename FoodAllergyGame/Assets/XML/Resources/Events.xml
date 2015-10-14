@@ -42,7 +42,7 @@
 		<KitchenTimer>3</KitchenTimer>
 		<CustomerSet>CustomerSetTF</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
-		<DayLength>4</DayLength>
+		<DayLength>2</DayLength>
 		<Allergy>None</Allergy>
 		<EventDescription>EventDesc00</EventDescription>
 		<Title>Title00</Title>
