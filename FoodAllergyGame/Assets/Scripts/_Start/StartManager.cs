@@ -40,9 +40,9 @@ public class StartManager : Singleton<StartManager>{
 			}
 			else if(DataManager.Instance.GameData.Tutorial.IsSpecialDecoTutDone == false){
 				decoEntranceUIController.Hide();
+				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = TierManager.Instance.GetNewEvent();
 			}
 			else{
-				Debug.Log (DataManager.Instance.GameData.Tutorial.IsSpecialDecoTutDone);
 				// Show the deco entrance
 				bool isFirstTimeEntrance = DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance;
 				decoEntranceUIController.Show(isFirstTimeEntrance);

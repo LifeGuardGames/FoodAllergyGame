@@ -20,7 +20,7 @@
 	</Tier>
 	<Tier ID="Tier01">
 		<TierNumber>1</TierNumber>
-		<CashCutoffFloor>1000</CashCutoffFloor>
+		<CashCutoffFloor>750</CashCutoffFloor>
 		<MenuSlots>6</MenuSlots>
 		<EventsUnlocked>Event00,Event01,Event02,Event03</EventsUnlocked>
 		<FoodsUnlocked></FoodsUnlocked>
