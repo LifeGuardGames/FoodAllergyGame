@@ -27,7 +27,7 @@
 		<Allergy>None</Allergy>
 		<Title>TitleT2</Title>
 	</Event>
-	<Event ID="EventTP">
+	<Event ID="EventTPlayArea">
 		<MenuSet>MenuSet00</MenuSet>
 		<KitchenTimer>3</KitchenTimer>
 		<CustomerSet>CustomerSetTP</CustomerSet>
@@ -37,7 +37,7 @@
 		<EventDescription>EventDesc00</EventDescription>
 		<Title>Title00</Title>
 	</Event>
-	<Event ID="EventTF">
+	<Event ID="EventTFlyThru">
 		<MenuSet>MenuSet00</MenuSet>
 		<KitchenTimer>3</KitchenTimer>
 		<CustomerSet>CustomerSetTF</CustomerSet>
@@ -47,7 +47,7 @@
 		<EventDescription>EventDesc00</EventDescription>
 		<Title>Title00</Title>
 	</Event>
-	<Event ID="EventTV">
+	<Event ID="EventTVIP">
 		<MenuSet>MenuSet00</MenuSet>
 		<KitchenTimer>3</KitchenTimer>
 		<CustomerSet>CustomerSetTV</CustomerSet>

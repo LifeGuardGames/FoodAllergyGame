@@ -109,19 +109,21 @@ public class TierManager : Singleton<TierManager> {
 	// IMPORTANT NOTE: Make sure to set specialDecoID so notificationManager can pick it up!
 	public void SpecialTierUnlock(){
 		if(tier == 1){
-			specialItemID = "PlayArea01";
+			specialItemID = "FlyThru01";
 			ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(specialItemID);
+			DataManager.Instance.GameData.Decoration.BoughtDeco.Add(specialItemID,"");
 			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(decoData.Type);
 			DataManager.Instance.GameData.Decoration.ActiveDeco.Add(decoData.Type, decoData.ID);
-			DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTF");
+			DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTFlyThru");
 			DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
 		}
 		else if(tier == 2){
-			ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData("PlayArea01");
-			DataManager.Instance.GameData.Decoration.BoughtDeco.Add("PlayArea01","");
+			specialItemID = "PlayArea01";
+			ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(specialItemID);
+			DataManager.Instance.GameData.Decoration.BoughtDeco.Add(specialItemID,"");
 			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(decoData.Type);
 			DataManager.Instance.GameData.Decoration.ActiveDeco.Add(decoData.Type, decoData.ID);
-			DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTP");
+			DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTPlayArea");
 			DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
 		}
 		//TODO More special unlock logic here

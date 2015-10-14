@@ -59,7 +59,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 				node = Pathfinding.Instance.NodeVIP;
 				break;
 			case TableType.FlyThru:
-				if(DataManager.Instance.GetEvent() == "EventTF"){
+				if(DataManager.Instance.GetEvent() == "EventTFlyThru"){
 					GameObject.Find("TutFingers").transform.GetChild(9).gameObject.SetActive(true);
 				}
 				node = Pathfinding.Instance.NodeFlyThru;
@@ -75,7 +75,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 
 	//facilitates talk between customer and waiter
 	public void TalkToConsumer(){
-		if(DataManager.Instance.GetEvent() == "EventTF"){
+		if(DataManager.Instance.GetEvent() == "EventTFlyThru"){
 			GameObject.Find("TutFingers").transform.GetChild(9).gameObject.SetActive(false);
 		}
 		if(inUse){

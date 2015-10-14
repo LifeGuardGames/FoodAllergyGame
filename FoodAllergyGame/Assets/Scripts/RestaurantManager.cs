@@ -83,7 +83,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		if(DataManager.Instance.IsDebug){
 			FoodManager.Instance.GenerateMenu(DataLoaderMenuSet.GetData("MenuSetT1").MenuSet.ToList(), 0);
 		}
-		if(DataManager.Instance.GetEvent() == "EventTP"||DataManager.Instance.GetEvent() == "EventTF"){
+		if(DataManager.Instance.GetEvent() == "EventTPlayArea"||DataManager.Instance.GetEvent() == "EventTFlyThru"){
 			//TODO remove this and active tut screen
 			StartDay(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()));
 		}
@@ -107,7 +107,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			isTutorial = true;
 			//customerSpawnTimer = customerTimer / satisfactionAI.DifficultyLevel + 1;
 		}
-		else if (eventData.ID == "EventTP"){
+		else if (eventData.ID == "EventTPlayArea"){
 			dayTime = eventData.DayLengthMod;
 			dayTimeLeft = dayTime;
 			RunPlayAreaTut();
@@ -159,7 +159,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 					customerSpawnTimer = 3;
 				}
 				rand = UnityEngine.Random.Range(0, currCusSet.Count);
-				if(eventData.ID == "EventTP"){
+				if(eventData.ID == "EventTPlayArea"){
 					customerData = DataLoaderCustomer.GetData(currCusSet[0]);
 					if(!DataManager.Instance.IsDebug){
 						DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);

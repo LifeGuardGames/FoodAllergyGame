@@ -38,7 +38,11 @@ public class StartManager : Singleton<StartManager>{
 				unlockParent.SetActive(true); // TODO clean this up
 				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT3";
 			}
-			else if(DataManager.Instance.GameData.Tutorial.IsSpecialDecoTutDone){
+			else if(DataManager.Instance.GameData.Tutorial.IsSpecialDecoTutDone == false){
+				decoEntranceUIController.Hide();
+			}
+			else{
+				Debug.Log (DataManager.Instance.GameData.Tutorial.IsSpecialDecoTutDone);
 				// Show the deco entrance
 				bool isFirstTimeEntrance = DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance;
 				decoEntranceUIController.Show(isFirstTimeEntrance);
@@ -51,7 +55,7 @@ public class StartManager : Singleton<StartManager>{
 			DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = false;
 
 			// Save game data again, lock down on an event
-			DataManager.Instance.SaveGameData();
+
 		}
 
 		//TODO Set up pre-existing visuals and appearances for that day based on event
@@ -74,7 +78,7 @@ public class StartManager : Singleton<StartManager>{
 			NotificationManager.Instance.AddNotification(itemNotif);
 		}
 
-
+		DataManager.Instance.SaveGameData();
 		GenerateUnlockedFoodStock();
 	}
 
