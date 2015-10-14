@@ -156,7 +156,7 @@ public class DecoManager : Singleton<DecoManager>{
 				ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
 				switch(decoData.Type){
 				case DecoTypes.PlayArea:
-					DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTP");
+					DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTPlayArea");
 					DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
 					break;
 				default:

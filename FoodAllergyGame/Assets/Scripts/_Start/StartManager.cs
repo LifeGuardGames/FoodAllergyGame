@@ -51,7 +51,7 @@ public class StartManager : Singleton<StartManager>{
 			DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = false;
 
 			// Save game data again, lock down on an event
-			DataManager.Instance.SaveGameData();
+
 		}
 
 
@@ -66,7 +66,7 @@ public class StartManager : Singleton<StartManager>{
 			NotificationManager.Instance.AddNotification(itemNotif);
 		}
 
-
+		DataManager.Instance.SaveGameData();
 		GenerateUnlockedFoodStock();
 	}
 
