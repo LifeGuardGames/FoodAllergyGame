@@ -102,6 +102,12 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	public void ShowCaseDeco(string decoID){
+		if(decoID == "PlayArea00" ||decoID == "VIP00" || decoID == "FlyThrough00"){ 
+			GameObject.Find("ButtonUse").GetComponentInChildren<Text>().text = "Remove";
+		}
+		else{
+			GameObject.Find("ButtonUse").GetComponentInChildren<Text>().text = "Use";
+		}
 		if(isTutroial && decoID == "PlayArea00" && tutObj4.activeSelf != true){
 			tutObj2.SetActive(false);
 			tutObj3.SetActive(true);
