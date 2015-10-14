@@ -112,6 +112,14 @@ public class TierManager : Singleton<TierManager> {
 			ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(specialItemID);
 			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(decoData.Type);
 			DataManager.Instance.GameData.Decoration.ActiveDeco.Add(decoData.Type, decoData.ID);
+			DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTF");
+			DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
+		}
+		else if(tier == 2){
+			ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData("PlayArea01");
+			DataManager.Instance.GameData.Decoration.BoughtDeco.Add("PlayArea01","");
+			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(decoData.Type);
+			DataManager.Instance.GameData.Decoration.ActiveDeco.Add(decoData.Type, decoData.ID);
 			DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTP");
 			DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
 		}
