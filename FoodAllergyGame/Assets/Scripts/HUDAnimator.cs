@@ -18,9 +18,9 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 		coin.GetComponentInChildren<Text>().text = DataManager.Instance.GameData.Cash.CurrentCash.ToString();
 
 		
-		Vector2 fullBarSize = tierBar.rectTransform.sizeDelta;
+//		Vector2 fullBarSize = tierBar.rectTransform.sizeDelta;
 		// HACK take care of this for other scenes
-		float percentage = DataLoaderTiers.GetPercentProgressInTier(DataManager.Instance.GameData.Cash.LastSeenTotalCash);
+//		float percentage = DataLoaderTiers.GetPercentProgressInTier(DataManager.Instance.GameData.Cash.LastSeenTotalCash);
 //		tierBar.rectTransform	// TODO Finish this
 	}
 
