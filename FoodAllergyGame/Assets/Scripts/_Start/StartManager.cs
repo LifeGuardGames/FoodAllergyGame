@@ -38,7 +38,7 @@ public class StartManager : Singleton<StartManager>{
 				unlockParent.SetActive(true); // TODO clean this up
 				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT3";
 			}
-			else{
+			else if(DataManager.Instance.GameData.Tutorial.IsSpecialDecoTutDone){
 				// Show the deco entrance
 				bool isFirstTimeEntrance = DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance;
 				decoEntranceUIController.Show(isFirstTimeEntrance);

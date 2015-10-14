@@ -285,7 +285,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		if(!isFlyThruTableCached){
 			foreach(GameObject table in tableList){
 				Table tableScript = table.GetComponent<Table>();
-				if(tableScript.tableType == Table.TableType.VIP){
+				if(tableScript.tableType == Table.TableType.FlyThru){
 					flyThruTable = tableScript;	// Save it to cache
 				}
 			}

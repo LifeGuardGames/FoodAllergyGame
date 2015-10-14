@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -11,7 +11,7 @@ public class DecoUIToggleController : MonoBehaviour {
 	public GameObject decoTut;
 
 	void Start(){
-		if(DataManager.Instance.GameData.Tutorial.IsDecoTuTDone){
+		if(DataManager.Instance.GameData.Tutorial.IsDecoTutDone){
 			decoTut.SetActive(false);
 		}
 	}
@@ -22,9 +22,9 @@ public class DecoUIToggleController : MonoBehaviour {
 			imageSymbol.sprite = upSprite;
 		}
 		else{
-			if(!DataManager.Instance.GameData.Tutorial.IsDecoTuTDone){
+			if(!DataManager.Instance.GameData.Tutorial.IsDecoTutDone){
 				decoTut.SetActive(false);
-				DataManager.Instance.GameData.Tutorial.IsDecoTuTDone = true;
+				DataManager.Instance.GameData.Tutorial.IsDecoTutDone = true;
 			}
 			decoTweenToggle.Show();
 			imageSymbol.sprite = downSprite;

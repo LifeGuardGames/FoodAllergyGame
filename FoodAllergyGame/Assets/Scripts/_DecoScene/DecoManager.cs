@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Analytics;
 using System;
@@ -66,7 +66,7 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	void Start(){
-		if (!DataManager.Instance.GameData.Tutorial.IsDecoTuTDone){
+		if (!DataManager.Instance.GameData.Tutorial.IsDecoTutDone){
 			isTutroial = true;
 			tutObj1.SetActive(true);
 		}
@@ -272,7 +272,7 @@ public class DecoManager : Singleton<DecoManager>{
 
 	public void OnExitButtonClicked(){
 		if(isTutroial && tutObj4.activeSelf == true){
-			DataManager.Instance.GameData.Tutorial.IsDecoTuTDone = true;
+			DataManager.Instance.GameData.Tutorial.IsDecoTutDone = true;
 		}
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
 	}
