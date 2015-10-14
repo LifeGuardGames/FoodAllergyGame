@@ -35,11 +35,6 @@ public class ImmutableDataDecoItem {
 		get { return spriteName;}
 	}
 
-	private string secondarySprite;
-	public string SecondarySprite{
-		get {return secondarySprite;}
-	}
-
 	private int tier;
 	public int Tier{
 		get{return tier;}
@@ -57,9 +52,7 @@ public class ImmutableDataDecoItem {
 		if(XMLUtils.GetString(hashElements["SpriteName"] as IXMLNode) != null){
 			spriteName = XMLUtils.GetString(hashElements["SpriteName"] as IXMLNode);
 		}
-		if(XMLUtils.GetString(hashElements["Secondary"] as IXMLNode) != null){
-			secondarySprite = XMLUtils.GetString(hashElements["Secondary"] as IXMLNode);
-		}
+
 		tier = XMLUtils.GetInt(hashElements["Tier"] as IXMLNode);
 	}
 }

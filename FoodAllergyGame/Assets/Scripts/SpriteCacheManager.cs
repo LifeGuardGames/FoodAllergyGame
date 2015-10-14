@@ -35,6 +35,11 @@ public class SpriteCacheManager : Singleton<SpriteCacheManager> {
 		return sprite;
 	}
 
+	public static Sprite GetDecoSpriteDataByID(string decoID){
+		ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
+		return GetDecoSpriteData(decoData.SpriteName);
+	}
+
 	public static Sprite GetDecoSpriteData(string spriteName){
 		Sprite sprite = Resources.Load<Sprite>(spriteName);
 		return sprite;

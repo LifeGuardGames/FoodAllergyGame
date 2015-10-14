@@ -8,8 +8,7 @@ using System.Collections.Generic;
 /// Notifications can range from getting a new item, or showing hud tier bar level up
 /// </summary>
 public class NotificationManager : Singleton<NotificationManager> {
-
-	public float delayBetweenNotifications;
+	public float delayBetweenNotifications = 0.5f;
 	private Queue<NotificationQueueData> notificationQueue = new Queue<NotificationQueueData>();
 	private bool isNotificationActive = false;
 	private bool isAllNotificationsDone = true;
@@ -29,20 +28,26 @@ public class NotificationManager : Singleton<NotificationManager> {
 		}
 	}
 
-	// Wait one frame, make sure everything is nicely started/loaded
 	private IEnumerator TryNextNotificationHelper(){
-		yield return 0;
+		yield return 0;		// Wait one frame, make sure everything is nicely started/loaded
+
+		if(delayBetweenNotifications > 0){
+			yield return new WaitForSeconds(delayBetweenNotifications);
+		}
+
 		if(notificationQueue.Count > 0){
 			isNotificationActive = true;
 			isAllNotificationsDone = false;
 			NotificationQueueData pop = notificationQueue.Dequeue();
 			pop.Start();
 		}
-		else{
+		else{ 	// Everything completely done
 			isNotificationActive = false;
 			isAllNotificationsDone = true;
 
 			// Might need some handler here in the future
 		}
 	}
+
+	// TODO Add new notifications here by their type
 }
