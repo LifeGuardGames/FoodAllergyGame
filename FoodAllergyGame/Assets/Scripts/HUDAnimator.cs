@@ -86,6 +86,6 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 	#endregion
 
 	#region Tier Animation
-	public void PercentToShow
+//	public void PercentToShow
 	#endregion
 }
