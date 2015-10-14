@@ -144,5 +144,12 @@
 		<DescriptionKey>NoneDesc</DescriptionKey>
 		<SpriteName>None</SpriteName>
 	</DecoItem>
+	<DecoItem ID = "FlyThru01">
+		<Type>FlyThru</Type>
+		<Price>100</Price>
+		<TitleKey>FlyThruBasicRed</TitleKey>
+		<DescriptionKey>FlyThruBasicRedDesc</DescriptionKey>
+		<SpriteName>RestFlyThruBasicRed</SpriteName>
+	</DecoItem>
 
 </DecoItem>so
