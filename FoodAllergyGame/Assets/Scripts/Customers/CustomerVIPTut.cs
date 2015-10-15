@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CustomerGenericTut : Customer {
+public class CustomerVIPTut : Customer {
 
 	public GameObject tutFingers;
 	public int tutNumber = 0;
