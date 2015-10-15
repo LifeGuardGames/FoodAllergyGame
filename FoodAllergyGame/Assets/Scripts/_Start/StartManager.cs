@@ -1,15 +1,16 @@
 using UnityEngine;
+using UnityEngine.Analytics;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine.Analytics;
+using System;
 
 public class StartManager : Singleton<StartManager>{
 	public GameObject sceneObjectParent;
 	public GameObject SceneObjectParent{
 		get{ return sceneObjectParent; }
 	}
-
+	public GameObject startButton;
 	public TweenToggleDemux startDemux;
 	public TweenToggleDemux infoCategoriesDemux;
 	public TweenToggleDemux infoDetailDemux;
@@ -20,6 +21,10 @@ public class StartManager : Singleton<StartManager>{
 	public NewItemUIController newItemUIController;
 	public NewItemUIController NewItemUIController{
 		get{ return newItemUIController; }
+	}
+
+	void Awake(){
+//		startButton.SetActive(false);
 	}
 
 	void Start(){
@@ -54,9 +59,6 @@ public class StartManager : Singleton<StartManager>{
 
 			// Lock the generate event bool until day is completed
 			DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = false;
-
-			// Save game data again, lock down on an event
-
 		}
 
 		//TODO Set up pre-existing visuals and appearances for that day based on event
@@ -79,14 +81,36 @@ public class StartManager : Singleton<StartManager>{
 			NotificationManager.Instance.AddNotification(itemNotif);
 		}
 
+		// Have the spawn button see when it needs to spawn
+//		StartCoroutine(StartButtonSpawnCheck());
+
+		// Save game data again, lock down on an event
 		DataManager.Instance.SaveGameData();
 		GenerateUnlockedFoodStock();
 	}
 
+	// Have the spawn button see when it needs to spawn
+//	private IEnumerator StartButtonSpawnCheck(){
+//		// Wait 2 frames for all notifications to be in
+//		yield return 0;
+//		yield return 0;
+//
+//		if(!NotificationManager.Instance.IsNotificationActive){
+//			StartButtonSpawnCallback(null, null);
+//		}
+//		else{
+//			NotificationManager.Instance.OnAllNotificationsFinished += StartButtonSpawnCallback;
+//		}
+//	}
+
+//	public void StartButtonSpawnCallback(object o, EventArgs e){
+//		startButton.SetActive(true);
+//	}
+
 	// Finished event from NotificationQueueDataNewItem notification
-	public void SyncLastSeenTotalCash(){
-		DataManager.Instance.GameData.Cash.SyncLastSeenTotalCash();
-	}
+//	public void SyncLastSeenTotalCash(){
+//		DataManager.Instance.GameData.Cash.SyncLastSeenTotalCash();
+//	}
 
 	// Given the event, generate a few set of food stocks, capped by event menussets and tier
 	public void GenerateUnlockedFoodStock(){

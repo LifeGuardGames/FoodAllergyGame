@@ -33,7 +33,7 @@ public class ComicManager : MonoBehaviour {
 			comicPage.GetComponentInChildren<Button>().onClick.AddListener(() => ComicStep(4));
 			break;
 		case 4:
-			Application.LoadLevel(SceneUtils.START);
+			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
 			break;
 		}
 	}

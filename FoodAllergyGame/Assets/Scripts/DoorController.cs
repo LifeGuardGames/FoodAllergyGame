@@ -6,10 +6,10 @@ public class DoorController : MonoBehaviour {
 	public TweenToggleDemux doorDemux;
 
 	public void OpenAndCloseDoor(){
-		doorDemux.Show();
+		doorDemux.Hide();
 	}
 
 	private void CloseDoor(){
-		doorDemux.Hide();
+		doorDemux.Show();
 	}
 }
