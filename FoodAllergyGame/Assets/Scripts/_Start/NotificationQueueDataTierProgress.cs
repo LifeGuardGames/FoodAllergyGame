@@ -20,7 +20,7 @@ public class NotificationQueueDataTierProgress : NotificationQueueData {
 	}
 
 	public override void Finish(){
-		StartManager.Instance.SyncLastSeenTotalCash();
+//		StartManager.Instance.SyncLastSeenTotalCash();
 		base.Finish();
 	}
 }
