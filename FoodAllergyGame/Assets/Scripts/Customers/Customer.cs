@@ -323,7 +323,11 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public virtual void Eating(){
 		if(tableNum == 5){
 			Waiter.Instance.Finished();
-			DataManager.Instance.GameData.Tutorial.IsSpecialDecoTutDone = true;
+			if(DataManager.Instance.GetEvent() == "EventFlyThru"){
+				DataManager.Instance.GameData.Tutorial.IsSpecialDecoTutDone = true;
+				DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
+				DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
+			}
 			NotifyLeave();
 		}
 		else{

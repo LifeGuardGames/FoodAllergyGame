@@ -133,7 +133,7 @@ public class DecoManager : Singleton<DecoManager>{
 			//if(isTutroial && decoID == "PlayArea00"){
 			if(isTutroial && decoID == "FlyThru00"){
 				tutObj3.SetActive(false);
-			//	StartCoroutine(WaitASec());
+				StartCoroutine(WaitASec());
 			}
 			// Cache local data
 			ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
