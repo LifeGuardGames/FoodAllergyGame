@@ -63,7 +63,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		else{
 			// Check for fly thru table
 			Table flyThruTable = RestaurantManager.Instance.GetFlyThruTable();
-			if((flyThruTable != null) && Random.Range(0,10) > 3 && !flyThruTable.inUse && Constants.GetConstant<bool>("FlyThruOn")|| mode.ID == "EventTevents"){
+			if((flyThruTable != null) && Random.Range(0,10) > 3 && !flyThruTable.inUse && Constants.GetConstant<bool>("FlyThruOn")|| mode.ID == "EventTFlyThru"){
 				flyThruTable.inUse = true;
 				this.gameObject.transform.SetParent(flyThruTable.seat);
 				tableNum = 5;

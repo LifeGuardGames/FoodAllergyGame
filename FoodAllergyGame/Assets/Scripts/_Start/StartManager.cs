@@ -40,6 +40,7 @@ public class StartManager : Singleton<StartManager>{
 			}
 			else if(DataManager.Instance.GameData.Tutorial.IsSpecialDecoTutDone == false){
 				decoEntranceUIController.Hide();
+				unlockParent.SetActive(false);
 				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = TierManager.Instance.GetNewEvent();
 			}
 			else{

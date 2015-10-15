@@ -13,7 +13,7 @@
 		<CustomerList>Customer12,Customer00</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSetTF">
-		<CustomerList>Customer13,Customer00</CustomerList>
+		<CustomerList>Customer00</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSet00">
 		<CustomerList>Customer00,Customer01,Customer02</CustomerList>

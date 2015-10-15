@@ -102,19 +102,19 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	public void ShowCaseDeco(string decoID){
-		if(decoID == "PlayArea00" ||decoID == "VIP00" || decoID == "FlyThrough00"){ 
+		if(decoID == "PlayArea00" || decoID == "VIP00" || decoID == "FlyThru00"){ 
 			GameObject.Find("ButtonUse").GetComponentInChildren<Text>().text = "Remove";
 		}
 		else{
 			GameObject.Find("ButtonUse").GetComponentInChildren<Text>().text = "Use";
 		}
 		//if(isTutroial && decoID == "PlayArea00" && tutObj4.activeSelf != true){
-		if(isTutroial && decoID == "FlyThrough00" && tutObj4.activeSelf != true){
+		if(isTutroial && decoID == "FlyThru00" && tutObj4.activeSelf != true){
 			tutObj2.SetActive(false);
 			tutObj3.SetActive(true);
 		}
 		//else if(isTutroial && tutObj3.activeSelf == true && decoID != "PlayArea00" && tutObj4.activeSelf != true){
-		else if(isTutroial && tutObj3.activeSelf == true && decoID != "FlyThrough00" && tutObj4.activeSelf != true){
+		else if(isTutroial && tutObj3.activeSelf == true && decoID != "FlyThru00" && tutObj4.activeSelf != true){
 			tutObj2.SetActive(true);
 			tutObj3.SetActive(false);
 		}
@@ -131,9 +131,9 @@ public class DecoManager : Singleton<DecoManager>{
 	public void SetDeco(string decoID){
 		if(IsDecoBought(decoID)){
 			//if(isTutroial && decoID == "PlayArea00"){
-			if(isTutroial && decoID == "Flythrough00"){
+			if(isTutroial && decoID == "FlyThru00"){
 				tutObj3.SetActive(false);
-				StartCoroutine(WaitASec());
+			//	StartCoroutine(WaitASec());
 			}
 			// Cache local data
 			ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);

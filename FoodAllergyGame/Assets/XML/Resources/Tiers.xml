@@ -42,7 +42,7 @@
 		<MenuSlots>8</MenuSlots>
 		<EventsUnlocked>Event00,Event01,Event02,Event03</EventsUnlocked>
 		<FoodsUnlocked></FoodsUnlocked>
-		<DecorationsUnlocked>Floor02,Kitchen03,Flythrough01</DecorationsUnlocked>
+		<DecorationsUnlocked>Floor02,Kitchen03,FlyThru01</DecorationsUnlocked>
 		<StartArtAssets></StartArtAssets>
 	</Tier>
 	<Tier ID="Tier04">
