@@ -17,6 +17,8 @@ public class RestaurantMenuUIController : MonoBehaviour {
 	public Image allergyNodeImage2;
 
 	public Animation inspectAnimation;
+	public GameObject allergyButtonParent;
+	public Animator allergyButtonAnimator;
 
 	public GameObject allergyPassParent;
 	public GameObject allergyFailParent;
@@ -61,6 +63,8 @@ public class RestaurantMenuUIController : MonoBehaviour {
 			else{
 				allergyPassParent.SetActive(false);
 				allergyFailParent.SetActive(true);
+				allergyButtonParent.SetActive(true);
+				allergyButtonAnimator.Play("Normal");
 				allergyImage.sprite = SpriteCacheManager.GetAllergySpriteData(allergy);
 				allergyText.text = LocalizationText.GetText("AllergyFailPrefix") + LocalizationText.GetText(allergy.ToString());
 			}
@@ -128,6 +132,7 @@ public class RestaurantMenuUIController : MonoBehaviour {
 		StopCoroutine("StartAnimation");
 		inspectAnimation.Stop();
 		inspectAnimation.transform.localScale = new Vector3(1f, 1f, 1f);
+		allergyButtonParent.SetActive(false);
 
 		// Show the food allergy nodes here
 		allergyNodeImage1.sprite = SpriteCacheManager.GetAllergySpriteData(choices[0].AllergyList[0]);
