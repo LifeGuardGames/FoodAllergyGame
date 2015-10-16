@@ -104,7 +104,8 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		inUse = false;
 		Waiter.Instance.RemoveMeal(tableNumber);
 		KitchenManager.Instance.CancelOrder(tableNumber);
-	}
+        RestaurantManager.Instance.GetMenuUIController().CancelOrder(tableNumber);
+    }
 
 	//in the unfortunate circumstance a customer gets eaten we need to take care of the mess
 	public void CustomerEaten(){
@@ -113,14 +114,15 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		}
 		RestaurantManager.Instance.GetMenuUIController().CancelOrder(tableNumber);
 		GetComponentInChildren<Customer>().state = CustomerStates.Invalid;
-		RestaurantManager.Instance.CustomerLeft(currentCustomerID, 0,1, transform.position);
+		RestaurantManager.Instance.CustomerLeft(currentCustomerID, 0,1, transform.position, 20.0f);
 		CustomerLeaving();
 	}
 
 	//for use by sir table smasher when he does his thing
 	public void TableSmashed(){
 		isBroken = true;
-	}
+        RestaurantManager.Instance.GetMenuUIController().CancelOrder(tableNumber);
+    }
 
 	public void TurnOnHighlight(){
 		if(tableHighlight != null && !inUse){

@@ -24,7 +24,7 @@ public class SatisfactionAI{
 	private float totalSatisfaction;
 
 	// Calculates the money given to the player once a customer leaves
-	public int CalculateBill(int incomingSatisfaction, int priceMultiplier, UnityEngine.Vector3 pos){
+	public int CalculateBill(int incomingSatisfaction, int priceMultiplier, UnityEngine.Vector3 pos, float time){
 		if(incomingSatisfaction <= 0){
 			missingCustomers++;
 		}
@@ -42,13 +42,13 @@ public class SatisfactionAI{
 	}
 
 	// Calculates the difficulty level
-	private void CalculateDifficultyLevel(int modifiedSatisfaction){
+	private void CalculateDifficultyLevel(float time){
 		// using a random number to add some unpredictability into the system
 		if(RestaurantManager.Instance.isTutorial){
 //			difficultyLevel = 10;
 		}
 		else{
-			difficultyLevel += (modifiedSatisfaction/numOfCustomers) + UnityEngine.Random.Range(0,4);
+			difficultyLevel = (difficultyLevel + time)/2 ;
 		}
 	}
 

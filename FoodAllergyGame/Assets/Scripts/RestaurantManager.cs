@@ -154,7 +154,15 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				doorController.OpenAndCloseDoor();
 
 				ImmutableDataCustomer customerData;
-				customerSpawnTimer = baseCustomerTimer / customerTimerDiffMod;
+                if(DataManager.Instance.GameData.DayTracker.AvgDifficulty == 6.0f)
+                {
+                    customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty;
+                }
+                else
+                {
+                    customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty - 13;
+                }
+				
 				if(customerSpawnTimer < 3){
 					customerSpawnTimer = 3;
 				}
@@ -190,9 +198,9 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 	// Removes a customer from the dictionary
 	// and then if the day is over checks to see if the dictionary is empty and if it is it ends the round
-	public void CustomerLeft(string customerID, int satisfaction, int priceMultiplier, Vector3 customerPos){
+	public void CustomerLeft(string customerID, int satisfaction, int priceMultiplier, Vector3 customerPos,float time){
 		if(customerHash.ContainsKey(customerID)){
-			UpdateCash(satisfactionAI.CalculateBill(satisfaction, priceMultiplier, customerPos));
+			UpdateCash(satisfactionAI.CalculateBill(satisfaction, priceMultiplier, customerPos,time));
 			customerHash.Remove(customerID);
 			CheckForGameOver();
 		}
@@ -227,9 +235,9 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 					StartDay(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()));
 				}
 				else{
-					DataManager.Instance.GameData.DayTracker.AvgDifficulty = ((DataManager.Instance.GameData.DayTracker.AvgDifficulty + satisfactionAI.DifficultyLevel)/2)-3;
+					DataManager.Instance.GameData.DayTracker.AvgDifficulty = ((DataManager.Instance.GameData.DayTracker.AvgDifficulty + satisfactionAI.DifficultyLevel)/2);
 					// Save data here
-					int dayNetCash = dayEarnedCash - FoodManager.Instance.MenuCost;
+					int dayNetCash = dayEarnedCash + FoodManager.Instance.MenuCost;
 					DataManager.Instance.GameData.Cash.SaveCash(dayNetCash, dayCashRevenue);
 
 					// Unlock new event generation for StartManager

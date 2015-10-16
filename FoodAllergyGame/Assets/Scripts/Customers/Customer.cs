@@ -29,10 +29,12 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public bool hasPowerUp;
 	private int priceMultiplier;
 	private int playAreaIndexAux;				// For use in coroutine, needs parameter with string call
+    protected float spawnTime;
 
 	// Basic intitialzation
 	public virtual void Init(int num, ImmutableDataEvents mode){
-		AudioManager.Instance.PlayClip("customerEnter");
+        spawnTime = Time.time;
+        AudioManager.Instance.PlayClip("customerEnter");
 
 		customerUI.ToggleWait(false);
 		customerUI.ToggleStar(false);
@@ -390,14 +392,14 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		}
 		if(satisfaction > 0){
 			if(tableNum == 4){
-				RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, priceMultiplier * RestaurantManager.Instance.GetTable(tableNum).VIPMultiplier, transform.position);
+				RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, priceMultiplier * RestaurantManager.Instance.GetTable(tableNum).VIPMultiplier, transform.position,Time.time - spawnTime);
 			}
 			else{
-				RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, priceMultiplier, transform.position);
+				RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, priceMultiplier, transform.position, Time.time - spawnTime);
 			}
 		}
 		else{
-			RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, 1, transform.position);
+			RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, 1, transform.position, 60);
 		}
 
 		if(state != CustomerStates.InLine){
