@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DecoEntranceUIController : MonoBehaviour {
+public class ShopEntranceUIController : MonoBehaviour {
 
 	public GameObject tutorialFinger;
 	public Animator animator;
+	public GameObject glowSprite;
 
 	public void Show(bool isFirstTime){
 		gameObject.SetActive(true);
@@ -38,5 +39,10 @@ public class DecoEntranceUIController : MonoBehaviour {
 	public void AppearAnimationDoneEvent(){
 		// Show the tutorial finger
 		tutorialFinger.SetActive(true);
+	}
+
+	public void ToggleClickable(bool isClickable){
+		GetComponent<BoxCollider2D>().enabled = isClickable;
+		glowSprite.SetActive(isClickable);
 	}
 }

@@ -17,7 +17,10 @@ public class StartManager : Singleton<StartManager>{
 	public AlphaTweenToggle infoFadeBackground;
 
 	public GameObject unlockParent;
-	public DecoEntranceUIController decoEntranceUIController;
+
+	public ShopEntranceUIController decoEntranceUIController;
+	public DinerEntranceUIController dinerEntranceUIController;
+
 	public NewItemUIController newItemUIController;
 	public NewItemUIController NewItemUIController{
 		get{ return newItemUIController; }

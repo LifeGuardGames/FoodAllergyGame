@@ -9,11 +9,11 @@ public class AnimationNewItem : MonoBehaviour {
 	public SpriteRenderer podSprite;
 	public Sprite crashSpriteResource;
 
-	private NotificationQueueData caller;
+	private NotificationQueueDataNewItem caller;
 	private string decoID;
 
 	// Save the information to pass through
-	public void Init(NotificationQueueData caller, string decoID){
+	public void Init(NotificationQueueDataNewItem caller, string decoID){
 		this.caller = caller;
 		this.decoID = decoID;
 	}
