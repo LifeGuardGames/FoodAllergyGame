@@ -3,6 +3,7 @@ using System.Collections;
 
 public class NotificationQueueDataNewItem : NotificationQueueData {
 	public string itemIDToShow;
+	public GameObject giftInstance;
 
 	public NotificationQueueDataNewItem(string allowedScene, string itemID){
 		this.allowedScene = allowedScene;
@@ -11,15 +12,28 @@ public class NotificationQueueDataNewItem : NotificationQueueData {
 
 	public override void Start(){
 		if(allowedScene == Application.loadedLevelName){
+			StartManager.Instance.decoEntranceUIController.ToggleClickable(false);
+			StartManager.Instance.dinerEntranceUIController.ToggleClickable(false);
+
 			GameObject giftPrefab = Resources.Load("GiftDropPod") as GameObject;
-			GameObject giftInstance = GameObjectUtils.AddChildWithPositionAndScale(StartManager.Instance.SceneObjectParent, giftPrefab);
+			giftInstance = GameObjectUtils.AddChildWithPositionAndScale(StartManager.Instance.SceneObjectParent, giftPrefab);
 
-			// Prepare finished delegate
-
+			// Pass the finish call here
 			giftInstance.GetComponent<AnimationNewItem>().Init(this, itemIDToShow);
 		}
 		else{
 			Finish();
 		}
+	}
+
+	// Disable the drop pad when the show is finished
+	public void OnShowPanelFinished(){
+		GameObject.Destroy(giftInstance);
+	}
+
+	public override void Finish(){
+		StartManager.Instance.decoEntranceUIController.ToggleClickable(true);
+		StartManager.Instance.dinerEntranceUIController.ToggleClickable(true);
+		base.Finish();
 	}
 }

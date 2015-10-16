@@ -7,13 +7,13 @@ using System.Collections;
 /// Finish callback needs to be connected
 /// </summary>
 public class NewItemUIController : MonoBehaviour {
-	NotificationQueueData originalCaller;
+	private NotificationQueueDataNewItem originalCaller;
 
 	public Image itemSprite;
 	public RotateAroundCenter sunRaysRotate;
 	public TweenToggleDemux tweenDemux;
 
-	public void Init(NotificationQueueData caller, string decoID){
+	public void Init(NotificationQueueDataNewItem caller, string decoID){
 		originalCaller = caller;
 		itemSprite.sprite = SpriteCacheManager.GetDecoSpriteDataByID(decoID);
 		ShowPanel();
@@ -24,15 +24,16 @@ public class NewItemUIController : MonoBehaviour {
 		sunRaysRotate.Play();
 	}
 
+	public void OnShowFinished(){
+		originalCaller.OnShowPanelFinished();
+	}
+
 	public void OnCloseButtonClicked(){
 		tweenDemux.Hide();
 	}
 
 	public void OnHideFinished(){
 		sunRaysRotate.Stop();
-	}
-
-	public void Finish(){
 		originalCaller.Finish();
 	}
 }
