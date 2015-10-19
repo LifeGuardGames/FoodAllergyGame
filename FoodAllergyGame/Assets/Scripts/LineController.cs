@@ -15,5 +15,21 @@ public class LineController : MonoBehaviour {
 		}
 		return null;
 	}
+
+    public void FillInLine(){
+        for (int i = 0; i < lineList.Count; i++) {
+            if (lineList[i].childCount == 0){
+                for(int j = i; j <lineList.Count; j++){
+                    if (lineList[j].childCount != 0) {
+                        lineList[j].transform.GetChild(0).SetParent(lineList[i].transform);
+                        lineList[i].transform.GetChild(0).position = lineList[i].transform.position;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+
 }
 

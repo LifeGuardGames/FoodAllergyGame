@@ -225,7 +225,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Jumps to the table given a table number
 	public virtual void JumpToTable(int _tableNum){
-		if(_tableNum == 4){	// TODO connect this with logic rather than number
+        if (_tableNum == 4){	// TODO connect this with logic rather than number
 			RestaurantManager.Instance.VIPUses++;
 			timer /= RestaurantManager.Instance.GetTable(_tableNum).VIPMultiplier;
 			SetSatisfaction(4);
@@ -250,7 +250,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		// Table connection setup
 		GetComponentInParent<Table>().currentCustomerID = customerID;
 		this.GetComponent<BoxCollider>().enabled = false;
-	}
+        RestaurantManager.Instance.lineController.FillInLine();
+    }
 
 	// Time spent reading menu before ordering
 	IEnumerator ReadMenu(){
@@ -330,7 +331,18 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
 				//DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
 			}
-			NotifyLeave();
+            if (order.GetComponent<Order>().allergy.Contains(allergy) && allergy != Allergies.None) {
+                Medic.Instance.BillRestaurant(-100);
+                ParticleUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(tableNum).gameObject.transform.position, -100);
+
+
+                AudioManager.Instance.PlayClip("dead");
+                if (order.gameObject != null) {
+                    Destroy(order.gameObject);
+                }
+                SetSatisfaction(0);
+            }
+            NotifyLeave();
 		}
 		else{
 			UpdateSatisfaction(1);
@@ -379,9 +391,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Tells the resturantManager that the customer is leaving and can be removed from the dictionary
 	public virtual void NotifyLeave(){
-		if(state == CustomerStates.InLine){
-			RestaurantManager.Instance.lineCount--;
-		}
+	
 		Analytics.CustomEvent("Customer Left", new Dictionary <string, object>{
 			{"Type", this.GetType().ToString()},
 			{"state", state.ToString()},
@@ -399,7 +409,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			}
 		}
 		else{
-			RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, 1, transform.position, 60);
+			RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, 1, transform.position, 180);
 		}
 
 		if(state != CustomerStates.InLine){
@@ -412,7 +422,12 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			}
 		}
 		AudioManager.Instance.PlayClip("leaving");
-		Destroy(this.gameObject);
+        if (state == CustomerStates.InLine) {
+            transform.SetParent(null);
+            RestaurantManager.Instance.lineCount--;
+            RestaurantManager.Instance.lineController.FillInLine();
+        }
+            Destroy(this.gameObject);
 	}
 
 	// called if the food's ingrediants match the allergy starts a timer in which the player must hit the save me button
