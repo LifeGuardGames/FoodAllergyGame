@@ -70,12 +70,12 @@ public class StartManager : Singleton<StartManager>{
 		//TODO Set up any new notifications here (through NotificationManager)
 
 		// Check if tier bar needs to be updated
-//		if(DataManager.Instance.GameData.Cash.IsNeedToSyncTotalCash){
-//			int oldTotalCash = DataManager.Instance.GameData.Cash.LastSeenTotalCash;
-//			int newTotalCash = DataManager.Instance.GameData.Cash.TotalCash;
-//			NotificationQueueDataTierProgress tierNotif = new NotificationQueueDataTierProgress(SceneUtils, oldTotalCash, newTotalCash);
-//			NotificationManager.Instance.AddNotification(tierNotif);
-//		}
+		//if(DataManager.Instance.GameData.Cash.IsNeedToSyncTotalCash()){
+		//	int oldTotalCash = DataManager.Instance.GameData.Cash.LastSeenTotalCash;
+		//	int newTotalCash = DataManager.Instance.GameData.Cash.TotalCash;
+		//	NotificationQueueDataTierProgress tierNotif = new NotificationQueueDataTierProgress(SceneUtils.START, oldTotalCash, newTotalCash);
+		//	NotificationManager.Instance.AddNotification(tierNotif);
+		//}
 
 		// Check if any new deco types are unlocked at this tier
 		string specialItemID = TierManager.Instance.SpecialItemID;
@@ -85,7 +85,7 @@ public class StartManager : Singleton<StartManager>{
 		}
 
 		// Have the spawn button see when it needs to spawn
-//		StartCoroutine(StartButtonSpawnCheck());
+		//		StartCoroutine(StartButtonSpawnCheck());
 
 		// Save game data again, lock down on an event
 		DataManager.Instance.SaveGameData();
@@ -108,11 +108,6 @@ public class StartManager : Singleton<StartManager>{
 
 //	public void StartButtonSpawnCallback(object o, EventArgs e){
 //		startButton.SetActive(true);
-//	}
-
-	// Finished event from NotificationQueueDataNewItem notification
-//	public void SyncLastSeenTotalCash(){
-//		DataManager.Instance.GameData.Cash.SyncLastSeenTotalCash();
 //	}
 
 	// Given the event, generate a few set of food stocks, capped by event menussets and tier

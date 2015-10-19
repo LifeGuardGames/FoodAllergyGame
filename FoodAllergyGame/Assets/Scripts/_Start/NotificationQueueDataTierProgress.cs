@@ -1,26 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Notification logic should be independent of the actual logical unlocks that happens
+/// The actual unlocks are handled by the start manager in a serial call
+/// </summary>
 public class NotificationQueueDataTierProgress : NotificationQueueData {
 	private int oldTotalCash;
 	private int newTotalCash;
 
-	NotificationQueueDataTierProgress(string allowedScene, int oldTotalCash, int newTotalCash){
+	public NotificationQueueDataTierProgress(string allowedScene, int oldTotalCash, int newTotalCash){
 		this.allowedScene = allowedScene;
 
 		this.oldTotalCash = oldTotalCash;
 		this.newTotalCash = newTotalCash;
 	}
 	
-	public override void Start(){
+	public override void Start() {
 		// Check one last time just to make sure
-		if(oldTotalCash != newTotalCash){
-
+		if(oldTotalCash != newTotalCash) {
+			HUDAnimator.Instance.StartTierAnimation(this, oldTotalCash, newTotalCash);
 		}
-	}
-
-	public override void Finish(){
-//		StartManager.Instance.SyncLastSeenTotalCash();
-		base.Finish();
+		else{
+			Debug.Log("Invalid state to animate tier progress");
+		}
 	}
 }
