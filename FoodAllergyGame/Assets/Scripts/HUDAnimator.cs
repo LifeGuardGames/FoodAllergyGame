@@ -13,15 +13,28 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 
 	public Image tierBar;
 	public Text tierText;
+	private int oldTotalCash;
+	private int newTotalCash;
+	private Vector2 fullSizeBar;
+	private NotificationQueueDataTierProgress tierCaller;
 
 	void Start(){
 		coin.GetComponentInChildren<Text>().text = DataManager.Instance.GameData.Cash.CurrentCash.ToString();
 
-		
-//		Vector2 fullBarSize = tierBar.rectTransform.sizeDelta;
-		// HACK take care of this for other scenes
-//		float percentage = DataLoaderTiers.GetPercentProgressInTier(DataManager.Instance.GameData.Cash.LastSeenTotalCash);
-//		tierBar.rectTransform	// TODO Finish this
+		// Change the appearance of the tier bar depending on which scene it is in
+		Vector2 fullBarSize = tierBar.rectTransform.sizeDelta;
+		float percentage;
+		int tierNumber;
+		if(Application.loadedLevelName != SceneUtils.START){
+			percentage = DataLoaderTiers.GetPercentProgressInTier(DataManager.Instance.GameData.Cash.TotalCash);
+			tierNumber = DataLoaderTiers.GetTierFromCash(DataManager.Instance.GameData.Cash.TotalCash);
+		}
+		else{
+			percentage = DataLoaderTiers.GetPercentProgressInTier(DataManager.Instance.GameData.Cash.LastSeenTotalCash);
+			tierNumber = DataLoaderTiers.GetTierFromCash(DataManager.Instance.GameData.Cash.LastSeenTotalCash);
+		}
+		tierBar.rectTransform.sizeDelta = new Vector2(fullBarSize.x * percentage, fullBarSize.y);
+		tierText.text = tierNumber.ToString();
 	}
 
 	#region Coin Animation
@@ -71,7 +84,7 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 		if(difference < 0){
 			step = -2;
 		}
-		while (currCash != DataManager.Instance.GameData.Cash.TotalCash){
+		while(currCash != DataManager.Instance.GameData.Cash.TotalCash){
 			if(difference > 0){
 				currCash = Mathf.Min(currCash+step, target);
 			}
@@ -86,6 +99,56 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 	#endregion
 
 	#region Tier Animation
-//	public void PercentToShow
+	public void StartTierAnimation(NotificationQueueDataTierProgress tierCaller, int oldTotalCash, int newTotalCash){
+		this.tierCaller = tierCaller;
+		this.oldTotalCash = oldTotalCash;
+		this.newTotalCash = newTotalCash;
+
+		float startPercentage = DataLoaderTiers.GetPercentProgressInTier(oldTotalCash);
+		
+		// If the tiers don't change, just animate it
+		if(DataLoaderTiers.GetTierFromCash(oldTotalCash) == DataLoaderTiers.GetTierFromCash(newTotalCash)) {
+			float endPercentage = DataLoaderTiers.GetPercentProgressInTier(newTotalCash);
+			LeanTween.value(this.gameObject, ChangePercentage, startPercentage, endPercentage, 1f)
+				.setOnComplete(OnTweenCompleteFinishTier);
+		}
+		// Tiers change
+		// NOTE: We do a self call on finish tier animation starting with an updated oldTotalCash
+		else {
+			float endPercentage = 1f;   // Full bar
+			LeanTween.value(this.gameObject, ChangePercentage, startPercentage, endPercentage, 0.7f)
+				.setOnComplete(OnTweenCompleteTierUp);
+		}
+    }
+
+	public void ChangePercentage(float amount) {
+		tierBar.rectTransform.sizeDelta = new Vector2(fullSizeBar.x * amount, fullSizeBar.y);
+    }
+
+	// Update the old tier to the next tier up and call StartTierAnimation again
+	private void OnTweenCompleteTierUp() {
+		// Get the current old tier
+		int currentTier = DataLoaderTiers.GetTierFromCash(oldTotalCash);
+
+		// Assign the floor limit total cash value of the next tier up
+		ImmutableDataTiers tierData = DataLoaderTiers.GetData("Tier" + StringUtils.FormatIntToDoubleDigitString(currentTier + 1));
+		if(tierData != null) {
+
+		}
+		else {
+			Debug.LogWarning("Reached max tiers");	//TODO check max tiers
+		}
+        oldTotalCash = DataLoaderTiers.GetData("Tier" + StringUtils.FormatIntToDoubleDigitString(currentTier + 1)).CashCutoffFloor;
+
+		// Pass that total cash into the animate function again
+		StartTierAnimation(tierCaller, oldTotalCash, newTotalCash);
+    }
+
+	// Tier sequence complete
+	private void OnTweenCompleteFinishTier() {
+		DataManager.Instance.GameData.Cash.SyncLastSeenTotalCash();
+		tierCaller.Finish();
+	}
+
 	#endregion
 }
