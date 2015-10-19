@@ -13,6 +13,8 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	public Image allergy1;
 	public Image allergy2;
 	public Text textCost;
+	public int slots;
+	public Text textSlots;
 
 	public GameObject allergyNode;
 	public Image allergyNodeImage;
@@ -42,6 +44,8 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 		image.sprite = SpriteCacheManager.GetFoodSpriteData(foodData.SpriteName);
 		cost = foodData.Cost;
 		textCost.text = "$" + cost.ToString();
+		slots = foodData.Slots;
+		//textSlots.text = slots.ToString();
 
 		// Set allergy sprite indicators if present
 		if(foodData.AllergyList.Count == 1){
@@ -112,10 +116,11 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	public void OnEndDrag(PointerEventData eventData){
 		itemBeingDragged = null;
 		GetComponent<CanvasGroup>().blocksRaycasts = true;
-		if(transform.parent == dragAux){
+		if (transform.parent == dragAux) {
 			transform.SetParent(startParent);
 			transform.localPosition = startPosition;
 			if(startParent.gameObject.GetComponent<MenuDragSlot>().isSelectedSlot){
+				Debug.Log(MenuManager.Instance.availableSlots);
 				MenuManager.Instance.AddFoodToMenuList(foodID);
 				MenuManager.Instance.ChangeMenuCost(Cost);
 			}

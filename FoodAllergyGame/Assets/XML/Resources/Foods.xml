@@ -8,6 +8,7 @@
 		<Tier>0</Tier>
 		<Price>12</Price>
 		<Reward>1</Reward>
+    <Slot>1</Slot>
 	</Food>
 	<Food ID="Food01">
 		<FoodNameKey>FoodYogurt</FoodNameKey>
@@ -17,6 +18,7 @@
 		<Tier>0</Tier>
 		<Price>6</Price>
 		<Reward>2</Reward>
+    <Slot>1</Slot>
 	</Food>
 	<Food ID="Food02">
 		<FoodNameKey>FoodPeanutSalad</FoodNameKey>
@@ -26,6 +28,7 @@
 		<Tier>0</Tier>
 		<Price>10</Price>
 		<Reward>3</Reward>
+    <Slot>1</Slot>
 	</Food>
 	<Food ID="Food03">
 		<FoodNameKey>FoodChickenWings</FoodNameKey>
@@ -35,6 +38,7 @@
 		<Tier>0</Tier>
 		<Price>10</Price>
 		<Reward>3</Reward>
+    <Slot>1</Slot>
 	</Food>
 	<Food ID="Food04">
 		<FoodNameKey>FoodIceCream</FoodNameKey>
@@ -44,6 +48,7 @@
 		<Tier>0</Tier>
 		<Price>6</Price>
 		<Reward>2</Reward>
+    <Slot>1</Slot>
 	</Food>
 	<Food ID="Food05">
 		<FoodNameKey>FoodPeanutButterApple</FoodNameKey>
@@ -53,6 +58,7 @@
 		<Tier>0</Tier>
 		<Price>8</Price>
 		<Reward>3</Reward>
+    <Slot>1</Slot>
 		</Food>
 	<Food ID="Food06">
 		<FoodNameKey>FoodVeggieSandwich</FoodNameKey>
@@ -62,6 +68,7 @@
 		<Tier>0</Tier>
 		<Price>10</Price>
 		<Reward>3</Reward>
+    <Slot>1</Slot>
 	</Food>
 	<Food ID="Food07">
 		<FoodNameKey>FoodRoastedPeanuts</FoodNameKey>
@@ -71,6 +78,7 @@
 		<Tier>0</Tier>
 		<Price>6</Price>
 		<Reward>2</Reward>
+    <Slot>1</Slot>
 	</Food>
 	<Food ID="Food08">
 		<FoodNameKey>FoodToast</FoodNameKey>
@@ -80,6 +88,7 @@
 		<Tier>0</Tier>
 		<Price>6</Price>
 		<Reward>2</Reward>
+    <Slot>1</Slot>
 	</Food>
 	<Food ID="Food09">
 		<FoodNameKey>FoodMilk</FoodNameKey>
@@ -89,6 +98,7 @@
 		<Tier>0</Tier>
 		<Price>6</Price>
 		<Reward>2</Reward>
+    <Slot>1</Slot>
 	</Food>
 </Foods>
 

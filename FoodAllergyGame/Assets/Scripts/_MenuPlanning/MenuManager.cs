@@ -38,6 +38,7 @@ public class MenuManager : Singleton<MenuManager>{
 	public Text doneButtonCostText;
 	public Animation textCashAnimation;
 	public GameObject tutFinger;
+	public int availableSlots;
 
 	public TweenToggle doneButtonTween;
 
@@ -53,6 +54,7 @@ public class MenuManager : Singleton<MenuManager>{
 		// Load the number of slots from progress
 		menuSize = TierManager.Instance.GetMenuSlots();
 		selectedMenuController.Init(menuSize);
+		availableSlots = menuSize;
 
 		ChangeMenuCost(0);	// Reset text to zero
 		PopulateStockGrid();
@@ -157,19 +159,25 @@ public class MenuManager : Singleton<MenuManager>{
 	
 	public bool AddFoodToMenuList(string foodID){
 		tutFinger.SetActive(false);
-		if(selectedMenuStringList.Contains(foodID)){
+		if (selectedMenuStringList.Contains(foodID)) {
 			Debug.LogWarning("Menu already contains food");
 			return false;
 		}
-		else if(selectedMenuStringList.Count > menuSize){
+		else if (selectedMenuStringList.Count > menuSize) {
 			Debug.LogWarning("Menu list already at capacity");
 			return false;
 		}
-		else{
+
+		else if (availableSlots < DataLoaderFood.GetData(foodID).Slots) {
+			Debug.LogWarning("Slots Full");
+			return false;
+		}
+
+		else {
 			// Add ID to aux string list
 			selectedMenuStringList.Add(foodID);
-
-			if(selectedMenuStringList.Count == menuSize){
+			availableSlots -= DataLoaderFood.GetData(foodID).Slots;
+			if (availableSlots == 0) {
 				doneButtonTween.Show();
 			}
 			return true;
@@ -181,6 +189,7 @@ public class MenuManager : Singleton<MenuManager>{
 		bool isRemoved = selectedMenuStringList.Remove(foodID);
 
 		if(isRemoved){
+			availableSlots += DataLoaderFood.GetData(foodID).Slots;
 			doneButtonTween.Hide();
 		}
 		return isRemoved;
