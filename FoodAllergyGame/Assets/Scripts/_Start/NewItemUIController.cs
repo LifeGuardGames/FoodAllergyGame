@@ -11,28 +11,33 @@ public class NewItemUIController : MonoBehaviour {
 
 	public Image itemSprite;
 	public RotateAroundCenter sunRaysRotate;
-	public TweenToggleDemux tweenDemux;
+	public Animator newItemUIAnimator;
+	public AlphaTweenToggle fadeToggle;
 
 	public void Init(NotificationQueueDataNewItem caller, string decoID){
+		gameObject.SetActive(true);
 		originalCaller = caller;
 		itemSprite.sprite = SpriteCacheManager.GetDecoSpriteDataByID(decoID);
-		ShowPanel();
+		newItemUIAnimator.Play("NewItemShow");
 	}
 
-	private void ShowPanel(){
-		tweenDemux.Show();
-		sunRaysRotate.Play();
+	public void OnDoneButtonClicked(){
+		newItemUIAnimator.SetBool("Finish", true);
 	}
 
-	public void OnShowFinished(){
-		originalCaller.OnShowPanelFinished();
+	public void AnimEventFadeIn(){
+		fadeToggle.Show();
 	}
 
-	public void OnCloseButtonClicked(){
-		tweenDemux.Hide();
+	public void AnimEventFadeOut(){
+		fadeToggle.Hide();
 	}
 
-	public void OnHideFinished(){
+	public void AnimEventDestroyGift(){
+		originalCaller.DestroyGift();
+	}
+
+	public void AnimEventOnSequenceFinished(){
 		sunRaysRotate.Stop();
 		originalCaller.Finish();
 	}

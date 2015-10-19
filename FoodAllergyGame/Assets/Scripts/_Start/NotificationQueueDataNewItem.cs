@@ -27,7 +27,7 @@ public class NotificationQueueDataNewItem : NotificationQueueData {
 	}
 
 	// Disable the drop pad when the show is finished
-	public void OnShowPanelFinished(){
+	public void DestroyGift(){
 		GameObject.Destroy(giftInstance);
 	}
 
