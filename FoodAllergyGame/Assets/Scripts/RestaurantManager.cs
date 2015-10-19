@@ -405,6 +405,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		return false;
 	}
 
+
 	#region PausingUI functions
 	// Called from RestaurantUIManager
 	public void PauseGame(){
