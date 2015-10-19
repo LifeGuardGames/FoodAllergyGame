@@ -173,6 +173,11 @@ public class MenuManager : Singleton<MenuManager>{
 			return false;
 		}
 
+		else if (DataManager.Instance.GameData.Cash.CurrentCash < DataLoaderFood.GetData(foodID).Cost) {
+			Debug.LogWarning("Not enough cash");
+			return false;
+		}
+
 		else {
 			// Add ID to aux string list
 			selectedMenuStringList.Add(foodID);
