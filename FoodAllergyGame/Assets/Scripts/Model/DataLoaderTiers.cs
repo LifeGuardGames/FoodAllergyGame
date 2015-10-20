@@ -12,7 +12,9 @@ public class DataLoaderTiers: XMLLoaderGeneric<DataLoaderTiers>{
 	// Sorted by CashCutoffFloor for calculation purposes
 	public static List<ImmutableDataTiers> GetDataList(){
 		instance.InitXMLLoader();
-		instance.GetDataList<ImmutableDataTiers>().Sort((x,y) => x.CashCutoffFloor.CompareTo(y.CashCutoffFloor));
+
+		// Sort not working....
+		//instance.GetDataList<ImmutableDataTiers>().Sort((x,y) => x.CashCutoffFloor.CompareTo(y.CashCutoffFloor));
 		return instance.GetDataList<ImmutableDataTiers>();
 	}
 
@@ -22,10 +24,9 @@ public class DataLoaderTiers: XMLLoaderGeneric<DataLoaderTiers>{
 
 	public static int GetTierFromCash(int totalCash){
 		List<ImmutableDataTiers> tierList = GetDataList();
-
 		int tierSoFar = 0;
 		for(int i = 0; i < tierList.Count; i++){
-			if(tierList[i].CashCutoffFloor <= totalCash){
+			if(tierList[i].CashCutoffFloor <= totalCash && tierSoFar < tierList[i].TierNumber) {
 				tierSoFar = tierList[i].TierNumber;
 			}
 		}
