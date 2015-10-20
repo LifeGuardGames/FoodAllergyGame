@@ -14,6 +14,9 @@ public class NotificationManager : Singleton<NotificationManager> {
 
 	public float delayBetweenNotifications = 0.5f;
 	private Queue<NotificationQueueData> notificationQueue;
+	public int NotificationQueueCount{
+		get{ return notificationQueue.Count; }
+	}
 
 	private bool isNotificationActive = false;
 	public bool IsNotificationActive{
@@ -37,6 +40,11 @@ public class NotificationManager : Singleton<NotificationManager> {
 		if(!isNotificationActive){
 			StartCoroutine(TryNextNotificationHelper());
 		}
+	}
+
+	// NOTE: Only to be called from notification finish!
+	public void TryNextNotificationInternal() {
+		StartCoroutine(TryNextNotificationHelper());
 	}
 
 	private IEnumerator TryNextNotificationHelper(){

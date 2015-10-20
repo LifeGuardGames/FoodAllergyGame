@@ -44,6 +44,9 @@ public class DebugInput : EditorWindow {
 					case "String":
 						constant.ConstantValue = EditorGUILayout.TextField(constant.Name, constant.ConstantValue);
 						break;
+					case "Int":
+						constant.ConstantValue = EditorGUILayout.TextField(constant.Name, constant.ConstantValue);
+						break;
 					}
 				}
 			}
@@ -61,6 +64,9 @@ public class DebugInput : EditorWindow {
 						constant.ConstantValue = toggleState.ToString();
 						break;
 					case "String":
+						constant.ConstantValue = EditorGUILayout.TextField(constant.Name, constant.ConstantValue);
+						break;
+					case "Int":
 						constant.ConstantValue = EditorGUILayout.TextField(constant.Name, constant.ConstantValue);
 						break;
 					}

@@ -16,7 +16,9 @@ public class CurrentSceneInfo : EditorWindow {
 				EditorGUILayout.TextField("Event", DataManager.Instance.GameData.RestaurantEvent.CurrentEvent);
 				EditorGUILayout.TextField("Current cash", DataManager.Instance.GameData.Cash.CurrentCash.ToString());
 				EditorGUILayout.TextField("Total cash", DataManager.Instance.GameData.Cash.TotalCash.ToString());
+				EditorGUILayout.TextField("Prev total cash", DataManager.Instance.GameData.Cash.LastSeenTotalCash.ToString());
 				EditorGUILayout.TextField("Tier", TierManager.Instance.Tier.ToString());
+				EditorGUILayout.TextField("Notif queue count", NotificationManager.Instance.NotificationQueueCount.ToString());
 			}
 			if(Application.loadedLevelName == SceneUtils.RESTAURANT){
 				EditorGUILayout.TextField("Move queue count", TouchManager.Instance.inputQueue.Count.ToString());

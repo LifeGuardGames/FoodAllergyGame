@@ -21,29 +21,24 @@ public class TierManager : Singleton<TierManager> {
 	// NOTE: Should be done on StartScene ONLY
 	public void RecalculateTier(){
 		specialItemID = new List<string>();
-		if(DataManager.Instance.IsDebug && Constants.GetDebugConstant<string>("Tier Number") != default(string)) {
-			tier = int.Parse(Constants.GetDebugConstant<string>("Tier Number"));
-		}
-		else {
-			int oldTier = DataLoaderTiers.GetTierFromCash(DataManager.Instance.GameData.Cash.LastSeenTotalCash);
-			int newTier = DataLoaderTiers.GetTierFromCash(DataManager.Instance.GameData.Cash.TotalCash);
+		tier = DataLoaderTiers.GetTierFromCash(DataManager.Instance.GameData.Cash.LastSeenTotalCash);
+		int newTier = DataLoaderTiers.GetTierFromCash(DataManager.Instance.GameData.Cash.TotalCash);
 
-			// NOTE: If there is a change in tier, run logic
-			if(tier < newTier){
-				tier = newTier;
-				SpecialTierUnlock();    // TODO support multiple tier increments
-			}
-
-			//this is here to prevent non tutorial special deco from being added to the game. It's a funnel for multiple unlocks
-			if(SpecialItemID.Count > 0) { 
-				ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(specialItemID[0]);
-				DataManager.Instance.GameData.Decoration.BoughtDeco.Add(specialItemID[0], "");
-				DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(decoData.Type);
-				DataManager.Instance.GameData.Decoration.ActiveDeco.Add(decoData.Type, decoData.ID);
-			}
-			// Print out tier
-			Debug.Log("Recalculated tier: " + tier + "     total cash: " + DataManager.Instance.GameData.Cash.TotalCash);
+		// NOTE: If there is a change in tier, run logic
+		if(tier < newTier){
+			tier = newTier;
+			SpecialTierUnlock();    // TODO support multiple tier increments
 		}
+
+		//this is here to prevent non tutorial special deco from being added to the game. It's a funnel for multiple unlocks
+		if(SpecialItemID.Count > 0) { 
+			ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(specialItemID[0]);
+			DataManager.Instance.GameData.Decoration.BoughtDeco.Add(specialItemID[0], "");
+			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(decoData.Type);
+			DataManager.Instance.GameData.Decoration.ActiveDeco.Add(decoData.Type, decoData.ID);
+		}
+		// Print out tier
+		Debug.Log("Recalculated tier: " + tier + "     total cash: " + DataManager.Instance.GameData.Cash.TotalCash);
 	}
 
 	public void RemoveSpecialID() {

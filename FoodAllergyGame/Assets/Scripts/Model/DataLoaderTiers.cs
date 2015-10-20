@@ -16,6 +16,10 @@ public class DataLoaderTiers: XMLLoaderGeneric<DataLoaderTiers>{
 		return instance.GetDataList<ImmutableDataTiers>();
 	}
 
+	public static ImmutableDataTiers GetDataFromTier(int tier) {
+		return GetData("Tier" + StringUtils.FormatIntToDoubleDigitString(tier));
+	}
+
 	public static int GetTierFromCash(int totalCash){
 		List<ImmutableDataTiers> tierList = GetDataList();
 
@@ -29,25 +33,19 @@ public class DataLoaderTiers: XMLLoaderGeneric<DataLoaderTiers>{
 	}
 
 	public static float GetPercentProgressInTier(int totalCash){
-		List<ImmutableDataTiers> tierList = GetDataList();
-		
-		int tierSoFar = 0;
-		float percentage = 0f;
-		for(int i = 0; i < tierList.Count; i++){
-			if(tierList[i].CashCutoffFloor <= totalCash && tierSoFar <= tierList[i].TierNumber) {
-				tierSoFar = tierList[i].TierNumber;
-				// Determine if this is the last tier
-				if(!tierList[i].IsLastTier) {
-					int tierCashDifference = tierList[i + 1].CashCutoffFloor - tierList[i].CashCutoffFloor;
-					int cashInTier = totalCash - tierList[i].CashCutoffFloor;
-					percentage = (float)cashInTier / (float)tierCashDifference;
-				}
-				else{		// Last element on the list
-					percentage = -1f;
-				}
-			}
+		int tier = GetTierFromCash(totalCash);
+		ImmutableDataTiers tierData = GetDataFromTier(tier);
+		if(!tierData.IsLastTier) {
+			ImmutableDataTiers nextTierData = GetDataFromTier(tier + 1);
+			int tierCashDifference = nextTierData.CashCutoffFloor - tierData.CashCutoffFloor;
+			int cashInTier = totalCash - tierData.CashCutoffFloor;
+			float percentage = (float)cashInTier / (float)tierCashDifference;
+			return percentage;
 		}
-		return percentage;
+		else {  // Last tier, just return 1
+			Debug.LogWarning("Last tier calculated, check logic!");
+			return 1f;
+		}
 	}
 	
 	protected override void XMLNodeHandler(string id, IXMLNode xmlNode, Hashtable hashData, string errorMessage){

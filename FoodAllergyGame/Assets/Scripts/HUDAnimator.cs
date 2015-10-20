@@ -32,7 +32,6 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 		else {
 			percentage = DataLoaderTiers.GetPercentProgressInTier(DataManager.Instance.GameData.Cash.LastSeenTotalCash);
 			tierNumber = DataLoaderTiers.GetTierFromCash(DataManager.Instance.GameData.Cash.LastSeenTotalCash);
-			Debug.Log(percentage + " " + tierNumber);
 		}
 		tierBar.rectTransform.sizeDelta = new Vector2(fullSizeBar.x * percentage, fullSizeBar.y);
 		tierText.text = tierNumber.ToString();
@@ -108,8 +107,6 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 		float startPercentage = DataLoaderTiers.GetPercentProgressInTier(oldTotalCash);
 
 		// If the tiers don't change, just animate it
-		int oldTier = DataLoaderTiers.GetTierFromCash(oldTotalCash);
-		int newTier = DataLoaderTiers.GetTierFromCash(newTotalCash);
         if(DataLoaderTiers.GetTierFromCash(oldTotalCash) == DataLoaderTiers.GetTierFromCash(newTotalCash)) {
 			float endPercentage = DataLoaderTiers.GetPercentProgressInTier(newTotalCash);
 			LeanTween.cancel(this.gameObject);
@@ -126,7 +123,6 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 	}
 
 	public void ChangePercentage(float amount) {
-		Debug.Log(fullSizeBar.x * amount);
 		tierBar.rectTransform.sizeDelta = new Vector2(fullSizeBar.x * amount, fullSizeBar.y);
 	}
 

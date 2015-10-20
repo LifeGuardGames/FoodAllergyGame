@@ -13,6 +13,6 @@ public abstract class NotificationQueueData {
 
 	// Call the notification manager to try to pop new
 	public virtual void Finish(){
-		NotificationManager.Instance.TryNextNotification();
+		NotificationManager.Instance.TryNextNotificationInternal();
 	}
 }
