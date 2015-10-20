@@ -78,9 +78,9 @@ public class StartManager : Singleton<StartManager>{
 		}
 
 		// Check if any new deco types are unlocked at this tier
-		string specialItemID = TierManager.Instance.SpecialItemID[0];
-		if(!string.IsNullOrEmpty(specialItemID)){
-			NotificationQueueDataNewItem itemNotif = new NotificationQueueDataNewItem(SceneUtils.START, specialItemID);
+		List<string> specialItemID = TierManager.Instance.SpecialItemID;
+		if(specialItemID.Count > 0){
+			NotificationQueueDataNewItem itemNotif = new NotificationQueueDataNewItem(SceneUtils.START, specialItemID[0]);
 			NotificationManager.Instance.AddNotification(itemNotif);
 		}
 

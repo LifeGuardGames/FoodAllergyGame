@@ -21,7 +21,7 @@ public class TierManager : Singleton<TierManager> {
 	// NOTE: Should be done on StartScene ONLY
 	public void RecalculateTier(){
 		specialItemID = new List<string>();
-		if (DataManager.Instance.IsDebug && Constants.GetDebugConstant<string>("Tier Number") != default(string)) {
+		if(DataManager.Instance.IsDebug && Constants.GetDebugConstant<string>("Tier Number") != default(string)) {
 			tier = int.Parse(Constants.GetDebugConstant<string>("Tier Number"));
 		}
 		else {
@@ -33,7 +33,7 @@ public class TierManager : Singleton<TierManager> {
 				tier = newTier;
 				SpecialTierUnlock();    // TODO support multiple tier increments
 			}
-			if (SpecialItemID.Count > 0) { 
+			if(SpecialItemID.Count > 0) { 
 				ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(specialItemID[0]);
 				DataManager.Instance.GameData.Decoration.BoughtDeco.Add(specialItemID[0], "");
 				DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(decoData.Type);
