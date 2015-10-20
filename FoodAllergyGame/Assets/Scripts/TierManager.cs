@@ -29,13 +29,12 @@ public class TierManager : Singleton<TierManager> {
 
 		// NOTE: If there is a change in tier, run logic
 		if(tier < newTier){
-			tier = newTier;
-			Debug.Log(newTier);
-			SpecialTierUnlock();    // TODO support multiple tier increments
+			SpecialTierUnlock(newTier);    // TODO support multiple tier increments
 		}
-
+		Debug.Log(specialItemID.Count);
 		//this is here to prevent non tutorial special deco from being added to the game. It's a funnel for multiple unlocks
 		if(specialItemID.Count > 0) {
+			Debug.Log(specialItemID[0]);
 			ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(specialItemID[0]);
 			DataManager.Instance.GameData.Decoration.BoughtDeco.Add(specialItemID[0], "");
 			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(decoData.Type);
@@ -119,17 +118,18 @@ public class TierManager : Singleton<TierManager> {
 
 	// Checks any special case for unlocking a tier
 	// IMPORTANT NOTE: Make sure to set specialDecoID so notificationManager can pick it up!
-	public void SpecialTierUnlock(){
-		if(tier >= 1){
+	public void SpecialTierUnlock(int newTier){
+		if(newTier >= 1 && tier < 1){
 			specialItemID.Add("FlyThru01");
 			DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTFlyThru");
 			DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
 		}
-		if(tier >= 2){
+		if(newTier >= 2 && tier < 2) {
 			specialItemID.Add("PlayArea01");
 			DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTPlayArea");
 			DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
 		}
+		tier = newTier;
 		//TODO More special unlock logic here
 	}
 }
