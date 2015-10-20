@@ -25,6 +25,7 @@ public class TierManager : Singleton<TierManager> {
 			tier = int.Parse(Constants.GetDebugConstant<string>("Tier Number"));
 		}
 		else{
+			int oldTier = DataLoaderTiers.GetTierFromCash(DataManager.Instance.GameData.Cash.LastSeenTotalCash);
 			int newTier = DataLoaderTiers.GetTierFromCash(DataManager.Instance.GameData.Cash.TotalCash);
 
 			// NOTE: If there is a change in tier, run logic

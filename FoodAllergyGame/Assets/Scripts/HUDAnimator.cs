@@ -18,31 +18,32 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 	private Vector2 fullSizeBar;
 	private NotificationQueueDataTierProgress tierCaller;
 
-	void Start(){
+	void Start() {
 		coin.GetComponentInChildren<Text>().text = DataManager.Instance.GameData.Cash.CurrentCash.ToString();
 
 		// Change the appearance of the tier bar depending on which scene it is in
-		Vector2 fullBarSize = tierBar.rectTransform.sizeDelta;
+		fullSizeBar = tierBar.rectTransform.sizeDelta;
 		float percentage;
 		int tierNumber;
-		if(Application.loadedLevelName != SceneUtils.START){
+		if(Application.loadedLevelName != SceneUtils.START) {
 			percentage = DataLoaderTiers.GetPercentProgressInTier(DataManager.Instance.GameData.Cash.TotalCash);
 			tierNumber = DataLoaderTiers.GetTierFromCash(DataManager.Instance.GameData.Cash.TotalCash);
 		}
-		else{
+		else {
 			percentage = DataLoaderTiers.GetPercentProgressInTier(DataManager.Instance.GameData.Cash.LastSeenTotalCash);
 			tierNumber = DataLoaderTiers.GetTierFromCash(DataManager.Instance.GameData.Cash.LastSeenTotalCash);
+			Debug.Log(percentage + " " + tierNumber);
 		}
-		tierBar.rectTransform.sizeDelta = new Vector2(fullBarSize.x * percentage, fullBarSize.y);
+		tierBar.rectTransform.sizeDelta = new Vector2(fullSizeBar.x * percentage, fullSizeBar.y);
 		tierText.text = tierNumber.ToString();
 	}
 
 	#region Coin Animation
-	public void CoinsEarned(int amount, Vector3 floatyPosition){
-		CalculateCoins(amount, new Vector3(500,500,0), floatyPosition);
+	public void CoinsEarned(int amount, Vector3 floatyPosition) {
+		CalculateCoins(amount, new Vector3(500, 500, 0), floatyPosition);
 	}
 
-	public void CalculateCoins(int amount, Vector3 startPos, Vector3 floatyPos){
+	public void CalculateCoins(int amount, Vector3 startPos, Vector3 floatyPos) {
 		difference = amount;
 		currCash = DataManager.Instance.GameData.Cash.TotalCash;
 		DataManager.Instance.GameData.Cash.TotalCash = currCash + amount;
@@ -52,14 +53,14 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 		//TODO generate coin
 		// after we start a corutine that will end when the first coin reaches the Hud
 		StartCoroutine("ChangeMoney");
-		StartCoroutine ("MakeMoney");
-		ParticleUtils.PlayMoneyFloaty(floatyPos,amount);
+		StartCoroutine("MakeMoney");
+		ParticleUtils.PlayMoneyFloaty(floatyPos, amount);
 		// then we will keep spawning coins as the hud changes
 		// the last coin should reach about the same time as the hud reaches it's target
 	}
 
-	private IEnumerator MakeMoney(){
-		for(int i = 0; i < difference / 15; i++){
+	private IEnumerator MakeMoney() {
+		for(int i = 0; i < difference / 15; i++) {
 			GameObject go;
 			go = GameObjectUtils.AddChildGUI(null, coinFlyPrefab);
 			go.transform.position = spawnPos;
@@ -71,25 +72,25 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 			path[1] = randomPoint;
 			path[2] = path[1];
 			path[3] = (coin.transform.GetChild(1) as RectTransform).anchoredPosition;
-			
+
 			LeanTween.moveLocal(go, path, coinTravelTime).setEase(LeanTweenType.easeInQuad).setDestroyOnComplete(true);
 			//LeanTween.move(go,Coin.transform.GetChild(1).transform.position, coinTravelTime).setDestroyOnComplete(true);
 			yield return new WaitForSeconds(0.1f);
 		}
 	}
 
-	private IEnumerator ChangeMoney(){
+	private IEnumerator ChangeMoney() {
 		yield return new WaitForSeconds(coinTravelTime);
 		int step = 2;
-		if(difference < 0){
+		if(difference < 0) {
 			step = -2;
 		}
-		while(currCash != DataManager.Instance.GameData.Cash.TotalCash){
-			if(difference > 0){
-				currCash = Mathf.Min(currCash+step, target);
+		while(currCash != DataManager.Instance.GameData.Cash.TotalCash) {
+			if(difference > 0) {
+				currCash = Mathf.Min(currCash + step, target);
 			}
-			else{
-				currCash = Mathf.Max(currCash+step, target);
+			else {
+				currCash = Mathf.Max(currCash + step, target);
 			}
 			coin.GetComponentInChildren<Text>().text = currCash.ToString();
 			// wait one frame
@@ -99,16 +100,19 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 	#endregion
 
 	#region Tier Animation
-	public void StartTierAnimation(NotificationQueueDataTierProgress tierCaller, int oldTotalCash, int newTotalCash){
+	public void StartTierAnimation(NotificationQueueDataTierProgress tierCaller, int oldTotalCash, int newTotalCash) {
 		this.tierCaller = tierCaller;
 		this.oldTotalCash = oldTotalCash;
 		this.newTotalCash = newTotalCash;
 
 		float startPercentage = DataLoaderTiers.GetPercentProgressInTier(oldTotalCash);
-		
+
 		// If the tiers don't change, just animate it
-		if(DataLoaderTiers.GetTierFromCash(oldTotalCash) == DataLoaderTiers.GetTierFromCash(newTotalCash)) {
+		int oldTier = DataLoaderTiers.GetTierFromCash(oldTotalCash);
+		int newTier = DataLoaderTiers.GetTierFromCash(newTotalCash);
+        if(DataLoaderTiers.GetTierFromCash(oldTotalCash) == DataLoaderTiers.GetTierFromCash(newTotalCash)) {
 			float endPercentage = DataLoaderTiers.GetPercentProgressInTier(newTotalCash);
+			LeanTween.cancel(this.gameObject);
 			LeanTween.value(this.gameObject, ChangePercentage, startPercentage, endPercentage, 1f)
 				.setOnComplete(OnTweenCompleteFinishTier);
 		}
@@ -119,30 +123,34 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 			LeanTween.value(this.gameObject, ChangePercentage, startPercentage, endPercentage, 0.7f)
 				.setOnComplete(OnTweenCompleteTierUp);
 		}
-    }
+	}
 
 	public void ChangePercentage(float amount) {
+		Debug.Log(fullSizeBar.x * amount);
 		tierBar.rectTransform.sizeDelta = new Vector2(fullSizeBar.x * amount, fullSizeBar.y);
-    }
+	}
 
 	// Update the old tier to the next tier up and call StartTierAnimation again
 	private void OnTweenCompleteTierUp() {
 		// Get the current old tier
-		int currentTier = DataLoaderTiers.GetTierFromCash(oldTotalCash);
+		int currentOldTier = DataLoaderTiers.GetTierFromCash(oldTotalCash);
 
 		// Assign the floor limit total cash value of the next tier up
-		ImmutableDataTiers tierData = DataLoaderTiers.GetData("Tier" + StringUtils.FormatIntToDoubleDigitString(currentTier + 1));
+		ImmutableDataTiers tierData = DataLoaderTiers.GetData("Tier" + StringUtils.FormatIntToDoubleDigitString(currentOldTier + 1));
 		if(tierData != null) {
+			oldTotalCash = DataLoaderTiers.GetData("Tier" + StringUtils.FormatIntToDoubleDigitString(currentOldTier + 1)).CashCutoffFloor;
 
+			// Reset the UI
+			tierText.text = DataLoaderTiers.GetTierFromCash(oldTotalCash).ToString();
+			tierBar.rectTransform.sizeDelta = new Vector2(0f, fullSizeBar.y);
+
+			// Pass that total cash into the animate function again
+			StartTierAnimation(tierCaller, oldTotalCash, newTotalCash);
 		}
 		else {
-			Debug.LogWarning("Reached max tiers");	//TODO check max tiers
+			Debug.LogWarning("Reached max tiers");  //TODO check max tiers
 		}
-        oldTotalCash = DataLoaderTiers.GetData("Tier" + StringUtils.FormatIntToDoubleDigitString(currentTier + 1)).CashCutoffFloor;
-
-		// Pass that total cash into the animate function again
-		StartTierAnimation(tierCaller, oldTotalCash, newTotalCash);
-    }
+	}
 
 	// Tier sequence complete
 	private void OnTweenCompleteFinishTier() {

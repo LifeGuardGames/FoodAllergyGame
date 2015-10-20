@@ -34,11 +34,12 @@ public class DataLoaderTiers: XMLLoaderGeneric<DataLoaderTiers>{
 		int tierSoFar = 0;
 		float percentage = 0f;
 		for(int i = 0; i < tierList.Count; i++){
-			if(tierList[i].CashCutoffFloor <= totalCash){
+			if(tierList[i].CashCutoffFloor <= totalCash && tierSoFar <= tierList[i].TierNumber) {
 				tierSoFar = tierList[i].TierNumber;
-				if(i + 1 < tierList.Count){
-					int tierCashDifference = tierList[i].CashCutoffFloor - tierList[i + 1].CashCutoffFloor;
-					int cashInTier = tierList[i + 1].CashCutoffFloor - totalCash;
+				// Determine if this is the last tier
+				if(!tierList[i].IsLastTier) {
+					int tierCashDifference = tierList[i + 1].CashCutoffFloor - tierList[i].CashCutoffFloor;
+					int cashInTier = totalCash - tierList[i].CashCutoffFloor;
 					percentage = (float)cashInTier / (float)tierCashDifference;
 				}
 				else{		// Last element on the list

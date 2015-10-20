@@ -42,6 +42,11 @@ public class ImmutableDataTiers {
 	public string[] StartArtAssets{
 		get{ return startArtAssets; }
 	}
+
+	private bool isLastTier;
+	public bool IsLastTier {
+		get { return isLastTier; }
+	}
 	
 	public ImmutableDataTiers(string id, IXMLNode xmlNode, string error){
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
@@ -53,5 +58,6 @@ public class ImmutableDataTiers {
 		foodsUnlocked = XMLUtils.GetStringList(hashElements["FoodsUnlocked"] as IXMLNode);
 		decorationsUnlocked = XMLUtils.GetStringList(hashElements["DecorationsUnlocked"] as IXMLNode);
 		startArtAssets = XMLUtils.GetStringList(hashElements["StartArtAssets"] as IXMLNode);
-	}
+		isLastTier = XMLUtils.GetBool(hashElements["IsLastTier"] as IXMLNode);
+    }
 }

@@ -11,7 +11,6 @@ public class NotificationQueueDataTierProgress : NotificationQueueData {
 
 	public NotificationQueueDataTierProgress(string allowedScene, int oldTotalCash, int newTotalCash){
 		this.allowedScene = allowedScene;
-
 		this.oldTotalCash = oldTotalCash;
 		this.newTotalCash = newTotalCash;
 	}
