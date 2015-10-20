@@ -34,15 +34,14 @@ public class TierManager : Singleton<TierManager> {
 		}
 
 		//this is here to prevent non tutorial special deco from being added to the game. It's a funnel for multiple unlocks
-			if(specialItemID.Count > 0) { 
-				ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(specialItemID[0]);
-				DataManager.Instance.GameData.Decoration.BoughtDeco.Add(specialItemID[0], "");
-				DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(decoData.Type);
-				DataManager.Instance.GameData.Decoration.ActiveDeco.Add(decoData.Type, decoData.ID);
-			}
-			// Print out tier
-			Debug.Log("Recalculated tier: " + tier + "     total cash: " + DataManager.Instance.GameData.Cash.TotalCash);
+		if(specialItemID.Count > 0) { 
+			ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(specialItemID[0]);
+			DataManager.Instance.GameData.Decoration.BoughtDeco.Add(specialItemID[0], "");
+			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(decoData.Type);
+			DataManager.Instance.GameData.Decoration.ActiveDeco.Add(decoData.Type, decoData.ID);
 		}
+		// Print out tier
+		Debug.Log("Recalculated tier: " + tier + "     total cash: " + DataManager.Instance.GameData.Cash.TotalCash);
 	}
 
 	public void RemoveSpecialID() {
