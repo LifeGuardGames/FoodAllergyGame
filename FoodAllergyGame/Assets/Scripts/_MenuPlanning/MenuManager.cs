@@ -39,6 +39,8 @@ public class MenuManager : Singleton<MenuManager>{
 	public Animation textCashAnimation;
 	public GameObject tutFinger;
 	public int availableSlots;
+	public Text totalSlotsText;
+	public Text availableSlotsText;
 
 	public TweenToggle doneButtonTween;
 
@@ -53,8 +55,10 @@ public class MenuManager : Singleton<MenuManager>{
 
 		// Load the number of slots from progress
 		menuSize = TierManager.Instance.GetMenuSlots();
+		totalSlotsText.text = menuSize.ToString();
 		selectedMenuController.Init(menuSize);
 		availableSlots = menuSize;
+		availableSlotsText.text = availableSlots.ToString();
 
 		ChangeMenuCost(0);	// Reset text to zero
 		PopulateStockGrid();
@@ -182,6 +186,7 @@ public class MenuManager : Singleton<MenuManager>{
 			// Add ID to aux string list
 			selectedMenuStringList.Add(foodID);
 			availableSlots -= DataLoaderFood.GetData(foodID).Slots;
+			availableSlotsText.text = availableSlots.ToString();
 			if (availableSlots == 0) {
 				doneButtonTween.Show();
 			}
