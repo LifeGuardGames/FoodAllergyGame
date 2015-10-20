@@ -17,10 +17,13 @@ public class TierManager : Singleton<TierManager> {
 		get{ return specialItemID; }
 	}
 
+	void Awake() {
+		specialItemID = new List<string>();
+	}
+
 	// Recalculate the tier given a certain algorithm
 	// NOTE: Should be done on StartScene ONLY
 	public void RecalculateTier(){
-		specialItemID = new List<string>();
 		tier = DataLoaderTiers.GetTierFromCash(DataManager.Instance.GameData.Cash.LastSeenTotalCash);
 		int newTier = DataLoaderTiers.GetTierFromCash(DataManager.Instance.GameData.Cash.TotalCash);
 
@@ -31,14 +34,15 @@ public class TierManager : Singleton<TierManager> {
 		}
 
 		//this is here to prevent non tutorial special deco from being added to the game. It's a funnel for multiple unlocks
-		if(SpecialItemID.Count > 0) { 
-			ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(specialItemID[0]);
-			DataManager.Instance.GameData.Decoration.BoughtDeco.Add(specialItemID[0], "");
-			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(decoData.Type);
-			DataManager.Instance.GameData.Decoration.ActiveDeco.Add(decoData.Type, decoData.ID);
+			if(specialItemID.Count > 0) { 
+				ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(specialItemID[0]);
+				DataManager.Instance.GameData.Decoration.BoughtDeco.Add(specialItemID[0], "");
+				DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(decoData.Type);
+				DataManager.Instance.GameData.Decoration.ActiveDeco.Add(decoData.Type, decoData.ID);
+			}
+			// Print out tier
+			Debug.Log("Recalculated tier: " + tier + "     total cash: " + DataManager.Instance.GameData.Cash.TotalCash);
 		}
-		// Print out tier
-		Debug.Log("Recalculated tier: " + tier + "     total cash: " + DataManager.Instance.GameData.Cash.TotalCash);
 	}
 
 	public void RemoveSpecialID() {
