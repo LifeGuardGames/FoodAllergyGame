@@ -33,6 +33,8 @@ public class TierManager : Singleton<TierManager> {
 				tier = newTier;
 				SpecialTierUnlock();    // TODO support multiple tier increments
 			}
+
+			//this is here to prevent non tutorial special deco from being added to the game. It's a funnel for multiple unlocks
 			if(SpecialItemID.Count > 0) { 
 				ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(specialItemID[0]);
 				DataManager.Instance.GameData.Decoration.BoughtDeco.Add(specialItemID[0], "");
@@ -42,6 +44,10 @@ public class TierManager : Singleton<TierManager> {
 			// Print out tier
 			Debug.Log("Recalculated tier: " + tier + "     total cash: " + DataManager.Instance.GameData.Cash.TotalCash);
 		}
+	}
+
+	public void RemoveSpecialID() {
+		specialItemID.RemoveAt(0);
 	}
 
 	public int GetMenuSlots(){
@@ -100,6 +106,7 @@ public class TierManager : Singleton<TierManager> {
 		}
 		return startArtAssets;
 	}
+
 
 	public string GetNewEvent(){
 		if(DataManager.Instance.GameData.Decoration.DecoTutQueue.Count != 0){

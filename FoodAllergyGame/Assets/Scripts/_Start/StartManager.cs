@@ -82,7 +82,7 @@ public class StartManager : Singleton<StartManager>{
 		if(specialItemID.Count > 0){
 			NotificationQueueDataNewItem itemNotif = new NotificationQueueDataNewItem(SceneUtils.START, specialItemID[0]);
 			NotificationManager.Instance.AddNotification(itemNotif);
-			TierManager.Instance.SpecialItemID.RemoveAt(0);
+			TierManager.Instance.RemoveSpecialID();
         }
 
 		// Have the spawn button see when it needs to spawn
