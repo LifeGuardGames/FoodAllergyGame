@@ -160,7 +160,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
                 }
                 else
                 {
-                    customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty - 13;
+                    customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty * 0.8f;
                 }
 				
 				if(customerSpawnTimer < 3){
