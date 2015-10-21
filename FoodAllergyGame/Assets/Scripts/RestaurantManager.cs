@@ -154,13 +154,11 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				doorController.OpenAndCloseDoor();
 
 				ImmutableDataCustomer customerData;
-                if(DataManager.Instance.GameData.DayTracker.AvgDifficulty == 6.0f)
-                {
+                if(DataManager.Instance.GameData.DayTracker.AvgDifficulty == 6.0f){
                     customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty;
                 }
-                else
-                {
-                    customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty * 0.8f;
+                else{
+                    customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty * 0.27f;
                 }
 				
 				if(customerSpawnTimer < 3){
