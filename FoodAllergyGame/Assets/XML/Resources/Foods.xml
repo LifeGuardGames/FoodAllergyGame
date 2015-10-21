@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Foods>
 	<Food ID="Food00">
-		<FoodNameKey>FoodOrangeJuice</FoodNameKey>
-		<SpriteName>FoodOrangeJuice</SpriteName>
+		<FoodNameKey>FoodFruitPlatter</FoodNameKey>
+		<SpriteName>FoodFruitPlatter</SpriteName>
 		<Allergies>None</Allergies>
-		<Keywords>Drink,Dessert</Keywords>
+		<Keywords>Meal,Dessert</Keywords>
 		<Tier>0</Tier>
 		<Price>12</Price>
 		<Reward>1</Reward>

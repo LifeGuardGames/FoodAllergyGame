@@ -2,7 +2,7 @@
 <Constants xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Constant Name="EventID" Type="String" Value="Event00" Debug="True"> </Constant>
   <Constant Name="CurrentCash" Type="Int" Value="600" Debug="True"> </Constant>
-  <Constant Name="TotalCash" Type="Int" Value="950" Debug="True"> </Constant>
+  <Constant Name="TotalCash" Type="Int" Value="1050" Debug="True"> </Constant>
   <Constant Name="LastTotalCash" Type="Int" Value="550" Debug="True"> </Constant>
   <Constant Name="IsTut1Done" Type="Bool" Value="True" Debug="True"> </Constant>
   <Constant Name="IsTut3Done" Type="Bool" Value="True" Debug="True"> </Constant>
@@ -11,7 +11,7 @@
   <Constant Name="FloorID" Type="String" Value="Floor00" Debug="True"> </Constant>
   <Constant Name="BathroomOn" Type="Bool" Value="False" Debug="False"> </Constant>
   <Constant Name="BathroomID" Type="String" Value="Bathroom00" Debug="True"> </Constant>
-  <Constant Name="PlayAreaOn" Type="Bool" Value="False" Debug="False"> </Constant>
+  <Constant Name="PlayAreaOn" Type="Bool" Value="True" Debug="False"> </Constant>
   <Constant Name="PlayAreaID" Type="String" Value="PlayArea01" Debug="True"> </Constant>
   <Constant Name="VIPOn" Type="Bool" Value="False" Debug="False"> </Constant>
   <Constant Name="VIPID" Type="String" Value="VIP01" Debug="True"> </Constant>
