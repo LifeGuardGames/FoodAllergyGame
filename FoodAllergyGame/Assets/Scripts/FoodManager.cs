@@ -20,12 +20,6 @@ public class FoodManager : Singleton<FoodManager>{
 		get{ return menuList; }
 	}
 
-	// Cost of building the menu, used for restaurant day over calculation
-	private int menuCost = 0;
-	public int MenuCost{
-		get{ return menuCost; }
-	}
-
 	////////////////////////////////////
 
 	#region MenuPlanning scene functions
@@ -33,12 +27,11 @@ public class FoodManager : Singleton<FoodManager>{
 	/// <summary>
 	/// Creates a list of possible menu items from the FoodLoader
 	/// </summary>
-	public void GenerateMenu(List<string> _menuList, int cost){
+	public void GenerateMenu(List<string> _menuList){
 		menuList = new List<ImmutableDataFood>();
 		foreach(string foodID in _menuList){
 			menuList.Add(DataLoaderFood.GetData(foodID));
 		}
-		menuCost = -cost;
 	}
 
 	#endregion

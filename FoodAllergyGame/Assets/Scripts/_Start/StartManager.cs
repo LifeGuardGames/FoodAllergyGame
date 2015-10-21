@@ -140,7 +140,7 @@ public class StartManager : Singleton<StartManager>{
 	public void OnPlayButtonClicked(){
 		// TODO integrate with datamanager tutorial fields
 		if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT1" ||DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT0" || DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventTPlayArea"|| DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventTFlyThru"|| DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventTVIP"){
-			FoodManager.Instance.GenerateMenu(DataLoaderMenuSet.GetData("MenuSetT1").MenuSet.ToList(), 0);
+			FoodManager.Instance.GenerateMenu(DataLoaderMenuSet.GetData("MenuSetT1").MenuSet.ToList());
 			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT);
 		}
 		else{

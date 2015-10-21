@@ -26,11 +26,6 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	private Vector3 startPosition;
 	private Transform startParent;
 
-	private int cost;
-	public int Cost{
-		get{ return cost; }
-	}
-
 	private bool inFoodStockSlot = true;
 	public bool InFoodStockSlot{
 		get{ return inFoodStockSlot; }
@@ -42,8 +37,6 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 		gameObject.name = foodData.ID;
 		label.text = LocalizationText.GetText(foodData.FoodNameKey);
 		image.sprite = SpriteCacheManager.GetFoodSpriteData(foodData.SpriteName);
-		cost = foodData.Cost;
-		textCost.text = "$" + cost.ToString();
 		slots = foodData.Slots;
 		//textSlots.text = slots.ToString();
 
@@ -83,10 +76,8 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 			// Show allergy nodes
 			allergyNode.SetActive(true);
 
-			// Remove the food from its attachment
-			if(MenuManager.Instance.RemoveFoodFromMenuList(foodID)){
-				MenuManager.Instance.ChangeMenuCost(Cost * -1);
-			}
+		// Remove the food from its attachment
+		MenuManager.Instance.RemoveFoodFromMenuList(foodID);
 
 			// Show trash can if dragging from selected slot
 			if(!inFoodStockSlot){
@@ -122,7 +113,6 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 			if(startParent.gameObject.GetComponent<MenuDragSlot>().isSelectedSlot){
 				Debug.Log(MenuManager.Instance.availableSlots);
 				MenuManager.Instance.AddFoodToMenuList(foodID);
-				MenuManager.Instance.ChangeMenuCost(Cost);
 			}
 		}
 		else if(transform.parent == trashAux){

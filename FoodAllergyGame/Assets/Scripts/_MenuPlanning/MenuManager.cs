@@ -32,11 +32,7 @@ public class MenuManager : Singleton<MenuManager>{
 
 	public RectTransform dragAux;
 	public RectTransform tweenAux;
-
-	private int menuCost = 0;
-	public Text menuCostText;
-	public Text doneButtonCostText;
-	public Animation textCashAnimation;
+	
 	public GameObject tutFinger;
 	public int availableSlots;
 	public Text totalSlotsText;
@@ -59,8 +55,7 @@ public class MenuManager : Singleton<MenuManager>{
 		selectedMenuController.Init(menuSize);
 		availableSlots = menuSize;
 		availableSlotsText.text = availableSlots.ToString();
-
-		ChangeMenuCost(0);	// Reset text to zero
+		
 		PopulateStockGrid();
 		InitSanityCheck();
 	}
@@ -219,20 +214,13 @@ public class MenuManager : Singleton<MenuManager>{
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
 	}
 
-	public void ChangeMenuCost(int delta){
-		menuCost += delta;
-		textCashAnimation.Play();
-		menuCostText.text = menuCost.ToString();
-		doneButtonCostText.text = menuCost.ToString();
-	}
-
 	public void OnMenuSelectionDone(){
 		// Check to see if we have all selection slots filled
 		if(selectedMenuStringList.Count == menuSize){
 			Analytics.CustomEvent("Menu", new Dictionary<string, object>{
 				{"Menu Items", selectedMenuStringList}
 			});
-			FoodManager.Instance.GenerateMenu(selectedMenuStringList, menuCost);
+			FoodManager.Instance.GenerateMenu(selectedMenuStringList);
 			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT);
 		}
 		else{

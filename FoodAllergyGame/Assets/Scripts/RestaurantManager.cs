@@ -81,7 +81,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		satisfactionAI = new SatisfactionAI();
 
 		if(DataManager.Instance.IsDebug){
-			FoodManager.Instance.GenerateMenu(DataLoaderMenuSet.GetData("MenuSetT1").MenuSet.ToList(), 0);
+			FoodManager.Instance.GenerateMenu(DataLoaderMenuSet.GetData("MenuSetT1").MenuSet.ToList());
 		}
 		if(DataManager.Instance.GetEvent() == "EventTPlayArea"||DataManager.Instance.GetEvent() == "EventTFlyThru"){
 			//TODO remove this and active tut screen
@@ -235,7 +235,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				else{
 					DataManager.Instance.GameData.DayTracker.AvgDifficulty = ((DataManager.Instance.GameData.DayTracker.AvgDifficulty + satisfactionAI.DifficultyLevel)/2);
 					// Save data here
-					int dayNetCash = dayEarnedCash + FoodManager.Instance.MenuCost;
+					int dayNetCash = dayEarnedCash;
 					DataManager.Instance.GameData.Cash.SaveCash(dayNetCash, dayCashRevenue);
 
 					// Unlock new event generation for StartManager
@@ -255,7 +255,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 						{"Missed Customers", satisfactionAI.MissingCustomers},
 						{"Avg. Satisfaction", satisfactionAI.AvgSatifaction()},
 						{"Cash Earned",DayEarnedCash},
-						{"Cash Lost", FoodManager.Instance.MenuCost + Medic.Instance.MedicCost},
+						{"Cash Lost", Medic.Instance.MedicCost},
 						{"Medic Saved", savedCustomers},
 						{"Attempted Rescues", attempted},
 						{"Play Area Uses", playAreaUses},
@@ -264,8 +264,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 					});
 					// Show day complete UI
 					restaurantUI.DayComplete(satisfactionAI.MissingCustomers, satisfactionAI.AvgSatifaction(), dayEarnedCash,
-				 	                        FoodManager.Instance.MenuCost, dayNetCash,
-				 	                        DataManager.Instance.GameData.Cash.CurrentCash,
+											dayNetCash, DataManager.Instance.GameData.Cash.CurrentCash,
 					                        Medic.Instance.MedicCost);
 
 					// Save game data
@@ -434,7 +433,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				{"Missed Customers", satisfactionAI.MissingCustomers},
 				{"Avg. Satisfaction", satisfactionAI.AvgSatifaction()},
 				{"Cash Earned",DayEarnedCash},
-				{"Cash Lost", FoodManager.Instance.MenuCost + Medic.Instance.MedicCost},
+				{"Cash Lost", Medic.Instance.MedicCost},
 			});
 		}
 
