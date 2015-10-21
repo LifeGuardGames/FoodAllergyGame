@@ -60,6 +60,12 @@ public class NotificationManager : Singleton<NotificationManager> {
 		}
 		else{ 												// Everything completely done
 			isNotificationActive = false;
+
+			if(Application.loadedLevelName == SceneUtils.START) {
+				StartManager.Instance.DecoEntranceUIController.ToggleClickable(false);
+				StartManager.Instance.DinerEntranceUIController.ToggleClickable(false);
+			}
+
 			if(OnAllNotificationsFinished != null) {        // Throw event
 				OnAllNotificationsFinished(this, EventArgs.Empty);
 			}

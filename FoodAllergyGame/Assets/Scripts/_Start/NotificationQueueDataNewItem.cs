@@ -12,9 +12,6 @@ public class NotificationQueueDataNewItem : NotificationQueueData {
 
 	public override void Start(){
 		if(allowedScene == Application.loadedLevelName){
-			StartManager.Instance.decoEntranceUIController.ToggleClickable(false);
-			StartManager.Instance.dinerEntranceUIController.ToggleClickable(false);
-
 			GameObject giftPrefab = Resources.Load("GiftDropPod") as GameObject;
 			giftInstance = GameObjectUtils.AddChildWithPositionAndScale(StartManager.Instance.SceneObjectParent, giftPrefab);
 

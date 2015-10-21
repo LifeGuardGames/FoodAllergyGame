@@ -18,7 +18,13 @@ public class StartManager : Singleton<StartManager>{
 	public GameObject unlockParent;
 
 	public ShopEntranceUIController decoEntranceUIController;
+	public ShopEntranceUIController DecoEntranceUIController {
+		get { return decoEntranceUIController; }
+	}
 	public DinerEntranceUIController dinerEntranceUIController;
+	public DinerEntranceUIController DinerEntranceUIController {
+		get { return dinerEntranceUIController; }
+	}
 
 	public NewItemUIController newItemUIController;
 	public NewItemUIController NewItemUIController{
@@ -80,6 +86,9 @@ public class StartManager : Singleton<StartManager>{
 		// Check if any new deco types are unlocked at this tier
 		List<string> specialItemID = TierManager.Instance.SpecialItemID;
 		if(specialItemID.Count > 0){
+			decoEntranceUIController.ToggleClickable(false);
+			dinerEntranceUIController.ToggleClickable(false);
+
 			Debug.Log(" ---- SPECIAL DECO");
 			NotificationQueueDataNewItem itemNotif = new NotificationQueueDataNewItem(SceneUtils.START, specialItemID[0]);
 			NotificationManager.Instance.AddNotification(itemNotif);
