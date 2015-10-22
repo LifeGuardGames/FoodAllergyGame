@@ -51,23 +51,28 @@ public class Table : MonoBehaviour, IWaiterSelection{
 			RestaurantManager.Instance.TableList.Add(gameObject);
 
 			// Get its node dynamically, which are pre-populated
-			switch(tableType){
-			case TableType.Normal:
-				node = Pathfinding.Instance.GetNormalTableNode(tableNumber);
-				break;
-			case TableType.VIP:
-				node = Pathfinding.Instance.NodeVIP;
-				CustomerUIController customerUI = this.GetComponent<CustomerUIController>();
-				customerUI.ToggleWait(false);
-				customerUI.ToggleStar(false);
-				customerUI.ToggleAllergyAttack(false);
+			switch(tableType) {
+				case TableType.Normal:
+					node = Pathfinding.Instance.GetNormalTableNode(tableNumber);
 					break;
-			case TableType.FlyThru:
-				if(DataManager.Instance.GetEvent() == "EventTFlyThru"){
-					GameObject.Find("TutFingers").transform.GetChild(9).gameObject.SetActive(true);
+				case TableType.VIP:
+					node = Pathfinding.Instance.NodeVIP;
+					CustomerUIController customerUI = this.GetComponent<CustomerUIController>();
+					customerUI.ToggleWait(false);
+					customerUI.ToggleStar(false);
+					customerUI.ToggleAllergyAttack(false);
+					break;
+				case TableType.FlyThru:
+					if(DataManager.Instance.GetEvent() == "EventTFlyThru") {
+						GameObject.Find("TutFingers").transform.GetChild(9).gameObject.SetActive(true);
+					}
+					node = Pathfinding.Instance.NodeFlyThru;
+					break;
+			}
+			if(DataManager.Instance.GetEvent() == "EventTVIP") {
+				if(tableType != TableType.VIP) {
+					this.GetComponent<BoxCollider>().enabled = false;
 				}
-				node = Pathfinding.Instance.NodeFlyThru;
-				break;
 			}
 		}
 		TurnOffHighlight();
