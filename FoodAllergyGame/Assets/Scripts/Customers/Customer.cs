@@ -243,6 +243,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			customerUI = gameObject.transform.GetComponentInParent<CustomerUIController>();
 			timer /= RestaurantManager.Instance.GetTable(_tableNum).VIPMultiplier;
 			SetSatisfaction(4);
+			AudioManager.Instance.PlayClip("teleportingSound");
 		}
 		// begin reading menu
 		state = CustomerStates.ReadingMenu;
