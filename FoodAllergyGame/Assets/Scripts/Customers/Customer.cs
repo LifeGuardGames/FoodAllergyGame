@@ -225,11 +225,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Jumps to the table given a table number
 	public virtual void JumpToTable(int _tableNum){
-        if (_tableNum == 4){	// TODO connect this with logic rather than number
-			RestaurantManager.Instance.VIPUses++;
-			timer /= RestaurantManager.Instance.GetTable(_tableNum).VIPMultiplier;
-			SetSatisfaction(4);
-		}
+        
 		RestaurantManager.Instance.lineCount--;
 		RestaurantManager.Instance.CustomerLineSelectHighlightOff();
 		Waiter.Instance.CurrentLineCustomer = null;
@@ -239,7 +235,15 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		tableNum = _tableNum;
 		transform.SetParent(RestaurantManager.Instance.GetTable(_tableNum).Seat);
 		transform.localPosition = Vector3.zero;
-
+		if(_tableNum == 4) {    // TODO connect this with logic rather than number
+			RestaurantManager.Instance.VIPUses++;
+			customerUI.satisfaction1.gameObject.SetActive(true);
+			customerUI.satisfaction2.gameObject.SetActive(true);
+			customerUI.satisfaction3.gameObject.SetActive(true);
+			customerUI = gameObject.transform.GetComponentInParent<CustomerUIController>();
+			timer /= RestaurantManager.Instance.GetTable(_tableNum).VIPMultiplier;
+			SetSatisfaction(4);
+		}
 		// begin reading menu
 		state = CustomerStates.ReadingMenu;
 		customerAnim.SetReadingMenu();

@@ -57,7 +57,11 @@ public class Table : MonoBehaviour, IWaiterSelection{
 				break;
 			case TableType.VIP:
 				node = Pathfinding.Instance.NodeVIP;
-				break;
+				CustomerUIController customerUI = this.GetComponent<CustomerUIController>();
+				customerUI.ToggleWait(false);
+				customerUI.ToggleStar(false);
+				customerUI.ToggleAllergyAttack(false);
+					break;
 			case TableType.FlyThru:
 				if(DataManager.Instance.GetEvent() == "EventTFlyThru"){
 					GameObject.Find("TutFingers").transform.GetChild(9).gameObject.SetActive(true);
@@ -105,7 +109,12 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		Waiter.Instance.RemoveMeal(tableNumber);
 		KitchenManager.Instance.CancelOrder(tableNumber);
         RestaurantManager.Instance.GetMenuUIController().CancelOrder(tableNumber);
-    }
+		CustomerUIController customerUI = this.GetComponent<CustomerUIController>();
+		customerUI.satisfaction1.gameObject.SetActive(false);
+		customerUI.satisfaction2.gameObject.SetActive(false);
+		customerUI.satisfaction3.gameObject.SetActive(false);
+		customerUI.ToggleStar(false);
+	}
 
 	//in the unfortunate circumstance a customer gets eaten we need to take care of the mess
 	public void CustomerEaten(){

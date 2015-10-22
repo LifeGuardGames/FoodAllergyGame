@@ -110,6 +110,14 @@
 		<DescriptionKey>NoneDesc</DescriptionKey>
 		<SpriteName>None</SpriteName>
 	</DecoItem>
+  
+  <DecoItem ID = "VIP01">
+		<Type>VIP</Type>
+		<Price>0</Price>
+		<TitleKey>VIP01</TitleKey>
+		<DescriptionKey>VIP01</DescriptionKey>
+		<SpriteName>VIP01</SpriteName>
+	</DecoItem>
 
 	
 	<DecoItem ID = "PlayArea00">
@@ -153,4 +161,4 @@
 		<SpriteName>RestFlyThruBasicRed</SpriteName>
 	</DecoItem>
 
-</DecoItem>so
+</DecoItem>

@@ -109,12 +109,12 @@ public class DecoManager : Singleton<DecoManager>{
 			GameObject.Find("ButtonUse").GetComponentInChildren<Text>().text = "Use";
 		}
 		//if(isTutroial && decoID == "PlayArea00" && tutObj4.activeSelf != true){
-		if(isTutroial && decoID == "FlyThru00" && tutObj4.activeSelf != true){
+		if(isTutroial && decoID == "VIP00" && tutObj4.activeSelf != true){
 			tutObj2.SetActive(false);
 			tutObj3.SetActive(true);
 		}
 		//else if(isTutroial && tutObj3.activeSelf == true && decoID != "PlayArea00" && tutObj4.activeSelf != true){
-		else if(isTutroial && tutObj3.activeSelf == true && decoID != "FlyThru00" && tutObj4.activeSelf != true){
+		else if(isTutroial && tutObj3.activeSelf == true && decoID != "VIP00" && tutObj4.activeSelf != true){
 			tutObj2.SetActive(true);
 			tutObj3.SetActive(false);
 		}
@@ -131,7 +131,7 @@ public class DecoManager : Singleton<DecoManager>{
 	public void SetDeco(string decoID){
 		if(IsDecoBought(decoID)){
 			//if(isTutroial && decoID == "PlayArea00"){
-			if(isTutroial && decoID == "FlyThru00"){
+			if(isTutroial && decoID == "VIP00"){
 				tutObj3.SetActive(false);
 				StartCoroutine(WaitASec());
 			}
@@ -201,12 +201,12 @@ public class DecoManager : Singleton<DecoManager>{
 	public void ChangeTab(string tabName){
 		currentDecoPage = 0;
 		//if(isTutroial && tabName == "PlayArea" && tutObj1.activeSelf == true){
-		if(isTutroial && tabName == "FlyThru" && tutObj1.activeSelf == true){
+		if(isTutroial && tabName == "VIP" && tutObj1.activeSelf == true){
 			tutObj1.SetActive(false);
 			tutObj2.SetActive(true);
 		}
 		//else if (isTutroial && tabName != "PlayArea" && tutObj4.activeSelf != true){
-		else if (isTutroial && tabName != "FlyThru" && tutObj4.activeSelf != true){
+		else if (isTutroial && tabName != "VIP" && tutObj4.activeSelf != true){
 			tutObj1.SetActive(true);
 			tutObj2.SetActive(false);
 			tutObj3.SetActive(false);
