@@ -116,8 +116,8 @@
   <DecoItem ID = "VIP01">
 		<Type>VIP</Type>
 		<Price>0</Price>
-		<TitleKey>VIP01</TitleKey>
-		<DescriptionKey>VIPBasicEmpty</DescriptionKey>
+		<TitleKey>VIPBasicEmpty</TitleKey>
+		<DescriptionKey>VIPBasicEmptyDesc</DescriptionKey>
 		<SpriteName>RestVIPBasicEmpty</SpriteName>
 		<Tier>0</Tier>
 	</DecoItem>
