@@ -243,6 +243,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			customerUI = gameObject.transform.GetComponentInParent<CustomerUIController>();
 			timer /= RestaurantManager.Instance.GetTable(_tableNum).VIPMultiplier;
 			SetSatisfaction(4);
+			AudioManager.Instance.PlayClip("teleportingSound");
 		}
 		// begin reading menu
 		state = CustomerStates.ReadingMenu;
@@ -395,7 +396,13 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Tells the resturantManager that the customer is leaving and can be removed from the dictionary
 	public virtual void NotifyLeave(){
-	
+
+		if(DataManager.Instance.GetEvent() == "EventTVIP") {
+			DataManager.Instance.GameData.Tutorial.IsSpecialDecoTutDone = true;
+			DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
+			//DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
+		}
+
 		Analytics.CustomEvent("Customer Left", new Dictionary <string, object>{
 			{"Type", this.GetType().ToString()},
 			{"state", state.ToString()},

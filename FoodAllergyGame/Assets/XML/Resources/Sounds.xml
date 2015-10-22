@@ -4,6 +4,7 @@
 	<Sound ID="Button1Down"></Sound>
 	<Sound ID="Button1Up"></Sound>
 
+  <Sound ID="teleportingSound"></Sound>
 	<Sound ID="bgRestaurant"></Sound>
 	<Sound ID="bgDeco"></Sound>
 	<Sound ID="customerEnter"></Sound>
