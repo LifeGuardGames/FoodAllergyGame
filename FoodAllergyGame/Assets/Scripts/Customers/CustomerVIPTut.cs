@@ -19,7 +19,12 @@ public class CustomerVIPTut : Customer {
 	public void hideCustomerFinger(){
 		transform.GetChild(2).gameObject.SetActive(false);
 	}
-	
+
+	public override void JumpToTable(int _tableNum) {
+		base.JumpToTable(_tableNum);
+		tutFingers.transform.GetChild(tutNumber).gameObject.SetActive(false);
+	}
+
 	public override void OnClicked ()
 	{
 		base.OnClicked ();
