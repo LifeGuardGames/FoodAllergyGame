@@ -109,7 +109,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		Waiter.Instance.RemoveMeal(tableNumber);
 		KitchenManager.Instance.CancelOrder(tableNumber);
         RestaurantManager.Instance.GetMenuUIController().CancelOrder(tableNumber);
-		if(tableNumber == 4) {
+		if(tableType == TableType.VIP) {
 			CustomerUIController customerUI = this.GetComponent<CustomerUIController>();
 			customerUI.satisfaction1.gameObject.SetActive(false);
 			customerUI.satisfaction2.gameObject.SetActive(false);

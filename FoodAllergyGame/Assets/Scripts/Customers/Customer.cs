@@ -184,7 +184,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Note: Not capped
 	public void UpdateSatisfaction(int delta){
-		if(tableNum == 4){
+		if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.VIP) {
 			if(delta < 0){
 				satisfaction += delta;
 				customerUI.UpdateSatisfaction(satisfaction);
@@ -235,7 +235,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		tableNum = _tableNum;
 		transform.SetParent(RestaurantManager.Instance.GetTable(_tableNum).Seat);
 		transform.localPosition = Vector3.zero;
-		if(_tableNum == 4) {    // TODO connect this with logic rather than number
+		if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.VIP) {    // TODO connect this with logic rather than number
 			RestaurantManager.Instance.VIPUses++;
 			customerUI.satisfaction1.gameObject.SetActive(true);
 			customerUI.satisfaction2.gameObject.SetActive(true);
@@ -329,7 +329,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Tells the waiter the food has been delivered and begins eating
 	public virtual void Eating(){
-		if(tableNum == 5){
+		if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.FlyThru){
 			Waiter.Instance.Finished();
 			if(DataManager.Instance.GetEvent() == "EventTFlyThru"){
 				DataManager.Instance.GameData.Tutorial.IsSpecialDecoTutDone = true;
@@ -412,7 +412,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			//Waiter.Instance.GivePowerUp();
 		}
 		if(satisfaction > 0){
-			if(tableNum == 4){
+			if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.VIP) {
 				RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, priceMultiplier * RestaurantManager.Instance.GetTable(tableNum).VIPMultiplier, transform.position,Time.time - spawnTime);
 			}
 			else{
