@@ -31,10 +31,8 @@ public class TierManager : Singleton<TierManager> {
 		if(tier < newTier){
 			SpecialTierUnlock(newTier);    // TODO support multiple tier increments
 		}
-		Debug.Log(specialItemID.Count);
 		//this is here to prevent non tutorial special deco from being added to the game. It's a funnel for multiple unlocks
 		if(specialItemID.Count > 0) {
-			Debug.Log(specialItemID[0]);
 			ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(specialItemID[0]);
 			DataManager.Instance.GameData.Decoration.BoughtDeco.Add(specialItemID[0], "");
 			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(decoData.Type);

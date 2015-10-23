@@ -11,7 +11,8 @@ public class ShopEntranceUIController : MonoBehaviour {
 		gameObject.SetActive(true);
 		if(isFirstTime){
 			PlayAppearAnimation();
-
+			StartManager.Instance.DecoEntranceUIController.ToggleClickable(false);
+			StartManager.Instance.DinerEntranceUIController.ToggleClickable(false);
 		}
 		else{
 			tutorialFinger.SetActive(false);
@@ -39,6 +40,8 @@ public class ShopEntranceUIController : MonoBehaviour {
 	public void AppearAnimationDoneEvent(){
 		// Show the tutorial finger
 		tutorialFinger.SetActive(true);
+		StartManager.Instance.DecoEntranceUIController.ToggleClickable(true);
+		StartManager.Instance.DinerEntranceUIController.ToggleClickable(true);
 	}
 
 	public void ToggleClickable(bool isClickable){

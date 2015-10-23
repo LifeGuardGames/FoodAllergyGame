@@ -32,7 +32,8 @@ public class StartManager : Singleton<StartManager>{
 	}
 
 	void Awake(){
-//		startButton.SetActive(false);
+		DecoEntranceUIController.ToggleClickable(true);
+		DinerEntranceUIController.ToggleClickable(true);
 	}
 
 	void Start(){
@@ -59,6 +60,7 @@ public class StartManager : Singleton<StartManager>{
 			else{
 				// Show the deco entrance
 				bool isFirstTimeEntrance = DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance;
+				Debug.Log(" --- first time entrance check " + isFirstTimeEntrance);
 				decoEntranceUIController.Show(isFirstTimeEntrance);
 
 				unlockParent.SetActive(false); // TODO clean this up
@@ -76,7 +78,6 @@ public class StartManager : Singleton<StartManager>{
 
 		// Check if tier bar needs to be updated
 		if(DataManager.Instance.GameData.Cash.IsNeedToSyncTotalCash()) {
-			Debug.Log(" ---- TIER SYNCING BAR");
 			int oldTotalCash = DataManager.Instance.GameData.Cash.LastSeenTotalCash;
 			int newTotalCash = DataManager.Instance.GameData.Cash.TotalCash;
 			NotificationQueueDataTierProgress tierNotif = new NotificationQueueDataTierProgress(SceneUtils.START, oldTotalCash, newTotalCash);
@@ -89,7 +90,6 @@ public class StartManager : Singleton<StartManager>{
 			decoEntranceUIController.ToggleClickable(false);
 			dinerEntranceUIController.ToggleClickable(false);
 
-			Debug.Log(" ---- SPECIAL DECO");
 			NotificationQueueDataNewItem itemNotif = new NotificationQueueDataNewItem(SceneUtils.START, specialItemID[0]);
 			NotificationManager.Instance.AddNotification(itemNotif);
 			TierManager.Instance.RemoveSpecialID();
@@ -162,6 +162,7 @@ public class StartManager : Singleton<StartManager>{
 	}
 
 	public void DecoButtonClicked(){
+		Debug.Log(" --- Setting deco clicked to false");
 		DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance = false;
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.DECO);
 	}
