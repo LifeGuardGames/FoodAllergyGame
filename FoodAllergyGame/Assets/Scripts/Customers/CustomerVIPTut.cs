@@ -23,6 +23,9 @@ public class CustomerVIPTut : Customer {
 	public override void JumpToTable(int _tableNum) {
 		base.JumpToTable(_tableNum);
 		tutFingers.transform.GetChild(tutNumber).gameObject.SetActive(false);
+		for(int i = 0; i < 4; i++) {
+			RestaurantManager.Instance.GetTable(i).gameObject.GetComponent<BoxCollider>().enabled = true;
+		}
 	}
 
 	public override void OnClicked ()
