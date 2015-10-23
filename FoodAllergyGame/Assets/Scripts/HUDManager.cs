@@ -10,14 +10,15 @@ public class HUDManager : MonoBehaviour {
 	}
 
 	public void ShowHUD(){
-		ToggleHUDInScene(true);
+		StartCoroutine(ToggleHUDInScene(true));
 	}
 
 	public void HideHUD(){
-		ToggleHUDInScene(false);
+		StartCoroutine(ToggleHUDInScene(false));
 	}
 
-	private void ToggleHUDInScene(bool isShow){
+	private IEnumerator ToggleHUDInScene(bool isShow){
+		yield return 0;
 		// Show different panels based on what scene it is
 		switch(Application.loadedLevelName){
 		case SceneUtils.START:
