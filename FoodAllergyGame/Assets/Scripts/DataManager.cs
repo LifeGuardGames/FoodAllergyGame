@@ -133,8 +133,12 @@ public class DataManager : Singleton<DataManager> {
 
 	// This is called from both Restaurant and Deco scene, have this datamanager handle this
 	public ImmutableDataDecoItem GetActiveDecoData(DecoTypes deco){
-//		Debug.Log(GameData.Decoration.ActiveDeco[deco]);
-		return DataLoaderDecoItem.GetData(GameData.Decoration.ActiveDeco[deco]);
+		if(GameData.Decoration.ActiveDeco.ContainsKey(deco)) {
+			return DataLoaderDecoItem.GetData(GameData.Decoration.ActiveDeco[deco]);
+		}
+		else {
+			return null;
+		}
 	}
 
 	#endregion
