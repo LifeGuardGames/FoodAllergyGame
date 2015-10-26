@@ -154,12 +154,15 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				doorController.OpenAndCloseDoor();
 
 				ImmutableDataCustomer customerData;
-                if(DataManager.Instance.GameData.DayTracker.AvgDifficulty == 6.0f){
-                    customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty;
-                }
-                else{
-                    customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty * 0.27f;
-                }
+				if(DataManager.Instance.GameData.DayTracker.AvgDifficulty == 6.0f) {
+					customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty;
+				}
+				else if(IsTableAvilable()) {
+					customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty * 0.27f;
+				}
+				else {
+					customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty * 0.4f;
+				}
 				
 				if(customerSpawnTimer < 3){
 					customerSpawnTimer = 3;
@@ -168,7 +171,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				if(eventData.ID == "EventTPlayArea"){
 					customerData = DataLoaderCustomer.GetData(currCusSet[0]);
 					if(!DataManager.Instance.IsDebug){
-						DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
+					//	DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
+
 					}
 				}
 				else if (eventData.ID == "EventTVIP"){
@@ -321,18 +325,24 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	}
 
 	public void CustomerLineSelectHighlightOn(){
-		for(int i = 0; i < 4; i++){
-			GetTable(i).TurnOnHighlight();
-		}
+		for(int i = 0; i < 5; i++) {
+			if(GetTable(i)!= null) { 
+					GetTable(i).TurnOnHighlight();
+				}
+			}
+		
 		if(PlayArea.Instance != null){
 			PlayArea.Instance.HighLightSpots();
 		}
 	}
 
 	public void CustomerLineSelectHighlightOff(){
-		for(int i = 0; i < 4; i++){
-			GetTable(i).TurnOffHighlight();
+		for(int i = 0; i < 5; i++) {
+			if(GetTable(i) != null) {
+				GetTable(i).TurnOffHighlight();
+			}
 		}
+
 		if(PlayArea.Instance != null){
 			PlayArea.Instance.TurnOffHighLights();
 		}

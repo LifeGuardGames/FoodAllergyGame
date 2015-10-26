@@ -53,7 +53,7 @@
 	<Tier ID="Tier04">
 		<TierNumber>4</TierNumber>
 		<CashCutoffFloor>2500</CashCutoffFloor>
-		<MenuSlots>9</MenuSlots>
+		<MenuSlots>8</MenuSlots>
 		<EventsUnlocked>Event00,Event01,Event02,Event03</EventsUnlocked>
 		<FoodsUnlocked></FoodsUnlocked>
 		<DecorationsUnlocked></DecorationsUnlocked>
@@ -63,7 +63,7 @@
 	<Tier ID="Tier05">
 		<TierNumber>5</TierNumber>
 		<CashCutoffFloor>3000</CashCutoffFloor>
-		<MenuSlots>10</MenuSlots>
+		<MenuSlots>8</MenuSlots>
 		<EventsUnlocked>Event00,Event01,Event02,Event03</EventsUnlocked>
 		<FoodsUnlocked></FoodsUnlocked>
 		<DecorationsUnlocked></DecorationsUnlocked>

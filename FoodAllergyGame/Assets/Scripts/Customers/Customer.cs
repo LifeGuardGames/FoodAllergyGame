@@ -334,6 +334,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			if(DataManager.Instance.GetEvent() == "EventTFlyThru"){
 				DataManager.Instance.GameData.Tutorial.IsSpecialDecoTutDone = true;
 				DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
+				DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(DecoTypes.FlyThru);
+				DataManager.Instance.GameData.Decoration.ActiveDeco.Add(DecoTypes.FlyThru, "FlyThru00");
 				//DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
 			}
             if (order.GetComponent<Order>().allergy.Contains(allergy) && allergy != Allergies.None) {
@@ -400,6 +402,16 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		if(DataManager.Instance.GetEvent() == "EventTVIP") {
 			DataManager.Instance.GameData.Tutorial.IsSpecialDecoTutDone = true;
 			DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
+			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(DecoTypes.VIP);
+			DataManager.Instance.GameData.Decoration.ActiveDeco.Add(DecoTypes.VIP, "VIP00");
+			//DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
+		}
+
+		if(DataManager.Instance.GetEvent() == "EventTPlayArea") {
+			DataManager.Instance.GameData.Tutorial.IsSpecialDecoTutDone = true;
+			DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
+			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(DecoTypes.PlayArea);
+			DataManager.Instance.GameData.Decoration.ActiveDeco.Add(DecoTypes.PlayArea, "PlayArea00");
 			//DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
 		}
 
