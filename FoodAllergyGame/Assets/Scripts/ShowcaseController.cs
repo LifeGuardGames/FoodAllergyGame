@@ -8,7 +8,8 @@ public class ShowcaseController : MonoBehaviour {
 	public TweenToggle fadeTween;						// Only for fade
 	public TweenToggleDemux showcaseDemux;				// Only for title, description, and image
 	public TweenToggleDemux buttonParentBoughtDemux;	// Only for bought buttons
-	public TweenToggleDemux buttonParentUnboughtDemux;	// Only for unbought buttons
+	public TweenToggleDemux buttonParentUnboughtDemux;  // Only for unbought buttons
+	public TweenToggleDemux buttonParentActiveDemux;	// Only for active buttons
 
 	public Text titleText;
 	public Text descriptionText;
@@ -32,7 +33,6 @@ public class ShowcaseController : MonoBehaviour {
 		}
 		// Already showing something else, tween that out before tweening new ones
 		else{
-
 			currentDeco = decoData;
 			// Hide callback will handle the rest
 			showcaseDemux.Hide();
@@ -46,8 +46,6 @@ public class ShowcaseController : MonoBehaviour {
 	// Callback - An item is clicked, show the showcase UI plus its buttons
 	private void StartCurrentDeco(ImmutableDataDecoItem decoData){
 		fadeTween.Show();
-
-		decoImage.enabled = decoData.SpriteName == "None" ? false : true;
 		decoImage.sprite = SpriteCacheManager.GetDecoSpriteData(decoData.SpriteName);
 		titleText.text = LocalizationText.GetText(decoData.TitleKey);
 
@@ -60,34 +58,42 @@ public class ShowcaseController : MonoBehaviour {
 
 		// Show the corrosponding buttons based on item state
 		if(DecoManager.IsDecoBought(decoData.ID)){
-			if(DecoManager.IsDecoActive(decoData.ID)){
+			if(DecoManager.IsDecoActive(decoData.ID)){  // Bought/Active
 				buttonParentBoughtDemux.Hide();
 				buttonParentUnboughtDemux.Hide();
-			}
-			else{
+
+				// Core decorations can not be removed
+				if(DecoManager.IsDecoRemoveAllowed(decoData.Type)) {
+					buttonParentActiveDemux.Show();
+				}
+				else {
+					buttonParentActiveDemux.Hide();
+				}
+            }
+			else{   // Bought/Inactive
 				buttonParentBoughtDemux.Show();
 				buttonParentUnboughtDemux.Hide();
-			}
+				buttonParentActiveDemux.Hide();
+            }
 		}
-		else{
+		else{   // Inactive
 			buttonParentBoughtDemux.Hide();
 			buttonParentUnboughtDemux.Show();
-		}
+			buttonParentActiveDemux.Hide();
+        }
 		showcaseDemux.Show();
 	}
 
-//	public void OnTryButtonClicked(){
-//		buttonParentBoughtDemux.Hide();
-//		buttonParentUnboughtDemux.Hide();
-//		backButtonTween.Show();
-//	}
-
 	public void OnBuyButtonClicked(){
-		DecoManager.Instance.SetDeco(currentDeco.ID);
+		DecoManager.Instance.SetDeco(currentDeco.ID, currentDeco.Type);
 	}
 
 	public void OnEquipButtonClicked(){
-		DecoManager.Instance.SetDeco(currentDeco.ID);
+		DecoManager.Instance.SetDeco(currentDeco.ID, currentDeco.Type);
+	}
+
+	public void OnRemoveButtonClicked(){
+		DecoManager.Instance.SetDeco(null, currentDeco.Type);
 	}
 
 	// Hide everything but dont touch UI state
@@ -96,13 +102,18 @@ public class ShowcaseController : MonoBehaviour {
 		showcaseDemux.Hide();
 		buttonParentBoughtDemux.Hide();
 		buttonParentUnboughtDemux.Hide();
+		buttonParentActiveDemux.Hide();
 		fadeTween.Hide();
 	}
 
 	// Showing everything with same UI state
 	public void ExitViewMode(){
-		showcaseDemux.Show();
-		fadeTween.Show();
+		// Clear last current deco for fresh display
+		ImmutableDataDecoItem decoAux = currentDeco;
+		currentDeco = null;
+        ShowInfo(decoAux);
+
+        fadeTween.Show();
 		showcaseDemux.HideFunctionName = auxCallbackString;		// Enable hide callback
 	}
 }

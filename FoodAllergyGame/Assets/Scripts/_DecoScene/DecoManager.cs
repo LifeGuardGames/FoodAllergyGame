@@ -40,6 +40,7 @@ public class DecoManager : Singleton<DecoManager>{
 	private Transform currentTabTransform;
 	private Dictionary<string, Transform> tabGroupInactiveSearchTable;
 	public bool isTutroial;
+
 	#region Static functions
 	public static bool IsDecoBought(string decoID){
 		return DataManager.Instance.GameData.Decoration.BoughtDeco.ContainsKey(decoID);
@@ -122,50 +123,90 @@ public class DecoManager : Singleton<DecoManager>{
 		showcaseController.ShowInfo(decoData);
 	}
 
-//	public bool PreviewDeco(string decoID){
-		// TODO for down the road, Save an aux dummy instance and delete it when you exit preview mode.
-		// Dont touch datamanager though
-//	}
+	// Only certain items can be removed!
+	public void RemoveDeco(DecoTypes type) {
+		if(!IsDecoRemoveAllowed(type)) {
+			Debug.LogError("Illegal remove call on deco type");
+			return;
+		}
+
+		DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(type);
+
+		// Refresh deco buttons of the update
+		RefreshButtonState();
+
+		// Enter view mode
+		showcaseController.EnterViewMode();
+		selectionPanelTween.Hide();
+		exitButtonTween.Hide();
+
+		StartCoroutine(RefreshItem(type));
+		StartCoroutine(ExitViewMode());
+	}
 
 	// TODO Return false if you dont have enough money
-	public void SetDeco(string decoID){
-		if(IsDecoBought(decoID)){
-			//if(isTutroial && decoID == "PlayArea00"){
-			if(isTutroial && decoID == "VIP00"){
-				tutObj3.SetActive(false);
-				StartCoroutine(WaitASec());
-			}
-			// Cache local data
-			ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
-			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(decoData.Type);
-			DataManager.Instance.GameData.Decoration.ActiveDeco.Add(decoData.Type, decoID);
-
-			// Refresh deco buttons of the update
-			RefreshButtonState();
-
-			// Enter view mode
-			showcaseController.EnterViewMode();
-			selectionPanelTween.Hide();
-			exitButtonTween.Hide();
-
-			StartCoroutine(RefreshItem(decoData.Type));
-			StartCoroutine(ExitViewMode());
-		}
-		else{
-			if(BuyItem(decoID)){
-				ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
-				switch(decoData.Type){
-				case DecoTypes.PlayArea:
-					DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTPlayArea");
-					DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
-					break;
-				default:
-					break;
+	// Return decoID to null if you want to remove
+	public void SetDeco(string decoID, DecoTypes decoType){
+		if(IsDecoInitSanityCheck(decoID, decoType)){	// Sanity check
+			if(decoID == null || IsDecoBought(decoID)) {
+				//if(isTutroial && decoID == "PlayArea00"){
+				if(isTutroial && decoID == "VIP00") {
+					tutObj3.SetActive(false);
+					StartCoroutine(WaitASec());
 				}
 
-				DataManager.Instance.SaveGameData();
+				DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(decoType);
+
+				if(decoID != null) {
+					DataManager.Instance.GameData.Decoration.ActiveDeco.Add(decoType, decoID);
+				}
+
+				// Refresh deco buttons of the update
+				RefreshButtonState();
+
+				// Enter view mode
+				showcaseController.EnterViewMode();
+				selectionPanelTween.Hide();
+				exitButtonTween.Hide();
+
+				StartCoroutine(RefreshItem(decoType));
+				StartCoroutine(ExitViewMode());
+			}
+			else {
+				if(BuyItem(decoID)) {
+					ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
+					switch(decoData.Type) {
+						case DecoTypes.PlayArea:
+							DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTPlayArea");
+							DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
+							break;
+						default:
+							break;
+					}
+					DataManager.Instance.SaveGameData();
+				}
 			}
 		}
+	}
+
+	// Sanity check for parameters
+	private bool IsDecoInitSanityCheck(string decoID, DecoTypes decoType) {
+		if(decoID == null) {	// Attempting to remove decoration
+			if(decoType == DecoTypes.None) {	// Check for illegal types
+				Debug.LogError("Illegal type");
+				return false;
+			}
+			if(!IsDecoRemoveAllowed(decoType)) {
+				Debug.LogError("Decoration removal not permitted");
+			}
+		}
+		else {
+			if(DataLoaderDecoItem.GetData(decoID).Type != decoType) {
+				Debug.LogError("Deco mismatch with type:" + decoID + " " + decoType.ToString());
+				return false;
+			}
+		}
+		return true;
 	}
 
 	private IEnumerator ExitViewMode(){
@@ -183,14 +224,15 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	private bool BuyItem(string decoID){
-		if(DataLoaderDecoItem.GetData(decoID).Cost < DataManager.Instance.GameData.Cash.CurrentCash){
-			DataManager.Instance.GameData.Cash.CurrentCash -= DataLoaderDecoItem.GetData(decoID).Cost;
-			HUDAnimator.Instance.CoinsEarned(-DataLoaderDecoItem.GetData(decoID).Cost, GameObject.Find ("ButtonBuy").transform.position);
+		ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
+        if(decoData.Cost < DataManager.Instance.GameData.Cash.CurrentCash){
+			DataManager.Instance.GameData.Cash.CurrentCash -= decoData.Cost;
+			HUDAnimator.Instance.CoinsEarned(-decoData.Cost, GameObject.Find("ButtonBuy").transform.position);
 			Analytics.CustomEvent("Item Bought", new Dictionary<string, object>{
 				{"Item: ", decoID}
 			});
 			DataManager.Instance.GameData.Decoration.BoughtDeco.Add(decoID, "");
-			SetDeco(decoID);
+			SetDeco(decoID, decoData.Type);
 			return true;
 		}
 		else{
@@ -277,8 +319,26 @@ public class DecoManager : Singleton<DecoManager>{
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
 	}
 
-	IEnumerator WaitASec(){
+	private IEnumerator WaitASec(){
 		yield return new WaitForSeconds(3.0f);
 		tutObj4.SetActive(true);
+	}
+
+	public static bool IsDecoRemoveAllowed(DecoTypes decoType) {
+		switch(decoType) {
+			case DecoTypes.Table:
+			case DecoTypes.Kitchen:
+			case DecoTypes.Floor:
+				return false;
+			case DecoTypes.FlyThru:
+			case DecoTypes.Microwave:
+			case DecoTypes.PlayArea:
+			case DecoTypes.VIP:
+			case DecoTypes.Bathroom:
+				return true;
+			default:
+				Debug.LogWarning("Illegal deco type");
+				return false;
+		}
 	}
 }
