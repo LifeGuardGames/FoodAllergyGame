@@ -58,6 +58,9 @@ public class MenuManager : Singleton<MenuManager>{
 		
 		PopulateStockGrid();
 		InitSanityCheck();
+		
+		// Show tut finger if it is not done
+		tutFinger.SetActive(!DataManager.Instance.GameData.Tutorial.IsMenuPlanningFingerTutDone);
 	}
 
 	// Check certain values to see if they are consistent
@@ -157,7 +160,12 @@ public class MenuManager : Singleton<MenuManager>{
 	#endregion
 	
 	public bool AddFoodToMenuList(string foodID){
-		tutFinger.SetActive(false);
+		// Tick finger tutorial finished
+		if(!DataManager.Instance.GameData.Tutorial.IsMenuPlanningFingerTutDone) {
+			tutFinger.SetActive(false);
+			DataManager.Instance.GameData.Tutorial.IsMenuPlanningFingerTutDone = true;
+        }
+
 		if (selectedMenuStringList.Contains(foodID)) {
 			Debug.LogWarning("Menu already contains food");
 			return false;
