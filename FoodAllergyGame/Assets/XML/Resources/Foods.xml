@@ -21,8 +21,8 @@
     <Slot>1</Slot>
 	</Food>
 	<Food ID="Food02">
-		<FoodNameKey>FoodPeanutSalad</FoodNameKey>
-		<SpriteName>FoodPeanutSalad</SpriteName>
+		<FoodNameKey>FoodPeanutCandy</FoodNameKey>
+		<SpriteName>FoodPeanutCandy</SpriteName>
 		<Allergies>Peanut</Allergies>
 		<Keywords>Meal,Dessert</Keywords>
 		<Tier>0</Tier>
@@ -51,8 +51,8 @@
     <Slot>1</Slot>
 	</Food>
 	<Food ID="Food05">
-		<FoodNameKey>FoodPeanutButterApple</FoodNameKey>
-		<SpriteName>FoodPeanutButterApple</SpriteName>
+		<FoodNameKey>FoodPeanuts</FoodNameKey>
+		<SpriteName>FoodPeanuts</SpriteName>
 		<Allergies>Peanut</Allergies>
 		<Keywords>Meal,Drink</Keywords>
 		<Tier>0</Tier>
@@ -71,8 +71,8 @@
     <Slot>1</Slot>
 	</Food>
 	<Food ID="Food07">
-		<FoodNameKey>FoodRoastedPeanuts</FoodNameKey>
-		<SpriteName>FoodRoastedPeanuts</SpriteName>
+		<FoodNameKey>FoodTrailMix</FoodNameKey>
+		<SpriteName>FoodTrailMix</SpriteName>
 		<Allergies>Peanut</Allergies>
 		<Keywords>Meal,Drink</Keywords>
 		<Tier>0</Tier>
