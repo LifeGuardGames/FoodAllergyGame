@@ -103,40 +103,24 @@
 		<Tier>0</Tier>
 	</DecoItem>
 	
-	
-	<DecoItem ID = "VIP00">
-		<Type>VIP</Type>
-		<Price>0</Price>
-		<TitleKey>None</TitleKey>
-		<DescriptionKey>NoneDesc</DescriptionKey>
-		<SpriteName>None</SpriteName>
-		<Tier>0</Tier>
-	</DecoItem>
   
-  <DecoItem ID = "VIP01">
+  <DecoItem ID = "VIP00">
 		<Type>VIP</Type>
 		<Price>0</Price>
 		<TitleKey>VIPBasicEmpty</TitleKey>
 		<DescriptionKey>VIPBasicEmptyDesc</DescriptionKey>
 		<SpriteName>RestVIPBasicEmpty</SpriteName>
-		<Tier>0</Tier>
+		<Tier>1</Tier>
 	</DecoItem>
 
+	
 	<DecoItem ID = "PlayArea00">
-		<Type>PlayArea</Type>
-		<Price>0</Price>
-		<TitleKey>None</TitleKey>
-		<DescriptionKey>NoneDesc</DescriptionKey>
-		<SpriteName>None</SpriteName>
-		<Tier>0</Tier>
-	</DecoItem>
-	<DecoItem ID = "PlayArea01">
 		<Type>PlayArea</Type>
 		<Price>1</Price>
 		<TitleKey>PlayArea01</TitleKey>
 		<DescriptionKey>PlayArea01Desc</DescriptionKey>
 		<SpriteName>RestPlayArea01</SpriteName>
-		<Tier>0</Tier>
+		<Tier>2</Tier>
 	</DecoItem>
 	
 	
@@ -146,26 +130,16 @@
 		<TitleKey>None</TitleKey>
 		<DescriptionKey>NoneDesc</DescriptionKey>
 		<SpriteName>None</SpriteName>
-		<Tier>0</Tier>
+		<Tier>10</Tier>
 	</DecoItem>
 
-	
-	
 	<DecoItem ID = "FlyThru00">
-		<Type>FlyThru</Type>
-		<Price>0</Price>
-		<TitleKey>None</TitleKey>
-		<DescriptionKey>NoneDesc</DescriptionKey>
-		<SpriteName>None</SpriteName>
-		<Tier>0</Tier>
-	</DecoItem>
-	<DecoItem ID = "FlyThru01">
 		<Type>FlyThru</Type>
 		<Price>100</Price>
 		<TitleKey>FlyThruBasicRed</TitleKey>
 		<DescriptionKey>FlyThruBasicRedDesc</DescriptionKey>
 		<SpriteName>RestFlyThruBasicRed</SpriteName>
-		<Tier>0</Tier>
+		<Tier>3</Tier>
 	</DecoItem>
 
 </DecoItem>

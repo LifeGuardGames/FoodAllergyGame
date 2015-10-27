@@ -36,7 +36,7 @@
 		<MenuSlots>7</MenuSlots>
 		<EventsUnlocked>Event00,Event01,Event02,Event03</EventsUnlocked>
 		<FoodsUnlocked></FoodsUnlocked>
-		<DecorationsUnlocked>Table02,PlayArea02,Kitchen02</DecorationsUnlocked>
+		<DecorationsUnlocked>Table02,Kitchen02</DecorationsUnlocked>
 		<StartArtAssets></StartArtAssets>
     <IsLastTier>False</IsLastTier>
 	</Tier>
@@ -46,7 +46,7 @@
 		<MenuSlots>8</MenuSlots>
 		<EventsUnlocked>Event00,Event01,Event02,Event03</EventsUnlocked>
 		<FoodsUnlocked></FoodsUnlocked>
-		<DecorationsUnlocked>Floor02,Kitchen03,FlyThru01</DecorationsUnlocked>
+		<DecorationsUnlocked>Floor02,Kitchen03</DecorationsUnlocked>
 		<StartArtAssets></StartArtAssets>
     <IsLastTier>False</IsLastTier>
 	</Tier>

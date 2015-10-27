@@ -403,15 +403,15 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			DataManager.Instance.GameData.Tutorial.IsSpecialDecoTutDone = true;
 			DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
 			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(DecoTypes.VIP);
-			DataManager.Instance.GameData.Decoration.ActiveDeco.Add(DecoTypes.VIP, "VIP00");
 			//DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
 		}
 
 		if(DataManager.Instance.GetEvent() == "EventTPlayArea") {
 			DataManager.Instance.GameData.Tutorial.IsSpecialDecoTutDone = true;
-			DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
+			if(DataManager.Instance.GameData.Decoration.DecoTutQueue.Count > 0) {
+				DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
+			}
 			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(DecoTypes.PlayArea);
-			DataManager.Instance.GameData.Decoration.ActiveDeco.Add(DecoTypes.PlayArea, "PlayArea00");
 			//DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
 		}
 
@@ -488,6 +488,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// if they are saved they take a small penalty for making the mistake and the customer will want the check asap
 	public virtual void Saved(){
+		AudioManager.Instance.PlayClip("customerSaved");
 		RestaurantManager.Instance.savedCustomers++;
 		customerAnim.SetSavedAllergyAttack();
 		Medic.Instance.BillRestaurant(-40);

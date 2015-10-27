@@ -39,7 +39,7 @@ public class DecoManager : Singleton<DecoManager>{
 	public Sprite tabInactiveSprite;
 	private Transform currentTabTransform;
 	private Dictionary<string, Transform> tabGroupInactiveSearchTable;
-	public bool isTutroial;
+	public bool isTutorial;
 
 	#region Static functions
 	public static bool IsDecoBought(string decoID){
@@ -68,7 +68,7 @@ public class DecoManager : Singleton<DecoManager>{
 
 	void Start(){
 		if (!DataManager.Instance.GameData.Tutorial.IsDecoTutDone){
-			isTutroial = true;
+			isTutorial = true;
 			tutObj1.SetActive(true);
 		}
 		// Start with table tab
@@ -103,19 +103,14 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	public void ShowCaseDeco(string decoID){
-		if(decoID == "PlayArea00" || decoID == "VIP00" || decoID == "FlyThru00"){ 
-			GameObject.Find("ButtonUse").GetComponentInChildren<Text>().text = "Remove";
-		}
-		else{
-			GameObject.Find("ButtonUse").GetComponentInChildren<Text>().text = "Use";
-		}
+		
 		//if(isTutroial && decoID == "PlayArea00" && tutObj4.activeSelf != true){
-		if(isTutroial && decoID == "VIP00" && tutObj4.activeSelf != true){
+		if(isTutorial && decoID == "VIP00" && tutObj4.activeSelf != true){
 			tutObj2.SetActive(false);
 			tutObj3.SetActive(true);
 		}
 		//else if(isTutroial && tutObj3.activeSelf == true && decoID != "PlayArea00" && tutObj4.activeSelf != true){
-		else if(isTutroial && tutObj3.activeSelf == true && decoID != "VIP00" && tutObj4.activeSelf != true){
+		else if(isTutorial && tutObj3.activeSelf == true && decoID != "VIP00" && tutObj4.activeSelf != true){
 			tutObj2.SetActive(true);
 			tutObj3.SetActive(false);
 		}
@@ -150,7 +145,7 @@ public class DecoManager : Singleton<DecoManager>{
 		if(IsDecoInitSanityCheck(decoID, decoType)){	// Sanity check
 			if(decoID == null || IsDecoBought(decoID)) {
 				//if(isTutroial && decoID == "PlayArea00"){
-				if(isTutroial && decoID == "VIP00") {
+				if(isTutorial && decoID == "VIP00") {
 					tutObj3.SetActive(false);
 					StartCoroutine(WaitASec());
 				}
@@ -243,12 +238,12 @@ public class DecoManager : Singleton<DecoManager>{
 	public void ChangeTab(string tabName){
 		currentDecoPage = 0;
 		//if(isTutroial && tabName == "PlayArea" && tutObj1.activeSelf == true){
-		if(isTutroial && tabName == "VIP" && tutObj1.activeSelf == true){
+		if(isTutorial && tabName == "VIP" && tutObj1.activeSelf == true){
 			tutObj1.SetActive(false);
 			tutObj2.SetActive(true);
 		}
 		//else if (isTutroial && tabName != "PlayArea" && tutObj4.activeSelf != true){
-		else if (isTutroial && tabName != "VIP" && tutObj4.activeSelf != true){
+		else if (isTutorial && tabName != "VIP" && tutObj4.activeSelf != true){
 			tutObj1.SetActive(true);
 			tutObj2.SetActive(false);
 			tutObj3.SetActive(false);
@@ -313,7 +308,7 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	public void OnExitButtonClicked(){
-		if(isTutroial && tutObj4.activeSelf == true){
+		if(isTutorial && tutObj4.activeSelf == true){
 			DataManager.Instance.GameData.Tutorial.IsDecoTutDone = true;
 		}
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);

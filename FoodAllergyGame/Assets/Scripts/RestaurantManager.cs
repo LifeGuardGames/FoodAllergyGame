@@ -252,6 +252,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 					else if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT3"){
 						DataManager.Instance.GameData.Tutorial.IsTutorial3Done = true;
 						Analytics.CustomEvent("Menu Tutorial Day Complete", new Dictionary<string, object>{});
+						DataManager.Instance.GameData.Cash.TotalCash = 850;
 					}
 					Analytics.CustomEvent("End Of day Report", new Dictionary<string, object> {
 						{"Tier", TierManager.Instance.Tier},
