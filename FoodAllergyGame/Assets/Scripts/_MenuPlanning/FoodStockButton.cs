@@ -124,7 +124,6 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 			transform.SetParent(startParent);
 			transform.localPosition = startPosition;
 			if(startParent.gameObject.GetComponent<MenuDragSlot>().isSelectedSlot){
-				Debug.Log(MenuManager.Instance.availableSlots);
 				MenuManager.Instance.AddFoodToMenuList(foodID);
 				foodButtonAnimator.SetTrigger("PutDownSelected");
 			}
