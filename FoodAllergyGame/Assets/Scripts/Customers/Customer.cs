@@ -599,7 +599,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		return false;
 	}
 
-	public void Deselect(){
+	public virtual void Deselect(){
 		RestaurantManager.Instance.CustomerLineSelectHighlightOff();
 		gameObject.transform.localScale = new Vector3(1.0f,1.0f,1.0f);
 		Waiter.Instance.CurrentLineCustomer = null;

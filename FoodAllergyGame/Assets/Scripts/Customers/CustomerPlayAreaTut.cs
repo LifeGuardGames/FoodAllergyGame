@@ -41,6 +41,7 @@ public class CustomerPlayAreaTut : Customer {
 		base.GoToPlayArea (playAreaSpot, spotIndex, deltaSatisfaction);
 		tutFingers.transform.GetChild(7).gameObject.SetActive(false);
 		//usedPlayArea = true;
+		transform.GetChild(2).gameObject.SetActive(false);
 		StartCoroutine("ShowFinger");
 	}
 
@@ -48,5 +49,12 @@ public class CustomerPlayAreaTut : Customer {
 		yield return new WaitForSeconds(10.0f);
 		transform.GetChild(2).gameObject.SetActive(true);
 		StopCoroutine("SatisfactionTimer");
+	}
+
+	public override void Deselect() {
+		base.Deselect();
+		tutFingers.transform.GetChild(7).gameObject.SetActive(false);
+		transform.GetChild(2).gameObject.SetActive(true);
+
 	}
 }
