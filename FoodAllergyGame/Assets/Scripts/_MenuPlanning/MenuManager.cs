@@ -9,10 +9,14 @@ public class MenuManager : Singleton<MenuManager>{
 	private int menuSize;
 	public GameObject foodStockButtonPrefab;
 
+	public Transform selectedGrid;
+	public Transform SelectedGrid { get { return selectedGrid; } }
+
 	public EventPopupController eventPopController;
-	public SelectedMenuController selectedMenuController;
+	public SlotBarController slotBarController;
+
 	public TweenToggle trashTweenToggle;
-	public MenuDragSlotTrash trashSlot;
+	public MenuDragTrashSlot trashSlot;
 
 	public List<Transform> currentFoodStockSlotList;			// Slots of the menu food stock
 	private List<ImmutableDataFood> foodStockList = new List<ImmutableDataFood>();	// All the foods that are allowed for today
@@ -34,9 +38,6 @@ public class MenuManager : Singleton<MenuManager>{
 	public RectTransform tweenAux;
 	
 	public GameObject tutFinger;
-	public int availableSlots;
-	public Text totalSlotsText;
-	public Text availableSlotsText;
 
 	public TweenToggle doneButtonTween;
 
@@ -51,10 +52,7 @@ public class MenuManager : Singleton<MenuManager>{
 
 		// Load the number of slots from progress
 		menuSize = TierManager.Instance.GetMenuSlots();
-		totalSlotsText.text = menuSize.ToString();
-		selectedMenuController.Init(menuSize);
-		availableSlots = menuSize;
-		availableSlotsText.text = availableSlots.ToString();
+		slotBarController.Init(menuSize);
 		
 		PopulateStockGrid();
 		InitSanityCheck();
@@ -160,52 +158,47 @@ public class MenuManager : Singleton<MenuManager>{
 	#endregion
 	
 	public bool AddFoodToMenuList(string foodID){
+		ImmutableDataFood foodData = DataLoaderFood.GetData(foodID);
+
 		// Tick finger tutorial finished
 		if(!DataManager.Instance.GameData.Tutorial.IsMenuPlanningFingerTutDone) {
 			tutFinger.SetActive(false);
 			DataManager.Instance.GameData.Tutorial.IsMenuPlanningFingerTutDone = true;
         }
-
-		if (selectedMenuStringList.Contains(foodID)) {
+		if(selectedMenuStringList.Contains(foodID)) {
 			Debug.LogWarning("Menu already contains food");
 			return false;
 		}
-		else if (selectedMenuStringList.Count > menuSize) {
-			Debug.LogWarning("Menu list already at capacity");
-			return false;
-		}
-
-		else if (availableSlots < DataLoaderFood.GetData(foodID).Slots) {
-			Debug.LogWarning("Slots Full");
-			return false;
-		}
-
-		else if (DataManager.Instance.GameData.Cash.CurrentCash < DataLoaderFood.GetData(foodID).Cost) {
+		else if(DataManager.Instance.GameData.Cash.CurrentCash < foodData.Cost) {
 			Debug.LogWarning("Not enough cash");
 			return false;
 		}
-
-		else {
+		else if(slotBarController.ActivateSlots(foodData.Slots)) {
 			// Add ID to aux string list
 			selectedMenuStringList.Add(foodID);
-			availableSlots -= DataLoaderFood.GetData(foodID).Slots;
-			availableSlotsText.text = availableSlots.ToString();
-			if (availableSlots == 0) {
+
+			// Check full case
+			if(slotBarController.IsSlotsFull()) {
 				doneButtonTween.Show();
 			}
 			return true;
 		}
+		return false;
 	}
 
 	public bool RemoveFoodFromMenuList(string foodID){
-		// Soft remove - no error if doesnt find key
-		bool isRemoved = selectedMenuStringList.Remove(foodID);
+		ImmutableDataFood foodData = DataLoaderFood.GetData(foodID);
 
-		if(isRemoved){
-			availableSlots += DataLoaderFood.GetData(foodID).Slots;
+		if(selectedMenuStringList.Contains(foodID)) {
+			selectedMenuStringList.Remove(foodID);
+			slotBarController.DeactivateSlots(foodData.Slots);
 			doneButtonTween.Hide();
+			return true;
 		}
-		return isRemoved;
+		else {
+			Debug.LogError("Removing a food that doesnt exist");
+			return false;
+		}
 	}
 
 	public void ShowTrashCan(){

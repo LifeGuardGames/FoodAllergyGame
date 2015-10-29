@@ -10,6 +10,11 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	public string foodID;
 	public Image image;
 	public Text label;
+
+	public Sprite slot1Sprite;
+	public Sprite slot2Sprite;
+	public Sprite slot3Sprite;
+
 	public Image allergy1;
 	public Image allergy2;
 	public Image allergy3;
@@ -22,6 +27,7 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	public RectTransform allergyNode2;
 	public RectTransform allergyNode3;
 	public RectTransform slotNode;
+	public Image slotImage;
 
 	public Animator foodButtonAnimator;
 
@@ -37,11 +43,8 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	}
 
 	void Awake() {
-		allergyNode1.localScale = new Vector3(0, 0, 1);
-		allergyNode2.localScale = new Vector3(0, 0, 1);
-		allergyNode3.localScale = new Vector3(0, 0, 1);
 		slotNode.localScale = new Vector3(0, 0, 1);
-    }
+	}
 	
 	public void Init(ImmutableDataFood foodData){
 		foodID = foodData.ID;
@@ -49,28 +52,64 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 		label.text = LocalizationText.GetText(foodData.FoodNameKey);
 		image.sprite = SpriteCacheManager.GetFoodSpriteData(foodData.SpriteName);
 
+		switch(foodData.Slots) {
+			case 1:
+				slotImage.sprite = slot1Sprite;
+                break;
+			case 2:
+				slotImage.sprite = slot2Sprite;
+				break;
+			case 3:
+				slotImage.sprite = slot3Sprite;
+				break;
+			default:
+				Debug.LogError("Bad slot number " + foodData.Slots);
+				break;
+		}
+
 		// Set allergy sprite indicators
 		// NOTE: None counts as an allergy
-		allergy1.enabled = false;
-		allergy2.enabled = false;
-		allergy3.enabled = false;
-		if(foodData.AllergyList.Count > 0){		// Cascading addition
-			Sprite allergySprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[0]);
+		if(foodData.AllergyList.Count == 1){
 			allergy1.enabled = true;
-			allergy1.sprite = allergySprite;
-			allergyNodeImage1.sprite = allergySprite;
+			allergy2.enabled = false;
+			allergy3.enabled = false;
+
+			allergy1.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[0]);
+			allergyNodeImage1.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[0]);
+			Destroy(allergyNode2.GetComponent<Image>());        // Destroy everything but not object itself
+			foreach(Transform child in allergyNode2) {
+				Destroy(child.gameObject);
+			}
+			Destroy(allergyNode3.GetComponent<Image>());        // Destroy everything but not object itself
+			foreach(Transform child in allergyNode3) {
+				Destroy(child.gameObject);
+			}
 		}
-		if(foodData.AllergyList.Count > 1){
-			Sprite allergySprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[1]);
+		if(foodData.AllergyList.Count == 2){
+			allergy1.enabled = true;
 			allergy2.enabled = true;
-			allergy2.sprite = allergySprite;
-			allergyNodeImage2.sprite = allergySprite;
+			allergy3.enabled = false;
+
+			allergy1.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[0]);
+			allergyNodeImage1.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[0]);
+			allergy2.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[1]);
+			allergyNodeImage2.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[1]);
+			Destroy(allergyNode3.GetComponent<Image>());        // Destroy everything but not object itself
+			foreach(Transform child in allergyNode3) {
+				Destroy(child.gameObject);
+			}
 		}
-		if(foodData.AllergyList.Count > 2){
-			Sprite allergySprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[2]);
+		if(foodData.AllergyList.Count == 3){
+			allergy1.enabled = true;
+			allergy2.enabled = true;
 			allergy3.enabled = true;
-			allergy1.sprite = allergySprite;
-			allergyNodeImage3.sprite = allergySprite;
+
+			allergy1.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[0]);
+			allergyNodeImage1.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[0]);
+			allergy2.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[1]);
+			allergyNodeImage2.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[1]);
+			allergy3.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[2]);
+			allergyNodeImage3.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[2]);
 		}
 	}
 
@@ -81,37 +120,29 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	
 	#region IBeginDragHandler implementation
 	public void OnBeginDrag(PointerEventData eventData){
-		//		if(canDrag){
-		//			canDrag = false;
 		foodButtonAnimator.SetTrigger("PickedUp");
-			itemBeingDragged = gameObject;
-			startPosition = transform.localPosition;
-			startParent = transform.parent;
-			GetComponent<CanvasGroup>().blocksRaycasts = false;
+		itemBeingDragged = gameObject;
+		startPosition = transform.localPosition;
+		startParent = transform.parent;
+		GetComponent<CanvasGroup>().blocksRaycasts = false;
 
-		// Remove the food from its attachment
-		MenuManager.Instance.RemoveFoodFromMenuList(foodID);
+		itemBeingDragged.transform.SetParent(dragAux);
 
+		if(!inFoodStockSlot){
 			// Show trash can if dragging from selected slot
-			if(!inFoodStockSlot){
-				MenuManager.Instance.ShowTrashCan();
-			}
-//		}
+			MenuManager.Instance.ShowTrashCan();
+			MenuManager.Instance.RemoveFoodFromMenuList(foodID);
+		}
 	}
 	#endregion
 	
 	#region IDragHandler implementation
 	public void OnDrag(PointerEventData eventData){
-		// This is a frame check, clever workaround
-//		if(itemBeingDragged != null){
-			itemBeingDragged.transform.SetParent(dragAux);
-
-			#if UNITY_EDITOR
-			itemBeingDragged.transform.position = Input.mousePosition;
-			#else
-			itemBeingDragged.transform.position = Input.GetTouch(0).position;
-			#endif
-//		}
+		#if UNITY_EDITOR
+		itemBeingDragged.transform.position = Input.mousePosition;
+		#else
+		itemBeingDragged.transform.position = Input.GetTouch(0).position;
+		#endif
 	}
 	#endregion
 	
@@ -123,7 +154,7 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 		if (transform.parent == dragAux) {
 			transform.SetParent(startParent);
 			transform.localPosition = startPosition;
-			if(startParent.gameObject.GetComponent<MenuDragSlot>().isSelectedSlot){
+			if(startParent.name == "SelectedGrid") {
 				MenuManager.Instance.AddFoodToMenuList(foodID);
 				foodButtonAnimator.SetTrigger("PutDownSelected");
 			}
@@ -137,8 +168,7 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 		else{	// Save new parent
 			startParent = transform.parent;
 			startPosition = transform.localPosition;
-
-			if(startParent.gameObject.GetComponent<MenuDragSlot>().isSelectedSlot) {
+			if(startParent.name == "SelectedGrid") {
 				foodButtonAnimator.SetTrigger("PutDownSelected");
 			}
 			else {
