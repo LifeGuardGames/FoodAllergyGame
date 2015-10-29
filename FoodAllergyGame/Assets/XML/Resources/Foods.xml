@@ -100,5 +100,55 @@
 		<Reward>2</Reward>
     <Slot>1</Slot>
 	</Food>
+  <Food ID="Food10">
+    <FoodNameKey>FoodPBJ</FoodNameKey>
+    <SpriteName>FoodMilk</SpriteName>
+    <Allergies>Wheat, Peanut</Allergies>
+    <Keywords>Drink,Dessert</Keywords>
+    <Tier>0</Tier>
+    <Price>6</Price>
+    <Reward>2</Reward>
+    <Slot>1</Slot>
+  </Food>
+  <Food ID="Food11">
+    <FoodNameKey>FoodPBCrackers</FoodNameKey>
+    <SpriteName>FoodMilk</SpriteName>
+    <Allergies>Wheat, Peanut</Allergies>
+    <Keywords>Drink,Dessert</Keywords>
+    <Tier>0</Tier>
+    <Price>6</Price>
+    <Reward>2</Reward>
+    <Slot>1</Slot>
+  </Food>
+  <Food ID="Food12">
+    <FoodNameKey>FoodPBPretzsels</FoodNameKey>
+    <SpriteName>FoodMilk</SpriteName>
+    <Allergies>Wheat, Peanut</Allergies>
+    <Keywords>Drink,Dessert</Keywords>
+    <Tier>0</Tier>
+    <Price>6</Price>
+    <Reward>2</Reward>
+    <Slot>1</Slot>
+  </Food>
+  <Food ID="Food13">
+    <FoodNameKey>FoodPBMM</FoodNameKey>
+    <SpriteName>FoodMilk</SpriteName>
+    <Allergies>Dairy, Peanut</Allergies>
+    <Keywords>Drink,Dessert</Keywords>
+    <Tier>0</Tier>
+    <Price>6</Price>
+    <Reward>2</Reward>
+    <Slot>1</Slot>
+  </Food>
+  <Food ID="Food14">
+    <FoodNameKey>FoodPBCrackers</FoodNameKey>
+    <SpriteName>FoodMilk</SpriteName>
+    <Allergies>Wheat, Peanut</Allergies>
+    <Keywords>Drink,Dessert</Keywords>
+    <Tier>0</Tier>
+    <Price>6</Price>
+    <Reward>2</Reward>
+    <Slot>1</Slot>
+  </Food>
 </Foods>
 
