@@ -326,10 +326,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	}
 
 	public void CustomerLineSelectHighlightOn(){
-		for(int i = 0; i < 5; i++){
-			if(GetTable(i)!= null){
-					GetTable(i).TurnOnHighlight();
-				}
+		foreach(GameObject table in tableList) {
+			table.GetComponent<Table>().TurnOnHighlight();
 			}
 		
 		if(PlayArea.Instance != null){
@@ -338,10 +336,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	}
 
 	public void CustomerLineSelectHighlightOff(){
-		for(int i = 0; i < 5; i++) {
-			if(GetTable(i) != null) {
-				GetTable(i).TurnOffHighlight();
-			}
+		foreach(GameObject table in tableList) {
+			table.GetComponent<Table>().TurnOnHighlight();
 		}
 
 		if(PlayArea.Instance != null){

@@ -120,7 +120,7 @@
 		<TitleKey>PlayArea01</TitleKey>
 		<DescriptionKey>PlayArea01Desc</DescriptionKey>
 		<SpriteName>RestPlayArea01</SpriteName>
-		<Tier>2</Tier>
+		<Tier>10</Tier>
 	</DecoItem>
 	
 	
@@ -139,7 +139,7 @@
 		<TitleKey>FlyThruBasicRed</TitleKey>
 		<DescriptionKey>FlyThruBasicRedDesc</DescriptionKey>
 		<SpriteName>RestFlyThruBasicRed</SpriteName>
-		<Tier>3</Tier>
+		<Tier>10</Tier>
 	</DecoItem>
 
 </DecoItem>
