@@ -92,21 +92,25 @@ public class SlotBarController : MonoBehaviour {
 		return false;
 	}
 
-	void OnGUI() {
-		if(GUI.Button(new Rect(300, 100, 100, 100), "Reset")) {
-			Init(12);
-		}
-		if(GUI.Button(new Rect(400, 100, 100, 100), "+2")) {
-			ActivateSlots(2);
-		}
-		if(GUI.Button(new Rect(500, 100, 100, 100), "+1")) {
-			ActivateSlots(1);
-		}
-		if(GUI.Button(new Rect(600, 100, 100, 100), "-2")) {
-			DeactivateSlots(2);
-		}
-		if(GUI.Button(new Rect(700, 100, 100, 100), "-1")) {
-			DeactivateSlots(1);
-		}
+	public bool IsSlotsFull() {
+		return (!slotListBoolAux.Contains(false)) ? true : false;
 	}
+
+	//void OnGUI() {
+	//	if(GUI.Button(new Rect(300, 100, 100, 100), "Reset")) {
+	//		Init(12);
+	//	}
+	//	if(GUI.Button(new Rect(400, 100, 100, 100), "+2")) {
+	//		ActivateSlots(2);
+	//	}
+	//	if(GUI.Button(new Rect(500, 100, 100, 100), "+1")) {
+	//		ActivateSlots(1);
+	//	}
+	//	if(GUI.Button(new Rect(600, 100, 100, 100), "-2")) {
+	//		DeactivateSlots(2);
+	//	}
+	//	if(GUI.Button(new Rect(700, 100, 100, 100), "-1")) {
+	//		DeactivateSlots(1);
+	//	}
+	//}
 }

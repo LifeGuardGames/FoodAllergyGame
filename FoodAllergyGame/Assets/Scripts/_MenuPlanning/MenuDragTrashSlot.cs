@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems; 
 using System.Collections;
 
-public class MenuDragSlotTrash : MonoBehaviour, IDropHandler {
+public class MenuDragTrashSlot : MonoBehaviour, IDropHandler {
 
 	#region IDropHandler implementation
 	public void OnDrop(PointerEventData eventData){
