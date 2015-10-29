@@ -30,7 +30,7 @@ public class NotificationQueueDataNewItem : NotificationQueueData {
 
 	public override void Finish(){
 		StartManager.Instance.decoEntranceUIController.ToggleClickable(true);
-		StartManager.Instance.dinerEntranceUIController.ToggleClickable(true);
+        StartManager.Instance.dinerEntranceUIController.ToggleClickable(true);
 		base.Finish();
 	}
 }

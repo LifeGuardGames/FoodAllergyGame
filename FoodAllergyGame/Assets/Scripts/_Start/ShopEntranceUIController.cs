@@ -10,9 +10,9 @@ public class ShopEntranceUIController : MonoBehaviour {
 	public void Show(bool isFirstTime){
 		gameObject.SetActive(true);
 		if(isFirstTime){
-			PlayAppearAnimation();
 			StartManager.Instance.DecoEntranceUIController.ToggleClickable(false);
 			StartManager.Instance.DinerEntranceUIController.ToggleClickable(false);
+			PlayAppearAnimation();
 		}
 		else{
 			tutorialFinger.SetActive(false);
@@ -38,8 +38,6 @@ public class ShopEntranceUIController : MonoBehaviour {
 	}
 
 	public void AppearAnimationStartEvent() {
-		StartManager.Instance.DecoEntranceUIController.ToggleClickable(false);
-		StartManager.Instance.DinerEntranceUIController.ToggleClickable(false);
 	}
 
 	public void AppearAnimationDoneEvent(){

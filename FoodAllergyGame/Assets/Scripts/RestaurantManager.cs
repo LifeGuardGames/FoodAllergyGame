@@ -326,8 +326,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	}
 
 	public void CustomerLineSelectHighlightOn(){
-		for(int i = 0; i < 5; i++) {
-			if(GetTable(i)!= null) { 
+		for(int i = 0; i < 5; i++){
+			if(GetTable(i)!= null){
 					GetTable(i).TurnOnHighlight();
 				}
 			}

@@ -63,7 +63,10 @@ public class NotificationManager : Singleton<NotificationManager> {
 
 			if(Application.loadedLevelName == SceneUtils.START) {
 				StartManager.Instance.DecoEntranceUIController.ToggleClickable(true);
-				StartManager.Instance.DinerEntranceUIController.ToggleClickable(true);
+
+				if(!StartManager.Instance.IsHideDinerEntranceOnShopShow) {		// Disable this here only when shop is showing
+					StartManager.Instance.dinerEntranceUIController.ToggleClickable(true);
+				}
 			}
 
 			if(OnAllNotificationsFinished != null) {        // Throw event

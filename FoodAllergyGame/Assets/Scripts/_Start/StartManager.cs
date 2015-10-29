@@ -31,14 +31,15 @@ public class StartManager : Singleton<StartManager>{
 		get{ return newItemUIController; }
 	}
 
-	void Awake(){
-		DecoEntranceUIController.ToggleClickable(true);
-		DinerEntranceUIController.ToggleClickable(true);
+	public bool isHideDinerEntranceOnShopShow = false;	// Aux that is only ticked when shop showing, disabling diner entrance
+	public bool IsHideDinerEntranceOnShopShow {
+		get { return isHideDinerEntranceOnShopShow; }
 	}
 
 	void Start(){
 		// Refresh tier calculation
 		TierManager.Instance.RecalculateTier();
+		isHideDinerEntranceOnShopShow = false;
 
 		// Check to see if the previous day has been completed
 		if(DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent){
@@ -62,8 +63,8 @@ public class StartManager : Singleton<StartManager>{
 				bool isFirstTimeEntrance = DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance;
 				Debug.Log(" --- first time entrance check " + isFirstTimeEntrance);
 				decoEntranceUIController.Show(isFirstTimeEntrance);
-
-				unlockParent.SetActive(false); // TODO clean this up
+				isHideDinerEntranceOnShopShow = true;
+                unlockParent.SetActive(false); // TODO clean this up
 				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = TierManager.Instance.GetNewEvent();
 			}
 
