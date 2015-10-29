@@ -82,15 +82,16 @@ public class MenuManager : Singleton<MenuManager>{
 
 		// Sort the food stock list by price
 		foodStockList.Sort((x,y) => x.Cost.CompareTo(y.Cost));
-
+		
 		// Populate the first page of the food stock
-		for(int i = 0; i < foodStockPageSize; i++){
-			if(foodStockList.Count == i){		// Reached the end of list
+		for(int i = 0; i < foodStockPageSize; i++) {
+			if(foodStockList.Count == i) {      // Reached the end of list
 				break;
 			}
-			if(!selectedMenuStringList.Contains(foodStockList[i].ID)){
+			if(!selectedMenuStringList.Contains(foodStockList[i].ID)) {
 				GameObject foodStockButton = GameObjectUtils.AddChildGUI(currentFoodStockSlotList[i].gameObject, foodStockButtonPrefab);
-				foodStockButton.GetComponent<FoodStockButton>().Init(foodStockList[i]);
+				foodStockButton.GetComponent<RectTransform>().localPosition = new Vector3(100f, -75f, 0);
+                foodStockButton.GetComponent<FoodStockButton>().Init(foodStockList[i]);
 			}
 		}
 
@@ -151,7 +152,7 @@ public class MenuManager : Singleton<MenuManager>{
 			}
 			if(!selectedMenuStringList.Contains(foodStockList[i].ID)){
 				GameObject foodStockButton = GameObjectUtils.AddChildGUI(currentFoodStockSlotList[i % 4].gameObject, foodStockButtonPrefab);
-				foodStockButton.GetComponent<FoodStockButton>().Init(foodStockList[i]);
+                foodStockButton.GetComponent<FoodStockButton>().Init(foodStockList[i]);
 			}
 		}
 	}
