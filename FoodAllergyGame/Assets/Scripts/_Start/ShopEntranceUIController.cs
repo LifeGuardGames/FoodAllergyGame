@@ -37,6 +37,11 @@ public class ShopEntranceUIController : MonoBehaviour {
 		animator.Play("ShopAppear");
 	}
 
+	public void AppearAnimationStartEvent() {
+		StartManager.Instance.DecoEntranceUIController.ToggleClickable(false);
+		StartManager.Instance.DinerEntranceUIController.ToggleClickable(false);
+	}
+
 	public void AppearAnimationDoneEvent(){
 		// Show the tutorial finger
 		tutorialFinger.SetActive(true);
