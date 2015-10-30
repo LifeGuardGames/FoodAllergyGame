@@ -337,7 +337,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 	public void CustomerLineSelectHighlightOff(){
 		foreach(GameObject table in tableList) {
-			table.GetComponent<Table>().TurnOnHighlight();
+			table.GetComponent<Table>().TurnOffHighlight();
 		}
 
 		if(PlayArea.Instance != null){
