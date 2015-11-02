@@ -3,7 +3,7 @@
 	<Event ID="EventT1">	 <!-- Tutorial 1 -->
 		<MenuSet>MenuSetT1</MenuSet>
 		<KitchenTimer>5</KitchenTimer>
-		<CustomerSet>CustomerSetT0</CustomerSet>
+		<CustomerSet>CustomerSetT1</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
 		<DayLength>27</DayLength>
 		<Allergy>None</Allergy>
