@@ -509,7 +509,11 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
 		Medic.Instance.BillRestaurant(-100);
 		ParticleUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(tableNum).gameObject.transform.position,-100);
-
+		DataManager.Instance.GameData.Tutorial.MissedMedic++;
+		if(DataManager.Instance.GameData.Tutorial.MissedMedic >= 3) {
+			DataManager.Instance.GameData.Tutorial.IsMedicTut2Done = false;
+			DataManager.Instance.GameData.Tutorial.MissedMedic = 0;
+        }
 
 		AudioManager.Instance.PlayClip("dead");
 		if(order.gameObject != null){
