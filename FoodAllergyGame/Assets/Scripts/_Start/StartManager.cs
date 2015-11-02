@@ -41,35 +41,44 @@ public class StartManager : Singleton<StartManager>{
 		TierManager.Instance.RecalculateTier();
 		isHideDinerEntranceOnShopShow = false;
 
-		// Check to see if the previous day has been completed
-		if(DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent){
-			if(DataManager.Instance.GameData.Tutorial.IsTutorial1Done == false){
-				decoEntranceUIController.Hide();
-				unlockParent.SetActive(false); // TODO clean this up
-				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT1";
-			}
-			else if(DataManager.Instance.GameData.Tutorial.IsTutorial3Done == false){
-				decoEntranceUIController.Hide();
-				unlockParent.SetActive(true); // TODO clean this up
-				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT3";
-			}
-			else if(DataManager.Instance.GameData.Tutorial.IsSpecialDecoTutDone == false){
-				decoEntranceUIController.Hide();
-				unlockParent.SetActive(false);
-				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = TierManager.Instance.GetNewEvent();
-			}
-			else{
-				// Show the deco entrance
-				bool isFirstTimeEntrance = DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance;
-				Debug.Log(" --- first time entrance check " + isFirstTimeEntrance);
-				decoEntranceUIController.Show(isFirstTimeEntrance);
-				isHideDinerEntranceOnShopShow = true;
-                unlockParent.SetActive(false); // TODO clean this up
-				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = TierManager.Instance.GetNewEvent();
-			}
+		// First restaurant tutorial
+		if(DataManager.Instance.GameData.Tutorial.IsTutorial1Done == false){
+			decoEntranceUIController.Hide();
+			unlockParent.SetActive(false); // TODO clean this up
+			DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT1";
+		}
+		// Menu planning tutorial
+		else if(DataManager.Instance.GameData.Tutorial.IsTutorial3Done == false){
+			decoEntranceUIController.Hide();
+			unlockParent.SetActive(true); // TODO clean this up
+			DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT3";
+		}
+		// Special deco tutorial
+		else if(DataManager.Instance.GameData.Tutorial.IsSpecialDecoTutDone == false){
+			decoEntranceUIController.Hide();
+			unlockParent.SetActive(false);
 
-			// Lock the generate event bool until day is completed
-			DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = false;
+			if(DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent) {
+				// Deco tut should be in the event queue
+				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = TierManager.Instance.GetNewEvent();
+				// Lock the generate event bool until day is completed
+				DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = false;
+			}
+		}
+		// Default case
+		else {
+			// Show the deco entrance
+			bool isFirstTimeEntrance = DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance;
+			decoEntranceUIController.Show(isFirstTimeEntrance);
+
+			isHideDinerEntranceOnShopShow = true;
+            unlockParent.SetActive(false); // TODO clean this up
+
+			if(DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent) {
+				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = TierManager.Instance.GetNewEvent();
+				// Lock the generate event bool until day is completed
+				DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = false;
+			}
 		}
 
 		//TODO Set up pre-existing visuals and appearances for that day based on event
