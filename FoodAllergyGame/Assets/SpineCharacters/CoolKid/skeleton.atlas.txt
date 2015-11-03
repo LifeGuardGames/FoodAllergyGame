@@ -13,21 +13,21 @@ Body
   index: -1
 Eyeball
   rotate: false
-  xy: 363, 414
+  xy: 157, 216
   size: 88, 96
   orig: 88, 96
   offset: 0, 0
   index: -1
 Food_Piece
   rotate: true
-  xy: 298, 223
+  xy: 474, 472
   size: 38, 36
   orig: 38, 36
   offset: 0, 0
   index: -1
 Foot_L
   rotate: false
-  xy: 458, 344
+  xy: 247, 219
   size: 49, 30
   orig: 49, 30
   offset: 0, 0
@@ -41,14 +41,21 @@ Hair_Back
   index: -1
 Lid_Bottom
   rotate: true
-  xy: 430, 340
+  xy: 398, 362
   size: 72, 26
   orig: 72, 26
   offset: 0, 0
   index: -1
+Menu
+  rotate: false
+  xy: 247, 251
+  size: 58, 61
+  orig: 58, 61
+  offset: 0, 0
+  index: -1
 MouthBIGSwollen
   rotate: false
-  xy: 458, 376
+  xy: 146, 128
   size: 46, 51
   orig: 46, 51
   offset: 0, 0
@@ -62,7 +69,7 @@ Mouth_Swollen
   index: -1
 Mouth_Swollen_Lipspsd
   rotate: false
-  xy: 363, 338
+  xy: 363, 436
   size: 65, 74
   orig: 65, 74
   offset: 0, 0
@@ -75,15 +82,15 @@ Shin_R_Fix
   offset: 0, 0
   index: -1
 Thigh_L
-  rotate: true
-  xy: 157, 188
+  rotate: false
+  xy: 363, 353
   size: 33, 81
   orig: 33, 81
   offset: 0, 0
   index: -1
 Thigh_R
-  rotate: false
-  xy: 453, 429
+  rotate: true
+  xy: 157, 181
   size: 33, 81
   orig: 33, 81
   offset: 0, 0
@@ -97,7 +104,7 @@ arm1
   index: -1
 foot_R
   rotate: true
-  xy: 298, 263
+  xy: 194, 130
   size: 49, 30
   orig: 49, 30
   offset: 0, 0
@@ -109,30 +116,23 @@ lid
   orig: 100, 70
   offset: 0, 0
   index: -1
-menu_stand_in
-  rotate: true
-  xy: 157, 223
-  size: 89, 139
-  orig: 89, 139
-  offset: 0, 0
-  index: -1
 mouth
-  rotate: true
-  xy: 302, 177
+  rotate: false
+  xy: 146, 97
   size: 44, 29
   orig: 44, 29
   offset: 0, 0
   index: -1
 mouth_Open
-  rotate: true
-  xy: 330, 281
+  rotate: false
+  xy: 146, 66
   size: 44, 29
   orig: 44, 29
   offset: 0, 0
   index: -1
 pupil
-  rotate: true
-  xy: 240, 179
+  rotate: false
+  xy: 430, 450
   size: 42, 60
   orig: 42, 60
   offset: 0, 0
