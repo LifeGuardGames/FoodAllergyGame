@@ -263,7 +263,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		yield return new WaitForSeconds(menuTimer);
 
 		//get food choices 
-		choices = FoodManager.Instance.GetMenuFoodsFromKeyword(desiredFood, allergy);
+		choices = FoodManager.Instance.GetTwoMenuFoodChoices(desiredFood, allergy);
 		customerUI.ToggleWait(true);
 		//stop the satisfaction timer, change the timer and then restart it
 		attentionSpan = 16.0f * timer;

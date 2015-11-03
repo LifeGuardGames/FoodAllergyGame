@@ -8,13 +8,13 @@ public class RestaurantMenuUIController : MonoBehaviour {
 
 	public GameObject button1;
 	public Image button1Image;
-	public GameObject allergyNode1;
-	public Image allergyNodeImage1;
+	public List<RestMenuButtonAllergyNode> button1AllergyNodeList;
+	private int button1AllergyNodeCount;
 
 	public GameObject button2;
 	public Image button2Image;
-	public GameObject allergyNode2;
-	public Image allergyNodeImage2;
+	public List<RestMenuButtonAllergyNode> button2AllergyNodeList;
+	private int button2AllergyNodeCount;
 
 	public Animation inspectAnimation;
 	public GameObject allergyButtonParent;
@@ -28,90 +28,91 @@ public class RestaurantMenuUIController : MonoBehaviour {
 	public TweenToggle menuTweenToggle;
 
 	// Current customer menu choosing info
-	private List <ImmutableDataFood> choices;
+	private ImmutableDataFood[] choices;
 	private int tableNum;
 	private Allergies allergy;
 
-	void Start(){
-		choices = new List<ImmutableDataFood>();
+	void Start() {
+		choices = new ImmutableDataFood[2];
 	}
 
 	public void ShowChoices(List <ImmutableDataFood> customerFoodChoices, int customerTableNum, Allergies customerAllergy){
-//		Debug.Log("SHOWING CHOICES + " + System.DateTime.Now);
+		tableNum = customerTableNum;
+		allergy = customerAllergy;
 
-		//// Used for debugging
-		Allergies auxAllergy = Allergies.None;
-		int rand1 = 0;
-		int choicesCount1 = 0;
-		int rand2 = 0;
-		int choicesCount2 = 0;
-		////
-
-		// Reset the nodes
-		allergyNode1.SetActive(false);
-		allergyNode2.SetActive(false);
-
-		try{
-			tableNum = customerTableNum;
-			allergy = customerAllergy;
-			choices = new List<ImmutableDataFood>();
-
-			if(allergy == Allergies.None){
-				allergyPassParent.SetActive(true);
-				allergyFailParent.SetActive(false);
-			}
-			else{
-				allergyPassParent.SetActive(false);
-				allergyFailParent.SetActive(true);
-				allergyButtonParent.SetActive(true);
-				allergyButtonAnimator.Play("Normal");
-				allergyImage.sprite = SpriteCacheManager.GetAllergySpriteData(allergy);
-				allergyText.text = LocalizationText.GetText("AllergyFailPrefix") + LocalizationText.GetText(allergy.ToString());
-			}
-
-			if(RestaurantManager.Instance.isTutorial && RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().isAllergy){
-				button1.GetComponent<Button>().interactable = false;
-				button2.GetComponent<Button>().interactable = false;
-				RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().step = 2;
-				RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
-				button2Image.sprite = SpriteCacheManager.GetFoodSpriteData(customerFoodChoices[0].SpriteName);
-				button1Image.sprite = SpriteCacheManager.GetFoodSpriteData(customerFoodChoices[1].SpriteName);
-				choices.Add(customerFoodChoices[1]);
-				choices.Add(customerFoodChoices[0]);
-			}
-			else if (RestaurantManager.Instance.isTutorial && !RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().isAllergy){
-				RestaurantManager.Instance.GetTable(Waiter.Instance.CurrentTable).Seat.GetComponentInChildren<CustomerTutorial>().step = 5;
-				RestaurantManager.Instance.GetTable(Waiter.Instance.CurrentTable).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
-				button2Image.sprite = SpriteCacheManager.GetFoodSpriteData(customerFoodChoices[0].SpriteName);
-				button1Image.sprite = SpriteCacheManager.GetFoodSpriteData(customerFoodChoices[1].SpriteName);
-				choices.Add(customerFoodChoices[0]);
-				choices.Add(customerFoodChoices[1]);
-			}
-			else{
-				int rand = UnityEngine.Random.Range (0, customerFoodChoices.Count);
-				rand1 = rand;	////
-				choicesCount1 = customerFoodChoices.Count;	////
-				button1Image.sprite = SpriteCacheManager.GetFoodSpriteData(customerFoodChoices[rand].SpriteName);
-				choices.Add(customerFoodChoices[rand]);
-				customerFoodChoices.RemoveAt(rand);
-				rand = UnityEngine.Random.Range (0, customerFoodChoices.Count);
-				rand2 = rand;	////
-				choicesCount2 = customerFoodChoices.Count;	////
-				button2Image.sprite = SpriteCacheManager.GetFoodSpriteData(customerFoodChoices[rand].SpriteName);
-				choices.Add(customerFoodChoices[rand]);
-			}
-			menuTweenToggle.Show();
-
-			inspectAnimation.Stop();
-			if(allergy != Allergies.None){
-				StartCoroutine("StartAnimation");
-			}
-
-			auxAllergy = allergy;	////
+		if(allergy == Allergies.None){
+			allergyPassParent.SetActive(true);
+			allergyFailParent.SetActive(false);
 		}
-		catch(Exception e){
-			Debug.LogError("MANUAL EXCEPTION CAUGHT : " + e.ToString());
-			Debug.LogError(auxAllergy.ToString() + " " + rand1.ToString() + " " + choicesCount1.ToString() + " | " + rand2.ToString() + " " + choicesCount2.ToString());
+		else{
+			allergyPassParent.SetActive(false);
+			allergyFailParent.SetActive(true);
+			allergyButtonParent.SetActive(true);
+			allergyButtonAnimator.Play("Normal");
+			allergyImage.sprite = SpriteCacheManager.GetAllergySpriteData(allergy);
+			allergyText.text = LocalizationText.GetText("AllergyFailPrefix") + LocalizationText.GetText(allergy.ToString());
+		}
+
+		if(RestaurantManager.Instance.isTutorial && RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().isAllergy){
+			button1.GetComponent<Button>().interactable = false;
+			button2.GetComponent<Button>().interactable = false;
+			RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().step = 2;
+			RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
+
+			InitButton(0, customerFoodChoices[1]);
+			InitButton(0, customerFoodChoices[0]);
+		}
+		else if (RestaurantManager.Instance.isTutorial && !RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().isAllergy){
+			RestaurantManager.Instance.GetTable(Waiter.Instance.CurrentTable).Seat.GetComponentInChildren<CustomerTutorial>().step = 5;
+			RestaurantManager.Instance.GetTable(Waiter.Instance.CurrentTable).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
+
+			InitButton(0, customerFoodChoices[0]);
+			InitButton(1, customerFoodChoices[1]);
+		}
+		else{
+			int randomIndex1 = UnityEngine.Random.Range(0, 2);
+			int randomIndex2 = (randomIndex1 == 0) ? 1 : 0;
+
+			InitButton(0, customerFoodChoices[randomIndex1]);
+			InitButton(1, customerFoodChoices[randomIndex2]);
+		}
+
+		menuTweenToggle.Show();
+
+		// Inspect button
+		inspectAnimation.Stop();
+		if(allergy != Allergies.None){
+			StopCoroutine("StartAnimation");
+			StartCoroutine("StartAnimation");
+		}
+	}
+
+	private void InitButton(int buttonIndex, ImmutableDataFood foodData) {
+		// Left button
+		if(buttonIndex == 0) {
+			button1Image.sprite = SpriteCacheManager.GetFoodSpriteData(foodData.SpriteName);
+			choices[0] = foodData;
+			for(int i = 0; i < 3; i++) {
+				if(i < foodData.AllergyList.Count) {
+					button1AllergyNodeList[i].Init(true, foodData.AllergyList[i]);
+				}
+				else {
+					button1AllergyNodeList[i].Init(false, Allergies.None);
+				}
+			}
+		}
+		// Right button
+		else {
+			button2Image.sprite = SpriteCacheManager.GetFoodSpriteData(foodData.SpriteName);
+			choices[1] = foodData;
+			for(int i = 0; i < 3; i++) {
+				if(i < foodData.AllergyList.Count) {
+					button2AllergyNodeList[i].Init(true, foodData.AllergyList[i]);
+				}
+				else {
+					button2AllergyNodeList[i].Init(false, Allergies.None);
+				}
+			}
 		}
 	}
 
@@ -135,11 +136,13 @@ public class RestaurantMenuUIController : MonoBehaviour {
 		allergyButtonParent.SetActive(false);
 
 		// Show the food allergy nodes here
-		allergyNodeImage1.sprite = SpriteCacheManager.GetAllergySpriteData(choices[0].AllergyList[0]);
-		allergyNode1.SetActive(true);
+		foreach(RestMenuButtonAllergyNode node in button1AllergyNodeList) {
+			node.Show();
+		}
 
-		allergyNodeImage2.sprite = SpriteCacheManager.GetAllergySpriteData(choices[1].AllergyList[0]);
-		allergyNode2.SetActive(true);
+		foreach(RestMenuButtonAllergyNode node in button2AllergyNodeList) {
+			node.Show();
+		}
 	}
 
 	public void CancelOrder(int table){
@@ -151,7 +154,6 @@ public class RestaurantMenuUIController : MonoBehaviour {
 	public void ProduceOrder(int choice){
 		menuTweenToggle.Hide();
 		inspectAnimation.Stop();
-
 		RestaurantManager.Instance.GetTable(tableNum).Seat.GetChild(0).gameObject.GetComponent<Customer>().OrderTaken(choices[choice]);
 	}
 }

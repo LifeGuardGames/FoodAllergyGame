@@ -43,41 +43,39 @@ public class FoodManager : Singleton<FoodManager>{
 	/// <summary>
 	/// Chooses food items based off a supplied keyword from menuList
 	/// </summary>
-	public List<ImmutableDataFood> GetMenuFoodsFromKeyword(FoodKeywords keyword, Allergies _allergy){
+	public List<ImmutableDataFood> GetTwoMenuFoodChoices(FoodKeywords keyword, Allergies _allergy){
 		List<ImmutableDataFood> desiredFoodList = new List<ImmutableDataFood>();
 		bool allergyFood = false;
 		bool allergenAdded = false;
-		if(!RestaurantManager.Instance.isTutorial){
+
+		if(RestaurantManager.Instance.isTutorial) {
+			desiredFoodList.Add(DataLoaderFood.GetData("Food00"));
+			desiredFoodList.Add(DataLoaderFood.GetData("Food03"));
+			return desiredFoodList;
+		}
 		
-			while(desiredFoodList.Count < 2){
-				allergyFood = false;
-				int rand = Random.Range(0,menuList.Count);
+		while(desiredFoodList.Count < 2){
+			allergyFood = false;
+			int rand = Random.Range(0,menuList.Count);
 //				Debug.Log (menuList[rand].ID.ToString());
-				if(!desiredFoodList.Contains(menuList[rand])){
-					foreach(Allergies alg in menuList[rand].AllergyList){
-						if(_allergy == alg){
-							allergyFood = true;	
-						}
+			if(!desiredFoodList.Contains(menuList[rand])){
+				foreach(Allergies alg in menuList[rand].AllergyList){
+					if(_allergy == alg){
+						allergyFood = true;	
 					}
-					if(allergyFood){
-						if(!allergenAdded){
-							allergenAdded = true;
-							desiredFoodList.Add( menuList[rand]);
-						}
-					}
-					else{
+				}
+				if(allergyFood){
+					if(!allergenAdded){
+						allergenAdded = true;
 						desiredFoodList.Add(menuList[rand]);
 					}
 				}
+				else{
+					desiredFoodList.Add(menuList[rand]);
+				}
 			}
-		}
-		else{
-			desiredFoodList.Add(DataLoaderFood.GetData("Food00"));
-			desiredFoodList.Add(DataLoaderFood.GetData("Food03"));
-
 		}
 		return desiredFoodList;
 	}
-
 	#endregion
 }
