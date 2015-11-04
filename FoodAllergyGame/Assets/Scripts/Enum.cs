@@ -75,6 +75,7 @@ public enum DecoTypes{
 }
 
 public enum  PropNodeType{
+	None,
 	Event,
 	Growth,
 	Random

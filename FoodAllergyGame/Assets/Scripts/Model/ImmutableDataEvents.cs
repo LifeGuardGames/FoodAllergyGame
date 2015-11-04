@@ -50,6 +50,16 @@ public class ImmutableDataEvents{
 		get{return eventTitle;}
 	}
 
+//	public string eventPropLeft;
+//	public string EventPropLeft {
+//		get { return eventPropLeft; }
+//	}
+
+//	public string eventPropRight;
+//	public string EventPropRight {
+//		get { return eventPropRight; }
+//	}
+
 	public ImmutableDataEvents(string id, IXMLNode xmlNode, string error){
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 		
@@ -65,5 +75,7 @@ public class ImmutableDataEvents{
 			eventDescription = XMLUtils.GetString(hashElements["EventDescription"] as IXMLNode, "", error);		// Optional
 		}
 		eventTitle = XMLUtils.GetString(hashElements["Title"] as IXMLNode, null, error);
+		//eventPropLeft = XMLUtils.GetString(hashElements["ePLeft"] as IXMLNode, null, error);
+		//eventPropRight = XMLUtils.GetString(hashElements["ePRight"] as IXMLNode, null, error);
 	}
 }
