@@ -35,7 +35,7 @@ public class RestMenuButtonAllergyNode : MonoBehaviour {
 					break;
 			}
 		}
-	}
+    }
 
 	public void Show() {
 		tweenToggle.Show();
