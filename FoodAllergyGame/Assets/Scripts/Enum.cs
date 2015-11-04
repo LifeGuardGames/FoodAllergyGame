@@ -74,5 +74,9 @@ public enum DecoTypes{
 	Microwave,
 }
 
-
+public enum  PropNodeType{
+	Event,
+	Growth,
+	Random
+}
 

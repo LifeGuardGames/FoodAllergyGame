@@ -131,4 +131,13 @@ public class TierManager : Singleton<TierManager> {
 		tier = newTier;
 		//TODO More special unlock logic here
 	}
+
+	public bool IsCategoryUnlocked(DecoTypes deco) {
+		if(DataLoaderDecoItem.GetData(deco.ToString() + "00").Tier <= tier) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }
