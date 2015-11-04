@@ -1,0 +1,244 @@
+
+skeleton.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+BodyWhole
+  rotate: false
+  xy: 2, 392
+  size: 447, 627
+  orig: 447, 627
+  offset: 0, 0
+  index: -1
+Bow
+  rotate: false
+  xy: 550, 298
+  size: 94, 53
+  orig: 94, 53
+  offset: 0, 0
+  index: -1
+BrowL
+  rotate: true
+  xy: 167, 44
+  size: 60, 33
+  orig: 60, 33
+  offset: 0, 0
+  index: -1
+BrowR
+  rotate: true
+  xy: 929, 806
+  size: 90, 48
+  orig: 90, 48
+  offset: 0, 0
+  index: -1
+EyeL
+  rotate: false
+  xy: 771, 757
+  size: 84, 139
+  orig: 84, 139
+  offset: 0, 0
+  index: -1
+EyeR
+  rotate: false
+  xy: 2, 114
+  size: 92, 138
+  orig: 92, 138
+  offset: 0, 0
+  index: -1
+FootL
+  rotate: true
+  xy: 979, 847
+  size: 68, 39
+  orig: 68, 39
+  offset: 0, 0
+  index: -1
+FootR
+  rotate: false
+  xy: 314, 241
+  size: 63, 46
+  orig: 63, 46
+  offset: 0, 0
+  index: -1
+FrontView/BodyFront
+  rotate: false
+  xy: 451, 353
+  size: 318, 666
+  orig: 318, 666
+  offset: 0, 0
+  index: -1
+FrontView/Bow
+  rotate: true
+  xy: 771, 651
+  size: 104, 68
+  orig: 104, 68
+  offset: 0, 0
+  index: -1
+HandL
+  rotate: true
+  xy: 979, 787
+  size: 58, 40
+  orig: 58, 40
+  offset: 0, 0
+  index: -1
+HandR
+  rotate: true
+  xy: 807, 425
+  size: 47, 49
+  orig: 47, 49
+  offset: 0, 0
+  index: -1
+LidBL
+  rotate: false
+  xy: 646, 291
+  size: 89, 60
+  orig: 89, 60
+  offset: 0, 0
+  index: -1
+LidBR
+  rotate: true
+  xy: 771, 550
+  size: 99, 60
+  orig: 99, 60
+  offset: 0, 0
+  index: -1
+LidTopL
+  rotate: false
+  xy: 2, 6
+  size: 91, 106
+  orig: 91, 106
+  offset: 0, 0
+  index: -1
+LidTopR
+  rotate: false
+  xy: 96, 150
+  size: 101, 102
+  orig: 101, 102
+  offset: 0, 0
+  index: -1
+LowerArmL
+  rotate: false
+  xy: 857, 806
+  size: 70, 90
+  orig: 70, 90
+  offset: 0, 0
+  index: -1
+LowerArmR
+  rotate: false
+  xy: 95, 23
+  size: 70, 81
+  orig: 70, 81
+  offset: 0, 0
+  index: -1
+LowerLegL
+  rotate: true
+  xy: 857, 763
+  size: 41, 90
+  orig: 41, 90
+  offset: 0, 0
+  index: -1
+LowerLegR
+  rotate: false
+  xy: 402, 295
+  size: 46, 95
+  orig: 46, 95
+  offset: 0, 0
+  index: -1
+MouthFrust
+  rotate: true
+  xy: 771, 424
+  size: 124, 34
+  orig: 124, 34
+  offset: 0, 0
+  index: -1
+MouthOpen
+  rotate: false
+  xy: 96, 106
+  size: 87, 42
+  orig: 87, 42
+  offset: 0, 0
+  index: -1
+MouthSmirk
+  rotate: true
+  xy: 811, 355
+  size: 68, 49
+  orig: 68, 49
+  offset: 0, 0
+  index: -1
+PupilL
+  rotate: false
+  xy: 771, 348
+  size: 38, 74
+  orig: 38, 74
+  offset: 0, 0
+  index: -1
+PupilR
+  rotate: false
+  xy: 807, 474
+  size: 41, 74
+  orig: 41, 74
+  offset: 0, 0
+  index: -1
+ServingArm
+  rotate: false
+  xy: 771, 898
+  size: 195, 121
+  orig: 195, 121
+  offset: 0, 0
+  index: -1
+SideView/ArmRunF
+  rotate: false
+  xy: 2, 254
+  size: 204, 136
+  orig: 204, 136
+  offset: 0, 0
+  index: -1
+ThumbL
+  rotate: false
+  xy: 737, 300
+  size: 26, 51
+  orig: 26, 51
+  offset: 0, 0
+  index: -1
+ThumbR
+  rotate: false
+  xy: 379, 253
+  size: 18, 34
+  orig: 18, 34
+  offset: 0, 0
+  index: -1
+UpperArmL
+  rotate: false
+  xy: 314, 289
+  size: 86, 101
+  orig: 86, 101
+  offset: 0, 0
+  index: -1
+UpperArmR
+  rotate: false
+  xy: 208, 268
+  size: 104, 122
+  orig: 104, 122
+  offset: 0, 0
+  index: -1
+UpperLegL
+  rotate: false
+  xy: 968, 917
+  size: 50, 102
+  orig: 50, 102
+  offset: 0, 0
+  index: -1
+UpperLegR
+  rotate: true
+  xy: 450, 301
+  size: 50, 98
+  orig: 50, 98
+  offset: 0, 0
+  index: -1
+WristR
+  rotate: false
+  xy: 949, 778
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
