@@ -139,7 +139,6 @@ public class RestaurantMenuUIController : MonoBehaviour {
 		foreach(RestMenuButtonAllergyNode node in button1AllergyNodeList) {
 			node.Show();
 		}
-
 		foreach(RestMenuButtonAllergyNode node in button2AllergyNodeList) {
 			node.Show();
 		}
@@ -153,6 +152,12 @@ public class RestaurantMenuUIController : MonoBehaviour {
 
 	public void ProduceOrder(int choice){
 		menuTweenToggle.Hide();
+		foreach(RestMenuButtonAllergyNode node in button1AllergyNodeList) {
+			node.Hide();
+		}
+		foreach(RestMenuButtonAllergyNode node in button2AllergyNodeList) {
+			node.Hide();
+		}
 		inspectAnimation.Stop();
 		RestaurantManager.Instance.GetTable(tableNum).Seat.GetChild(0).gameObject.GetComponent<Customer>().OrderTaken(choices[choice]);
 	}
