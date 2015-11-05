@@ -108,6 +108,7 @@ public class Waiter: Singleton<Waiter>{
 	public void ResetHands(){
 		hand1 = WaiterHands.None;
 		hand2 = WaiterHands.None;
+		waiterAnimController.RefreshHand();
 	}
 
 	// Populates first free hand with enum
@@ -115,6 +116,7 @@ public class Waiter: Singleton<Waiter>{
 		if(hand1 == WaiterHands.None){
 			if(!order.GetComponent<Order>().IsCooked){
 				hand1 = WaiterHands.Order;
+				waiterAnimController.RefreshHand();
 				hand1Object = order;
 				hand1Object.transform.SetParent(hand1Parent);		// Show order in hand
 				hand1Object.transform.localPosition = new Vector3(0, 0, 0);
@@ -124,6 +126,7 @@ public class Waiter: Singleton<Waiter>{
 			}
 			else{
 				hand1 = WaiterHands.Meal;
+				waiterAnimController.RefreshHand();
 				hand1Object = order;
 				hand1Object.transform.SetParent(hand1Parent);		// Show order in hand
 				hand1Object.transform.localPosition = new Vector3(0, 0, 0);
@@ -132,6 +135,7 @@ public class Waiter: Singleton<Waiter>{
 		else if(hand2 == WaiterHands.None){
 			if(!order.GetComponent<Order>().IsCooked){
 				hand2 = WaiterHands.Order;
+				waiterAnimController.RefreshHand();
 				hand2Object = order;
 				hand2Object.transform.SetParent(hand2Parent);		// Show order in hand
 				hand2Object.transform.localPosition = new Vector3(0, 0, 0);
@@ -141,6 +145,7 @@ public class Waiter: Singleton<Waiter>{
 			}
 			else{
 				hand2 = WaiterHands.Meal;
+				waiterAnimController.RefreshHand();
 				hand2Object = order;
 				hand2Object.transform.SetParent(hand2Parent);		// Show order in hand
 				hand2Object.transform.localPosition = new Vector3(0, 0, 0);
@@ -159,18 +164,22 @@ public class Waiter: Singleton<Waiter>{
 			tempOrderArr.Add(hand1Object);
 			hand2 = WaiterHands.None;
 			hand1 = WaiterHands.None;
+			waiterAnimController.RefreshHand();
+
+			return tempOrderArr;
+		}
+		else if(hand1 == WaiterHands.Order) {
+			tempOrderArr.Add(hand1Object);
+			hand1Object = null;
+			hand1 = WaiterHands.None;
+			waiterAnimController.RefreshHand();
 			return tempOrderArr;
 		}
 		else if(hand2 == WaiterHands.Order){
 			tempOrderArr.Add(hand2Object);
 			hand2Object = null;
 			hand2 = WaiterHands.None;
-			return tempOrderArr;
-		}
-		else if(hand1 == WaiterHands.Order){
-			tempOrderArr.Add(hand1Object);
-			hand1Object = null;
-			hand1 = WaiterHands.None;
+			waiterAnimController.RefreshHand();
 			return tempOrderArr;
 		}
 		else{
@@ -202,6 +211,7 @@ public class Waiter: Singleton<Waiter>{
 			tempFood.transform.localPosition = new Vector3(0, 0, 0);
 			hand1Object = null;
 			hand1 = WaiterHands.None;
+			waiterAnimController.RefreshHand();
 			return tempFood;
 		}
 		else if(hand2 == WaiterHands.Meal && hand2Object.GetComponent<Order>().tableNumber == tableNum){
@@ -210,7 +220,8 @@ public class Waiter: Singleton<Waiter>{
 			tempFood.transform.localPosition = new Vector3(0, 0, 0);
 			hand2Object = null;
 			hand2 = WaiterHands.None;
-			return tempFood;
+			waiterAnimController.RefreshHand();
+            return tempFood;
 		}
 		else{
 			Debug.LogError("No appropriate meal");
@@ -236,6 +247,7 @@ public class Waiter: Singleton<Waiter>{
 					if(hand1Object.GetComponent<Order>().tableNumber == table){
 						Destroy(hand1Object.gameObject);
 						hand1 = WaiterHands.None;
+						waiterAnimController.RefreshHand();
 					}
 				}
 				else{
@@ -252,6 +264,7 @@ public class Waiter: Singleton<Waiter>{
 					if(hand2Object.GetComponent<Order>().tableNumber == table){
 						Destroy(hand2Object.gameObject);
 						hand2 = WaiterHands.None;
+						waiterAnimController.RefreshHand();
 					}
 				}
 				else{
