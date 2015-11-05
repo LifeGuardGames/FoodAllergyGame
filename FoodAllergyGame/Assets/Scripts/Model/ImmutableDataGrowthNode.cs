@@ -10,14 +10,14 @@ public class ImmutableDataGrowthNode{
 		get { return id; }
 	}
 
-	public int tier;
+	private int tier;
 	public int Tier {
 		get { return tier; }
 	}
 
-	public string propName;
-	public string PropName {
-		get { return propName; }
+	private string propType;
+	public string PropType {
+		get { return propType; }
 	}
 
 	public ImmutableDataGrowthNode (string id, IXMLNode xmlNode, string error) {
@@ -25,7 +25,7 @@ public class ImmutableDataGrowthNode{
 
 		this.id = id;
 		tier = XMLUtils.GetInt(hashElements["Tier"] as IXMLNode);
-		propName = XMLUtils.GetString(hashElements["PropName"] as IXMLNode, null, error);
+		propType = XMLUtils.GetString(hashElements["PropType"] as IXMLNode, null, error);
 	}
 
 }

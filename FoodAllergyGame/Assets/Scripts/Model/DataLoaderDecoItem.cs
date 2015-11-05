@@ -13,6 +13,7 @@ public class DataLoaderDecoItem: XMLLoaderGeneric<DataLoaderDecoItem> {
 		instance.InitXMLLoader();
 		return instance.GetDataList<ImmutableDataDecoItem>();
 	}
+	
 
 	public static List<ImmutableDataDecoItem> GetDecoDataByType(DecoTypes type){
 		List<ImmutableDataDecoItem> itemList = GetDataList();
