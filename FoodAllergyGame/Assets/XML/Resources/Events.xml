@@ -58,7 +58,7 @@
 		<Title>Title00</Title>
 	</Event>
 	<Event ID="Event00">
-		<MenuSet>MenuSet00</MenuSet>
+		<MenuSet>MenuSet01</MenuSet>
 		<KitchenTimer>3</KitchenTimer>
 		<CustomerSet>CustomerSet00</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
@@ -68,7 +68,7 @@
 		<Title>Title00</Title>
 	</Event>
 	<Event ID="Event01">
-		<MenuSet>MenuSet00</MenuSet>
+		<MenuSet>MenuSet01</MenuSet>
 		<KitchenTimer>6.5</KitchenTimer>
 		<CustomerSet>CustomerSet00</CustomerSet>
 		<CustomerTimer>1</CustomerTimer>
@@ -78,7 +78,7 @@
 		<Title>Title01</Title>
 	</Event>
 	<Event ID="Event02">
-		<MenuSet>MenuSet00</MenuSet>
+		<MenuSet>MenuSet01</MenuSet>
 		<KitchenTimer>3</KitchenTimer>
 		<CustomerSet>CustomerSet00</CustomerSet>
 		<CustomerTimer>0.7</CustomerTimer>

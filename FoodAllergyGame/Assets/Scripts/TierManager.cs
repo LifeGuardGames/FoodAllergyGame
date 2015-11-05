@@ -123,7 +123,7 @@ public class TierManager : Singleton<TierManager> {
 			DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
 		}
 
-		if(newTier >= 2 && tier < 2) {
+		if(newTier >= 4 && tier < 4) {
 			specialItemID.Add("PlayArea00");
 			DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTPlayArea");
 			DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
