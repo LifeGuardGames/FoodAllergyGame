@@ -11,6 +11,12 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	public Image image;
 	public Text label;
 
+	public Image panelImage;
+	public Sprite silverPanel;
+	public GameObject silverSparkle;
+	public Sprite goldPanel;
+	public GameObject goldSparkle;
+
 	public Sprite slot1Sprite;
 	public Sprite slot2Sprite;
 	public Sprite slot3Sprite;
@@ -35,6 +41,7 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	private Transform trashAux;
 	private Vector3 startPosition;
 	private Transform startParent;
+	private ParticleSystem sparkleParticle;
 
 	private bool inFoodStockSlot = true;
 	public bool InFoodStockSlot{
@@ -51,6 +58,23 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 		gameObject.name = foodData.ID;
 		label.text = LocalizationText.GetText(foodData.FoodNameKey);
 		image.sprite = SpriteCacheManager.GetFoodSpriteData(foodData.SpriteName);
+
+		// Different panel tiers for different reward levels
+		switch(foodData.Reward) {
+			case 3:
+				panelImage.sprite = silverPanel;
+				GameObject particle = GameObjectUtils.AddChildGUI(gameObject, silverSparkle);
+				sparkleParticle = particle.GetComponent<ParticleSystem>();
+                break;
+			case 4:
+				panelImage.sprite = goldPanel;
+				GameObject particle2 = GameObjectUtils.AddChildGUI(gameObject, goldSparkle);
+				sparkleParticle = particle2.GetComponent<ParticleSystem>();
+				break;
+			default:
+				// Dont do anything
+				break;
+		}
 
 		switch(foodData.Slots) {
 			case 1:
@@ -125,6 +149,10 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 		startPosition = transform.localPosition;
 		startParent = transform.parent;
 		GetComponent<CanvasGroup>().blocksRaycasts = false;
+		if(sparkleParticle != null) {
+			sparkleParticle.Play();
+		}
+		
 
 		itemBeingDragged.transform.SetParent(dragAux);
 
@@ -157,7 +185,10 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 			if(startParent.name == "SelectedGrid") {
 				MenuManager.Instance.AddFoodToMenuList(foodID);
 				foodButtonAnimator.SetTrigger("PutDownSelected");
-			}
+				if(sparkleParticle != null) {
+					sparkleParticle.Stop();
+				}
+            }
 			else {
 				foodButtonAnimator.SetTrigger("PutDownUnselected");
 			}
@@ -170,7 +201,10 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 			startPosition = transform.localPosition;
 			if(startParent.name == "SelectedGrid") {
 				foodButtonAnimator.SetTrigger("PutDownSelected");
-			}
+				if(sparkleParticle != null) {
+					sparkleParticle.Stop();
+				}
+            }
 			else {
 				foodButtonAnimator.SetTrigger("PutDownUnselected");
 			}

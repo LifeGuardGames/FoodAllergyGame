@@ -27,7 +27,7 @@
 		<Keywords>Meal,Dessert</Keywords>
 		<Tier>0</Tier>
 		<Price>10</Price>
-		<Reward>3</Reward>
+		<Reward>2</Reward>
     <Slot>1</Slot>
 	</Food>
 	<Food ID="Food03">
@@ -37,7 +37,7 @@
 		<Keywords>Meal,Drink</Keywords>
 		<Tier>0</Tier>
 		<Price>10</Price>
-		<Reward>3</Reward>
+		<Reward>2</Reward>
     <Slot>1</Slot>
 	</Food>
 	<Food ID="Food04">
@@ -57,7 +57,7 @@
 		<Keywords>Meal,Drink</Keywords>
 		<Tier>0</Tier>
 		<Price>8</Price>
-		<Reward>3</Reward>
+		<Reward>2</Reward>
     <Slot>1</Slot>
 		</Food>
 	<Food ID="Food06">
@@ -67,7 +67,7 @@
 		<Keywords>Meal,Dessert</Keywords>
 		<Tier>0</Tier>
 		<Price>10</Price>
-		<Reward>3</Reward>
+		<Reward>2</Reward>
     <Slot>1</Slot>
 	</Food>
 	<Food ID="Food07">
@@ -107,7 +107,7 @@
     <Keywords>Drink,Dessert</Keywords>
     <Tier>2</Tier>
     <Price>6</Price>
-    <Reward>2</Reward>
+    <Reward>3</Reward>
     <Slot>1</Slot>
   </Food>
   <Food ID="Food11">
@@ -117,7 +117,7 @@
     <Keywords>Drink,Dessert</Keywords>
     <Tier>2</Tier>
     <Price>6</Price>
-    <Reward>2</Reward>
+    <Reward>3</Reward>
     <Slot>1</Slot>
   </Food>
   <Food ID="Food12">
@@ -127,7 +127,7 @@
     <Keywords>Drink,Dessert</Keywords>
     <Tier>2</Tier>
     <Price>6</Price>
-    <Reward>2</Reward>
+    <Reward>3</Reward>
     <Slot>1</Slot>
   </Food>
   <Food ID="Food13">
@@ -137,7 +137,7 @@
     <Keywords>Drink,Dessert</Keywords>
     <Tier>2</Tier>
     <Price>6</Price>
-    <Reward>2</Reward>
+    <Reward>3</Reward>
     <Slot>1</Slot>
   </Food>
   <Food ID="Food14">
@@ -147,7 +147,7 @@
     <Keywords>Drink,Dessert</Keywords>
     <Tier>2</Tier>
     <Price>6</Price>
-    <Reward>2</Reward>
+    <Reward>3</Reward>
     <Slot>1</Slot>
   </Food>
   <Food ID="Food15">
@@ -157,7 +157,7 @@
     <Keywords>Drink,Dessert</Keywords>
     <Tier>2</Tier>
     <Price>6</Price>
-    <Reward>2</Reward>
+    <Reward>3</Reward>
     <Slot>1</Slot>
   </Food>
   <Food ID="Food16">
@@ -167,7 +167,7 @@
     <Keywords>Drink,Dessert</Keywords>
     <Tier>2</Tier>
     <Price>6</Price>
-    <Reward>2</Reward>
+    <Reward>3</Reward>
     <Slot>1</Slot>
   </Food>
   <Food ID="Food17">
@@ -177,7 +177,7 @@
     <Keywords>Drink,Dessert</Keywords>
     <Tier>2</Tier>
     <Price>6</Price>
-    <Reward>2</Reward>
+    <Reward>4</Reward>
     <Slot>1</Slot>
   </Food>
   <Food ID="Food18">
@@ -187,7 +187,7 @@
     <Keywords>Drink,Dessert</Keywords>
     <Tier>2</Tier>
     <Price>6</Price>
-    <Reward>2</Reward>
+    <Reward>4</Reward>
     <Slot>1</Slot>
   </Food>
 </Foods>
