@@ -37,7 +37,6 @@ public class Waiter: Singleton<Waiter>{
 	}
 
 	public WaiterAnimController waiterAnimController;
-	public SpriteRenderer waiterSprite;
 	public bool isMedicTut;
 	public GameObject currentNode;
 	private bool moving;
@@ -68,52 +67,6 @@ public class Waiter: Singleton<Waiter>{
 		}
 	}
 
-//	public void MoveToLocation(List<GameObject> path, int index){
-//		canMove = false;
-////			currentCaller = (IWaiterSelection)caller;
-////			if(currentCaller == null){
-////				Debug.LogError("No IWaiterSelection script exists in the caller");
-////				}
-//		
-//		//If the waiter is already at its location, just call what it needs to call
-////			if(transform.position == location){
-////				MoveDoneCallback();
-////			}
-//		// Otherwise, move to the location and wait for callback
-////			else{
-//		moving = true;
-//		waiterAnimController.SetMoving(true);
-////			Debug.Log (path[index].name);
-//		LeanTween.cancel(gameObject);
-//		LeanTween.move(gameObject, path[index].transform.position, movingTime).setOnComplete(MoveDoneCallback);
-////			}
-//	}
-//
-//	public void MoveDoneCallback(){
-//		if(pathList.Count == 0){
-//			if(currentCaller == null){
-//				Debug.LogError("No IWaiterSelection script currently exists");
-//			}
-//			currentCaller.OnWaiterArrived();
-//		}
-//		else if(currentNode == pathList[index]){
-//			index = 0;
-//			// Note: Set animations to false before OnWaiterArrived
-//			moving = false;
-//			waiterAnimController.SetMoving(false);
-//
-//			if(currentCaller == null){
-//				Debug.LogError("No IWaiterSelection script currently exists");
-//			}
-//			currentCaller.OnWaiterArrived();
-//		}
-//		else{
-//			//canMove = true;
-//			index++;
-//			MoveToLocation(pathList, index);
-//		}
-//	}
-
 	void FixedUpdate(){
 		if(moving == true){
 			// Already at the target node
@@ -138,11 +91,15 @@ public class Waiter: Singleton<Waiter>{
 				}
 
 				// Change the waiter image layer order
-				waiterSprite.sortingOrder = currentNode.GetComponent<Node>().layerOrderBase;
+				waiterAnimController.ChangeOrderInLayer(currentNode.GetComponent<Node>().layerOrderBase);
 			}
 			// Keep moving
 			else{
-				transform.position = Vector3.MoveTowards(transform.position, pathList[pathIndex].transform.position,10);
+				bool isMoveRight = (transform.position.x > pathList[pathIndex].transform.position.x) ? true : false;
+				waiterAnimController.SetMoving(true);
+				waiterAnimController.SetDirection(isMoveRight);
+
+				transform.position = Vector3.MoveTowards(transform.position, pathList[pathIndex].transform.position, 10);
 			}
 		}
 	}

@@ -117,11 +117,19 @@
 	<DecoItem ID = "PlayArea00">
 		<Type>PlayArea</Type>
 		<Price>1</Price>
-		<TitleKey>PlayArea01</TitleKey>
-		<DescriptionKey>PlayArea01Desc</DescriptionKey>
-		<SpriteName>RestPlayArea01</SpriteName>
+		<TitleKey>PlayAreaClawMachine</TitleKey>
+		<DescriptionKey>PlayAreaClawMachineDesc</DescriptionKey>
+		<SpriteName>RestPlayAreaClawMachine</SpriteName>
 		<Tier>10</Tier>
 	</DecoItem>
+  <DecoItem ID = "PlayArea01">
+    <Type>PlayArea</Type>
+    <Price>1</Price>
+    <TitleKey>PlayAreaArcade</TitleKey>
+    <DescriptionKey>PlayAreaArcadeDesc</DescriptionKey>
+    <SpriteName>RestPlayAreaArcade</SpriteName>
+    <Tier>10</Tier>
+  </DecoItem>
 	
 	
 	<DecoItem ID = "Microwave00">
