@@ -50,7 +50,7 @@ public class FoodManager : Singleton<FoodManager>{
 
 		if(RestaurantManager.Instance.isTutorial) {
 			desiredFoodList.Add(DataLoaderFood.GetData("Food00"));
-			desiredFoodList.Add(DataLoaderFood.GetData("Food03"));
+			desiredFoodList.Add(DataLoaderFood.GetData("Food08"));
 			return desiredFoodList;
 		}
 		
