@@ -27,7 +27,7 @@
 		<Keywords>Meal,Dessert</Keywords>
 		<Tier>0</Tier>
 		<Price>10</Price>
-		<Reward>2</Reward>
+		<Reward>1</Reward>
     <Slot>1</Slot>
 	</Food>
 	<Food ID="Food03">
@@ -37,7 +37,7 @@
 		<Keywords>Meal,Drink</Keywords>
 		<Tier>0</Tier>
 		<Price>10</Price>
-		<Reward>2</Reward>
+		<Reward>1</Reward>
     <Slot>1</Slot>
 	</Food>
 	<Food ID="Food04">
@@ -47,7 +47,7 @@
 		<Keywords>Dessert,Meal</Keywords>
 		<Tier>0</Tier>
 		<Price>6</Price>
-		<Reward>2</Reward>
+		<Reward>1</Reward>
     <Slot>1</Slot>
 	</Food>
 	<Food ID="Food05">
@@ -57,7 +57,7 @@
 		<Keywords>Meal,Drink</Keywords>
 		<Tier>0</Tier>
 		<Price>8</Price>
-		<Reward>2</Reward>
+		<Reward>1</Reward>
     <Slot>1</Slot>
 		</Food>
 	<Food ID="Food06">
@@ -67,7 +67,7 @@
 		<Keywords>Meal,Dessert</Keywords>
 		<Tier>0</Tier>
 		<Price>10</Price>
-		<Reward>2</Reward>
+		<Reward>1</Reward>
     <Slot>1</Slot>
 	</Food>
 	<Food ID="Food07">
@@ -77,7 +77,7 @@
 		<Keywords>Meal,Drink</Keywords>
 		<Tier>0</Tier>
 		<Price>6</Price>
-		<Reward>2</Reward>
+		<Reward>1</Reward>
     <Slot>1</Slot>
 	</Food>
 	<Food ID="Food08">
@@ -87,7 +87,7 @@
 		<Keywords>Meal,Drink</Keywords>
 		<Tier>0</Tier>
 		<Price>6</Price>
-		<Reward>2</Reward>
+		<Reward>1</Reward>
     <Slot>1</Slot>
 	</Food>
 	<Food ID="Food09">
@@ -97,7 +97,7 @@
 		<Keywords>Drink,Dessert</Keywords>
 		<Tier>0</Tier>
 		<Price>6</Price>
-		<Reward>2</Reward>
+		<Reward>1</Reward>
     <Slot>1</Slot>
 	</Food>
   <Food ID="Food10">
@@ -106,7 +106,7 @@
     <Allergies>Wheat,Peanut</Allergies>
     <Keywords>Drink,Dessert</Keywords>
     <Tier>2</Tier>
-    <Price>6</Price>
+    <Price>13</Price>
     <Reward>3</Reward>
     <Slot>1</Slot>
   </Food>
@@ -116,7 +116,7 @@
     <Allergies>Wheat,Peanut</Allergies>
     <Keywords>Drink,Dessert</Keywords>
     <Tier>2</Tier>
-    <Price>6</Price>
+    <Price>12</Price>
     <Reward>3</Reward>
     <Slot>1</Slot>
   </Food>
@@ -126,7 +126,7 @@
     <Allergies>Wheat,Peanut</Allergies>
     <Keywords>Drink,Dessert</Keywords>
     <Tier>2</Tier>
-    <Price>6</Price>
+    <Price>11</Price>
     <Reward>3</Reward>
     <Slot>1</Slot>
   </Food>
@@ -136,7 +136,7 @@
     <Allergies>Dairy,Peanut</Allergies>
     <Keywords>Drink,Dessert</Keywords>
     <Tier>2</Tier>
-    <Price>6</Price>
+    <Price>12</Price>
     <Reward>3</Reward>
     <Slot>1</Slot>
   </Food>
@@ -146,7 +146,7 @@
     <Allergies>Wheat,Dairy</Allergies>
     <Keywords>Drink,Dessert</Keywords>
     <Tier>2</Tier>
-    <Price>6</Price>
+    <Price>17</Price>
     <Reward>3</Reward>
     <Slot>1</Slot>
   </Food>
@@ -156,7 +156,7 @@
     <Allergies>Wheat,Dairy</Allergies>
     <Keywords>Drink,Dessert</Keywords>
     <Tier>2</Tier>
-    <Price>6</Price>
+    <Price>15</Price>
     <Reward>3</Reward>
     <Slot>1</Slot>
   </Food>
@@ -166,7 +166,7 @@
     <Allergies>Wheat,Dairy</Allergies>
     <Keywords>Drink,Dessert</Keywords>
     <Tier>2</Tier>
-    <Price>6</Price>
+    <Price>14</Price>
     <Reward>3</Reward>
     <Slot>1</Slot>
   </Food>
@@ -176,7 +176,7 @@
     <Allergies>Wheat,Dairy,Peanut</Allergies>
     <Keywords>Drink,Dessert</Keywords>
     <Tier>2</Tier>
-    <Price>6</Price>
+    <Price>8</Price>
     <Reward>4</Reward>
     <Slot>1</Slot>
   </Food>
@@ -186,7 +186,7 @@
     <Allergies>Wheat,Dairy,Peanut</Allergies>
     <Keywords>Drink,Dessert</Keywords>
     <Tier>2</Tier>
-    <Price>6</Price>
+    <Price>20</Price>
     <Reward>4</Reward>
     <Slot>1</Slot>
   </Food>
