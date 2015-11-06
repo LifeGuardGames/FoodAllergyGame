@@ -1,0 +1,166 @@
+
+skeleton.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+BrowAngry
+  rotate: false
+  xy: 258, 9
+  size: 170, 46
+  orig: 170, 46
+  offset: 0, 0
+  index: -1
+Fingers
+  rotate: false
+  xy: 434, 435
+  size: 76, 75
+  orig: 76, 75
+  offset: 0, 0
+  index: -1
+Fur
+  rotate: false
+  xy: 2, 139
+  size: 430, 371
+  orig: 430, 371
+  offset: 0, 0
+  index: -1
+Horn
+  rotate: true
+  xy: 101, 2
+  size: 53, 87
+  orig: 53, 87
+  offset: 0, 0
+  index: -1
+HornSide
+  rotate: false
+  xy: 101, 57
+  size: 330, 80
+  orig: 330, 80
+  offset: 0, 0
+  index: -1
+LidBottom
+  rotate: true
+  xy: 434, 9
+  size: 182, 65
+  orig: 182, 65
+  offset: 0, 0
+  index: -1
+LowerLeg
+  rotate: true
+  xy: 190, 7
+  size: 48, 66
+  orig: 48, 66
+  offset: 0, 0
+  index: -1
+MouthHappy
+  rotate: true
+  xy: 55, 12
+  size: 125, 44
+  orig: 125, 44
+  offset: 0, 0
+  index: -1
+MouthOpen
+  rotate: true
+  xy: 2, 9
+  size: 128, 51
+  orig: 128, 51
+  offset: 0, 0
+  index: -1
+TopLid
+  rotate: true
+  xy: 434, 193
+  size: 182, 71
+  orig: 182, 71
+  offset: 0, 0
+  index: -1
+UpperLeg
+  rotate: true
+  xy: 434, 377
+  size: 56, 72
+  orig: 56, 72
+  offset: 0, 0
+  index: -1
+
+skeleton2.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Eye
+  rotate: false
+  xy: 178, 388
+  size: 174, 121
+  orig: 174, 121
+  offset: 0, 0
+  index: -1
+EyesClosed
+  rotate: true
+  xy: 2, 71
+  size: 211, 85
+  orig: 211, 85
+  offset: 0, 0
+  index: -1
+Foot
+  rotate: true
+  xy: 303, 327
+  size: 59, 41
+  orig: 59, 41
+  offset: 0, 0
+  index: -1
+LowerArm
+  rotate: true
+  xy: 354, 400
+  size: 109, 155
+  orig: 109, 155
+  offset: 0, 0
+  index: -1
+Menu
+  rotate: true
+  xy: 89, 68
+  size: 58, 61
+  orig: 58, 61
+  offset: 0, 0
+  index: -1
+MouthFrown
+  rotate: false
+  xy: 178, 320
+  size: 123, 31
+  orig: 123, 31
+  offset: 0, 0
+  index: -1
+MouthNormal
+  rotate: false
+  xy: 178, 353
+  size: 123, 33
+  orig: 123, 33
+  offset: 0, 0
+  index: -1
+Palm
+  rotate: false
+  xy: 89, 188
+  size: 85, 94
+  orig: 85, 94
+  offset: 0, 0
+  index: -1
+Pupil
+  rotate: false
+  xy: 89, 128
+  size: 66, 58
+  orig: 66, 58
+  offset: 0, 0
+  index: -1
+Thumb
+  rotate: true
+  xy: 2, 15
+  size: 54, 81
+  orig: 54, 81
+  offset: 0, 0
+  index: -1
+UpperArm
+  rotate: false
+  xy: 2, 284
+  size: 174, 225
+  orig: 174, 225
+  offset: 0, 0
+  index: -1

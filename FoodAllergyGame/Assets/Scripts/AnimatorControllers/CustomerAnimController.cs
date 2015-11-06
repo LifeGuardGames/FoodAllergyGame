@@ -5,6 +5,8 @@ public class CustomerAnimController : MonoBehaviour {
 	public SkeletonAnimation skeleton;
 	private string currentWaitingStateString;	// For use after losing heart, revert to corrosponding waiting animation
 
+	public bool isLimitAllergyAttackAnim = false;
+
 	public void SetWaitingInLine(){
 		skeleton.state.SetAnimation(0, "WaitingInLine", true);
 		currentWaitingStateString = "WaitingInLine";
@@ -72,8 +74,13 @@ public class CustomerAnimController : MonoBehaviour {
 
 	public void SetRandomAllergyAttack(){
 		Reset();
-		int randomIndex = Random.Range(1, 3);	// Get random int between 1 and 2
-		skeleton.state.AddAnimation(0, "AllergyAttack" + randomIndex.ToString(), false, 0f);
+		if(isLimitAllergyAttackAnim){
+			skeleton.state.AddAnimation(0, "AllergyAttack1", false, 0f);
+		}
+		else{
+			int randomIndex = Random.Range(1, 3);	// Get random int between 1 and 2
+			skeleton.state.AddAnimation(0, "AllergyAttack" + randomIndex.ToString(), false, 0f);
+		}
 	}
 
 	public void SetSavedAllergyAttack(){
