@@ -12,7 +12,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public CustomerStates state;		// The current state of the customer
 	public Allergies allergy;			// The allergy of the customer
 	protected float menuTimer = 4.0f;	// Time spent looking at the menu
-	private float attentionSpan = 10.0f;// The attention timer
+	private float attentionSpan = 15.0f;// The attention timer
 
 	public int satisfaction;			// The satisfaction the customer has, everytime the attention span 
 										//	ticks down to 0 the customer will lose satisfaction
@@ -57,7 +57,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		// used for events this switches the timer variable which directly affects the customer's satisfaction
 		timer = mode.CustomerTimerMod;
 		//calculates the initial attentionSpan
-		attentionSpan = 10f * timer;
+		attentionSpan = 15f * timer;
 		// customers refuse to line up out the door
 		if(RestaurantManager.Instance.GetLine().NewCustomer() == null){
 			Destroy(this.gameObject);
@@ -266,7 +266,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		choices = FoodManager.Instance.GetTwoMenuFoodChoices(desiredFood, allergy);
 		customerUI.ToggleWait(true);
 		//stop the satisfaction timer, change the timer and then restart it
-		attentionSpan = 16.0f * timer;
+		attentionSpan = 21.0f * timer;
 		StartCoroutine("SatisfactionTimer");
 
 		// now waiting for our order to be taken
@@ -432,7 +432,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			}
 		}
 		else{
-			RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, 1, transform.position, 180);
+			RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, 1, transform.position, 360);
 		}
 
 		if(state != CustomerStates.InLine){
