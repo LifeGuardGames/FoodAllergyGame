@@ -25,6 +25,11 @@ public class SpriteCacheManager : Singleton<SpriteCacheManager> {
 //		return foodSpriteDictionary[spriteName];
 //	}
 
+	public static Sprite GetLoadingImageData(string spriteName) {
+		Sprite sprite = Resources.Load<Sprite>(spriteName);
+		return sprite;
+	}
+
 	public static Sprite GetFoodSpriteData(string spriteName){
 		Sprite sprite = Resources.Load<Sprite>(spriteName);
 		return sprite;

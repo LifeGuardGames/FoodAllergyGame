@@ -163,8 +163,8 @@ public class StartManager : Singleton<StartManager>{
 			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT);
 		}
 		else{
-			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.MENUPLANNING);
-		}
+			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.MENUPLANNING, "LoadingKey00", "LoadingImage00");
+        }
 	}
 
 	public void OnComicButtonClicked(){

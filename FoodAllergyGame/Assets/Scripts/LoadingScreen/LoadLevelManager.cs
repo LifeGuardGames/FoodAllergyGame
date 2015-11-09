@@ -8,6 +8,7 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 
 	public TweenToggleDemux loadDemux;
 	public Text loadText;
+	public Image loadImage;
 	private string levelToLoad;
 
 	void Awake(){
@@ -25,13 +26,23 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 	/// Call this to start the transition
 	/// </summary>
 	/// <param name="levelName">Level to be loaded</param>
-	public void StartLoadTransition(string levelName){
+	public void StartLoadTransition(string levelName, string additionalTextKey = null, string additionalImageKey = null){
+		loadImage.gameObject.SetActive(false);
+		if(additionalTextKey != null) {
+			loadText.text = LocalizationText.GetText(additionalTextKey);
 
-		if(levelName == SceneUtils.DECO){
-			loadText.text = "Decorate";
+            if(additionalImageKey != null) {
+				loadImage.gameObject.SetActive(true);
+				loadImage.sprite = SpriteCacheManager.GetLoadingImageData(additionalImageKey);
+			}
 		}
-		else{
-			loadText.text = "";
+		else {
+			if(levelName == SceneUtils.DECO){
+				loadText.text = "Decorate";
+			}
+			else{
+				loadText.text = "";
+			}
 		}
 
 		levelToLoad = levelName;
