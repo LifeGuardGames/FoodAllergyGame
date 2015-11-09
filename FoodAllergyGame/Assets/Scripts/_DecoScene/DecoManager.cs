@@ -104,16 +104,7 @@ public class DecoManager : Singleton<DecoManager>{
 
 	public void ShowCaseDeco(string decoID){
 		
-		//if(isTutroial && decoID == "PlayArea00" && tutObj4.activeSelf != true){
-		if(isTutorial && decoID == "VIP00" && tutObj4.activeSelf != true){
-			tutObj2.SetActive(false);
-			tutObj3.SetActive(true);
-		}
-		//else if(isTutroial && tutObj3.activeSelf == true && decoID != "PlayArea00" && tutObj4.activeSelf != true){
-		else if(isTutorial && tutObj3.activeSelf == true && decoID != "VIP00" && tutObj4.activeSelf != true){
-			tutObj2.SetActive(true);
-			tutObj3.SetActive(false);
-		}
+
 		ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
 		showcaseController.ShowInfo(decoData);
 	}
@@ -240,7 +231,7 @@ public class DecoManager : Singleton<DecoManager>{
 		//if(isTutroial && tabName == "PlayArea" && tutObj1.activeSelf == true){
 		if(isTutorial && tabName == "VIP" && tutObj1.activeSelf == true){
 			tutObj1.SetActive(false);
-			tutObj2.SetActive(true);
+			tutObj3.SetActive(true);
 		}
 		//else if (isTutroial && tabName != "PlayArea" && tutObj4.activeSelf != true){
 		else if (isTutorial && tabName != "VIP" && tutObj4.activeSelf != true){

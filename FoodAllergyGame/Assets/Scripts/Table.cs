@@ -7,6 +7,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 
 	public enum TableType{
 		Normal,
+		//VIP tables do not gain hearts but increases payout
 		VIP,
 		FlyThru,
 	}
@@ -114,6 +115,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		Waiter.Instance.RemoveMeal(tableNumber);
 		KitchenManager.Instance.CancelOrder(tableNumber);
         RestaurantManager.Instance.GetMenuUIController().CancelOrder(tableNumber);
+		_canvas.SetActive(false);
 		if(tableType == TableType.VIP) {
 			CustomerUIController customerUI = this.GetComponent<CustomerUIController>();
 			customerUI.satisfaction1.gameObject.SetActive(false);

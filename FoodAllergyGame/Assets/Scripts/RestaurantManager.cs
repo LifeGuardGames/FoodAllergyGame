@@ -53,6 +53,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public float customerTimerDiffMod;
 
 	#region Analytics
+	public int inspectionButtonClicked;
 	private int attempted;
 	public int savedCustomers;
 
@@ -224,6 +225,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	private void CheckForGameOver(){
 		if(dayOver){
 			if(customerHash.Count == 0){
+				DataManager.Instance.GameData.DayTracker.DaysPlayed++;
 				if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT2"){
 					Analytics.CustomEvent("Finished 4 Customer Tutorial", new Dictionary<string,object>{});
 				}
@@ -265,7 +267,9 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 						{"Attempted Rescues", attempted},
 						{"Play Area Uses", playAreaUses},
 						{"VIP Uses", vipUse},
-						{"Microwave Uses", microwaveUses}
+						{"Microwave Uses", microwaveUses},
+						{"Days Played", DataManager.Instance.GameData.DayTracker.DaysPlayed },
+						{"Inspection Buttons Clicks", inspectionButtonClicked}
 					});
 					// Show day complete UI
 					restaurantUI.DayComplete(satisfactionAI.MissingCustomers, satisfactionAI.AvgSatifaction(), dayEarnedCash,
