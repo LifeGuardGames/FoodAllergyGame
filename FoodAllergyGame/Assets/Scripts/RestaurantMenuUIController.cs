@@ -50,7 +50,7 @@ public class RestaurantMenuUIController : MonoBehaviour {
 			allergyButtonParent.SetActive(true);
 			allergyButtonAnimator.Play("Normal");
 			allergyImage.sprite = SpriteCacheManager.GetAllergySpriteData(allergy);
-			allergyText.text = LocalizationText.GetText("AllergyFailPrefix") + LocalizationText.GetText(allergy.ToString());
+			allergyText.text = "\"" + LocalizationText.GetText("AllergyFailPrefix") + LocalizationText.GetText(allergy.ToString()) + "\"";
 		}
 
 		if(RestaurantManager.Instance.isTutorial && RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().isAllergy){
