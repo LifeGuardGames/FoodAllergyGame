@@ -23,11 +23,11 @@ public class PropManager : MonoBehaviour {
 
 	private void PropNodeRandom() {
 		// pull a random prop and assign new 
-		//LoadObject (DataLoaderRandomNode.GetRandomData());
+		GameObjectUtils.AddChild(propRandomLeft, Resources.Load(DataLoaderRandomNode.GetData("Random0"+ Random.Range(0,10).ToString()).ID)as GameObject);
 	}
 
 	private void PropNodeGrowth() {
 		//set the sprite according to the difference in tiers
-		//LoadObject (DataLoaderGrowthNode.GetDataWithinTierRange());
+		GameObjectUtils.AddChild(propGrowthLeft, Resources.Load(DataLoaderGrowthNode.GetPropsByTier(TierManager.Instance.Tier,"Tree").ID)as GameObject);
 	}
 }
