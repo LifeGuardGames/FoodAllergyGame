@@ -41,13 +41,21 @@ public class DecoManager : Singleton<DecoManager>{
 	private Dictionary<string, Transform> tabGroupInactiveSearchTable;
 	public bool isTutorial;
 
-	#region Static functions
+	#region Generic functions
 	public static bool IsDecoBought(string decoID){
 		return DataManager.Instance.GameData.Decoration.BoughtDeco.ContainsKey(decoID);
 	}
 
 	public static bool IsDecoActive(string decoID){
 		return DataManager.Instance.GameData.Decoration.ActiveDeco.ContainsValue(decoID);
+	}
+
+	public bool IsDecoUnlocked(string decoID) {
+		return (DataLoaderDecoItem.GetData(decoID).Tier <= TierManager.Instance.Tier) ? true : false;
+	}
+	
+	public bool IsCategoryUnlocked(DecoTypes deco) {
+		return IsDecoUnlocked(deco.ToString() + "00");  // Checks the first deco to see if it is active yet
 	}
 	#endregion
 
@@ -103,8 +111,6 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	public void ShowCaseDeco(string decoID){
-		
-
 		ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
 		showcaseController.ShowInfo(decoData);
 	}

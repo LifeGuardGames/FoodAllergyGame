@@ -44,21 +44,26 @@ public class ShowcaseController : MonoBehaviour {
 	}
 
 	// Callback - An item is clicked, show the showcase UI plus its buttons
-	private void StartCurrentDeco(ImmutableDataDecoItem decoData){
+	private void StartCurrentDeco(ImmutableDataDecoItem decoData) {
 		fadeTween.Show();
 		decoImage.sprite = SpriteCacheManager.GetDecoSpriteData(decoData.SpriteName);
 		titleText.text = LocalizationText.GetText(decoData.TitleKey);
 
 		descriptionText.text = LocalizationText.GetText(decoData.DescriptionKey);
-		if(descriptionText.text.Contains("No text for ")){	// Hard code ignore empty text
+		if(descriptionText.text.Contains("No text for ")) { // Hard code ignore empty text
 			descriptionText.text = "";
 		}
 
 		costText.text = decoData.Cost.ToString();
-
+		
 		// Show the corrosponding buttons based on item state
-		if(DecoManager.IsDecoBought(decoData.ID)){
-			if(DecoManager.IsDecoActive(decoData.ID)){  // Bought/Active
+		if(DecoManager.Instance.IsDecoUnlocked(decoData.ID)) {		// Locked
+			buttonParentBoughtDemux.Hide();
+			buttonParentUnboughtDemux.Hide();
+			buttonParentActiveDemux.Hide();
+		}
+		else if(DecoManager.IsDecoBought(decoData.ID)){
+			if(DecoManager.IsDecoActive(decoData.ID)){				// Bought/Active
 				buttonParentBoughtDemux.Hide();
 				buttonParentUnboughtDemux.Hide();
 
@@ -70,13 +75,13 @@ public class ShowcaseController : MonoBehaviour {
 					buttonParentActiveDemux.Hide();
 				}
             }
-			else{   // Bought/Inactive
+			else{													// Bought/Inactive
 				buttonParentBoughtDemux.Show();
 				buttonParentUnboughtDemux.Hide();
 				buttonParentActiveDemux.Hide();
             }
 		}
-		else{   // Inactive
+		else{														// Inactive
 			buttonParentBoughtDemux.Hide();
 			buttonParentUnboughtDemux.Show();
 			buttonParentActiveDemux.Hide();
