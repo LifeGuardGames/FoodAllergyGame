@@ -143,6 +143,7 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 			tierBar.rectTransform.sizeDelta = new Vector2(0f, fullSizeBar.y);
 
 			// Do any animation effects here
+			AudioManager.Instance.PlayClip("TierUp");
 			fireworksController.StartFireworks();
 
 			// Pass that total cash into the animate function again
