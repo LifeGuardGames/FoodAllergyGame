@@ -3,6 +3,12 @@
 	<!-- UI Sounds -->
 	<Sound ID="Button1Down"></Sound>
 	<Sound ID="Button1Up"></Sound>
+  
+  <Sound ID="Firework1"></Sound>
+  <Sound ID="Firework2"></Sound>
+  <Sound ID="Firework3"></Sound>
+  <Sound ID="TierUp"></Sound>
+
   <Sound ID="customerSaved"></Sound>
   <Sound ID="teleportingSound"></Sound>
 	<Sound ID="customerEnter"></Sound>

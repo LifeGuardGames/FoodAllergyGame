@@ -18,6 +18,8 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 	private Vector2 fullSizeBar;
 	private NotificationQueueDataTierProgress tierCaller;
 
+	public FireworksController fireworksController;
+
 	void Start() {
 		coin.GetComponentInChildren<Text>().text = DataManager.Instance.GameData.Cash.CurrentCash.ToString();
 
@@ -139,6 +141,10 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 			// Reset the UI
 			tierText.text = DataLoaderTiers.GetTierFromCash(oldTotalCash).ToString();
 			tierBar.rectTransform.sizeDelta = new Vector2(0f, fullSizeBar.y);
+
+			// Do any animation effects here
+			AudioManager.Instance.PlayClip("TierUp");
+			fireworksController.StartFireworks();
 
 			// Pass that total cash into the animate function again
 			StartTierAnimation(tierCaller, oldTotalCash, newTotalCash);

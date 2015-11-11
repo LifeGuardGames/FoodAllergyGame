@@ -7,6 +7,10 @@ public class CustomerAnimController : MonoBehaviour {
 
 	public bool isLimitAllergyAttackAnim = false;
 
+	public void Start() {
+		skeleton.state.SetAnimation(0, "AllergyAttack1", false);
+	}
+
 	public void SetWaitingInLine(){
 		skeleton.state.SetAnimation(0, "WaitingInLine", true);
 		currentWaitingStateString = "WaitingInLine";
