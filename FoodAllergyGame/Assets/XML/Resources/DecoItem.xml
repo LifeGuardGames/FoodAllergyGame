@@ -140,13 +140,14 @@
 		<SpriteName>None</SpriteName>
 		<Tier>10</Tier>
 	</DecoItem>
+  
 
 	<DecoItem ID = "FlyThru00">
 		<Type>FlyThru</Type>
 		<Price>100</Price>
-		<TitleKey>FlyThruBasicRed</TitleKey>
-		<DescriptionKey>FlyThruBasicRedDesc</DescriptionKey>
-		<SpriteName>RestFlyThruBasicRed</SpriteName>
+		<TitleKey>FlyThruBasic</TitleKey>
+		<DescriptionKey>FlyThruBasicDesc</DescriptionKey>
+		<SpriteName>RestFlyThruBasicSample</SpriteName>
 		<Tier>10</Tier>
 	</DecoItem>
 

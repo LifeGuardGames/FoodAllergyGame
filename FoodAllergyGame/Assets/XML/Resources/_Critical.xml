@@ -13,9 +13,9 @@
   <Constant Name="BathroomID" Type="String" Value="Bathroom00" Debug="True"> </Constant>
   <Constant Name="PlayAreaOn" Type="Bool" Value="False" Debug="False"> </Constant>
   <Constant Name="PlayAreaID" Type="String" Value="PlayArea00" Debug="True"> </Constant>
-  <Constant Name="VIPOn" Type="Bool" Value="True" Debug="False"> </Constant>
+  <Constant Name="VIPOn" Type="Bool" Value="False" Debug="False"> </Constant>
   <Constant Name="VIPID" Type="String" Value="VIP00" Debug="True"> </Constant>
-  <Constant Name="FlyThruOn" Type="Bool" Value="False" Debug="False"> </Constant>
+  <Constant Name="FlyThruOn" Type="Bool" Value="True" Debug="False"> </Constant>
   <Constant Name="FlyThruID" Type="String" Value="FlyThru00" Debug="True"> </Constant>
   <Constant Name="MicrowaveOn" Type="Bool" Value="False" Debug="False"> </Constant>
   <Constant Name="MicrowaveID" Type="String" Value="Microwave00" Debug="True"> </Constant>

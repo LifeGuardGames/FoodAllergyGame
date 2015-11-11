@@ -68,7 +68,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			if((flyThruTable != null) && Random.Range(0,10) > 3 && !flyThruTable.inUse && Constants.GetConstant<bool>("FlyThruOn")|| mode.ID == "EventTFlyThru"){
 				flyThruTable.inUse = true;
 				this.gameObject.transform.SetParent(flyThruTable.seat);
-				tableNum = 5;
+				tableNum = flyThruTable.TableNumber;
 				state = CustomerStates.ReadingMenu;
 				StartCoroutine("ReadMenu");
 				AudioManager.Instance.PlayClip("readingMenu");
@@ -76,6 +76,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				customerAnim.SetReadingMenu();
 				GetComponentInParent<Table>().currentCustomerID = customerID;
 				this.GetComponent<BoxCollider>().enabled = false;
+				flyThruTable.FlyThruDropDown();
 			}
 			else{
 				this.gameObject.transform.SetParent(RestaurantManager.Instance.GetLine().NewCustomer());
@@ -428,6 +429,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, priceMultiplier * RestaurantManager.Instance.GetTable(tableNum).VIPMultiplier, transform.position,Time.time - spawnTime);
 			}
 			else{
+				if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.FlyThru) {
+					RestaurantManager.Instance.GetTable(tableNum).FlyThruLeave();
+                }
 				RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, priceMultiplier, transform.position, Time.time - spawnTime);
 			}
 		}
@@ -450,7 +454,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
             RestaurantManager.Instance.lineCount--;
             RestaurantManager.Instance.lineController.FillInLine();
         }
-            Destroy(this.gameObject);
+        Destroy(this.gameObject);
 	}
 
 	// called if the food's ingrediants match the allergy starts a timer in which the player must hit the save me button

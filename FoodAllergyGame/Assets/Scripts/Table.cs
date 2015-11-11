@@ -36,6 +36,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		get{ return node; }
 	}
 	public int VIPMultiplier;
+	public TweenToggle FlyThruToggle;
 
 	public Transform foodSpot;
 	public bool inUse = false;
@@ -154,6 +155,14 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		}
 	}
 
+	public void FlyThruDropDown() {
+		FlyThruToggle.Show();
+	}
+
+	public void FlyThruLeave() {
+		FlyThruToggle.Hide();
+	}
+
 	#region IWaiterSelection implementation
 	public void OnWaiterArrived(){
 		if(!isBroken && seat.childCount > 0){
@@ -176,7 +185,6 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	}
 
 	public void OnClicked(){
-
 		if(tableType != TableType.FlyThru){
 			if(Waiter.Instance.CurrentLineCustomer != null && !inUse && !isBroken){
 				Waiter.Instance.CurrentLineCustomer.transform.localScale = Vector3.one;
