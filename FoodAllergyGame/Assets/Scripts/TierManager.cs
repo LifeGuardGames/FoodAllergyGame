@@ -117,15 +117,20 @@ public class TierManager : Singleton<TierManager> {
 	// Checks any special case for unlocking a tier
 	// IMPORTANT NOTE: Make sure to set specialDecoID so notificationManager can pick it up!
 	public void SpecialTierUnlock(int newTier){
-		if(newTier >= 1 && tier < 1){
+		if(newTier >= 2 && tier < 2){
 			specialItemID.Add("VIP00");
 			DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTVIP");
 			DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
 		}
 
-		if(newTier >= 5 && tier < 5) {
+		if(newTier >= 4 && tier < 4) {
 			specialItemID.Add("PlayArea00");
 			DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTPlayArea");
+			DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
+		}
+		if(newTier >= 6 && tier < 6) {
+			specialItemID.Add("FlyThru00");
+			DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTFlyThru");
 			DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
 		}
 		tier = newTier;

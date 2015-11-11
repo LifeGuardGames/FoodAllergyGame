@@ -14,7 +14,7 @@
 		<TierNumber>0</TierNumber>
 		<CashCutoffFloor>500</CashCutoffFloor>
 		<MenuSlots>5</MenuSlots>
-		<EventsUnlocked>Event00,Event01,Event02,Event03</EventsUnlocked>
+		<EventsUnlocked></EventsUnlocked>
 		<FoodsUnlocked></FoodsUnlocked>
 		<DecorationsUnlocked></DecorationsUnlocked>
 		<StartArtAssets></StartArtAssets>
@@ -23,51 +23,62 @@
 	<Tier ID="Tier01">
 		<TierNumber>1</TierNumber>
 		<CashCutoffFloor>850</CashCutoffFloor>
-		<MenuSlots>6</MenuSlots>
-		<EventsUnlocked>Event00,Event01,Event02,Event03</EventsUnlocked>
-		<FoodsUnlocked></FoodsUnlocked>
-		<DecorationsUnlocked>Table01,Floor01,Kitchen01</DecorationsUnlocked>
+		<MenuSlots>5</MenuSlots>
+		<EventsUnlocked>Event01,Event02,Event03,Event04</EventsUnlocked>
+		<FoodsUnlocked>Food01,Food02</FoodsUnlocked>
+		<DecorationsUnlocked></DecorationsUnlocked>
 		<StartArtAssets></StartArtAssets>
     <IsLastTier>False</IsLastTier>
 	</Tier>
 	<Tier ID="Tier02">
 		<TierNumber>2</TierNumber>
-		<CashCutoffFloor>1900</CashCutoffFloor>
-		<MenuSlots>7</MenuSlots>
-		<EventsUnlocked>Event00,Event01,Event02,Event03</EventsUnlocked>
+		<CashCutoffFloor>1200</CashCutoffFloor>
+		<MenuSlots>5</MenuSlots>
+		<EventsUnlocked>Event04,Event01,Event02,Event03</EventsUnlocked>
 		<FoodsUnlocked></FoodsUnlocked>
-		<DecorationsUnlocked>Table02,Kitchen02</DecorationsUnlocked>
+		<DecorationsUnlocked>Table01,Kitchen01,Floor01</DecorationsUnlocked>
 		<StartArtAssets></StartArtAssets>
     <IsLastTier>False</IsLastTier>
 	</Tier>
 	<Tier ID="Tier03">
 		<TierNumber>3</TierNumber>
 		<CashCutoffFloor>2000</CashCutoffFloor>
-		<MenuSlots>8</MenuSlots>
-		<EventsUnlocked>Event00,Event01,Event02,Event03</EventsUnlocked>
-		<FoodsUnlocked></FoodsUnlocked>
-		<DecorationsUnlocked>Floor02,Kitchen03</DecorationsUnlocked>
+		<MenuSlots>6</MenuSlots>
+		<EventsUnlocked>Event05,Event06,Event07,Event08,Event09,Event10</EventsUnlocked>
+		<FoodsUnlocked>Food10,Food14,Food18</FoodsUnlocked>
+		<DecorationsUnlocked></DecorationsUnlocked>
 		<StartArtAssets></StartArtAssets>
     <IsLastTier>False</IsLastTier>
 	</Tier>
 	<Tier ID="Tier04">
 		<TierNumber>4</TierNumber>
-		<CashCutoffFloor>2500</CashCutoffFloor>
-		<MenuSlots>8</MenuSlots>
-		<EventsUnlocked>Event00,Event01,Event02,Event03</EventsUnlocked>
+		<CashCutoffFloor>3000</CashCutoffFloor>
+		<MenuSlots>6</MenuSlots>
+		<EventsUnlocked></EventsUnlocked>
 		<FoodsUnlocked></FoodsUnlocked>
-		<DecorationsUnlocked></DecorationsUnlocked>
+		<DecorationsUnlocked>Table02,Floor02,Kitchen02</DecorationsUnlocked>
 		<StartArtAssets></StartArtAssets>
     <IsLastTier>False</IsLastTier>
 	</Tier>
 	<Tier ID="Tier05">
-		<TierNumber>5</TierNumber>
-		<CashCutoffFloor>3000</CashCutoffFloor>
-		<MenuSlots>8</MenuSlots>
-		<EventsUnlocked>Event00,Event01,Event02,Event03</EventsUnlocked>
-		<FoodsUnlocked></FoodsUnlocked>
-		<DecorationsUnlocked></DecorationsUnlocked>
-		<StartArtAssets></StartArtAssets>
-    <IsLastTier>True</IsLastTier>
+    <TierNumber>5</TierNumber>
+    <CashCutoffFloor>4200</CashCutoffFloor>
+    <MenuSlots>7</MenuSlots>
+    <EventsUnlocked>Event11,Event12,Event13,Event14</EventsUnlocked>
+    <FoodsUnlocked>Food16,Fodd17,Food12</FoodsUnlocked>
+    <DecorationsUnlocked></DecorationsUnlocked>
+    <StartArtAssets></StartArtAssets>
+    <IsLastTier>False</IsLastTier>
+    <IsLastTier>False</IsLastTier>
 	</Tier>
+  <Tier ID="Tier06">
+    <TierNumber>6</TierNumber>
+    <CashCutoffFloor>5400</CashCutoffFloor>
+    <MenuSlots>8</MenuSlots>
+    <EventsUnlocked></EventsUnlocked>
+    <FoodsUnlocked>Food11,Food13,Food15</FoodsUnlocked>
+    <DecorationsUnlocked>Table03,Kitchen03</DecorationsUnlocked>
+    <StartArtAssets></StartArtAssets>
+    <IsLastTier>True</IsLastTier>
+  </Tier>
 </Tiers>
