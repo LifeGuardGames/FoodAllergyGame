@@ -65,47 +65,47 @@
 		<DayLength>72</DayLength>
 		<Allergy>Peanut</Allergy>
 		<EventDescription>EventDesc00</EventDescription>
-		<Title>Title00</Title>
+		<Title>Event00</Title>
 	</Event>
 	<Event ID="Event01">
 		<MenuSet>MenuSet01</MenuSet>
 		<KitchenTimer>6.5</KitchenTimer>
-		<CustomerSet>CustomerSet00</CustomerSet>
+		<CustomerSet>CustomerSet01</CustomerSet>
 		<CustomerTimer>1</CustomerTimer>
 		<DayLength>72</DayLength>
 		<Allergy>Wheat</Allergy>
 		<EventDescription>EventDesc01</EventDescription>
-		<Title>Title01</Title>
+		<Title>Event01</Title>
 	</Event>
 	<Event ID="Event02">
 		<MenuSet>MenuSet01</MenuSet>
 		<KitchenTimer>3</KitchenTimer>
-		<CustomerSet>CustomerSet00</CustomerSet>
+		<CustomerSet>CustomerSet01</CustomerSet>
 		<CustomerTimer>0.7</CustomerTimer>
 		<DayLength>72</DayLength>
 		<Allergy>Dairy</Allergy>
 		<EventDescription>EventDesc02</EventDescription>
-		<Title>Title02</Title>
+		<Title>Event02</Title>
 	</Event>
 	<Event ID="Event03">
 		<MenuSet>MenuSet00</MenuSet>
 		<KitchenTimer>5</KitchenTimer>
-		<CustomerSet>CustomerSet00</CustomerSet>
+		<CustomerSet>CustomerSet01</CustomerSet>
 		<CustomerTimer>0.7</CustomerTimer>
 		<DayLength>72</DayLength>
 		<Allergy>None</Allergy>
 		<EventDescription>EventDesc03</EventDescription>
-		<Title>Title03</Title>
+		<Title>Event03</Title>
 	</Event>
 	<Event ID="Event04">
 		<MenuSet>MenuSet00</MenuSet>
-		<KitchenTimer>6.5</KitchenTimer>
-		<CustomerSet>CustomerSet00</CustomerSet>
+		<KitchenTimer>6</KitchenTimer>
+		<CustomerSet>CustomerSet01</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
 		<DayLength>72</DayLength>
 		<Allergy>None</Allergy>
 		<EventDescription>EventDesc04</EventDescription>
-		<Title>Title04</Title>
+		<Title>Event04</Title>
 	</Event>
 		<Event ID="Event05">
 		<MenuSet>MenuSet00</MenuSet>
@@ -117,26 +117,55 @@
 		<EventDescription>EventDesc05</EventDescription>
 		<Title>Title05</Title>
 	</Event>
-	<Event ID="Event06">
-		<MenuSet>MenuSet00</MenuSet>
-		<KitchenTimer>3</KitchenTimer>
-		<CustomerSet>CustomerSet05</CustomerSet>
-		<CustomerTimer>1</CustomerTimer>
-		<DayLength>72</DayLength>
-		<Allergy>None</Allergy>
-		<EventDescription>EventDesc07</EventDescription>
-		<Title>Title06</Title>
-	</Event>
-		
-	<Event ID="Event07">
-	<MenuSet>MenuSet00</MenuSet>
-		<KitchenTimer>3</KitchenTimer>
-		<CustomerSet>CustomerSet06</CustomerSet>
-		<CustomerTimer>1</CustomerTimer>
-		<DayLength>72</DayLength>
-		<Allergy>None</Allergy>
-		<EventDescription>EventDesc08</EventDescription>
-		<Title>Title07</Title>
-	</Event>
+  <Event ID="Event06">
+    <MenuSet>MenuSet01</MenuSet>
+    <KitchenTimer>3</KitchenTimer>
+    <CustomerSet>CustomerSet02</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>72</DayLength>
+    <Allergy>Peanut</Allergy>
+    <EventDescription>EventDesc00</EventDescription>
+    <Title>Event00</Title>
+  </Event>
+  <Event ID="Event07">
+    <MenuSet>MenuSet01</MenuSet>
+    <KitchenTimer>6.5</KitchenTimer>
+    <CustomerSet>CustomerSet02</CustomerSet>
+    <CustomerTimer>1</CustomerTimer>
+    <DayLength>72</DayLength>
+    <Allergy>Wheat</Allergy>
+    <EventDescription>EventDesc01</EventDescription>
+    <Title>Event01</Title>
+  </Event>
+  <Event ID="Event08">
+    <MenuSet>MenuSet01</MenuSet>
+    <KitchenTimer>3</KitchenTimer>
+    <CustomerSet>CustomerSet02</CustomerSet>
+    <CustomerTimer>0.7</CustomerTimer>
+    <DayLength>72</DayLength>
+    <Allergy>Dairy</Allergy>
+    <EventDescription>EventDesc02</EventDescription>
+    <Title>Event02</Title>
+  </Event>
+  <Event ID="Event09">
+    <MenuSet>MenuSet00</MenuSet>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>CustomerSet02</CustomerSet>
+    <CustomerTimer>0.7</CustomerTimer>
+    <DayLength>72</DayLength>
+    <Allergy>None</Allergy>
+    <EventDescription>EventDesc03</EventDescription>
+    <Title>Event03</Title>
+  </Event>
+  <Event ID="Event10">
+    <MenuSet>MenuSet00</MenuSet>
+    <KitchenTimer>6</KitchenTimer>
+    <CustomerSet>CustomerSet02</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>72</DayLength>
+    <Allergy>None</Allergy>
+    <EventDescription>EventDesc04</EventDescription>
+    <Title>Event04</Title>
+  </Event>
 </Events>
 

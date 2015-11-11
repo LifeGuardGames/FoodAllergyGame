@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!--Customer00 = Normal-->
+<!--Customer01 = Impaitent-->
+<!--Customer02 = Eater-->
+<!--Customer03 = TableSmasher-->
+<!--Customer04 = HospitalRunner-->
+<!--Customer06 = Gossiper-->
+<!--Customer07 = coolKid-->
+<!--Customer08 = Playful-->
+<!--Customer09 = Blaackout-->
+
 <CustomerSets>
 <CustomerSet ID="CustomerSetT1">
 		<CustomerList>Customer10</CustomerList>
@@ -16,22 +26,22 @@
 		<CustomerList>Customer00</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSet00">
-		<CustomerList>Customer00,Customer01,Customer07</CustomerList>
+		<CustomerList>Customer00</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSet01">
-		<CustomerList>Customer01,Customer04,Customer03</CustomerList>
+		<CustomerList>Customer01,Customer01</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSet02">
-		<CustomerList>Customer02,Customer05,Customer01</CustomerList>
+		<CustomerList>Customer07,Customer00,Customer01</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSet03">
-		<CustomerList>Customer00,Customer01,Customer02</CustomerList>
+		<CustomerList>Customer00,Customer01,Customer07,Customer03</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSet04">
-		<CustomerList>Customer04</CustomerList>
+		<CustomerList>Customer03</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSet05">
-		<CustomerList>Customer06</CustomerList>
+		<CustomerList>Customer07</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSet06">
 		<CustomerList>Customer09</CustomerList>	
