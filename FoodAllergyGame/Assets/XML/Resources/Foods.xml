@@ -85,7 +85,7 @@
 		<SpriteName>FoodToast</SpriteName>
 		<Allergies>Wheat</Allergies>
 		<Keywords>Meal,Drink</Keywords>
-		<Tier>0</Tier>
+		<Tier>1</Tier>
 		<Price>6</Price>
 		<Reward>1</Reward>
     	<Slot>1</Slot>
@@ -95,7 +95,7 @@
 		<SpriteName>FoodMilk</SpriteName>
 		<Allergies>Dairy</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
-		<Tier>0</Tier>
+		<Tier>1</Tier>
 		<Price>6</Price>
 		<Reward>1</Reward>
     	<Slot>1</Slot>
@@ -105,7 +105,7 @@
 	    <SpriteName>FoodPeanutButterJelly</SpriteName>
 	    <Allergies>Wheat,Peanut</Allergies>
 	    <Keywords>Drink,Dessert</Keywords>
-	    <Tier>2</Tier>
+	    <Tier>3</Tier>
 	    <Price>13</Price>
 	    <Reward>3</Reward>
 	    <Slot>1</Slot>
@@ -115,7 +115,7 @@
 		<SpriteName>FoodPeanutButterCookies</SpriteName>
 		<Allergies>Wheat,Peanut</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
-		<Tier>2</Tier>
+		<Tier>6</Tier>
 		<Price>12</Price>
 		<Reward>3</Reward>
 		<Slot>1</Slot>
@@ -125,7 +125,7 @@
 		<SpriteName>FoodMilk</SpriteName>
 		<Allergies>Wheat,Peanut</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
-		<Tier>2</Tier>
+		<Tier>5</Tier>
 		<Price>11</Price>
 		<Reward>3</Reward>
 		<Slot>1</Slot>
@@ -135,7 +135,7 @@
 		<SpriteName>FoodPeanutMMs</SpriteName>
 		<Allergies>Dairy,Peanut</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
-		<Tier>2</Tier>
+		<Tier>6</Tier>
 		<Price>12</Price>
 		<Reward>3</Reward>
 		<Slot>1</Slot>
@@ -145,7 +145,7 @@
 	    <SpriteName>FoodMacAndCheese</SpriteName>
 	    <Allergies>Wheat,Dairy</Allergies>
 	    <Keywords>Drink,Dessert</Keywords>
-	    <Tier>2</Tier>
+	    <Tier>3</Tier>
 	    <Price>17</Price>
 	    <Reward>3</Reward>
 	    <Slot>1</Slot>
@@ -155,7 +155,7 @@
 	    <SpriteName>FoodBrownies</SpriteName>
 	    <Allergies>Wheat,Dairy</Allergies>
 	    <Keywords>Drink,Dessert</Keywords>
-	    <Tier>2</Tier>
+	    <Tier>6</Tier>
 	    <Price>15</Price>
 	    <Reward>3</Reward>
 	    <Slot>1</Slot>
@@ -165,7 +165,7 @@
 		<SpriteName>FoodPancake</SpriteName>
 		<Allergies>Wheat,Dairy</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
-		<Tier>2</Tier>
+		<Tier>5</Tier>
 		<Price>14</Price>
 		<Reward>3</Reward>
 		<Slot>1</Slot>
@@ -175,7 +175,7 @@
 		<SpriteName>FoodMilk</SpriteName>
 		<Allergies>Wheat,Dairy,Peanut</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
-		<Tier>2</Tier>
+		<Tier>5</Tier>
 		<Price>8</Price>
 		<Reward>4</Reward>
 		<Slot>1</Slot>
@@ -185,7 +185,7 @@
 		<SpriteName>FoodPeanutBrownies</SpriteName>
 		<Allergies>Wheat,Dairy,Peanut</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
-		<Tier>2</Tier>
+		<Tier>3</Tier>
 		<Price>20</Price>
 		<Reward>4</Reward>
 		<Slot>1</Slot>
