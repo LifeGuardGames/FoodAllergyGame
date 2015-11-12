@@ -53,7 +53,7 @@ public class TutorialManager : MonoBehaviour{
 			currScene = Resources.Load("TuTObject" + (scene.ToString()))as GameObject;
 			tutObject = GameObjectUtils.AddChildGUI(canvas, currScene);
 			tutObject.GetComponentInChildren<Button>().onClick.AddListener(() => ChangeScene(4));
-			// TODO-SOUND Reading menu here
+			AudioManager.Instance.PlayClip("CustomerSeated");
 			break;
 		case 4:
 			Destroy(tutObject);

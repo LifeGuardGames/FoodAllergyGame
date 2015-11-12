@@ -17,12 +17,14 @@
 
   <!-- Restaurant scene -->
   <Sound ID="EndOfDay"></Sound>
+  <Sound ID="MedicEnter"></Sound>
 
   <!-- Customer sounds -->
   <Sound ID="CustomerEnter"></Sound>
-  <Sound ID="CustomerAllergyAttack"></Sound>
+  <Sound ID="CustomerAllergyAttackAudio"></Sound>
   <Sound ID="CustomerEating"></Sound>
   <Sound ID="CustomerSaved"></Sound>
+  <Sound ID="CustomerSeated"></Sound>
   <Sound ID="CustomerLeave"></Sound>
   <Sound ID="CustomerSelected"></Sound>
   <Sound ID="CustomerReadyForCheck"></Sound>
@@ -34,10 +36,13 @@
   <Sound ID="OrderPickUp"></Sound>
   <Sound ID="OrderReady"></Sound>
   <Sound ID="WriteDownOrder"></Sound>
+  <Sound ID="CoinGet"></Sound>
 
   <!-- Special deco sounds -->
   <Sound ID="ArcadeOver"></Sound>
   <Sound ID="FlyThruEnter"></Sound>
   <Sound ID="FlyThruLeave"></Sound>
   <Sound ID="VIPEnter"></Sound>
+
+  <!-- Unused extras -->
 </Sounds>

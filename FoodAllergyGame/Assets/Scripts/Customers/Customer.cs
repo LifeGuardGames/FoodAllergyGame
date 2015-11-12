@@ -229,7 +229,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		RestaurantManager.Instance.lineCount--;
 		RestaurantManager.Instance.CustomerLineSelectHighlightOff();
 		Waiter.Instance.CurrentLineCustomer = null;
-		AudioManager.Instance.PlayClip("CustomerSelected");
+		AudioManager.Instance.PlayClip("CustomerSeated");
 
 		//sitting down
 		tableNum = _tableNum;
@@ -248,6 +248,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		// begin reading menu
 		state = CustomerStates.ReadingMenu;
 		customerAnim.SetReadingMenu();
+
 		StartCoroutine("ReadMenu");
 		// TODO-SOUND Reading menu here
 		StopCoroutine("SatisfactionTimer");
@@ -461,7 +462,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		customerUI.ToggleAllergyAttack(true);
 		customerAnim.SetRandomAllergyAttack();
 		RestaurantManager.Instance.SickCustomers.Add(this.gameObject);
-		AudioManager.Instance.PlayClip("CustomerAllergyAttack");
+		AudioManager.Instance.PlayClip("CustomerAllergyAttackAudio");
 
 		// Show tutorial if needed
 		if(DataManager.Instance.GameData.Tutorial.IsMedicTut2Done){

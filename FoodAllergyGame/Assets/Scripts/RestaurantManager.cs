@@ -213,6 +213,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	}
 
 	public void UpdateCash(int billAmount){
+		AudioManager.Instance.PlayClip("CoinGet");
+
 		dayEarnedCash += billAmount;
 		
 		// Update revenue if positive bill
