@@ -51,6 +51,7 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	public bool IsDecoUnlocked(string decoID) {
+		Debug.Log(decoID + " " + DataLoaderDecoItem.GetData(decoID).Tier + " " + TierManager.Instance.Tier);
 		return (DataLoaderDecoItem.GetData(decoID).Tier <= TierManager.Instance.Tier) ? true : false;
 	}
 	

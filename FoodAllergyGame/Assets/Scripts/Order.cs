@@ -66,7 +66,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 		ToggleShowOrderNumber(true);
 		this.gameObject.GetComponent<BoxCollider>().enabled = true;
 		KitchenManager.Instance.FinishCooking(this.gameObject);
-		AudioManager.Instance.PlayClip("orderReady");
+		AudioManager.Instance.PlayClip("OrderReady");
 		if(RestaurantManager.Instance.isTutorial){
 			RestaurantManager.Instance.GetTable(tableNumber).Seat.GetComponentInChildren<CustomerTutorial>().step = 1;
 			RestaurantManager.Instance.GetTable(tableNumber).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
@@ -102,7 +102,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 		if(!Waiter.Instance.HaveMeal(tableNumber)&& Waiter.Instance.CheckHands()){
 			this.gameObject.GetComponent<BoxCollider>().enabled = false;
 			Waiter.Instance.SetHand(gameObject);
-			AudioManager.Instance.PlayClip("orderPickUp");
+			AudioManager.Instance.PlayClip("OrderPickUp");
 			if(RestaurantManager.Instance.isTutorial){
 				RestaurantManager.Instance.GetTable(tableNumber).Seat.GetComponentInChildren<CustomerTutorial>().hideFinger();
 				RestaurantManager.Instance.GetTable(tableNumber).Seat.GetComponentInChildren<CustomerTutorial>().NextTableFinger();
