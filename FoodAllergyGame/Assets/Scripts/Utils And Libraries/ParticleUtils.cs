@@ -31,4 +31,10 @@ public static class ParticleUtils{
 		GameObject.Instantiate(go, pos, go.transform.rotation);
 		AudioManager.Instance.PlayClip("HandsFull");
 	}
+
+	// When table smasher smashes a table
+	static public void PlayTableSmashedParticle(Vector3 pos) {
+		GameObject go = Resources.Load("TableSmashPoof") as GameObject;
+		GameObject.Instantiate(go, pos, go.transform.rotation);
+	}
 }

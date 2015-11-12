@@ -45,7 +45,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	public GameObject _canvas;
 	public bool isGossiped;
 	public GameObject tableHighlight;
-	public SpriteRenderer tableSprite;
+	public GameObject spriteParent;
 
 	void Start(){
 		if(Application.loadedLevelName == SceneUtils.RESTAURANT){
@@ -136,11 +136,37 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		RestaurantManager.Instance.CustomerLeft(currentCustomerID, 0,1, transform.position, 20.0f);
 		CustomerLeaving();
 	}
-
+	
 	//for use by sir table smasher when he does his thing
 	public void TableSmashed(){
 		isBroken = true;
-        RestaurantManager.Instance.GetMenuUIController().CancelOrder(tableNumber);
+
+		
+		// Turn off all components
+		if(tableHighlight != null) {
+			tableHighlight.SetActive(false);
+		}
+		_canvas.SetActive(false);
+		if(tableType == TableType.VIP) {
+			CustomerUIController customerUI = this.GetComponent<CustomerUIController>();
+			customerUI.satisfaction1.gameObject.SetActive(false);
+			customerUI.satisfaction2.gameObject.SetActive(false);
+			customerUI.satisfaction3.gameObject.SetActive(false);
+			customerUI.ToggleWait(false);
+			customerUI.ToggleStar(false);
+			customerUI.ToggleAllergyAttack(false);
+		}
+		this.GetComponent<BoxCollider>().enabled = false;
+
+		
+		RestaurantManager.Instance.GetMenuUIController().CancelOrder(tableNumber);
+		ParticleUtils.PlayTableSmashedParticle(transform.position);
+		Invoke("TableSmashedCleanup", 4f);
+		// TODO balance this
+	}
+
+	private void TableSmashedCleanup() {
+		spriteParent.SetActive(false);
     }
 
 	public void TurnOnHighlight(){

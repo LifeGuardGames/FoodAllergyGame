@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CustomerAnimController : MonoBehaviour {
 	public SkeletonAnimation skeleton;
-	private string currentWaitingStateString;	// For use after losing heart, revert to corrosponding waiting animation
+	protected string currentWaitingStateString;	// For use after losing heart, revert to corrosponding waiting animation
 
 	public bool isLimitAllergyAttackAnim = false;
 
@@ -12,22 +12,22 @@ public class CustomerAnimController : MonoBehaviour {
 		currentWaitingStateString = "WaitingInLine";
 	}
 
-//	void OnGUI(){
-//		if(GUI.Button(new Rect(100, 100, 100, 100), "1")){
-//			Debug.Log("Setup pose");
-//			skeleton.state.ClearTracks();
-//			skeleton.state.SetAnimation(0, "Reset", false);
-////			skeleton.skeleton.SetToSetupPose();
-//		}
-//		if(GUI.Button(new Rect(200, 100, 100, 100), "2")){
-//			UpdateSatisfaction(-1);
-//		}
-//		if(GUI.Button(new Rect(300, 100, 100, 100), "3")){
-//			skeleton.state.SetAnimation(0, "Reset", false);
-//		}
-//	}
+	//	void OnGUI(){
+	//		if(GUI.Button(new Rect(100, 100, 100, 100), "1")){
+	//			Debug.Log("Setup pose");
+	//			skeleton.state.ClearTracks();
+	//			skeleton.state.SetAnimation(0, "Reset", false);
+	////			skeleton.skeleton.SetToSetupPose();
+	//		}
+	//		if(GUI.Button(new Rect(200, 100, 100, 100), "2")){
+	//			UpdateSatisfaction(-1);
+	//		}
+	//		if(GUI.Button(new Rect(300, 100, 100, 100), "3")){
+	//			skeleton.state.SetAnimation(0, "Reset", false);
+	//		}
+	//	}
 
-	public void Reset(){
+	protected void Reset(){
 		skeleton.state.ClearTracks();
 		skeleton.state.SetAnimation(0, "Reset", false);
 	}
