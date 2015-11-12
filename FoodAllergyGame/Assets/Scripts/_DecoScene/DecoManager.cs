@@ -51,11 +51,11 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	public bool IsDecoUnlocked(string decoID) {
-		return (DataLoaderDecoItem.GetData(decoID).Tier <= TierManager.Instance.Tier) ? true : false;
+		return (DataLoaderDecoItem.GetData(decoID).Tier > TierManager.Instance.Tier) ? true : false;
 	}
 	
 	public bool IsCategoryUnlocked(DecoTypes deco) {
-		return IsDecoUnlocked(deco.ToString() + "00");  // Checks the first deco to see if it is active yet
+		return !IsDecoUnlocked(deco.ToString() + "00");  // Checks the first deco to see if it is active yet
 	}
 	#endregion
 
