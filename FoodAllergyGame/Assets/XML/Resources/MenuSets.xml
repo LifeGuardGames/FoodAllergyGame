@@ -9,7 +9,7 @@
   <MenuSet ID="MenuSet01">
     <FoodList>Food00,Food01,Food03,Food04,Food05,Food02,Food06,Food07,Food08,Food09</FoodList>
   </MenuSet>
-  <MenuSet ID="MenuSet02 ">
+  <MenuSet ID="MenuSet02">
     <FoodList>Food00,Food01,Food03,Food04,Food05,Food02,Food06,Food07,Food08,Food09,Food14,Food18,Food10</FoodList>
   </MenuSet>
   <MenuSet ID="MenuSet03">
