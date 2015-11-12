@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Constants xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Constant Name="EventID" Type="String" Value="Event00" Debug="True"> </Constant>
-  <Constant Name="CurrentCash" Type="Int" Value="600" Debug="True"> </Constant>
-  <Constant Name="TotalCash" Type="Int" Value="1050" Debug="True"> </Constant>
-  <Constant Name="LastTotalCash" Type="Int" Value="550" Debug="True"> </Constant>
+  <Constant Name="CurrentCash" Type="Int" Value="2000" Debug="True"> </Constant>
+  <Constant Name="TotalCash" Type="Int" Value="2000" Debug="True"> </Constant>
+  <Constant Name="LastTotalCash" Type="Int" Value="2000" Debug="True"> </Constant>
   <Constant Name="IsTut1Done" Type="Bool" Value="True" Debug="True"> </Constant>
   <Constant Name="IsTut3Done" Type="Bool" Value="True" Debug="True"> </Constant>
   <Constant Name="TableID" Type="String" Value="Table00" Debug="True"> </Constant>

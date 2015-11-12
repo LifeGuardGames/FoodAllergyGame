@@ -3,35 +3,46 @@
 	<!-- UI Sounds -->
 	<Sound ID="Button1Down"></Sound>
 	<Sound ID="Button1Up"></Sound>
+
+  <!-- Special deco sounds -->
+  <Sound ID="comicIntro"></Sound>
+  <Sound ID="comicPanic"></Sound>
+  <Sound ID="comicEnding"></Sound>
   
+  <!-- Start scene -->
   <Sound ID="Firework1"></Sound>
   <Sound ID="Firework2"></Sound>
   <Sound ID="Firework3"></Sound>
   <Sound ID="TierUp"></Sound>
 
-  <Sound ID="customerSaved"></Sound>
-  <Sound ID="teleportingSound"></Sound>
-	<Sound ID="customerEnter"></Sound>
-	<Sound ID="pop"></Sound>
-	<Sound ID="allergyAttack"></Sound>
-	<Sound ID="dead"></Sound>
-	<Sound ID="endOfDay"></Sound>
-	<Sound ID="orderPickUp"></Sound>
-	<Sound ID="startScreen"></Sound>
-	<Sound ID="menuMusic"></Sound>
-	<Sound ID="leaving"></Sound>
-	<Sound ID="giveOrder"></Sound>
-	<Sound ID="menuButton"></Sound>
-	<Sound ID="writeDownOrder"></Sound>
-	<Sound ID="tutorialMusic"></Sound>
-	<Sound ID="eating"></Sound>
-	<Sound ID="orderReady"></Sound>
-	<Sound ID="orderTime"></Sound>
-	<Sound ID="readingMenu"></Sound>
-	<Sound ID="readyForCheck"></Sound>
-	<Sound ID="comicIntro"></Sound>
-	<Sound ID="comicPanic"></Sound>
-	<Sound ID="comicEnding"></Sound>
-	<Sound ID="hFull"></Sound>
-	<Sound ID="ArcadeOver"></Sound>
+  <!-- Restaurant scene -->
+  <Sound ID="EndOfDay"></Sound>
+  <Sound ID="MedicEnter"></Sound>
+
+  <!-- Customer sounds -->
+  <Sound ID="CustomerEnter"></Sound>
+  <Sound ID="CustomerAllergyAttackAudio"></Sound>
+  <Sound ID="CustomerEating"></Sound>
+  <Sound ID="CustomerSaved"></Sound>
+  <Sound ID="CustomerSeated"></Sound>
+  <Sound ID="CustomerLeave"></Sound>
+  <Sound ID="CustomerSelected"></Sound>
+  <Sound ID="CustomerReadyForCheck"></Sound>
+  <Sound ID="CustomerDead"></Sound>
+
+  <!-- Order food sounds -->
+  <Sound ID="HandsFull"></Sound>
+  <Sound ID="GiveOrder"></Sound>
+  <Sound ID="OrderPickUp"></Sound>
+  <Sound ID="OrderReady"></Sound>
+  <Sound ID="WriteDownOrder"></Sound>
+  <Sound ID="CoinGet"></Sound>
+
+  <!-- Special deco sounds -->
+  <Sound ID="ArcadeOver"></Sound>
+  <Sound ID="FlyThruEnter"></Sound>
+  <Sound ID="FlyThruLeave"></Sound>
+  <Sound ID="VIPEnter"></Sound>
+
+  <!-- Unused extras -->
 </Sounds>

@@ -14,6 +14,7 @@ public class Medic : Singleton<Medic> {
 
 	// Have the medic leave its base before moving to customers	
 	public void SetOutFromHome(Vector3 customerPosition){
+		AudioManager.Instance.PlayClip("MedicEnter");
 		firstCustomerPositionAux = customerPosition;
 		LeanTween.cancel(gameObject);
 		LeanTween.move(gameObject, new Vector3(transform.position.x + 300f, transform.position.y, transform.position.z), 0.5f)

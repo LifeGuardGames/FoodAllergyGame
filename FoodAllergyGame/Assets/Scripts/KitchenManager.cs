@@ -39,14 +39,14 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 			order[1].GetComponent<Order>().StartCooking(cookTimer);
 			AnimSetCooking(1);
 
-			AudioManager.Instance.PlayClip("giveOrder");
+			AudioManager.Instance.PlayClip("GiveOrder");
 		}
 		else if(order.Count == 1){
 			order[0].transform.SetParent(this.gameObject.transform);
 			order[0].GetComponent<Order>().StartCooking(cookTimer);
 			AnimSetCooking(1);
 
-			AudioManager.Instance.PlayClip("giveOrder");
+			AudioManager.Instance.PlayClip("GiveOrder");
 		}
 	}
 

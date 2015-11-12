@@ -144,6 +144,7 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 		GetComponent<CanvasGroup>().blocksRaycasts = false;
 
 		itemBeingDragged.transform.SetParent(dragAux);
+		AudioManager.Instance.PlayClip("Button1Down");
 
 		if(!inFoodStockSlot){
 			// Show trash can if dragging from selected slot
@@ -167,6 +168,7 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	// NOTE Make sure this is called after OnDrop() from the slot class
 	public void OnEndDrag(PointerEventData eventData){
 		itemBeingDragged = null;
+		AudioManager.Instance.PlayClip("Button1Up");
 		GetComponent<CanvasGroup>().blocksRaycasts = true;
 		if (transform.parent == dragAux) {
 			transform.SetParent(startParent);

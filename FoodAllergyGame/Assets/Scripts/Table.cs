@@ -156,10 +156,12 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	}
 
 	public void FlyThruDropDown() {
+		AudioManager.Instance.PlayClip("FlyThruEnter");
 		FlyThruToggle.Show();
 	}
 
 	public void FlyThruLeave() {
+		AudioManager.Instance.PlayClip("FlyThruLeave");
 		FlyThruToggle.Hide();
 	}
 

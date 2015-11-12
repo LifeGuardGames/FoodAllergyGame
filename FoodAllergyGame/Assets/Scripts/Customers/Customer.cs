@@ -34,7 +34,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	// Basic intitialzation
 	public virtual void Init(int num, ImmutableDataEvents mode){
         spawnTime = Time.time;
-        AudioManager.Instance.PlayClip("customerEnter");
+        AudioManager.Instance.PlayClip("CustomerEnter");
 
 		customerUI.ToggleWait(false);
 		customerUI.ToggleStar(false);
@@ -71,7 +71,6 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				tableNum = flyThruTable.TableNumber;
 				state = CustomerStates.ReadingMenu;
 				StartCoroutine("ReadMenu");
-				AudioManager.Instance.PlayClip("readingMenu");
 				StopCoroutine("SatisfactionTimer");
 				customerAnim.SetReadingMenu();
 				GetComponentInParent<Table>().currentCustomerID = customerID;
@@ -230,7 +229,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		RestaurantManager.Instance.lineCount--;
 		RestaurantManager.Instance.CustomerLineSelectHighlightOff();
 		Waiter.Instance.CurrentLineCustomer = null;
-		AudioManager.Instance.PlayClip("pop");
+		AudioManager.Instance.PlayClip("CustomerSeated");
 
 		//sitting down
 		tableNum = _tableNum;
@@ -244,13 +243,14 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			customerUI = gameObject.transform.GetComponentInParent<CustomerUIController>();
 			timer /= RestaurantManager.Instance.GetTable(_tableNum).VIPMultiplier;
 			SetSatisfaction(4);
-			AudioManager.Instance.PlayClip("teleportingSound");
+			AudioManager.Instance.PlayClip("VIPEnter");
 		}
 		// begin reading menu
 		state = CustomerStates.ReadingMenu;
 		customerAnim.SetReadingMenu();
+
 		StartCoroutine("ReadMenu");
-		AudioManager.Instance.PlayClip("readingMenu");
+		// TODO-SOUND Reading menu here
 		StopCoroutine("SatisfactionTimer");
 
 		// Table connection setup
@@ -273,7 +273,6 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		// now waiting for our order to be taken
 		state = CustomerStates.WaitForOrder;
 		customerAnim.SetWaitingForOrder();
-		AudioManager.Instance.PlayClip("orderTime");
 		if(RestaurantManager.Instance.isTutorial){
 			this.GetComponent<CustomerTutorial>().NextTableFinger();
 		}
@@ -344,7 +343,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
                 ParticleUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(tableNum).gameObject.transform.position, -100);
 
 
-                AudioManager.Instance.PlayClip("dead");
+                AudioManager.Instance.PlayClip("CustomerDead");
                 if (order.gameObject != null) {
                     Destroy(order.gameObject);
                 }
@@ -367,7 +366,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			else{
 				state = CustomerStates.Eating;
 				StartCoroutine("EatingTimer");
-				AudioManager.Instance.PlayClip("eating");
+				AudioManager.Instance.PlayClip("CustomerEating");
 				Waiter.Instance.Finished();
 			}
 		}
@@ -390,7 +389,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			attentionSpan = 10.0f * timer;
 			state = CustomerStates.WaitForCheck;
 			StartCoroutine("SatisfactionTimer");
-			AudioManager.Instance.PlayClip("readyForCheck");
+			AudioManager.Instance.PlayClip("CustomerReadyForCheck");
 			if(RestaurantManager.Instance.isTutorial){
 				this.GetComponent<CustomerTutorial>().NextTableFinger();
 			}
@@ -448,7 +447,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				RestaurantManager.Instance.CustomerLineSelectHighlightOff();
 			}
 		}
-		AudioManager.Instance.PlayClip("leaving");
+		AudioManager.Instance.PlayClip("CustomerLeave");
         if (state == CustomerStates.InLine) {
             transform.SetParent(null);
             RestaurantManager.Instance.lineCount--;
@@ -463,7 +462,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		customerUI.ToggleAllergyAttack(true);
 		customerAnim.SetRandomAllergyAttack();
 		RestaurantManager.Instance.SickCustomers.Add(this.gameObject);
-		AudioManager.Instance.PlayClip("allergyAttack");
+		AudioManager.Instance.PlayClip("CustomerAllergyAttackAudio");
 
 		// Show tutorial if needed
 		if(DataManager.Instance.GameData.Tutorial.IsMedicTut2Done){
@@ -493,7 +492,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// if they are saved they take a small penalty for making the mistake and the customer will want the check asap
 	public virtual void Saved(){
-		AudioManager.Instance.PlayClip("customerSaved");
+		AudioManager.Instance.PlayClip("CustomerSaved");
 		RestaurantManager.Instance.savedCustomers++;
 		customerAnim.SetSavedAllergyAttack();
 		Medic.Instance.BillRestaurant(-40);
@@ -521,7 +520,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			DataManager.Instance.GameData.Tutorial.MissedMedic = 0;
         }
 
-		AudioManager.Instance.PlayClip("dead");
+		AudioManager.Instance.PlayClip("CustomerDead");
 		if(order.gameObject != null){
 			Destroy(order.gameObject);
 		}
@@ -577,7 +576,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			attentionSpan = 10.0f * timer;
 			state = CustomerStates.WaitForCheck;
 			StartCoroutine("SatisfactionTimer");
-			AudioManager.Instance.PlayClip("readyForCheck");
+			AudioManager.Instance.PlayClip("CustomerReadyForCheck");
 		}
 	}
 
@@ -596,7 +595,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		attentionSpan = 10.0f * timer;
 		state = CustomerStates.WaitForCheck;
 		StartCoroutine("SatisfactionTimer");
-		AudioManager.Instance.PlayClip("readyForCheck");
+		AudioManager.Instance.PlayClip("CustomerReadyForCheck");
 	}
 
 	#region IWaiterSelection implementation
@@ -628,7 +627,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			}
 			RestaurantManager.Instance.CustomerLineSelectHighlightOn();
 			Waiter.Instance.CurrentLineCustomer = gameObject;
-			AudioManager.Instance.PlayClip("pop");
+			AudioManager.Instance.PlayClip("CustomerSelected");
 			gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
 			if(RestaurantManager.Instance.isTutorial && !this.gameObject.GetComponent<CustomerTutorial>().isAllergy){
 				this.GetComponent<CustomerTutorial>().hideTableFinger();

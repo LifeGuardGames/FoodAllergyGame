@@ -18,7 +18,7 @@ public class Microwave :Singleton<Microwave>, IWaiterSelection{
 			order.GetComponent<Order>().StartCooking(cookTimer);
 			isCooking = true;
 			//AnimSetCooking(1);
-			//AudioManager.Instance.PlayClip("giveOrder");
+			//AudioManager.Instance.PlayClip("GiveOrder");
 		}
 	}
 
