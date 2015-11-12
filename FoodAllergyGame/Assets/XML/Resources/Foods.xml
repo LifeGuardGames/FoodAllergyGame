@@ -17,7 +17,7 @@
 		<Keywords>Meal</Keywords>
 		<Tier>0</Tier>
 		<Price>14</Price>
-		<Reward>1</Reward>
+		<Reward>2</Reward>
 		<Slot>1</Slot>
 	</Food>
 	<Food ID="Food02">
