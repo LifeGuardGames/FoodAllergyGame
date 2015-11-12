@@ -25,7 +25,7 @@
 		<CashCutoffFloor>850</CashCutoffFloor>
 		<MenuSlots>5</MenuSlots>
 		<EventsUnlocked>Event00,Event01,Event02,Event03,Event04</EventsUnlocked>
-		<FoodsUnlocked>Food01,Food02</FoodsUnlocked>
+		<FoodsUnlocked>Food08,Food09</FoodsUnlocked>
 		<DecorationsUnlocked></DecorationsUnlocked>
 		<StartArtAssets></StartArtAssets>
     <IsLastTier>False</IsLastTier>

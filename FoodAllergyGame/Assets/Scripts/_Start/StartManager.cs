@@ -134,10 +134,11 @@ public class StartManager : Singleton<StartManager>{
 	// Given the event, generate a few set of food stocks, capped by event menussets and tier
 	public void GenerateUnlockedFoodStock(){
 		List<ImmutableDataFood> unlockedFoodStock = new List<ImmutableDataFood>();
+		unlockedFoodStock = DataLoaderFood.GetDataList();
 		// First add all the foods that are used for event
 		ImmutableDataMenuSet currSet = DataLoaderMenuSet.GetData(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()).MenuSet);
 		foreach(string foodID in currSet.MenuSet){
-			unlockedFoodStock.Add(DataLoaderFood.GetData(foodID));
+			unlockedFoodStock.Remove(DataLoaderFood.GetData(foodID));
 		}
 
 		// Take out all the foods that doesnt satisfy current tier
