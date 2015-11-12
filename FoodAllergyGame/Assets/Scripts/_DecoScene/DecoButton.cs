@@ -29,7 +29,6 @@ public class DecoButton : MonoBehaviour {
 		decoImage.sprite = SpriteCacheManager.GetDecoSpriteData(spriteName);
 
 		isLocked = DecoManager.Instance.IsDecoUnlocked(decoID);
-		Debug.Log(isLocked);
 		RefreshButtonState();
 	}
 
@@ -37,7 +36,6 @@ public class DecoButton : MonoBehaviour {
 	public void RefreshButtonState(){
 		if(!isLocked) {
 			padlock.SetActive(false);
-			Debug.Log("not locked");
 			// Check if it was bought already
 			if(DecoManager.IsDecoBought(decoID)){
 				checkMark.SetActive(DecoManager.IsDecoActive(decoID) ? true : false);

@@ -110,6 +110,7 @@ public class TierManager : Singleton<TierManager> {
 		}
 		else{
 			List <string> eventList = GetEventsUnlocked();
+			Debug.Log(eventList.Count);
 			return eventList[UnityEngine.Random.Range(0, eventList.Count)];
 		}
 	}
