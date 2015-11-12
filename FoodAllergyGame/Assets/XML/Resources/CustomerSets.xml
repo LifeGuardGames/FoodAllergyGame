@@ -29,7 +29,7 @@
 		<CustomerList>Customer00</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSet01">
-		<CustomerList>Customer01,Customer01</CustomerList>
+		<CustomerList>Customer00,Customer01</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSet02">
 		<CustomerList>Customer07,Customer00,Customer01</CustomerList>

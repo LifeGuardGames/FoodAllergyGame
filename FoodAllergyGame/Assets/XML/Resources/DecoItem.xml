@@ -14,7 +14,7 @@
 		<TitleKey>TableBasicRed</TitleKey>
 		<DescriptionKey>TableBasicRedDesc</DescriptionKey>
 		<SpriteName>RestTableBasicRed</SpriteName>
-		<Tier>0</Tier>
+		<Tier>2</Tier>
 	</DecoItem>
 	<DecoItem ID = "Table02">
 		<Type>Table</Type>
@@ -22,7 +22,7 @@
 		<TitleKey>TableBasicPurple</TitleKey>
 		<DescriptionKey>TableBasicPurpleDesc</DescriptionKey>
 		<SpriteName>RestTableBasicPurple</SpriteName>
-		<Tier>0</Tier>
+		<Tier>4</Tier>
 	</DecoItem>
 	<DecoItem ID = "Table03">
 		<Type>Table</Type>
@@ -30,7 +30,7 @@
 		<TitleKey>TableBasicGreen</TitleKey>
 		<DescriptionKey>TableBasicGreenDesc</DescriptionKey>
 		<SpriteName>RestTableBasicGreen</SpriteName>
-		<Tier>0</Tier>
+		<Tier>6</Tier>
 	</DecoItem>
 	
 	
@@ -48,7 +48,7 @@
 		<TitleKey>FloorBasicPurple</TitleKey>
 		<DescriptionKey>FloorBasicPurpleDesc</DescriptionKey>
 		<SpriteName>RestFloorBasicPurple</SpriteName>
-		<Tier>0</Tier>
+		<Tier>2</Tier>
 	</DecoItem>
 	<DecoItem ID = "Floor02">
 		<Type>Floor</Type>
@@ -56,7 +56,7 @@
 		<TitleKey>FloorBasicRed</TitleKey>
 		<DescriptionKey>FloorBasicRedDesc</DescriptionKey>
 		<SpriteName>RestFloorBasicRed</SpriteName>
-		<Tier>0</Tier>
+		<Tier>4</Tier>
 	</DecoItem>
 	
 	
@@ -74,7 +74,7 @@
 		<TitleKey>KitchenBasicRed</TitleKey>
 		<DescriptionKey>KitchenBasicRedDesc</DescriptionKey>
 		<SpriteName>RestKitchenBasicRed</SpriteName>
-		<Tier>0</Tier>
+		<Tier>2</Tier>
 	</DecoItem>
 	<DecoItem ID = "Kitchen02">
 		<Type>Kitchen</Type>
@@ -82,7 +82,7 @@
 		<TitleKey>KitchenBasicPurple</TitleKey>
 		<DescriptionKey>KitchenBasicPurpleDesc</DescriptionKey>
 		<SpriteName>RestKitchenBasicPurple</SpriteName>
-		<Tier>0</Tier>
+		<Tier>4</Tier>
 	</DecoItem>
 	<DecoItem ID = "Kitchen03">
 		<Type>Kitchen</Type>
@@ -90,7 +90,7 @@
 		<TitleKey>KitchenBasicGreen</TitleKey>
 		<DescriptionKey>KitchenBasicGreenDesc</DescriptionKey>
 		<SpriteName>RestKitchenBasicGreen</SpriteName>
-		<Tier>0</Tier>
+		<Tier>6</Tier>
 	</DecoItem>
 	
 	
@@ -110,7 +110,7 @@
 		<TitleKey>VIPBasicEmpty</TitleKey>
 		<DescriptionKey>VIPBasicEmptyDesc</DescriptionKey>
 		<SpriteName>RestVIPBasicEmpty</SpriteName>
-		<Tier>1</Tier>
+		<Tier>2</Tier>
 	</DecoItem>
 
 	
@@ -120,7 +120,7 @@
 		<TitleKey>PlayAreaClawMachine</TitleKey>
 		<DescriptionKey>PlayAreaClawMachineDesc</DescriptionKey>
 		<SpriteName>RestPlayAreaClawMachine</SpriteName>
-		<Tier>10</Tier>
+		<Tier>4</Tier>
 	</DecoItem>
   <DecoItem ID = "PlayArea01">
     <Type>PlayArea</Type>

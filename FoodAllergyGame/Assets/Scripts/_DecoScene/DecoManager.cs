@@ -51,12 +51,11 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	public bool IsDecoUnlocked(string decoID) {
-		Debug.Log(decoID + " " + DataLoaderDecoItem.GetData(decoID).Tier + " " + TierManager.Instance.Tier);
-		return (DataLoaderDecoItem.GetData(decoID).Tier <= TierManager.Instance.Tier) ? true : false;
+		return (DataLoaderDecoItem.GetData(decoID).Tier > TierManager.Instance.Tier) ? true : false;
 	}
 	
 	public bool IsCategoryUnlocked(DecoTypes deco) {
-		return IsDecoUnlocked(deco.ToString() + "00");  // Checks the first deco to see if it is active yet
+		return !IsDecoUnlocked(deco.ToString() + "00");  // Checks the first deco to see if it is active yet
 	}
 	#endregion
 
@@ -168,14 +167,6 @@ public class DecoManager : Singleton<DecoManager>{
 			else {
 				if(BuyItem(decoID)) {
 					ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
-					switch(decoData.Type) {
-						case DecoTypes.PlayArea:
-							DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTPlayArea");
-							DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
-							break;
-						default:
-							break;
-					}
 					DataManager.Instance.SaveGameData();
 				}
 			}
