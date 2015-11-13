@@ -144,7 +144,7 @@ public class DecoManager : Singleton<DecoManager>{
 				//if(isTutroial && decoID == "PlayArea00"){
 				if(isTutorial && decoID == "VIP00") {
 					tutObj3.SetActive(false);
-					StartCoroutine(WaitASec());
+					DataManager.Instance.GameData.Tutorial.IsDecoTutDone = true;
 				}
 
 				DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(decoType);
@@ -297,16 +297,10 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	public void OnExitButtonClicked(){
-		if(isTutorial && tutObj4.activeSelf == true){
-			DataManager.Instance.GameData.Tutorial.IsDecoTutDone = true;
-		}
+
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
 	}
 
-	private IEnumerator WaitASec(){
-		yield return new WaitForSeconds(3.0f);
-		tutObj4.SetActive(true);
-	}
 
 	public static bool IsDecoRemoveAllowed(DecoTypes decoType) {
 		switch(decoType) {
