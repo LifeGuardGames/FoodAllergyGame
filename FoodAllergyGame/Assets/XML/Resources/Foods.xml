@@ -41,8 +41,8 @@
     <Slot>1</Slot>
 	</Food>
 	<Food ID="Food04">
-		<FoodNameKey>FoodIceCream</FoodNameKey>
-		<SpriteName>FoodIceCream</SpriteName>
+		<FoodNameKey>FoodCheeseStick</FoodNameKey>
+		<SpriteName>FoodCheeseStick</SpriteName>
 		<Allergies>Dairy</Allergies>
 		<Keywords>Dessert,Meal</Keywords>
 		<Tier>0</Tier>
