@@ -82,7 +82,7 @@ public class WaiterAnimController : MonoBehaviour {
 
 	private void SetBodyAnimation(string bodyAnimation) {
 		if(currentBodyAnimation != bodyAnimation) {
-			Debug.Log("SETTING " + bodyAnimation);
+//			Debug.Log("SETTING " + bodyAnimation);
 			currentBodyAnimation = bodyAnimation;
 			Reset();
 			

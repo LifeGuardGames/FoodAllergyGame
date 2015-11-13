@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class DataLoaderFood : XMLLoaderGeneric<DataLoaderFood> {
 
 	public static ImmutableDataFood GetData(string id){
-		Debug.Log(id);
 		instance.InitXMLLoader();
 		return instance.GetData<ImmutableDataFood>(id);
 	}
