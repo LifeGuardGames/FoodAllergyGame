@@ -340,14 +340,14 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			}
             if (order.GetComponent<Order>().allergy.Contains(allergy) && allergy != Allergies.None) {
                 Medic.Instance.BillRestaurant(-100);
-                ParticleUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(tableNum).gameObject.transform.position, -100);
+               // ParticleUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(tableNum).gameObject.transform.position, -100);
 
 
                 AudioManager.Instance.PlayClip("CustomerDead");
                 if (order.gameObject != null) {
                     Destroy(order.gameObject);
                 }
-                SetSatisfaction(0);
+                SetSatisfaction(1);
             }
             NotifyLeave();
 		}
@@ -398,7 +398,6 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Tells the resturantManager that the customer is leaving and can be removed from the dictionary
 	public virtual void NotifyLeave(){
-
 		if(DataManager.Instance.GetEvent() == "EventTVIP") {
 			DataManager.Instance.GameData.Tutorial.IsSpecialDecoTutDone = true;
 			DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
