@@ -56,6 +56,7 @@ public enum CustomerTypes{
 	AllergyAttack,
 	HospitalRunner,
 	Gossiper,
+	CoolKid,	// TODO Add more here
 }
 
 public enum PowerUpTypes{

@@ -501,7 +501,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		UpdateSatisfaction(1);
 		customerUI.ToggleAllergyAttack(false);
 		customerUI.ToggleStar(true);
-		Invoke("NotifyLeave",3.0f);
+		Invoke("NotifyLeave", 4.0f);
 		state = CustomerStates.Invalid;
 		StopCoroutine("AllergyTimer");
 	}
