@@ -122,7 +122,7 @@
 	</Food>
 	<Food ID="Food12">
 		<FoodNameKey>FoodPeanutButterPretzels</FoodNameKey>
-		<SpriteName>FoodMilk</SpriteName>
+		<SpriteName>FoodPeanutButterPretzels</SpriteName>
 		<Allergies>Wheat,Peanut</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
 		<Tier>5</Tier>
@@ -172,7 +172,7 @@
 	</Food>
 	<Food ID="Food17">
 		<FoodNameKey>FoodGranolaBar</FoodNameKey>
-		<SpriteName>FoodMilk</SpriteName>
+		<SpriteName>FoodGranolaBar</SpriteName>
 		<Allergies>Wheat,Dairy,Peanut</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
 		<Tier>5</Tier>
