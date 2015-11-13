@@ -13,7 +13,7 @@ public class MutableDataCash {
 		}
 		else {
 			TotalCash = 500;    // Sync with LastSeenTotalCash in constructor
-			CurrentCash = 500;
+			CurrentCash = 0;
 			LastSeenTotalCash = TotalCash;
 		}
 	}

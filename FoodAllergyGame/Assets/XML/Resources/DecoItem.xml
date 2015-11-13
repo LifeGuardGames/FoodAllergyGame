@@ -10,7 +10,7 @@
 	</DecoItem>
 	<DecoItem ID = "Table01">
 		<Type>Table</Type>
-		<Price>100</Price>
+		<Price>400</Price>
 		<TitleKey>TableBasicRed</TitleKey>
 		<DescriptionKey>TableBasicRedDesc</DescriptionKey>
 		<SpriteName>RestTableBasicRed</SpriteName>
@@ -18,7 +18,7 @@
 	</DecoItem>
 	<DecoItem ID = "Table02">
 		<Type>Table</Type>
-		<Price>100</Price>
+		<Price>900</Price>
 		<TitleKey>TableBasicPurple</TitleKey>
 		<DescriptionKey>TableBasicPurpleDesc</DescriptionKey>
 		<SpriteName>RestTableBasicPurple</SpriteName>
@@ -26,7 +26,7 @@
 	</DecoItem>
 	<DecoItem ID = "Table03">
 		<Type>Table</Type>
-		<Price>100</Price>
+		<Price>1000</Price>
 		<TitleKey>TableBasicGreen</TitleKey>
 		<DescriptionKey>TableBasicGreenDesc</DescriptionKey>
 		<SpriteName>RestTableBasicGreen</SpriteName>
@@ -44,7 +44,7 @@
 	</DecoItem>
 	<DecoItem ID = "Floor01">
 		<Type>Floor</Type>
-		<Price>100</Price>
+		<Price>800</Price>
 		<TitleKey>FloorBasicPurple</TitleKey>
 		<DescriptionKey>FloorBasicPurpleDesc</DescriptionKey>
 		<SpriteName>RestFloorBasicPurple</SpriteName>
@@ -52,7 +52,7 @@
 	</DecoItem>
 	<DecoItem ID = "Floor02">
 		<Type>Floor</Type>
-		<Price>200</Price>
+		<Price>1500</Price>
 		<TitleKey>FloorBasicRed</TitleKey>
 		<DescriptionKey>FloorBasicRedDesc</DescriptionKey>
 		<SpriteName>RestFloorBasicRed</SpriteName>
@@ -70,7 +70,7 @@
 	</DecoItem>
 	<DecoItem ID = "Kitchen01">
 		<Type>Kitchen</Type>
-		<Price>100</Price>
+		<Price>300</Price>
 		<TitleKey>KitchenBasicRed</TitleKey>
 		<DescriptionKey>KitchenBasicRedDesc</DescriptionKey>
 		<SpriteName>RestKitchenBasicRed</SpriteName>
@@ -78,7 +78,7 @@
 	</DecoItem>
 	<DecoItem ID = "Kitchen02">
 		<Type>Kitchen</Type>
-		<Price>100</Price>
+		<Price>700</Price>
 		<TitleKey>KitchenBasicPurple</TitleKey>
 		<DescriptionKey>KitchenBasicPurpleDesc</DescriptionKey>
 		<SpriteName>RestKitchenBasicPurple</SpriteName>
@@ -86,7 +86,7 @@
 	</DecoItem>
 	<DecoItem ID = "Kitchen03">
 		<Type>Kitchen</Type>
-		<Price>100</Price>
+		<Price>900</Price>
 		<TitleKey>KitchenBasicGreen</TitleKey>
 		<DescriptionKey>KitchenBasicGreenDesc</DescriptionKey>
 		<SpriteName>RestKitchenBasicGreen</SpriteName>
