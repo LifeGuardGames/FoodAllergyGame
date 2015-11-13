@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <MenuSets>
 	<MenuSet ID="MenuSetT1">
-		<FoodList></FoodList>
+		<FoodList>Food00,Food01,Food02,Food03,Food04,Food05,Food06,Food07</FoodList>
 	</MenuSet>
 	<MenuSet ID="MenuSet00">
 		<FoodList></FoodList>
