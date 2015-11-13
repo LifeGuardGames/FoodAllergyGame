@@ -151,7 +151,6 @@ public class StartManager : Singleton<StartManager>{
 			}
 		}
 		foreach(ImmutableDataFood foodData in foodDataToDelete){
-			Debug.LogWarning("Removing food due to tier limit!");	// TODO just testing down the road to see if this works
 			unlockedFoodStock.Remove(foodData);
 		}
 
