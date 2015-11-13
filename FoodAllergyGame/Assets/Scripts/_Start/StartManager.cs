@@ -138,7 +138,9 @@ public class StartManager : Singleton<StartManager>{
 		// First add all the foods that are used for event
 		ImmutableDataMenuSet currSet = DataLoaderMenuSet.GetData(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()).MenuSet);
 		foreach(string foodID in currSet.MenuSet){
-			unlockedFoodStock.Remove(DataLoaderFood.GetData(foodID));
+			if(foodID != "") {
+				unlockedFoodStock.Remove(DataLoaderFood.GetData(foodID));
+			}
 		}
 
 		// Take out all the foods that doesnt satisfy current tier

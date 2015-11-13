@@ -5,7 +5,7 @@
 		<CashCutoffFloor>0</CashCutoffFloor>
 		<MenuSlots>4</MenuSlots>
 		<EventsUnlocked></EventsUnlocked>
-		<FoodsUnlocked></FoodsUnlocked>
+		<FoodsUnlocked>Food00,Food01,Food02,Food03,Food04,Food05,Food06,Food7</FoodsUnlocked>
 		<DecorationsUnlocked></DecorationsUnlocked>
 		<StartArtAssets></StartArtAssets>
     <IsLastTier>False</IsLastTier>
