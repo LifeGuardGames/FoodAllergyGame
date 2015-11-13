@@ -192,7 +192,7 @@
   <Event ID="Event13">
     <MenuSet>MenuSet03</MenuSet>
     <KitchenTimer>6</KitchenTimer>
-    <CustomerSet>CustomerSet03</CustomerSet>
+    <CustomerSet>CustomerSet04</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
     <DayLength>72</DayLength>
     <Allergy>None</Allergy>
