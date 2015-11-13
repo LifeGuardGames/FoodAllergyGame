@@ -8,7 +8,12 @@ public class ComicManager : MonoBehaviour {
 	private GameObject comicPage;
 
 	void Start(){
-		ComicStep(1);
+		if(DataManager.Instance.GameData.Tutorial.IsComicViewed) {
+			Application.LoadLevel(SceneUtils.START);
+		}
+		else {
+			ComicStep(1);
+		}
 	}
 
 	public void ComicStep(int step){
@@ -33,6 +38,7 @@ public class ComicManager : MonoBehaviour {
 			comicPage.GetComponentInChildren<Button>().onClick.AddListener(() => ComicStep(4));
 			break;
 		case 4:
+			DataManager.Instance.GameData.Tutorial.IsComicViewed = true;
 			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
 			break;
 		}
