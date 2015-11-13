@@ -72,7 +72,9 @@ public class Waiter: Singleton<Waiter>{
 			// Already at the target node
 			if(pathList.Count == 0){
 				moving = false;
-				currentCaller.OnWaiterArrived();
+				if(currentCaller != null) {
+					currentCaller.OnWaiterArrived();
+				}
 			}
 			// Arrived at the next node
 			else if(transform.position == pathList[pathIndex].transform.position){
@@ -83,7 +85,9 @@ public class Waiter: Singleton<Waiter>{
 					waiterAnimController.SetMoving(false);
 					moving = false;
 					pathIndex = 0;
-					currentCaller.OnWaiterArrived();
+					if(currentCaller != null) {
+						currentCaller.OnWaiterArrived();
+					}
 				}
 				// Not at the target node, start move to next one
 				else{
