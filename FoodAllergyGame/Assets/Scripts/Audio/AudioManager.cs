@@ -6,7 +6,8 @@ using System.Collections.Generic;
 public class AudioManager : LgAudioManager<AudioManager>{
 	public bool isMusicOn = true;
 	public string backgroundMusic;
-
+	public int numberOfBackgroundVariations = 1;
+	
 	private AudioSource backgroundSource;
 	
 	protected override void Awake(){
@@ -24,9 +25,15 @@ public class AudioManager : LgAudioManager<AudioManager>{
 		if(isMusicOn){
 			AudioClip backgroundClip = null;
 			if(backgroundMusic != null){
-				backgroundClip = Resources.Load(backgroundMusic) as AudioClip;
+				if(numberOfBackgroundVariations == 1) {
+					backgroundClip = Resources.Load(backgroundMusic) as AudioClip;
+				}
+				else {
+					// Load a random audio with number suffix attached to it
+					string suffix = UnityEngine.Random.Range(1, numberOfBackgroundVariations + 1).ToString();
+					backgroundClip = Resources.Load(backgroundMusic + suffix) as AudioClip;
+				}
 			}
-
 			if(backgroundClip != null){
 				backgroundSource.clip = backgroundClip;
 				backgroundSource.Play();

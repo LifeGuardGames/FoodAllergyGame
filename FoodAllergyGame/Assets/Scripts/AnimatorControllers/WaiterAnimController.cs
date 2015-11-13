@@ -7,7 +7,7 @@ using System.Collections;
 /// So putting it in the base parent gameobject wont work
 /// </summary>
 public class WaiterAnimController : MonoBehaviour {
-	public SkeletonAnimation skeleton;
+	public SkeletonAnimation skeletonAnim;
 	private bool isMoving = false;
 	private bool isFacingRight = true;
 	private WaiterHands hand1 = WaiterHands.None;	// Aux that is synced with waiter
@@ -21,7 +21,8 @@ public class WaiterAnimController : MonoBehaviour {
 	}
 
 	private void Reset() {
-		//skeleton.state.ClearTracks();
+		skeletonAnim.state.ClearTracks();
+		skeletonAnim.state.SetAnimation(0, "Reset", false);
 	}
 
 	public void SetMoving(bool isMoving) {
@@ -42,7 +43,8 @@ public class WaiterAnimController : MonoBehaviour {
     }
 	
 	private void FlipAndSetHand() {
-		if(isMoving) {
+
+        if(isMoving) {
 			if(hand1 == WaiterHands.None && hand1 == WaiterHands.None) {
 				SetBodyAnimation("Run");
             }
@@ -80,10 +82,11 @@ public class WaiterAnimController : MonoBehaviour {
 
 	private void SetBodyAnimation(string bodyAnimation) {
 		if(currentBodyAnimation != bodyAnimation) {
-//			Debug.Log("SETTING " + bodyAnimation);
+			Debug.Log("SETTING " + bodyAnimation);
 			currentBodyAnimation = bodyAnimation;
-			skeleton.skeleton.SetToSetupPose();
-			skeleton.state.SetAnimation(0, bodyAnimation, true);
+			Reset();
+			
+			skeletonAnim.state.AddAnimation(0, bodyAnimation, true, 0f);
 		}
 	}
 }
