@@ -22,7 +22,7 @@ public class CustomerTableSmasher : Customer {
 			animTableSmasher.SmashTable();
 
 			//general customer leaving things
-			RestaurantManager.Instance.CustomerLeft(customerID, satisfaction,1, transform.position, Time.time - spawnTime);
+			RestaurantManager.Instance.CustomerLeft(customerID, satisfaction,1, transform.position, Time.time - spawnTime, false);
 			Waiter.Instance.RemoveMeal(tableNum);
 			KitchenManager.Instance.CancelOrder(tableNum);
 			Destroy(this.gameObject, 6.5f);

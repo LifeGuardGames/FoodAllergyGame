@@ -24,21 +24,23 @@ public class SatisfactionAI{
 	private float totalSatisfaction;
 
 	// Calculates the money given to the player once a customer leaves
-	public int CalculateBill(int incomingSatisfaction, int priceMultiplier, UnityEngine.Vector3 pos, float time){
-		if(incomingSatisfaction <= 0){
-			missingCustomers++;
-		}
-		modifiedSatisfaction = incomingSatisfaction * 5;
-		if(incomingSatisfaction < 0)
-		{
-			incomingSatisfaction = 0;
-		}
+	public int CalculateBill(int incomingSatisfaction, int priceMultiplier, UnityEngine.Vector3 pos, float time, bool earnMoney){
+		if(!earnMoney) {
+			if(incomingSatisfaction <= 0) {
+				missingCustomers++;
+			}
+			modifiedSatisfaction = incomingSatisfaction * 5;
+			if(incomingSatisfaction < 0) {
+				incomingSatisfaction = 0;
+			}
 
-		CalculateDifficultyLevel(modifiedSatisfaction);
+			CalculateDifficultyLevel(modifiedSatisfaction);
 
-		totalSatisfaction += incomingSatisfaction;
-		ParticleUtils.PlayMoneyFloaty(pos,((int)((float)incomingSatisfaction * 3.476f * priceMultiplier)));
-		return (int)((float)incomingSatisfaction * 3.476f * priceMultiplier);
+			totalSatisfaction += incomingSatisfaction;
+			ParticleUtils.PlayMoneyFloaty(pos, ((int)((float)incomingSatisfaction * 3.476f * priceMultiplier)));
+			return (int)((float)incomingSatisfaction * 3.476f * priceMultiplier);
+		}
+		return 0;
 	}
 
 	// Calculates the difficulty level
