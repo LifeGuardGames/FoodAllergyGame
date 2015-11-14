@@ -144,6 +144,7 @@ public class DecoManager : Singleton<DecoManager>{
 				//if(isTutroial && decoID == "PlayArea00"){
 				if(isTutorial && decoID == "VIP00") {
 					tutObj3.SetActive(false);
+					isTutorial = false;
 					DataManager.Instance.GameData.Tutorial.IsDecoTutDone = true;
 				}
 
