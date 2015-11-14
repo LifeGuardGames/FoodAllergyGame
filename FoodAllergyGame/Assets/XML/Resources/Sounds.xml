@@ -31,7 +31,7 @@
   <Sound ID="CustomerDead"></Sound>
 
   <!-- Order food sounds -->
-  <Sound ID="HandsFull"></Sound>
+  <Sound ID="HandsFull" Volume="1"></Sound>
   <Sound ID="GiveOrder"></Sound>
   <Sound ID="OrderPickUp"></Sound>
   <Sound ID="OrderReady"></Sound>
