@@ -340,7 +340,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			}
             if (order.GetComponent<Order>().allergy.Contains(allergy) && allergy != Allergies.None) {
                 Medic.Instance.BillRestaurant(-100);
-               // ParticleUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(tableNum).gameObject.transform.position, -100);
+                ParticleUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(tableNum).gameObject.transform.position, -100);
 
 
                 AudioManager.Instance.PlayClip("CustomerDead");
@@ -422,19 +422,22 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		if(hasPowerUp){
 			//Waiter.Instance.GivePowerUp();
 		}
+		if(state == CustomerStates.Invalid) {
+			RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, 1, transform.position, 360, false);
+		}
 		if(satisfaction > 0){
 			if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.VIP) {
-				RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, priceMultiplier * RestaurantManager.Instance.GetTable(tableNum).VIPMultiplier, transform.position,Time.time - spawnTime);
+				RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, priceMultiplier * RestaurantManager.Instance.GetTable(tableNum).VIPMultiplier, transform.position,Time.time - spawnTime, true);
 			}
 			else{
 				if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.FlyThru) {
 					RestaurantManager.Instance.GetTable(tableNum).FlyThruLeave();
                 }
-				RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, priceMultiplier, transform.position, Time.time - spawnTime);
+				RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, priceMultiplier, transform.position, Time.time - spawnTime, true);
 			}
 		}
 		else{
-			RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, 1, transform.position, 360);
+			RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, 1, transform.position, 360,false);
 		}
 
 		if(state != CustomerStates.InLine){

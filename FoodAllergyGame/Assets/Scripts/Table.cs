@@ -133,7 +133,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		}
 		RestaurantManager.Instance.GetMenuUIController().CancelOrder(tableNumber);
 		GetComponentInChildren<Customer>().state = CustomerStates.Invalid;
-		RestaurantManager.Instance.CustomerLeft(currentCustomerID, 0,1, transform.position, 20.0f);
+		RestaurantManager.Instance.CustomerLeft(currentCustomerID, 0,1, transform.position, 20.0f, false);
 		CustomerLeaving();
 	}
 	

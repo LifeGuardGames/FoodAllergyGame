@@ -201,9 +201,9 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 	// Removes a customer from the dictionary
 	// and then if the day is over checks to see if the dictionary is empty and if it is it ends the round
-	public void CustomerLeft(string customerID, int satisfaction, int priceMultiplier, Vector3 customerPos,float time){
+	public void CustomerLeft(string customerID, int satisfaction, int priceMultiplier, Vector3 customerPos,float time, bool earnedMoney){
 		if(customerHash.ContainsKey(customerID)){
-			UpdateCash(satisfactionAI.CalculateBill(satisfaction, priceMultiplier, customerPos,time));
+			UpdateCash(satisfactionAI.CalculateBill(satisfaction, priceMultiplier, customerPos,time, earnedMoney));
 			customerHash.Remove(customerID);
 			CheckForGameOver();
 		}
