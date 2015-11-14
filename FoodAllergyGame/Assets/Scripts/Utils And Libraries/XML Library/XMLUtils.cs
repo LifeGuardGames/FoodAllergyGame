@@ -102,7 +102,7 @@ public static class XMLUtils{
 		}
 
 		string[] retVal;
-		retVal = tempVal.Split(","[0]);
+		retVal = tempVal.Split(new char[] { ',' },StringSplitOptions.RemoveEmptyEntries);
 		return retVal;
 	}
 	
