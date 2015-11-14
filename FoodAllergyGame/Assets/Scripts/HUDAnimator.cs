@@ -46,7 +46,7 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 
 	public void CalculateCoins(int amount, Vector3 startPos, Vector3 floatyPos) {
 		difference = amount;
-		currCash = DataManager.Instance.GameData.Cash.TotalCash;
+		currCash = DataManager.Instance.GameData.Cash.CurrentCash;
 		if(amount > 0) {
 			DataManager.Instance.GameData.Cash.TotalCash = currCash + amount;
 		}
