@@ -47,8 +47,10 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 	public void CalculateCoins(int amount, Vector3 startPos, Vector3 floatyPos) {
 		difference = amount;
 		currCash = DataManager.Instance.GameData.Cash.TotalCash;
-		DataManager.Instance.GameData.Cash.TotalCash = currCash + amount;
-		target = DataManager.Instance.GameData.Cash.TotalCash;
+		if(amount > 0) {
+			DataManager.Instance.GameData.Cash.TotalCash = currCash + amount;
+		}
+		target = DataManager.Instance.GameData.Cash.CurrentCash;
 		spawnPos = startPos;
 		// first we generate a coin and have it path to the hud
 		//TODO generate coin
