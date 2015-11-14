@@ -347,9 +347,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
                 if (order.gameObject != null) {
                     Destroy(order.gameObject);
                 }
-                SetSatisfaction(1);
+                SetSatisfaction(0);
             }
-            NotifyLeave();
+           // NotifyLeave();
 		}
 		else{
 			UpdateSatisfaction(1);
@@ -422,14 +422,15 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		if(hasPowerUp){
 			//Waiter.Instance.GivePowerUp();
 		}
-		if(state == CustomerStates.Invalid) {
-			RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, 1, transform.position, 360, false);
-		}
+
 		if(satisfaction > 0){
+			if(state == CustomerStates.Invalid) {
+				RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, 1, transform.position, 360, false);
+			}
 			if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.VIP) {
 				RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, priceMultiplier * RestaurantManager.Instance.GetTable(tableNum).VIPMultiplier, transform.position,Time.time - spawnTime, true);
 			}
-			else{
+			else {
 				if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.FlyThru) {
 					RestaurantManager.Instance.GetTable(tableNum).FlyThruLeave();
                 }
