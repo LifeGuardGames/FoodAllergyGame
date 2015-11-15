@@ -87,7 +87,7 @@ public class StartManager : Singleton<StartManager>{
 		//TODO Set up any new notifications here (through NotificationManager)
 
 		// Check if tier bar needs to be updated
-		if(DataManager.Instance.GameData.Cash.IsNeedToSyncTotalCash()) {
+		if(CashManager.Instance.IsNeedToSyncTotalCash()) {
 			int oldTotalCash = DataManager.Instance.GameData.Cash.LastSeenTotalCash;
 			int newTotalCash = DataManager.Instance.GameData.Cash.TotalCash;
 			NotificationQueueDataTierProgress tierNotif = new NotificationQueueDataTierProgress(SceneUtils.START, oldTotalCash, newTotalCash);
@@ -174,7 +174,6 @@ public class StartManager : Singleton<StartManager>{
 	}
 
 	public void DecoButtonClicked(){
-		Debug.Log(" --- Setting deco clicked to false");
 		DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance = false;
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.DECO);
 	}

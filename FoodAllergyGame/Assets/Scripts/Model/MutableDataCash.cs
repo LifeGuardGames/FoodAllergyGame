@@ -1,37 +1,16 @@
 ﻿using System.Collections;
 
+// This class is COMPLETELY encapsulated inside cash manager
+// WARNING: DO NOT MAKE DIRECT CALLS WITHOUT CASH MANAGER
 public class MutableDataCash {
 	public int CurrentCash {get; set;}
 	public int TotalCash {get; set;}
 	public int LastSeenTotalCash {get; set;}			// Used for animation in the start scene
 
 	public MutableDataCash(){
-		if(DataManager.Instance.IsDebug) {
-			CurrentCash = Constants.GetDebugConstant<int>("CurrentCash");
-			TotalCash = Constants.GetDebugConstant<int>("TotalCash");
-			LastSeenTotalCash = Constants.GetDebugConstant<int>("LastTotalCash");
-		}
-		else {
-			TotalCash = 500;    // Sync with LastSeenTotalCash in constructor
-			CurrentCash = 0;
-			LastSeenTotalCash = TotalCash;
-		}
+		// Sync with LastSeenTotalCash in constructor
+		CurrentCash = DataManager.Instance.IsDebug ? Constants.GetDebugConstant<int>("CurrentCash") : 500;
+		TotalCash = DataManager.Instance.IsDebug ? Constants.GetDebugConstant<int>("TotalCash") : 0;
+		LastSeenTotalCash = DataManager.Instance.IsDebug ? Constants.GetDebugConstant<int>("LastTotalCash") : TotalCash;
 	}
-
-	public void SaveCash(int dayCashNet, int dayCashRevenue){
-		CurrentCash += dayCashNet;
-		TotalCash += dayCashRevenue;
-	}
-
-	#region Tier Syncing Functions
-	// StartManager will check this to see if anyhting
-	public bool IsNeedToSyncTotalCash(){
-		return LastSeenTotalCash != TotalCash;
-	}
-
-	// Called from the NotificationQueueDataTierProgress > StartManager after the tier progress bar HUD is complete
-	public void SyncLastSeenTotalCash(){
-		LastSeenTotalCash = TotalCash;
-	}
-	#endregion
 }

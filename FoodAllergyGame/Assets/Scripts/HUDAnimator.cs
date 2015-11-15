@@ -6,9 +6,10 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 	public GameObject coin;
 	public GameObject coinFlyPrefab;
 	public float coinTravelTime;
-	public int currCash;
-	public int target;
-	public int difference;
+	public Text coinText;
+	public int currentCoinsAux;
+	public int targetCoinsAux;
+	public int deltaCoinsAux;
 	private Vector3 spawnPos;
 
 	public Image tierBar;
@@ -21,49 +22,51 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 	public FireworksController fireworksController;
 
 	void Start() {
-		coin.GetComponentInChildren<Text>().text = DataManager.Instance.GameData.Cash.CurrentCash.ToString();
+		coin.GetComponentInChildren<Text>().text = CashManager.Instance.CurrentCash.ToString();
 
 		// Change the appearance of the tier bar depending on which scene it is in
 		fullSizeBar = tierBar.rectTransform.sizeDelta;
 		float percentage;
 		int tierNumber;
 		if(Application.loadedLevelName != SceneUtils.START) {
-			percentage = DataLoaderTiers.GetPercentProgressInTier(DataManager.Instance.GameData.Cash.TotalCash);
-			tierNumber = DataLoaderTiers.GetTierFromCash(DataManager.Instance.GameData.Cash.TotalCash);
+			percentage = DataLoaderTiers.GetPercentProgressInTier(CashManager.Instance.TotalCash);
+			tierNumber = DataLoaderTiers.GetTierFromCash(CashManager.Instance.TotalCash);
 		}
 		else {
-			percentage = DataLoaderTiers.GetPercentProgressInTier(DataManager.Instance.GameData.Cash.LastSeenTotalCash);
-			tierNumber = DataLoaderTiers.GetTierFromCash(DataManager.Instance.GameData.Cash.LastSeenTotalCash);
+			percentage = DataLoaderTiers.GetPercentProgressInTier(CashManager.Instance.LastSeenTotalCash);
+			tierNumber = DataLoaderTiers.GetTierFromCash(CashManager.Instance.LastSeenTotalCash);
 		}
 		tierBar.rectTransform.sizeDelta = new Vector2(fullSizeBar.x * percentage, fullSizeBar.y);
 		tierText.text = tierNumber.ToString();
 	}
 
 	#region Coin Animation
-	public void CoinsEarned(int amount, Vector3 floatyPosition) {
-		CalculateCoins(amount, new Vector3(500, 500, 0), floatyPosition);
+	public void CoinsEarned(int deltaCoins, Vector3 floatyPosition) {
+		CalculateCoins(deltaCoins, new Vector3(500, 500, 0), floatyPosition);
 	}
 
-	public void CalculateCoins(int amount, Vector3 startPos, Vector3 floatyPos) {
-		difference = amount;
-		currCash = DataManager.Instance.GameData.Cash.CurrentCash;
-		if(amount > 0) {
-			DataManager.Instance.GameData.Cash.TotalCash = currCash + amount;
+	public void CalculateCoins(int deltaCoins, Vector3 startPos, Vector3 floatyPos) {
+		Debug.Log("Coins earned : " + deltaCoins.ToString());
+		deltaCoinsAux = deltaCoins;
+		currentCoinsAux = CashManager.Instance.CurrentCash;
+		if(deltaCoins > 0) {
+			DataManager.Instance.GameData.Cash.TotalCash = currentCoinsAux + deltaCoins;
 		}
-		target = DataManager.Instance.GameData.Cash.CurrentCash;
+		targetCoinsAux = CashManager.Instance.CurrentCash;
 		spawnPos = startPos;
 		// first we generate a coin and have it path to the hud
 		//TODO generate coin
 		// after we start a corutine that will end when the first coin reaches the Hud
+		Debug.Log("CALCUATIGN COINS");
 		StartCoroutine("ChangeMoney");
 		StartCoroutine("MakeMoney");
-		ParticleUtils.PlayMoneyFloaty(floatyPos, amount);
+		ParticleUtils.PlayMoneyFloaty(floatyPos, deltaCoins);
 		// then we will keep spawning coins as the hud changes
 		// the last coin should reach about the same time as the hud reaches it's target
 	}
 
 	private IEnumerator MakeMoney() {
-		for(int i = 0; i < difference / 15; i++) {
+		for(int i = 0; i < deltaCoinsAux / 15; i++) {
 			GameObject go;
 			go = GameObjectUtils.AddChildGUI(null, coinFlyPrefab);
 			go.transform.position = spawnPos;
@@ -83,19 +86,18 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 	}
 
 	private IEnumerator ChangeMoney() {
+		Debug.Log("CHANGING MONEY");
 		yield return new WaitForSeconds(coinTravelTime);
 		int step = 2;
-		if(difference < 0) {
-			step = -2;
-		}
-		while(currCash != DataManager.Instance.GameData.Cash.TotalCash) {
-			if(difference > 0) {
-				currCash = Mathf.Min(currCash + step, target);
+		while(currentCoinsAux != CashManager.Instance.CurrentCash) {
+			Debug.Log("CHANGING");
+			if(deltaCoinsAux > 0) {
+				currentCoinsAux = Mathf.Min(currentCoinsAux + step, targetCoinsAux);
 			}
 			else {
-				currCash = Mathf.Max(currCash + step, target);
+				currentCoinsAux = Mathf.Max(currentCoinsAux - step, targetCoinsAux);
 			}
-			coin.GetComponentInChildren<Text>().text = currCash.ToString();
+			coinText.text = currentCoinsAux.ToString();
 			// wait one frame
 			yield return 0;
 		}
@@ -158,9 +160,8 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 
 	// Tier sequence complete
 	private void OnTweenCompleteFinishTier() {
-		DataManager.Instance.GameData.Cash.SyncLastSeenTotalCash();
+		CashManager.Instance.SyncLastSeenTotalCash();
 		tierCaller.Finish();
 	}
-
 	#endregion
 }

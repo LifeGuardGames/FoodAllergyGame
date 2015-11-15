@@ -170,7 +170,7 @@ public class MenuManager : Singleton<MenuManager>{
 			Debug.LogWarning("Menu already contains food");
 			return false;
 		}
-		else if(DataManager.Instance.GameData.Cash.CurrentCash < foodData.Cost) {
+		else if(CashManager.Instance.CurrentCash < foodData.Cost) {
 			Debug.LogWarning("Not enough cash");
 			return false;
 		}
