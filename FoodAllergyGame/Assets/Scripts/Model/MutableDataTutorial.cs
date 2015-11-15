@@ -18,7 +18,7 @@ public class MutableDataTutorial{
 		IsMedicTut1Done = false;
 		IsMedicTut2Done = false;
 		IsDecoTutDone =  false;
-		IsSpecialDecoTutDone = false;
+		IsSpecialDecoTutDone = DataManager.Instance.IsDebug ? Constants.GetDebugConstant<bool>("IsSpecialDecoTutDone") : false;;
 		IsMenuPlanningFingerTutDone = false;
     }
 }

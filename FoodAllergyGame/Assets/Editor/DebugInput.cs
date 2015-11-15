@@ -14,7 +14,7 @@ public class DebugInput : EditorWindow {
 	private CriticalConstants criticalConstants;
 	private Vector2 scrollPosition = Vector2.zero;
 
-	[MenuItem("LGG/Debug Input Tool")]
+	[MenuItem("LGG/Debug Input")]
 	public static void ShowWindow(){
 		EditorWindow.GetWindow(typeof(DebugInput));
 	}
@@ -34,49 +34,62 @@ public class DebugInput : EditorWindow {
 		}
 		GUILayout.Label("Debug fields" , EditorStyles.boldLabel);
 		if(critList != null){
+			string lastDebugType = "Core";	// Used for separators
 			foreach(Constant constant in critList){
-				if(constant.ConstantDebug == "True"){
-					switch(constant.ConstantType){
-					case "Bool":
-						bool toggleState = EditorGUILayout.Toggle(constant.Name, bool.Parse(constant.ConstantValue));
-						constant.ConstantValue = toggleState.ToString();
-						break;
-					case "String":
-						constant.ConstantValue = EditorGUILayout.TextField(constant.Name, constant.ConstantValue);
-						break;
-					case "Int":
-						constant.ConstantValue = EditorGUILayout.TextField(constant.Name, constant.ConstantValue);
-						break;
-					}
-				}
-			}
-			if(GUILayout.Button("Save")){
-				Serialize<CriticalConstants>(CRITICAL_PATH, criticalConstants);
-			}
-		}
-		GUILayout.Label("Debug fields" , EditorStyles.boldLabel);
-		if(critList != null){
-			foreach(Constant constant in critList){
-				if(constant.ConstantDebug == "False"){
-					switch(constant.ConstantType){
-					case "Bool":
-						bool toggleState = EditorGUILayout.Toggle(constant.Name, bool.Parse(constant.ConstantValue));
-						constant.ConstantValue = toggleState.ToString();
-						break;
-					case "String":
-						constant.ConstantValue = EditorGUILayout.TextField(constant.Name, constant.ConstantValue);
-						break;
-					case "Int":
-						constant.ConstantValue = EditorGUILayout.TextField(constant.Name, constant.ConstantValue);
-						break;
-					}
-				}
-			}
-			if(GUILayout.Button("Save")){
-				Serialize<CriticalConstants>(CRITICAL_PATH, criticalConstants);
-			}
-		}
 
+				// Separator
+				if(lastDebugType != constant.ConstantDebug){
+					GUILayout.Box("",GUILayout.Width(this.position.width - 12), GUILayout.Height(2));
+					lastDebugType = constant.ConstantDebug;
+				}
+
+				if(constant.ConstantDebug == "Core"){
+					switch(constant.ConstantType){
+					case "Bool":
+						bool toggleState = EditorGUILayout.Toggle(constant.Name, bool.Parse(constant.ConstantValue));
+						constant.ConstantValue = toggleState.ToString();
+						break;
+					case "String":
+						constant.ConstantValue = EditorGUILayout.TextField(constant.Name, constant.ConstantValue);
+						break;
+					case "Int":
+						constant.ConstantValue = EditorGUILayout.TextField(constant.Name, constant.ConstantValue);
+						break;
+					}
+				}
+				else if(constant.ConstantDebug == "Tutorial"){
+					switch(constant.ConstantType){
+					case "Bool":
+						bool toggleState = EditorGUILayout.Toggle(constant.Name, bool.Parse(constant.ConstantValue));
+						constant.ConstantValue = toggleState.ToString();
+						break;
+					case "String":
+						constant.ConstantValue = EditorGUILayout.TextField(constant.Name, constant.ConstantValue);
+						break;
+					case "Int":
+						constant.ConstantValue = EditorGUILayout.TextField(constant.Name, constant.ConstantValue);
+						break;
+					}
+				}
+				else if(constant.ConstantDebug == "Deco"){
+					switch(constant.ConstantType){
+					case "Bool":
+						bool toggleState = EditorGUILayout.Toggle(constant.Name, bool.Parse(constant.ConstantValue));
+						constant.ConstantValue = toggleState.ToString();
+						break;
+					case "String":
+						constant.ConstantValue = EditorGUILayout.TextField(constant.Name, constant.ConstantValue);
+						break;
+					case "Int":
+						constant.ConstantValue = EditorGUILayout.TextField(constant.Name, constant.ConstantValue);
+						break;
+					}
+				}
+			}
+			if(GUILayout.Button("Save", GUILayout.Height(50))){
+				Serialize<CriticalConstants>(CRITICAL_PATH, criticalConstants);
+			}
+		}
 		GUILayout.EndScrollView();
 	}
 

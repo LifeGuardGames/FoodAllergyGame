@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Constants xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Constant Name="EventID" Type="String" Value="Event00" Debug="True"> </Constant>
-  <Constant Name="CurrentCash" Type="Int" Value="2000" Debug="True"> </Constant>
-  <Constant Name="TotalCash" Type="Int" Value="2000" Debug="True"> </Constant>
-  <Constant Name="LastTotalCash" Type="Int" Value="2000" Debug="True"> </Constant>
-  <Constant Name="IsTut1Done" Type="Bool" Value="True" Debug="True"> </Constant>
-  <Constant Name="IsTut3Done" Type="Bool" Value="True" Debug="True"> </Constant>
-  <Constant Name="TableID" Type="String" Value="Table00" Debug="True"> </Constant>
-  <Constant Name="KitchenID" Type="String" Value="Kitchen00" Debug="True"> </Constant>
-  <Constant Name="FloorID" Type="String" Value="Floor00" Debug="True"> </Constant>
-  <Constant Name="BathroomOn" Type="Bool" Value="False" Debug="False"> </Constant>
-  <Constant Name="BathroomID" Type="String" Value="Bathroom00" Debug="True"> </Constant>
-  <Constant Name="PlayAreaOn" Type="Bool" Value="False" Debug="False"> </Constant>
-  <Constant Name="PlayAreaID" Type="String" Value="PlayArea00" Debug="True"> </Constant>
-  <Constant Name="VIPOn" Type="Bool" Value="False" Debug="False"> </Constant>
-  <Constant Name="VIPID" Type="String" Value="VIP00" Debug="True"> </Constant>
-  <Constant Name="FlyThruOn" Type="Bool" Value="True" Debug="False"> </Constant>
-  <Constant Name="FlyThruID" Type="String" Value="FlyThru00" Debug="True"> </Constant>
-  <Constant Name="MicrowaveOn" Type="Bool" Value="False" Debug="False"> </Constant>
-  <Constant Name="MicrowaveID" Type="String" Value="Microwave00" Debug="True"> </Constant>
+  <Constant Name="EventID" Type="String" Value="Event00" Debug="Core"> </Constant>
+  <Constant Name="CurrentCash" Type="Int" Value="5400" Debug="Core"> </Constant>
+  <Constant Name="TotalCash" Type="Int" Value="5400" Debug="Core"> </Constant>
+  <Constant Name="LastTotalCash" Type="Int" Value="5400" Debug="Core"> </Constant>
+  <Constant Name="IsTut1Done" Type="Bool" Value="True" Debug="Tutorial"> </Constant>
+  <Constant Name="IsTut3Done" Type="Bool" Value="True" Debug="Tutorial"> </Constant>
+  <Constant Name="IsSpecialDecoTutDone" Type="Bool" Value="True" Debug="Tutorial"> </Constant>
+  <Constant Name="TableID" Type="String" Value="Table00" Debug="Deco"> </Constant>
+  <Constant Name="KitchenID" Type="String" Value="Kitchen00" Debug="Deco"> </Constant>
+  <Constant Name="FloorID" Type="String" Value="Floor00" Debug="Deco"> </Constant>
+  <Constant Name="PlayAreaOn" Type="Bool" Value="False" Debug="Deco"> </Constant>
+  <Constant Name="PlayAreaID" Type="String" Value="PlayArea00" Debug="Deco"> </Constant>
+  <Constant Name="VIPOn" Type="Bool" Value="False" Debug="Deco"> </Constant>
+  <Constant Name="VIPID" Type="String" Value="VIP00" Debug="Deco"> </Constant>
+  <Constant Name="FlyThruOn" Type="Bool" Value="True" Debug="Deco"> </Constant>
+  <Constant Name="FlyThruID" Type="String" Value="FlyThru00" Debug="Deco"> </Constant>
+  <Constant Name="MicrowaveOn" Type="Bool" Value="False" Debug="Deco"> </Constant>
+  <Constant Name="MicrowaveID" Type="String" Value="Microwave00" Debug="Deco"> </Constant>
 </Constants>
