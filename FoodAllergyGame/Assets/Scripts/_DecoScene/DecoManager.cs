@@ -75,7 +75,7 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	void Start(){
-		if (!DataManager.Instance.GameData.Tutorial.IsDecoTutDone){
+		if (!DataManager.Instance.GameData.Tutorial.IsDecoFingerTutDone){
 			isTutorial = true;
 			tutObj1.SetActive(true);
 		}
@@ -145,7 +145,7 @@ public class DecoManager : Singleton<DecoManager>{
 				if(isTutorial && decoID == "VIP00") {
 					tutObj3.SetActive(false);
 					isTutorial = false;
-					DataManager.Instance.GameData.Tutorial.IsDecoTutDone = true;
+					DataManager.Instance.GameData.Tutorial.IsDecoFingerTutDone = true;
 				}
 
 				DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(decoType);
