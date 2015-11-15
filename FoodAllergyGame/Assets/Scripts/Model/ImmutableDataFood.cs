@@ -34,11 +34,6 @@ public class ImmutableDataFood{
 		get {return tier;}
 	}
 
-	private int cost;
-	public int Cost{
-		get {return cost;}
-	}
-
 	public int reward;
 	public int Reward{
 		get {return reward;}
@@ -77,7 +72,6 @@ public class ImmutableDataFood{
 		}
 
 		tier = XMLUtils.GetInt(hashElements["Tier"] as IXMLNode);
-		cost = XMLUtils.GetInt(hashElements["Price"] as IXMLNode);
 		reward = XMLUtils.GetInt(hashElements["Reward"] as IXMLNode);
 		slots = XMLUtils.GetInt(hashElements["Slot"] as IXMLNode);
 	}

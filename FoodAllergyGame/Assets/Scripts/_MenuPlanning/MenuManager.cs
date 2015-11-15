@@ -80,9 +80,6 @@ public class MenuManager : Singleton<MenuManager>{
 			foodStockList = DataLoaderFood.GetDataList();
 		}
 
-		// Sort the food stock list by price
-		foodStockList.Sort((x,y) => x.Cost.CompareTo(y.Cost));
-		
 		// Populate the first page of the food stock
 		for(int i = 0; i < foodStockPageSize; i++) {
 			if(foodStockList.Count == i) {      // Reached the end of list
@@ -168,10 +165,6 @@ public class MenuManager : Singleton<MenuManager>{
         }
 		if(selectedMenuStringList.Contains(foodID)) {
 			Debug.LogWarning("Menu already contains food");
-			return false;
-		}
-		else if(CashManager.Instance.CurrentCash < foodData.Cost) {
-			Debug.LogWarning("Not enough cash");
 			return false;
 		}
 		else if(slotBarController.ActivateSlots(foodData.Slots)) {
