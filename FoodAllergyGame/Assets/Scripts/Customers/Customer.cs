@@ -351,6 +351,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
                 SetSatisfaction(0);
             }
 			if(satisfaction > 0) {
+				state = CustomerStates.Eating;
 				NotifyLeave();
 			}
 		}

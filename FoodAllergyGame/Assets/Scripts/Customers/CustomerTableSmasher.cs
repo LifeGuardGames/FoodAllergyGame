@@ -13,7 +13,7 @@ public class CustomerTableSmasher : Customer {
 	public override void NotifyLeave() {
 		// check to make sure he isn't inline or waiting for the check as there is no table to smash while inline
 		//and he needs to able to leave normally
-		if(state != CustomerStates.WaitForCheck && state != CustomerStates.InLine){
+		if(state != CustomerStates.WaitForCheck && state != CustomerStates.InLine && state != CustomerStates.Eating){
 			//flips the isBroken bool customers cannot be placed at tables where isBroken is true
 			RestaurantManager.Instance.GetTable(tableNum).TableSmashed();
 
