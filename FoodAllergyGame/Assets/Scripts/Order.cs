@@ -100,6 +100,13 @@ public class Order : MonoBehaviour, IWaiterSelection{
 	#region IWaiterSelection implementation
 	public void OnWaiterArrived(){
 		if(!Waiter.Instance.HaveMeal(tableNumber)&& Waiter.Instance.CheckHands()){
+
+			// Wierd case where script is being called even though process of being destroyed
+			if(this == null) { // WHAAAAT!?
+				Waiter.Instance.Finished();
+				return;
+			}
+
 			this.gameObject.GetComponent<BoxCollider>().enabled = false;
 			Waiter.Instance.SetHand(gameObject);
 			AudioManager.Instance.PlayClip("OrderPickUp");
