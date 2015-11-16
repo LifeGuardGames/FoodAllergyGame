@@ -53,16 +53,7 @@ public class StartManager : Singleton<StartManager>{
 			unlockParent.SetActive(true); // TODO clean this up
 			DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT3";
 		}
-			decoEntranceUIController.Hide();
-			unlockParent.SetActive(false);
 
-			if(DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent) {
-				// Deco tut should be in the event queue
-				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = TierManager.Instance.GetNewEvent();
-				// Lock the generate event bool until day is completed
-				DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = false;
-			
-		}
 		// Default case
 		else {
 			// Show the deco entrance
