@@ -15,7 +15,7 @@
 		<Allergies>None</Allergies>
 		<Keywords>Meal</Keywords>
 		<Tier>0</Tier>
-		<Reward>2</Reward>
+		<Reward>1</Reward>
 		<Slot>1</Slot>
 	</Food>
 	<Food ID="Food02">
@@ -24,7 +24,7 @@
 		<Allergies>Peanut</Allergies>
 		<Keywords>Meal,Dessert</Keywords>
 		<Tier>0</Tier>
-		<Reward>1</Reward>
+		<Reward>2</Reward>
 		<Slot>1</Slot>
 	</Food>
 	<Food ID="Food03">
@@ -42,7 +42,7 @@
 		<Allergies>Dairy</Allergies>
 		<Keywords>Dessert,Meal</Keywords>
 		<Tier>0</Tier>
-		<Reward>1</Reward>
+		<Reward>2</Reward>
 		<Slot>1</Slot>
 	</Food>
 	<Food ID="Food05">
@@ -51,7 +51,7 @@
 		<Allergies>Peanut</Allergies>
 		<Keywords>Meal,Drink</Keywords>
 		<Tier>0</Tier>
-		<Reward>1</Reward>
+		<Reward>2</Reward>
 		<Slot>1</Slot>
 	</Food>
 	<Food ID="Food06">
@@ -60,7 +60,7 @@
 		<Allergies>Wheat</Allergies>
 		<Keywords>Meal,Dessert</Keywords>
 		<Tier>0</Tier>
-		<Reward>1</Reward>
+		<Reward>2</Reward>
 		<Slot>1</Slot>
 	</Food>
 	<Food ID="Food07">
@@ -69,7 +69,7 @@
 		<Allergies>Peanut</Allergies>
 		<Keywords>Meal,Drink</Keywords>
 		<Tier>0</Tier>
-		<Reward>1</Reward>
+		<Reward>2</Reward>
 		<Slot>1</Slot>
 	</Food>
 	<Food ID="Food08">
@@ -78,7 +78,7 @@
 		<Allergies>Wheat</Allergies>
 		<Keywords>Meal,Drink</Keywords>
 		<Tier>1</Tier>
-		<Reward>1</Reward>
+		<Reward>2</Reward>
 		<Slot>1</Slot>
 	</Food>
 	<Food ID="Food09">
@@ -87,7 +87,7 @@
 		<Allergies>Dairy</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
 		<Tier>1</Tier>
-		<Reward>1</Reward>
+		<Reward>2</Reward>
 		<Slot>1</Slot>
 	</Food>
 	<Food ID="Food10">
@@ -159,7 +159,7 @@
 		<Allergies>Wheat,Dairy,Peanut</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
 		<Tier>5</Tier>
-		<Reward>4</Reward>
+		<Reward>5</Reward>
 		<Slot>1</Slot>
 	</Food>
 	<Food ID="Food18">
@@ -168,7 +168,7 @@
 		<Allergies>Wheat,Dairy,Peanut</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
 		<Tier>3</Tier>
-		<Reward>4</Reward>
+		<Reward>5</Reward>
 		<Slot>1</Slot>
 	</Food>
   <Food ID="Food19">
@@ -204,7 +204,7 @@
     <Allergies>Wheat,Dairy,Peanut</Allergies>
     <Keywords>Drink,Dessert</Keywords>
     <Tier>6</Tier>
-    <Reward>4</Reward>
+    <Reward>5</Reward>
     <Slot>1</Slot>
   </Food>
 </Foods>
