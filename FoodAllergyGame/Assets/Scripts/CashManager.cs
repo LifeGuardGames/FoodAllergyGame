@@ -40,9 +40,11 @@ public class CashManager : Singleton<CashManager> {
 		if(dayCashRevenue < 0){
 			Debug.LogError("Negative end day revenue detected");
 		}
+		else {
+			cashData.TotalCash += dayCashRevenue;
+		}
 
 		cashData.CurrentCash += dayCashNet;
-		cashData.TotalCash += dayCashRevenue;
 
 		if(cashData.CurrentCash < 0){
 			Debug.LogWarning("Current cash below 0, resetting to 0");

@@ -123,6 +123,8 @@ public class Table : MonoBehaviour, IWaiterSelection{
 			customerUI.satisfaction2.gameObject.SetActive(false);
 			customerUI.satisfaction3.gameObject.SetActive(false);
 			customerUI.ToggleStar(false);
+			customerUI.ToggleAllergyAttack(false);
+			customerUI.ToggleWait(false);
 		}
 	}
 

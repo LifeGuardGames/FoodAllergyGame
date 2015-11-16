@@ -9,10 +9,10 @@ public class DayOverUIController : MonoBehaviour {
 	public Text textMenuCost;
 	public Text textEarningsNet;
 
-	public void Populate(int customersMissed, float avgSatisfaction, int tips, int earningsNet, int totalCash, int medicalExpenses){
+	public void Populate(int customersMissed, int tips, int medicalExpenses, int earningsNet) {
 		textCustomersMissed.text = customersMissed.ToString();
 		textTips.text = tips.ToString();
 		textMenuCost.text = medicalExpenses.ToString();
-		textEarningsNet.text = (tips + medicalExpenses).ToString();
+		textEarningsNet.text = earningsNet.ToString();
 	}
 }

@@ -238,9 +238,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.VIP) {    // TODO connect this with logic rather than number
 			RestaurantManager.Instance.VIPUses++;
 			customerUI = gameObject.transform.GetComponentInParent<CustomerUIController>();
-			customerUI.satisfaction1.gameObject.SetActive(true);
-			customerUI.satisfaction2.gameObject.SetActive(true);
-			customerUI.satisfaction3.gameObject.SetActive(true);
+			//customerUI.satisfaction1.gameObject.SetActive(true);
+			//customerUI.satisfaction2.gameObject.SetActive(true);
+			//customerUI.satisfaction3.gameObject.SetActive(true);
 			timer /= RestaurantManager.Instance.GetTable(_tableNum).VIPMultiplier;
 			SetSatisfaction(4);
 			AudioManager.Instance.PlayClip("VIPEnter");

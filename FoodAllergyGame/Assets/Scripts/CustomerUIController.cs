@@ -7,6 +7,7 @@ public class CustomerUIController : MonoBehaviour {
 	public Image satisfaction1;
 	public Image satisfaction2;
 	public Image satisfaction3;
+	public Image satisfaction4;
 
 	public Image skull;
 	public Image waiting;
@@ -21,21 +22,41 @@ public class CustomerUIController : MonoBehaviour {
 			satisfaction1.gameObject.SetActive(false);
 			satisfaction2.gameObject.SetActive(false);
 			satisfaction3.gameObject.SetActive(false);
+			if(satisfaction4 != null) {
+				satisfaction4.gameObject.SetActive(false);
+			}
 		}
 		else if(satisfaction == 1){
 			satisfaction1.gameObject.SetActive(true);
 			satisfaction2.gameObject.SetActive(false);
 			satisfaction3.gameObject.SetActive(false);
+			if(satisfaction4 != null) {
+				satisfaction4.gameObject.SetActive(false);
+			}
 		}
 		else if(satisfaction == 2){
 			satisfaction1.gameObject.SetActive(true);
 			satisfaction2.gameObject.SetActive(true);
 			satisfaction3.gameObject.SetActive(false);
+			if(satisfaction4 != null) {
+				satisfaction4.gameObject.SetActive(false);
+			}
 		}
-		else if(satisfaction >= 3){
+		else if(satisfaction == 3){
 			satisfaction1.gameObject.SetActive(true);
 			satisfaction2.gameObject.SetActive(true);
 			satisfaction3.gameObject.SetActive(true);
+			if(satisfaction4 != null) {
+				satisfaction4.gameObject.SetActive(false);
+			}
+		}
+		else if(satisfaction == 4) {
+			satisfaction1.gameObject.SetActive(true);
+			satisfaction2.gameObject.SetActive(true);
+			satisfaction3.gameObject.SetActive(true);
+			if(satisfaction4 != null) {
+				satisfaction4.gameObject.SetActive(true);
+			}
 		}
 	}
 
