@@ -53,8 +53,6 @@ public class StartManager : Singleton<StartManager>{
 			unlockParent.SetActive(true); // TODO clean this up
 			DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT3";
 		}
-		// Special deco tutorial
-		else if(DataManager.Instance.GameData.Tutorial.IsSpecialDecoTutDone == false){
 			decoEntranceUIController.Hide();
 			unlockParent.SetActive(false);
 
@@ -63,7 +61,7 @@ public class StartManager : Singleton<StartManager>{
 				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = TierManager.Instance.GetNewEvent();
 				// Lock the generate event bool until day is completed
 				DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = false;
-			}
+			
 		}
 		// Default case
 		else {
