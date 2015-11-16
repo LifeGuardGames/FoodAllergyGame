@@ -9,8 +9,8 @@ public class MutableDataCash {
 
 	public MutableDataCash(){
 		// Sync with LastSeenTotalCash in constructor
-		CurrentCash = DataManager.Instance.IsDebug ? Constants.GetDebugConstant<int>("CurrentCash") : 500;
-		TotalCash = DataManager.Instance.IsDebug ? Constants.GetDebugConstant<int>("TotalCash") : 0;
+		CurrentCash = DataManager.Instance.IsDebug ? Constants.GetDebugConstant<int>("CurrentCash") : 0;
+		TotalCash = DataManager.Instance.IsDebug ? Constants.GetDebugConstant<int>("TotalCash") : 500;
 		LastSeenTotalCash = DataManager.Instance.IsDebug ? Constants.GetDebugConstant<int>("LastTotalCash") : TotalCash;
 	}
 }
