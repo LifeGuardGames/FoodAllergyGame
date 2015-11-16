@@ -47,6 +47,10 @@ public class FoodManager : Singleton<FoodManager>{
 		List<ImmutableDataFood> desiredFoodList = new List<ImmutableDataFood>();
 		bool allergyFood = false;
 		bool allergenAdded = false;
+		int numOfWheatAllergen;
+		int numOfDairyAllergen;
+		int numOfPeanutAllergen;
+		int numOfNoAllergen;
 
 		if(RestaurantManager.Instance.isTutorial) {
 			desiredFoodList.Add(DataLoaderFood.GetData("Food00"));
@@ -55,6 +59,44 @@ public class FoodManager : Singleton<FoodManager>{
 		}
 		
 		while(desiredFoodList.Count < 2){
+			 numOfWheatAllergen = 0;
+			 numOfDairyAllergen = 0;
+			 numOfPeanutAllergen = 0;
+			 numOfNoAllergen = 0;
+
+			for(int i = 0; i < menuList.Count; i++) {
+				for(int j = 0; j < menuList[i].AllergyList.Count; j++) {
+					if(menuList[i].AllergyList[j] == Allergies.Wheat) {
+						numOfWheatAllergen++;
+					}
+					else if(menuList[i].AllergyList[j] == Allergies.Dairy) {
+						numOfDairyAllergen++;
+					}
+					else if(menuList[i].AllergyList[j] == Allergies.Peanut) {
+						numOfPeanutAllergen++;
+					}
+					else if(menuList[i].AllergyList[j] == Allergies.None) {
+						numOfNoAllergen++;
+					}
+				}
+				if(numOfWheatAllergen == MenuList.Count) {
+					desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
+					return desiredFoodList;
+				}
+				else if(numOfDairyAllergen == menuList.Count) {
+					desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
+					return desiredFoodList;
+				}
+				else if (numOfPeanutAllergen == menuList.Count) {
+					desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
+					return desiredFoodList;
+				}
+				else if (numOfNoAllergen == menuList.Count) {
+					desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
+					return desiredFoodList;
+				}
+			}
+
 			allergyFood = false;
 			int rand = Random.Range(0,menuList.Count);
 //				Debug.Log (menuList[rand].ID.ToString());
