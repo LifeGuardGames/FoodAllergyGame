@@ -79,17 +79,17 @@ public class FoodManager : Singleton<FoodManager>{
 						numOfNoAllergen++;
 					}
 				}
-				if(numOfWheatAllergen == MenuList.Count) {
+				if(numOfWheatAllergen == MenuList.Count && _allergy != Allergies.Wheat) {
 					desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
 					desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
 					return desiredFoodList;
 				}
-				else if(numOfDairyAllergen == menuList.Count) {
+				else if(numOfDairyAllergen == menuList.Count && _allergy != Allergies.Dairy) {
 					desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
 					desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
 					return desiredFoodList;
 				}
-				else if (numOfPeanutAllergen == menuList.Count) {
+				else if (numOfPeanutAllergen == menuList.Count && _allergy != Allergies.Peanut) {
 					desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
 					desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
 					return desiredFoodList;
