@@ -237,10 +237,10 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		transform.localPosition = Vector3.zero;
 		if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.VIP) {    // TODO connect this with logic rather than number
 			RestaurantManager.Instance.VIPUses++;
+			customerUI = gameObject.transform.GetComponentInParent<CustomerUIController>();
 			customerUI.satisfaction1.gameObject.SetActive(true);
 			customerUI.satisfaction2.gameObject.SetActive(true);
 			customerUI.satisfaction3.gameObject.SetActive(true);
-			customerUI = gameObject.transform.GetComponentInParent<CustomerUIController>();
 			timer /= RestaurantManager.Instance.GetTable(_tableNum).VIPMultiplier;
 			SetSatisfaction(4);
 			AudioManager.Instance.PlayClip("VIPEnter");
@@ -331,8 +331,10 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public virtual void Eating(){
 		if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.FlyThru){
 			Waiter.Instance.Finished();
-			if(DataManager.Instance.GetEvent() == "EventTFlyThru"){
-				DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
+			if(DataManager.Instance.GetEvent() == "EventTFlyThru") {
+				if(DataManager.Instance.GameData.Decoration.DecoTutQueue.Count > 0) { 
+					DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
+				}
 				DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(DecoTypes.FlyThru);
 				DataManager.Instance.GameData.Decoration.ActiveDeco.Add(DecoTypes.FlyThru, "FlyThru00");
 				//DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
@@ -348,7 +350,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
                 }
                 SetSatisfaction(0);
             }
-           // NotifyLeave();
+			if(satisfaction > 0) {
+				NotifyLeave();
+			}
 		}
 		else{
 			UpdateSatisfaction(1);
