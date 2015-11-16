@@ -81,9 +81,11 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		customerHash = new Dictionary<string, GameObject>();
 		satisfactionAI = new SatisfactionAI();
 
-		if(DataManager.Instance.IsDebug){
+		// Only generate debug menu if menulist is not populated
+		if(DataManager.Instance.IsDebug && FoodManager.Instance.MenuList == null) {
 			FoodManager.Instance.GenerateMenu(DataLoaderMenuSet.GetData("MenuSetT1").MenuSet.ToList());
 		}
+
 		if(DataManager.Instance.GetEvent() == "EventTPlayArea"||DataManager.Instance.GetEvent() == "EventTFlyThru"){
 			//TODO remove this and active tut screen
 			StartDay(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()));
@@ -243,7 +245,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				else{
 					DataManager.Instance.GameData.DayTracker.AvgDifficulty = ((DataManager.Instance.GameData.DayTracker.AvgDifficulty + satisfactionAI.DifficultyLevel)/2);
 					// Save data here
-					int dayNetCash = dayEarnedCash;
+					int dayNetCash = dayEarnedCash - Medic.Instance.MedicCost;
 					CashManager.Instance.RestaurantEndCashUpdate(dayNetCash, dayCashRevenue);
 
 					// Unlock new event generation for StartManager
@@ -275,9 +277,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 						{"Inspection Buttons Clicks", inspectionButtonClicked}
 					});
 					// Show day complete UI
-					restaurantUI.DayComplete(satisfactionAI.MissingCustomers, satisfactionAI.AvgSatifaction(), dayEarnedCash,
-											dayNetCash, CashManager.Instance.CurrentCash,
-					                        Medic.Instance.MedicCost);
+					restaurantUI.DayComplete(satisfactionAI.MissingCustomers, dayEarnedCash,
+											Medic.Instance.MedicCost, dayNetCash);
 
 					// Save game data
 					DataManager.Instance.SaveGameData();
