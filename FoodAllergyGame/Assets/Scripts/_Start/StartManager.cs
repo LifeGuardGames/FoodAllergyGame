@@ -66,10 +66,12 @@ public class StartManager : Singleton<StartManager>{
 		// Default case
 		else {
 			// Show the deco entrance
-			bool isFirstTimeEntrance = DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance;
-			decoEntranceUIController.Show(isFirstTimeEntrance);
+			if(TierManager.Instance.Tier >= 3) {
+				bool isFirstTimeEntrance = DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance;
+				decoEntranceUIController.Show(isFirstTimeEntrance);
 
-			isHideDinerEntranceOnShopShow = true;
+				isHideDinerEntranceOnShopShow = true;
+			}
             unlockParent.SetActive(false); // TODO clean this up
 
 			if(DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent) {
