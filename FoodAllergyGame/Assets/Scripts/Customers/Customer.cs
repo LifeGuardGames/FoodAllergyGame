@@ -332,7 +332,6 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.FlyThru){
 			Waiter.Instance.Finished();
 			if(DataManager.Instance.GetEvent() == "EventTFlyThru"){
-				DataManager.Instance.GameData.Tutorial.IsSpecialDecoTutDone = true;
 				DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
 				DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(DecoTypes.FlyThru);
 				DataManager.Instance.GameData.Decoration.ActiveDeco.Add(DecoTypes.FlyThru, "FlyThru00");
@@ -399,14 +398,12 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	// Tells the resturantManager that the customer is leaving and can be removed from the dictionary
 	public virtual void NotifyLeave(){
 		if(DataManager.Instance.GetEvent() == "EventTVIP") {
-			DataManager.Instance.GameData.Tutorial.IsSpecialDecoTutDone = true;
 			DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
 			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(DecoTypes.VIP);
 			//DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
 		}
 
 		if(DataManager.Instance.GetEvent() == "EventTPlayArea") {
-			DataManager.Instance.GameData.Tutorial.IsSpecialDecoTutDone = true;
 			if(DataManager.Instance.GameData.Decoration.DecoTutQueue.Count > 0) {
 				DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
 			}
@@ -503,7 +500,6 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
 		UpdateSatisfaction(1);
 		customerUI.ToggleAllergyAttack(false);
-		customerUI.ToggleStar(true);
 		Invoke("NotifyLeave", 4.0f);
 		state = CustomerStates.Invalid;
 		StopCoroutine("AllergyTimer");
