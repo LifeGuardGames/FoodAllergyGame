@@ -25,10 +25,10 @@ public class SatisfactionAI{
 
 	// Calculates the money given to the player once a customer leaves
 	public int CalculateBill(int incomingSatisfaction, int priceMultiplier, UnityEngine.Vector3 pos, float time, bool earnMoney){
-		if(earnMoney) {
-			if(incomingSatisfaction <= 0) {
-				missingCustomers++;
-			}
+		if(incomingSatisfaction <= 0) {
+			missingCustomers++;
+		}
+		if(earnMoney) { 
 			modifiedSatisfaction = incomingSatisfaction * 5;
 			if(incomingSatisfaction < 0) {
 				incomingSatisfaction = 0;
