@@ -245,7 +245,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				else{
 					DataManager.Instance.GameData.DayTracker.AvgDifficulty = ((DataManager.Instance.GameData.DayTracker.AvgDifficulty + satisfactionAI.DifficultyLevel)/2);
 					// Save data here
-					int dayNetCash = dayEarnedCash - Medic.Instance.MedicCost;
+					int dayNetCash = dayEarnedCash + Medic.Instance.MedicCost;
 					CashManager.Instance.RestaurantEndCashUpdate(dayNetCash, dayCashRevenue);
 
 					// Unlock new event generation for StartManager
