@@ -53,7 +53,6 @@ public class StartManager : Singleton<StartManager>{
 			unlockParent.SetActive(true); // TODO clean this up
 			DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT3";
 		}
-
 		// Default case
 		else {
 			// Show the deco entrance
@@ -62,6 +61,9 @@ public class StartManager : Singleton<StartManager>{
 				decoEntranceUIController.Show(isFirstTimeEntrance);
 
 				isHideDinerEntranceOnShopShow = true;
+			}
+			else {
+				decoEntranceUIController.Hide();
 			}
             unlockParent.SetActive(false); // TODO clean this up
 
