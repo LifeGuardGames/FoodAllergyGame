@@ -41,23 +41,18 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 	}
 
 	#region Coin Animation
-	public void CoinsEarned(int deltaCoins, Vector3 floatyPosition) {
-		CalculateCoins(deltaCoins, new Vector3(500, 500, 0), floatyPosition);
+	public void CashAnimationStart(int deltaCoins, Vector3 floatyPosition) {
+		PrepCashAnimation(deltaCoins, new Vector3(500, 500, 0), floatyPosition);
 	}
 
-	public void CalculateCoins(int deltaCoins, Vector3 startPos, Vector3 floatyPos) {
-		Debug.Log("Coins earned : " + deltaCoins.ToString());
+	private void PrepCashAnimation(int deltaCoins, Vector3 startPos, Vector3 floatyPos) {
 		deltaCoinsAux = deltaCoins;
-		currentCoinsAux = CashManager.Instance.CurrentCash;
-		if(deltaCoins > 0) {
-			DataManager.Instance.GameData.Cash.TotalCash = currentCoinsAux + deltaCoins;
-		}
+		currentCoinsAux = CashManager.Instance.CurrentCash + (-deltaCoins);	// Change is made internally already
 		targetCoinsAux = CashManager.Instance.CurrentCash;
 		spawnPos = startPos;
 		// first we generate a coin and have it path to the hud
 		//TODO generate coin
 		// after we start a corutine that will end when the first coin reaches the Hud
-		Debug.Log("CALCUATIGN COINS");
 		StartCoroutine("ChangeMoney");
 		StartCoroutine("MakeMoney");
 		ParticleUtils.PlayMoneyFloaty(floatyPos, deltaCoins);
@@ -86,16 +81,14 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 	}
 
 	private IEnumerator ChangeMoney() {
-		Debug.Log("CHANGING MONEY");
 		yield return new WaitForSeconds(coinTravelTime);
-		int step = 2;
+		int step = 5;
 		while(currentCoinsAux != CashManager.Instance.CurrentCash) {
-			Debug.Log("CHANGING");
 			if(deltaCoinsAux > 0) {
-				currentCoinsAux = Mathf.Min(currentCoinsAux + step, targetCoinsAux);
+				currentCoinsAux = Mathf.Min(currentCoinsAux += step, targetCoinsAux);
 			}
 			else {
-				currentCoinsAux = Mathf.Max(currentCoinsAux - step, targetCoinsAux);
+				currentCoinsAux = Mathf.Max(currentCoinsAux -= step, targetCoinsAux);
 			}
 			coinText.text = currentCoinsAux.ToString();
 			// wait one frame

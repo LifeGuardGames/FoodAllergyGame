@@ -24,8 +24,8 @@ public class TierManager : Singleton<TierManager> {
 	// Recalculate the tier given a certain algorithm
 	// NOTE: Should be done on StartScene ONLY
 	public void RecalculateTier(){
-		tier = DataLoaderTiers.GetTierFromCash(DataManager.Instance.GameData.Cash.LastSeenTotalCash);
-		int newTier = DataLoaderTiers.GetTierFromCash(DataManager.Instance.GameData.Cash.TotalCash);
+		tier = DataLoaderTiers.GetTierFromCash(CashManager.Instance.LastSeenTotalCash);
+		int newTier = DataLoaderTiers.GetTierFromCash(CashManager.Instance.TotalCash);
 
 		// NOTE: If there is a change in tier, run logic
 		if(tier < newTier){
@@ -39,7 +39,7 @@ public class TierManager : Singleton<TierManager> {
 			DataManager.Instance.GameData.Decoration.ActiveDeco.Add(decoData.Type, decoData.ID);
 		}
 		// Print out tier
-		Debug.Log("Recalculated tier: " + tier + "     total cash: " + DataManager.Instance.GameData.Cash.TotalCash);
+		Debug.Log("Recalculated tier: " + tier + "     total cash: " + CashManager.Instance.TotalCash);
 	}
 
 	public void RemoveSpecialID() {

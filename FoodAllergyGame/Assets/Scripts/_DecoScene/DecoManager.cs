@@ -210,14 +210,15 @@ public class DecoManager : Singleton<DecoManager>{
 
 	private bool BuyItem(string decoID){
 		ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
-		if(decoData.Cost < CashManager.Instance.CurrentCash){
-			DataManager.Instance.GameData.Cash.CurrentCash -= decoData.Cost;
-			HUDAnimator.Instance.CoinsEarned(-decoData.Cost, GameObject.Find("ButtonBuy").transform.position);
+
+		// Check if you have enough money, change cash if so, takes care of anim as well
+		if(CashManager.Instance.DecoBuyCash(decoData.Cost)){
+			DataManager.Instance.GameData.Decoration.BoughtDeco.Add(decoID, "");
+			SetDeco(decoID, decoData.Type);
+
 			Analytics.CustomEvent("Item Bought", new Dictionary<string, object>{
 				{"Item: ", decoID}
 			});
-			DataManager.Instance.GameData.Decoration.BoughtDeco.Add(decoID, "");
-			SetDeco(decoID, decoData.Type);
 			return true;
 		}
 		else{

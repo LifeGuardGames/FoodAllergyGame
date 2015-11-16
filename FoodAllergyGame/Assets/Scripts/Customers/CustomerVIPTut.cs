@@ -36,7 +36,7 @@ public class CustomerVIPTut : Customer {
 	}
 
 	public override void NotifyLeave() {
-		DataManager.Instance.GameData.Cash.TotalCash = 2000;
+		CashManager.Instance.TutorialOverrideTotalCash(2000);
 		base.NotifyLeave();
 	}
 }

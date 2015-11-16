@@ -16,6 +16,25 @@ public class CashManager : Singleton<CashManager> {
 		cashData = DataManager.Instance.GameData.Cash;
 	}
 
+	#region DecoScene calls
+	// Wrap this in another layer for extra control
+	public bool DecoBuyCash(int cost){
+		if(cost < 0){
+			Debug.LogError("Cant process negative cost");
+			return false;
+		}
+
+		if(cost <= CurrentCash){
+			cashData.CurrentCash -= cost;
+			if(HUDAnimator.Instance != null){
+				HUDAnimator.Instance.CashAnimationStart(-cost, GameObject.Find("ButtonBuy").transform.position);
+			}
+			return true;
+		}
+		return false;
+	}
+	#endregion
+
 	#region RestaurantScene calls
 	public void RestaurantEndCashUpdate(int dayCashNet, int dayCashRevenue){
 		if(dayCashRevenue < 0){
@@ -29,6 +48,10 @@ public class CashManager : Singleton<CashManager> {
 			Debug.LogWarning("Current cash below 0, resetting to 0");
 			cashData.CurrentCash = 0;
 		}
+	}
+
+	public void TutorialOverrideTotalCash(int totalCashOverride){
+		cashData.TotalCash = totalCashOverride;
 	}
 	#endregion
 
