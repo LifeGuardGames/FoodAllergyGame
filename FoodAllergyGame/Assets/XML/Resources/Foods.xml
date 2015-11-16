@@ -171,4 +171,40 @@
 		<Reward>4</Reward>
 		<Slot>1</Slot>
 	</Food>
+  <Food ID="Food19">
+    <FoodNameKey>FoodPeanutIceCreamBar</FoodNameKey>
+    <SpriteName>FoodPeanutIceCreamBar</SpriteName>
+    <Allergies>Dairy,Peanut</Allergies>
+    <Keywords>Drink,Dessert</Keywords>
+    <Tier>5</Tier>
+    <Reward>3</Reward>
+    <Slot>1</Slot>
+  </Food>
+  <Food ID="Food20">
+    <FoodNameKey>FoodYogurtParfait</FoodNameKey>
+    <SpriteName>FoodYogurtParfait</SpriteName>
+    <Allergies>Dairy,Peanut</Allergies>
+    <Keywords>Drink,Dessert</Keywords>
+    <Tier>6</Tier>
+    <Reward>3</Reward>
+    <Slot>1</Slot>
+  </Food>
+  <Food ID="Food21">
+    <FoodNameKey>FoodPastaTomatoSauce</FoodNameKey>
+    <SpriteName>FoodPastaTomatoSauce</SpriteName>
+    <Allergies>Wheat</Allergies>
+    <Keywords>Drink,Dessert</Keywords>
+    <Tier>1</Tier>
+    <Reward>2</Reward>
+    <Slot>1</Slot>
+  </Food>
+  <Food ID="Food22">
+    <FoodNameKey>FoodPeanutButterCheeseCrackers</FoodNameKey>
+    <SpriteName>FoodPeanutButterCheeseCrackers</SpriteName>
+    <Allergies>Wheat,Dairy,Peanut</Allergies>
+    <Keywords>Drink,Dessert</Keywords>
+    <Tier>6</Tier>
+    <Reward>4</Reward>
+    <Slot>1</Slot>
+  </Food>
 </Foods>
