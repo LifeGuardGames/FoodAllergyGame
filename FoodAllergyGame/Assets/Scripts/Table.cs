@@ -142,7 +142,6 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	//for use by sir table smasher when he does his thing
 	public void TableSmashed(){
 		isBroken = true;
-
 		
 		// Turn off all components
 		if(tableHighlight != null) {

@@ -12,7 +12,7 @@ public class CashManager : Singleton<CashManager> {
 	public int TotalCash{ get{ return cashData.TotalCash; } }
 	public int LastSeenTotalCash{ get{ return cashData.LastSeenTotalCash; } }
 
-	void Start(){
+	void Awake(){
 		cashData = DataManager.Instance.GameData.Cash;
 	}
 
