@@ -32,7 +32,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		get{ return tableList; }
 	}
 
-	private Table flyThruTable = null;		// Cached table position
+	private TableFlyThru flyThruTable = null;		// Cached table position
 	private bool isFlyThruTableCached = false;
 
 	public RestaurantUIManager restaurantUI;
@@ -299,11 +299,11 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	}
 
 	// Script is ran and cached for the first time
-	public Table GetFlyThruTable(){
+	public TableFlyThru GetFlyThruTable(){
 		if(!isFlyThruTableCached){
 			foreach(GameObject table in tableList){
-				Table tableScript = table.GetComponent<Table>();
-				if(tableScript.tableType == Table.TableType.FlyThru){
+				TableFlyThru tableScript = table.GetComponent<TableFlyThru>();
+				if(tableScript != null){
 					flyThruTable = tableScript;	// Save it to cache
 				}
 			}

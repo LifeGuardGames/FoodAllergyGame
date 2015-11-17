@@ -31,64 +31,49 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		get{ return seatLayerOrder; }
 	}
 
-	private GameObject node;
+	protected GameObject node;
 	public GameObject Node{
 		get{ return node; }
 	}
 	public int VIPMultiplier;
-	public TweenToggle FlyThruToggle;
 
 	public Transform foodSpot;
 	public bool inUse = false;
 	public string currentCustomerID;
 	public bool isBroken;
 	public GameObject _canvas;
+	public Text text;
 	public bool isGossiped;
 	public GameObject tableHighlight;
 	public GameObject spriteParent;
 
 	void Start(){
-		if(Application.loadedLevelName == SceneUtils.RESTAURANT){
+		Init();
+	}
+
+	public virtual void Init() {
+		if(Application.loadedLevelName == SceneUtils.RESTAURANT) {
 			// Add youself to the list of tables
 			RestaurantManager.Instance.TableList.Add(gameObject);
 
 			// Get its node dynamically, which are pre-populated
-			switch(tableType) {
-				case TableType.Normal:
-					node = Pathfinding.Instance.GetNormalTableNode(tableNumber);
-					break;
-				case TableType.VIP:
-					node = Pathfinding.Instance.NodeVIP;
-					CustomerUIController customerUI = this.GetComponent<CustomerUIController>();
-					customerUI.ToggleWait(false);
-					customerUI.ToggleStar(false);
-					customerUI.ToggleAllergyAttack(false);
-					break;
-				case TableType.FlyThru:
-					if(DataManager.Instance.GetEvent() == "EventTFlyThru") {
-						GameObject.Find("TutFingers").transform.GetChild(9).gameObject.SetActive(true);
-					}
-					node = Pathfinding.Instance.NodeFlyThru;
-					break;
+			if(tableType == TableType.Normal) {
+				node = Pathfinding.Instance.GetNormalTableNode(tableNumber);
 			}
 			if(DataManager.Instance.GetEvent() == "EventTVIP") {
-				if(tableType != TableType.VIP) {
-					this.GetComponent<BoxCollider>().enabled = false;
-				}
+				this.GetComponent<BoxCollider>().enabled = false;
 			}
 		}
 		TurnOffHighlight();
 		// can't get reference to diabled objects during runtime
 		_canvas.SetActive(true);
-		_canvas.GetComponentInChildren<Text>().text = (tableNumber + 1).ToString();
+		text.text = (tableNumber + 1).ToString();
 		_canvas.SetActive(false);
 	}
 
 	//facilitates talk between customer and waiter
-	public void TalkToConsumer(){
-		if(DataManager.Instance.GetEvent() == "EventTFlyThru"){
-			GameObject.Find("TutFingers").transform.GetChild(9).gameObject.SetActive(false);
-		}
+	public virtual void TalkToConsumer(){
+		
 		if(inUse){
 			// CheckState will handle waiter finish
 			transform.GetComponentInChildren<Customer>().CheckState();
@@ -111,25 +96,16 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	}
 
 	//makes sure there is no left over food should a customer leave ealy
-	public void CustomerLeaving(){
+	public virtual void CustomerLeaving(){
 		inUse = false;
 		Waiter.Instance.RemoveMeal(tableNumber);
 		KitchenManager.Instance.CancelOrder(tableNumber);
         RestaurantManager.Instance.GetMenuUIController().CancelOrder(tableNumber);
 		_canvas.SetActive(false);
-		if(tableType == TableType.VIP) {
-			CustomerUIController customerUI = this.GetComponent<CustomerUIController>();
-			customerUI.satisfaction1.gameObject.SetActive(false);
-			customerUI.satisfaction2.gameObject.SetActive(false);
-			customerUI.satisfaction3.gameObject.SetActive(false);
-			customerUI.ToggleStar(false);
-			customerUI.ToggleAllergyAttack(false);
-			customerUI.ToggleWait(false);
-		}
 	}
 
 	//in the unfortunate circumstance a customer gets eaten we need to take care of the mess
-	public void CustomerEaten(){
+	public virtual void CustomerEaten(){
 		if(foodSpot.childCount > 0){
 			Destroy(foodSpot.GetChild(0));
 		}
@@ -140,7 +116,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	}
 	
 	//for use by sir table smasher when he does his thing
-	public void TableSmashed(){
+	public virtual void TableSmashed(){
 		isBroken = true;
 		
 		// Turn off all components
@@ -148,15 +124,6 @@ public class Table : MonoBehaviour, IWaiterSelection{
 			tableHighlight.SetActive(false);
 		}
 		_canvas.SetActive(false);
-		if(tableType == TableType.VIP) {
-			CustomerUIController customerUI = this.GetComponent<CustomerUIController>();
-			customerUI.satisfaction1.gameObject.SetActive(false);
-			customerUI.satisfaction2.gameObject.SetActive(false);
-			customerUI.satisfaction3.gameObject.SetActive(false);
-			customerUI.ToggleWait(false);
-			customerUI.ToggleStar(false);
-			customerUI.ToggleAllergyAttack(false);
-		}
 		this.GetComponent<BoxCollider>().enabled = false;
 
 		
@@ -166,34 +133,26 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		// TODO balance this
 	}
 
-	private void TableSmashedCleanup() {
+	public virtual void TableSmashedCleanup() {
 		spriteParent.SetActive(false);
     }
 
-	public void TurnOnHighlight(){
+	public virtual void TurnOnHighlight(){
 		if(tableHighlight != null && !inUse){
 			tableHighlight.SetActive(true);
 		}
 	}
 	
-	public void TurnOffHighlight(){
+	public virtual void TurnOffHighlight(){
 		if(tableHighlight != null){
 			tableHighlight.SetActive(false);
 		}
 	}
 
-	public void FlyThruDropDown() {
-		AudioManager.Instance.PlayClip("FlyThruEnter");
-		FlyThruToggle.Show();
-	}
-
-	public void FlyThruLeave() {
-		AudioManager.Instance.PlayClip("FlyThruLeave");
-		FlyThruToggle.Hide();
-	}
+	
 
 	#region IWaiterSelection implementation
-	public void OnWaiterArrived(){
+	public virtual void OnWaiterArrived(){
 		if(!isBroken && seat.childCount > 0){
 			Waiter.Instance.CurrentTable = tableNumber;
 			TalkToConsumer();
@@ -204,7 +163,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		}
 	}
 
-	public bool IsQueueable(){
+	public virtual bool IsQueueable(){
 		if(!inUse && Waiter.Instance.CurrentLineCustomer != null){
 			return false;
 		}
@@ -213,7 +172,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		}
 	}
 
-	public void OnClicked(){
+	public virtual void OnClicked(){
 		if(tableType != TableType.FlyThru){
 			if(Waiter.Instance.CurrentLineCustomer != null && !inUse && !isBroken){
 				Waiter.Instance.CurrentLineCustomer.transform.localScale = Vector3.one;
