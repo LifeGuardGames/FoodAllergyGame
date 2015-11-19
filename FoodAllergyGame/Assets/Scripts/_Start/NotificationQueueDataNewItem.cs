@@ -12,6 +12,7 @@ public class NotificationQueueDataNewItem : NotificationQueueData {
 
 	public override void Start(){
 		if(allowedScene == Application.loadedLevelName){
+
 			GameObject giftPrefab = Resources.Load("GiftDropPod") as GameObject;
 			giftInstance = GameObjectUtils.AddChildWithPositionAndScale(StartManager.Instance.SceneObjectParent, giftPrefab);
 
@@ -29,8 +30,6 @@ public class NotificationQueueDataNewItem : NotificationQueueData {
 	}
 
 	public override void Finish(){
-		StartManager.Instance.decoEntranceUIController.ToggleClickable(true);
-        StartManager.Instance.dinerEntranceUIController.ToggleClickable(true);
 		base.Finish();
 	}
 }

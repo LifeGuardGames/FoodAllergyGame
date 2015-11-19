@@ -31,15 +31,11 @@ public class StartManager : Singleton<StartManager>{
 		get{ return newItemUIController; }
 	}
 
-	public bool isHideDinerEntranceOnShopShow = false;	// Aux that is only ticked when shop showing, disabling diner entrance
-	public bool IsHideDinerEntranceOnShopShow {
-		get { return isHideDinerEntranceOnShopShow; }
-	}
+	public bool IsShopAppearHideDinerOverride = false;
 
 	void Start(){
 		// Refresh tier calculation
 		TierManager.Instance.RecalculateTier();
-		isHideDinerEntranceOnShopShow = false;
 
 		// First restaurant tutorial
 		if(DataManager.Instance.GameData.Tutorial.IsTutorial1Done == false){
@@ -58,9 +54,8 @@ public class StartManager : Singleton<StartManager>{
 			// Show the deco entrance
 			if(TierManager.Instance.Tier >= 3) {
 				bool isFirstTimeEntrance = DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance;
-				decoEntranceUIController.Show(isFirstTimeEntrance);
-
-				isHideDinerEntranceOnShopShow = true;
+				IsShopAppearHideDinerOverride = isFirstTimeEntrance;
+                decoEntranceUIController.Show(isFirstTimeEntrance);
 			}
 			else {
 				decoEntranceUIController.Hide();
@@ -81,6 +76,9 @@ public class StartManager : Singleton<StartManager>{
 
 		// Check if tier bar needs to be updated
 		if(CashManager.Instance.IsNeedToSyncTotalCash()) {
+			DecoEntranceUIController.ToggleClickable(false);
+			DinerEntranceUIController.ToggleClickable(false);
+
 			int oldTotalCash = CashManager.Instance.LastSeenTotalCash;
 			int newTotalCash = CashManager.Instance.TotalCash;
 			NotificationQueueDataTierProgress tierNotif = new NotificationQueueDataTierProgress(SceneUtils.START, oldTotalCash, newTotalCash);
@@ -90,8 +88,8 @@ public class StartManager : Singleton<StartManager>{
 		// Check if any new deco types are unlocked at this tier
 		List<string> specialItemID = TierManager.Instance.SpecialItemID;
 		if(specialItemID.Count > 0){
-			decoEntranceUIController.ToggleClickable(false);
-			dinerEntranceUIController.ToggleClickable(false);
+			DecoEntranceUIController.ToggleClickable(false);
+			DinerEntranceUIController.ToggleClickable(false);
 
 			NotificationQueueDataNewItem itemNotif = new NotificationQueueDataNewItem(SceneUtils.START, specialItemID[0]);
 			NotificationManager.Instance.AddNotification(itemNotif);

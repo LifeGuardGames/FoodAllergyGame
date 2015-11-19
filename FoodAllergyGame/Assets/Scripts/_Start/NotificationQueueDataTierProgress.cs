@@ -16,6 +16,7 @@ public class NotificationQueueDataTierProgress : NotificationQueueData {
 	}
 	
 	public override void Start() {
+
 		// Check one last time just to make sure
 		if(oldTotalCash != newTotalCash) {
 			HUDAnimator.Instance.StartTierAnimation(this, oldTotalCash, newTotalCash);
