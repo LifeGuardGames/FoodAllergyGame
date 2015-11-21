@@ -7,7 +7,7 @@ public class AnalyticsManager : Singleton<AnalyticsManager> {
 	// When customer are leaving happy, what is their satisfaction?
 	public void CustomerLeaveHappy(int satisfaction) {
 		Analytics.CustomEvent("Customer Leave Happy", new Dictionary<string, object> {
-			{"Customer Satisfaction", satisfaction},
+			{"Customer Satisfaction", satisfaction + "satisf"},
 		});
 	}
 
