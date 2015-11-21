@@ -126,13 +126,15 @@ public class DataManager : Singleton<DataManager> {
 		}
 	}
 
-	void OnApplicationPause(){
-		AnalyticsManager.Instance.TrackGameQuitScene();
+	void OnApplicationPause(bool pauseStatus){
+		if(pauseStatus == true){
+			AnalyticsManager.Instance.TrackGameQuitScene();
 
-		// Restaurant day incomplete track
-		if(Application.loadedLevelName == SceneUtils.RESTAURANT) {
-			if(RestaurantManager.Instance != null) {
-				RestaurantManager.Instance.IncompleteQuitAnalytics();
+			// Restaurant day incomplete track
+			if(Application.loadedLevelName == SceneUtils.RESTAURANT) {
+				if(RestaurantManager.Instance != null) {
+					RestaurantManager.Instance.IncompleteQuitAnalytics();
+				}
 			}
 		}
     }
