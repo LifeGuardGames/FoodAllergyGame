@@ -88,14 +88,11 @@ public class AnalyticsManager : Singleton<AnalyticsManager> {
 
 	// Menu planning food choices over time
 	public void TrackMenuChoices(List<string> menuChoices) {
-		Dictionary<string, object> dict = new Dictionary<string, object>();
 		foreach(string menuChoice in menuChoices) {
-			dict.Add("Food", menuChoice);
+			Analytics.CustomEvent("Menu Choices", new Dictionary<string, object>{
+				{"Food", menuChoice}
+			});
 		}
-		if(dict.Count > 10) {
-			Debug.LogError("Analytics dictionary more than 10 parameters");
-		}
-		Analytics.CustomEvent("Menu", dict);
 	}
 
 	// When do people quit the game?
