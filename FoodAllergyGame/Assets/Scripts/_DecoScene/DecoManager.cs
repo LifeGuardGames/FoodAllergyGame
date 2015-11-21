@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Analytics;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -81,6 +80,8 @@ public class DecoManager : Singleton<DecoManager>{
 		}
 		// Start with table tab
 		ChangeTab("Table");
+
+		AnalyticsManager.Instance.TrackSceneEntered(SceneUtils.DECO);
 	}
 
 	// Populates the deco grid and returns the first unbought deco if any
@@ -215,11 +216,8 @@ public class DecoManager : Singleton<DecoManager>{
 		if(CashManager.Instance.DecoBuyCash(decoData.Cost)){
 			DataManager.Instance.GameData.Decoration.BoughtDeco.Add(decoID, "");
 			SetDeco(decoID, decoData.Type);
-
-			Analytics.CustomEvent("Item Bought", new Dictionary<string, object>{
-				{"Item: ", decoID}
-			});
-			return true;
+			AnalyticsManager.Instance.TrackDecoBought(decoID);
+            return true;
 		}
 		else{
 			return false;

@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.Analytics;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 
 public class MenuManager : Singleton<MenuManager>{
 
@@ -41,6 +39,8 @@ public class MenuManager : Singleton<MenuManager>{
 
 	public TweenToggle doneButtonTween;
 
+	private bool isMenuTutAux = false;
+
 	void Start(){
 		// Show the day's event notification
 		if(!DataManager.Instance.IsDebug){
@@ -59,6 +59,10 @@ public class MenuManager : Singleton<MenuManager>{
 		
 		// Show tut finger if it is not done
 		tutFinger.SetActive(!DataManager.Instance.GameData.Tutorial.IsMenuPlanningFingerTutDone);
+		if(!DataManager.Instance.GameData.Tutorial.IsMenuPlanningFingerTutDone) {
+			isMenuTutAux = true;
+            AnalyticsManager.Instance.TutorialFunnel("Entered menu picking tut");
+		}
 	}
 
 	// Check certain values to see if they are consistent
@@ -212,9 +216,12 @@ public class MenuManager : Singleton<MenuManager>{
 	public void OnMenuSelectionDone(){
 		// Check to see if we have all selection slots filled
 		if(selectedMenuStringList.Count == menuSize){
-			Analytics.CustomEvent("Menu", new Dictionary<string, object>{
-				{"Menu Items", selectedMenuStringList}
-			});
+			// Track in analytics
+			AnalyticsManager.Instance.TrackMenuChoices(selectedMenuStringList);
+			if(isMenuTutAux) {
+				AnalyticsManager.Instance.TutorialFunnel("Finished menu picking tut");
+			}
+
 			FoodManager.Instance.GenerateMenu(selectedMenuStringList);
 			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT);
 		}
