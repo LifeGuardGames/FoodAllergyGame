@@ -64,7 +64,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		}
 		else{
 			// Check for fly thru table
-			Table flyThruTable = RestaurantManager.Instance.GetFlyThruTable();
+			TableFlyThru flyThruTable = RestaurantManager.Instance.GetFlyThruTable();
 			if((flyThruTable != null) && Random.Range(0,10) > 3 && !flyThruTable.inUse && Constants.GetConstant<bool>("FlyThruOn")|| mode.ID == "EventTFlyThru"){
 				flyThruTable.inUse = true;
 				this.gameObject.transform.SetParent(flyThruTable.seat);
@@ -440,10 +440,10 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			RestaurantManager.Instance.CustomerLeft(this, false, satisfaction, 1, transform.position, 360f, false);
 		}
 
-		if(state != CustomerStates.InLine){
+		if(state != CustomerStates.InLine && state != CustomerStates.Saved){
 			RestaurantManager.Instance.GetTable(tableNum).CustomerLeaving();
 			if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.FlyThru) {
-				RestaurantManager.Instance.GetTable(tableNum).FlyThruLeave();
+				RestaurantManager.Instance.GetFlyThruTable().FlyThruLeave();
 			}
 		}
 		else if(state == CustomerStates.InLine){
