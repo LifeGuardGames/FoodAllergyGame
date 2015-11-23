@@ -64,7 +64,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		}
 		else{
 			// Check for fly thru table
-			TableFlyThru flyThruTable = RestaurantManager.Instance.GetFlyThruTable() as TableFlyThru;
+			Table flyThruTable = RestaurantManager.Instance.GetFlyThruTable();
 			if((flyThruTable != null) && Random.Range(0,10) > 3 && !flyThruTable.inUse && Constants.GetConstant<bool>("FlyThruOn")|| mode.ID == "EventTFlyThru"){
 				flyThruTable.inUse = true;
 				this.gameObject.transform.SetParent(flyThruTable.seat);
@@ -418,7 +418,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 		Analytics.CustomEvent("Customer Left", new Dictionary <string, object>{
 			{"Type", this.GetType().ToString()},
-			{"state", state.ToString()},
+			{"State", state.ToString()},
 			{"Satisfaction", satisfaction}
 		});
 		if(hasPowerUp){
@@ -426,24 +426,24 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		}
 		
 		if(satisfaction > 0){
-			if(state == CustomerStates.Invalid) {
-				RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, 1, transform.position, 360, false);
+			if(state == CustomerStates.Saved || state == CustomerStates.Eaten) {
+				RestaurantManager.Instance.CustomerLeft(this, false, satisfaction, 1, transform.position, 360f, false);
 			}
 			else if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.VIP) {
-				RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, priceMultiplier * RestaurantManager.Instance.GetTable(tableNum).VIPMultiplier, transform.position,Time.time - spawnTime, true);
+				RestaurantManager.Instance.CustomerLeft(this, true, satisfaction, priceMultiplier * RestaurantManager.Instance.GetTable(tableNum).VIPMultiplier, transform.position,Time.time - spawnTime, true);
 			}
 			else {
-				RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, priceMultiplier, transform.position, Time.time - spawnTime, true);
+				RestaurantManager.Instance.CustomerLeft(this, true, satisfaction, priceMultiplier, transform.position, Time.time - spawnTime, true);
 			}
 		}
 		else{
-			RestaurantManager.Instance.CustomerLeft(customerID, satisfaction, 1, transform.position, 360,false);
+			RestaurantManager.Instance.CustomerLeft(this, false, satisfaction, 1, transform.position, 360f, false);
 		}
 
-		if(state != CustomerStates.InLine && state != CustomerStates.Invalid){
+		if(state != CustomerStates.InLine){
 			RestaurantManager.Instance.GetTable(tableNum).CustomerLeaving();
 			if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.FlyThru) {
-				RestaurantManager.Instance.GetFlyThruTable().FlyThruLeave();
+				RestaurantManager.Instance.GetTable(tableNum).FlyThruLeave();
 			}
 		}
 		else if(state == CustomerStates.InLine){
@@ -501,10 +501,11 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		Medic.Instance.BillRestaurant(-40);
 		ParticleUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(tableNum).gameObject.transform.position,-40);
 		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
-		StopCoroutine("AllergyTimer");
+		UpdateSatisfaction(1);
 		customerUI.ToggleAllergyAttack(false);
 		Invoke("NotifyLeave", 4.0f);
-		state = CustomerStates.Invalid;
+		state = CustomerStates.Saved;
+		StopCoroutine("AllergyTimer");
 	}
 
 	// when it runs out the customer is taken to the hospital and the player is slamed with the bill

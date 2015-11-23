@@ -39,7 +39,7 @@ public class DebugInput : EditorWindow {
 
 				// Separator
 				if(lastDebugType != constant.ConstantDebug){
-					GUILayout.Box("",GUILayout.Width(this.position.width - 12), GUILayout.Height(2));
+					GUILayout.Box("",GUILayout.Width(this.position.width - 30), GUILayout.Height(2));
 					lastDebugType = constant.ConstantDebug;
 				}
 

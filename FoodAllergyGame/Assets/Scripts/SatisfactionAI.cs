@@ -54,7 +54,7 @@ public class SatisfactionAI{
 		}
 	}
 
-	public float AvgSatifaction(){
+	public float AvgSatisfaction(){
 		return totalSatisfaction / numOfCustomers;
 	}
 

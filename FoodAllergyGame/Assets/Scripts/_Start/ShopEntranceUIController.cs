@@ -41,10 +41,10 @@ public class ShopEntranceUIController : MonoBehaviour {
 	}
 
 	public void AppearAnimationDoneEvent(){
+		Debug.Log("CALL ME");
 		// Show the tutorial finger
 		tutorialFinger.SetActive(true);
-		StartManager.Instance.DecoEntranceUIController.ToggleClickable(true);
-		StartManager.Instance.DinerEntranceUIController.ToggleClickable(true);
+		StartManager.Instance.DecoEntranceUIController.ToggleClickable(true); // NOTE: Don't show diner
 	}
 
 	public void ToggleClickable(bool isClickable){

@@ -11,8 +11,7 @@ public class CustomerEater : Customer {
 
 	// this customer will feed his hunger with other customers if his satisfation drops to 0
 	// upon consuming a customer he will regain one satisfaction
-	public override void NotifyLeave ()
-	{
+	public override void NotifyLeave (){
 		if(tableNum == 5){
 			ReallyLeave();
 		}
@@ -24,11 +23,16 @@ public class CustomerEater : Customer {
 				for (int i = 0; i < RestaurantManager.Instance.actTables; i++){
 					// check to see if the table is in use
 					if(RestaurantManager.Instance.GetTable(i).Seat.childCount > 0){
-						// check the customer to make sure they arn't ordering or arn't currently being eaten and of course make sure he isn't eating himself
-						if(RestaurantManager.Instance.GetTable(i).Seat.GetChild(0).GetComponent<Customer>().state != CustomerStates.Invalid && RestaurantManager.Instance.GetTable(i).Seat.GetChild(0).GetComponent<Customer>().state != CustomerStates.WaitForOrder && RestaurantManager.Instance.GetTable(i).Seat.GetChild(0).gameObject != this.gameObject){
+						Customer targetCustomer = RestaurantManager.Instance.GetTable(i).Seat.GetChild(0).GetComponent<Customer>();
+						// check the customer to make sure they arn't ordering or aren't currently being eaten and of course make sure he isn't eating himself
+						if(targetCustomer.state != CustomerStates.Saved
+							&& targetCustomer.state != CustomerStates.Eaten
+							&& targetCustomer.state != CustomerStates.WaitForOrder
+							&& targetCustomer.gameObject != this.gameObject){
+
 							// otherwise enjoy the meal
-							Destroy(RestaurantManager.Instance.GetTable(i).Seat.GetChild(0).gameObject);
 							RestaurantManager.Instance.GetTable(i).CustomerEaten();
+							Destroy(targetCustomer.gameObject);
 							UpdateSatisfaction(1);
 							break;
 						}

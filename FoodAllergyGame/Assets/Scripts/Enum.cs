@@ -37,8 +37,8 @@ public enum CustomerStates{
 	Eating,
 	WaitForCheck,
 	AllergyAttack,
-	BeingRescued,
-	Invalid,
+	Saved,
+	Eaten,
 }
 
 public enum WaiterHands{

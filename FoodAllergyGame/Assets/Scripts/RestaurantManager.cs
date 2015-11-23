@@ -63,10 +63,10 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		get{ return playAreaUses; }
 	}
 
-	private int vipUse;
+	private int vipUses;
 	public int VIPUses{
-		set{ vipUse = value; }
-		get{ return vipUse; }
+		set{ vipUses = value; }
+		get{ return vipUses; }
 	}
 
 	private int microwaveUses;
@@ -183,7 +183,10 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				}
 				else{
 					customerData = DataLoaderCustomer.GetData(currCusSet[rand]);
-				}
+
+					// Track in analytics
+					AnalyticsManager.Instance.TrackCustomerSpawned(customerData.ID);
+                }
 				GameObject customerPrefab = Resources.Load(customerData.Script) as GameObject;
 				GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 				customerNumber++;
@@ -203,14 +206,23 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 	// Removes a customer from the dictionary
 	// and then if the day is over checks to see if the dictionary is empty and if it is it ends the round
-	public void CustomerLeft(string customerID, int satisfaction, int priceMultiplier, Vector3 customerPos,float time, bool earnedMoney){
-		if(customerHash.ContainsKey(customerID)){
+	public void CustomerLeft(Customer customerData, bool isLeavingHappy, int satisfaction, int priceMultiplier, Vector3 customerPos, float time, bool earnedMoney){
+		if(customerHash.ContainsKey(customerData.customerID)){
+
+			// Track analytics based on happy or angry leaving
+			if(isLeavingHappy) {
+				AnalyticsManager.Instance.CustomerLeaveHappy(satisfaction);
+			}
+			else {
+				AnalyticsManager.Instance.CustomerLeaveAngry(customerData.type, customerData.state);
+			}
+
 			UpdateCash(satisfactionAI.CalculateBill(satisfaction, priceMultiplier, customerPos,time, earnedMoney));
-			customerHash.Remove(customerID);
+			customerHash.Remove(customerData.customerID);
 			CheckForGameOver();
 		}
 		else{
-			Debug.LogError("Invalid call on " + customerID);
+			Debug.LogError("Invalid call on " + customerData.customerID);
 		}
 	}
 
@@ -230,11 +242,12 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 		if(dayOver){
 			if(customerHash.Count == 0){
 				DataManager.Instance.GameData.DayTracker.DaysPlayed++;
-				if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT2"){
-					Analytics.CustomEvent("Finished 4 Customer Tutorial", new Dictionary<string,object>{});
+				DataManager.Instance.DaysInSession++;
+                if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT2"){
+					AnalyticsManager.Instance.TutorialFunnel("Finished tut day, 4 customers");
 				}
 				if(isTutorial){
-					Analytics.CustomEvent("Finished First Tutorial", new Dictionary<string,object>{});
+					AnalyticsManager.Instance.TutorialFunnel("Finished tut day, 2 guided customers");
 					DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
 					DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT2";
 					isTutorial = false;
@@ -257,28 +270,18 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 					}
 					else if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT3"){
 						DataManager.Instance.GameData.Tutorial.IsTutorial3Done = true;
-						Analytics.CustomEvent("Menu Tutorial Day Complete", new Dictionary<string, object>{});
+						AnalyticsManager.Instance.TutorialFunnel("Menu tut day complete");
 						CashManager.Instance.TutorialOverrideTotalCash(850);
 					}
 
-					Analytics.CustomEvent("End Of day Report", new Dictionary<string, object> {
-						{"Tier", TierManager.Instance.Tier},
-						{"Event", DataManager.Instance.GameData.RestaurantEvent.CurrentEvent},
-						{"Missed Customers", satisfactionAI.MissingCustomers},
-						{"Avg. Satisfaction", satisfactionAI.AvgSatifaction()},
-						{"Cash Earned",DayEarnedCash},
-						{"Cash Lost", Medic.Instance.MedicCost},
-						{"Medic Saved", savedCustomers},
-						{"Attempted Rescues", attempted},
-						{"Play Area Uses", playAreaUses},
-						{"VIP Uses", vipUse},
-						{"Microwave Uses", microwaveUses},
-						{"Days Played", DataManager.Instance.GameData.DayTracker.DaysPlayed },
-						{"Inspection Buttons Clicks", inspectionButtonClicked}
-					});
+					AnalyticsManager.Instance.EndGameDayReport(CashManager.Instance.TotalCash,
+						DataManager.Instance.GameData.RestaurantEvent.CurrentEvent, satisfactionAI.MissingCustomers, satisfactionAI.AvgSatisfaction(),
+						DayEarnedCash, Medic.Instance.MedicCost, savedCustomers, attempted, inspectionButtonClicked);
+
+					AnalyticsManager.Instance.EndGameUsageReport(playAreaUses, vipUses, microwaveUses);
+					
 					// Show day complete UI
-					restaurantUI.DayComplete(satisfactionAI.MissingCustomers, dayEarnedCash,
-											Medic.Instance.MedicCost, dayNetCash);
+					restaurantUI.DayComplete(satisfactionAI.MissingCustomers, dayEarnedCash, Medic.Instance.MedicCost, dayNetCash);
 
 					// Save game data
 					DataManager.Instance.SaveGameData();
@@ -313,7 +316,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	}
 
 	public void DeployMedic(){
-		RestaurantManager.Instance.medicTutorial.SetActive(false);
+		medicTutorial.SetActive(false);
 		Waiter.Instance.isMedicTut = false;
 		if(SickCustomers.Count > 0){
 			attempted += SickCustomers.Count;
@@ -440,19 +443,17 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			Analytics.CustomEvent("Finished Day", new Dictionary<string, object>{});
 		}
 		else{
-			Analytics.CustomEvent("Quit Day", new Dictionary<string, object>{
-				{"Time Left ", dayTimeLeft},
-				{"Tier", TierManager.Instance.Tier},
-				{"Event", DataManager.Instance.GameData.RestaurantEvent.CurrentEvent},
-				{"Difficulty Level", satisfactionAI.DifficultyLevel},
-				{"Missed Customers", satisfactionAI.MissingCustomers},
-				{"Avg. Satisfaction", satisfactionAI.AvgSatifaction()},
-				{"Cash Earned",DayEarnedCash},
-				{"Cash Lost", Medic.Instance.MedicCost},
-			});
-		}
+			IncompleteQuitAnalytics();
+        }
 
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
+	}
+
+	// Used in OnApplicationPaused in Restaurant and quit button
+	public void IncompleteQuitAnalytics() {
+		AnalyticsManager.Instance.TrackGameDayInRestaurant(dayTimeLeft, TierManager.Instance.Tier, DataManager.Instance.GameData.RestaurantEvent.CurrentEvent,
+				satisfactionAI.DifficultyLevel, satisfactionAI.MissingCustomers, satisfactionAI.AvgSatisfaction(),
+				DayEarnedCash, Medic.Instance.MedicCost);
 	}
 	#endregion
 }

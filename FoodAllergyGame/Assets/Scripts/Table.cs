@@ -110,8 +110,9 @@ public class Table : MonoBehaviour, IWaiterSelection{
 			Destroy(foodSpot.GetChild(0));
 		}
 		RestaurantManager.Instance.GetMenuUIController().CancelOrder(tableNumber);
-		GetComponentInChildren<Customer>().state = CustomerStates.Invalid;
-		RestaurantManager.Instance.CustomerLeft(currentCustomerID, 0,1, transform.position, 20.0f, false);
+		Customer customerToEat = GetComponentInChildren<Customer>();
+		customerToEat.state = CustomerStates.Eaten;
+		RestaurantManager.Instance.CustomerLeft(customerToEat, false, 0, 1, transform.position, 20.0f, false);
 		CustomerLeaving();
 	}
 	

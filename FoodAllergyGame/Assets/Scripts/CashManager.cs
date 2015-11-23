@@ -12,8 +12,14 @@ public class CashManager : Singleton<CashManager> {
 	public int TotalCash{ get{ return cashData.TotalCash; } }
 	public int LastSeenTotalCash{ get{ return cashData.LastSeenTotalCash; } }
 
-	void Awake(){
+	void Awake() {
 		cashData = DataManager.Instance.GameData.Cash;
+	}
+
+	void Start() {
+		if(LastSeenTotalCash > TotalCash) {
+			Debug.LogError("LastSeenTotalCash is greater than TotalCash");
+		}
 	}
 
 	#region DecoScene calls

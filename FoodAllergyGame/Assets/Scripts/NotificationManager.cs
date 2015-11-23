@@ -60,12 +60,16 @@ public class NotificationManager : Singleton<NotificationManager> {
 		}
 		else{ 												// Everything completely done
 			isNotificationActive = false;
-
+			Debug.Log("ALL notifications finished");
 			if(Application.loadedLevelName == SceneUtils.START) {
 				StartManager.Instance.DecoEntranceUIController.ToggleClickable(true);
 
-				if(!StartManager.Instance.IsHideDinerEntranceOnShopShow) {		// Disable this here only when shop is showing
-					StartManager.Instance.dinerEntranceUIController.ToggleClickable(true);
+				// Keep diner unclickable ONLY when first time deco entrance
+				if(StartManager.Instance.IsShopAppearHideDinerOverride) {
+					StartManager.Instance.DinerEntranceUIController.ToggleClickable(false);
+				}
+				else {
+					StartManager.Instance.DinerEntranceUIController.ToggleClickable(true);
 				}
 			}
 

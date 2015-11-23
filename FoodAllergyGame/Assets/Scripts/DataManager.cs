@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System;
 using fastJSON;
-using System.Collections.Generic;
-using UnityEngine.Analytics;
 
 /// <summary>
 /// This class handles all game data. No game logic
@@ -22,8 +19,14 @@ public class DataManager : Singleton<DataManager> {
 	}
 
 	private GameData gameData;		// Super class that stores all the game data
-	public GameData GameData{
+	public GameData GameData {
 		get{ return gameData; }
+	}
+
+	private int daysInSession = 0;
+	public int DaysInSession {
+		get{ return daysInSession; }
+		set{ daysInSession = value; }
 	}
 
 	void Awake(){
@@ -123,11 +126,18 @@ public class DataManager : Singleton<DataManager> {
 		}
 	}
 
-	void OnApplicationPause(){
-		Analytics.CustomEvent("Quit Game", new Dictionary<string, object>{
-			{"Scene: ", Application.loadedLevelName} 
-		});
-	}
+	void OnApplicationPause(bool pauseStatus){
+		if(pauseStatus == true){
+			AnalyticsManager.Instance.TrackGameQuitScene();
+
+			// Restaurant day incomplete track
+			if(Application.loadedLevelName == SceneUtils.RESTAURANT) {
+				if(RestaurantManager.Instance != null) {
+					RestaurantManager.Instance.IncompleteQuitAnalytics();
+				}
+			}
+		}
+    }
 
 	#region Multi-scene Data Handling
 
