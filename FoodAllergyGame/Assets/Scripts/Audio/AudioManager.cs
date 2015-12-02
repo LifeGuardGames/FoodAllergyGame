@@ -27,6 +27,7 @@ public class AudioManager : LgAudioManager<AudioManager>{
 			if(backgroundMusic != null){
 				if(numberOfBackgroundVariations == 1) {
 					backgroundClip = Resources.Load(backgroundMusic) as AudioClip;
+					Debug.Log(backgroundClip.name);
 				}
 				else {
 					// Load a random audio with number suffix attached to it
@@ -34,8 +35,10 @@ public class AudioManager : LgAudioManager<AudioManager>{
 					backgroundClip = Resources.Load(backgroundMusic + suffix) as AudioClip;
 				}
 			}
+			
 			if(backgroundClip != null){
 				backgroundSource.clip = backgroundClip;
+				Debug.Log(backgroundSource.name);
 				backgroundSource.Play();
 			}
 		}
@@ -81,6 +84,21 @@ public class AudioManager : LgAudioManager<AudioManager>{
 		}
 		else{
 			backgroundSource.Play();
+		}
+	}
+
+	void OnLevelWasLoaded() {
+		if(Application.loadedLevelName == SceneUtils.RESTAURANT) {
+			backgroundMusic = "BgRestaurant";
+			FadeOutPlayNewBackground(backgroundMusic);
+		}
+		else if(Application.loadedLevelName == SceneUtils.DECO) {
+			backgroundMusic = "BgDeco";
+			FadeOutPlayNewBackground(backgroundMusic);
+		}
+		else if (backgroundMusic != "BgStart") {
+			backgroundMusic = "BgStart";
+			FadeOutPlayNewBackground(backgroundMusic);
 		}
 	}
 }
