@@ -57,7 +57,7 @@
 		<EventDescription>EventDesc00</EventDescription>
 		<Title>Title00</Title>
 	</Event>
-	<Event ID="Event00">
+	<Event ID="Event00">      <!-- An ordinary day -->
 		<MenuSet>MenuSet01</MenuSet>
 		<KitchenTimer>3</KitchenTimer>
 		<CustomerSet>CustomerSet01</CustomerSet>
@@ -67,7 +67,7 @@
 		<EventDescription>EventDesc00</EventDescription>
 		<Title>Event00</Title>
 	</Event>
-	<Event ID="Event01">
+	<Event ID="Event01">     <!-- Fast Food -->
 		<MenuSet>MenuSet01</MenuSet>
 		<KitchenTimer>6.5</KitchenTimer>
 		<CustomerSet>CustomerSet01</CustomerSet>
@@ -77,7 +77,7 @@
 		<EventDescription>EventDesc01</EventDescription>
 		<Title>Event01</Title>
 	</Event>
-	<Event ID="Event02">
+	<Event ID="Event02">     <!-- A Busy day -->
 		<MenuSet>MenuSet01</MenuSet>
 		<KitchenTimer>3</KitchenTimer>
 		<CustomerSet>CustomerSet01</CustomerSet>
@@ -87,7 +87,7 @@
 		<EventDescription>EventDesc02</EventDescription>
 		<Title>Event02</Title>
 	</Event>
-	<Event ID="Event03">
+	<Event ID="Event03">     <!-- Chef's Bad Day -->
 		<MenuSet>MenuSet01</MenuSet>
 		<KitchenTimer>5</KitchenTimer>
 		<CustomerSet>CustomerSet01</CustomerSet>
@@ -97,7 +97,7 @@
 		<EventDescription>EventDesc03</EventDescription>
 		<Title>Event03</Title>
 	</Event>
-	<Event ID="Event04">
+	<Event ID="Event04">      <!-- Rush Hour -->
 		<MenuSet>MenuSet01</MenuSet>
 		<KitchenTimer>2.5</KitchenTimer>
 		<CustomerSet>CustomerSet01</CustomerSet>
@@ -199,7 +199,7 @@
     <EventDescription>EventDesc04</EventDescription>
     <Title>Event04</Title>
   </Event>
-  <Event ID="Event14">
+  <Event ID="Event14"> <!-- A Victory For Good Taste-->-->
     <MenuSet>MenuSet03</MenuSet>
     <KitchenTimer>3</KitchenTimer>
     <CustomerSet>CustomerSet04</CustomerSet>

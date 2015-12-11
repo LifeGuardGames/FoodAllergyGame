@@ -36,10 +36,12 @@ public class Medic : Singleton<Medic> {
 
 	// Move toward the next customer on the list
 	public void MoveToLocation(Vector3 customer){
+		this.gameObject.GetComponentInChildren<Animation>().Play("MedicCartwheel");
 		//If the waiter is already at its location, just call what it needs to call
 		if(transform.position == customer){
 			SaveCustomer();
 		}
+	
 		// Otherwise, move to the location and wait for callback
 		else{
 			LeanTween.cancel(gameObject);
@@ -50,6 +52,7 @@ public class Medic : Singleton<Medic> {
 	}
 	// if no one is sick theres no need for the medic to leave his office so he goes back
 	public void MoveHome(){
+		this.gameObject.GetComponentInChildren<Animation>().Play("MedicReverseCartwheel");
 		LeanTween.cancel(gameObject);
 		LeanTween.move(gameObject, startPos.transform.position, 0.5f)
 			.setEase(LeanTweenType.easeInOutQuad);
