@@ -416,11 +416,6 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			//DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
 		}
 
-		Analytics.CustomEvent("Customer Left", new Dictionary <string, object>{
-			{"Type", this.GetType().ToString()},
-			{"State", state.ToString()},
-			{"Satisfaction", satisfaction}
-		});
 		if(hasPowerUp){
 			//Waiter.Instance.GivePowerUp();
 		}

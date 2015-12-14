@@ -439,10 +439,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	// Called from PauseUIController
 	public void QuitGame(){
 		Time.timeScale = 1.0f;	// Remember to reset timescale!
-		if(dayOver){
-			Analytics.CustomEvent("Finished Day", new Dictionary<string, object>{});
-		}
-		else{
+		if(!dayOver){
 			IncompleteQuitAnalytics();
         }
 
