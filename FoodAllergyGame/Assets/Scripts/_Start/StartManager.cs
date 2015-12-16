@@ -101,26 +101,55 @@ public class StartManager : Singleton<StartManager>{
 
 		// Save game data again, lock down on an event
 		DataManager.Instance.SaveGameData();
+		GenerateCustomerList();
 		GenerateUnlockedFoodStock();
 	}
 
 	// Have the spawn button see when it needs to spawn
-//	private IEnumerator StartButtonSpawnCheck(){
-//		// Wait 2 frames for all notifications to be in
-//		yield return 0;
-//		yield return 0;
-//
-//		if(!NotificationManager.Instance.IsNotificationActive){
-//			StartButtonSpawnCallback(null, null);
-//		}
-//		else{
-//			NotificationManager.Instance.OnAllNotificationsFinished += StartButtonSpawnCallback;
-//		}
-//	}
+	//	private IEnumerator StartButtonSpawnCheck(){
+	//		// Wait 2 frames for all notifications to be in
+	//		yield return 0;
+	//		yield return 0;
+	//
+	//		if(!NotificationManager.Instance.IsNotificationActive){
+	//			StartButtonSpawnCallback(null, null);
+	//		}
+	//		else{
+	//			NotificationManager.Instance.OnAllNotificationsFinished += StartButtonSpawnCallback;
+	//		}
+	//	}
 
-//	public void StartButtonSpawnCallback(object o, EventArgs e){
-//		startButton.SetActive(true);
-//	}
+	//	public void StartButtonSpawnCallback(object o, EventArgs e){
+	//		startButton.SetActive(true);
+	//	}
+
+	//creates a list of acceptable spawning customers
+	public void GenerateCustomerList() {
+		DataManager.Instance.GameData.RestaurantEvent.CustomerList.Clear();
+		List<ImmutableDataCustomer> customersPool = new List<ImmutableDataCustomer>();
+		customersPool = DataLoaderCustomer.GetDataList();
+		ImmutableDataCustomerSet currSet = DataLoaderCustomerSet.GetData(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()).CustomerSet);
+		foreach (string customerID in currSet.CustomerSet) {
+			if(customerID != "") {
+				customersPool.Remove(DataLoaderCustomer.GetData(customerID));
+			}
+		}
+
+		List<ImmutableDataCustomer> cusToDelete = new List<ImmutableDataCustomer>();
+		foreach(ImmutableDataCustomer cusData in customersPool) {
+			if(cusData.Tier > TierManager.Instance.Tier || cusData.Tier == -1) {
+				cusToDelete.Add(cusData);
+			}
+		}
+
+		foreach(ImmutableDataCustomer cusData in cusToDelete) {
+			customersPool.Remove(cusData);
+		}
+
+		foreach (ImmutableDataCustomer cus in customersPool) {
+			DataManager.Instance.GameData.RestaurantEvent.CustomerList.Add(cus.ID);
+		}
+	}
 
 	// Given the event, generate a few set of food stocks, capped by event menussets and tier
 	public void GenerateUnlockedFoodStock(){

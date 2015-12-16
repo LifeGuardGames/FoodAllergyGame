@@ -142,7 +142,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 		if(isTutorial){
 			ImmutableDataCustomer test;
-			test = DataLoaderCustomer.GetData(currCusSet[0]);
+			test = DataLoaderCustomer.GetData("Customer10");
 			GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
 			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 			cus.GetComponent<Customer>().Init(customerNumber, eventData);
@@ -172,17 +172,17 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				}
 				rand = UnityEngine.Random.Range(0, currCusSet.Count);
 				if(eventData.ID == "EventTPlayArea"){
-					customerData = DataLoaderCustomer.GetData(currCusSet[0]);
+					customerData = DataLoaderCustomer.GetData("Customer11");
 					if(!DataManager.Instance.IsDebug){
 					//	DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
 
 					}
 				}
 				else if (eventData.ID == "EventTVIP"){
-					customerData = DataLoaderCustomer.GetData(currCusSet[0]);
+					customerData = DataLoaderCustomer.GetData("Customer12");
 				}
 				else{
-					customerData = DataLoaderCustomer.GetData(currCusSet[rand]);
+					customerData = DataLoaderCustomer.GetData(DataManager.Instance.GameData.RestaurantEvent.CustomerList[rand]);
 
 					// Track in analytics
 					AnalyticsManager.Instance.TrackCustomerSpawned(customerData.ID);
@@ -379,7 +379,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 
 	public void SpawnSecondTut(){
 		ImmutableDataCustomer test;
-		test = DataLoaderCustomer.GetData(currCusSet[0]);
+		test = DataLoaderCustomer.GetData("Customer10");
 		GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
 		GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 		cus.GetComponent<CustomerTutorial>().isAllergy = true;
