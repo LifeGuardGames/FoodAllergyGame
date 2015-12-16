@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PropsRandom>
-	<PropRandom ID="PropRandomCow">
+  <PropRandom ID="PropRandomCow">
 		<PrefabName>PropRandomCow</PrefabName>
-	</PropRandom>
+  </PropRandom>
+  <PropRandom ID="PropRandomPlanetRock">
+    <PrefabName>PropRandomPlanetRock</PrefabName>
+  </PropRandom>
+  <PropRandom ID="PropRandomPlanetIce">
+    <PrefabName>PropRandomPlanetIce</PrefabName>
+  </PropRandom>
+  <PropRandom ID="PropRandomPlanetCloud">
+    <PrefabName>PropRandomPlanetCloud</PrefabName>
+  </PropRandom>
 </PropsRandom>

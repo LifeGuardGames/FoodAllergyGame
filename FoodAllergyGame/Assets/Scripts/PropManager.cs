@@ -16,12 +16,13 @@ public class PropManager : Singleton<PropManager> {
 
 	public void InitProps() {
 		if(TierManager.Instance.Tier >= minimumSpawnTier) {
-			PropNodeRandom();
-			PropNodeEvent();
+			SpawnPropNodeRandom();
+			SpawnPropNodeGrowth();
+			SpawnPropNodeEvent();
 		}
 	}
 
-	private void PropNodeRandom() {
+	private void SpawnPropNodeRandom() {
 		ImmutableDataPropRandom propRandom = DataLoaderPropsRandom.GetRandomData();
 
 		// Choose between right or left node spawning
@@ -37,13 +38,13 @@ public class PropManager : Singleton<PropManager> {
 		go.transform.localScale = new Vector3(xScale, 1f, 1f);
 	}
 
-	private void PropNodeEvent() {
+	private void SpawnPropNodeEvent() {
 		//ImmutableDataEvents data = DataLoaderEvents.GetData(DataManager.Instance.GetEvent());
 		//GameObjectUtils.AddChild(propEventLeft,data.eventPropLeft);
 		//GameObjectUtils.AddChild(propEventRight, data.eventPropRight);
 	}
 
-	private void PropNodeGrowth() {
+	private void SpawnPropNodeGrowth() {
 		//set the sprite according to the difference in tiers
 		//GameObjectUtils.AddChild(propGrowthLeft, Resources.Load(DataLoaderGrowthNode.GetPropsByTier(TierManager.Instance.Tier,"Tree").ID)as GameObject);
 	}
