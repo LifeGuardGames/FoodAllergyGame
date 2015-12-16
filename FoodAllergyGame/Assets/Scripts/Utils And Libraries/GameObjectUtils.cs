@@ -81,7 +81,7 @@ public static class GameObjectUtils{
 	}
 
 	/// <summary>
-	/// Instantiate an object and add it to the specified parent. use the position of the prefab
+	/// Instantiate an object and add it to the specified parent. use the localposition and localscale of the prefab
 	/// </summary>
 	static public GameObject AddChildWithPositionAndScale(GameObject parent, GameObject prefab){
 		GameObject go = AddChild(parent, prefab);
@@ -89,6 +89,18 @@ public static class GameObjectUtils{
 			Transform t = go.transform;
 			t.localPosition = prefab.transform.localPosition;
 			t.localScale = prefab.transform.localScale;
+		}
+		return go;
+	}
+
+	/// <summary>
+	/// Instantiate an object and add it to the specified parent. use the position of the prefab
+	/// </summary>
+	static public GameObject AddChildWithPosition(GameObject parent, GameObject prefab) {
+		GameObject go = AddChild(parent, prefab);
+		if(go != null) {
+			Transform t = go.transform;
+			t.localPosition = prefab.transform.localPosition;
 		}
 		return go;
 	}
