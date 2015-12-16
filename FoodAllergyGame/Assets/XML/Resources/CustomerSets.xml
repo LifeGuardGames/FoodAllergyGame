@@ -11,7 +11,7 @@
 
 <CustomerSets>
 <CustomerSet ID="CustomerSetT1">
-		<CustomerList>Customer00</CustomerList>
+		<CustomerList>Customer01</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSetT2">
 		<CustomerList>Customer10</CustomerList>
@@ -26,22 +26,22 @@
 		<CustomerList>Customer00</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSet00">
-		<CustomerList>Customer00</CustomerList>
+		<CustomerList></CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSet01">
-		<CustomerList>Customer00,Customer01</CustomerList>
+		<CustomerList></CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSet02">
-		<CustomerList>Customer07,Customer00,Customer01</CustomerList>
+		<CustomerList></CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSet03">
 		<CustomerList>Customer00,Customer01,Customer07,Customer03</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSet04">
-		<CustomerList>Customer03</CustomerList>
+		<CustomerList>Customer00,Customer01,Customer07</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSet05">
-		<CustomerList>Customer07</CustomerList>
+		<CustomerList>Customer00,Customer01,Customer03</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSet06">
 		<CustomerList>Customer09</CustomerList>	

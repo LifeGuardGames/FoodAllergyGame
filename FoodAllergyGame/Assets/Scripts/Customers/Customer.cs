@@ -422,6 +422,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		
 		if(satisfaction > 0){
 			if(state == CustomerStates.Saved || state == CustomerStates.Eaten) {
+				RestaurantManager.Instance.GetTable(tableNum).inUse = false;
 				RestaurantManager.Instance.CustomerLeft(this, false, satisfaction, 1, transform.position, 360f, false);
 			}
 			else if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.VIP) {

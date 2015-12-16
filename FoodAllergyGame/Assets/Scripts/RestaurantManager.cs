@@ -170,7 +170,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				if(customerSpawnTimer < 3){
 					customerSpawnTimer = 3;
 				}
-				rand = UnityEngine.Random.Range(0, currCusSet.Count);
+				rand = UnityEngine.Random.Range(0, DataManager.Instance.GameData.RestaurantEvent.CustomerList.Count);
 				if(eventData.ID == "EventTPlayArea"){
 					customerData = DataLoaderCustomer.GetData("Customer11");
 					if(!DataManager.Instance.IsDebug){
@@ -182,6 +182,8 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 					customerData = DataLoaderCustomer.GetData("Customer12");
 				}
 				else{
+					Debug.Log(rand);
+					Debug.Log(DataManager.Instance.GameData.RestaurantEvent.CustomerList.Count);
 					customerData = DataLoaderCustomer.GetData(DataManager.Instance.GameData.RestaurantEvent.CustomerList[rand]);
 
 					// Track in analytics

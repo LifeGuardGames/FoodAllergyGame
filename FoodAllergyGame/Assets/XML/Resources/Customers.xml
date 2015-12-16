@@ -13,7 +13,7 @@
 		<CustomerDesc>CustomerImpatientDesc</CustomerDesc>
 		<SpriteName>CustomerImpatient</SpriteName>
 		<Script>CustomerImpatient</Script>
-		<Tier>1</Tier>
+		<Tier>0</Tier>
 	</Customer>
 	<Customer ID="Customer02">
 		<CustomerNameKey>CustomerEater</CustomerNameKey>
