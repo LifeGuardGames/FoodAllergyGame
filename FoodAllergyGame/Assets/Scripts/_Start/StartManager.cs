@@ -66,8 +66,8 @@ public class StartManager : Singleton<StartManager>{
 			}
 		}
 
-		//TODO Set up pre-existing visuals and appearances for that day based on event
-
+		// Set up pre-existing visuals and appearances for that day based on event
+		PropManager.Instance.InitProps();
 
 		//TODO Set up any new notifications here (through NotificationManager)
 
