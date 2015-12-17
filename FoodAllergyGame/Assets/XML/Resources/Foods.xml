@@ -63,19 +63,19 @@
 		<Reward>2</Reward>
 		<Slot>1</Slot>
 	</Food>
-	<Food ID="Food07">
+  <Food ID="Food07">
+    <FoodNameKey>FoodToast</FoodNameKey>
+    <SpriteName>FoodToast</SpriteName>
+    <Allergies>Wheat</Allergies>
+    <Keywords>Meal,Drink</Keywords>
+    <Tier>0</Tier>
+    <Reward>2</Reward>
+    <Slot>1</Slot>
+  </Food>
+	<Food ID="Food08">
 		<FoodNameKey>FoodTrailMix</FoodNameKey>
 		<SpriteName>FoodTrailMix</SpriteName>
 		<Allergies>Peanut</Allergies>
-		<Keywords>Meal,Drink</Keywords>
-		<Tier>0</Tier>
-		<Reward>2</Reward>
-		<Slot>1</Slot>
-	</Food>
-	<Food ID="Food08">
-		<FoodNameKey>FoodToast</FoodNameKey>
-		<SpriteName>FoodToast</SpriteName>
-		<Allergies>Wheat</Allergies>
 		<Keywords>Meal,Drink</Keywords>
 		<Tier>1</Tier>
 		<Reward>2</Reward>
