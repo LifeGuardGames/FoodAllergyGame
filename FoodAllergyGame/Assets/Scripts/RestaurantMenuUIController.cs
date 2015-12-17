@@ -130,6 +130,7 @@ public class RestaurantMenuUIController : MonoBehaviour {
 			//RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<CustomerTutorial>().step = 5;
 			//RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
 		}
+		RestaurantManager.Instance.inspectionButtonClicked++;
 		StopCoroutine("StartAnimation");
 		inspectAnimation.Stop();
 		inspectAnimation.transform.localScale = new Vector3(1f, 1f, 1f);

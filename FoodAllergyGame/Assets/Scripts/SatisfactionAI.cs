@@ -55,7 +55,12 @@ public class SatisfactionAI{
 	}
 
 	public float AvgSatisfaction(){
-		return totalSatisfaction / numOfCustomers;
+		if(totalSatisfaction / numOfCustomers > 3) {
+			return 3;
+		}
+		else {
+			return totalSatisfaction / numOfCustomers;
+		}
 	}
 
 	public void AddCustomer(){

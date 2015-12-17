@@ -23,7 +23,9 @@ public class AnalyticsManager : Singleton<AnalyticsManager> {
 		GA_Design.NewEvent("End of Day Report:" + "Missed Customers:", missingCustomers*1.0f);
 		GA_Design.NewEvent("End of Day Report:" + "Avg. Satisfaction:", avgSatisfaction);
 		GA_Design.NewEvent("End of Day Report:" + "Cash Earned:", cashEarned * 1.0f);
-		GA_Design.NewEvent("End of Day Report:" + "Cash Lost:", medicCost*1.0f);
+		if(medicCost > 0) {
+			GA_Design.NewEvent("End of Day Report:" + "Cash Lost:", medicCost * 1.0f);
+		}
 		GA_Design.NewEvent("End of Day Report:" + "Medic Saved:", savedCustomers * 1.0f);
 		GA_Design.NewEvent("End of Day Report:" + "Attempted Rescues:", rescuesAttempted*1.0f);
 		GA_Design.NewEvent("End of Day Report:" + "Inspection Buttons Clicks:", inspectButtonClicked * 1.0f);
