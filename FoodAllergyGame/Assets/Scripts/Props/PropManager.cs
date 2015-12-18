@@ -27,14 +27,12 @@ public class PropManager : Singleton<PropManager> {
 		go.transform.localScale = new Vector3(xScale, 1f, 1f);
 	}
 
-	private void SpawnPropNodeEvent() {
-		//ImmutableDataEvents data = DataLoaderEvents.GetData(DataManager.Instance.GetEvent());
-		//GameObjectUtils.AddChild(propEventLeft,data.eventPropLeft);
-		//GameObjectUtils.AddChild(propEventRight, data.eventPropRight);
+	// Broadcast a message telling all prop growth nodes needs to initialize themselves
+	private void SpawnPropNodeGrowth() {
+		BroadcastMessage("GrowthPropInit");
 	}
 
-	private void SpawnPropNodeGrowth() {
-		//set the sprite according to the difference in tiers
-		//GameObjectUtils.AddChild(propGrowthLeft, Resources.Load(DataLoaderGrowthNode.GetPropsByTier(TierManager.Instance.Tier,"Tree").ID)as GameObject);
+	private void SpawnPropNodeEvent() {
+		
 	}
 }
