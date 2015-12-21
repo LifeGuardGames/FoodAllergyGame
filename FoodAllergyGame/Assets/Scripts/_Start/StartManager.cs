@@ -31,6 +31,7 @@ public class StartManager : Singleton<StartManager>{
 	public bool IsShopAppearHideDinerOverride = false;
 
 	void Start(){
+		
 		// Refresh tier calculation
 		TierManager.Instance.RecalculateTier();
 

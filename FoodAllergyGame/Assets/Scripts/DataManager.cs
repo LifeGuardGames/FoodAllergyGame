@@ -57,7 +57,8 @@ public class DataManager : Singleton<DataManager> {
 			LoadGameData();
 		}
 		Mixpanel.Token = "9b68a5560f74b183728b7c30cb4a54fc";
-    }
+		Mixpanel.SuperProperties.Add("Days Played", GameData.DayTracker.DaysPlayed);
+	}
 
 	/// <summary>
 	/// Loads the game data from PlayerPrefs. If no game data is found from PlayerPrefs
