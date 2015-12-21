@@ -56,7 +56,8 @@ public class DataManager : Singleton<DataManager> {
 		else{
 			LoadGameData();
 		}
-	}
+		Mixpanel.Token = "9b68a5560f74b183728b7c30cb4a54fc";
+    }
 
 	/// <summary>
 	/// Loads the game data from PlayerPrefs. If no game data is found from PlayerPrefs
