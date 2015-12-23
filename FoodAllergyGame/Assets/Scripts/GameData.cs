@@ -7,6 +7,7 @@ public class GameData {
 	public MutableDataTutorial Tutorial {get; set;}
 	public MutableDataDecoration Decoration {get; set;}
 	public MutableDataStartObject StartObject{get; set;}
+	public MutableDataSessionCount Session { get; set;}
 
 	public GameData(){
 		Init();
@@ -19,5 +20,6 @@ public class GameData {
 		Tutorial = new MutableDataTutorial();
 		Decoration = new MutableDataDecoration();
 		StartObject = new MutableDataStartObject();
+		Session = new MutableDataSessionCount();
 	}
 }

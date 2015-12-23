@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class AnalyticsManager : Singleton<AnalyticsManager> {
 
@@ -84,8 +85,11 @@ public class AnalyticsManager : Singleton<AnalyticsManager> {
 
 	// When do people quit the game?
     public void TrackGameQuitScene() {
-		Mixpanel.SendEvent("Quit Game:" , new Dictionary<string, object> {
+		TimeSpan timeInSession = System.DateTime.Now.Subtract(DataManager.Instance.GameData.Session.start);
+        Mixpanel.SendEvent("Quit Game:", new Dictionary<string, object> {
 			{ "Scene:" , Application.loadedLevelName },
-			{ "Sessions Played:" , DataManager.Instance.DaysInSession * 1.0f } });
+			{"Sessions Played:" , DataManager.Instance.DaysInSession * 1.0f },
+			{"Time In Sesson ", timeInSession.TotalMinutes} });
+
 	}
 }
