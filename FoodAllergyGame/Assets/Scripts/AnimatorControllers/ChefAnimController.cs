@@ -16,12 +16,12 @@ public class ChefAnimController : MonoBehaviour {
 
 	public void SetIdle() {
 		Reset();
-		int randomIndex = UnityEngine.Random.Range(0, 1);
+		int randomIndex = UnityEngine.Random.Range(0, 3);
 		skeleton.state.AddAnimation(0, "Idle", true, 0f).Complete += delegate {
 			Reset();
 			switch(randomIndex) {
 				case 0:
-					skeleton.state.AddAnimation(0, "CoolChef", false, 0f);
+					skeleton.state.AddAnimation(0, "Idle1", false, 0f);
 					skeleton.state.AddAnimation(0, "Idle", true, 0f);
 					break;
 				case 1:
