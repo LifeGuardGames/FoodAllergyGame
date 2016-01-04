@@ -26,7 +26,7 @@ public class Medic : Singleton<Medic> {
 		AudioManager.Instance.PlayClip("MedicEnter");
 		firstCustomerPositionAux = customerPosition + medicOffset;
 		LeanTween.cancel(gameObject);
-		LeanTween.move(gameObject, new Vector3(transform.position.x + 300f, transform.position.y, transform.position.z), 0.5f)
+		LeanTween.move(gameObject, new Vector3(transform.position.x + 300f, transform.position.y, transform.position.z), 1.0f)
 			.setOnComplete(OnSetOutFromHomeFinished);
 	}
 
@@ -45,7 +45,7 @@ public class Medic : Singleton<Medic> {
 		// Otherwise, move to the location and wait for callback
 		else{
 			LeanTween.cancel(gameObject);
-			LeanTween.move(gameObject, customer, 0.5f)
+			LeanTween.move(gameObject, customer, 1.0f)
 			.setEase(LeanTweenType.easeInOutQuad)
 				.setOnComplete(SaveCustomer);
 		}
@@ -54,7 +54,7 @@ public class Medic : Singleton<Medic> {
 	public void MoveHome(){
 		this.gameObject.GetComponentInChildren<Animation>().Play("MedicReverseCartwheel");
 		LeanTween.cancel(gameObject);
-		LeanTween.move(gameObject, startPos.transform.position, 0.5f)
+		LeanTween.move(gameObject, startPos.transform.position, 1.0f)
 			.setEase(LeanTweenType.easeInOutQuad);
 	}
 
