@@ -25,7 +25,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	private Dictionary<string, GameObject> customerHash;
 	// our satisfaction ai 
 	private SatisfactionAI satisfactionAI;
-	public List<GameObject> SickCustomers;
+	public List<GameObject> sickCustomers;
 
 	private List<GameObject> tableList = new List<GameObject>();
 	public List<GameObject> TableList{
@@ -77,7 +77,7 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	#endregion
 	
 	void Start(){
-		SickCustomers = new List<GameObject>();
+		sickCustomers = new List<GameObject>();
 		customerHash = new Dictionary<string, GameObject>();
 		satisfactionAI = new SatisfactionAI();
 
@@ -150,13 +150,12 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 			customerNumber++;
 			satisfactionAI.AddCustomer();
 		}
-		else{
-			int rand;		
+		else{	
 			if(!dayOver && lineCount < 8){
-				
 				doorController.OpenAndCloseDoor();
+				ImmutableDataCustomer customerData = null;
 
-				ImmutableDataCustomer customerData;
+				// Increase the timer if there are no open tables
 				if(DataManager.Instance.GameData.DayTracker.AvgDifficulty == 6.0f) {
 					customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty;
 				}
@@ -166,29 +165,30 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				else {
 					customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty * 0.4f;
 				}
-				
 				if(customerSpawnTimer < 3){
 					customerSpawnTimer = 3;
 				}
-				rand = UnityEngine.Random.Range(0, DataManager.Instance.GameData.RestaurantEvent.CustomerList.Count);
+				
 				if(eventData.ID == "EventTPlayArea"){
 					customerData = DataLoaderCustomer.GetData("Customer11");
-					if(!DataManager.Instance.IsDebug){
-					//	DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
-
-					}
 				}
 				else if (eventData.ID == "EventTVIP"){
 					customerData = DataLoaderCustomer.GetData("Customer12");
 				}
 				else{
-					Debug.Log(rand);
-					Debug.Log(DataManager.Instance.GameData.RestaurantEvent.CustomerList.Count);
-					customerData = DataLoaderCustomer.GetData(DataManager.Instance.GameData.RestaurantEvent.CustomerList[rand]);
+					// Check if customer list is empty
+					if(DataManager.Instance.GameData.RestaurantEvent.CustomerList.Count > 0) {
+						int rand = UnityEngine.Random.Range(0, DataManager.Instance.GameData.RestaurantEvent.CustomerList.Count);
+						customerData = DataLoaderCustomer.GetData(DataManager.Instance.GameData.RestaurantEvent.CustomerList[rand]);
 
-					// Track in analytics
-					AnalyticsManager.Instance.TrackCustomerSpawned(customerData.ID);
+						// Track in analytics
+						AnalyticsManager.Instance.TrackCustomerSpawned(customerData.ID);
+					}
+					else {
+						Debug.LogError("Customer list is empty");
+					}
                 }
+
 				GameObject customerPrefab = Resources.Load(customerData.Script) as GameObject;
 				GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 				customerNumber++;
@@ -197,10 +197,9 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 				customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
 				satisfactionAI.AddCustomer();
 				StartCoroutine(SpawnCustomer());
-
 			}
 			else{
-				// Call self to loop
+				// Call self to loop again
 				StartCoroutine(SpawnCustomer());
 			}
 		}
@@ -320,9 +319,9 @@ public class RestaurantManager : Singleton<RestaurantManager>{
 	public void DeployMedic(){
 		medicTutorial.SetActive(false);
 		Waiter.Instance.isMedicTut = false;
-		if(SickCustomers.Count > 0){
-			attempted += SickCustomers.Count;
-			Medic.Instance.SetOutFromHome(SickCustomers[0].transform.position);
+		if(sickCustomers.Count > 0){
+			attempted += sickCustomers.Count;
+			Medic.Instance.SetOutFromHome(sickCustomers[0].transform.position);
 		}
 	}
 

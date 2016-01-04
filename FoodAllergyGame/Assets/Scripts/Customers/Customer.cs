@@ -463,7 +463,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		priceMultiplier = 1;
 		customerUI.ToggleAllergyAttack(true);
 		customerAnim.SetRandomAllergyAttack();
-		RestaurantManager.Instance.SickCustomers.Add(this.gameObject);
+		RestaurantManager.Instance.sickCustomers.Add(this.gameObject);
 		AudioManager.Instance.PlayClip("CustomerAllergyAttackAudio");
 
 		// Show tutorial if needed
@@ -499,7 +499,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		customerAnim.SetSavedAllergyAttack();
 		Medic.Instance.BillRestaurant(-40);
 		ParticleUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(tableNum).gameObject.transform.position,-40);
-		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
+		RestaurantManager.Instance.sickCustomers.Remove(this.gameObject);
 		UpdateSatisfaction(1);
 		customerUI.ToggleAllergyAttack(false);
 		Invoke("NotifyLeave", 4.0f);
@@ -512,7 +512,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		yield return new WaitForSeconds(10.0f);
 //		RestaurantManager.Instance.medicButton.GetComponent<Animator>().SetBool("TutMedic", false);
 //		RestaurantManager.Instance.tutText.SetActive(false);
-		RestaurantManager.Instance.SickCustomers.Remove(this.gameObject);
+		RestaurantManager.Instance.sickCustomers.Remove(this.gameObject);
 		Medic.Instance.BillRestaurant(-100);
 		ParticleUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(tableNum).gameObject.transform.position,-100);
 		DataManager.Instance.GameData.Tutorial.MissedMedic++;

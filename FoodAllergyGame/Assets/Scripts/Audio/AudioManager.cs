@@ -27,7 +27,6 @@ public class AudioManager : LgAudioManager<AudioManager>{
 			if(backgroundMusic != null){
 				if(numberOfBackgroundVariations == 1) {
 					backgroundClip = Resources.Load(backgroundMusic) as AudioClip;
-					Debug.Log(backgroundClip.name);
 				}
 				else {
 					// Load a random audio with number suffix attached to it
@@ -38,7 +37,6 @@ public class AudioManager : LgAudioManager<AudioManager>{
 			
 			if(backgroundClip != null){
 				backgroundSource.clip = backgroundClip;
-				Debug.Log(backgroundSource.name);
 				backgroundSource.Play();
 			}
 		}

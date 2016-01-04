@@ -12,8 +12,8 @@ public class WaiterAnimController : MonoBehaviour {
 	private bool isFacingRight = true;
 	private WaiterHands hand1 = WaiterHands.None;	// Aux that is synced with waiter
 	private WaiterHands hand2 = WaiterHands.None;
-	private WaiterHands lastHand1 = WaiterHands.None;   // Aux that is synced with waiter
-	private WaiterHands lastHand2 = WaiterHands.None;
+	//private WaiterHands lastHand1 = WaiterHands.None;   // Aux that is synced with waiter
+	//private WaiterHands lastHand2 = WaiterHands.None;
 	private string currentBodyAnimation = "";
 
 	public void ChangeOrderInLayer(int order) {
@@ -45,16 +45,16 @@ public class WaiterAnimController : MonoBehaviour {
 	private void FlipAndSetHand() {
 
         if(isMoving) {
-			if(hand1 == WaiterHands.None && hand1 == WaiterHands.None) {
+			if(hand1 == WaiterHands.None && hand2 == WaiterHands.None) {
 				SetBodyAnimation("Run");
             }
-			else if(hand1 != WaiterHands.None && hand1 == WaiterHands.None) {
+			else if(hand1 != WaiterHands.None && hand2 == WaiterHands.None) {
 				SetBodyAnimation(isFacingRight ? "RunCarryBack" : "RunCarryFront");
 			}
-			else if(hand1 == WaiterHands.None && hand1 != WaiterHands.None) {
+			else if(hand1 == WaiterHands.None && hand2 != WaiterHands.None) {
 				SetBodyAnimation(isFacingRight ? "RunCarryFront" : "RunCarryBack");
 			}
-			else if(hand1 != WaiterHands.None && hand1 != WaiterHands.None) {
+			else if(hand1 != WaiterHands.None && hand2 != WaiterHands.None) {
 				SetBodyAnimation("RunCarryBoth");
 			}
 			else {
@@ -62,16 +62,16 @@ public class WaiterAnimController : MonoBehaviour {
 			}
 		}
 		else {
-			if(hand1 == WaiterHands.None && hand1 == WaiterHands.None) {
+			if(hand1 == WaiterHands.None && hand2 == WaiterHands.None) {
 				SetBodyAnimation("Idle");
 			}
-			else if(hand1 != WaiterHands.None && hand1 == WaiterHands.None) {
+			else if(hand1 != WaiterHands.None && hand2 == WaiterHands.None) {
 				SetBodyAnimation(isFacingRight ? "IdleCarryBack" : "IdleCarryFront");
 			}
-			else if(hand1 == WaiterHands.None && hand1 != WaiterHands.None) {
+			else if(hand1 == WaiterHands.None && hand2 != WaiterHands.None) {
 				SetBodyAnimation(isFacingRight ? "IdleCarryFront" : "IdleCarryBack");
 			}
-			else if(hand1 != WaiterHands.None && hand1 != WaiterHands.None) {
+			else if(hand1 != WaiterHands.None && hand2 != WaiterHands.None) {
 				SetBodyAnimation("IdleCarryBoth");
 			}
 			else {
