@@ -1,0 +1,237 @@
+
+skeleton.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Arm_L_Hold
+  rotate: true
+  xy: 106, 276
+  size: 130, 86
+  orig: 130, 86
+  offset: 0, 0
+  index: -1
+Arm_L_Straight
+  rotate: false
+  xy: 235, 473
+  size: 169, 36
+  orig: 169, 36
+  offset: 0, 0
+  index: -1
+Arm_R_Hold
+  rotate: false
+  xy: 2, 25
+  size: 109, 73
+  orig: 109, 73
+  offset: 0, 0
+  index: -1
+Arm_R_Staight
+  rotate: true
+  xy: 106, 105
+  size: 169, 33
+  orig: 169, 33
+  offset: 0, 0
+  index: -1
+Body
+  rotate: false
+  xy: 2, 249
+  size: 102, 260
+  orig: 102, 260
+  offset: 0, 0
+  index: -1
+Eyes
+  rotate: false
+  xy: 236, 303
+  size: 94, 46
+  orig: 94, 46
+  offset: 0, 0
+  index: -1
+FoodPan
+  rotate: false
+  xy: 326, 236
+  size: 59, 39
+  orig: 59, 39
+  offset: 0, 0
+  index: -1
+FoodPlate
+  rotate: false
+  xy: 240, 179
+  size: 84, 53
+  orig: 84, 53
+  offset: 0, 0
+  index: -1
+Hat_Bottom
+  rotate: true
+  xy: 2, 100
+  size: 147, 102
+  orig: 147, 102
+  offset: 0, 0
+  index: -1
+Hat_top
+  rotate: false
+  xy: 106, 408
+  size: 127, 101
+  orig: 127, 101
+  offset: 0, 0
+  index: -1
+Lid_1
+  rotate: false
+  xy: 141, 115
+  size: 32, 28
+  orig: 32, 28
+  offset: 0, 0
+  index: -1
+Lid_2
+  rotate: false
+  xy: 366, 444
+  size: 38, 27
+  orig: 38, 27
+  offset: 0, 0
+  index: -1
+Lid_3
+  rotate: false
+  xy: 194, 146
+  size: 40, 33
+  orig: 40, 33
+  offset: 0, 0
+  index: -1
+Lid_Bottom_1
+  rotate: false
+  xy: 326, 190
+  size: 31, 23
+  orig: 31, 23
+  offset: 0, 0
+  index: -1
+Lid_Bottom_2
+  rotate: false
+  xy: 2, 4
+  size: 37, 19
+  orig: 37, 19
+  offset: 0, 0
+  index: -1
+Lid_Bottom_3
+  rotate: false
+  xy: 326, 215
+  size: 36, 19
+  orig: 36, 19
+  offset: 0, 0
+  index: -1
+Mouth_Concerned
+  rotate: true
+  xy: 387, 247
+  size: 28, 11
+  orig: 28, 11
+  offset: 0, 0
+  index: -1
+Mouth_Open
+  rotate: true
+  xy: 492, 473
+  size: 36, 17
+  orig: 36, 17
+  offset: 0, 0
+  index: -1
+Mouth_oh
+  rotate: false
+  xy: 366, 426
+  size: 31, 16
+  orig: 31, 16
+  offset: 0, 0
+  index: -1
+PanFood
+  rotate: false
+  xy: 235, 420
+  size: 129, 51
+  orig: 129, 51
+  offset: 0, 0
+  index: -1
+Plate
+  rotate: false
+  xy: 406, 456
+  size: 84, 53
+  orig: 84, 53
+  offset: 0, 0
+  index: -1
+Pupil_1
+  rotate: false
+  xy: 41, 4
+  size: 15, 19
+  orig: 15, 19
+  offset: 0, 0
+  index: -1
+Pupil_2
+  rotate: false
+  xy: 364, 217
+  size: 14, 17
+  orig: 14, 17
+  offset: 0, 0
+  index: -1
+Pupil_3
+  rotate: false
+  xy: 194, 124
+  size: 17, 20
+  orig: 17, 20
+  offset: 0, 0
+  index: -1
+Spatula
+  rotate: false
+  xy: 194, 181
+  size: 44, 107
+  orig: 44, 107
+  offset: 0, 0
+  index: -1
+Tentacle5
+  rotate: true
+  xy: 113, 17
+  size: 86, 32
+  orig: 86, 32
+  offset: 0, 0
+  index: -1
+knife
+  rotate: false
+  xy: 194, 290
+  size: 40, 116
+  orig: 40, 116
+  offset: 0, 0
+  index: -1
+mouth_Smile
+  rotate: true
+  xy: 175, 116
+  size: 27, 17
+  orig: 27, 17
+  offset: 0, 0
+  index: -1
+pan
+  rotate: true
+  xy: 141, 145
+  size: 129, 51
+  orig: 129, 51
+  offset: 0, 0
+  index: -1
+tentacle1
+  rotate: false
+  xy: 240, 234
+  size: 84, 67
+  orig: 84, 67
+  offset: 0, 0
+  index: -1
+tentacle2
+  rotate: true
+  xy: 339, 337
+  size: 81, 66
+  orig: 81, 66
+  offset: 0, 0
+  index: -1
+tentacle3
+  rotate: false
+  xy: 332, 277
+  size: 67, 58
+  orig: 67, 58
+  offset: 0, 0
+  index: -1
+tentacle4
+  rotate: false
+  xy: 236, 351
+  size: 101, 67
+  orig: 101, 67
+  offset: 0, 0
+  index: -1

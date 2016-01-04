@@ -7,7 +7,7 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 	public float cookTimer;				// times it takes to cook food
 	public GameObject waiterNode;
 
-	public Animator kitchenAnimator;
+	public ChefAnimController chefAnimController;
 	private int ordersCooking = 0;		// Keep an aux count for animation
 
 	public GameObject spinnerHighlight;
@@ -67,19 +67,27 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 			if(orderSpotList[i].childCount > 0){
 				if(orderSpotList[i].GetComponentInChildren<Order>().tableNumber == tableNum){
 					orderSpotList[i].GetChild(0).GetComponent<Order>().Canceled();
-					AnimSetCooking(-1);
+					AnimSetCooking(-1, isFinishedCooking:false);
 				}
 			}
 		}
 	}
 
 	// Used for animator
-	private void AnimSetCooking(int cookingCountDelta){
+	private void AnimSetCooking(int cookingCountDelta, bool isFinishedCooking = true){
 		ordersCooking += cookingCountDelta;
-		if(ordersCooking <= 0){
-			ordersCooking = 0;
+		if(ordersCooking > 0) {
+			chefAnimController.SetStartCooking();
 		}
-		kitchenAnimator.SetInteger("CookingCount", ordersCooking);
+		else {
+			ordersCooking = 0;
+			if(isFinishedCooking) {
+				chefAnimController.SetFinishCooking();
+			}
+			else {
+				chefAnimController.SetCancelCooking();
+			}
+		}
 	}
 
 	#region IWaiterSelection implementation
