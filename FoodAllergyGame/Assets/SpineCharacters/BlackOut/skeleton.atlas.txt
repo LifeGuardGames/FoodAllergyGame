@@ -1,0 +1,202 @@
+
+skeleton.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Antenna
+  rotate: true
+  xy: 2, 5
+  size: 23, 114
+  orig: 23, 114
+  offset: 0, 0
+  index: -1
+Arm
+  rotate: true
+  xy: 116, 34
+  size: 12, 56
+  orig: 12, 56
+  offset: 0, 0
+  index: -1
+BallSeperate
+  rotate: false
+  xy: 124, 129
+  size: 111, 95
+  orig: 111, 95
+  offset: 0, 0
+  index: -1
+Body
+  rotate: false
+  xy: 2, 144
+  size: 120, 161
+  orig: 120, 161
+  offset: 0, 0
+  index: -1
+Eye
+  rotate: false
+  xy: 2, 30
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+EyeLidTopL
+  rotate: false
+  xy: 124, 226
+  size: 129, 79
+  orig: 129, 79
+  offset: 0, 0
+  index: -1
+EyeLidTopR
+  rotate: false
+  xy: 370, 319
+  size: 125, 77
+  orig: 125, 77
+  offset: 0, 0
+  index: -1
+EyeSquint
+  rotate: false
+  xy: 255, 223
+  size: 101, 82
+  orig: 101, 82
+  offset: 0, 0
+  index: -1
+EyeSquint2
+  rotate: false
+  xy: 116, 48
+  size: 100, 79
+  orig: 100, 79
+  offset: 0, 0
+  index: -1
+Foot
+  rotate: false
+  xy: 449, 194
+  size: 19, 11
+  orig: 19, 11
+  offset: 0, 0
+  index: -1
+FootL
+  rotate: false
+  xy: 328, 117
+  size: 19, 11
+  orig: 19, 11
+  offset: 0, 0
+  index: -1
+GlowBallSeperate
+  rotate: false
+  xy: 370, 398
+  size: 132, 112
+  orig: 132, 112
+  offset: 0, 0
+  index: -1
+Head
+  rotate: false
+  xy: 2, 307
+  size: 366, 203
+  orig: 366, 203
+  offset: 0, 0
+  index: -1
+LidBottomL
+  rotate: false
+  xy: 237, 169
+  size: 126, 52
+  orig: 126, 52
+  offset: 0, 0
+  index: -1
+LidBottomR
+  rotate: false
+  xy: 370, 267
+  size: 120, 50
+  orig: 120, 50
+  offset: 0, 0
+  index: -1
+LowerLeg
+  rotate: false
+  xy: 497, 357
+  size: 13, 39
+  orig: 13, 39
+  offset: 0, 0
+  index: -1
+LowerLegL
+  rotate: false
+  xy: 497, 316
+  size: 13, 39
+  orig: 13, 39
+  offset: 0, 0
+  index: -1
+Menu
+  rotate: true
+  xy: 449, 207
+  size: 58, 61
+  orig: 58, 61
+  offset: 0, 0
+  index: -1
+MouthChewing
+  rotate: false
+  xy: 237, 130
+  size: 132, 37
+  orig: 132, 37
+  offset: 0, 0
+  index: -1
+MouthHappy
+  rotate: false
+  xy: 251, 82
+  size: 72, 23
+  orig: 72, 23
+  offset: 0, 0
+  index: -1
+MouthHappyOpen
+  rotate: true
+  xy: 218, 49
+  size: 78, 31
+  orig: 78, 31
+  offset: 0, 0
+  index: -1
+MouthOpen
+  rotate: false
+  xy: 370, 224
+  size: 77, 41
+  orig: 77, 41
+  offset: 0, 0
+  index: -1
+MouthSad
+  rotate: false
+  xy: 251, 107
+  size: 75, 21
+  orig: 75, 21
+  offset: 0, 0
+  index: -1
+MouthSadOpen
+  rotate: false
+  xy: 365, 192
+  size: 82, 30
+  orig: 82, 30
+  offset: 0, 0
+  index: -1
+MouthStraight
+  rotate: true
+  xy: 358, 230
+  size: 75, 10
+  orig: 75, 10
+  offset: 0, 0
+  index: -1
+Pupil
+  rotate: false
+  xy: 371, 125
+  size: 66, 65
+  orig: 66, 65
+  offset: 0, 0
+  index: -1
+UpperThigh
+  rotate: true
+  xy: 251, 61
+  size: 19, 45
+  orig: 19, 45
+  offset: 0, 0
+  index: -1
+UpperThighL
+  rotate: true
+  xy: 118, 13
+  size: 19, 45
+  orig: 19, 45
+  offset: 0, 0
+  index: -1
