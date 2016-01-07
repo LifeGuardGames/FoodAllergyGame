@@ -201,7 +201,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		}
 		else{
 			satisfaction += delta;
-			customerUI.UpdateSatisfaction(satisfaction);
+			customerUI.UpdateSatisfaction(satisfaction, true, delta);
+
 			customerAnim.UpdateSatisfaction(delta);
 			
 			// If satisfaction is 0 or negative, we need to leave cause the service is rubbish

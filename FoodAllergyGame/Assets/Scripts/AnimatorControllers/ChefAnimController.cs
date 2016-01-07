@@ -5,7 +5,6 @@ public class ChefAnimController : MonoBehaviour {
 	public SkeletonAnimation skeleton;
 
 	private void Reset() {
-		Debug.Log("RESET");
 		skeleton.state.ClearTracks();
 		skeleton.state.SetAnimation(0, "Reset", false);
 	}

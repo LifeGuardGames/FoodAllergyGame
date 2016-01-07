@@ -8,16 +8,21 @@ public class CustomerUIController : MonoBehaviour {
 	public Image satisfaction2;
 	public Image satisfaction3;
 	public Image satisfaction4;
-
-	public Image skull;
+	
 	public Image waiting;
 	public Image star;
+
+	public ParticleSystem angryParticle;
 
 //	public GameObject thoughtObject;
 //	public Image allergyImage;
 //	public Text allergyText;
 
-	public void UpdateSatisfaction(int satisfaction){
+	/// <summary>
+	/// Update absolute satisfaction
+	/// </summary>
+	/// <param name="satisfaction"></param>
+	public void UpdateSatisfaction(int satisfaction, bool checkDelta = false, int delta = 0){
 		if(satisfaction <= 0){
 			satisfaction1.gameObject.SetActive(false);
 			satisfaction2.gameObject.SetActive(false);
@@ -33,6 +38,12 @@ public class CustomerUIController : MonoBehaviour {
 			if(satisfaction4 != null) {
 				satisfaction4.gameObject.SetActive(false);
 			}
+
+			if(checkDelta) {
+				if(delta < 0) {
+					angryParticle.Play();
+				}
+			}
 		}
 		else if(satisfaction == 2){
 			satisfaction1.gameObject.SetActive(true);
@@ -41,6 +52,12 @@ public class CustomerUIController : MonoBehaviour {
 			if(satisfaction4 != null) {
 				satisfaction4.gameObject.SetActive(false);
 			}
+
+			if(checkDelta) {
+				if(delta < 0) {
+					angryParticle.Play();
+				}
+			}
 		}
 		else if(satisfaction == 3){
 			satisfaction1.gameObject.SetActive(true);
@@ -48,6 +65,12 @@ public class CustomerUIController : MonoBehaviour {
 			satisfaction3.gameObject.SetActive(true);
 			if(satisfaction4 != null) {
 				satisfaction4.gameObject.SetActive(false);
+			}
+
+			if(checkDelta) {
+				if(delta < 0) {
+					angryParticle.Play();
+				}
 			}
 		}
 		else if(satisfaction == 4) {
@@ -83,7 +106,7 @@ public class CustomerUIController : MonoBehaviour {
 	}
 
 	public void ToggleAllergyAttack(bool isAllergyAttack){
-		skull.gameObject.SetActive(isAllergyAttack ? true : false);
+		// Do nothing here
 	}
 }
 
