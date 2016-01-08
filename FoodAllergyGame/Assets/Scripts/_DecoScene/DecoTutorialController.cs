@@ -19,6 +19,6 @@ public class DecoTutorialController : MonoBehaviour {
 
 	public void OnOkayButtonClicked(){
 		gameObject.SetActive(false);
-		RestaurantManager.Instance.StartDay(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()));
+		RestaurantManager.Instance.StartDay();
 	}
 }

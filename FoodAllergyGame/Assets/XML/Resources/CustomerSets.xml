@@ -46,4 +46,9 @@
 	<CustomerSet ID="CustomerSet06">
 		<CustomerList>Customer09</CustomerList>	
 	</CustomerSet>
+  
+ <!--Challenge Sets-->
+  <CustomerSet ID ="ChallengeSet01">
+    <CustomerList>Customer00,Customer00,Customer00,Customer00,Customer00,Customer00,Customer00,Customer00</CustomerList>
+  </CustomerSet>
 </CustomerSets>

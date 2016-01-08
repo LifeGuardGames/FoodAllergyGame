@@ -101,6 +101,76 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		}
 	}
 
+	// Basic intitialzation
+	public virtual void Init(int num, ImmutableDataChallenge mode) {
+		spawnTime = Time.time;
+		AudioManager.Instance.PlayClip("CustomerEnter");
+
+		customerUI.ToggleWait(false);
+		customerUI.ToggleStar(false);
+		customerUI.ToggleAllergyAttack(false);
+
+		// simple temporary naming convention
+		customerID = "Customer" + num.ToString();
+		gameObject.name = "Customer" + num.ToString();
+		// customer starts inline
+		state = CustomerStates.InLine;
+		// star the timer which is used to measure the customer's hearts
+		StartCoroutine("SatisfactionTimer");
+		//init list
+		choices = new List<ImmutableDataFood>();
+		//allergy = new List<Allergies>();
+		//init satisfaction and update the ui
+		satisfaction = 3;
+		customerUI.UpdateSatisfaction(satisfaction);
+		customerAnim.SetWaitingInLine();
+		// used for events this switches the timer variable which directly affects the customer's satisfaction
+		timer = mode.CustomerTimerMod;
+		//calculates the initial attentionSpan
+		attentionSpan = 15f * timer;
+		// customers refuse to line up out the door
+		if(RestaurantManager.Instance.GetLine().NewCustomer() == null) {
+			Destroy(this.gameObject);
+		}
+		else {
+			// Check for fly thru table
+			TableFlyThru flyThruTable = RestaurantManager.Instance.GetFlyThruTable();
+			if((flyThruTable != null) && Random.Range(0, 10) > 3 && !flyThruTable.inUse && Constants.GetConstant<bool>("FlyThruOn") || mode.ID == "EventTFlyThru") {
+				flyThruTable.inUse = true;
+				this.gameObject.transform.SetParent(flyThruTable.seat);
+				tableNum = flyThruTable.TableNumber;
+				state = CustomerStates.ReadingMenu;
+				StartCoroutine("ReadMenu");
+				StopCoroutine("SatisfactionTimer");
+				customerAnim.SetReadingMenu();
+				GetComponentInParent<Table>().currentCustomerID = customerID;
+				this.GetComponent<BoxCollider>().enabled = false;
+				flyThruTable.FlyThruDropDown();
+			}
+			else {
+				this.gameObject.transform.SetParent(RestaurantManager.Instance.GetLine().NewCustomer());
+				RestaurantManager.Instance.lineCount++;
+			}
+			this.gameObject.transform.position = transform.parent.position;
+		}
+
+		// choose allergy based on the event
+		SelectAllergy(mode.Allergy);
+		// gets the keyword to help narrow down the customer's choices
+		int rand = Random.Range(0, 3);
+		switch(rand) {
+			case 0:
+				desiredFood = FoodKeywords.Meal;
+				break;
+			case 1:
+				desiredFood = FoodKeywords.Drink;
+				break;
+			case 2:
+				desiredFood = FoodKeywords.Dessert;
+				break;
+		}
+	}
+
 	// chooses an allergy cases where specific allergy is noted we use a weighted random to get the desired result
 	private void SelectAllergy(string mode){
 		if(mode == "None"){

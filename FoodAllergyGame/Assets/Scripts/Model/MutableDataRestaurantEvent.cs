@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class MutableDataRestaurantEvent{
 
 	public string CurrentEvent {get; set;}
+	public string CurrentChallenge { get; set; }
 	public bool ShouldGenerateNewEvent {get; set;}
 	public List<string> CustomerList;
 
@@ -16,5 +17,6 @@ public class MutableDataRestaurantEvent{
 			CurrentEvent = Constants.GetDebugConstant<string>("EventID");
 			ShouldGenerateNewEvent = false;
 		}
+		CurrentChallenge = "";
 	}
 }

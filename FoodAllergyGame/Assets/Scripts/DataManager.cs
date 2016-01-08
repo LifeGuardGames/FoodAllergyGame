@@ -112,6 +112,10 @@ public class DataManager : Singleton<DataManager> {
 		return gameData.RestaurantEvent.CurrentEvent;
 	}
 
+	public string GetChallenge(){
+		return gameData.RestaurantEvent.CurrentChallenge;
+	}
+
 	/// <summary>
 	/// Called when game data has been deserialized. Could be successful or failure
 	/// </summary>

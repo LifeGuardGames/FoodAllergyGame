@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Challenges>
+	<Challenge ID="Challenge01">
+    <MenuSet>MenuSetT1</MenuSet>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>CustomerSetTF</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>30</DayLength>
+    <Allergy>None</Allergy>
+    <Title>stuff</Title>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+	</Challenge>
+</Challenges>
