@@ -70,9 +70,9 @@ public class Medic : Singleton<Medic> {
 
 	private IEnumerator TreatCustomer(){
 		// Saved the person in time
-		if(RestaurantManager.Instance.SickCustomers.Count > 0){
+		if(RestaurantManager.Instance.sickCustomers.Count > 0){
 			ShowThoughtBubble();
-            RestaurantManager.Instance.SickCustomers[0].GetComponent<Customer>().Saved();
+            RestaurantManager.Instance.sickCustomers[0].GetComponent<Customer>().Saved();
 			yield return new WaitForSeconds(3.0f);
 		}
 		// Missed the person... oh well
@@ -82,19 +82,19 @@ public class Medic : Singleton<Medic> {
 		}
 
 		// Check if there are other customers that needs to be saved
-		if(	RestaurantManager.Instance.SickCustomers.Count == 0){
+		if(	RestaurantManager.Instance.sickCustomers.Count == 0){
 			HideThoughtBubble();
 			MoveHome();
 		}
 		else{
 			HideThoughtBubble();
-			MoveToLocation(RestaurantManager.Instance.SickCustomers[0].transform.position + medicOffset);
+			MoveToLocation(RestaurantManager.Instance.sickCustomers[0].transform.position + medicOffset);
 		}
 	}
 
 	private void ShowThoughtBubble() {
 		// Change the skin type to that of the customer by type
-		CustomerTypes type = RestaurantManager.Instance.SickCustomers[0].GetComponent<Customer>().type;
+		CustomerTypes type = RestaurantManager.Instance.sickCustomers[0].GetComponent<Customer>().type;
 		switch(type) {
 			case CustomerTypes.Normal:
 				thoughtBubbleSkin.color = regularSkinColor;

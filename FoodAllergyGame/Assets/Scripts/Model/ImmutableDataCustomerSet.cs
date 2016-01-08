@@ -16,6 +16,6 @@ public class ImmutableDataCustomerSet {
 	public ImmutableDataCustomerSet(string id, IXMLNode xmlNode, string error){
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 		this.id = id;
-		customerSet = XMLUtils.GetStringList(hashElements["CustomerList"]as IXMLNode);
+		customerSet = XMLUtils.GetStringList(hashElements["CustomerList"] as IXMLNode);
 	}
 }

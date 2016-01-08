@@ -168,7 +168,6 @@ public class DecoManager : Singleton<DecoManager>{
 			}
 			else {
 				if(BuyItem(decoID)) {
-					ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
 					DataManager.Instance.SaveGameData();
 				}
 			}
