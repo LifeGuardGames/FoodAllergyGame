@@ -11,7 +11,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 
 	public override void Init() {
 		eventData = DataLoaderEvents.GetData(DataManager.instance.GetEvent());
-		SickCustomers = new List<GameObject>();
+		sickCustomers = new List<GameObject>();
 		customerHash = new Dictionary<string, GameObject>();
 		satisfactionAI = new SatisfactionAI();
 

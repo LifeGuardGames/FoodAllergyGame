@@ -26,7 +26,7 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 	protected Dictionary<string, GameObject> customerHash;
 	// our satisfaction ai 
 	protected SatisfactionAI satisfactionAI;
-	public List<GameObject> SickCustomers;
+	public List<GameObject> sickCustomers;
 
 	protected List<GameObject> tableList = new List<GameObject>();
 	public List<GameObject> TableList{
@@ -142,9 +142,9 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 	public virtual void DeployMedic(){
 		medicTutorial.SetActive(false);
 		Waiter.Instance.isMedicTut = false;
-		if(SickCustomers.Count > 0){
-			attempted += SickCustomers.Count;
-			Medic.Instance.SetOutFromHome(SickCustomers[0].transform.position);
+		if(sickCustomers.Count > 0){
+			attempted += sickCustomers.Count;
+			Medic.Instance.SetOutFromHome(sickCustomers[0].transform.position);
 		}
 	}
 

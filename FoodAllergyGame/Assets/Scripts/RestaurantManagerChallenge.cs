@@ -13,7 +13,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	
 
 	public override void Init() {
-		SickCustomers = new List<GameObject>();
+		sickCustomers = new List<GameObject>();
 		customerHash = new Dictionary<string, GameObject>();
 		satisfactionAI = new SatisfactionAI();
 		RunSetUp();
