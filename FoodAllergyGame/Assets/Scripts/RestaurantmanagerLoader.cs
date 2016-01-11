@@ -17,4 +17,11 @@ public class RestaurantmanagerLoader : MonoBehaviour {
 			RestaurantManagerArcade.Instance.Init();
 		}
 	}
+
+	// Called from PauseUIController
+	public void QuitGame() {
+		Time.timeScale = 1.0f;  // Remember to reset timescale!
+
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
+	}
 }
