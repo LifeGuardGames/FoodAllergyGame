@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class CurrentSceneInfo : EditorWindow {
 
@@ -12,7 +13,7 @@ public class CurrentSceneInfo : EditorWindow {
 	void OnGUI(){
 		GUILayout.Label("DataManager Fields", EditorStyles.boldLabel);
 		if(Application.isPlaying){
-			if(Application.loadedLevelName != SceneUtils.COMICSCENE){
+			if(SceneManager.GetActiveScene().name != SceneUtils.COMICSCENE){
 				EditorGUILayout.TextField("Event", DataManager.Instance.GameData.RestaurantEvent.CurrentEvent);
 				EditorGUILayout.TextField("Current cash", DataManager.Instance.GameData.Cash.CurrentCash.ToString());
 				EditorGUILayout.TextField("Total cash", DataManager.Instance.GameData.Cash.TotalCash.ToString());
@@ -20,7 +21,7 @@ public class CurrentSceneInfo : EditorWindow {
 				EditorGUILayout.TextField("Tier", TierManager.Instance.Tier.ToString());
 				EditorGUILayout.TextField("Notif queue count", NotificationManager.Instance.NotificationQueueCount.ToString());
 			}
-			if(Application.loadedLevelName == SceneUtils.RESTAURANT){
+			if(SceneManager.GetActiveScene().name == SceneUtils.RESTAURANT){
 				EditorGUILayout.TextField("Move queue count", TouchManager.Instance.inputQueue.Count.ToString());
 			}
 

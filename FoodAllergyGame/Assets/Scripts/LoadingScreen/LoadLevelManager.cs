@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class LoadLevelManager : Singleton<LoadLevelManager>{
 
@@ -11,7 +12,7 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 	public Image loadImage;
 	public FoodTipController foodTipController;
 	public float foodTipWait = 1.3f; 			// How long to wait if the food tip controller is showing
-	private string levelToLoad;
+	private string sceneToLoad;
 
 	void Awake(){
 		// Make object persistent
@@ -27,8 +28,8 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 	/// <summary>
 	/// Call this to start the transition
 	/// </summary>
-	/// <param name="levelName">Level to be loaded</param>
-	public void StartLoadTransition(string levelName, string additionalTextKey = null, string additionalImageKey = null, bool showFoodTip = false){
+	/// <param name="sceneName">Scene to be loaded</param>
+	public void StartLoadTransition(string sceneName, string additionalTextKey = null, string additionalImageKey = null, bool showFoodTip = false){
 
 		// Reset everything first
 		loadText.text = "";
@@ -45,7 +46,7 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 
 		}
 
-		levelToLoad = levelName;
+		sceneToLoad = sceneName;
 		loadDemux.Show();
 	}
 
@@ -53,8 +54,8 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 	/// Call this to initiate loading (when ending tween is done), there will be a performance hit here
 	/// </summary>
 	public void ShowFinishedCallback(){
-		if(levelToLoad != null){
-			Application.LoadLevel(levelToLoad);
+		if(sceneToLoad != null){
+			SceneManager.LoadScene(sceneToLoad);
 		}
 		else{
 			Debug.LogError("No level name specified");

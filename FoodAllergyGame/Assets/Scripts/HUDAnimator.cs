@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HUDAnimator : Singleton<HUDAnimator> {
 	public GameObject coin;
@@ -28,7 +29,7 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 		fullSizeBar = tierBar.rectTransform.sizeDelta;
 		float percentage;
 		int tierNumber;
-		if(Application.loadedLevelName != SceneUtils.START) {
+		if(SceneManager.GetActiveScene().name != SceneUtils.START) {
 			percentage = DataLoaderTiers.GetPercentProgressInTier(CashManager.Instance.TotalCash);
 			tierNumber = DataLoaderTiers.GetTierFromCash(CashManager.Instance.TotalCash);
 		}

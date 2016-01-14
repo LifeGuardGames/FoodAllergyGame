@@ -3,6 +3,7 @@ using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEditor.SceneManagement;
 
 public class UIHelper : EditorWindow {
 	private GameObject[] tagsList;
@@ -20,7 +21,7 @@ public class UIHelper : EditorWindow {
 
 	public void Reload(){
 		// Attempt to load
-		currentScene = EditorApplication.currentScene;
+		currentScene = EditorSceneManager.GetActiveScene().name;
 		tagsList = GameObject.FindGameObjectsWithTag("UIElementList");
 		if(tagsList.Length > 0){
 			UIElementsList = GameObject.FindGameObjectsWithTag("UIElementList")[0].GetComponent<UIHelperList>().UIElementList;
@@ -34,7 +35,7 @@ public class UIHelper : EditorWindow {
 		}
 		bool isFinishedCompiling = isCompileAux && !EditorApplication.isCompiling;
 
-		if(currentScene != EditorApplication.currentScene || isFinishedCompiling){
+		if(currentScene != EditorSceneManager.GetActiveScene().name || isFinishedCompiling){
 			isCompileAux = false;
 			Repaint();
 			Reload();

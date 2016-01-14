@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class HUDManager : MonoBehaviour {
 	public TweenToggle coinTween;
@@ -20,7 +21,7 @@ public class HUDManager : MonoBehaviour {
 	private IEnumerator ToggleHUDInScene(bool isShow){
 		yield return 0;
 		// Show different panels based on what scene it is
-		switch(Application.loadedLevelName){
+		switch(SceneManager.GetActiveScene().name){
 		case SceneUtils.START:
 			ToggleCoin(isShow);
 			ToggleTier(isShow);

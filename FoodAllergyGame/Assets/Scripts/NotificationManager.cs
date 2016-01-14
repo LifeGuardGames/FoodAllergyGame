@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// NotificationManager is a class that handles a queue of Notifications
@@ -61,7 +62,7 @@ public class NotificationManager : Singleton<NotificationManager> {
 		else{ 												// Everything completely done
 			isNotificationActive = false;
 			Debug.Log("ALL notifications finished");
-			if(Application.loadedLevelName == SceneUtils.START) {
+			if(SceneManager.GetActiveScene().name == SceneUtils.START) {
 				StartManager.Instance.DecoEntranceUIController.ToggleClickable(true);
 
 				// Keep diner unclickable ONLY when first time deco entrance

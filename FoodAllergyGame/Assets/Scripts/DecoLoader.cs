@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public abstract class DecoLoader : MonoBehaviour {
@@ -14,7 +15,7 @@ public abstract class DecoLoader : MonoBehaviour {
 	void Start(){
 		DecoInit();	// Initialize all type specific variables in children
 
-		if(Application.loadedLevelName == SceneUtils.DECO){
+		if(SceneManager.GetActiveScene().name == SceneUtils.DECO){
 			isDecoScene = true;
 			DecoManager.Instance.DecoLoaderHash.Add(decoType, this);
 		}

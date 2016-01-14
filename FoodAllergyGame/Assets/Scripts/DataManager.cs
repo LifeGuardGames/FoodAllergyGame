@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using fastJSON;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// This class handles all game data. No game logic
@@ -139,7 +140,7 @@ public class DataManager : Singleton<DataManager> {
 			AnalyticsManager.Instance.TrackGameQuitScene();
 
 			// Restaurant day incomplete track
-			if(Application.loadedLevelName == SceneUtils.RESTAURANT) {
+			if(SceneManager.GetActiveScene().name == SceneUtils.RESTAURANT) {
 				if(RestaurantManager.Instance != null) {
 					RestaurantManager.Instance.IncompleteQuitAnalytics();
 				}

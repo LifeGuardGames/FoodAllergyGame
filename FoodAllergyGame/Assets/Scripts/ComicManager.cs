@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ComicManager : MonoBehaviour {
 	public GameObject canvas;
@@ -9,7 +10,7 @@ public class ComicManager : MonoBehaviour {
 
 	void Start(){
 		if(DataManager.Instance.GameData.Tutorial.IsComicViewed) {
-			Application.LoadLevel(SceneUtils.START);
+			SceneManager.LoadScene(SceneUtils.START);
 		}
 		else {
 			ComicStep(1);

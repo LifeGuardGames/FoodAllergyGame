@@ -3,6 +3,9 @@ using System.Collections;
 using UnityEngine.UI;
 
 //Handles the interaction between the customer and the waiter telling the waiter what action to perform based on the customers state
+using UnityEngine.SceneManagement;
+
+
 public class Table : MonoBehaviour, IWaiterSelection{
 
 	public enum TableType{
@@ -52,7 +55,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	}
 
 	public virtual void Init() {
-		if(Application.loadedLevelName == SceneUtils.RESTAURANT) {
+		if(SceneManager.GetActiveScene().name == SceneUtils.RESTAURANT) {
 			// Add youself to the list of tables
 			RestaurantManager.Instance.TableList.Add(gameObject);
 

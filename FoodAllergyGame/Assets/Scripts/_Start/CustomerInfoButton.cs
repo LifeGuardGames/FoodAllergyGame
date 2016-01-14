@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class CustomerInfoButton : MonoBehaviour {
 	public string customerID;
@@ -16,7 +17,7 @@ public class CustomerInfoButton : MonoBehaviour {
 	}
 	
 	public void OnButtonClick(){
-		if(string.Equals(Application.loadedLevelName, SceneUtils.START)){
+		if(string.Equals(SceneManager.GetActiveScene().name, SceneUtils.START)){
 			InfoManager.Instance.ShowDetail(InfoType.Customer, customerID);
 		}
 	}

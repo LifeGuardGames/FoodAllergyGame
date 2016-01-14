@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour{
 	public GameObject canvas;
@@ -106,7 +107,7 @@ public class TutorialManager : MonoBehaviour{
 			break;
 		case 11:
 			//once the final button is clicked we boot into menu
-			Application.LoadLevel(SceneUtils.RESTAURANT);
+			SceneManager.LoadScene(SceneUtils.RESTAURANT);
 			break;
 		}
 

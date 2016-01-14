@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class NotificationQueueDataNewItem : NotificationQueueData {
 	public string itemIDToShow;
@@ -11,7 +12,7 @@ public class NotificationQueueDataNewItem : NotificationQueueData {
 	}
 
 	public override void Start(){
-		if(allowedScene == Application.loadedLevelName){
+		if(allowedScene == SceneManager.GetActiveScene().name){
 
 			GameObject giftPrefab = Resources.Load("GiftDropPod") as GameObject;
 			giftInstance = GameObjectUtils.AddChildWithPositionAndScale(StartManager.Instance.SceneObjectParent, giftPrefab);

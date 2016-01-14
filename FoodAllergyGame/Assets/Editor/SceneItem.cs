@@ -3,6 +3,7 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections;
+using UnityEditor.SceneManagement;
 
 public class SceneItem : Editor {
 
@@ -32,8 +33,8 @@ public class SceneItem : Editor {
 	}
 
 	static void OpenScene(string name){
-		if(EditorApplication.SaveCurrentSceneIfUserWantsTo()){
-			EditorApplication.OpenScene("Assets/Scenes/" + name + ".unity");
+		if(EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()){
+			EditorSceneManager.OpenScene("Assets/Scenes/" + name + ".unity");
 		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class FloatyAndParticleLogic : MonoBehaviour {
 
@@ -9,7 +10,7 @@ public class FloatyAndParticleLogic : MonoBehaviour {
 		RectTransform UI_Element = this.GetComponent<RectTransform>();
 		RectTransform CanvasRect = GameObject.Find ("Canvas").GetComponent<RectTransform>();
 		Vector2 ViewportPosition;
-		if(Application.loadedLevelName == SceneUtils.DECO){
+		if(SceneManager.GetActiveScene().name == SceneUtils.DECO){
 			ViewportPosition = Camera.main.ScreenToViewportPoint(this.transform.position);
 		}
 		else{

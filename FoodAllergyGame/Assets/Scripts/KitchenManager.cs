@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 	public List<Transform> orderSpotList;
@@ -14,7 +15,7 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 	public GameObject chefParent;
 
 	void Start(){
-		if(Application.loadedLevelName == SceneUtils.RESTAURANT){
+		if(SceneManager.GetActiveScene().name == SceneUtils.RESTAURANT){
 			// Connect scene variables
 			waiterNode = Pathfinding.Instance.NodeKitchen;
 		}

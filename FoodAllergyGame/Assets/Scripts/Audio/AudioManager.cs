@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : LgAudioManager<AudioManager>{
 	public bool isMusicOn = true;
@@ -86,11 +87,12 @@ public class AudioManager : LgAudioManager<AudioManager>{
 	}
 
 	void OnLevelWasLoaded() {
-		if(Application.loadedLevelName == SceneUtils.RESTAURANT) {
+		string currentScene = SceneManager.GetActiveScene().name;
+		if(currentScene == SceneUtils.RESTAURANT) {
 			backgroundMusic = "BgRestaurant";
 			FadeOutPlayNewBackground(backgroundMusic);
 		}
-		else if(Application.loadedLevelName == SceneUtils.DECO) {
+		else if(currentScene == SceneUtils.DECO) {
 			backgroundMusic = "BgDeco";
 			FadeOutPlayNewBackground(backgroundMusic);
 		}
