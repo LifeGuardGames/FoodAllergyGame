@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Events>
 	<Event ID="EventT1">	 <!-- Tutorial 1 -->
-		<MenuSet>MenuSetT1</MenuSet>
+		<RemoveMenuSet>RemoveMenuSetT1</RemoveMenuSet>
 		<KitchenTimer>5</KitchenTimer>
 		<CustomerSet>CustomerSetT1</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
@@ -10,7 +10,7 @@
 		<Title>TutEvent</Title>
 	</Event>
 	<Event ID="EventT2">	 <!-- Tutorial 2 -->
-		<MenuSet>MenuSet00</MenuSet>
+		<RemoveMenuSet>RemoveMenuSet00</RemoveMenuSet>
 		<KitchenTimer>5</KitchenTimer>
 		<CustomerSet>CustomerSetT2</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
@@ -19,7 +19,7 @@
 		<Title>TitleT2</Title>
 	</Event>
 	<Event ID="EventT3">	 <!-- Tutorial 2 -->
-		<MenuSet>MenuSet00</MenuSet>
+		<RemoveMenuSet>RemoveMenuSet00</RemoveMenuSet>
 		<KitchenTimer>5</KitchenTimer>
 		<CustomerSet>CustomerSet00</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
@@ -28,7 +28,7 @@
 		<Title>TitleT2</Title>
 	</Event>
 	<Event ID="EventTPlayArea">
-		<MenuSet>MenuSet00</MenuSet>
+		<RemoveMenuSet>RemoveMenuSet00</RemoveMenuSet>
 		<KitchenTimer>3</KitchenTimer>
 		<CustomerSet>CustomerSetTP</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
@@ -38,7 +38,7 @@
 		<Title>Title00</Title>
 	</Event>
 	<Event ID="EventTFlyThru">
-		<MenuSet>MenuSet00</MenuSet>
+		<RemoveMenuSet>RemoveMenuSet00</RemoveMenuSet>
 		<KitchenTimer>3</KitchenTimer>
 		<CustomerSet>CustomerSetTF</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
@@ -48,7 +48,7 @@
 		<Title>Title00</Title>
 	</Event>
 	<Event ID="EventTVIP">
-		<MenuSet>MenuSet00</MenuSet>
+		<RemoveMenuSet>RemoveMenuSet00</RemoveMenuSet>
 		<KitchenTimer>3</KitchenTimer>
 		<CustomerSet>CustomerSetTV</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
@@ -58,7 +58,7 @@
 		<Title>Title00</Title>
 	</Event>
 	<Event ID="Event00">      <!-- An ordinary day -->
-		<MenuSet>MenuSet01</MenuSet>
+		<RemoveMenuSet>RemoveMenuSet01</RemoveMenuSet>
 		<KitchenTimer>3</KitchenTimer>
 		<CustomerSet>CustomerSet01</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
@@ -68,7 +68,7 @@
 		<Title>Event00</Title>
 	</Event>
 	<Event ID="Event01">     <!-- Fast Food -->
-		<MenuSet>MenuSet01</MenuSet>
+		<RemoveMenuSet>RemoveMenuSet01</RemoveMenuSet>
 		<KitchenTimer>6.5</KitchenTimer>
 		<CustomerSet>CustomerSet01</CustomerSet>
 		<CustomerTimer>1</CustomerTimer>
@@ -78,7 +78,7 @@
 		<Title>Event01</Title>
 	</Event>
 	<Event ID="Event02">     <!-- A Busy day -->
-		<MenuSet>MenuSet01</MenuSet>
+		<RemoveMenuSet>RemoveMenuSet01</RemoveMenuSet>
 		<KitchenTimer>3</KitchenTimer>
 		<CustomerSet>CustomerSet01</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
@@ -88,7 +88,7 @@
 		<Title>Event02</Title>
 	</Event>
 	<Event ID="Event03">     <!-- Chef's Bad Day -->
-		<MenuSet>MenuSet01</MenuSet>
+		<RemoveMenuSet>RemoveMenuSet01</RemoveMenuSet>
 		<KitchenTimer>5</KitchenTimer>
 		<CustomerSet>CustomerSet01</CustomerSet>
 		<CustomerTimer>0.7</CustomerTimer>
@@ -98,7 +98,7 @@
 		<Title>Event03</Title>
 	</Event>
 	<Event ID="Event04">      <!-- Rush Hour -->
-		<MenuSet>MenuSet01</MenuSet>
+		<RemoveMenuSet>RemoveMenuSet01</RemoveMenuSet>
 		<KitchenTimer>2.5</KitchenTimer>
 		<CustomerSet>CustomerSet01</CustomerSet>
 		<CustomerTimer>0.7</CustomerTimer>
@@ -108,106 +108,106 @@
 		<Title>Event04</Title>
 	</Event>
 
-  <Event ID="Event05">
-    <MenuSet>MenuSet02</MenuSet>
-    <KitchenTimer>3</KitchenTimer>
-    <CustomerSet>CustomerSet02</CustomerSet>
-    <CustomerTimer>2</CustomerTimer>
-    <DayLength>72</DayLength>
-    <Allergy>Peanut</Allergy>
-    <EventDescription>EventDesc00</EventDescription>
-    <Title>Event00</Title>
-  </Event>
-  <Event ID="Event06">
-    <MenuSet>MenuSet02</MenuSet>
-    <KitchenTimer>6.5</KitchenTimer>
-    <CustomerSet>CustomerSet02</CustomerSet>
-    <CustomerTimer>1</CustomerTimer>
-    <DayLength>72</DayLength>
-    <Allergy>Wheat</Allergy>
-    <EventDescription>EventDesc01</EventDescription>
-    <Title>Event01</Title>
-  </Event>
-  <Event ID="Event07">
-    <MenuSet>MenuSet02</MenuSet>
-    <KitchenTimer>3</KitchenTimer>
-    <CustomerSet>CustomerSet02</CustomerSet>
-    <CustomerTimer>0.7</CustomerTimer>
-    <DayLength>72</DayLength>
-    <Allergy>Dairy</Allergy>
-    <EventDescription>EventDesc02</EventDescription>
-    <Title>Event02</Title>
-  </Event>
-  <Event ID="Event08">
-    <MenuSet>MenuSet02</MenuSet>
-    <KitchenTimer>5</KitchenTimer>
-    <CustomerSet>CustomerSet02</CustomerSet>
-    <CustomerTimer>0.7</CustomerTimer>
-    <DayLength>72</DayLength>
-    <Allergy>None</Allergy>
-    <EventDescription>EventDesc03</EventDescription>
-    <Title>Event03</Title>
-  </Event>
-  <Event ID="Event09">
-    <MenuSet>MenuSet02</MenuSet>
-    <KitchenTimer>6</KitchenTimer>
-    <CustomerSet>CustomerSet02</CustomerSet>
-    <CustomerTimer>2</CustomerTimer>
-    <DayLength>72</DayLength>
-    <Allergy>None</Allergy>
-    <EventDescription>EventDesc04</EventDescription>
-    <Title>Event04</Title>
-  </Event>
+	<Event ID="Event05">
+		<RemoveMenuSet>RemoveMenuSet02</RemoveMenuSet>
+		<KitchenTimer>3</KitchenTimer>
+		<CustomerSet>CustomerSet02</CustomerSet>
+		<CustomerTimer>2</CustomerTimer>
+		<DayLength>72</DayLength>
+		<Allergy>Peanut</Allergy>
+		<EventDescription>EventDesc00</EventDescription>
+		<Title>Event00</Title>
+	</Event>
+	<Event ID="Event06">
+		<RemoveMenuSet>RemoveMenuSet02</RemoveMenuSet>
+		<KitchenTimer>6.5</KitchenTimer>
+		<CustomerSet>CustomerSet02</CustomerSet>
+		<CustomerTimer>1</CustomerTimer>
+		<DayLength>72</DayLength>
+		<Allergy>Wheat</Allergy>
+		<EventDescription>EventDesc01</EventDescription>
+		<Title>Event01</Title>
+	</Event>
+	<Event ID="Event07">
+		<RemoveMenuSet>RemoveMenuSet02</RemoveMenuSet>
+		<KitchenTimer>3</KitchenTimer>
+		<CustomerSet>CustomerSet02</CustomerSet>
+		<CustomerTimer>0.7</CustomerTimer>
+		<DayLength>72</DayLength>
+		<Allergy>Dairy</Allergy>
+		<EventDescription>EventDesc02</EventDescription>
+		<Title>Event02</Title>
+	</Event>
+	<Event ID="Event08">
+		<RemoveMenuSet>RemoveMenuSet02</RemoveMenuSet>
+		<KitchenTimer>5</KitchenTimer>
+		<CustomerSet>CustomerSet02</CustomerSet>
+		<CustomerTimer>0.7</CustomerTimer>
+		<DayLength>72</DayLength>
+		<Allergy>None</Allergy>
+		<EventDescription>EventDesc03</EventDescription>
+		<Title>Event03</Title>
+	</Event>
+	<Event ID="Event09">
+		<RemoveMenuSet>RemoveMenuSet02</RemoveMenuSet>
+		<KitchenTimer>6</KitchenTimer>
+		<CustomerSet>CustomerSet02</CustomerSet>
+		<CustomerTimer>2</CustomerTimer>
+		<DayLength>72</DayLength>
+		<Allergy>None</Allergy>
+		<EventDescription>EventDesc04</EventDescription>
+		<Title>Event04</Title>
+	</Event>
 
-  <Event ID="Event10">
-    <MenuSet>MenuSet03</MenuSet>
-    <KitchenTimer>6.5</KitchenTimer>
-    <CustomerSet>CustomerSet03</CustomerSet>
-    <CustomerTimer>1</CustomerTimer>
-    <DayLength>72</DayLength>
-    <Allergy>Wheat</Allergy>
-    <EventDescription>EventDesc01</EventDescription>
-    <Title>Event01</Title>
-  </Event>
-  <Event ID="Event11">
-    <MenuSet>MenuSet03</MenuSet>
-    <KitchenTimer>3</KitchenTimer>
-    <CustomerSet>CustomerSet03</CustomerSet>
-    <CustomerTimer>0.7</CustomerTimer>
-    <DayLength>72</DayLength>
-    <Allergy>Dairy</Allergy>
-    <EventDescription>EventDesc02</EventDescription>
-    <Title>Event02</Title>
-  </Event>
-  <Event ID="Event12">
-    <MenuSet>MenuSet03</MenuSet>
-    <KitchenTimer>5</KitchenTimer>
-    <CustomerSet>CustomerSet01</CustomerSet>
-    <CustomerTimer>0.7</CustomerTimer>
-    <DayLength>72</DayLength>
-    <Allergy>None</Allergy>
-    <EventDescription>EventDesc03</EventDescription>
-    <Title>Event03</Title>
-  </Event>
-  <Event ID="Event13">
-    <MenuSet>MenuSet03</MenuSet>
-    <KitchenTimer>6</KitchenTimer>
-    <CustomerSet>CustomerSet04</CustomerSet>
-    <CustomerTimer>2</CustomerTimer>
-    <DayLength>72</DayLength>
-    <Allergy>None</Allergy>
-    <EventDescription>EventDesc04</EventDescription>
-    <Title>Event04</Title>
-  </Event>
-  <Event ID="Event14"> <!-- A Victory For Good Taste-->-->
-    <MenuSet>MenuSet03</MenuSet>
-    <KitchenTimer>3</KitchenTimer>
-    <CustomerSet>CustomerSet04</CustomerSet>
-    <CustomerTimer>1</CustomerTimer>
-    <DayLength>72</DayLength>
-    <Allergy>None</Allergy>
-    <EventDescription>EventDesc14</EventDescription>
-    <Title>Event14</Title>
-  </Event>
+	<Event ID="Event10">
+		<RemoveMenuSet>RemoveMenuSet03</RemoveMenuSet>
+		<KitchenTimer>6.5</KitchenTimer>
+		<CustomerSet>CustomerSet03</CustomerSet>
+		<CustomerTimer>1</CustomerTimer>
+		<DayLength>72</DayLength>
+		<Allergy>Wheat</Allergy>
+		<EventDescription>EventDesc01</EventDescription>
+		<Title>Event01</Title>
+	</Event>
+	<Event ID="Event11">
+		<RemoveMenuSet>RemoveMenuSet03</RemoveMenuSet>
+		<KitchenTimer>3</KitchenTimer>
+		<CustomerSet>CustomerSet03</CustomerSet>
+		<CustomerTimer>0.7</CustomerTimer>
+		<DayLength>72</DayLength>
+		<Allergy>Dairy</Allergy>
+		<EventDescription>EventDesc02</EventDescription>
+		<Title>Event02</Title>
+	</Event>
+	<Event ID="Event12">
+		<RemoveMenuSet>RemoveMenuSet03</RemoveMenuSet>
+		<KitchenTimer>5</KitchenTimer>
+		<CustomerSet>CustomerSet01</CustomerSet>
+		<CustomerTimer>0.7</CustomerTimer>
+		<DayLength>72</DayLength>
+		<Allergy>None</Allergy>
+		<EventDescription>EventDesc03</EventDescription>
+		<Title>Event03</Title>
+	</Event>
+	<Event ID="Event13">
+		<RemoveMenuSet>RemoveMenuSet03</RemoveMenuSet>
+		<KitchenTimer>6</KitchenTimer>
+		<CustomerSet>CustomerSet04</CustomerSet>
+		<CustomerTimer>2</CustomerTimer>
+		<DayLength>72</DayLength>
+		<Allergy>None</Allergy>
+		<EventDescription>EventDesc04</EventDescription>
+		<Title>Event04</Title>
+	</Event>
+	<Event ID="Event14"> <!-- A Victory For Good Taste-->-->
+		<RemoveMenuSet>RemoveMenuSet03</RemoveMenuSet>
+		<KitchenTimer>3</KitchenTimer>
+		<CustomerSet>CustomerSet04</CustomerSet>
+		<CustomerTimer>1</CustomerTimer>
+		<DayLength>72</DayLength>
+		<Allergy>None</Allergy>
+		<EventDescription>EventDesc14</EventDescription>
+		<Title>Event14</Title>
+	</Event>
 </Events>
 

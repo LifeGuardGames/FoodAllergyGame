@@ -153,9 +153,9 @@ public class StartManager : Singleton<StartManager>{
 	public void GenerateUnlockedFoodStock(){
 		List<ImmutableDataFood> unlockedFoodStock = new List<ImmutableDataFood>();
 		unlockedFoodStock = DataLoaderFood.GetDataList();
-		// First add all the foods that are used for event
-		ImmutableDataMenuSet currSet = DataLoaderMenuSet.GetData(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()).MenuSet);
-		foreach(string foodID in currSet.MenuSet){
+		// First remove all the foods that are not used for event
+		ImmutableDataRemoveMenuSet currSet = DataLoaderRemoveMenuSet.GetData(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()).RemoveMenuSet);
+		foreach(string foodID in currSet.RemoveMenuSet){
 			if(foodID != "") {
 				unlockedFoodStock.Remove(DataLoaderFood.GetData(foodID));
 			}
@@ -178,12 +178,17 @@ public class StartManager : Singleton<StartManager>{
 
 	public void OnPlayButtonClicked(){
 		// TODO integrate with datamanager tutorial fields
-		if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT1" ||DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT0" || DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventTPlayArea"|| DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventTFlyThru"|| DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventTVIP"){
-			FoodManager.Instance.GenerateMenu(DataLoaderMenuSet.GetData("MenuSetT1").MenuSet.ToList());
+		if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT1"
+			|| DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT0"
+			|| DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventTPlayArea"
+			|| DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventTFlyThru"
+			|| DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventTVIP"){
+
+			FoodManager.Instance.GenerateMenu(DataLoaderRemoveMenuSet.GetData("RemoveMenuSetT1").RemoveMenuSet.ToList());	// TODO remove now, fix
 			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT);
 		}
 		else{
-			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.MENUPLANNING, "LoadingKey00", "LoadingImage00");
+			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.MENUPLANNING, "LoadingKeyMenu", "LoadingImageMenu");
         }
 	}
 
@@ -193,7 +198,7 @@ public class StartManager : Singleton<StartManager>{
 
 	public void DecoButtonClicked(){
 		DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance = false;
-		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.DECO);
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.DECO, "LoadingKeyDecoration");
 	}
 
 	public void OnInfoButtonClicked(){

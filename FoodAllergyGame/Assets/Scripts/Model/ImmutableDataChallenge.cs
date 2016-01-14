@@ -10,9 +10,9 @@ public class ImmutableDataChallenge  {
 		get { return id; }
 	}
 
-	private string menuSet;
-	public string MenuSet {
-		get { return menuSet; }
+	private string challengeMenuSet;		// This is an additive menu set, unlike removeMenuSet
+	public string ChallengeMenuSet {
+		get { return challengeMenuSet; }
 	}
 
 	private string customerSet;
@@ -69,7 +69,7 @@ public class ImmutableDataChallenge  {
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 
 		this.id = id;
-		menuSet = XMLUtils.GetString(hashElements["MenuSet"] as IXMLNode, null, error);
+		challengeMenuSet = XMLUtils.GetString(hashElements["ChallengeMenuSet"] as IXMLNode, null, error);
 		kitchenTimerMod = XMLUtils.GetFloat(hashElements["KitchenTimer"] as IXMLNode);
 		customerSet = XMLUtils.GetString(hashElements["CustomerSet"] as IXMLNode);
 		customerTimerMod = XMLUtils.GetFloat(hashElements["CustomerTimer"] as IXMLNode);

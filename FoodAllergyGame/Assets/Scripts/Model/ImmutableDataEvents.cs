@@ -10,9 +10,9 @@ public class ImmutableDataEvents{
 		get{ return id; }
 	}
 
-	private string menuSet;
-	public string MenuSet{
-		get{return menuSet;}
+	private string removeMenuSet;
+	public string RemoveMenuSet{
+		get{return removeMenuSet;}
 	}
 
 	private string customerSet;
@@ -64,7 +64,7 @@ public class ImmutableDataEvents{
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 		
 		this.id = id;
-		menuSet = XMLUtils.GetString(hashElements["MenuSet"] as IXMLNode, null, error);
+		removeMenuSet = XMLUtils.GetString(hashElements["RemoveMenuSet"] as IXMLNode, null, error);
 		kitchenTimerMod = XMLUtils.GetFloat(hashElements["KitchenTimer"] as IXMLNode);
 		customerSet = XMLUtils.GetString(hashElements["CustomerSet"] as IXMLNode);
 		customerTimerMod = XMLUtils.GetFloat(hashElements["CustomerTimer"] as IXMLNode);

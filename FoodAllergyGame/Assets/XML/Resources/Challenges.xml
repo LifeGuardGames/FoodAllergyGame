@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Challenges>
 	<Challenge ID="Challenge01">
-    <MenuSet>MenuSetT1</MenuSet>
+    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>CustomerSetTF</CustomerSet>
     <CustomerTimer>2</CustomerTimer>

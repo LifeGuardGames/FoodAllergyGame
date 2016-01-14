@@ -15,9 +15,9 @@ public class RestaurantManagerArcade : RestaurantManager {
 		customerHash = new Dictionary<string, GameObject>();
 		satisfactionAI = new SatisfactionAI();
 
-		// Only generate debug menu if menulist is not populated
+		// Only generate debug menu if menulist is not populated TODO removemenu set now, fix
 		if(DataManager.Instance.IsDebug && FoodManager.Instance.MenuList == null) {
-			FoodManager.Instance.GenerateMenu(DataLoaderMenuSet.GetData("MenuSetT1").MenuSet.ToList());
+			FoodManager.Instance.GenerateMenu(DataLoaderRemoveMenuSet.GetData("RemoveMenuSetT1").RemoveMenuSet.ToList());
 		}
 
 		if(DataManager.Instance.GetEvent() == "EventTPlayArea" || DataManager.Instance.GetEvent() == "EventTFlyThru") {

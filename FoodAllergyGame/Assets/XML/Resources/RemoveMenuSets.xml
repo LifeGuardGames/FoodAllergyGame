@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RemoveMenuSets>
+	<RemoveMenuSet ID="RemoveMenuSetT1">
+		<FoodList>Food00,Food01,Food02,Food03,Food04,Food05,Food06,Food07</FoodList>
+	</RemoveMenuSet>
+	<RemoveMenuSet ID="RemoveMenuSet00">
+		<FoodList></FoodList>
+	</RemoveMenuSet>
+	<RemoveMenuSet ID="RemoveMenuSet01">
+		<FoodList></FoodList>
+	</RemoveMenuSet>
+	<RemoveMenuSet ID="RemoveMenuSet02">
+		<FoodList></FoodList>
+	</RemoveMenuSet>
+	<RemoveMenuSet ID="RemoveMenuSet03">
+		<FoodList></FoodList>
+	</RemoveMenuSet>
+	<RemoveMenuSet ID="RemoveMenuSet04">
+		<FoodList></FoodList>
+	</RemoveMenuSet>
+</RemoveMenuSets>

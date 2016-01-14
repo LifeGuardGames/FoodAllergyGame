@@ -27,7 +27,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			FullRestaurant();
 		}
 		KitchenManager.Instance.Init(chall.KitchenTimerMod);
-		string[] temp = DataLoaderMenuSet.GetData(chall.MenuSet).MenuSet;
+		string[] temp = DataLoaderChallengeMenuSet.GetData(chall.ChallengeMenuSet).ChallengeMenuSet;
 		List<string> menuList = new List<string>();
 		for(int i = 0; i< temp.Length; i++) {
 			menuList.Add(temp[i]);

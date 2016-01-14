@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ChallengeMenuSets>
+	<ChallengeMenuSet ID="ChallengeMenuSetT1">
+		<FoodList>Food00,Food01,Food02,Food03,Food04,Food05,Food06,Food07</FoodList>
+	</ChallengeMenuSet>
+	<ChallengeMenuSet ID="ChallengeMenuSet00">
+		<FoodList></FoodList>
+	</ChallengeMenuSet>
+</ChallengeMenuSets>
