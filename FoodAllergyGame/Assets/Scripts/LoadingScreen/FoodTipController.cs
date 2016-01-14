@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// Controller to show food tips
@@ -10,11 +11,20 @@ using System.Collections;
 public class FoodTipController : MonoBehaviour {
 
 	private int unlockedFoodCount = -1;		// Init to force initialization
+	private List<ImmutableDataFood> internalFoodList;
 
 	void Start(){
+		RefreshInternalList();
+	}
 
+	private void RefreshInternalList(){
+		List<ImmutableDataFood> newFoodList = DataLoaderFood.GetDataListWithinTier(TierManager.Instance.Tier);
+		if(newFoodList.Count != unlockedFoodCount){
+			internalFoodList = newFoodList;
+			unlockedFoodCount = internalFoodList.Count;
 
-		//bool isNewFoodUnlocked = unlockedFoodCount == FoodManager.Instance.FoodStockList
+			// TODO Reset other stuff here
+		}
 	}
 
 	public void ShowFoodTip(){
