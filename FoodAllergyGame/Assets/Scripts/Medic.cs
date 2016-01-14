@@ -72,7 +72,7 @@ public class Medic : Singleton<Medic> {
 		// Saved the person in time
 		if(RestaurantManager.Instance.sickCustomers.Count > 0){
 			ShowThoughtBubble();
-            RestaurantManager.Instance.sickCustomers[0].GetComponent<Customer>().Saved();
+			RestaurantManager.Instance.sickCustomers[0].GetComponent<Customer>().currBehav.Reason();
 			yield return new WaitForSeconds(3.0f);
 		}
 		// Missed the person... oh well

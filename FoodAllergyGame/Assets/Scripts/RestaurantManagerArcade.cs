@@ -77,7 +77,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 			if(!dayOver && lineCount < 8) {
 
 				doorController.OpenAndCloseDoor();
-
+				Debug.Log(customerSpawnTimer);
 				ImmutableDataCustomer customerData;
 				if(DataManager.Instance.GameData.DayTracker.AvgDifficulty == 6.0f) {
 					customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty;
@@ -236,7 +236,8 @@ public class RestaurantManagerArcade : RestaurantManager {
 			customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
 			customerNumber++;
 			satisfactionAI.AddCustomer();
-			cus.GetComponent<Customer>().JumpToTable(i);
+			cus.GetComponent<Customer>().tableNum = i;
+			cus.GetComponent<CustomerComponent>().Reason();
 			GetTable(i).inUse = true;
 		}
 	}

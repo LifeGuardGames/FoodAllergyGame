@@ -177,8 +177,9 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		if(tableType != TableType.FlyThru){
 			if(Waiter.Instance.CurrentLineCustomer != null && !inUse && !isBroken){
 				Waiter.Instance.CurrentLineCustomer.transform.localScale = Vector3.one;
-				Waiter.Instance.CurrentLineCustomer.GetComponent<Customer>().JumpToTable(tableNumber);
-				inUse = true;
+				Waiter.Instance.CurrentLineCustomer.GetComponent<Customer>().tableNum = tableNumber;
+				Waiter.Instance.CurrentLineCustomer.GetComponent<Customer>().currBehav.Reason();
+                inUse = true;
 			}
 			else if(isGossiped){
 			node.transform.GetChild(0).GetComponent<CustomerGossiper>().GoAway();
