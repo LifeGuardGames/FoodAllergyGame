@@ -4,18 +4,19 @@ using System;
 
 public class BehavWaitForOrder : CustomerComponent {
 
-	Customer self;
 
-	public BehavWaitForOrder(Customer cus) {
-		self = cus;
-		Act();
+	public BehavWaitForOrder() {
 	}
 
 	public override void Reason() {
-		BehavWaitForFood fod = new BehavWaitForFood(self);
+		var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[2]);
+		CustomerComponent fod = (CustomerComponent)Activator.CreateInstance(type);
+		fod.self = self;
+		fod.Act();
 		self.currBehav = fod;
 		fod = null;
-	}
+		
+    }
 
 	public override void Act() {
 		self.state = CustomerStates.WaitForOrder;

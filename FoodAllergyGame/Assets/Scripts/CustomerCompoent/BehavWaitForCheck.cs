@@ -1,17 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class BehavWaitForCheck : CustomerComponent {
 
-	Customer self;
 
-	public BehavWaitForCheck(Customer cus) {
-		self = cus;
-		Act();
+	public BehavWaitForCheck() {
+		
 	}
 
 	public override void Reason() {
-		BehavNotifyLeave leave = new BehavNotifyLeave(self);
+		var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[5]);
+		CustomerComponent leave = (CustomerComponent)Activator.CreateInstance(type);
+		leave.self = self;
+		leave.Act();
 		leave = null;
 	}
 

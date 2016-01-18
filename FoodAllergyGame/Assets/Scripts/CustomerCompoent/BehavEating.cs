@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class BehavEating :CustomerComponent {
 
-	Customer self;
 
-	public BehavEating(Customer cus) {
-		self = cus;
-		Act();
+	public BehavEating() {
+		
 	}
 
 	public override void Reason() {
@@ -17,7 +16,10 @@ public class BehavEating :CustomerComponent {
 		self.StartCoroutine("SatisfactionTimer");
 		AudioManager.Instance.PlayClip("CustomerReadyForCheck");
 		self.DestroyOrder();
-		BehavWaitForCheck chk = new BehavWaitForCheck(self);
+		var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[4]);
+		CustomerComponent chk = (CustomerComponent)Activator.CreateInstance(type);
+		chk.self = self;
+		chk.Act();
 		self.currBehav = chk;
 		chk = null;
 	}

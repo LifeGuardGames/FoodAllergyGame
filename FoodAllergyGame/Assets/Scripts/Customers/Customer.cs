@@ -31,6 +31,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	private int playAreaIndexAux;				// For use in coroutine, needs parameter with string call
     public float spawnTime;
 	public bool saved = false;
+	public string behavFlow;
 
 	// Basic intitialzation
 	public virtual void Init(int num, ImmutableDataEvents mode){
@@ -83,7 +84,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				RestaurantManager.Instance.lineCount++;
 			}
 			this.gameObject.transform.position = transform.parent.position;
-			BehavWaitingInLine wait = new BehavWaitingInLine(this);
+			BehavWaitingInLine wait = new BehavWaitingInLine();
+			wait.self = this;
+			wait.Act();
 			currBehav = wait;
 			wait = null;
 		}
@@ -156,7 +159,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				RestaurantManager.Instance.lineCount++;
 			}
 			this.gameObject.transform.position = transform.parent.position;
-			BehavWaitingInLine wait = new BehavWaitingInLine(this);
+			BehavWaitingInLine wait = new BehavWaitingInLine();
 			currBehav = wait;
 			wait = null;
 		}
@@ -570,8 +573,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		StartCoroutine("SatisfactionTimer");
 	}
 
-	public void DestroySelf() {
-		Destroy(this.gameObject);
+	public void DestroySelf(float delay) {
+		Destroy(this.gameObject, delay);
 	}
 
 	public void DestroyOrder() {

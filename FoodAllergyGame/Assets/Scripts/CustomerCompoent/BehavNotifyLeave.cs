@@ -4,11 +4,9 @@ using System;
 
 public class BehavNotifyLeave : CustomerComponent {
 
-	Customer self;
 
-	public BehavNotifyLeave(Customer cus) {
-		self = cus;
-		Act();
+	public BehavNotifyLeave() {
+
 	}
 
 	public override void Reason() {
@@ -40,6 +38,6 @@ public class BehavNotifyLeave : CustomerComponent {
 			RestaurantManager.Instance.lineController.FillInLine();
 		}
 		AudioManager.Instance.PlayClip("CustomerLeave");
-		self.DestroySelf();
+		self.DestroySelf(0);
 	}
 }

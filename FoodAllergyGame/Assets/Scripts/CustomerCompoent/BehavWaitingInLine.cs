@@ -4,12 +4,9 @@ using System;
 
 public class BehavWaitingInLine : CustomerComponent {
 
-	Customer self;
 
-	public BehavWaitingInLine(Customer cus) {
-		self = cus;
-		self.state = CustomerStates.InLine;
-		Act();
+	public BehavWaitingInLine() {
+		stepNum = 0;
 	}
 
 	public override void Reason() {
@@ -17,7 +14,6 @@ public class BehavWaitingInLine : CustomerComponent {
 		RestaurantManager.Instance.CustomerLineSelectHighlightOff();
 		Waiter.Instance.CurrentLineCustomer = null;
 		AudioManager.Instance.PlayClip("CustomerSeated");
-
 		//sitting down
 		self.transform.SetParent(RestaurantManager.Instance.GetTable(self.tableNum).Seat);
 		self.transform.localPosition = Vector3.zero;
@@ -43,7 +39,11 @@ public class BehavWaitingInLine : CustomerComponent {
 		self.gameObject.GetComponentInParent<Table>().currentCustomerID = self.customerID;
 		self.GetComponent<BoxCollider>().enabled = false;
 		RestaurantManager.Instance.lineController.FillInLine();
-		BehavReadingMenu read = new BehavReadingMenu(self);
+		var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[0]);
+		CustomerComponent read = (CustomerComponent)Activator.CreateInstance(type);
+		read.self = self;
+		read.Act();
+		//BehavReadingMenu read = new BehavReadingMenu(self);
 		self.currBehav = read;
 		read = null;
 	}

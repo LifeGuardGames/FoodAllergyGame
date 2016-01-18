@@ -2,22 +2,29 @@
 using System.Collections;
 using System;
 
-public class BehavAllergyAttck : CustomerComponent {
+public class BehavAllergyAttack : CustomerComponent {
 
-	Customer self;
 
-	public BehavAllergyAttck(Customer cus) {
-		self = cus;
+
+	public BehavAllergyAttack() {
+
 	}
 
 	public override void Reason() {
 		if(self.saved) {
-			BehavSaved sav = new BehavSaved(self);
+			self.StartCoroutine("AllergyTimer");
+			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[7]);
+			CustomerComponent sav = (CustomerComponent)Activator.CreateInstance(type);
+			sav.self = self;
+			sav.Act();
 			self.currBehav = sav;
 			sav = null;
 		}
 		else {
-			BehavHospital hos = new BehavHospital(self);
+			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[8]);
+			CustomerComponent hos = (CustomerComponent)Activator.CreateInstance(type);
+			hos.self = self;
+			hos.Act();
 			self.currBehav = hos;
 			hos = null;
 		}

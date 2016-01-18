@@ -35,6 +35,11 @@ public class ImmutableDataCustomer{
 		get{return tier;}
 	}
 
+	private string behavFlow;
+	public string BehavFlow {
+		get { return behavFlow; }
+	}
+
 	public ImmutableDataCustomer(string id, IXMLNode xmlNode, string error){
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 		
@@ -44,5 +49,6 @@ public class ImmutableDataCustomer{
 		spriteName = XMLUtils.GetString(hashElements["SpriteName"] as IXMLNode, null, error);
 		script = XMLUtils.GetString(hashElements["Script"] as IXMLNode, null, error);
 		tier = XMLUtils.GetInt(hashElements["Tier"] as IXMLNode);
+		behavFlow = XMLUtils.GetString(hashElements["Flow"] as IXMLNode);
 	}
 }

@@ -50,6 +50,7 @@ public class ImmutableDataEvents{
 		get{return eventTitle;}
 	}
 
+
 //	public string eventPropLeft;
 //	public string EventPropLeft {
 //		get { return eventPropLeft; }

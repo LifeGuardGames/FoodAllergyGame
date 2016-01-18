@@ -4,10 +4,9 @@ using System;
 
 public class BehavSaved : CustomerComponent {
 
-	Customer self;
 
-	public BehavSaved(Customer cus) {
-		self = cus;
+	public BehavSaved() {
+
 	}
 
 	public override void Reason() {
@@ -15,6 +14,7 @@ public class BehavSaved : CustomerComponent {
 	}
 
 	public override void Act() {
+		Debug.Log("Saved");
 		AudioManager.Instance.PlayClip("CustomerSaved");
 		RestaurantManager.Instance.savedCustomers++;
 		self.customerAnim.SetSavedAllergyAttack();
@@ -28,6 +28,6 @@ public class BehavSaved : CustomerComponent {
 		RestaurantManager.Instance.GetTable(self.tableNum).inUse = false;
 		RestaurantManager.Instance.CustomerLeft(self, false, self.satisfaction, 1, self.gameObject.transform.position, 720f, false);
 		AudioManager.Instance.PlayClip("CustomerLeave");
-		self.DestroySelf();
+		self.DestroySelf(0);
 	}
 }

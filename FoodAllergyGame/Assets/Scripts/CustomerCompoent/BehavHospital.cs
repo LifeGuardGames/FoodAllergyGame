@@ -4,10 +4,8 @@ using System;
 
 public class BehavHospital : CustomerComponent {
 
-	Customer self;
 
-	public BehavHospital(Customer cus) {
-		self = cus;
+	public BehavHospital() {
 	}
 
 	public override void Reason() {

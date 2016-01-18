@@ -7,6 +7,7 @@
 		<SpriteName>Customer</SpriteName>
 		<Script>Customer</Script>
 		<Tier>0</Tier>
+    <Flow>BehavFlow00</Flow>
 	</Customer>
 	<Customer ID="Customer01">
 		<CustomerNameKey>CustomerImpatient</CustomerNameKey>
@@ -14,13 +15,15 @@
 		<SpriteName>CustomerImpatient</SpriteName>
 		<Script>CustomerImpatient</Script>
 		<Tier>0</Tier>
-	</Customer>
+    <Flow>BehavFlow00</Flow>
+  </Customer>
 	<Customer ID="Customer02">
 		<CustomerNameKey>CustomerEater</CustomerNameKey>
 		<CustomerDesc>CustomerEaterDesc</CustomerDesc>
 		<SpriteName>CustomerEater</SpriteName>
 		<Script>CustomerEater</Script>
 		<Tier>-1</Tier>
+    <Flow>BehavFlow00</Flow>
 	</Customer>
 	<Customer ID="Customer03">
 		<CustomerNameKey>CustomerTableSmasher</CustomerNameKey>
@@ -28,6 +31,7 @@
 		<SpriteName>CustomerTableSmasher</SpriteName>
 		<Script>CustomerTableSmasher</Script>
 		<Tier>5</Tier>
+    <Flow>BehavFlow00</Flow>
 	</Customer>
 	<Customer ID="Customer04">
 		<CustomerNameKey>CustomerHospitalRunner</CustomerNameKey>
@@ -35,6 +39,7 @@
 		<SpriteName>CustomerHospitalRunner</SpriteName>
 		<Script>CustomerHospitalRunner</Script>
 		<Tier>-1</Tier>
+    <Flow>BehavFlow00</Flow>
 	</Customer>
 	<Customer ID="Customer05">
 		<CustomerNameKey>CustomerAllergyAttack</CustomerNameKey>
@@ -42,6 +47,7 @@
 		<SpriteName>CustomerAllergyAttack</SpriteName>
 		<Script>CustomerAllergyAttack</Script>
 		<Tier>-1</Tier>
+    <Flow>BehavFlow00</Flow>
 	</Customer>
 	<Customer ID="Customer06">
 		<CustomerNameKey>CustomerGossiper</CustomerNameKey>
@@ -49,6 +55,7 @@
 		<SpriteName>CustomerGossiper</SpriteName>
 		<Script>CustomerGossiper</Script>
 		<Tier>-1</Tier>
+    <Flow>BehavFlow00</Flow>
 	</Customer>
 	<Customer ID="Customer07">
 		<CustomerNameKey>CustomerCoolKid</CustomerNameKey>
@@ -56,6 +63,7 @@
 		<SpriteName>CustomerCoolKid</SpriteName>
 		<Script>CustomerCoolKid</Script>
 		<Tier>3</Tier>
+    <Flow>BehavFlow00</Flow>
 	</Customer>
 	<Customer ID="Customer08">
 		<CustomerNameKey>CustomerPlayful</CustomerNameKey>
@@ -63,6 +71,7 @@
 		<SpriteName>CustomerPlayful</SpriteName>
 		<Script>CustomerPlayful</Script>
 		<Tier>-1</Tier>
+    <Flow>BehavFlow00</Flow>
 	</Customer>
 	<Customer ID="Customer09">
 		<CustomerNameKey>CustomerBlackOut</CustomerNameKey>
@@ -70,6 +79,7 @@
 		<SpriteName>CustomerBlackOut</SpriteName>
 		<Script>CustomerBlackOut</Script>
 		<Tier>-1</Tier>
+    <Flow>BehavFlow00</Flow>
 	</Customer>
 	<Customer ID="Customer10">
 		<CustomerNameKey>CustomerTutorial</CustomerNameKey>
@@ -77,6 +87,7 @@
 		<SpriteName>CustomerTutorial</SpriteName>
 		<Script>CustomerTutorial</Script>
 		<Tier>-1</Tier>
+    <Flow>BehavFlow00</Flow>
 	</Customer>
 	<Customer ID="Customer11">
 		<CustomerNameKey>CustomerPlayAreaTut</CustomerNameKey>
@@ -84,6 +95,7 @@
 		<SpriteName>CustomerPlayAreaTut</SpriteName>
 		<Script>CustomerPlayAreaTut</Script>
 		<Tier>-1</Tier>
+    <Flow>BehavFlow00</Flow>
 	</Customer>
 	<Customer ID="Customer12">
 		<CustomerNameKey>CustomerVIPTut</CustomerNameKey>
@@ -91,6 +103,7 @@
 		<SpriteName>CustomerVIPTut</SpriteName>
 		<Script>CustomerVIPTut</Script>
 		<Tier>-1</Tier>
+    <Flow>BehavFlow00</Flow>
 	</Customer>
 	<Customer ID="Customer13">
 		<CustomerNameKey>CustomerFlythroughTut</CustomerNameKey>
@@ -98,5 +111,6 @@
 		<SpriteName>CustomerFlythroughTut</SpriteName>
 		<Script>CustomerFlythroughTut</Script>
 		<Tier>-1</Tier>
+    <Flow>BehavFlow00</Flow>
 	</Customer>
 </Customers>

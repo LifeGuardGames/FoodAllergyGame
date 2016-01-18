@@ -1,18 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class BehavReadingMenu : CustomerComponent {
 
-	Customer self;
 
-	public BehavReadingMenu(Customer cus) {
-		self = cus;
-		Act();
+	public BehavReadingMenu() {
 	}
+
+
 
 	public override void Reason() {
 
-		BehavWaitForOrder order = new BehavWaitForOrder(self);
+		var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[1]);
+		CustomerComponent order = (CustomerComponent)Activator.CreateInstance(type);
+		order.self = self;
+		order.Act();
 		self.currBehav = order;
 		order = null;
 

@@ -4,12 +4,8 @@ using System;
 
 public class BehavWaitForFood : CustomerComponent {
 
-	Customer self;
 
-	public BehavWaitForFood(Customer cus) {
-		self = cus;
-		self.state = CustomerStates.WaitForFood;
-		Act();
+	public BehavWaitForFood() {
 	}
 
 	public override void Reason() {
@@ -22,12 +18,18 @@ public class BehavWaitForFood : CustomerComponent {
 		self.StopCoroutine("SatisfactionTimer");
 		if(self.order.GetComponent<Order>().allergy.Contains(self.allergy) && self.allergy != Allergies.None) {
 			self.state = CustomerStates.AllergyAttack;
-			BehavAllergyAttck aa = new BehavAllergyAttck(self);
+			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[6]);
+			CustomerComponent aa = (CustomerComponent)Activator.CreateInstance(type);
+			aa.self = self;
+			aa.Act();
 			self.currBehav = aa;
 			aa = null;
 		}
 		else {
-			BehavEating eat = new BehavEating(self);
+			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[3]);
+			CustomerComponent eat = (CustomerComponent)Activator.CreateInstance(type);
+			eat.self = self;
+			eat.Act();
 			self.currBehav = eat;
 			eat = null;
 			self.state = CustomerStates.Eating;

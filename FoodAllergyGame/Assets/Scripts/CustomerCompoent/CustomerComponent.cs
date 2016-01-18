@@ -3,6 +3,8 @@ using System.Collections;
 
 public abstract class CustomerComponent  {
 
+	public Customer self;
+	protected int stepNum;
 
 	// Use this for initialization
 	public abstract void Reason();
