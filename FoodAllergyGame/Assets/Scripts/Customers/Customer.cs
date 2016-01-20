@@ -3,6 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Analytics;
 
+
+/// <summary>
+/// Customer AI is now handled through a series of classes known as behav which are childrens of the customer component generic class
+/// The customer class now only handles interactions between a customer and an outside object such as waiter and order
+/// for more information on behavs check out customer Component
+/// </summary>
+
+
 public class Customer : MonoBehaviour, IWaiterSelection{
 
 	public int tableNum;
@@ -11,7 +19,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public string customerID;			// The customer's id used for identification in the 
 	public CustomerStates state;		// The current state of the customer
 	public Allergies allergy;			// The allergy of the customer
-	protected float menuTimer = 4.0f;	// Time spent looking at the menu
+	public float menuTimer = 4.0f;	// Time spent looking at the menu
 	public float attentionSpan = 15.0f;// The attention timer
 	public CustomerComponent currBehav;
 	public int satisfaction;			// The satisfaction the customer has, everytime the attention span 

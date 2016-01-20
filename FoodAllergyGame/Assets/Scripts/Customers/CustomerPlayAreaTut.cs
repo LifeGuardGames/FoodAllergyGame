@@ -15,18 +15,12 @@ public class CustomerPlayAreaTut : Customer {
 		UpdateSatisfaction(-2);
 	}
 
-	public override void JumpToTable (int _tableNum)
-	{
-		tutFingers.transform.GetChild(7).gameObject.SetActive(false);
-		base.JumpToTable (_tableNum);
-	}
 
 	public void hideTableFinger(){
 		transform.GetChild(2).gameObject.SetActive(false);
 	}
 
-	public override void OnClicked ()
-	{
+	public override void OnClicked (){
 		base.OnClicked ();
 		//if(!usedPlayArea){
 			hideTableFinger();
@@ -36,8 +30,7 @@ public class CustomerPlayAreaTut : Customer {
 		//}
 	}
 
-	public override void GoToPlayArea (Vector3 playAreaSpot, int spotIndex, int deltaSatisfaction)
-	{
+	public override void GoToPlayArea (Vector3 playAreaSpot, int spotIndex, int deltaSatisfaction){
 		base.GoToPlayArea (playAreaSpot, spotIndex, deltaSatisfaction);
 		tutFingers.transform.GetChild(7).gameObject.SetActive(false);
 		//usedPlayArea = true;
