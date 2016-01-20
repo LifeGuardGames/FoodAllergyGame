@@ -5,7 +5,7 @@ using System;
 public class BehavEaterNotifyLeave : CustomerComponent {
 
 
-	 BehavEaterNotifyLeave() {
+	 public BehavEaterNotifyLeave() {
 
 	}
 

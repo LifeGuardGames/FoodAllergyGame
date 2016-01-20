@@ -4,7 +4,7 @@ using System;
 
 public class BehavHospitalRunnerAllergyAttack : CustomerComponent {
 
-	BehavHospitalRunnerAllergyAttack() {
+	public BehavHospitalRunnerAllergyAttack() {
 	}
 
 	public override void Reason() {

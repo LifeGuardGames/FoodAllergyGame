@@ -4,7 +4,7 @@ using System;
 
 public class BehavTutorialReadingMenu : CustomerComponent {
 
-	BehavTutorialReadingMenu() {
+	public BehavTutorialReadingMenu() {
 
 	}
 

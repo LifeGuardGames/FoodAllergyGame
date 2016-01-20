@@ -4,6 +4,10 @@ using System;
 
 public class BehavGossipEating : CustomerComponent {
 
+	public BehavGossipEating() {
+
+	}
+
 	public override void Reason() {
 		self.customerUI.ToggleStar(true);
 		self.attentionSpan = 10.0f * self.timer;

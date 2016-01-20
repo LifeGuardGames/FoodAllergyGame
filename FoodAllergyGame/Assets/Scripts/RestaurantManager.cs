@@ -191,6 +191,7 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 		GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
 		GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 		cus.GetComponent<CustomerTutorial>().isAllergy = true;
+		cus.GetComponent<Customer>().behavFlow = test.BehavFlow;
 		cus.GetComponent<Customer>().Init(customerNumber, eventData);
 		customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
 		

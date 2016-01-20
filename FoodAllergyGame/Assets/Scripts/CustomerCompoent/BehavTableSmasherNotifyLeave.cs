@@ -4,7 +4,7 @@ using System;
 
 public class BehavTableSmasherNotifyLeave : CustomerComponent {
 
-	BehavTableSmasherNotifyLeave() {
+	public BehavTableSmasherNotifyLeave() {
 
 	}
 

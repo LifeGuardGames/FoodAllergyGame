@@ -4,7 +4,7 @@ using System;
 
 public class BehavGossip : CustomerComponent {
 
-	BehavGossip() {
+	public BehavGossip() {
 
 	}
 

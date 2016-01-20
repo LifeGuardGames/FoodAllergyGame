@@ -266,7 +266,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			if(order != null){
 				Destroy(order.gameObject);
 			}
-			NotifyLeave();
+			BehavNotifyLeave leave = new BehavNotifyLeave();
+			leave.self = this;
+			leave.Act();
 		}
 	}
 
@@ -283,7 +285,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 					if(order != null){
 						Destroy(order.gameObject);
 					}
-					NotifyLeave();
+					BehavNotifyLeave leave = new BehavNotifyLeave();
+					leave.self = this;
+					leave.Act();
 				}
 			}
 		}
@@ -298,7 +302,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				if(order != null){
 					Destroy(order.gameObject);
 				}
-				NotifyLeave();
+				BehavNotifyLeave leave = new BehavNotifyLeave();
+				leave.self = this;
+				leave.Act();
 			}
 		}
 	}

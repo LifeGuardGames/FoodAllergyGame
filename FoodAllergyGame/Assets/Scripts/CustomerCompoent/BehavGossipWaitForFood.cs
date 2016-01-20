@@ -4,7 +4,9 @@ using System;
 
 public class BehavGossipWaitForFood : CustomerComponent {
 
+	public BehavGossipWaitForFood() {
 
+	}
 
 	public override void Reason() {
 		self.customerUI.ToggleWait(true);

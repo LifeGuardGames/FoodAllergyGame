@@ -4,6 +4,10 @@ using System;
 
 public class BehavVIPTutReadingMenu : CustomerComponent {
 
+	public BehavVIPTutReadingMenu() {
+
+	}
+
 	public override void Reason() {
 		throw new NotImplementedException();
 	}

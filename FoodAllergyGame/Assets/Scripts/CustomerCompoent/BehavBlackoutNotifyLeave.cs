@@ -4,7 +4,7 @@ using System;
 
 public class BehavBlackoutNotifyLeave : CustomerComponent {
 
-	BehavBlackoutNotifyLeave() {
+	public BehavBlackoutNotifyLeave() {
 
 	}
 

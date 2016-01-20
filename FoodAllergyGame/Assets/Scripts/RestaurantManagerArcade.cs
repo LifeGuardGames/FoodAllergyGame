@@ -68,6 +68,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 			GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
 			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 			cus.GetComponent<Customer>().Init(customerNumber, eventData);
+			cus.GetComponent<Customer>().behavFlow = test.BehavFlow;
 			customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
 			customerNumber++;
 			satisfactionAI.AddCustomer();
@@ -77,21 +78,23 @@ public class RestaurantManagerArcade : RestaurantManager {
 			if(!dayOver && lineCount < 8) {
 
 				doorController.OpenAndCloseDoor();
-				Debug.Log(customerSpawnTimer);
+				
 				ImmutableDataCustomer customerData;
-				if(DataManager.Instance.GameData.DayTracker.AvgDifficulty == 6.0f) {
-					customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty;
+				if(DataManager.Instance.GameData.DayTracker.AvgDifficulty == 15.0f) {
+					customerSpawnTimer = 6.0f;
 				}
 				else if(IsTableAvilable()) {
-					customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty * 0.27f;
+					customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty * 0.3f;
 				}
 				else {
 					customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty * 0.4f;
 				}
 
-				if(customerSpawnTimer < 3) {
-					customerSpawnTimer = 3;
+				if(customerSpawnTimer < 3.0f) {
+					customerSpawnTimer = 3.0f;
 				}
+
+				Debug.Log(customerSpawnTimer);
 				rand = UnityEngine.Random.Range(0, DataManager.Instance.GameData.RestaurantEvent.CustomerList.Count);
 				if(eventData.ID == "EventTPlayArea") {
 					customerData = DataLoaderCustomer.GetData("Customer11");
@@ -116,7 +119,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 				customerNumber++;
 				cus.GetComponent<Customer>().behavFlow = customerData.BehavFlow;
 				cus.GetComponent<Customer>().Init(customerNumber, eventData);
-
+				cus.GetComponent<Customer>().behavFlow = customerData.BehavFlow;
 				customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
 				satisfactionAI.AddCustomer();
 				StartCoroutine(SpawnCustomer());

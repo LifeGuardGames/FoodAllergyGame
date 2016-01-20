@@ -4,6 +4,10 @@ using System;
 
 public class BehavGossipReadMenu : CustomerComponent {
 
+	public BehavGossipReadMenu() {
+
+	}
+
 	public override void Reason() {
 		self.customerUI.ToggleWait(true);
 		var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[1]);
