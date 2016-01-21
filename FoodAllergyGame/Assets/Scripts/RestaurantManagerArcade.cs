@@ -84,7 +84,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 					customerSpawnTimer = 6.0f;
 				}
 				else if(IsTableAvilable()) {
-					customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty * 0.3f;
+					customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty * 0.27f;
 				}
 				else {
 					customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty * 0.4f;

@@ -50,7 +50,7 @@ public class SatisfactionAI{
 //			difficultyLevel = 10;
 		}
 		else{
-			difficultyLevel = (difficultyLevel + time)/2 ;
+			difficultyLevel = (difficultyLevel + (time-4.0f))/2 ;
 		}
 	}
 
