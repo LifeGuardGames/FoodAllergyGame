@@ -8,12 +8,11 @@ using System.Collections;
 public class ArrowBetween : MonoBehaviour {
 	public Transform frontTransform;
 	public Transform backTransform;
+	public float percentageBetween = 0.5f;
 
 	void Update () {
 		// Set the position between two points
-		Vector3 middlePosition = frontTransform.position + backTransform.position;
-		middlePosition = middlePosition / 2;
-		transform.position = middlePosition;
+		transform.position = Vector3.Lerp(backTransform.position, frontTransform.position, percentageBetween);
 
 		// Set the rotation
 		float angleRotation = Mathf.Atan2(frontTransform.position.y - backTransform.position.y,
