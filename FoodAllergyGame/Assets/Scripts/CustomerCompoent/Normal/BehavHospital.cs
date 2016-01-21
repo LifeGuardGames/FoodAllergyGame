@@ -26,6 +26,7 @@ public class BehavHospital : CustomerComponent {
 		
 		self.SetSatisfaction(0);
 		self.DestroyOrder();
+		self.DestroySelf(0);
 
 	}
 }

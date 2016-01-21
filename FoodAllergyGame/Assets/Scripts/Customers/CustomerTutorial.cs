@@ -20,18 +20,6 @@ public class CustomerTutorial : Customer{
 		}
 	}
 
-	public override void JumpToTable(int tableN){
-		hideFinger();
-		if(isAllergy){
-			menuTimer *= 2; 
-		}
-		base.JumpToTable(tableN);
-	}
-
-	public override void GetOrder(){
-		base.GetOrder();
-	}
-
 	public override void OrderTaken(ImmutableDataFood food){
 		hideFinger();
 		base.OrderTaken(food);
@@ -46,9 +34,6 @@ public class CustomerTutorial : Customer{
 		}
 	}
 
-	public override void NotifyLeave(){
-		base.NotifyLeave();
-	}
 
 	public void nextHint(){
 		StartCoroutine("ShowTutFinger");

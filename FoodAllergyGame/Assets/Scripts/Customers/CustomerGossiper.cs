@@ -3,13 +3,8 @@ using System.Collections;
 
 public class CustomerGossiper : Customer{
 
-	public override void JumpToTable (int tableN){
-		base.JumpToTable (tableN);
-		int rand = Random.Range(0,10);
-		if(rand > 7){
-			Gossip();
-		}
-	}
+	public CustomerComponent pastBehav;
+
 
 	public override void OrderTaken (ImmutableDataFood food){
 		base.OrderTaken (food);
@@ -26,17 +21,11 @@ public class CustomerGossiper : Customer{
 		}
 	}
 	public void Gossip(){
-		int rand = Random.Range(0,4);
-		//Debug.Log ("Goissping " + rand.ToString());
-		if(!RestaurantManager.Instance.GetTable(rand).isGossiped && RestaurantManager.Instance.GetTable(rand).inUse && rand != tableNum){
-			transform.SetParent(RestaurantManager.Instance.GetTable(rand).Node.transform);
-			transform.localPosition = Vector3.zero;
-			RestaurantManager.Instance.GetTable(rand).isGossiped = true;
-		}
+		pastBehav = currBehav;
 	}
 
 	public void GoAway(){
-		transform.SetParent(RestaurantManager.Instance.GetTable(tableNum).Seat);
-		transform.localPosition = Vector3.zero;
+		currBehav.Reason();
+		currBehav = pastBehav; 
 	}
 }

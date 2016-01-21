@@ -6,7 +6,7 @@ public class BehavWaitingInLine : CustomerComponent {
 
 
 	public BehavWaitingInLine() {
-		stepNum = 0;
+
 	}
 
 	public override void Reason() {

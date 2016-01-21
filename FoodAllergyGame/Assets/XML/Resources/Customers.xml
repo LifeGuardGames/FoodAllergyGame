@@ -87,7 +87,7 @@
 		<SpriteName>CustomerTutorial</SpriteName>
 		<Script>CustomerTutorial</Script>
 		<Tier>-1</Tier>
-    <Flow>BehavFlow00</Flow>
+    <Flow>BehavFlow01</Flow>
 	</Customer>
 	<Customer ID="Customer11">
 		<CustomerNameKey>CustomerPlayAreaTut</CustomerNameKey>
