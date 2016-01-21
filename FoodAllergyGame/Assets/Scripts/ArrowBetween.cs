@@ -16,7 +16,6 @@ public class ArrowBetween : MonoBehaviour {
 		transform.position = middlePosition;
 
 		// Set the rotation
-
 		float angleRotation = Mathf.Atan2(frontTransform.position.y - backTransform.position.y,
 			frontTransform.position.x - backTransform.position.x) * Mathf.Rad2Deg;
 		gameObject.transform.eulerAngles = new Vector3(0f, 0f, angleRotation);
