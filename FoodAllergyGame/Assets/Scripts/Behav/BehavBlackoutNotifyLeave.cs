@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class BehavBlackoutNotifyLeave : CustomerComponent {
+public class BehavBlackoutNotifyLeave : Behav {
 
 	public BehavBlackoutNotifyLeave() {
 

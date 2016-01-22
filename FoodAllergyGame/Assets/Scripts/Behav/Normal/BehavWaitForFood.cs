@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class BehavWaitForFood : CustomerComponent {
+public class BehavWaitForFood : Behav {
 
 
 	public BehavWaitForFood() {
@@ -19,7 +19,7 @@ public class BehavWaitForFood : CustomerComponent {
 		if(self.order.GetComponent<Order>().allergy.Contains(self.allergy) && self.allergy != Allergies.None) {
 			self.state = CustomerStates.AllergyAttack;
 			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[6]);
-			CustomerComponent aa = (CustomerComponent)Activator.CreateInstance(type);
+			Behav aa = (Behav)Activator.CreateInstance(type);
 			aa.self = self;
 			aa.Act();
 			self.currBehav = aa;
@@ -27,7 +27,7 @@ public class BehavWaitForFood : CustomerComponent {
 		}
 		else {
 			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[3]);
-			CustomerComponent eat = (CustomerComponent)Activator.CreateInstance(type);
+			Behav eat = (Behav)Activator.CreateInstance(type);
 			eat.self = self;
 			eat.Act();
 			self.currBehav = eat;

@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class BehavVIPTutReadingMenu : CustomerComponent {
+public class BehavVIPTutReadingMenu : Behav {
 
 	public BehavVIPTutReadingMenu() {
 

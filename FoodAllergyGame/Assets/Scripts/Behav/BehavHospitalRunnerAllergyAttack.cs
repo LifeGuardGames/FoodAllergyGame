@@ -2,10 +2,9 @@
 using System.Collections;
 using System;
 
-public class BehavHospital : CustomerComponent {
+public class BehavHospitalRunnerAllergyAttack : Behav {
 
-
-	public BehavHospital() {
+	public BehavHospitalRunnerAllergyAttack() {
 	}
 
 	public override void Reason() {
@@ -13,6 +12,13 @@ public class BehavHospital : CustomerComponent {
 	}
 
 	public override void Act() {
+		// -20 because the player should have been more careful
+		self.SetSatisfaction(-20);
+
+		//Also delete their food
+		if(self.order.gameObject != null) {
+			self.DestroyOrder();
+		}
 		RestaurantManager.Instance.sickCustomers.Remove(self.gameObject);
 		Medic.Instance.BillRestaurant(-100);
 		ParticleUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(self.tableNum).gameObject.transform.position, -100);
@@ -23,10 +29,6 @@ public class BehavHospital : CustomerComponent {
 		}
 
 		AudioManager.Instance.PlayClip("CustomerDead");
-		
-		self.SetSatisfaction(0);
-		self.DestroyOrder();
 		self.DestroySelf(0);
-
 	}
 }

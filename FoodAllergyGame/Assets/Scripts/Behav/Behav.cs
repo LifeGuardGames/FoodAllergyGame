@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class CustomerComponent  {
+public abstract class Behav  {
 	/// <summary>
 	/// Each compnent contains a reference to the customer that called it and two functions an Act and Reason function
 	/// Act: is the action taken when a new state is entered

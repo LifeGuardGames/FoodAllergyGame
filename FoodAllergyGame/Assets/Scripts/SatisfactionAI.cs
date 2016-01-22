@@ -39,7 +39,7 @@ public class SatisfactionAI{
 			totalSatisfaction += incomingSatisfaction;
 			ParticleUtils.PlayMoneyFloaty(pos, ((int)((float)incomingSatisfaction * 3.476f * priceMultiplier)));
 			return (int)((float)incomingSatisfaction * 3.476f * priceMultiplier);
-		}
+	 	}
 		return 0;
 	}
 

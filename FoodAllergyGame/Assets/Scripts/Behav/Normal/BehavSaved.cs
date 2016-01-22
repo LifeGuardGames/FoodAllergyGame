@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class BehavSaved : CustomerComponent {
+public class BehavSaved : Behav {
 
 
 	public BehavSaved() {

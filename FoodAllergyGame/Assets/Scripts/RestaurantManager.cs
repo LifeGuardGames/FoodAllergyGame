@@ -184,7 +184,6 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 		
 	}
 
-
 	public void SpawnSecondTut(){
 		ImmutableDataCustomer test;
 		test = DataLoaderCustomer.GetData("Customer10");
@@ -198,8 +197,6 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 		customerNumber++;
 		satisfactionAI.AddCustomer();
 	}
-
-
 
 	public bool IsTableAvilable(){
 		for(int i = 0; i < 4; i++){

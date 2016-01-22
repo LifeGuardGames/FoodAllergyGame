@@ -344,4 +344,17 @@ public class Waiter: Singleton<Waiter>{
 		TouchManager.Instance.EmptyQueue();
 		Finished();
 	}
+
+	public void TrashOrder() {
+		if(hand1 != WaiterHands.None) {
+			RestaurantManager.Instance.GetTable(hand1Object.GetComponent<Order>().tableNumber).seat.GetChild(0).GetComponent<Customer>().Reorder();
+			hand1 = WaiterHands.None;
+
+		}
+
+		if(hand2 != WaiterHands.None) {
+			RestaurantManager.Instance.GetTable(hand2Object.GetComponent<Order>().tableNumber).seat.GetChild(0).GetComponent<Customer>().Reorder();
+			hand2 = WaiterHands.None;
+		}
+	}
 }

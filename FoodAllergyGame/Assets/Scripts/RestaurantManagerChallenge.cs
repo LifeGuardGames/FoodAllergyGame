@@ -194,7 +194,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
 			customerNumber++;
 			satisfactionAI.AddCustomer();
-			cus.GetComponent<Customer>().JumpToTable(i);
+			//cus.GetComponent<Customer>().JumpToTable(i);
 			GetTable(i).inUse = true;
 		}
 	}

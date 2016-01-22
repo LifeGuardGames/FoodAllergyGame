@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class BehavAllergyAttack : CustomerComponent {
+public class BehavAllergyAttack : Behav {
 
 
 
@@ -14,7 +14,7 @@ public class BehavAllergyAttack : CustomerComponent {
 		if(self.saved) {
 			self.StartCoroutine("AllergyTimer");
 			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[7]);
-			CustomerComponent sav = (CustomerComponent)Activator.CreateInstance(type);
+			Behav sav = (Behav)Activator.CreateInstance(type);
 			sav.self = self;
 			sav.Act();
 			self.currBehav = sav;
@@ -22,7 +22,7 @@ public class BehavAllergyAttack : CustomerComponent {
 		}
 		else {
 			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[8]);
-			CustomerComponent hos = (CustomerComponent)Activator.CreateInstance(type);
+			Behav hos = (Behav)Activator.CreateInstance(type);
 			hos.self = self;
 			hos.Act();
 			self.currBehav = hos;

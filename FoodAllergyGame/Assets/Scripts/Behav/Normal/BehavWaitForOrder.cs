@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class BehavWaitForOrder : CustomerComponent {
+public class BehavWaitForOrder : Behav {
 
 
 	public BehavWaitForOrder() {
@@ -10,7 +10,7 @@ public class BehavWaitForOrder : CustomerComponent {
 
 	public override void Reason() {
 		var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[2]);
-		CustomerComponent fod = (CustomerComponent)Activator.CreateInstance(type);
+		Behav fod = (Behav)Activator.CreateInstance(type);
 		fod.self = self;
 		fod.Act();
 		self.currBehav = fod;

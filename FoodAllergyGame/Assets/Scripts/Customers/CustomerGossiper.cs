@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CustomerGossiper : Customer{
 
-	public CustomerComponent pastBehav;
+	public Behav pastBehav;
 
 
 	public override void OrderTaken (ImmutableDataFood food){

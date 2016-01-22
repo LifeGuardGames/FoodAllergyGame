@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class BehavWaitForCheck : CustomerComponent {
+public class BehavWaitForCheck : Behav {
 
 
 	public BehavWaitForCheck() {
@@ -11,7 +11,7 @@ public class BehavWaitForCheck : CustomerComponent {
 
 	public override void Reason() {
 		var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[5]);
-		CustomerComponent leave = (CustomerComponent)Activator.CreateInstance(type);
+		Behav leave = (Behav)Activator.CreateInstance(type);
 		leave.self = self;
 		leave.Act();
 		leave = null;

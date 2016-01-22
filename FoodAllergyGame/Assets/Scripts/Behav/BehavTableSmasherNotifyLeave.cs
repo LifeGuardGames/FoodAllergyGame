@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class BehavTableSmasherNotifyLeave : CustomerComponent {
+public class BehavTableSmasherNotifyLeave : Behav {
 
 	public BehavTableSmasherNotifyLeave() {
 
@@ -32,7 +32,7 @@ public class BehavTableSmasherNotifyLeave : CustomerComponent {
 		else {
 			//otherwise leave normally
 			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[9]);
-			CustomerComponent leave = (CustomerComponent)Activator.CreateInstance(type);
+			Behav leave = (Behav)Activator.CreateInstance(type);
 			leave.self = self;
 			leave.Act();
 			leave = null;

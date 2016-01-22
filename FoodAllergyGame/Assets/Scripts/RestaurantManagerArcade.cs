@@ -241,7 +241,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 			customerNumber++;
 			satisfactionAI.AddCustomer();
 			cus.GetComponent<Customer>().tableNum = i;
-			cus.GetComponent<CustomerComponent>().Reason();
+			cus.GetComponent<Behav>().Reason();
 			GetTable(i).inUse = true;
 		}
 	}

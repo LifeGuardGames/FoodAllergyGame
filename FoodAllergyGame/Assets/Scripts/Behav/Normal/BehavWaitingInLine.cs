@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class BehavWaitingInLine : CustomerComponent {
+public class BehavWaitingInLine : Behav {
 
 
 	public BehavWaitingInLine() {
@@ -40,7 +40,7 @@ public class BehavWaitingInLine : CustomerComponent {
 		self.GetComponent<BoxCollider>().enabled = false;
 		RestaurantManager.Instance.lineController.FillInLine();
 		var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[0]);
-		CustomerComponent read = (CustomerComponent)Activator.CreateInstance(type);
+		Behav read = (Behav)Activator.CreateInstance(type);
 		read.self = self;
 		read.Act();
 		//BehavReadingMenu read = new BehavReadingMenu(self);

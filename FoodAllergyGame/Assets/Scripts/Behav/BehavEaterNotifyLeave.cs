@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class BehavEaterNotifyLeave : CustomerComponent {
+public class BehavEaterNotifyLeave : Behav {
 
 
 	 public BehavEaterNotifyLeave() {
@@ -16,7 +16,7 @@ public class BehavEaterNotifyLeave : CustomerComponent {
 	public override void Act() {
 		if(self.tableNum == 5) {
 			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[9]);
-			CustomerComponent leave = (CustomerComponent)Activator.CreateInstance(type);
+			Behav leave = (Behav)Activator.CreateInstance(type);
 			leave.self = self;
 			leave.Act();
 			leave = null;
@@ -51,7 +51,7 @@ public class BehavEaterNotifyLeave : CustomerComponent {
 			//if we need to just leave then leave
 			if(self.satisfaction == 0 || self.state == CustomerStates.WaitForCheck || self.state == CustomerStates.AllergyAttack) {
 				var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[9]);
-				CustomerComponent leave = (CustomerComponent)Activator.CreateInstance(type);
+				Behav leave = (Behav)Activator.CreateInstance(type);
 				leave.self = self;
 				leave.Act();
 				leave = null;

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine.Analytics;
 
 
@@ -21,7 +22,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public Allergies allergy;			// The allergy of the customer
 	public float menuTimer = 4.0f;	// Time spent looking at the menu
 	public float attentionSpan = 15.0f;// The attention timer
-	public CustomerComponent currBehav;
+	public Behav currBehav;
 	public int satisfaction;			// The satisfaction the customer has, everytime the attention span 
 										//	ticks down to 0 the customer will lose satisfaction
 
@@ -75,7 +76,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		else{
 			// Check for fly thru table
 			TableFlyThru flyThruTable = RestaurantManager.Instance.GetFlyThruTable();
-			if((flyThruTable != null) && Random.Range(0,10) > 3 && !flyThruTable.inUse && Constants.GetConstant<bool>("FlyThruOn")|| mode.ID == "EventTFlyThru"){
+			if((flyThruTable != null) && UnityEngine.Random.Range(0,10) > 3 && !flyThruTable.inUse && Constants.GetConstant<bool>("FlyThruOn")|| mode.ID == "EventTFlyThru"){
 				flyThruTable.inUse = true;
 				this.gameObject.transform.SetParent(flyThruTable.seat);
 				tableNum = flyThruTable.TableNumber;
@@ -102,7 +103,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		// choose allergy based on the event
 		SelectAllergy(mode.Allergy);
 		// gets the keyword to help narrow down the customer's choices
-		int rand = Random.Range(0, 3);
+		int rand = UnityEngine.Random.Range(0, 3);
 		switch(rand){
 			case 0:
 				desiredFood = FoodKeywords.Meal;
@@ -150,7 +151,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		else {
 			// Check for fly thru table
 			TableFlyThru flyThruTable = RestaurantManager.Instance.GetFlyThruTable();
-			if((flyThruTable != null) && Random.Range(0, 10) > 3 && !flyThruTable.inUse && Constants.GetConstant<bool>("FlyThruOn") || mode.ID == "EventTFlyThru") {
+			if((flyThruTable != null) && UnityEngine.Random.Range(0, 10) > 3 && !flyThruTable.inUse && Constants.GetConstant<bool>("FlyThruOn") || mode.ID == "EventTFlyThru") {
 				flyThruTable.inUse = true;
 				this.gameObject.transform.SetParent(flyThruTable.seat);
 				tableNum = flyThruTable.TableNumber;
@@ -175,7 +176,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		// choose allergy based on the event
 		SelectAllergy(mode.Allergy);
 		// gets the keyword to help narrow down the customer's choices
-		int rand = Random.Range(0, 3);
+		int rand = UnityEngine.Random.Range(0, 3);
 		switch(rand) {
 			case 0:
 				desiredFood = FoodKeywords.Meal;
@@ -192,7 +193,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	// chooses an allergy cases where specific allergy is noted we use a weighted random to get the desired result
 	private void SelectAllergy(string mode){
 		if(mode == "None"){
-			int rand = Random.Range(0, 4);
+			int rand = UnityEngine.Random.Range(0, 4);
 			switch(rand){
 			case 0:
 				allergy = Allergies.Dairy;
@@ -209,7 +210,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			}
 		}
 		else if(mode == "Peanut"){
-			int rand = Random.Range(0, 10);
+			int rand = UnityEngine.Random.Range(0, 10);
 			if(rand < 7){
 				allergy = Allergies.Peanut;			
 			}
@@ -224,7 +225,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			}
 		}
 		else if(mode == "Dairy"){
-			int rand = Random.Range(0, 10);
+			int rand = UnityEngine.Random.Range(0, 10);
 			if(rand < 7){
 				allergy = Allergies.Dairy;			
 			}
@@ -239,7 +240,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			}
 		}
 		else if(mode == "Wheat"){
-			int rand = Random.Range(0, 10);
+			int rand = UnityEngine.Random.Range(0, 10);
 			if(rand < 7){
 				allergy = Allergies.Wheat;			
 			}
@@ -318,14 +319,6 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		StartCoroutine("SatisfactionTimer");
 	}
 
-	// Jumps to the table given a table number
-	public virtual void JumpToTable(int _tableNum){
-        
-		
-		
-
-		
-    }
 
 	// Time spent reading menu before ordering
 	IEnumerator ReadMenu(){
@@ -389,7 +382,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public virtual void Eating(){
 		if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.FlyThru){
 			Waiter.Instance.Finished();
-			this.GetComponent<CustomerComponent>().Reason();
+			this.GetComponent<Behav>().Reason();
 			if(DataManager.Instance.GetEvent() == "EventTFlyThru") {
 				if(DataManager.Instance.GameData.Decoration.DecoTutQueue.Count > 0) { 
 					DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
@@ -468,16 +461,6 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			}
 			
 		}
-	}
-
-	// called if the food's ingrediants match the allergy starts a timer in which the player must hit the save me button
-	public virtual void AllergyAttack(){
-
-	}
-
-	// if they are saved they take a small penalty for making the mistake and the customer will want the check asap
-	public virtual void Saved(){
-		
 	}
 
 	// when it runs out the customer is taken to the hospital and the player is slamed with the bill
@@ -595,5 +578,17 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		if(order.gameObject != null) {
 			Destroy(order.gameObject);
 		}
+	}
+
+	public void Reorder() {
+		DestroyOrder();
+		customerUI.ToggleWait(true);
+		RestaurantManager.Instance.GetTable(tableNum)._canvas.SetActive(false);
+		var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[1]);
+		Behav order = (Behav)Activator.CreateInstance(type);
+		order.self = this;
+		order.Act();
+		currBehav = order;
+		order = null;
 	}
 }
