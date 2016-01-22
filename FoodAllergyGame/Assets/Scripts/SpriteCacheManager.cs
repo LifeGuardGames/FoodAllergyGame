@@ -54,4 +54,9 @@ public class SpriteCacheManager : Singleton<SpriteCacheManager> {
 		Sprite sprite = Resources.Load<Sprite>("Allergy" + allergyEnum.ToString());
 		return sprite;
 	}
+
+	public static Sprite GetSlotSpriteData(int slots){
+		Sprite sprite = Resources.Load<Sprite>("Slots" + slots.ToString());
+		return sprite;
+	}
 }

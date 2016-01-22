@@ -22,16 +22,11 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	public Image allergy1;
 	public Image allergy2;
 	public Image allergy3;
-	
-	public Image allergyNodeImage1;
-	public Image allergyNodeImage2;
-	public Image allergyNodeImage3;
 
-	public RectTransform allergyNode1;
-	public RectTransform allergyNode2;
-	public RectTransform allergyNode3;
-	public RectTransform slotNode;
-	public Image slotImage;
+	public Image allergyNode1;
+	public Image allergyNode2;
+	public Image allergyNode3;
+	public Image slotNode;
 
 	public Animator foodButtonAnimator;
 
@@ -47,7 +42,7 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	}
 
 	void Awake() {
-		slotNode.localScale = new Vector3(0, 0, 1);
+		slotNode.transform.localScale = new Vector3(0, 0, 1);
 	}
 	
 	public void Init(ImmutableDataFood foodData){
@@ -69,64 +64,51 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 				break;
 		}
 
-		switch(foodData.Slots) {
-			case 1:
-				slotImage.sprite = slot1Sprite;
-                break;
-			case 2:
-				slotImage.sprite = slot2Sprite;
-				break;
-			case 3:
-				slotImage.sprite = slot3Sprite;
-				break;
-			default:
-				Debug.LogError("Bad slot number " + foodData.Slots);
-				break;
-		}
+		slotNode.sprite = SpriteCacheManager.GetSlotSpriteData(foodData.Slots);
 
 		// Set allergy sprite indicators
 		// NOTE: None counts as an allergy
 		if(foodData.AllergyList.Count == 1){
 			allergy1.enabled = true;
+			allergy1.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[0]);
 			allergy2.enabled = false;
 			allergy3.enabled = false;
 
-			allergy1.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[0]);
-			allergyNodeImage1.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[0]);
+			allergyNode1.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[0]);
 			Destroy(allergyNode2.GetComponent<Image>());        // Destroy everything but not object itself
-			foreach(Transform child in allergyNode2) {
+			foreach(Transform child in allergyNode2.transform) {
 				Destroy(child.gameObject);
 			}
 			Destroy(allergyNode3.GetComponent<Image>());        // Destroy everything but not object itself
-			foreach(Transform child in allergyNode3) {
+			foreach(Transform child in allergyNode3.transform) {
 				Destroy(child.gameObject);
 			}
 		}
 		if(foodData.AllergyList.Count == 2){
 			allergy1.enabled = true;
+			allergy1.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[0]);
 			allergy2.enabled = true;
+			allergy2.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[1]);
 			allergy3.enabled = false;
 
-			allergy1.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[0]);
-			allergyNodeImage1.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[0]);
-			allergy2.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[1]);
-			allergyNodeImage2.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[1]);
+			allergyNode1.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[0]);
+			allergyNode2.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[1]);
 			Destroy(allergyNode3.GetComponent<Image>());        // Destroy everything but not object itself
-			foreach(Transform child in allergyNode3) {
+			foreach(Transform child in allergyNode3.transform) {
 				Destroy(child.gameObject);
 			}
 		}
 		if(foodData.AllergyList.Count == 3){
 			allergy1.enabled = true;
-			allergy2.enabled = true;
-			allergy3.enabled = true;
-
 			allergy1.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[0]);
-			allergyNodeImage1.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[0]);
+			allergy2.enabled = true;
 			allergy2.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[1]);
-			allergyNodeImage2.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[1]);
+			allergy3.enabled = true;
 			allergy3.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[2]);
-			allergyNodeImage3.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[2]);
+
+			allergyNode1.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[0]);
+			allergyNode2.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[1]);
+			allergyNode3.sprite = SpriteCacheManager.GetAllergySpriteData(foodData.AllergyList[2]);
 		}
 	}
 
