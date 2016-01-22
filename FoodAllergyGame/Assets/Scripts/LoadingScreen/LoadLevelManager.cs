@@ -11,7 +11,8 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 	public Text loadText;
 	public Image loadImage;
 	public FoodTipController foodTipController;
-	public float foodTipWait = 1.3f; 			// How long to wait if the food tip controller is showing
+	public float foodTipWait = 1.3f;		// How long to wait if the food tip controller is showing
+	private bool isShowingFoodTip = false;
 	private string sceneToLoad;
 
 	void Awake(){
@@ -30,6 +31,7 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 	/// </summary>
 	/// <param name="sceneName">Scene to be loaded</param>
 	public void StartLoadTransition(string sceneName, string additionalTextKey = null, string additionalImageKey = null, bool showFoodTip = false){
+		isShowingFoodTip = false;
 
 		// Reset everything first
 		loadText.text = "";
@@ -43,7 +45,8 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 			loadImage.sprite = SpriteCacheManager.GetLoadingImageData(additionalImageKey);
 		}
 		if(showFoodTip){
-
+			isShowingFoodTip = true;
+			foodTipController.ShowFoodTip();
 		}
 
 		sceneToLoad = sceneName;
@@ -55,16 +58,28 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 	/// </summary>
 	public void ShowFinishedCallback(){
 		if(sceneToLoad != null){
-			SceneManager.LoadScene(sceneToLoad);
+			if(isShowingFoodTip) {
+				Invoke("LoadLevel", foodTipWait);
+			}
+			else {
+				LoadLevel();
+			}
 		}
 		else{
 			Debug.LogError("No level name specified");
 		}
 	}
 
+	private void LoadLevel() {
+		SceneManager.LoadScene(sceneToLoad);
+	}
+
 	/// <summary>
 	/// Hide the demux when the new level is loaded
 	void OnLevelWasLoaded(){
 		loadDemux.Hide();
+		if(isShowingFoodTip) {
+			foodTipController.HideFoodTip();
+		}
 	}
 }

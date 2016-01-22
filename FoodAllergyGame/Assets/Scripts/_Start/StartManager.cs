@@ -31,7 +31,6 @@ public class StartManager : Singleton<StartManager>{
 	public bool IsShopAppearHideDinerOverride = false;
 
 	void Start(){
-		
 		// Refresh tier calculation
 		TierManager.Instance.RecalculateTier();
 
@@ -174,7 +173,7 @@ public class StartManager : Singleton<StartManager>{
 			|| DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventTVIP"){
 
 			FoodManager.Instance.GenerateMenu(DataLoaderRemoveMenuSet.GetData("RemoveMenuSetT1").RemoveMenuSet.ToList());	// TODO remove now, fix
-			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT);
+			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, showFoodTip: true);
 		}
 		else{
 			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.MENUPLANNING, "LoadingKeyMenu", "LoadingImageMenu");
