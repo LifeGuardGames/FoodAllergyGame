@@ -10,17 +10,19 @@ using System.Collections.Generic;
 /// If new foods are unlocked, reset your list
 /// </summary>
 public class FoodTipController : MonoBehaviour {
-	public TweenToggleDemux tipDemux;
-	public Image foodImage;
+	public Animator tipAnimator;	// Animates the nodes
 	public Image allergy1Image;
 	public Image allergy2Image;
 	public Image allergy3Image;
+	public Image foodImage;
+	public Text foodText;
 
 	private int unlockedFoodCount = -1;		// Init to force initialization
 	private List<ImmutableDataFood> internalFoodList;
 
 	void Start() {
 		RefreshInternalList();
+		tipAnimator.SetBool("IsShow", false);
 	}
 
 	private void RefreshInternalList() {
@@ -28,8 +30,6 @@ public class FoodTipController : MonoBehaviour {
 		if(newFoodList.Count != unlockedFoodCount){
 			internalFoodList = newFoodList;
 			unlockedFoodCount = internalFoodList.Count;
-
-			// TODO Reset other stuff here
 		}
 	}
 
@@ -46,30 +46,43 @@ public class FoodTipController : MonoBehaviour {
 	public void ShowFoodTip() {
 		ImmutableDataFood randomFoodData = GetRandomFood();
 		foodImage.sprite = SpriteCacheManager.GetFoodSpriteData(randomFoodData.SpriteName);
-		foreach(Allergies allergy in randomFoodData.AllergyList) {
-			int currentIndex = 0;
-			if(allergy == Allergies.None) {
+		foodText.text = LocalizationText.GetText(randomFoodData.FoodNameKey);
+
+		// Populate the allergies and turn off unused ones
+		switch(randomFoodData.AllergyList.Count) {
+			case 1:
+				allergy1Image.sprite = SpriteCacheManager.GetAllergySpriteData(randomFoodData.AllergyList[0]);
+				Destroy(allergy2Image.GetComponent<Image>());        // Destroy everything but not object itself
+				foreach(Transform child in allergy2Image.transform) {
+					Destroy(child.gameObject);
+				}
+				Destroy(allergy3Image.GetComponent<Image>());        // Destroy everything but not object itself
+				foreach(Transform child in allergy3Image.transform) {
+					Destroy(child.gameObject);
+				}
 				break;
-			}
-			else if(currentIndex == 0){
-				allergy1Image.gameObject.SetActive(true);
-				allergy1Image.sprite = SpriteCacheManager.GetAllergySpriteData(allergy);
-			}
-			else if(currentIndex == 1) {
-				allergy2Image.gameObject.SetActive(true);
-				allergy2Image.sprite = SpriteCacheManager.GetAllergySpriteData(allergy);
-			}
-			else {
-				allergy3Image.gameObject.SetActive(true);
-				allergy3Image.sprite = SpriteCacheManager.GetAllergySpriteData(allergy);
-			}
-			currentIndex++;
+			case 2:
+				allergy1Image.sprite = SpriteCacheManager.GetAllergySpriteData(randomFoodData.AllergyList[0]);
+				allergy2Image.sprite = SpriteCacheManager.GetAllergySpriteData(randomFoodData.AllergyList[1]);
+				Destroy(allergy3Image.GetComponent<Image>());        // Destroy everything but not object itself
+				foreach(Transform child in allergy3Image.transform) {
+					Destroy(child.gameObject);
+				}
+				break;
+			case 3:
+				allergy1Image.sprite = SpriteCacheManager.GetAllergySpriteData(randomFoodData.AllergyList[0]);
+				allergy2Image.sprite = SpriteCacheManager.GetAllergySpriteData(randomFoodData.AllergyList[1]);
+				allergy3Image.sprite = SpriteCacheManager.GetAllergySpriteData(randomFoodData.AllergyList[2]);
+				break;
+			default:
+				Debug.LogError("Invalid allergy list count " + randomFoodData.AllergyList.Count);
+				break;
 		}
 
-        tipDemux.Show();
-    }
+		tipAnimator.SetBool("IsShow", true);
+	}
 
 	public void HideFoodTip() {
-		tipDemux.Hide();
+		tipAnimator.SetBool("IsShow", false);
 	}
 }
