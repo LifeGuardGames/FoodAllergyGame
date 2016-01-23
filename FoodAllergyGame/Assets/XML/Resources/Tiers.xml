@@ -32,7 +32,7 @@
 	</Tier>
 	<Tier ID="Tier02">
 		<TierNumber>2</TierNumber>
-		<CashCutoffFloor>1200</CashCutoffFloor>
+		<CashCutoffFloor>2450</CashCutoffFloor>
 		<MenuSlots>5</MenuSlots>
 		<EventsUnlocked></EventsUnlocked>
 		<FoodsUnlocked></FoodsUnlocked>
@@ -42,7 +42,7 @@
 	</Tier>
 	<Tier ID="Tier03">
 		<TierNumber>3</TierNumber>
-		<CashCutoffFloor>2000</CashCutoffFloor>
+		<CashCutoffFloor>4550</CashCutoffFloor>
 		<MenuSlots>6</MenuSlots>
 		<EventsUnlocked>Event05,Event06,Event07,Event08,Event09</EventsUnlocked>
 		<FoodsUnlocked>Food10,Food14,Food18,Food13</FoodsUnlocked>
@@ -52,7 +52,7 @@
 	</Tier>
 	<Tier ID="Tier04">
 		<TierNumber>4</TierNumber>
-		<CashCutoffFloor>3000</CashCutoffFloor>
+		<CashCutoffFloor>7300</CashCutoffFloor>
 		<MenuSlots>6</MenuSlots>
 		<EventsUnlocked></EventsUnlocked>
 		<FoodsUnlocked></FoodsUnlocked>

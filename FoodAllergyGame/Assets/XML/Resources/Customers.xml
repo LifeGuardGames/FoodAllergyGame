@@ -14,7 +14,7 @@
 		<CustomerDesc>CustomerImpatientDesc</CustomerDesc>
 		<SpriteName>CustomerImpatient</SpriteName>
 		<Script>CustomerImpatient</Script>
-		<Tier>0</Tier>
+		<Tier>1</Tier>
     <Flow>BehavFlow00</Flow>
   </Customer>
 	<Customer ID="Customer02">

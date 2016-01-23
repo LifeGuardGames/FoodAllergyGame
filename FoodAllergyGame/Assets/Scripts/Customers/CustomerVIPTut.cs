@@ -29,8 +29,5 @@ public class CustomerVIPTut : Customer {
 		tutFingers.transform.GetChild(tutNumber).gameObject.SetActive(true);
 	}
 
-	public override void NotifyLeave() {
-		CashManager.Instance.TutorialOverrideTotalCash(2000);
-		base.NotifyLeave();
-	}
+
 }
