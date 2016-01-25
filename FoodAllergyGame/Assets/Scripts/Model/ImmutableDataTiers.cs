@@ -28,10 +28,6 @@ public class ImmutableDataTiers {
 		get{ return eventsUnlocked; }
 	}
 
-	private string[] foodsUnlocked;
-	public string[] FoodsUnlocked{
-		get{ return foodsUnlocked; }
-	}
 
 	private string[] decorationsUnlocked;
 	public string[] DecorationsUnlocked{
@@ -55,7 +51,6 @@ public class ImmutableDataTiers {
 		cashCutoffFloor = XMLUtils.GetInt(hashElements["CashCutoffFloor"] as IXMLNode);
 		menuSlots = XMLUtils.GetInt(hashElements["MenuSlots"] as IXMLNode);
 		eventsUnlocked = XMLUtils.GetStringList(hashElements["EventsUnlocked"] as IXMLNode);
-		foodsUnlocked = XMLUtils.GetStringList(hashElements["FoodsUnlocked"] as IXMLNode);
 		decorationsUnlocked = XMLUtils.GetStringList(hashElements["DecorationsUnlocked"] as IXMLNode);
 		startArtAssets = XMLUtils.GetStringList(hashElements["StartArtAssets"] as IXMLNode);
 		isLastTier = XMLUtils.GetBool(hashElements["IsLastTier"] as IXMLNode);

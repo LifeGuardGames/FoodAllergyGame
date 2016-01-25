@@ -22,7 +22,7 @@
 		<CustomerDesc>CustomerEaterDesc</CustomerDesc>
 		<SpriteName>CustomerEater</SpriteName>
 		<Script>CustomerEater</Script>
-		<Tier>-1</Tier>
+		<Tier>13</Tier>
     <Flow>BehavFlow00</Flow>
 	</Customer>
 	<Customer ID="Customer03">
@@ -30,7 +30,7 @@
 		<CustomerDesc>CustomerTableSmasherDesc</CustomerDesc>
 		<SpriteName>CustomerTableSmasher</SpriteName>
 		<Script>CustomerTableSmasher</Script>
-		<Tier>5</Tier>
+		<Tier>9</Tier>
     <Flow>BehavFlow00</Flow>
 	</Customer>
 	<Customer ID="Customer04">
@@ -38,7 +38,7 @@
 		<CustomerDesc>CustomerHospitalRunnerDesc</CustomerDesc>
 		<SpriteName>CustomerHospitalRunner</SpriteName>
 		<Script>CustomerHospitalRunner</Script>
-		<Tier>-1</Tier>
+		<Tier>11</Tier>
     <Flow>BehavFlow00</Flow>
 	</Customer>
 	<Customer ID="Customer05">
@@ -54,7 +54,7 @@
 		<CustomerDesc>CustomerGossiperDesc</CustomerDesc>
 		<SpriteName>CustomerGossiper</SpriteName>
 		<Script>CustomerGossiper</Script>
-		<Tier>-1</Tier>
+		<Tier>17</Tier>
     <Flow>BehavFlow00</Flow>
 	</Customer>
 	<Customer ID="Customer07">
@@ -62,7 +62,7 @@
 		<CustomerDesc>CustomerCoolKidDesc</CustomerDesc>
 		<SpriteName>CustomerCoolKid</SpriteName>
 		<Script>CustomerCoolKid</Script>
-		<Tier>3</Tier>
+		<Tier>7</Tier>
     <Flow>BehavFlow00</Flow>
 	</Customer>
 	<Customer ID="Customer08">
@@ -70,7 +70,7 @@
 		<CustomerDesc>CustomerPlayfulDesc</CustomerDesc>
 		<SpriteName>CustomerPlayful</SpriteName>
 		<Script>CustomerPlayful</Script>
-		<Tier>-1</Tier>
+		<Tier>4</Tier>
     <Flow>BehavFlow00</Flow>
 	</Customer>
 	<Customer ID="Customer09">
@@ -78,7 +78,7 @@
 		<CustomerDesc>CustomerBlackOutDesc</CustomerDesc>
 		<SpriteName>CustomerBlackOut</SpriteName>
 		<Script>CustomerBlackOut</Script>
-		<Tier>-1</Tier>
+		<Tier>15</Tier>
     <Flow>BehavFlow00</Flow>
 	</Customer>
 	<Customer ID="Customer10">
