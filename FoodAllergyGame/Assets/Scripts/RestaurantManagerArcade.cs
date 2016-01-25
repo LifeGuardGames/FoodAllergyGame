@@ -123,7 +123,6 @@ public class RestaurantManagerArcade : RestaurantManager {
 				customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
 				satisfactionAI.AddCustomer();
 				StartCoroutine(SpawnCustomer());
-
 			}
 			else {
 				// Call self to loop
@@ -132,9 +131,10 @@ public class RestaurantManagerArcade : RestaurantManager {
 		}
 	}
 
-	public override void CustomerLeft(Customer customerData, bool isLeavingHappy, int satisfaction, int priceMultiplier, Vector3 customerPos, float time, bool earnedMoney) {
-		if(customerHash.ContainsKey(customerData.customerID)) {
+	public override void CustomerLeft(Customer customerData, bool isLeavingHappy,
+		int satisfaction, int priceMultiplier, Vector3 customerPos, float time, bool earnedMoney) {
 
+		if(customerHash.ContainsKey(customerData.customerID)) {
 			// Track analytics based on happy or angry leaving
 			if(isLeavingHappy) {
 				AnalyticsManager.Instance.CustomerLeaveHappy(satisfaction);
@@ -143,7 +143,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 				AnalyticsManager.Instance.CustomerLeaveAngry(customerData.type, customerData.state);
 			}
 
-			UpdateCash(satisfactionAI.CalculateBill(satisfaction, priceMultiplier, customerPos, time, earnedMoney));
+			UpdateCash(satisfactionAI.CalculateBill(satisfaction, priceMultiplier, time, earnedMoney), customerPos);
 			customerHash.Remove(customerData.customerID);
 			CheckForGameOver();
 		}
