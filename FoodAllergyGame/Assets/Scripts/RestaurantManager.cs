@@ -98,14 +98,23 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 		
 	}
 
-	public virtual void UpdateCash(int billAmount){
+	public virtual void UpdateCash(int billAmount, Vector3 customerPosition) {
+		//if(billamount) {
+		//	//25, 37
+		//}
 		AudioManager.Instance.PlayClip("CoinGet");
+		restaurantUI.UpdateCashUI(customerPosition, billAmount);
 
 		dayEarnedCash += billAmount;
 		
 		// Update revenue if positive bill
 		if(billAmount > 0){
 			dayCashRevenue += billAmount;
+
+			// Play different sounds 
+		}
+		else {
+
 		}
 	}
 

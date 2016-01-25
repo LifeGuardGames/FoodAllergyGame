@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class RestaurantUIManager : MonoBehaviour{
 	public DayOverUIController dayOverUIController;
@@ -38,5 +39,9 @@ public class RestaurantUIManager : MonoBehaviour{
 		dayOverUIController.gameObject.SetActive(true);
 		AudioManager.Instance.FadeOutPlayNewBackground(null);
 		AudioManager.Instance.PlayClip("EndOfDay");
+	}
+
+	public void UpdateCashUI(Vector3 customerPosition, int billAmount) {
+		ParticleUtils.PlayMoneyFloaty(customerPosition, billAmount);
 	}
 }

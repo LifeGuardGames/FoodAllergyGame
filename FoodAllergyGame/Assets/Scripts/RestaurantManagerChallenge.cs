@@ -97,7 +97,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 				AnalyticsManager.Instance.CustomerLeaveAngry(customerData.type, customerData.state);
 			}
 
-			UpdateCash(satisfactionAI.CalculateBill(satisfaction, priceMultiplier, customerPos, time, earnedMoney));
+			UpdateCash(satisfactionAI.CalculateBill(satisfaction, priceMultiplier, time, earnedMoney), customerPos);
 			customerHash.Remove(customerData.customerID);
 			CheckForGameOver();
 		}
