@@ -64,18 +64,6 @@ public class TierManager : Singleton<TierManager> {
 		return eventsUnlocked;
 	}
 
-	public List<string> GetFoodsUnlocked(){
-		List<string> foodsUnlocked = null;
-		if(tier >= 0){
-			for(int i = 0; i <= tier; i++){
-				string[] foodsAtTier = DataLoaderTiers.GetData(tierXMLPrefix + StringUtils.FormatIntToDoubleDigitString(i)).FoodsUnlocked;
-				foreach(string restaurantEvent in foodsAtTier){
-					foodsUnlocked.Add(restaurantEvent);
-				}
-			}
-		}
-		return foodsUnlocked;
-	}
 
 	public List<string> GetDecorationsUnlocked(){
 		List<string> deocrationsUnlocked = null;
