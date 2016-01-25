@@ -14,7 +14,6 @@
 		<CashCutoffFloor>500</CashCutoffFloor>
 		<MenuSlots>5</MenuSlots>
 		<EventsUnlocked></EventsUnlocked>
-		<FoodsUnlocked></FoodsUnlocked>
 		<DecorationsUnlocked></DecorationsUnlocked>
 		<StartArtAssets></StartArtAssets>
 		<IsLastTier>False</IsLastTier>
@@ -33,7 +32,6 @@
 		<CashCutoffFloor>2450</CashCutoffFloor>
 		<MenuSlots>5</MenuSlots>
 		<EventsUnlocked></EventsUnlocked>
-		<FoodsUnlocked></FoodsUnlocked>
 		<DecorationsUnlocked>Table01,Kitchen01,Floor01</DecorationsUnlocked>
 		<StartArtAssets></StartArtAssets>
 		<IsLastTier>False</IsLastTier>
@@ -52,7 +50,6 @@
 		<CashCutoffFloor>7300</CashCutoffFloor>
 		<MenuSlots>6</MenuSlots>
 		<EventsUnlocked></EventsUnlocked>
-		<FoodsUnlocked></FoodsUnlocked>
 		<DecorationsUnlocked>Table02,Floor02,Kitchen02</DecorationsUnlocked>
 		<StartArtAssets></StartArtAssets>
 		<IsLastTier>False</IsLastTier>
@@ -71,7 +68,6 @@
 		<CashCutoffFloor>12800</CashCutoffFloor>
 		<MenuSlots>7</MenuSlots>
 		<EventsUnlocked></EventsUnlocked>
-		<FoodsUnlocked></FoodsUnlocked>
 		<DecorationsUnlocked>Table03,Kitchen03</DecorationsUnlocked>
 		<StartArtAssets></StartArtAssets>
 		<IsLastTier>True</IsLastTier>
