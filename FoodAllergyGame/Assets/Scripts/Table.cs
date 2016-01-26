@@ -68,7 +68,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 			}
 		}
 		TurnOffHighlight();
-		// can't get reference to diabled objects during runtime
+		// can't get reference to disabled objects during runtime
 		_canvas.SetActive(true);
 		text.text = (tableNumber + 1).ToString();
 		_canvas.SetActive(false);
