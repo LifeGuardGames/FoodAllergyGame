@@ -392,8 +392,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				//DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
 			}
             if (order.GetComponent<Order>().allergy.Contains(allergy) && allergy != Allergies.None) {
-                Medic.Instance.BillRestaurant(-100);
-                ParticleUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(tableNum).gameObject.transform.position, -100);
+				// TODO: Abtracted out to behavs, delete this
+                //Medic.Instance.BillRestaurant(-100);
+                //ParticleUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(tableNum).gameObject.transform.position, -100);
 
 
                 AudioManager.Instance.PlayClip("CustomerDead");

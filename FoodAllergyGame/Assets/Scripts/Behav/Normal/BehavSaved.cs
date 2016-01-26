@@ -18,7 +18,6 @@ public class BehavSaved : Behav {
 		AudioManager.Instance.PlayClip("CustomerSaved");
 		RestaurantManager.Instance.savedCustomers++;
 		self.customerAnim.SetSavedAllergyAttack();
-		ParticleUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(self.tableNum).gameObject.transform.position, -40);
 		RestaurantManager.Instance.sickCustomers.Remove(self.gameObject);
 		self.UpdateSatisfaction(1);
 		self.customerUI.ToggleAllergyAttack(false);
