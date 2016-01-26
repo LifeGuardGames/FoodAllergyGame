@@ -14,7 +14,7 @@
 		<SpriteName>FoodChicken</SpriteName>
 		<Allergies>None</Allergies>
 		<Keywords>Meal</Keywords>
-		<Tier>0</Tier>
+		<Tier>13</Tier>
 		<Reward>1</Reward>
 		<Slot>1</Slot>
 	</Food>
@@ -104,7 +104,7 @@
 		<SpriteName>FoodPeanutButterCookies</SpriteName>
 		<Allergies>Wheat,Peanut</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
-		<Tier>6</Tier>
+		<Tier>7</Tier>
 		<Reward>3</Reward>
 		<Slot>1</Slot>
 	</Food>
@@ -122,7 +122,7 @@
 		<SpriteName>FoodPeanutMMs</SpriteName>
 		<Allergies>Dairy,Peanut</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
-		<Tier>6</Tier>
+		<Tier>13</Tier>
 		<Reward>3</Reward>
 		<Slot>1</Slot>
 	</Food>
@@ -140,7 +140,7 @@
 		<SpriteName>FoodOreos</SpriteName>
 		<Allergies>Wheat,Dairy</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
-		<Tier>6</Tier>
+		<Tier>7</Tier>
 		<Reward>3</Reward>
 		<Slot>1</Slot>
 	</Food>
@@ -185,7 +185,7 @@
     <SpriteName>FoodYogurtParfait</SpriteName>
     <Allergies>Dairy,Peanut</Allergies>
     <Keywords>Drink,Dessert</Keywords>
-    <Tier>6</Tier>
+    <Tier>11</Tier>
     <Reward>3</Reward>
     <Slot>1</Slot>
   </Food>
@@ -203,7 +203,7 @@
     <SpriteName>FoodPeanutButterCheeseCrackers</SpriteName>
     <Allergies>Wheat,Dairy,Peanut</Allergies>
     <Keywords>Drink,Dessert</Keywords>
-    <Tier>6</Tier>
+    <Tier>11</Tier>
     <Reward>5</Reward>
     <Slot>1</Slot>
   </Food>
