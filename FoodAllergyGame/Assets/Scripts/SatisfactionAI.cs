@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 
 public class SatisfactionAI{
-	private int modifiedSatisfaction;
-	public int Score{
+	private float modifiedSatisfaction;
+	public float Score{
 		get{ return modifiedSatisfaction; }
 	}
 
@@ -29,7 +29,7 @@ public class SatisfactionAI{
 			missingCustomers++;
 		}
 		if(isModifiesDifficulty) {
-			modifiedSatisfaction = customerSatisfaction * 5;
+			modifiedSatisfaction = time;
 			if(customerSatisfaction < 0) {
 				customerSatisfaction = 0;
 			}
