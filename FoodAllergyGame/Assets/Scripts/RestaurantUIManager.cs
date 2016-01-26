@@ -43,5 +43,22 @@ public class RestaurantUIManager : MonoBehaviour{
 
 	public void UpdateCashUI(Vector3 customerPosition, int billAmount) {
 		ParticleUtils.PlayMoneyFloaty(customerPosition, billAmount);
+
+		Debug.Log("BILL " + billAmount);
+		// Play different sounds depending on how much money you get
+		if(billAmount > 0) {
+			if(billAmount < 5) {
+				AudioManager.Instance.PlayClip("CoinGet1");
+			}
+			else if(billAmount < 10) {
+				AudioManager.Instance.PlayClip("CoinGet2");
+			}
+			else {
+				AudioManager.Instance.PlayClip("CoinGet3");
+			}
+		}
+		else if(billAmount < 0) {
+			AudioManager.Instance.PlayClip("CoinLose");
+		}
 	}
 }

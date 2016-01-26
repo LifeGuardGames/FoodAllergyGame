@@ -2,11 +2,14 @@
 using System.Collections;
 
 public class Medic : Singleton<Medic> {
-
 	public GameObject startPos;
-	public int medicCost;
-	public int MedicCost{
-		get{return medicCost;}
+
+	public static int MedicPrice = -40;
+	public static int HospitalPrice = -100;
+
+	private int medicCost;
+	public int MedicCost {
+		get { return medicCost; }
 	}
 
 	private Vector3 firstCustomerPositionAux;
@@ -64,7 +67,7 @@ public class Medic : Singleton<Medic> {
 
 	}
 
-	public void BillRestaurant (int expense){
+	public void BillRestaurant(int expense){
 		medicCost += expense;
 	}
 

@@ -24,20 +24,20 @@ public class SatisfactionAI{
 	private float totalSatisfaction;
 
 	// Calculates the money given to the player once a customer leaves
-	public int CalculateBill(int incomingSatisfaction, int priceMultiplier, float time, bool earnMoney){
-		if(incomingSatisfaction <= 0) {
+	public int CalculateBill(int customerSatisfaction, int priceMultiplier, float time, bool isModifiesDifficulty){
+		if(customerSatisfaction <= 0) {
 			missingCustomers++;
 		}
-		if(earnMoney) { 
-			modifiedSatisfaction = incomingSatisfaction * 5;
-			if(incomingSatisfaction < 0) {
-				incomingSatisfaction = 0;
+		if(isModifiesDifficulty) {
+			modifiedSatisfaction = customerSatisfaction * 5;
+			if(customerSatisfaction < 0) {
+				customerSatisfaction = 0;
 			}
 
 			CalculateDifficultyLevel(modifiedSatisfaction);
 
-			totalSatisfaction += incomingSatisfaction;
-			return (int)((float)incomingSatisfaction * 3.476f * priceMultiplier);
+			totalSatisfaction += customerSatisfaction;
+			return (int)(customerSatisfaction * 3.476f * priceMultiplier);
 	 	}
 		return 0;
 	}

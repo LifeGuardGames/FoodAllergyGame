@@ -2,25 +2,18 @@
 using System.Collections;
 using System;
 
+/// <summary>
+/// Customer leaving from satisfaction change only, NOT from allergyHospital or allergySaved
+/// </summary>
 public class BehavNotifyLeave : Behav {
-
-
 	public BehavNotifyLeave() {
-
 	}
 
 	public override void Reason() {
-
 	}
 
 	public override void Act() {
-		if(self.satisfaction > 0) {
-			RestaurantManager.Instance.CustomerLeft(self, true, self.satisfaction, self.priceMultiplier, self.transform.position, Time.time - self.spawnTime, true);
-		}
-
-		else { 
-			RestaurantManager.Instance.CustomerLeft(self, false, self.satisfaction, 1, self.transform.position, 720f, false);
-		}
+		RestaurantManager.Instance.CustomerLeftSatisfaction(self, true);
 
 		if(self.state != CustomerStates.InLine && self.state != CustomerStates.Saved) {
 			RestaurantManager.Instance.GetTable(self.tableNum).CustomerLeaving();

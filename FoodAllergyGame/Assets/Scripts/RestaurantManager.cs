@@ -7,13 +7,15 @@ using UnityEngine.Analytics;
 using System;
 
 public abstract class RestaurantManager : Singleton<RestaurantManager>{
+	public static float customerLeaveModifierTime = 720f;	// When player error, notify leave will use this value for balancing
+
 	public bool isPaused;
 	protected float customerSpawnTimer;
-	public float dayTime;					// Total amount of time in the day
+	public float dayTime;						// Total amount of time in the day
 	protected float dayTimeLeft;				// Current amount of time left in the day
 	public int lineCount = 0;
 	protected int customerNumber = 0;
-	public bool dayOver = false;			// bool controlling customer spawning depending on the stage of the day
+	public bool dayOver = false;				// bool controlling customer spawning depending on the stage of the day
 	public int actTables;
 	public int medicUsed;
 	protected int dayEarnedCash;				// The cash that is earned for the day
@@ -81,28 +83,29 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 
 	public abstract void Init();
 	
-	
-
 	// Called at the start of the game day begins the day tracker coroutine 
 	public virtual void StartDay(){
     }
 
 	// When complete flips the dayOver bool once the bool is true customers will cease spawning and the game will be looking for the end point
-	
 
-	
 
-	// Removes a customer from the dictionary
-	// and then if the day is over checks to see if the dictionary is empty and if it is it ends the round
-	public virtual void CustomerLeft(Customer customerData, bool isLeavingHappy, int satisfaction, int priceMultiplier, Vector3 customerPos, float time, bool earnedMoney){
-		
+
+
+	/// <summary>
+	/// Logic to calculate customer leaving because of a change in satisfaction
+	/// </summary>
+	public virtual void CustomerLeftSatisfaction(Customer customerData, bool isModifiesDifficulty, int VIPMultiplier = 1) {
 	}
 
+	/// <summary>
+	/// Logic to calculate customer leaving because of allergies (Go to hospital AND Saved)
+	/// </summary>
+	public virtual void CustomerLeftFlatCharge(Customer customerData, int deltaCoins, bool isModifiesDifficulty) {
+	}
+
+	// TODO Both positive earning and medic bills should go through here
 	public virtual void UpdateCash(int billAmount, Vector3 customerPosition) {
-		//if(billamount) {
-		//	//25, 37
-		//}
-		AudioManager.Instance.PlayClip("CoinGet");
 		restaurantUI.UpdateCashUI(customerPosition, billAmount);
 
 		dayEarnedCash += billAmount;
@@ -110,11 +113,6 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 		// Update revenue if positive bill
 		if(billAmount > 0){
 			dayCashRevenue += billAmount;
-
-			// Play different sounds 
-		}
-		else {
-
 		}
 	}
 

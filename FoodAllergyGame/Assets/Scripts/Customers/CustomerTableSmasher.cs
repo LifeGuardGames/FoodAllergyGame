@@ -22,7 +22,9 @@ public class CustomerTableSmasher : Customer {
 			animTableSmasher.SmashTable();
 
 			//general customer leaving things
-			RestaurantManager.Instance.CustomerLeft(this, false, satisfaction, 1, transform.position, Time.time - spawnTime, false);
+			// TODO: Check if using the right customer left
+			RestaurantManager.Instance.CustomerLeftSatisfaction(this, false);
+
 			Waiter.Instance.RemoveMeal(tableNum);
 			KitchenManager.Instance.CancelOrder(tableNum);
 			Destroy(this.gameObject, 6.5f);

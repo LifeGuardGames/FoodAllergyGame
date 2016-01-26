@@ -86,23 +86,66 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		restaurantUI.StartDay();
 	}
 
-	public override void CustomerLeft(Customer customerData, bool isLeavingHappy, int satisfaction, int priceMultiplier, Vector3 customerPos, float time, bool earnedMoney) {
+	/// <summary>
+	/// Logic to calculate customer leaving because of a change in satisfaction, this includes angry/happy leaving
+	/// </summary>
+	/// <param name="isModifiesDifficulty">False for tutorials and challenges</param>
+	public override void CustomerLeftSatisfaction(Customer customerData, bool isModifiesDifficulty, int VIPMultiplier = 1) {
+
 		if(customerHash.ContainsKey(customerData.customerID)) {
+			int satisfaction = customerData.satisfaction;
+			int priceMultiplier;
+			float time;
 
 			// Track analytics based on happy or angry leaving
-			if(isLeavingHappy) {
+			if(satisfaction > 0) {
+				// TODO: NEW SET OF ANALYTICS FOR CHALLENGES
+				/*
 				AnalyticsManager.Instance.CustomerLeaveHappy(satisfaction);
+				*/
+
+				priceMultiplier = customerData.priceMultiplier * VIPMultiplier;
+				time = Time.time - customerData.spawnTime;
 			}
 			else {
+				// TODO: NEW SET OF ANALYTICS FOR CHALLENGES
+				/*
 				AnalyticsManager.Instance.CustomerLeaveAngry(customerData.type, customerData.state);
+				*/
+
+				priceMultiplier = 1;
+				time = RestaurantManager.customerLeaveModifierTime;
 			}
 
-			UpdateCash(satisfactionAI.CalculateBill(satisfaction, priceMultiplier, time, earnedMoney), customerPos);
+			// NOTE: Make sure not to track difficulty here
+			UpdateCash(satisfactionAI.CalculateBill(satisfaction, priceMultiplier, time, false), customerData.transform.position);
 			customerHash.Remove(customerData.customerID);
 			CheckForGameOver();
 		}
 		else {
-			Debug.LogError("Invalid call on " + customerData.customerID);
+			Debug.LogError("Invalid CustomerLeftSatisfaction call on " + customerData.customerID);
+		}
+	}
+
+	/// <summary>
+	/// Logic to calculate customer leaving because of allergies (Go to hospital AND Saved)
+	/// </summary>
+	/// <param name="deltaCoins">Charge for using medic</param>
+	/// <param name="isModifiesDifficulty">False for tutorials and challenges</param>
+	public override void CustomerLeftFlatCharge(Customer customerData, int deltaCoins, bool isModifiesDifficulty) {
+		if(customerHash.ContainsKey(customerData.customerID)) {
+			// Track analytics leaving state though not really angry
+			// TODO: NEW SET OF ANALYTICS FOR CHALLENGES
+			/*
+			AnalyticsManager.Instance.CustomerLeaveAngry(customerData.type, customerData.state);
+			*/
+
+			UpdateCash(satisfactionAI.CalculateBill(0, 1, RestaurantManager.customerLeaveModifierTime, isModifiesDifficulty), customerData.transform.position);
+			customerHash.Remove(customerData.customerID);
+			CheckForGameOver();
+		}
+		else {
+			Debug.LogError("Invalid CustomerLeftAllergy call on " + customerData.customerID);
 		}
 	}
 

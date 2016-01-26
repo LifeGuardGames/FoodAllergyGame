@@ -36,7 +36,10 @@
   <Sound ID="OrderPickUp"></Sound>
   <Sound ID="OrderReady"></Sound>
   <Sound ID="WriteDownOrder"></Sound>
-  <Sound ID="CoinGet"></Sound>
+  <Sound ID="CoinGet1"></Sound>
+  <Sound ID="CoinGet2"></Sound>
+  <Sound ID="CoinGet3"></Sound>
+  <Sound ID="CoinLose"></Sound>
 
   <!-- Special deco sounds -->
   <Sound ID="ArcadeOver"></Sound>

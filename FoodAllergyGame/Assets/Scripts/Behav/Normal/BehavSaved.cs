@@ -18,7 +18,6 @@ public class BehavSaved : Behav {
 		AudioManager.Instance.PlayClip("CustomerSaved");
 		RestaurantManager.Instance.savedCustomers++;
 		self.customerAnim.SetSavedAllergyAttack();
-		Medic.Instance.BillRestaurant(-40);
 		ParticleUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(self.tableNum).gameObject.transform.position, -40);
 		RestaurantManager.Instance.sickCustomers.Remove(self.gameObject);
 		self.UpdateSatisfaction(1);
@@ -26,7 +25,10 @@ public class BehavSaved : Behav {
 		self.state = CustomerStates.Saved;
 		self.StopCoroutine("AllergyTimer");
 		RestaurantManager.Instance.GetTable(self.tableNum).inUse = false;
-		RestaurantManager.Instance.CustomerLeft(self, false, self.satisfaction, 1, self.gameObject.transform.position, 720f, false);
+
+		// Removes customer and bills the restaurant
+		RestaurantManager.Instance.CustomerLeftFlatCharge(self, Medic.MedicPrice, true);
+
 		AudioManager.Instance.PlayClip("CustomerLeave");
 		self.DestroySelf(0);
 	}

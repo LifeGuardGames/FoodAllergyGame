@@ -452,14 +452,18 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			if(satisfaction > 3) {
 				satisfaction = 3;
 			}
-			if(state == CustomerStates.Saved || state == CustomerStates.Eaten) {
+			if(state == CustomerStates.Saved || state == CustomerStates.AllergyAttack) {
 				RestaurantManager.Instance.GetTable(tableNum).inUse = false;
-				RestaurantManager.Instance.CustomerLeft(this, false, satisfaction, 1, transform.position, 720f, false);
+				RestaurantManager.Instance.CustomerLeftFlatCharge(this, Medic.HospitalPrice, true);
+			}
+			else if(state == CustomerStates.Eaten) {
+				// TODO: IS THIS NEEDED WHEN NOTIFY LEAVE IS CALLED FROM TABLE?
+				RestaurantManager.Instance.GetTable(tableNum).inUse = false;
+				RestaurantManager.Instance.CustomerLeftFlatCharge(this, 0, false);
 			}
 			else if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.VIP) {
-				RestaurantManager.Instance.CustomerLeft(this, true, satisfaction, priceMultiplier * RestaurantManager.Instance.GetTable(tableNum).VIPMultiplier, transform.position,Time.time - spawnTime, true);
+				RestaurantManager.Instance.CustomerLeftSatisfaction(this, true, VIPMultiplier:RestaurantManager.Instance.GetTable(tableNum).VIPMultiplier);
 			}
-			
 		}
 	}
 
