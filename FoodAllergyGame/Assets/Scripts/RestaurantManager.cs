@@ -7,7 +7,7 @@ using UnityEngine.Analytics;
 using System;
 
 public abstract class RestaurantManager : Singleton<RestaurantManager>{
-	public static float customerLeaveModifierTime = 720f;	// When player error, notify leave will use this value for balancing
+	public static float customerLeaveModifierTime = 30f;	// When player error, notify leave will use this value for balancing
 
 	public bool isPaused;
 	protected float customerSpawnTimer;
