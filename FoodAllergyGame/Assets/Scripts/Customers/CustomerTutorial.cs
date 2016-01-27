@@ -13,10 +13,10 @@ public class CustomerTutorial : Customer{
 		tutFingers = GameObject.Find("TutFingers");
 		StartCoroutine("ShowTableFinger");
 		if(!isAllergy){
-			allergy = Allergies.None;
+			allergy.Add(Allergies.None);
 		}
 		else{
-			allergy = Allergies.Wheat;
+			allergy.Add(Allergies.Wheat);
 		}
 	}
 

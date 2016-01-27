@@ -19,7 +19,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public CustomerTypes type = CustomerTypes.Normal;
 	public string customerID;			// The customer's id used for identification in the 
 	public CustomerStates state;		// The current state of the customer
-	public Allergies allergy;			// The allergy of the customer
+	public List<Allergies> allergy;			// The allergy of the customer
 	public float menuTimer = 4.0f;	// Time spent looking at the menu
 	public float attentionSpan = 15.0f;// The attention timer
 	public Behav currBehav;
@@ -196,62 +196,62 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			int rand = UnityEngine.Random.Range(0, 4);
 			switch(rand){
 			case 0:
-				allergy = Allergies.Dairy;
+				allergy.Add(Allergies.Dairy);
 				break;
 			case 1:
-				allergy = Allergies.Peanut;
+				allergy.Add(Allergies.Peanut);
 				break;
 			case 2:
-				allergy = Allergies.Wheat;
+				allergy.Add(Allergies.Wheat);
 				break;
 			case 3:
-				allergy = Allergies.None;
+				allergy.Add(Allergies.None);
 				break;
 			}
 		}
 		else if(mode == "Peanut"){
 			int rand = UnityEngine.Random.Range(0, 10);
 			if(rand < 7){
-				allergy = Allergies.Peanut;			
+				allergy.Add(Allergies.Peanut);			
 			}
 			else if(rand == 7){
-				allergy = Allergies.None;
+				allergy.Add(Allergies.None);
 			}
 			else if(rand == 8){
-				allergy = Allergies.Wheat;
+				allergy.Add(Allergies.Wheat);
 			}
 			else if(rand == 9){
-				allergy = Allergies.Dairy;
+				allergy.Add(Allergies.Dairy);
 			}
 		}
 		else if(mode == "Dairy"){
 			int rand = UnityEngine.Random.Range(0, 10);
 			if(rand < 7){
-				allergy = Allergies.Dairy;			
+				allergy.Add(Allergies.Dairy);			
 			}
 			else if(rand == 7){
-				allergy = Allergies.None;
+				allergy.Add(Allergies.None);
 			}
 			else if(rand == 8){
-				allergy = Allergies.Wheat;
+				allergy.Add(Allergies.Wheat);
 			}
 			else if(rand == 9){
-				allergy = Allergies.Peanut;
+				allergy.Add(Allergies.Peanut);
 			}
 		}
 		else if(mode == "Wheat"){
 			int rand = UnityEngine.Random.Range(0, 10);
 			if(rand < 7){
-				allergy = Allergies.Wheat;			
+				allergy.Add(Allergies.Wheat);			
 			}
 			else if(rand == 7){
-				allergy = Allergies.None;
+				allergy.Add(Allergies.None);
 			}
 			else if(rand == 8){
-				allergy = Allergies.Peanut;
+				allergy.Add(Allergies.Peanut);
 			}
 			else if(rand == 9){
-				allergy = Allergies.Dairy;
+				allergy.Add(Allergies.Dairy);
 			}
 		}
 	}
@@ -380,31 +380,29 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Tells the waiter the food has been delivered and begins eating
 	public virtual void Eating(){
-		if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.FlyThru){
+		if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.FlyThru) {
 			Waiter.Instance.Finished();
 			this.GetComponent<Behav>().Reason();
 			if(DataManager.Instance.GetEvent() == "EventTFlyThru") {
-				if(DataManager.Instance.GameData.Decoration.DecoTutQueue.Count > 0) { 
+				if(DataManager.Instance.GameData.Decoration.DecoTutQueue.Count > 0) {
 					DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
 				}
 				DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(DecoTypes.FlyThru);
 				DataManager.Instance.GameData.Decoration.ActiveDeco.Add(DecoTypes.FlyThru, "FlyThru00");
 				//DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
 			}
-            if (order.GetComponent<Order>().allergy.Contains(allergy) && allergy != Allergies.None) {
-                Medic.Instance.BillRestaurant(-100);
-                ParticleUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(tableNum).gameObject.transform.position, -100);
+			for(int i = 0; i < allergy.Count; i++) { 
+				if(order.GetComponent<Order>().allergy.Contains(allergy[i]) && !allergy.Contains(Allergies.None)) {
+					Medic.Instance.BillRestaurant(-100);
+					ParticleUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(tableNum).gameObject.transform.position, -100);
 
 
-                AudioManager.Instance.PlayClip("CustomerDead");
-                if (order.gameObject != null) {
-                    Destroy(order.gameObject);
-                }
-                SetSatisfaction(0);
-            }
-			if(satisfaction > 0) {
-				state = CustomerStates.Eating;
-				NotifyLeave();
+					AudioManager.Instance.PlayClip("CustomerDead");
+					if(order.gameObject != null) {
+						Destroy(order.gameObject);
+					}
+					SetSatisfaction(0);
+				}
 			}
 		}
 		currBehav.Reason();
@@ -428,44 +426,6 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 //		}
 	}
 
-	// Tells the resturantManager that the customer is leaving and can be removed from the dictionary
-	public virtual void NotifyLeave(){
-		if(DataManager.Instance.GetEvent() == "EventTVIP") {
-			DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
-			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(DecoTypes.VIP);
-			//DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
-		}
-
-		if(DataManager.Instance.GetEvent() == "EventTPlayArea") {
-			if(DataManager.Instance.GameData.Decoration.DecoTutQueue.Count > 0) {
-				DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
-			}
-			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(DecoTypes.PlayArea);
-			//DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
-		}
-
-		if(hasPowerUp){
-			//Waiter.Instance.GivePowerUp();
-		}
-		
-		if(satisfaction > 0){
-			if(satisfaction > 3) {
-				satisfaction = 3;
-			}
-			if(state == CustomerStates.Saved || state == CustomerStates.AllergyAttack) {
-				RestaurantManager.Instance.GetTable(tableNum).inUse = false;
-				RestaurantManager.Instance.CustomerLeftFlatCharge(this, Medic.HospitalPrice, true);
-			}
-			else if(state == CustomerStates.Eaten) {
-				// TODO: IS THIS NEEDED WHEN NOTIFY LEAVE IS CALLED FROM TABLE?
-				RestaurantManager.Instance.GetTable(tableNum).inUse = false;
-				RestaurantManager.Instance.CustomerLeftFlatCharge(this, 0, false);
-			}
-			else if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.VIP) {
-				RestaurantManager.Instance.CustomerLeftSatisfaction(this, true, VIPMultiplier:RestaurantManager.Instance.GetTable(tableNum).VIPMultiplier);
-			}
-		}
-	}
 
 	// when it runs out the customer is taken to the hospital and the player is slamed with the bill
 	IEnumerator AllergyTimer(){

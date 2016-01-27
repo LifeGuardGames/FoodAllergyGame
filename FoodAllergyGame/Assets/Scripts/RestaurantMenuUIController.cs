@@ -36,9 +36,9 @@ public class RestaurantMenuUIController : MonoBehaviour {
 		choices = new ImmutableDataFood[2];
 	}
 
-	public void ShowChoices(List <ImmutableDataFood> customerFoodChoices, int customerTableNum, Allergies customerAllergy){
+	public void ShowChoices(List <ImmutableDataFood> customerFoodChoices, int customerTableNum, List<Allergies> customerAllergy){
 		tableNum = customerTableNum;
-		allergy = customerAllergy;
+		allergy = customerAllergy[0];
 
 		if(allergy == Allergies.None){
 			allergyPassParent.SetActive(true);

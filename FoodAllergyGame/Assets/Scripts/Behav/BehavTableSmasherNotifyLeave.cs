@@ -14,9 +14,9 @@ public class BehavTableSmasherNotifyLeave : Behav {
 	}
 
 	public override void Act() {
-		// check to make sure he isn't inline or waiting for the check as there is no table to smash while inline
+		// check to make sure he isn't inline as there is no table to smash while inline
 		// and he needs to able to leave normally
-		if(self.state != CustomerStates.WaitForCheck && self.state != CustomerStates.InLine && self.state != CustomerStates.Eating) {
+		if(self.state != CustomerStates.InLine && self.satisfaction > 0) {
 			// Flips the isBroken bool customers cannot be placed at tables where isBroken is true
 			RestaurantManager.Instance.GetTable(self.tableNum).TableSmashed();
 

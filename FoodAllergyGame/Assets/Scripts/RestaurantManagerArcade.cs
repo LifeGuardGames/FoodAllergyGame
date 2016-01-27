@@ -39,7 +39,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 		dayEarnedCash = 0;
 		dayCashRevenue = 0;
 		restaurantUI.StartDay();
-		Debug.Log("Starting Day - Event:" +  eventData.ID + ", Customer Set:" + currSet);
+		//Debug.Log("Starting Day - Event:" +  eventData.ID + ", Customer Set:" + currSet);
 		if(eventData.ID == "EventT1"){
 			isTutorial = true;
 			//customerSpawnTimer = customerTimer / satisfactionAI.DifficultyLevel + 1;
@@ -94,7 +94,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 					customerSpawnTimer = 3.0f;
 				}
 
-				Debug.Log(customerSpawnTimer);
+				//Debug.Log(customerSpawnTimer);
 				rand = UnityEngine.Random.Range(0, DataManager.Instance.GameData.RestaurantEvent.CustomerList.Count);
 				if(eventData.ID == "EventTPlayArea") {
 					customerData = DataLoaderCustomer.GetData("Customer11");
@@ -107,8 +107,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 					customerData = DataLoaderCustomer.GetData("Customer12");
 				}
 				else {
-					Debug.Log(rand);
-					Debug.Log(DataManager.Instance.GameData.RestaurantEvent.CustomerList.Count);
+
 					customerData = DataLoaderCustomer.GetData(DataManager.Instance.GameData.RestaurantEvent.CustomerList[rand]);
 
 					// Track in analytics

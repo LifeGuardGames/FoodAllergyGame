@@ -43,7 +43,7 @@ public class FoodManager : Singleton<FoodManager>{
 	/// <summary>
 	/// Chooses food items based off a supplied keyword from menuList
 	/// </summary>
-	public List<ImmutableDataFood> GetTwoMenuFoodChoices(FoodKeywords keyword, Allergies _allergy){
+	public List<ImmutableDataFood> GetTwoMenuFoodChoices(FoodKeywords keyword, List<Allergies> _allergy){
 		List<ImmutableDataFood> desiredFoodList = new List<ImmutableDataFood>();
 		bool allergyFood = false;
 		bool allergenAdded = false;
@@ -79,17 +79,17 @@ public class FoodManager : Singleton<FoodManager>{
 						numOfNoAllergen++;
 					}
 				}
-				if(numOfWheatAllergen == MenuList.Count && _allergy == Allergies.Wheat) {
+				if(numOfWheatAllergen == MenuList.Count && _allergy.Contains(Allergies.Wheat)) {
 					desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
 					desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
 					return desiredFoodList;
 				}
-				else if(numOfDairyAllergen == menuList.Count && _allergy == Allergies.Dairy) {
+				else if(numOfDairyAllergen == menuList.Count && _allergy.Contains( Allergies.Dairy)) {
 					desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
 					desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
 					return desiredFoodList;
 				}
-				else if (numOfPeanutAllergen == menuList.Count && _allergy == Allergies.Peanut) {
+				else if (numOfPeanutAllergen == menuList.Count && _allergy.Contains(Allergies.Peanut)) {
 					desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
 					desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
 					return desiredFoodList;
@@ -106,7 +106,7 @@ public class FoodManager : Singleton<FoodManager>{
 //				Debug.Log (menuList[rand].ID.ToString());
 			if(!desiredFoodList.Contains(menuList[rand])){
 				foreach(Allergies alg in menuList[rand].AllergyList){
-					if(_allergy == alg){
+					if(_allergy.Contains(alg)){
 						allergyFood = true;	
 					}
 				}
