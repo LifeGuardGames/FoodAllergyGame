@@ -1,8 +1,17 @@
-﻿
-public enum InfoType{
+﻿public enum InfoType{
 	None,
 	Food,
 	Customer
+}
+
+// Different types of assets that you can unlock in each tier
+public enum AssetTypes{
+	Customer,
+	DecoSpecial,
+	DecoBasic,
+	Food,
+	Slot,
+	Challenge
 }
 
 public enum FoodKeywords{

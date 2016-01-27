@@ -48,6 +48,21 @@ public class DataLoaderTiers: XMLLoaderGeneric<DataLoaderTiers>{
 			return 1f;
 		}
 	}
+
+	/// <summary>
+	/// Check if you earned slot spaces at the current tier, compared to the last tier
+	/// </summary>
+	public static int GetSlotsUnlockedAtTier(int tier){
+		if(tier == 0){
+			Debug.LogWarning("Getting delta tier at first tier");
+			return 0;
+		}
+
+		ImmutableDataTiers currentTier = GetDataFromTier(tier);
+		ImmutableDataTiers previousTier = GetDataFromTier(tier - 1);
+
+		return currentTier.MenuSlots - previousTier.MenuSlots;
+	}
 	
 	protected override void XMLNodeHandler(string id, IXMLNode xmlNode, Hashtable hashData, string errorMessage){
 		ImmutableDataTiers data = new ImmutableDataTiers(id, xmlNode, errorMessage);

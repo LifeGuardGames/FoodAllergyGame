@@ -193,7 +193,7 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 
 	public void SpawnSecondTut(){
 		ImmutableDataCustomer test;
-		test = DataLoaderCustomer.GetData("Customer10");
+		test = DataLoaderCustomer.GetData("CustomerTutorial");
 		GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
 		GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 		cus.GetComponent<CustomerTutorial>().isAllergy = true;

@@ -64,7 +64,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 
 		if(isTutorial) {
 			ImmutableDataCustomer test;
-			test = DataLoaderCustomer.GetData("Customer10");
+			test = DataLoaderCustomer.GetData("CustomerTutorial");
 			GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
 			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 			cus.GetComponent<Customer>().Init(customerNumber, eventData);
@@ -97,14 +97,14 @@ public class RestaurantManagerArcade : RestaurantManager {
 				//Debug.Log(customerSpawnTimer);
 				rand = UnityEngine.Random.Range(0, DataManager.Instance.GameData.RestaurantEvent.CustomerList.Count);
 				if(eventData.ID == "EventTPlayArea") {
-					customerData = DataLoaderCustomer.GetData("Customer11");
+					customerData = DataLoaderCustomer.GetData("CustomerPlayAreaTut");
 					if(!DataManager.Instance.IsDebug) {
 						//	DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
 
 					}
 				}
 				else if(eventData.ID == "EventTVIP") {
-					customerData = DataLoaderCustomer.GetData("Customer12");
+					customerData = DataLoaderCustomer.GetData("CustomerVIPTut");
 				}
 				else {
 

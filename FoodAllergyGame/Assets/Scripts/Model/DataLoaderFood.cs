@@ -29,6 +29,16 @@ public class DataLoaderFood : XMLLoaderGeneric<DataLoaderFood> {
 		}
 		return foodList;
 	}
+
+	public static List<string> GetIDUnlockedAtTier(int tier){
+		List<string> foodAtTierList = new List<string>();
+		foreach(ImmutableDataFood foodData in GetDataList()){
+			if(foodData.Tier == tier){
+				foodAtTierList.Add(foodData.ID);
+			}
+		}
+		return foodAtTierList;
+	}
 	
 	protected override void XMLNodeHandler(string id, IXMLNode xmlNode, Hashtable hashData, string errorMessage){
 		ImmutableDataFood data = new ImmutableDataFood(id, xmlNode, errorMessage);

@@ -15,6 +15,16 @@ public class DataLoaderChallenge : XMLLoaderGeneric<DataLoaderChallenge> {
 		return instance.GetDataList<ImmutableDataChallenge>();
 	}
 
+	public static List<string> GetIDUnlockedAtTier(int tier){
+		List<string> challengesAtTierList = new List<string>();
+		foreach(ImmutableDataChallenge challengeData in GetDataList()){
+			if(challengeData.Tier == tier){
+				challengesAtTierList.Add(challengeData.ID);
+			}
+		}
+		return challengesAtTierList;
+	}
+
 	protected override void XMLNodeHandler(string id, IXMLNode xmlNode, Hashtable hashData, string errorMessage) {
 		ImmutableDataChallenge data = new ImmutableDataChallenge(id, xmlNode, errorMessage);
 		// Store the data

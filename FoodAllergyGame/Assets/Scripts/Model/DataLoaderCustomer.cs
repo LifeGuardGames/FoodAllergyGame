@@ -14,6 +14,16 @@ public class DataLoaderCustomer : XMLLoaderGeneric<DataLoaderCustomer> {
 		instance.InitXMLLoader();
 		return instance.GetDataList<ImmutableDataCustomer>();
 	}
+
+	public static List<string> GetIDUnlockedAtTier(int tier){
+		List<string> customerAtTierList = new List<string>();
+		foreach(ImmutableDataCustomer customerData in GetDataList()){
+			if(customerData.Tier == tier){
+				customerAtTierList.Add(customerData.ID);
+			}
+		}
+		return customerAtTierList;
+	}
 	
 	protected override void XMLNodeHandler(string id, IXMLNode xmlNode, Hashtable hashData, string errorMessage){
 		ImmutableDataCustomer data = new ImmutableDataCustomer(id, xmlNode, errorMessage);

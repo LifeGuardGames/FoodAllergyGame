@@ -13,7 +13,31 @@ public class DataLoaderDecoItem: XMLLoaderGeneric<DataLoaderDecoItem> {
 		instance.InitXMLLoader();
 		return instance.GetDataList<ImmutableDataDecoItem>();
 	}
-	
+
+	public static List<string> GetBasicDecoIDUnlockedAtTier(int tier){
+		List<string> decoList = new List<string>();
+		foreach(ImmutableDataDecoItem decoData in GetDataList()){
+			if(decoData.Tier == tier){
+				if(decoData.Type == DecoTypes.Kitchen || decoData.Type == DecoTypes.Table || decoData.Type == DecoTypes.Floor){
+					decoList.Add(decoData.ID);
+				}
+			}
+		}
+		return decoList;
+	}
+
+	public static List<string> GetSpecialDecoIDUnlockedAtTier(int tier){
+		List<string> decoList = new List<string>();
+		foreach(ImmutableDataDecoItem decoData in GetDataList()){
+			if(decoData.Tier == tier){
+				// Get the inverse of basic decorations
+				if(decoData.Type != DecoTypes.Kitchen && decoData.Type != DecoTypes.Table && decoData.Type != DecoTypes.Floor){
+					decoList.Add(decoData.ID);
+				}
+			}
+		}
+		return decoList;
+	}
 
 	public static List<ImmutableDataDecoItem> GetDecoDataByType(DecoTypes type){
 		List<ImmutableDataDecoItem> itemList = GetDataList();

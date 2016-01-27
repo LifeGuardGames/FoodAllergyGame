@@ -53,8 +53,8 @@ public class FoodManager : Singleton<FoodManager>{
 		int numOfNoAllergen;
 
 		if(RestaurantManager.Instance.isTutorial) {
-			desiredFoodList.Add(DataLoaderFood.GetData("Food00"));
-			desiredFoodList.Add(DataLoaderFood.GetData("Food08"));
+			desiredFoodList.Add(DataLoaderFood.GetData("FoodFruitPlatter"));
+			desiredFoodList.Add(DataLoaderFood.GetData("FoodTrailMix"));
 			return desiredFoodList;
 		}
 		

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Foods>
-	<Food ID="Food00">
+	<Food ID="FoodFruitPlatter">
 		<FoodNameKey>FoodFruitPlatter</FoodNameKey>
 		<SpriteName>FoodFruitPlatter</SpriteName>
 		<Allergies>None</Allergies>
@@ -9,7 +9,7 @@
 		<Reward>1</Reward>
 		<Slot>1</Slot>
 	</Food>
-	<Food ID="Food01">
+	<Food ID="FoodChicken">
 		<FoodNameKey>FoodChicken</FoodNameKey>
 		<SpriteName>FoodChicken</SpriteName>
 		<Allergies>None</Allergies>
@@ -18,7 +18,7 @@
 		<Reward>1</Reward>
 		<Slot>1</Slot>
 	</Food>
-	<Food ID="Food02">
+	<Food ID="FoodPeanutCandy">
 		<FoodNameKey>FoodPeanutCandy</FoodNameKey>
 		<SpriteName>FoodPeanutCandy</SpriteName>
 		<Allergies>Peanut</Allergies>
@@ -27,7 +27,7 @@
 		<Reward>2</Reward>
 		<Slot>1</Slot>
 	</Food>
-	<Food ID="Food03">
+	<Food ID="FoodYogurt">
 		<FoodNameKey>FoodYogurt</FoodNameKey>
 		<SpriteName>FoodYogurt</SpriteName>
 		<Allergies>Dairy</Allergies>
@@ -36,7 +36,7 @@
 		<Reward>2</Reward>
 		<Slot>1</Slot>
 	</Food>
-	<Food ID="Food04">
+	<Food ID="FoodCheeseStick">
 		<FoodNameKey>FoodCheeseStick</FoodNameKey>
 		<SpriteName>FoodCheeseStick</SpriteName>
 		<Allergies>Dairy</Allergies>
@@ -45,7 +45,7 @@
 		<Reward>2</Reward>
 		<Slot>1</Slot>
 	</Food>
-	<Food ID="Food05">
+	<Food ID="FoodPeanuts">
 		<FoodNameKey>FoodPeanuts</FoodNameKey>
 		<SpriteName>FoodPeanuts</SpriteName>
 		<Allergies>Peanut</Allergies>
@@ -54,7 +54,7 @@
 		<Reward>2</Reward>
 		<Slot>1</Slot>
 	</Food>
-	<Food ID="Food06">
+	<Food ID="FoodVeggieSandwich">
 		<FoodNameKey>FoodVeggieSandwich</FoodNameKey>
 		<SpriteName>FoodVeggieSandwich</SpriteName>
 		<Allergies>Wheat</Allergies>
@@ -63,16 +63,16 @@
 		<Reward>2</Reward>
 		<Slot>1</Slot>
 	</Food>
-  <Food ID="Food07">
-    <FoodNameKey>FoodToast</FoodNameKey>
-    <SpriteName>FoodToast</SpriteName>
-    <Allergies>Wheat</Allergies>
-    <Keywords>Meal,Drink</Keywords>
-    <Tier>0</Tier>
-    <Reward>2</Reward>
-    <Slot>1</Slot>
-  </Food>
-	<Food ID="Food08">
+	<Food ID="FoodToast">
+		<FoodNameKey>FoodToast</FoodNameKey>
+		<SpriteName>FoodToast</SpriteName>
+		<Allergies>Wheat</Allergies>
+		<Keywords>Meal,Drink</Keywords>
+		<Tier>0</Tier>
+		<Reward>2</Reward>
+		<Slot>1</Slot>
+	</Food>
+	<Food ID="FoodTrailMix">
 		<FoodNameKey>FoodTrailMix</FoodNameKey>
 		<SpriteName>FoodTrailMix</SpriteName>
 		<Allergies>Peanut</Allergies>
@@ -81,7 +81,7 @@
 		<Reward>2</Reward>
 		<Slot>1</Slot>
 	</Food>
-	<Food ID="Food09">
+	<Food ID="FoodMilk">
 		<FoodNameKey>FoodMilk</FoodNameKey>
 		<SpriteName>FoodMilk</SpriteName>
 		<Allergies>Dairy</Allergies>
@@ -90,34 +90,34 @@
 		<Reward>2</Reward>
 		<Slot>1</Slot>
 	</Food>
-	<Food ID="Food10">
-		<FoodNameKey>FoodPeanutButterJelly</FoodNameKey>
-		<SpriteName>FoodPeanutButterJelly</SpriteName>
+	<Food ID="FoodPBJelly">
+		<FoodNameKey>FoodPBJelly</FoodNameKey>
+		<SpriteName>FoodPBJelly</SpriteName>
 		<Allergies>Wheat,Peanut</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
 		<Tier>3</Tier>
 		<Reward>3</Reward>
 		<Slot>1</Slot>
 	</Food>
-	<Food ID="Food11">
-		<FoodNameKey>FoodPeanutButterCookies</FoodNameKey>
-		<SpriteName>FoodPeanutButterCookies</SpriteName>
+	<Food ID="FoodPBCookies">
+		<FoodNameKey>FoodPBCookies</FoodNameKey>
+		<SpriteName>FoodPBCookies</SpriteName>
 		<Allergies>Wheat,Peanut</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
 		<Tier>7</Tier>
 		<Reward>3</Reward>
 		<Slot>1</Slot>
 	</Food>
-	<Food ID="Food12">
-		<FoodNameKey>FoodPeanutButterPretzels</FoodNameKey>
-		<SpriteName>FoodPeanutButterPretzels</SpriteName>
+	<Food ID="FoodPBPretzels">
+		<FoodNameKey>FoodPBPretzels</FoodNameKey>
+		<SpriteName>FoodPBPretzels</SpriteName>
 		<Allergies>Wheat,Peanut</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
 		<Tier>5</Tier>
 		<Reward>3</Reward>
 		<Slot>1</Slot>
 	</Food>
-	<Food ID="Food13">
+	<Food ID="FoodPeanutMMs">
 		<FoodNameKey>FoodPeanutMMs</FoodNameKey>
 		<SpriteName>FoodPeanutMMs</SpriteName>
 		<Allergies>Dairy,Peanut</Allergies>
@@ -126,7 +126,7 @@
 		<Reward>3</Reward>
 		<Slot>1</Slot>
 	</Food>
-	<Food ID="Food14">
+	<Food ID="FoodMacAndCheese">
 		<FoodNameKey>FoodMacAndCheese</FoodNameKey>
 		<SpriteName>FoodMacAndCheese</SpriteName>
 		<Allergies>Wheat,Dairy</Allergies>
@@ -135,7 +135,7 @@
 		<Reward>3</Reward>
 		<Slot>1</Slot>
 	</Food>
-	<Food ID="Food15">
+	<Food ID="FoodOreos">
 		<FoodNameKey>FoodOreos</FoodNameKey>
 		<SpriteName>FoodOreos</SpriteName>
 		<Allergies>Wheat,Dairy</Allergies>
@@ -144,7 +144,7 @@
 		<Reward>3</Reward>
 		<Slot>1</Slot>
 	</Food>
-	<Food ID="Food16">
+	<Food ID="FoodPancake">
 		<FoodNameKey>FoodPancake</FoodNameKey>
 		<SpriteName>FoodPancake</SpriteName>
 		<Allergies>Wheat,Dairy</Allergies>
@@ -153,7 +153,7 @@
 		<Reward>3</Reward>
 		<Slot>1</Slot>
 	</Food>
-	<Food ID="Food17">
+	<Food ID="FoodGranolaBar">
 		<FoodNameKey>FoodGranolaBar</FoodNameKey>
 		<SpriteName>FoodGranolaBar</SpriteName>
 		<Allergies>Wheat,Dairy,Peanut</Allergies>
@@ -162,7 +162,7 @@
 		<Reward>5</Reward>
 		<Slot>1</Slot>
 	</Food>
-	<Food ID="Food18">
+	<Food ID="FoodPeanutBrownies">
 		<FoodNameKey>FoodPeanutBrownies</FoodNameKey>
 		<SpriteName>FoodPeanutBrownies</SpriteName>
 		<Allergies>Wheat,Dairy,Peanut</Allergies>
@@ -171,40 +171,40 @@
 		<Reward>5</Reward>
 		<Slot>1</Slot>
 	</Food>
-  <Food ID="Food19">
-    <FoodNameKey>FoodPeanutIceCreamBar</FoodNameKey>
-    <SpriteName>FoodPeanutIceCreamBar</SpriteName>
-    <Allergies>Dairy,Peanut</Allergies>
-    <Keywords>Drink,Dessert</Keywords>
-    <Tier>5</Tier>
-    <Reward>3</Reward>
-    <Slot>1</Slot>
-  </Food>
-  <Food ID="Food20">
-    <FoodNameKey>FoodYogurtParfait</FoodNameKey>
-    <SpriteName>FoodYogurtParfait</SpriteName>
-    <Allergies>Dairy,Peanut</Allergies>
-    <Keywords>Drink,Dessert</Keywords>
-    <Tier>11</Tier>
-    <Reward>3</Reward>
-    <Slot>1</Slot>
-  </Food>
-  <Food ID="Food21">
-    <FoodNameKey>FoodPastaTomatoSauce</FoodNameKey>
-    <SpriteName>FoodPastaTomatoSauce</SpriteName>
-    <Allergies>Wheat</Allergies>
-    <Keywords>Drink,Dessert</Keywords>
-    <Tier>1</Tier>
-    <Reward>2</Reward>
-    <Slot>1</Slot>
-  </Food>
-  <Food ID="Food22">
-    <FoodNameKey>FoodPeanutButterCheeseCrackers</FoodNameKey>
-    <SpriteName>FoodPeanutButterCheeseCrackers</SpriteName>
-    <Allergies>Wheat,Dairy,Peanut</Allergies>
-    <Keywords>Drink,Dessert</Keywords>
-    <Tier>11</Tier>
-    <Reward>5</Reward>
-    <Slot>1</Slot>
-  </Food>
+	<Food ID="FoodPeanutIceCreamBar">
+		<FoodNameKey>FoodPeanutIceCreamBar</FoodNameKey>
+		<SpriteName>FoodPeanutIceCreamBar</SpriteName>
+		<Allergies>Dairy,Peanut</Allergies>
+		<Keywords>Drink,Dessert</Keywords>
+		<Tier>5</Tier>
+		<Reward>3</Reward>
+		<Slot>1</Slot>
+	</Food>
+	<Food ID="FoodYogurtParfait">
+		<FoodNameKey>FoodYogurtParfait</FoodNameKey>
+		<SpriteName>FoodYogurtParfait</SpriteName>
+		<Allergies>Dairy,Peanut</Allergies>
+		<Keywords>Drink,Dessert</Keywords>
+		<Tier>11</Tier>
+		<Reward>3</Reward>
+		<Slot>1</Slot>
+	</Food>
+	<Food ID="FoodPastaTomatoSauce">
+		<FoodNameKey>FoodPastaTomatoSauce</FoodNameKey>
+		<SpriteName>FoodPastaTomatoSauce</SpriteName>
+		<Allergies>Wheat</Allergies>
+		<Keywords>Drink,Dessert</Keywords>
+		<Tier>1</Tier>
+		<Reward>2</Reward>
+		<Slot>1</Slot>
+	</Food>
+	<Food ID="FoodPBCheeseCrackers">
+		<FoodNameKey>FoodPBCheeseCrackers</FoodNameKey>
+		<SpriteName>FoodPBCheeseCrackers</SpriteName>
+		<Allergies>Wheat,Dairy,Peanut</Allergies>
+		<Keywords>Drink,Dessert</Keywords>
+		<Tier>11</Tier>
+		<Reward>5</Reward>
+		<Slot>1</Slot>
+	</Food>
 </Foods>

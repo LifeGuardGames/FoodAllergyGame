@@ -10,6 +10,11 @@ public class ImmutableDataChallenge  {
 		get { return id; }
 	}
 
+	private int tier;
+	public int Tier{
+		get {return tier;}
+	}
+
 	private string challengeMenuSet;		// This is an additive menu set, unlike removeMenuSet
 	public string ChallengeMenuSet {
 		get { return challengeMenuSet; }
@@ -69,6 +74,7 @@ public class ImmutableDataChallenge  {
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 
 		this.id = id;
+		tier = XMLUtils.GetInt(hashElements["Tier"] as IXMLNode);
 		challengeMenuSet = XMLUtils.GetString(hashElements["ChallengeMenuSet"] as IXMLNode, null, error);
 		kitchenTimerMod = XMLUtils.GetFloat(hashElements["KitchenTimer"] as IXMLNode);
 		customerSet = XMLUtils.GetString(hashElements["CustomerSet"] as IXMLNode);

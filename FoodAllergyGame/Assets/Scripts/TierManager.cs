@@ -12,9 +12,14 @@ public class TierManager : Singleton<TierManager> {
 		get{ return tier; }
 	}
 
-	private List<string> specialItemID;				// Special item IDs used for start notifications
+	private List<string> specialItemID;		// Special item IDs used for start notifications
 	public List<string> SpecialItemID{
 		get{ return specialItemID; }
+	}
+
+	private Dictionary<AssetTypes, List<string>> currentTierUnlocks;	// A hash of all the types of unlocks with their tiers
+	public Dictionary<AssetTypes, List<string>> CurrentTierUnlocks{
+		get{ return currentTierUnlocks; }
 	}
 
 	void Awake() {
@@ -125,5 +130,26 @@ public class TierManager : Singleton<TierManager> {
 		}
 		tier = newTier;
 		//TODO More special unlock logic here
+	}
+
+	/// <summary>
+	/// Given a tier, get all the IDs of all the assets that are unlocked
+	/// includes: Customers, BasicDeco, Special Deco, FoodItems, Slots, Challenges, Challenges
+	/// NOTE: All AssetTypes will always be populated, check empty value list for empty unlock value instead
+	/// </summary>
+	/// <param name="tier">Tier</param>
+	public Dictionary<AssetTypes, List<string>> GetAllUnlocksAtTier(int tier){
+		Dictionary<AssetTypes, List<string>> unlockHash = new Dictionary<AssetTypes, List<string>>();
+		unlockHash.Add(AssetTypes.Customer, DataLoaderCustomer.GetIDUnlockedAtTier(tier));
+		unlockHash.Add(AssetTypes.DecoSpecial, DataLoaderDecoItem.GetBasicDecoIDUnlockedAtTier(tier));
+		unlockHash.Add(AssetTypes.DecoBasic,  DataLoaderDecoItem.GetSpecialDecoIDUnlockedAtTier(tier));
+		unlockHash.Add(AssetTypes.Food, DataLoaderFood.GetIDUnlockedAtTier(tier));
+		unlockHash.Add(AssetTypes.Challenge, DataLoaderChallenge.GetIDUnlockedAtTier(tier));
+
+		List<string> slotList = new List<string>();				// Slots are special, just store a (string)int in list
+		slotList.Add(DataLoaderTiers.GetSlotsUnlockedAtTier(tier).ToString());
+		unlockHash.Add(AssetTypes.Slot, slotList);
+
+		return unlockHash;
 	}
 }
