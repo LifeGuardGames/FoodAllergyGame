@@ -242,7 +242,7 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 
 	// Used in OnApplicationPaused in Restaurant and quit button
 	public void IncompleteQuitAnalytics() {
-		AnalyticsManager.Instance.TrackGameDayInRestaurant(dayTimeLeft, TierManager.Instance.Tier, DataManager.Instance.GameData.RestaurantEvent.CurrentEvent,
+		AnalyticsManager.Instance.TrackGameDayInRestaurant(dayTimeLeft, TierManager.Instance.CurrentTier, DataManager.Instance.GameData.RestaurantEvent.CurrentEvent,
 				satisfactionAI.DifficultyLevel, satisfactionAI.MissingCustomers, satisfactionAI.AvgSatisfaction(),
 				DayEarnedCash, Medic.Instance.MedicCost);
 	}

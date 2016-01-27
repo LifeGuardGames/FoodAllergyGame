@@ -6,7 +6,7 @@ public class PropManager : Singleton<PropManager> {
 	public GameObject propRandomOrbit;	// Random props are space props that orbit (rotation) the planetoid
 
 	public void InitProps() {
-		if(TierManager.Instance.Tier >= minimumSpawnTier) {
+		if(TierManager.Instance.CurrentTier >= minimumSpawnTier) {
 			SpawnPropNodeRandom();
 			SpawnPropNodeGrowth();
 			SpawnPropNodeEvent();

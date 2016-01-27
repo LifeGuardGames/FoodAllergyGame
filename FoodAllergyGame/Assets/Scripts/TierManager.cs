@@ -7,14 +7,19 @@ public class TierManager : Singleton<TierManager> {
 
 	private string tierXMLPrefix = "Tier";	// Prefix of the tier xml keys, ie. "Tier04"
 
-	private int tier;						// Cached tier for use throughout game
-	public int Tier{
-		get{ return tier; }
+	private int currentTier;						// Cached tier for use throughout game
+	public int CurrentTier{
+		get{ return currentTier; }
 	}
 
 	private List<string> specialItemID;		// Special item IDs used for start notifications
 	public List<string> SpecialItemID{
 		get{ return specialItemID; }
+	}
+
+	private bool isNewUnlocksAvailable = false;
+	public bool IsNewUnlocksAvailable{
+		get{ return isNewUnlocksAvailable; }
 	}
 
 	private Dictionary<AssetTypes, List<string>> currentTierUnlocks;	// A hash of all the types of unlocks with their tiers
@@ -29,22 +34,74 @@ public class TierManager : Singleton<TierManager> {
 	// Recalculate the tier given a certain algorithm
 	// NOTE: Should be done on StartScene ONLY
 	public void RecalculateTier(){
-		tier = DataLoaderTiers.GetTierFromCash(CashManager.Instance.LastSeenTotalCash);
+		isNewUnlocksAvailable = false;
+		int oldTier = DataLoaderTiers.GetTierFromCash(CashManager.Instance.LastSeenTotalCash);
 		int newTier = DataLoaderTiers.GetTierFromCash(CashManager.Instance.TotalCash);
 
-		// NOTE: If there is a change in tier, run logic
-		if(tier < newTier){
-			SpecialTierUnlock(newTier);    // TODO support multiple tier increments
+		// If there is a change in tier, run logic
+		// INVARIABLE: Tiers are maximum one above, never multiple tiers at once
+		if(oldTier < newTier){
+			if(newTier - oldTier > 1){
+				Debug.LogError("Multiple tiers progressed, messes with unlock progression");
+			}
+
+			currentTierUnlocks = GetAllUnlocksAtTier(newTier);
+
+			// Check if the data structure has any unlocks
+			foreach(KeyValuePair<AssetTypes, List<string>> hashEntry in currentTierUnlocks){
+				if(hashEntry.Key == AssetTypes.Slot){	// Slot always has an entry, check value
+					if(hashEntry.Value[0] != "0"){
+						isNewUnlocksAvailable = true;
+						break;
+					}
+				}
+				else{
+					if(hashEntry.Value.Count > 0){
+						isNewUnlocksAvailable = true;
+						break;
+					}
+				}
+			}
+
+			//SpecialTierUnlock(newTier);    // TODO support multiple tier increments
+
+			//this is here to prevent non tutorial special deco from being added to the game. It's a funnel for multiple unlocks
+			// TODO
+			/*
+			if(specialItemID.Count > 0) {
+				ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(specialItemID[0]);
+				DataManager.Instance.GameData.Decoration.BoughtDeco.Add(specialItemID[0], "");
+				DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(decoData.Type);
+				DataManager.Instance.GameData.Decoration.ActiveDeco.Add(decoData.Type, decoData.ID);
+			}
+			*/
+
+			// TODO make something that notification can pick up
+			//specialItemID.Add("FlyThru00");
+
+			if(isNewUnlocksAvailable){
+				List<string> unlockedSpecialDecos = currentTierUnlocks[AssetTypes.DecoSpecial];
+				if(unlockedSpecialDecos.Contains("VIP00")){
+					specialItemID.Add("VIP00");
+					DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTVIP");
+					DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
+				}
+				else if(unlockedSpecialDecos.Contains("PlayArea00")){
+					specialItemID.Add("PlayArea00");
+					DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTPlayArea");
+					DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
+				}
+				else if(unlockedSpecialDecos.Contains("FlyThru00")){
+					specialItemID.Add("FlyThru00");
+					DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTFlyThru");
+					DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
+				}
+			}
+			currentTier = newTier;
 		}
-		//this is here to prevent non tutorial special deco from being added to the game. It's a funnel for multiple unlocks
-		if(specialItemID.Count > 0) {
-			ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(specialItemID[0]);
-			DataManager.Instance.GameData.Decoration.BoughtDeco.Add(specialItemID[0], "");
-			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(decoData.Type);
-			DataManager.Instance.GameData.Decoration.ActiveDeco.Add(decoData.Type, decoData.ID);
-		}
+
 		// Print out tier
-		Debug.Log("Recalculated tier: " + tier + "     total cash: " + CashManager.Instance.TotalCash);
+		Debug.Log("New tier:" + currentTier + "  ||  total cash:" + CashManager.Instance.TotalCash + "  ||  new unlocks? " + IsNewUnlocksAvailable);
 	}
 
 	public void RemoveSpecialID() {
@@ -52,14 +109,14 @@ public class TierManager : Singleton<TierManager> {
 	}
 
 	public int GetMenuSlots(){
-		return DataLoaderTiers.GetData(tierXMLPrefix + StringUtils.FormatIntToDoubleDigitString(tier)).MenuSlots;
+		return DataLoaderTiers.GetData(tierXMLPrefix + StringUtils.FormatIntToDoubleDigitString(currentTier)).MenuSlots;
 	}
 
 	// Loops through all previous events for a compiled list
 	public List<string> GetEventsUnlocked(){
 		List<string> eventsUnlocked = new List<string>();
-		if(tier >= 0){
-			for(int i = 0; i <= tier; i++){
+		if(currentTier >= 0){
+			for(int i = 0; i <= currentTier; i++){
 				string[] eventsAtTier = DataLoaderTiers.GetData(tierXMLPrefix + StringUtils.FormatIntToDoubleDigitString(i)).EventsUnlocked;
 				foreach(string restaurantEvent in eventsAtTier){
 					eventsUnlocked.Add(restaurantEvent);
@@ -68,12 +125,11 @@ public class TierManager : Singleton<TierManager> {
 		}
 		return eventsUnlocked;
 	}
-
-
+		
 	public List<string> GetDecorationsUnlocked(){
 		List<string> deocrationsUnlocked = null;
-		if(tier >= 0){
-			for(int i = 0; i <= tier; i++){
+		if(currentTier >= 0){
+			for(int i = 0; i <= currentTier; i++){
 				string[] decosAtTier = DataLoaderTiers.GetData(tierXMLPrefix + StringUtils.FormatIntToDoubleDigitString(i)).DecorationsUnlocked;
 				foreach(string restaurantEvent in decosAtTier){
 					deocrationsUnlocked.Add(restaurantEvent);
@@ -85,8 +141,8 @@ public class TierManager : Singleton<TierManager> {
 
 	public List<string> GetStartArtAssets(){
 		List<string> startArtAssets = null;
-		if(tier >= 0){
-			for(int i = 0; i <= tier; i++){
+		if(currentTier >= 0){
+			for(int i = 0; i <= currentTier; i++){
 				string[] assetsAtTier = DataLoaderTiers.GetData(tierXMLPrefix + StringUtils.FormatIntToDoubleDigitString(i)).StartArtAssets;
 				foreach(string restaurantEvent in assetsAtTier){
 					startArtAssets.Add(restaurantEvent);
@@ -95,7 +151,6 @@ public class TierManager : Singleton<TierManager> {
 		}
 		return startArtAssets;
 	}
-
 
 	public string GetNewEvent(){
 		if(DataManager.Instance.GameData.Decoration.DecoTutQueue.Count != 0){
@@ -107,29 +162,6 @@ public class TierManager : Singleton<TierManager> {
             Debug.Log(rand);
 			return eventList[rand];
 		}
-	}
-
-	// Checks any special case for unlocking a tier
-	// IMPORTANT NOTE: Make sure to set specialDecoID so notificationManager can pick it up!
-	public void SpecialTierUnlock(int newTier){
-		if(newTier >= 2 && tier < 2){
-			specialItemID.Add("VIP00");
-			DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTVIP");
-			DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
-		}
-
-		if(newTier >= 4 && tier < 4) {
-			specialItemID.Add("PlayArea00");
-			DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTPlayArea");
-			DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
-		}
-		if(newTier >= 6 && tier < 6) {
-			specialItemID.Add("FlyThru00");
-			DataManager.Instance.GameData.Decoration.DecoTutQueue.Add("EventTFlyThru");
-			DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
-		}
-		tier = newTier;
-		//TODO More special unlock logic here
 	}
 
 	/// <summary>

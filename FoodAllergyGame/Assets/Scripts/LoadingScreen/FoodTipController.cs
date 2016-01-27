@@ -26,7 +26,7 @@ public class FoodTipController : MonoBehaviour {
 	}
 
 	private void RefreshInternalList() {
-		List<ImmutableDataFood> newFoodList = DataLoaderFood.GetDataListWithinTier(TierManager.Instance.Tier);
+		List<ImmutableDataFood> newFoodList = DataLoaderFood.GetDataListWithinTier(TierManager.Instance.CurrentTier);
 		if(newFoodList.Count != unlockedFoodCount){
 			internalFoodList = newFoodList;
 			unlockedFoodCount = internalFoodList.Count;

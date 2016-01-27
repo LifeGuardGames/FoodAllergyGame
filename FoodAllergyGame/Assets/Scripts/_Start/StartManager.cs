@@ -49,7 +49,7 @@ public class StartManager : Singleton<StartManager>{
 		// Default case
 		else {
 			// Show the deco entrance
-			if(TierManager.Instance.Tier >= 3) {
+			if(TierManager.Instance.CurrentTier >= 3) {
 				bool isFirstTimeEntrance = DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance;
 				IsShopAppearHideDinerOverride = isFirstTimeEntrance;
                 decoEntranceUIController.Show(isFirstTimeEntrance);
@@ -134,7 +134,7 @@ public class StartManager : Singleton<StartManager>{
 
 		List<ImmutableDataCustomer> cusToDelete = new List<ImmutableDataCustomer>();
 		foreach(ImmutableDataCustomer cusData in customersPool) {
-			if(cusData.Tier > TierManager.Instance.Tier || cusData.Tier == -1) {
+			if(cusData.Tier > TierManager.Instance.CurrentTier || cusData.Tier == -1) {
 				cusToDelete.Add(cusData);
 			}
 		}
@@ -150,7 +150,7 @@ public class StartManager : Singleton<StartManager>{
 
 	// Given the event, generate a few set of food stocks, capped by event menussets and tier
 	public void GenerateUnlockedFoodStock(){
-		List<ImmutableDataFood> unlockedFoodStock = DataLoaderFood.GetDataListWithinTier(TierManager.Instance.Tier);
+		List<ImmutableDataFood> unlockedFoodStock = DataLoaderFood.GetDataListWithinTier(TierManager.Instance.CurrentTier);
 
 		// First remove all the foods that are not used for event
 		ImmutableDataRemoveMenuSet currSet = DataLoaderRemoveMenuSet.GetData(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()).RemoveMenuSet);
