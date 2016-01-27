@@ -19,8 +19,10 @@ public class BehavHospitalRunnerAllergyAttack : Behav {
 		if(self.order.gameObject != null) {
 			self.DestroyOrder();
 		}
+
 		// Removes customer and bills the restaurant
 		RestaurantManager.Instance.CustomerLeftFlatCharge(self, Medic.HospitalPrice, true);
+
 		RestaurantManager.Instance.sickCustomers.Remove(self.gameObject);
 		DataManager.Instance.GameData.Tutorial.MissedMedic++;
 		if(DataManager.Instance.GameData.Tutorial.MissedMedic >= 3) {

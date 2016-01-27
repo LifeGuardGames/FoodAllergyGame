@@ -169,10 +169,14 @@ public class RestaurantManagerArcade : RestaurantManager {
 	/// <param name="isModifiesDifficulty">False for tutorials and challenges</param>
 	public override void CustomerLeftFlatCharge(Customer customerData, int deltaCoins, bool isModifiesDifficulty) {
 		if(customerHash.ContainsKey(customerData.customerID)) {
+			// Add to restaurant expense
+			Medic.Instance.BillRestaurant(deltaCoins);
+
 			// Track analytics leaving state though not really angry
 			AnalyticsManager.Instance.CustomerLeaveAngry(customerData.type, customerData.state);
 
-			UpdateCash(satisfactionAI.CalculateBill(0, 1, RestaurantManager.customerLeaveModifierTime, isModifiesDifficulty), customerData.transform.position);
+			// Use predefined values here for negative balancing, only counts if isModifiesDifficulty == true, returns 0
+			UpdateCash(satisfactionAI.CalculateBill(0, 1, customerLeaveModifierTime, isModifiesDifficulty), customerData.transform.position);
 			customerHash.Remove(customerData.customerID);
 			CheckForGameOver();
 		}
