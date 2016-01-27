@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <RemoveMenuSets>
 	<RemoveMenuSet ID="RemoveMenuSetT1">
-		<FoodList>Food00,Food01,Food02,Food03,Food04,Food05,Food06,Food07</FoodList>
+		<FoodList>FoodFruitPlatter,FoodChicken,FoodPeanutCandy,FoodYogurt,FoodCheeseStick,FoodPeanuts,FoodVeggieSandwich,FoodToast</FoodList>
 	</RemoveMenuSet>
 	<RemoveMenuSet ID="RemoveMenuSet00">
 		<FoodList></FoodList>
