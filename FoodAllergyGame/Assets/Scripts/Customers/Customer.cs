@@ -143,7 +143,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		// used for events this switches the timer variable which directly affects the customer's satisfaction
 		timer = mode.CustomerTimerMod;
 		//calculates the initial attentionSpan
-		attentionSpan = 15f * timer;
+		attentionSpan = 15f * timer* RandomFactor();
 		// customers refuse to line up out the door
 		if(RestaurantManager.Instance.GetLine().NewCustomer() == null) {
 			Destroy(this.gameObject);
@@ -554,5 +554,13 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		order.Act();
 		currBehav = order;
 		order = null;
+	}
+
+	public float RandomFactor() {
+		float rand = 0;
+		while(rand == 0) {
+			rand = UnityEngine.Random.Range(0.6f, 1.4f);
+		}
+        return rand;
 	}
 }
