@@ -12,5 +12,7 @@
 	    <WaiterMove>0</WaiterMove>
 	    <RestMode>1</RestMode>
 	    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
 	</Challenge>
 </Challenges>

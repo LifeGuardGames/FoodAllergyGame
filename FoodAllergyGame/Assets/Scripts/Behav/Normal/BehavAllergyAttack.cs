@@ -13,7 +13,7 @@ public class BehavAllergyAttack : Behav {
 	public override void Reason() {
 		if(self.saved) {
 			self.StartCoroutine("AllergyTimer");
-			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[7]);
+			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[8]);
 			Behav sav = (Behav)Activator.CreateInstance(type);
 			sav.self = self;
 			sav.Act();
@@ -21,7 +21,7 @@ public class BehavAllergyAttack : Behav {
 			sav = null;
 		}
 		else {
-			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[8]);
+			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[9]);
 			Behav hos = (Behav)Activator.CreateInstance(type);
 			hos.self = self;
 			hos.Act();

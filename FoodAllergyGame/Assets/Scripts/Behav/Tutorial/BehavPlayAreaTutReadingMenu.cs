@@ -10,7 +10,7 @@ public class BehavPlayAreaTutReadingMenu : Behav {
 
 	public override void Reason() {
 		self.customerUI.ToggleWait(true);
-		var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[1]);
+		var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[2]);
 		Behav order = (Behav)Activator.CreateInstance(type);
 		order.self = self;
 		order.Act();

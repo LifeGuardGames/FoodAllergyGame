@@ -16,7 +16,7 @@ public class BehavEating :Behav {
 		self.StartCoroutine("SatisfactionTimer");
 		AudioManager.Instance.PlayClip("CustomerReadyForCheck");
 		self.DestroyOrder();
-		var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[4]);
+		var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[5]);
 		Behav chk = (Behav)Activator.CreateInstance(type);
 		chk.self = self;
 		chk.Act();

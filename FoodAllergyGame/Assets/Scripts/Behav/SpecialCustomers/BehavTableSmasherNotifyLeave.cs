@@ -34,7 +34,7 @@ public class BehavTableSmasherNotifyLeave : Behav {
 		}
 		else {
 			// Otherwise leave normally
-			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[9]);
+			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[10]);
 			Behav leave = (Behav)Activator.CreateInstance(type);
 			leave.self = self;
 			leave.Act();

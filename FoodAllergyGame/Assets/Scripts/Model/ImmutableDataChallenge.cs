@@ -70,6 +70,16 @@ public class ImmutableDataChallenge  {
 		get { return custSpawnTime; }
 	}
 
+	private int specialDecoMode;
+	public int SpecialDecoMode {
+		get { return specialDecoMode; }
+	}
+
+	private int startingHearts;
+	public int StartingHearts {
+		get { return startingHearts; }
+	}	
+
 	public ImmutableDataChallenge(string id, IXMLNode xmlNode, string error) {
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 
@@ -89,5 +99,7 @@ public class ImmutableDataChallenge  {
 		waiterMoveMod = XMLUtils.GetFloat(hashElements["WaiterMove"] as IXMLNode);
 		restMode = XMLUtils.GetFloat(hashElements["RestMode"] as IXMLNode);
 		custSpawnTime = XMLUtils.GetFloat(hashElements["CustomerSpawnTimer"] as IXMLNode);
+		specialDecoMode = XMLUtils.GetInt(hashElements["SpecialDecoMode"] as IXMLNode);
+		startingHearts = XMLUtils.GetInt(hashElements["CustomerStartingHearts"] as IXMLNode);
 	}
 }

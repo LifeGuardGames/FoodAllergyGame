@@ -10,7 +10,7 @@ public class BehavWaitForCheck : Behav {
 	}
 
 	public override void Reason() {
-		var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[5]);
+		var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[6]);
 		Behav leave = (Behav)Activator.CreateInstance(type);
 		leave.self = self;
 		leave.Act();

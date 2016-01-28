@@ -19,7 +19,7 @@ public class BehavWaitForFood : Behav {
 		for(int i = 0; i < self.allergy.Count; i++) {
 			if(self.order.GetComponent<Order>().allergy.Contains(self.allergy[i]) && !self.allergy.Contains(Allergies.None)) {
 				self.state = CustomerStates.AllergyAttack;
-				var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[6]);
+				var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[7]);
 				Behav aa = (Behav)Activator.CreateInstance(type);
 				aa.self = self;
 				aa.Act();
@@ -30,7 +30,7 @@ public class BehavWaitForFood : Behav {
 		}
 
 			if(self.state == CustomerStates.WaitForFood) {
-				var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[3]);
+				var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[4]);
 				Behav eat = (Behav)Activator.CreateInstance(type);
 				eat.self = self;
 				eat.Act();

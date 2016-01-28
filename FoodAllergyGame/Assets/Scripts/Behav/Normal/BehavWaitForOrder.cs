@@ -9,7 +9,7 @@ public class BehavWaitForOrder : Behav {
 	}
 
 	public override void Reason() {
-		var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[2]);
+		var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[3]);
 		Behav fod = (Behav)Activator.CreateInstance(type);
 		fod.self = self;
 		fod.Act();

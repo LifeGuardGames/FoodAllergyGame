@@ -3,12 +3,12 @@
 
 <Behavs>
   <Behav ID="BehavFlow00">
-    <BehavList>BehavReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEating,BehavWaitForCheck,BehavNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital</BehavList>
+    <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEating,BehavWaitForCheck,BehavNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital</BehavList>
   </Behav>
   <Behav ID="BehavFlow01">
-    <BehavList>BehavTutorialReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEating,BehavWaitForCheck,BehavEaterNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavNotifyLeave</BehavList>
+    <BehavList>BehavWaitingInLine,BehavTutorialReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEating,BehavWaitForCheck,BehavEaterNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavNotifyLeave</BehavList>
   </Behav>
   <Behav ID="BehavFlow02">
-    <BehavList>BehavReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEating,BehavWaitForCheck,BehavTableSmasherNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavNotifyLeave</BehavList>
+    <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEating,BehavWaitForCheck,BehavTableSmasherNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavNotifyLeave</BehavList>
   </Behav>
 </Behavs>

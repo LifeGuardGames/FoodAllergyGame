@@ -96,10 +96,11 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				RestaurantManager.Instance.lineCount++;
 			}
 			this.gameObject.transform.position = transform.parent.position;
-			BehavWaitingInLine wait = new BehavWaitingInLine();
+
+			var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[0]);
+			Behav wait = (Behav)Activator.CreateInstance(type);
 			wait.self = this;
 			wait.Act();
-			currBehav = wait;
 			wait = null;
 		}
 
@@ -171,8 +172,10 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				RestaurantManager.Instance.lineCount++;
 			}
 			this.gameObject.transform.position = transform.parent.position;
-			BehavWaitingInLine wait = new BehavWaitingInLine();
-			currBehav = wait;
+			var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[0]);
+			Behav wait = (Behav)Activator.CreateInstance(type);
+			wait.self = this;
+			wait.Act();
 			wait = null;
 		}
 
@@ -529,10 +532,11 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	private IEnumerator PlayTime(){
 		yield return new WaitForSeconds(10.0f * PlayArea.Instance.timeMultiplier);
-
-		// End play
-		PlayArea.Instance.EndPlayTime(playAreaIndexAux);
-		transform.localPosition = Vector3.zero;	// Move the customer back to its position in line
+		if(PlayArea.Instance.cantLeave) {
+			// End play
+			PlayArea.Instance.EndPlayTime(playAreaIndexAux);
+			transform.localPosition = Vector3.zero; // Move the customer back to its position in line
+		}
 		GetComponent<BoxCollider>().enabled = true;
 		StartCoroutine("SatisfactionTimer");
 	}

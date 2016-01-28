@@ -15,6 +15,7 @@ public class PlayArea : Singleton<PlayArea>, IWaiterSelection {
 	public GameObject highLightSpot1;
 	public GameObject highLightSpot2;
 	public ParticleSystem doneParticle;
+	public bool cantLeave = false;
 
 	void Start(){
 		maxSpots = spotList.Count;

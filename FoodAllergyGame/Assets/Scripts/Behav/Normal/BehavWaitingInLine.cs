@@ -39,7 +39,7 @@ public class BehavWaitingInLine : Behav {
 		self.gameObject.GetComponentInParent<Table>().currentCustomerID = self.customerID;
 		self.GetComponent<BoxCollider>().enabled = false;
 		RestaurantManager.Instance.lineController.FillInLine();
-		var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[0]);
+		var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[1]);
 		Behav read = (Behav)Activator.CreateInstance(type);
 		read.self = self;
 		read.Act();

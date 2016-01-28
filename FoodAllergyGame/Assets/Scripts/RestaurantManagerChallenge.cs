@@ -23,15 +23,23 @@ public class RestaurantManagerChallenge : RestaurantManager{
 
 	private void RunSetUp() {
 		chall = DataLoaderChallenge.GetData(DataManager.Instance.GetChallenge());
-		if(chall.restMode == 1.0) {
+
+		if(chall.restMode == 1.0f) {
 			FullRestaurant();
 		}
+
+		else if(chall.restMode == 2.0f) {
+			BlackoutDay();
+		}
+
 		KitchenManager.Instance.Init(chall.KitchenTimerMod);
 		string[] temp = DataLoaderChallengeMenuSet.GetData(chall.ChallengeMenuSet).ChallengeMenuSet;
 		List<string> menuList = new List<string>();
+
 		for(int i = 0; i< temp.Length; i++) {
 			menuList.Add(temp[i]);
 		}
+
         FoodManager.Instance.GenerateMenu(menuList);
 		customerTimerDiffMod = chall.CustomerTimerMod;
 		dayEarnedCash = 0;
@@ -39,9 +47,11 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		dayTime = chall.DayLengthMod;
 		dayTimeLeft = dayTime;
 		temp = DataLoaderCustomerSet.GetData(chall.CustomerSet).CustomerSet;
+
 		for(int i = 0; i < temp.Length; i++) {
 			currCusSet.Add(temp[i]);
 		}
+
 		StartCoroutine(SpawnCustomer());
 		
 	}
@@ -68,7 +78,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 				GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 				customerNumber++;
 				cus.GetComponent<Customer>().Init(customerNumber, chall);
-
+				cus.GetComponent<Customer>().UpdateSatisfaction(chall.StartingHearts);
 				customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
 				satisfactionAI.AddCustomer();
 				interval++;
@@ -201,6 +211,35 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		}
 	}
 
+	public void BlackoutDay() {
+		blackoutImg.SetActive(true);
+		List<GameObject> currCustomers = new List<GameObject>(GetCurrentCustomers());
+		for(int i = 0; i < currCustomers.Count; i++) {
+			currCustomers[i].GetComponent<Customer>().customerUI.gameObject.SetActive(false);
+		}
+		StartCoroutine(LightsOn());
+	}
+
+	private IEnumerator LightsOn() {
+		yield return new WaitForSeconds(5.0f);
+		blackoutImg.SetActive(false);
+		List<GameObject> currCustomers = new List<GameObject>(GetCurrentCustomers());
+		for(int i = 0; i < currCustomers.Count; i++) {
+			currCustomers[i].GetComponent<Customer>().customerUI.gameObject.SetActive(true);
+		}
+		StartCoroutine(BlackoutAgain());
+	}
+
+	private IEnumerator BlackoutAgain() {
+		yield return new WaitForSeconds(10.0f);
+		blackoutImg.SetActive(true);
+		List<GameObject> currCustomers = new List<GameObject>(GetCurrentCustomers());
+		for(int i = 0; i < currCustomers.Count; i++) {
+			currCustomers[i].GetComponent<Customer>().customerUI.gameObject.SetActive(false);
+		}
+		StartCoroutine(LightsOn());
+	}
+
 	public override void Blackout() {
 		blackoutImg.SetActive(true);
 		List<GameObject> currCustomers = new List<GameObject>(GetCurrentCustomers());
@@ -250,6 +289,19 @@ public class RestaurantManagerChallenge : RestaurantManager{
 				dayOver = true;
 				restaurantUI.FinishClock();
 			}
+		}
+	}
+	public void AvailableTables(int tabs) {
+		for (int i = 3; i > tabs-1; i--) {
+			Destroy(tableList[i]);
+		}
+	}
+
+	public void SpecialDecoSetup(int rule) {
+		switch(rule) {
+			case 1:
+				PlayArea.Instance.cantLeave = true;
+				break;
 		}
 	}
 }
