@@ -107,7 +107,6 @@ public class RestaurantManagerArcade : RestaurantManager {
 					customerData = DataLoaderCustomer.GetData("CustomerVIPTut");
 				}
 				else {
-
 					customerData = DataLoaderCustomer.GetData(DataManager.Instance.GameData.RestaurantEvent.CustomerList[rand]);
 
 					// Track in analytics
@@ -199,6 +198,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 					DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT2";
 					isTutorial = false;
 					dayOver = false;
+					DataManager.Instance.GameData.RestaurantEvent.CustomerList.Add("CustomerRegular");
 					StopCoroutine(SpawnCustomer());
 					StartDay();
 				}

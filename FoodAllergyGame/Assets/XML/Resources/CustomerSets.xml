@@ -7,23 +7,23 @@
 <!--Customer06 = Gossiper-->
 <!--Customer07 = coolKid-->
 <!--Customer08 = Playful-->
-<!--Customer09 = Blaackout-->
+<!--Customer09 = Blackout-->
 
 <CustomerSets>
 <CustomerSet ID="CustomerSetT1">
-		<CustomerList>Customer01</CustomerList>
+		<CustomerList>CustomerRegular</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSetT2">
-		<CustomerList>Customer10</CustomerList>
+		<CustomerList>CustomerTutorial</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSetTP">
-		<CustomerList>Customer11,Customer00</CustomerList>
+		<CustomerList>CustomerPlayAreaTut,CustomerRegular</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSetTV">
-		<CustomerList>Customer12,Customer00</CustomerList>
+		<CustomerList>CustomerVIPTut,CustomerRegular</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSetTF">
-		<CustomerList>Customer00</CustomerList>
+		<CustomerList>CustomerRegular</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSet00">
 		<CustomerList></CustomerList>
@@ -35,20 +35,20 @@
 		<CustomerList></CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSet03">
-		<CustomerList>Customer00,Customer01,Customer07,Customer03</CustomerList>
+		<CustomerList>CustomerRegular,CustomerImpatient,CustomerCoolKid,CustomerTableSmasher</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSet04">
-		<CustomerList>Customer00,Customer01,Customer07</CustomerList>
+		<CustomerList>CustomerRegular,CustomerImpatient,CustomerCoolKid</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSet05">
-		<CustomerList>Customer00,Customer01,Customer03</CustomerList>
+		<CustomerList>CustomerRegular,CustomerImpatient,CustomerTableSmasher</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSet06">
-		<CustomerList>Customer09</CustomerList>	
+		<CustomerList>CustomerBlackOut</CustomerList>	
 	</CustomerSet>
   
  <!--Challenge Sets-->
   <CustomerSet ID ="ChallengeSet01">
-    <CustomerList>Customer00,Customer00,Customer00,Customer00,Customer00,Customer00,Customer00,Customer00</CustomerList>
+    <CustomerList>CustomerRegular,CustomerRegular,CustomerRegular,CustomerRegular,CustomerRegular,CustomerRegular,CustomerRegular,CustomerRegular</CustomerList>
   </CustomerSet>
 </CustomerSets>

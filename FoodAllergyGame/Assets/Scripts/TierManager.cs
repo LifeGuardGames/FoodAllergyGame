@@ -36,8 +36,9 @@ public class TierManager : Singleton<TierManager> {
 	public void RecalculateTier(){
 		isNewUnlocksAvailable = false;
 		int oldTier = DataLoaderTiers.GetTierFromCash(CashManager.Instance.LastSeenTotalCash);
+		currentTier = oldTier;
+		Debug.Log(currentTier);
 		int newTier = DataLoaderTiers.GetTierFromCash(CashManager.Instance.TotalCash);
-
 		// If there is a change in tier, run logic
 		// INVARIABLE: Tiers are maximum one above, never multiple tiers at once
 		if(oldTier < newTier){

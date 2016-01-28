@@ -22,6 +22,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public List<Allergies> allergy;			// The allergy of the customer
 	public float menuTimer = 4.0f;	// Time spent looking at the menu
 	public float attentionSpan = 15.0f;// The attention timer
+	public float eatTimer = 6.0f;
 	public Behav currBehav;
 	public int satisfaction;			// The satisfaction the customer has, everytime the attention span 
 										//	ticks down to 0 the customer will lose satisfaction
@@ -69,6 +70,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		timer = mode.CustomerTimerMod;
 		//calculates the initial attentionSpan
 		attentionSpan = 15f * timer;
+		menuTimer *= RandomFactor();
+		eatTimer *= RandomFactor();
 		// customers refuse to line up out the door
 		if(RestaurantManager.Instance.GetLine().NewCustomer() == null){
 			Destroy(this.gameObject);
@@ -410,7 +413,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Eating coroutine
 	IEnumerator EatingTimer(){
-		yield return new WaitForSeconds(6.0f);
+		yield return new WaitForSeconds(eatTimer);
 		currBehav.Reason();
 		customerAnim.SetWaitingForCheck();
 //		int rand = Random.Range(0,10);
