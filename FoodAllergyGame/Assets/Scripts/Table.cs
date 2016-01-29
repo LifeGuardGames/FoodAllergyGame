@@ -69,9 +69,9 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		}
 		TurnOffHighlight();
 		// can't get reference to disabled objects during runtime
-		_canvas.SetActive(true);
+		ToggleTableNum(true);
 		text.text = (tableNumber + 1).ToString();
-		_canvas.SetActive(false);
+		ToggleTableNum(false);
 	}
 
 	//facilitates talk between customer and waiter
@@ -88,14 +88,14 @@ public class Table : MonoBehaviour, IWaiterSelection{
 
 	// tell waiter to put food down
 	public GameObject FoodDelivered(){
-		_canvas.SetActive(false);
+		ToggleTableNum(false);
 		return Waiter.Instance.HandMeal(tableNumber);
 	}
 
 	//Passes order from customer to waiter
 	public void OrderObtained(GameObject order){
 		Waiter.Instance.WriteDownOrder(order);
-		_canvas.SetActive(true);
+		ToggleTableNum(true);
 	}
 
 	//makes sure there is no left over food should a customer leave ealy
@@ -104,7 +104,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		Waiter.Instance.RemoveMeal(tableNumber);
 		KitchenManager.Instance.CancelOrder(tableNumber);
         RestaurantManager.Instance.GetMenuUIController().CancelOrder(tableNumber);
-		_canvas.SetActive(false);
+		ToggleTableNum(false);
 	}
 
 	//in the unfortunate circumstance a customer gets eaten we need to take care of the mess
@@ -127,7 +127,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		if(tableHighlight != null) {
 			tableHighlight.SetActive(false);
 		}
-		_canvas.SetActive(false);
+		ToggleTableNum(false);
 		this.GetComponent<BoxCollider>().enabled = false;
 
 		
@@ -198,4 +198,8 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		}
 	}
 	#endregion
+
+	public void ToggleTableNum(bool onOrOff) {
+			_canvas.SetActive(onOrOff);
+	}
 }

@@ -51,4 +51,13 @@
   <CustomerSet ID ="ChallengeSet01">
     <CustomerList>CustomerRegular,CustomerRegular,CustomerRegular,CustomerRegular,CustomerRegular,CustomerRegular,CustomerRegular,CustomerRegular</CustomerList>
   </CustomerSet>
+
+  <CustomerSet ID ="ChallengeSet02">
+    <CustomerList>CustomerRegularMakeYourMind,CustomerRegularMakeYourMind,CustomerRegularMakeYourMind,CustomerRegularMakeYourMind,CustomerRegularMakeYourMind,CustomerRegularMakeYourMind,CustomerRegularMakeYourMind,CustomerRegularMakeYourMind</CustomerList>
+  </CustomerSet>
+
+  <CustomerSet ID ="ChallengeSet03">
+    <CustomerList>CustomerRegularWrongOrder,CustomerRegularWrongOrder,CustomerRegularWrongOrder,CustomerRegularWrongOrder,CustomerRegularWrongOrder,CustomerRegularWrongOrder,CustomerRegularWrongOrder,CustomerRegularWrongOrder</CustomerList>
+  </CustomerSet>
+
 </CustomerSets>

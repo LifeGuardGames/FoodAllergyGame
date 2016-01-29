@@ -4,6 +4,10 @@ using System;
 
 public class BehavWaitForFoodReorder : Behav {
 
+	public BehavWaitForFoodReorder() {
+
+	}
+
 	public override void Reason() {
 		int rand = UnityEngine.Random.Range(0, 10);
 		if(rand > 60) {

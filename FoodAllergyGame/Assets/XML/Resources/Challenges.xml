@@ -4,7 +4,7 @@
 	    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
 	    <Tier>3</Tier>
 	    <KitchenTimer>5</KitchenTimer>
-	    <CustomerSet>CustomerSetTF</CustomerSet>
+	    <CustomerSet>CustomerSet01</CustomerSet>
 	    <CustomerTimer>2</CustomerTimer>
 	    <DayLength>30</DayLength>
 	    <Allergy>None</Allergy>
@@ -15,4 +15,37 @@
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
 	</Challenge>
+  
+  <Challenge ID="Challenge02">
+    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
+    <Tier>17</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>CustomerSet02</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <Title>Make up Your Mind</Title>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+  </Challenge>
+
+  <Challenge ID="Challenge03">
+    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
+    <Tier>17</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>CustomerSet03</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <Title>Wrong Order</Title>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+  </Challenge>
+  
 </Challenges>

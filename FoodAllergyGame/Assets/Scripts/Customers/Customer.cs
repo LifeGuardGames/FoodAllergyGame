@@ -42,6 +42,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
     public float spawnTime;
 	public bool saved = false;
 	public string behavFlow;
+	public bool SneakOut = false;
 
 	// Basic intitialzation
 	public virtual void Init(int num, ImmutableDataEvents mode){
@@ -554,7 +555,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public void Reorder() {
 		DestroyOrder();
 		customerUI.ToggleWait(true);
-		RestaurantManager.Instance.GetTable(tableNum)._canvas.SetActive(false);
+		RestaurantManager.Instance.GetTable(tableNum).ToggleTableNum(false);
 		var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[1]);
 		Behav order = (Behav)Activator.CreateInstance(type);
 		order.self = this;

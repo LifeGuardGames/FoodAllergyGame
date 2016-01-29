@@ -4,6 +4,10 @@ using System;
 
 public class BehavPlayfulReadingMenu : Behav {
 
+	public BehavPlayfulReadingMenu() {
+
+	}
+
 	public override void Reason() {
 
 		self.customerUI.ToggleWait(true);

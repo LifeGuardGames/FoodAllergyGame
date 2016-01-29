@@ -4,7 +4,7 @@ using System;
 
 public class BehavMakeYourMindWaitForOrder : Behav {
 
-	BehavMakeYourMindWaitForOrder() {
+	public BehavMakeYourMindWaitForOrder() {
 
 	}
 
