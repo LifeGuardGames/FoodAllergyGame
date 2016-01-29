@@ -15,10 +15,16 @@ public class ImmutableDataBehav  {
 		get { return behav; }
 	}
 
+	private string name;
+	public string Name {
+		get { return name; }
+	}
+
 	public ImmutableDataBehav(string id, IXMLNode xmlNode, string error) {
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 
 		this.id = id;
+		name = XMLUtils.GetString(hashElements["Name"] as IXMLNode);
 		behav = XMLUtils.GetStringList(hashElements["BehavList"]as IXMLNode);
 	}
 }
