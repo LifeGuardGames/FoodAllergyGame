@@ -22,7 +22,9 @@ public class RestaurantMenuUIController : MonoBehaviour {
 
 	public GameObject allergyPassParent;
 	public GameObject allergyFailParent;
-	public Image allergyImage;
+	public Image customerAllergy1;
+	public Image customerAllergy2;
+	public Image customerAllergy3;
 	public Text allergyText;
 
 	public TweenToggle menuTweenToggle;
@@ -36,21 +38,60 @@ public class RestaurantMenuUIController : MonoBehaviour {
 		choices = new ImmutableDataFood[2];
 	}
 
-	public void ShowChoices(List <ImmutableDataFood> customerFoodChoices, int customerTableNum, List<Allergies> customerAllergy){
+	public void ShowChoices(List <ImmutableDataFood> customerFoodChoices, int customerTableNum, List<Allergies> customerAllergyList){
 		tableNum = customerTableNum;
-		allergy = customerAllergy[0];
+		allergy = customerAllergyList[0];
 
 		if(allergy == Allergies.None){
 			allergyPassParent.SetActive(true);
 			allergyFailParent.SetActive(false);
 		}
 		else{
+			string allergyString = "";
+			switch(customerAllergyList.Count) {
+				case 1:
+					allergyString = LocalizationText.GetText(customerAllergyList[0].ToString());
+                    customerAllergy1.gameObject.SetActive(true);
+					customerAllergy1.transform.localPosition = new Vector3(0, 220f, 0);
+					customerAllergy1.sprite = SpriteCacheManager.GetAllergySpriteData(customerAllergyList[0]);
+					customerAllergy2.gameObject.SetActive(false);
+					customerAllergy3.gameObject.SetActive(false);
+					break;
+				case 2:
+					allergyString = LocalizationText.GetText(customerAllergyList[0].ToString()) + " and " +
+						LocalizationText.GetText(customerAllergyList[1].ToString());
+					customerAllergy1.gameObject.SetActive(true);
+					customerAllergy1.transform.localPosition = new Vector3(-85f, 220f, 0);
+					customerAllergy1.sprite = SpriteCacheManager.GetAllergySpriteData(customerAllergyList[0]);
+					customerAllergy2.gameObject.SetActive(true);
+					customerAllergy2.transform.localPosition = new Vector3(85f, 220f, 0);
+					customerAllergy1.sprite = SpriteCacheManager.GetAllergySpriteData(customerAllergyList[1]);
+					customerAllergy3.gameObject.SetActive(false);
+					break;
+				case 3:
+					allergyString = LocalizationText.GetText(customerAllergyList[0].ToString()) + ", " +
+						LocalizationText.GetText(customerAllergyList[1].ToString()) + ", and " +
+						LocalizationText.GetText(customerAllergyList[2].ToString());
+					customerAllergy1.gameObject.SetActive(true);
+					customerAllergy1.transform.localPosition = new Vector3(-135, 210f, 0);
+					customerAllergy1.sprite = SpriteCacheManager.GetAllergySpriteData(customerAllergyList[0]);
+					customerAllergy1.gameObject.SetActive(true);
+					customerAllergy2.transform.localPosition = new Vector3(0, 220f, 0);
+					customerAllergy1.sprite = SpriteCacheManager.GetAllergySpriteData(customerAllergyList[1]);
+					customerAllergy1.gameObject.SetActive(true);
+					customerAllergy3.transform.localPosition = new Vector3(135, 210f, 0);
+					customerAllergy1.sprite = SpriteCacheManager.GetAllergySpriteData(customerAllergyList[2]);
+					break;
+				default:
+					Debug.Log("Bad customer allergy list count " + customerAllergyList.Count);
+					break;
+			}
+
 			allergyPassParent.SetActive(false);
 			allergyFailParent.SetActive(true);
 			allergyButtonParent.SetActive(true);
 			allergyButtonAnimator.Play("Normal");
-			allergyImage.sprite = SpriteCacheManager.GetAllergySpriteData(allergy);
-			allergyText.text = "\"" + LocalizationText.GetText("AllergyFailPrefix") + LocalizationText.GetText(allergy.ToString()) + "\"";
+			allergyText.text = "\"" + LocalizationText.GetText("AllergyFailPrefix") + allergyString + "\"";
 		}
 
 		if(RestaurantManager.Instance.isTutorial && RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().isAllergy){

@@ -4,14 +4,11 @@ using System.Collections.Generic;
 using System;
 using UnityEngine.Analytics;
 
-
 /// <summary>
 /// Customer AI is now handled through a series of classes known as behav which are childrens of the customer component generic class
 /// The customer class now only handles interactions between a customer and an outside object such as waiter and order
 /// for more information on behavs check out customer Component
 /// </summary>
-
-
 public class Customer : MonoBehaviour, IWaiterSelection{
 
 	public int tableNum;
