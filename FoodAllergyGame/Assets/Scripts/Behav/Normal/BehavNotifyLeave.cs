@@ -13,21 +13,6 @@ public class BehavNotifyLeave : Behav {
 	}
 
 	public override void Act() {
-
-		if(DataManager.Instance.GetEvent() == "EventTVIP") {
-			DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
-			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(DecoTypes.VIP);
-			//DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
-		}
-
-		if(DataManager.Instance.GetEvent() == "EventTPlayArea") {
-			if(DataManager.Instance.GameData.Decoration.DecoTutQueue.Count > 0) {
-				DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
-			}
-			DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(DecoTypes.PlayArea);
-			//DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
-		}
-
 		if(RestaurantManager.Instance.GetTable(self.tableNum).tableType == Table.TableType.VIP) {
 			RestaurantManager.Instance.CustomerLeftSatisfaction(self, true, VIPMultiplier: RestaurantManager.Instance.GetTable(self.tableNum).VIPMultiplier);
 		}

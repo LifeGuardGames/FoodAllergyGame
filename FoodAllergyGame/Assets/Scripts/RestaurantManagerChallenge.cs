@@ -162,51 +162,21 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	protected override void CheckForGameOver() {
 		if(dayOver) {
 			if(customerHash.Count == 0) {
-				DataManager.Instance.GameData.DayTracker.DaysPlayed++;
-				DataManager.Instance.DaysInSession++;
-				if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT2") {
-					AnalyticsManager.Instance.TutorialFunnel("Finished tut day, 4 customers");
-				}
-				if(isTutorial) {
-					AnalyticsManager.Instance.TutorialFunnel("Finished tut day, 2 guided customers");
-					DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
-					DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT2";
-					isTutorial = false;
-					dayOver = false;
-					StopCoroutine(SpawnCustomer());
-					StartDay();
-				}
-				else {
-					DataManager.Instance.GameData.DayTracker.AvgDifficulty = ((DataManager.Instance.GameData.DayTracker.AvgDifficulty + satisfactionAI.DifficultyLevel) / 2);
-					// Save data here
-					int dayNetCash = dayEarnedCash + Medic.Instance.MedicCost;
-					CashManager.Instance.RestaurantEndCashUpdate(dayNetCash, dayCashRevenue);
+				// TODO make challenge versions of them?
+//				DataManager.Instance.GameData.DayTracker.DaysPlayed++;
+//				DataManager.Instance.DaysInSession++;
+//
+//				AnalyticsManager.Instance.EndGameDayReport(CashManager.Instance.TotalCash,
+//					DataManager.Instance.GameData.RestaurantEvent.CurrentEvent, satisfactionAI.MissingCustomers, satisfactionAI.AvgSatisfaction(),
+//					DayEarnedCash, Medic.Instance.MedicCost, savedCustomers, attempted, inspectionButtonClicked);
+//
+//				AnalyticsManager.Instance.EndGameUsageReport(playAreaUses, vipUses, microwaveUses);
 
-					// Unlock new event generation for StartManager
-					DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
+				// Show day complete UI
+				//restaurantUI.DayComplete(satisfactionAI.MissingCustomers, dayEarnedCash, Medic.Instance.MedicCost, dayNetCash);
 
-					// Set tutorial to done if applies
-					if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT1") {
-						DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
-					}
-					else if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT3") {
-						DataManager.Instance.GameData.Tutorial.IsTutorial3Done = true;
-						AnalyticsManager.Instance.TutorialFunnel("Menu tut day complete");
-						CashManager.Instance.TutorialOverrideTotalCash(850);
-					}
-
-					AnalyticsManager.Instance.EndGameDayReport(CashManager.Instance.TotalCash,
-						DataManager.Instance.GameData.RestaurantEvent.CurrentEvent, satisfactionAI.MissingCustomers, satisfactionAI.AvgSatisfaction(),
-						DayEarnedCash, Medic.Instance.MedicCost, savedCustomers, attempted, inspectionButtonClicked);
-
-					AnalyticsManager.Instance.EndGameUsageReport(playAreaUses, vipUses, microwaveUses);
-
-					// Show day complete UI
-					restaurantUI.DayComplete(satisfactionAI.MissingCustomers, dayEarnedCash, Medic.Instance.MedicCost, dayNetCash);
-
-					// Save game data
-					DataManager.Instance.SaveGameData();
-				}
+				// Save game data
+//				DataManager.Instance.SaveGameData();
 			}
 		}
 	}

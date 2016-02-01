@@ -18,6 +18,7 @@ public class StartManager : Singleton<StartManager>{
 	public ShopEntranceUIController DecoEntranceUIController {
 		get { return decoEntranceUIController; }
 	}
+
 	public DinerEntranceUIController dinerEntranceUIController;
 	public DinerEntranceUIController DinerEntranceUIController {
 		get { return dinerEntranceUIController; }
@@ -31,23 +32,16 @@ public class StartManager : Singleton<StartManager>{
 	public bool IsShopAppearHideDinerOverride = false;
 
 	void Start(){
-		// Refresh tier calculation
+		// Refresh tier calculation, always do this first
 		TierManager.Instance.RecalculateTier();
 
 		// First restaurant tutorial
 		if(DataManager.Instance.GameData.Tutorial.IsTutorial1Done == false){
 			decoEntranceUIController.Hide();
 			unlockParent.SetActive(false); // TODO clean this up
-			DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT1";
+			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "Tut1";
 		}
-		// Menu planning tutorial
-		else if(DataManager.Instance.GameData.Tutorial.IsTutorial3Done == false){
-			decoEntranceUIController.Hide();
-			unlockParent.SetActive(true); // TODO clean this up
-			DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT3";
-		}
-		// Default case
-		else {
+		else {	// Default case
 			// Show the deco entrance
 			if(TierManager.Instance.CurrentTier >= 3) {
 				bool isFirstTimeEntrance = DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance;
@@ -82,43 +76,23 @@ public class StartManager : Singleton<StartManager>{
 			NotificationManager.Instance.AddNotification(tierNotif);
 		}
 
-		// Check if any new deco types are unlocked at this tier
-		List<string> specialItemID = TierManager.Instance.SpecialItemID;
-		if(specialItemID.Count > 0){
-			DecoEntranceUIController.ToggleClickable(false);
-			DinerEntranceUIController.ToggleClickable(false);
+		if(TierManager.Instance.IsNewUnlocksAvailable){
+			if(!string.IsNullOrEmpty(DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge)){
+				DecoEntranceUIController.ToggleClickable(false);
+				DinerEntranceUIController.ToggleClickable(false);
+			}
 
+			/* TODO
 			NotificationQueueDataNewItem itemNotif = new NotificationQueueDataNewItem(SceneUtils.START, specialItemID[0]);
 			NotificationManager.Instance.AddNotification(itemNotif);
-			TierManager.Instance.RemoveSpecialID();
+			*/
         }
-
-		// Have the spawn button see when it needs to spawn
-		//		StartCoroutine(StartButtonSpawnCheck());
 
 		// Save game data again, lock down on an event
 		DataManager.Instance.SaveGameData();
 		GenerateCustomerList();
 		GenerateUnlockedFoodStock();
 	}
-
-	// Have the spawn button see when it needs to spawn
-	//	private IEnumerator StartButtonSpawnCheck(){
-	//		// Wait 2 frames for all notifications to be in
-	//		yield return 0;
-	//		yield return 0;
-	//
-	//		if(!NotificationManager.Instance.IsNotificationActive){
-	//			StartButtonSpawnCallback(null, null);
-	//		}
-	//		else{
-	//			NotificationManager.Instance.OnAllNotificationsFinished += StartButtonSpawnCallback;
-	//		}
-	//	}
-
-	//	public void StartButtonSpawnCallback(object o, EventArgs e){
-	//		startButton.SetActive(true);
-	//	}
 
 	//creates a list of acceptable spawning customers
 	public void GenerateCustomerList() {
@@ -165,23 +139,13 @@ public class StartManager : Singleton<StartManager>{
 	}
 
 	public void OnPlayButtonClicked(){
-		// TODO integrate with datamanager tutorial fields
-		if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT1"
-			|| DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT0"
-			|| DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventTPlayArea"
-			|| DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventTFlyThru"
-			|| DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventTVIP"){
-
-			FoodManager.Instance.GenerateMenu(DataLoaderRemoveMenuSet.GetData("RemoveMenuSetT1").RemoveMenuSet.ToList());	// TODO remove now, fix
+		// Check if special tutorial is set, load it as a challenge directly
+		if(!string.IsNullOrEmpty(DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge)){
 			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, showFoodTip: true);
 		}
 		else{
 			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.MENUPLANNING, "LoadingKeyMenu", "LoadingImageMenu");
         }
-	}
-
-	public void OnComicButtonClicked(){
-		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.COMICSCENE);
 	}
 
 	public void DecoButtonClicked(){
@@ -190,7 +154,6 @@ public class StartManager : Singleton<StartManager>{
 	}
 
 	public void OnInfoButtonClicked(){
-
 	}
 
 	public void ShowStartDemux(){

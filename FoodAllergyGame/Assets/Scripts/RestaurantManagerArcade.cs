@@ -215,11 +215,11 @@ public class RestaurantManagerArcade : RestaurantManager {
 					if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT1") {
 						DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
 					}
-					else if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT3") {
-						DataManager.Instance.GameData.Tutorial.IsTutorial3Done = true;
-						AnalyticsManager.Instance.TutorialFunnel("Menu tut day complete");
-						CashManager.Instance.TutorialOverrideTotalCash(850);
-					}
+//					else if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT3") {
+//						DataManager.Instance.GameData.Tutorial.IsTutorial3Done = true;
+//						AnalyticsManager.Instance.TutorialFunnel("Menu tut day complete");
+//						CashManager.Instance.TutorialOverrideTotalCash(850);
+//					}
 
 					AnalyticsManager.Instance.EndGameDayReport(CashManager.Instance.TotalCash,
 						DataManager.Instance.GameData.RestaurantEvent.CurrentEvent, satisfactionAI.MissingCustomers, satisfactionAI.AvgSatisfaction(),

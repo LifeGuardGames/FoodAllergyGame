@@ -387,19 +387,10 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.FlyThru) {
 			Waiter.Instance.Finished();
 			this.GetComponent<Behav>().Reason();
-			if(DataManager.Instance.GetEvent() == "EventTFlyThru") {
-				if(DataManager.Instance.GameData.Decoration.DecoTutQueue.Count > 0) {
-					DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
-				}
-				DataManager.Instance.GameData.Decoration.ActiveDeco.Remove(DecoTypes.FlyThru);
-				DataManager.Instance.GameData.Decoration.ActiveDeco.Add(DecoTypes.FlyThru, "FlyThru00");
-				//DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
-			}
 			for(int i = 0; i < allergy.Count; i++) { 
 				if(order.GetComponent<Order>().allergy.Contains(allergy[i]) && !allergy.Contains(Allergies.None)) {
 					Medic.Instance.BillRestaurant(-100);
 					ParticleUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(tableNum).gameObject.transform.position, -100);
-
 
 					AudioManager.Instance.PlayClip("CustomerDead");
 					if(order.gameObject != null) {

@@ -23,4 +23,3 @@ public class MenuDragStockSlot : MonoBehaviour, IDropHandler {
 	}
 	#endregion
 }
-
