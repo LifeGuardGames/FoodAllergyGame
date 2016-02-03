@@ -201,7 +201,7 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 		customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
 		
 		customerNumber++;
-		satisfactionAI.AddCustomer();
+		//satisfactionAI.AddCustomer();
 	}
 
 	public bool IsTableAvilable(){
@@ -229,23 +229,19 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 		isPaused = false;
 	}
 
-	// Called from PauseUIController
-	public void QuitGame(){
-		Time.timeScale = 1.0f;	// Remember to reset timescale!
-		if(!dayOver){
+public virtual void QuitGame() {
+		Time.timeScale = 1.0f;  // Remember to reset timescale!
+		if(!dayOver) {
 			IncompleteQuitAnalytics();
-        }
+		}
 
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
 	}
 
-	// Used in OnApplicationPaused in Restaurant and quit button
-	public void IncompleteQuitAnalytics() {
-		AnalyticsManager.Instance.TrackGameDayInRestaurant(dayTimeLeft, TierManager.Instance.CurrentTier, DataManager.Instance.GameData.RestaurantEvent.CurrentEvent,
-				satisfactionAI.DifficultyLevel, satisfactionAI.MissingCustomers, satisfactionAI.AvgSatisfaction(),
-				DayEarnedCash, Medic.Instance.MedicCost);
+	public virtual void IncompleteQuitAnalytics() {
+		
 	}
 	#endregion
 
-	
+
 }
