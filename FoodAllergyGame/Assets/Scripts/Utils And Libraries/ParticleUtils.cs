@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
 public static class ParticleUtils{
@@ -7,13 +6,18 @@ public static class ParticleUtils{
 	static public void PlayMoneyFloaty(Vector3 pos, int amount){
 		GameObject go = Resources.Load("CoinFloaty") as GameObject;
 		GameObject Instance = GameObject.Instantiate(go, pos, go.transform.rotation) as GameObject;
-	
+
+		Text textScript = Instance.GetComponentInChildren<Text>();
+		Image imageScript = Instance.GetComponentInChildren<Image>();
+
 		if(amount > 0){
-			Instance.GetComponentInChildren<Text>().text = "+" + amount.ToString();
+			textScript.text = "+" + amount.ToString();
 		}
 		else{
-			Instance.GetComponentInChildren<Text>().text = amount.ToString();
-		}
+			textScript.text = amount.ToString();
+			textScript.color = new Color(1f, 0.242f, 0.242f, 1f);
+			imageScript.color = new Color(1f, 0.586f, 0.586f, 1f);
+        }
 	}
 
 	static public void PlayDecoChangePoof(Vector3 pos){
