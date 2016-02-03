@@ -7,13 +7,22 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	private List<bool> answers;
 	public List<EpiPenGamePanel> gamePanels;
 	public EpiPenGameUiManager uiManager;
+	public Dictionary<int, int> submittedAnswers;
+
+	void Start() {
+		StartGame();
+	}
 
 	public void StartGame() {
+		answers = new List<bool>();
+		for(int i = 0; i < gamePanels.Count; i++) {
+			answers.Add(true);
+		}
 		RemovePieces();
 		SetUpScene();
 	}
 
-	public void CheckAnswers(Dictionary<int,int> submittedAnswers) {
+	public void CheckAnswers() {
 		for(int i = 0; i < submittedAnswers.Count; i++) {
 			if(submittedAnswers[i] == i) {
 				answers.Add(true);
@@ -51,10 +60,14 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	}
 
 	public void RemovePieces() {
-		int diff = TierManager.Instance.CurrentTier / 2;
-		List<EpiPenGamePanel> temp = gamePanels;
+		//int diff = TierManager.Instance.CurrentTier / 2;
+		int diff = 3;
+		List<EpiPenGamePanel> temp = new List<EpiPenGamePanel>();
+		for(int i = 0; i < gamePanels.Count; i++) {
+			temp.Add(gamePanels[i]);
+		}
 		for(int i = 0; i < diff; i++) {
-			int rand = Random.Range(0, temp.Count);
+			int rand = Random.Range(0, temp.Count-1);
 			temp.RemoveAt(rand);
 			answers[rand] = false;
 		}
