@@ -41,6 +41,12 @@ public class RestaurantUIManager : MonoBehaviour{
 		AudioManager.Instance.PlayClip("EndOfDay");
 	}
 
+	public void ChallengeComplete(int score, int cashEarned, int missingCustomers) {
+
+		AudioManager.Instance.FadeOutPlayNewBackground(null);
+		AudioManager.Instance.PlayClip("EndOfDay");
+	}
+
 	public void UpdateCashUI(Vector3 customerPosition, int billAmount) {
 		ParticleUtils.PlayMoneyFloaty(customerPosition, billAmount);
 		

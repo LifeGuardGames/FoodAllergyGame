@@ -7,7 +7,8 @@ using UnityEngine.Analytics;
 using System;
 
 public class RestaurantManagerChallenge : RestaurantManager{
-
+	// our satisfaction ai 
+	private ChallengeAI challengeAI;
 	ImmutableDataChallenge chall;
 	int interval = 0;
 	
@@ -15,7 +16,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	public override void Init() {
 		sickCustomers = new List<GameObject>();
 		customerHash = new Dictionary<string, GameObject>();
-		satisfactionAI = new SatisfactionAI();
+		challengeAI = new ChallengeAI();
 		RunSetUp();
 		StartDay();
 	}
@@ -80,7 +81,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 				cus.GetComponent<Customer>().Init(customerNumber, chall);
 				cus.GetComponent<Customer>().UpdateSatisfaction(chall.StartingHearts);
 				customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
-				satisfactionAI.AddCustomer();
+				challengeAI.AddCustomer();
 				interval++;
 				StartCoroutine(SpawnCustomer());
 
@@ -128,7 +129,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			}
 
 			// NOTE: Make sure not to track difficulty here
-			UpdateCash(satisfactionAI.CalculateBill(satisfaction, priceMultiplier, time, false), customerData.transform.position);
+			UpdateCash(challengeAI.CalculateBill(satisfaction, priceMultiplier), customerData.transform.position);
 			customerHash.Remove(customerData.customerID);
 			CheckForGameOver();
 		}
@@ -150,7 +151,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			AnalyticsManager.Instance.CustomerLeaveAngry(customerData.type, customerData.state);
 			*/
 
-			UpdateCash(satisfactionAI.CalculateBill(0, 1, RestaurantManager.customerLeaveModifierTime, isModifiesDifficulty), customerData.transform.position);
+			UpdateCash(challengeAI.CalculateBill(0, 1), customerData.transform.position);
 			customerHash.Remove(customerData.customerID);
 			CheckForGameOver();
 		}
@@ -162,21 +163,18 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	protected override void CheckForGameOver() {
 		if(dayOver) {
 			if(customerHash.Count == 0) {
-				// TODO make challenge versions of them?
-//				DataManager.Instance.GameData.DayTracker.DaysPlayed++;
-//				DataManager.Instance.DaysInSession++;
-//
-//				AnalyticsManager.Instance.EndGameDayReport(CashManager.Instance.TotalCash,
-//					DataManager.Instance.GameData.RestaurantEvent.CurrentEvent, satisfactionAI.MissingCustomers, satisfactionAI.AvgSatisfaction(),
-//					DayEarnedCash, Medic.Instance.MedicCost, savedCustomers, attempted, inspectionButtonClicked);
-//
-//				AnalyticsManager.Instance.EndGameUsageReport(playAreaUses, vipUses, microwaveUses);
+				DataManager.Instance.GameData.DayTracker.ChallengesPlayed++;
+				DataManager.Instance.ChallengesInSession++;
+
+				AnalyticsManager.Instance.EndChallengeReport(challengeAI.ScoreIt(),DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge, challengeAI.MissingCustomers, challengeAI.AvgSatisfaction());
+
+				AnalyticsManager.Instance.EndGameUsageReport(playAreaUses, vipUses, microwaveUses);
 
 				// Show day complete UI
-				//restaurantUI.DayComplete(satisfactionAI.MissingCustomers, dayEarnedCash, Medic.Instance.MedicCost, dayNetCash);
+				restaurantUI.ChallengeComplete(challengeAI.Score,dayEarnedCash, challengeAI.MissingCustomers);
 
 				// Save game data
-//				DataManager.Instance.SaveGameData();
+				DataManager.Instance.SaveGameData();
 			}
 		}
 	}
@@ -245,7 +243,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			cus.GetComponent<Customer>().Init(customerNumber, eventData);
 			customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
 			customerNumber++;
-			satisfactionAI.AddCustomer();
+			challengeAI.AddCustomer();
 			//cus.GetComponent<Customer>().JumpToTable(i);
 			GetTable(i).inUse = true;
 		}

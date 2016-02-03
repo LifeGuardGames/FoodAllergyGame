@@ -30,6 +30,12 @@ public class DataManager : Singleton<DataManager> {
 		set{ daysInSession = value; }
 	}
 
+	private int challengesInSession = 0;
+	public int ChallengesInSession {
+		get { return challengesInSession; }
+		set { challengesInSession = value; }
+	}
+
 	void Awake(){
 		// Make object persistent
 		if(isCreated){

@@ -8,7 +8,8 @@ using System;
 
 public class RestaurantManagerArcade : RestaurantManager {
 
-
+	// our satisfaction ai 
+	private SatisfactionAI satisfactionAI;
 	public override void Init() {
 		eventData = DataLoaderEvents.GetData(DataManager.instance.GetEvent());
 		sickCustomers = new List<GameObject>();

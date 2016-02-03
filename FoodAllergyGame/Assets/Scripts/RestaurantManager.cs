@@ -26,8 +26,7 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 	protected int dayCashRevenue;				// The total positive cashed gained for the day
 	//tracks customers via hashtable
 	public  Dictionary<string, GameObject> customerHash;
-	// our satisfaction ai 
-	protected SatisfactionAI satisfactionAI;
+	
 	public List<GameObject> sickCustomers;
 
 	protected List<GameObject> tableList = new List<GameObject>();

@@ -32,6 +32,14 @@ public class AnalyticsManager : Singleton<AnalyticsManager> {
 			{ "Inspection Buttons Clicks:", inspectButtonClicked * 1.0f }});
 	}
 
+	public void EndChallengeReport(int score, string currentChallenge, int missingCustomers, float avgSatisfaction) {
+		Mixpanel.SendEvent("End of Challenge Report:", new Dictionary<string, object> {
+			{ "Score:", score * (1.0f) },
+			{ "Challenge:" , currentChallenge },
+			{ "Missed Customers:", missingCustomers * 1.0f },
+			{ "Avg. Satisfaction:", avgSatisfaction }});
+	}
+
 	public void EndGameUsageReport(int playAreaUses, int vipUses, int microwaveUses) {
 		Mixpanel.SendEvent("End of Day Report:", new Dictionary<string, object> {
 		{ "Play Area Uses:", playAreaUses * 1.0f },
