@@ -15,8 +15,12 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 
 	public void StartGame() {
 		answers = new List<bool>();
+		submittedAnswers = new Dictionary<int, int>();
 		for(int i = 0; i < gamePanels.Count; i++) {
 			answers.Add(true);
+		}
+		for(int i = 0; i < gamePanels.Count; i++) {
+			submittedAnswers.Add(i,i);
 		}
 		RemovePieces();
 		SetUpScene();
@@ -25,10 +29,10 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	public void CheckAnswers() {
 		for(int i = 0; i < submittedAnswers.Count; i++) {
 			if(submittedAnswers[i] == i) {
-				answers.Add(true);
+				answers[i] = true;
 			}
 			else {
-				answers.Add(false);
+				answers[i] = false;
 			}
 		}
 		if(CheckForGameOver()) {
@@ -70,6 +74,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 			int rand = Random.Range(0, temp.Count-1);
 			temp.RemoveAt(rand);
 			answers[rand] = false;
+			submittedAnswers.Remove(rand);
 		}
 	}
 }
