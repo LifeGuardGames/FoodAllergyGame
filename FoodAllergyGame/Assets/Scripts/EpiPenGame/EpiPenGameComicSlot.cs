@@ -8,8 +8,9 @@ public class EpiPenGameComicSlot : MonoBehaviour, IDropHandler {
 
 	#region IDropHandler implementation
 	public void OnDrop(PointerEventData eventData) {
-		Debug.Log("rdhbjnfgbkj");
+		
 		EpiPenGamePanel panel = EpiPenGamePanel.itemBeingDragged.GetComponent<EpiPenGamePanel>();
+		Debug.Log(panel.gameObject.name);
 		EpiPenGameManager.Instance.submittedAnswers.Add(slotNumber, panel.order);
 		panel.gameObject.transform.SetParent(this.transform);
 	}

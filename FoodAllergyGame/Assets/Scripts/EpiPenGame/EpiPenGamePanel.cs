@@ -19,7 +19,6 @@ public class EpiPenGamePanel : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	}
 
 	public void OnBeginDrag(PointerEventData eventData) {
-		Debug.Log("rsrugbfs");
 		if(!isCorrect) { 
 			itemBeingDragged = gameObject;
 			startPosition = transform.localPosition;
@@ -35,7 +34,7 @@ public class EpiPenGamePanel : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 		if(!isCorrect) {
 #if UNITY_EDITOR
 
-			itemBeingDragged.transform.position = data.position;
+			itemBeingDragged.transform.position = Input.mousePosition;
 #else
 		itemBeingDragged.transform.position = Input.GetTouch(0).position;
 #endif
