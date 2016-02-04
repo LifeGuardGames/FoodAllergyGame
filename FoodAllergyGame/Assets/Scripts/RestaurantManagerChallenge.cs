@@ -86,7 +86,6 @@ public class RestaurantManagerChallenge : RestaurantManager{
 
 				// Track in analytics
 				AnalyticsManager.Instance.TrackCustomerSpawned(customerData.ID);
-				Debug.Log("here");
 				GameObject customerPrefab = Resources.Load(customerData.Script) as GameObject;
 				GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 				customerNumber++;

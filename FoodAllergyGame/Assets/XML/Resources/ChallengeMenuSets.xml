@@ -4,6 +4,6 @@
 		<FoodList>FoodFruitPlatter,FoodChicken,FoodPeanutCandy,FoodYogurt,FoodCheeseStick,FoodPeanuts,FoodVeggieSandwich,FoodToast</FoodList>
 	</ChallengeMenuSet>
 	<ChallengeMenuSet ID="ChallengeMenuSet00">
-		<FoodList></FoodList>
+		<FoodList>FoodFruitPlatter,FoodChicken,FoodPeanutCandy,FoodYogurt,FoodCheeseStick,FoodPeanuts,FoodVeggieSandwich,FoodToast</FoodList>
 	</ChallengeMenuSet>
 </ChallengeMenuSets>
