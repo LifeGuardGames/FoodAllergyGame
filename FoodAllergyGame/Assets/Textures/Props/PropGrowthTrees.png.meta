@@ -1,0 +1,259 @@
+fileFormatVersion: 2
+guid: e5f2b997cc6d39b4a94c1c0d4c3c3572
+timeCreated: 1454613552
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: PropGrowthTrees_0
+    21300002: PropGrowthTrees_1
+    21300004: PropGrowthTrees_2
+    21300006: PropGrowthTrees_3
+    21300008: PropGrowthTrees_4
+    21300010: PropGrowthTrees_5
+    21300012: PropGrowthTrees_6
+    21300014: PropGrowthTrees_7
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 1.3
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: PropGrowthTrees_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 318
+        width: 143
+        height: 192
+      alignment: 9
+      pivot: {x: 0.4463125, y: 0.028165182}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14.822685, y: 151.59229}
+        - {x: -63.822685, y: 147.59229}
+        - {x: -63.822685, y: 18.592285}
+        - {x: -56.822685, y: -5.407715}
+        - {x: 56.177315, y: -5.407715}
+        - {x: 79.177315, y: 12.592285}
+        - {x: 79.177315, y: 128.59229}
+        - {x: 60.177315, y: 186.59229}
+        - {x: 1.1773148, y: 186.59229}
+        - {x: -2.8226852, y: 183.59229}
+    - name: PropGrowthTrees_1
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 339
+        width: 140
+        height: 172
+      alignment: 9
+      pivot: {x: 0.527419, y: 0.017936174}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -32.838654, y: 168.91498}
+        - {x: -73.83865, y: 130.91498}
+        - {x: -73.83865, y: 63.914978}
+        - {x: -26.838654, y: -3.085022}
+        - {x: 34.161346, y: -3.085022}
+        - {x: 66.16135, y: 60.914978}
+        - {x: 66.16135, y: 114.91498}
+        - {x: 30.161346, y: 168.91498}
+    - name: PropGrowthTrees_2
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 351
+        width: 110
+        height: 160
+      alignment: 9
+      pivot: {x: 0.58375216, y: 0.02496624}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 20.787262, y: 92.0054}
+        - {x: 11.787262, y: 86.0054}
+        - {x: 5.787262, y: 81.0054}
+        - {x: 1.787262, y: 74.0054}
+        - {x: 5.787262, y: 80.0054}
+        - {x: 15.787262, y: 91.0054}
+        - {x: 21.787262, y: 99.0054}
+        - {x: 29.787262, y: 132.0054}
+        - {x: 6.787262, y: 156.0054}
+        - {x: -48.212738, y: 156.0054}
+        - {x: -64.21274, y: 150.0054}
+        - {x: -64.21274, y: 49.0054}
+        - {x: -40.212738, y: -3.9945984}
+        - {x: 18.787262, y: -3.9945984}
+        - {x: 19.787262, y: -2.9945984}
+        - {x: 45.787262, y: 49.0054}
+        - {x: 45.787262, y: 82.0054}
+        - {x: 42.787262, y: 92.0054}
+    - name: PropGrowthTrees_3
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 407
+        width: 55
+        height: 103
+      alignment: 9
+      pivot: {x: 0.47208253, y: 0.052777927}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23.964539, y: 97.56387}
+        - {x: -25.964539, y: 95.56387}
+        - {x: -25.964539, y: 4.5638733}
+        - {x: -23.964539, y: -5.4361267}
+        - {x: 12.035461, y: -5.4361267}
+        - {x: 29.035461, y: 32.563873}
+        - {x: 29.035461, y: 97.56387}
+    - name: PropGrowthTrees_4
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 246
+        width: 245
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -50.5, y: 30.5}
+        - {x: -122.5, y: 1.5}
+        - {x: -122.5, y: -24.5}
+        - {x: -119.5, y: -30.5}
+        - {x: 87.5, y: -30.5}
+        - {x: 122.5, y: -6.5}
+        - {x: 122.5, y: 27.5}
+        - {x: 103.5, y: 30.5}
+    - name: PropGrowthTrees_5
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 301
+        width: 212
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 82, y: 24}
+        - {x: -77, y: 24}
+        - {x: -106, y: 13}
+        - {x: -106, y: -10}
+        - {x: -92, y: -24}
+        - {x: 103, y: -24}
+        - {x: 106, y: -15}
+        - {x: 106, y: 14}
+        - {x: 94, y: 22}
+    - name: PropGrowthTrees_6
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 237
+        width: 198
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 32, y: 30}
+        - {x: -80, y: 30}
+        - {x: -99, y: 18}
+        - {x: -99, y: 1}
+        - {x: -94, y: -4}
+        - {x: -38, y: -30}
+        - {x: 87, y: -30}
+        - {x: 99, y: -27}
+        - {x: 99, y: -4}
+        - {x: 89, y: 3}
+      - - {x: 51, y: 27}
+        - {x: 48, y: 24}
+        - {x: 48, y: 12}
+        - {x: 84, y: 12}
+        - {x: 90, y: 15}
+        - {x: 90, y: 27}
+    - name: PropGrowthTrees_7
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 0
+        width: 510
+        height: 231
+      alignment: 9
+      pivot: {x: 0.5105375, y: 0.01809073}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 108.625885, y: -4.178955}
+        - {x: 124.625885, y: -4.178955}
+        - {x: 153.62589, y: 38.821045}
+        - {x: 193.62589, y: 55.821045}
+        - {x: 184.62589, y: 7.821045}
+        - {x: 206.62589, y: -2.178955}
+        - {x: 226.62589, y: 54.821045}
+        - {x: 249.62589, y: 77.821045}
+        - {x: 249.62589, y: 120.821045}
+        - {x: 177.62589, y: 165.82104}
+        - {x: 51.625885, y: 226.82104}
+        - {x: -55.374115, y: 226.82104}
+        - {x: -173.37411, y: 180.82104}
+        - {x: -251.37411, y: 119.821045}
+        - {x: -260.3741, y: 109.821045}
+        - {x: -260.3741, y: 54.821045}
+        - {x: -189.37411, y: -4.178955}
+        - {x: -168.37411, y: -4.178955}
+        - {x: -159.37411, y: 31.821045}
+        - {x: -131.37411, y: -0.17895508}
+        - {x: -123.374115, y: -4.178955}
+        - {x: -99.374115, y: -4.178955}
+        - {x: -93.374115, y: 30.821045}
+        - {x: -8.374115, y: 41.821045}
+        - {x: -14.374115, y: 3.821045}
+        - {x: -11.374115, y: -4.178955}
+        - {x: 13.625885, y: -4.178955}
+        - {x: 31.625885, y: 48.821045}
+        - {x: 92.625885, y: 50.821045}
+        - {x: 99.625885, y: 1.8210449}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
