@@ -209,5 +209,16 @@
 		<EventDescription>EventDesc14</EventDescription>
 		<Title>Event14</Title>
 	</Event>
+  <Event ID="Event15">
+    <!-- An ordinary day -->
+    <RemoveMenuSet>RemoveMenuSet01</RemoveMenuSet>
+    <KitchenTimer>3</KitchenTimer>
+    <CustomerSet>CustomerSet01</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>72</DayLength>
+    <Allergy>cc</Allergy>
+    <EventDescription>EventDesc00</EventDescription>
+    <Title>Event00</Title>
+  </Event>
 </Events>
 

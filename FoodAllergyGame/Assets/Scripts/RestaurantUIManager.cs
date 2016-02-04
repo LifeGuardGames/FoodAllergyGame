@@ -5,6 +5,7 @@ using System;
 
 public class RestaurantUIManager : MonoBehaviour{
 	public DayOverUIController dayOverUIController;
+	public ChallengeOverUi challengeOverUiController;
 	public Image clockBarFill;
 	public GameObject clockFinishedImage;
 	private bool isClockFinished;
@@ -42,7 +43,8 @@ public class RestaurantUIManager : MonoBehaviour{
 	}
 
 	public void ChallengeComplete(int score, int cashEarned, int missingCustomers) {
-
+		challengeOverUiController.Populate(missingCustomers, cashEarned, score);
+		challengeOverUiController.gameObject.SetActive(true);
 		AudioManager.Instance.FadeOutPlayNewBackground(null);
 		AudioManager.Instance.PlayClip("EndOfDay");
 	}

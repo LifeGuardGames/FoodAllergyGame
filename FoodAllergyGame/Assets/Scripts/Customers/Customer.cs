@@ -258,6 +258,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				allergy.Add(Allergies.Dairy);
 			}
 		}
+		else if(mode == "cc") {
+			allergy.Add(Allergies.None);
+		}
 	}
 
 	// Note: Not capped
