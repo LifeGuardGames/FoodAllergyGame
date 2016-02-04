@@ -17,14 +17,13 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		sickCustomers = new List<GameObject>();
 		customerHash = new Dictionary<string, GameObject>();
 		challengeAI = new ChallengeAI();
-		RunSetUp();
 		StartDay();
 	}
 
 
 	private void RunSetUp() {
 		chall = DataLoaderChallenge.GetData(DataManager.Instance.GetChallenge());
-
+		currCusSet = new List<string>();
 		if(chall.restMode == 1.0f) {
 			FullRestaurant();
 		}
@@ -48,8 +47,9 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		dayTime = chall.DayLengthMod;
 		dayTimeLeft = dayTime;
 		temp = DataLoaderCustomerSet.GetData(chall.CustomerSet).CustomerSet;
-
+		Debug.Log(temp[0]);
 		for(int i = 0; i < temp.Length; i++) {
+			Debug.Log(i);
 			currCusSet.Add(temp[i]);
 		}
 
@@ -63,27 +63,42 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		yield return new WaitForSeconds(customerSpawnTimer);
 
 			if(!dayOver && lineCount < 8 && interval < currCusSet.Count) {
+			
+			doorController.OpenAndCloseDoor();
 
-				doorController.OpenAndCloseDoor();
-
+			if(isTutorial) {
+				ImmutableDataCustomer test;
+				test = DataLoaderCustomer.GetData("CustomerTutorial");
+				GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
+				GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
+				cus.GetComponent<Customer>().Init(customerNumber, eventData);
+				cus.GetComponent<Customer>().behavFlow = test.BehavFlow;
+				customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
+				customerNumber++;
+				challengeAI.AddCustomer();
+			}
+			else {
 				ImmutableDataCustomer customerData;
 				customerSpawnTimer = chall.CustSpawnTime;
-				
-		
-				customerData = DataLoaderCustomer.GetData(DataManager.Instance.GameData.RestaurantEvent.CustomerList[interval]);
+
+
+				customerData = DataLoaderCustomer.GetData(currCusSet[interval]);
 
 				// Track in analytics
 				AnalyticsManager.Instance.TrackCustomerSpawned(customerData.ID);
-			
+				Debug.Log("here");
 				GameObject customerPrefab = Resources.Load(customerData.Script) as GameObject;
 				GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 				customerNumber++;
+				cus.GetComponent<Customer>().behavFlow = customerData.BehavFlow;
 				cus.GetComponent<Customer>().Init(customerNumber, chall);
 				cus.GetComponent<Customer>().UpdateSatisfaction(chall.StartingHearts);
 				customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
 				challengeAI.AddCustomer();
 				interval++;
+				customerNumber++;
 				StartCoroutine(SpawnCustomer());
+			}
 
 		}
 		else {
@@ -94,6 +109,8 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	
 
 	public override void StartDay() {
+		dayOver = false;
+		RunSetUp();
 		restaurantUI.StartDay();
 	}
 
@@ -163,18 +180,36 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	protected override void CheckForGameOver() {
 		if(dayOver) {
 			if(customerHash.Count == 0) {
-				DataManager.Instance.GameData.DayTracker.ChallengesPlayed++;
-				DataManager.Instance.ChallengesInSession++;
 
-				AnalyticsManager.Instance.EndChallengeReport(challengeAI.ScoreIt(),DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge, challengeAI.MissingCustomers, challengeAI.AvgSatisfaction());
+				if(DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge == "ChallengeTut2") {
+					AnalyticsManager.Instance.TutorialFunnel("Finished tut day, 4 customers");
+					DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = chall.NextChall;
+                }
+				if(isTutorial) {
+					AnalyticsManager.Instance.TutorialFunnel("Finished tut day, 2 guided customers");
+					DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
+					DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut2";
+					isTutorial = false;
+					DataManager.Instance.GameData.RestaurantEvent.CustomerList.Add("CustomerRegular");
+					StopCoroutine(SpawnCustomer());
+					interval = 0;
+					StartDay();
+				}
+				else {
+					DataManager.Instance.GameData.DayTracker.ChallengesPlayed++;
+					DataManager.Instance.ChallengesInSession++;
 
-				AnalyticsManager.Instance.EndGameUsageReport(playAreaUses, vipUses, microwaveUses);
+					AnalyticsManager.Instance.EndChallengeReport(challengeAI.ScoreIt(), DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge, challengeAI.MissingCustomers, challengeAI.AvgSatisfaction());
 
-				// Show day complete UI
-				restaurantUI.ChallengeComplete(challengeAI.Score,dayEarnedCash, challengeAI.MissingCustomers);
+					AnalyticsManager.Instance.EndGameUsageReport(playAreaUses, vipUses, microwaveUses);
 
-				// Save game data
-				DataManager.Instance.SaveGameData();
+					// Show day complete UI
+					restaurantUI.dayOverUIController.Populate(challengeAI.MissingCustomers, dayEarnedCash, 0, dayCashRevenue);
+					//restaurantUI.ChallengeComplete(challengeAI.Score,dayEarnedCash, challengeAI.MissingCustomers);
+					DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "";
+					// Save game data
+					DataManager.Instance.SaveGameData();
+				}
 			}
 		}
 	}
@@ -272,4 +307,18 @@ public class RestaurantManagerChallenge : RestaurantManager{
 				break;
 		}
 	}
+	public void SpawnSecondTut() {
+		ImmutableDataCustomer test;
+		test = DataLoaderCustomer.GetData("CustomerTutorial");
+		GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
+		GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
+		cus.GetComponent<CustomerTutorial>().isAllergy = true;
+		cus.GetComponent<Customer>().behavFlow = test.BehavFlow;
+		cus.GetComponent<Customer>().Init(customerNumber,chall);
+		customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
+
+		customerNumber++;
+		challengeAI.AddCustomer();
+	}
+
 }

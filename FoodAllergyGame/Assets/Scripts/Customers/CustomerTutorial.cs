@@ -7,17 +7,19 @@ public class CustomerTutorial : Customer{
 	public int step = 0;
 	public bool isAllergy = false;
 
-	public override void Init(int num, ImmutableDataEvents mode){
-		base.Init(num, mode);
+	public override void Init(int num, ImmutableDataChallenge mode){
+		RestaurantManagerChallenge.Instance.isTutorial = true;
 		satisfaction = 100;
 		tutFingers = GameObject.Find("TutFingers");
 		StartCoroutine("ShowTableFinger");
-		if(!isAllergy){
+		base.Init(num, mode);
+		if(!isAllergy) {
 			allergy[0] = Allergies.None;
 		}
-		else{
+		else {
 			allergy[0] = Allergies.Peanut;
 		}
+		
 	}
 
 	public override void OrderTaken(ImmutableDataFood food){
@@ -30,7 +32,7 @@ public class CustomerTutorial : Customer{
 		hideTableFinger();
 		base.Eating();
 		if(!isAllergy){
-			RestaurantManager.Instance.SpawnSecondTut();
+			RestaurantManagerChallenge.Instance.GetComponent<RestaurantManagerChallenge>().SpawnSecondTut();
 		}
 	}
 

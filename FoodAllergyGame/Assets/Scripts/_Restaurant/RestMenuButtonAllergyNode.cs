@@ -5,7 +5,6 @@ using System.Collections;
 public class RestMenuButtonAllergyNode : MonoBehaviour {
 	public Image thisImage;
 	public GameObject childObject;
-	public Image allergyImage;
 	public TweenToggle tweenToggle;
 	private bool isUsed;
 
@@ -19,16 +18,16 @@ public class RestMenuButtonAllergyNode : MonoBehaviour {
 			childObject.SetActive(true);
 			switch(allergyType) {
 				case Allergies.None:
-					allergyImage.sprite = SpriteCacheManager.GetAllergySpriteData(Allergies.None);
+					thisImage.sprite = SpriteCacheManager.GetAllergySpriteData(Allergies.None);
                     break;
 				case Allergies.Dairy:
-					allergyImage.sprite = SpriteCacheManager.GetAllergySpriteData(Allergies.Dairy);
+					thisImage.sprite = SpriteCacheManager.GetAllergySpriteData(Allergies.Dairy);
 					break;
 				case Allergies.Peanut:
-					allergyImage.sprite = SpriteCacheManager.GetAllergySpriteData(Allergies.Peanut);
+					thisImage.sprite = SpriteCacheManager.GetAllergySpriteData(Allergies.Peanut);
 					break;
 				case Allergies.Wheat:
-					allergyImage.sprite = SpriteCacheManager.GetAllergySpriteData(Allergies.Wheat);
+					thisImage.sprite = SpriteCacheManager.GetAllergySpriteData(Allergies.Wheat);
 					break;
 				default:
 					Debug.Log("Error enum " + allergyType.ToString());

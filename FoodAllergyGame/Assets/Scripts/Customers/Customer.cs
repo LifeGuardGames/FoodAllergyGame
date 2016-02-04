@@ -172,6 +172,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			this.gameObject.transform.position = transform.parent.position;
 			var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[0]);
 			Behav wait = (Behav)Activator.CreateInstance(type);
+			currBehav = wait;
 			wait.self = this;
 			wait.Act();
 			wait = null;

@@ -11,10 +11,10 @@
 
 <CustomerSets>
 <CustomerSet ID="CustomerSetT1">
-		<CustomerList>CustomerRegular</CustomerList>
+		<CustomerList>CustomerTutorial</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSetT2">
-		<CustomerList>CustomerTutorial</CustomerList>
+		<CustomerList>CustomerRegular,CustomerRegular,CustomerRegular,CustomerRegular</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSetTP">
 		<CustomerList>CustomerPlayAreaTut,CustomerRegular</CustomerList>

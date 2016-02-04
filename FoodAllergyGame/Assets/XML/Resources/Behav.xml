@@ -8,8 +8,8 @@
   </Behav>
   
   <Behav ID="BehavFlow01">
-    <Name>Eater</Name>
-    <BehavList>BehavWaitingInLine,BehavTutorialReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEating,BehavWaitForCheck,BehavEaterNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavNotifyLeave</BehavList>
+    <Name>Tutorial</Name>
+    <BehavList>BehavWaitingInLine,BehavTutorialReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEating,BehavWaitForCheck,BehavNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital</BehavList>
   </Behav>
   
   <Behav ID="BehavFlow02">

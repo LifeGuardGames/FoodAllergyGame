@@ -78,6 +78,11 @@ public class ImmutableDataChallenge  {
 	private int startingHearts;
 	public int StartingHearts {
 		get { return startingHearts; }
+	}
+
+	private string nextChall;
+	public string NextChall {
+		get { return nextChall; }
 	}	
 
 	public ImmutableDataChallenge(string id, IXMLNode xmlNode, string error) {
@@ -101,5 +106,8 @@ public class ImmutableDataChallenge  {
 		custSpawnTime = XMLUtils.GetFloat(hashElements["CustomerSpawnTimer"] as IXMLNode);
 		specialDecoMode = XMLUtils.GetInt(hashElements["SpecialDecoMode"] as IXMLNode);
 		startingHearts = XMLUtils.GetInt(hashElements["CustomerStartingHearts"] as IXMLNode);
+		if(hashElements.Contains("EventDescription")) {
+			nextChall = XMLUtils.GetString(hashElements["NextChallenge"] as IXMLNode);
+		}
 	}
 }

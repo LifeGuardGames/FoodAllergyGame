@@ -190,19 +190,7 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 		
 	}
 
-	public void SpawnSecondTut(){
-		ImmutableDataCustomer test;
-		test = DataLoaderCustomer.GetData("CustomerTutorial");
-		GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
-		GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
-		cus.GetComponent<CustomerTutorial>().isAllergy = true;
-		cus.GetComponent<Customer>().behavFlow = test.BehavFlow;
-		cus.GetComponent<Customer>().Init(customerNumber, eventData);
-		customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
-		
-		customerNumber++;
-		//satisfactionAI.AddCustomer();
-	}
+	
 
 	public bool IsTableAvilable(){
 		for(int i = 0; i < 4; i++){

@@ -20,15 +20,8 @@ public class RestaurantManagerArcade : RestaurantManager {
 		if(DataManager.Instance.IsDebug && FoodManager.Instance.MenuList == null) {
 			FoodManager.Instance.GenerateMenu(DataLoaderRemoveMenuSet.GetData("RemoveMenuSetT1").RemoveMenuSet.ToList());
 		}
-
-		if(DataManager.Instance.GetEvent() == "EventTPlayArea" || DataManager.Instance.GetEvent() == "EventTFlyThru") {
-			//TODO remove this and active tut screen
+	
 			StartDay();
-		}
-
-		else {
-			StartDay();
-		}
 	}
 
 	public override void StartDay() {
@@ -45,16 +38,9 @@ public class RestaurantManagerArcade : RestaurantManager {
 			isTutorial = true;
 			//customerSpawnTimer = customerTimer / satisfactionAI.DifficultyLevel + 1;
 		}
-		else if (eventData.ID == "EventTPlayArea"){
-			dayTime = eventData.DayLengthMod;
-			dayTimeLeft = dayTime;
-			RunPlayAreaTut();
-		}
-		else{
-			dayTime = eventData.DayLengthMod;
-			dayTimeLeft = dayTime;
+		dayTime = eventData.DayLengthMod;
+		dayTimeLeft = dayTime;
 
-		}
 		StartCoroutine(SpawnCustomer());
 	}
 
@@ -63,70 +49,46 @@ public class RestaurantManagerArcade : RestaurantManager {
 		yield return 0;
 		yield return new WaitForSeconds(customerSpawnTimer);
 
-		if(isTutorial) {
-			ImmutableDataCustomer test;
-			test = DataLoaderCustomer.GetData("CustomerTutorial");
-			GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
-			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
-			cus.GetComponent<Customer>().Init(customerNumber, eventData);
-			cus.GetComponent<Customer>().behavFlow = test.BehavFlow;
-			customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
-			customerNumber++;
-			satisfactionAI.AddCustomer();
-		}
-		else {
 			int rand;
-			if(!dayOver && lineCount < 8) {
+		if(!dayOver && lineCount < 8) {
 
-				doorController.OpenAndCloseDoor();
-				
-				ImmutableDataCustomer customerData;
-				if(DataManager.Instance.GameData.DayTracker.AvgDifficulty == 15.0f) {
-					customerSpawnTimer = 6.0f;
-				}
-				else if(IsTableAvilable()) {
-					customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty * 0.27f;
-				}
-				else {
-					customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty * 0.4f;
-				}
+			doorController.OpenAndCloseDoor();
 
-				if(customerSpawnTimer < 3.0f) {
-					customerSpawnTimer = 3.0f;
-				}
-
-				//Debug.Log(customerSpawnTimer);
-				rand = UnityEngine.Random.Range(0, DataManager.Instance.GameData.RestaurantEvent.CustomerList.Count);
-				if(eventData.ID == "EventTPlayArea") {
-					customerData = DataLoaderCustomer.GetData("CustomerPlayAreaTut");
-					if(!DataManager.Instance.IsDebug) {
-						//	DataManager.Instance.GameData.Decoration.DecoTutQueue.RemoveAt(0);
-
-					}
-				}
-				else if(eventData.ID == "EventTVIP") {
-					customerData = DataLoaderCustomer.GetData("CustomerVIPTut");
-				}
-				else {
-					customerData = DataLoaderCustomer.GetData(DataManager.Instance.GameData.RestaurantEvent.CustomerList[rand]);
-
-					// Track in analytics
-					AnalyticsManager.Instance.TrackCustomerSpawned(customerData.ID);
-				}
-				GameObject customerPrefab = Resources.Load(customerData.Script) as GameObject;
-				GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
-				customerNumber++;
-				cus.GetComponent<Customer>().behavFlow = customerData.BehavFlow;
-				cus.GetComponent<Customer>().Init(customerNumber, eventData);
-				cus.GetComponent<Customer>().behavFlow = customerData.BehavFlow;
-				customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
-				satisfactionAI.AddCustomer();
-				StartCoroutine(SpawnCustomer());
+			ImmutableDataCustomer customerData;
+			if(DataManager.Instance.GameData.DayTracker.AvgDifficulty == 15.0f) {
+				customerSpawnTimer = 6.0f;
+			}
+			else if(IsTableAvilable()) {
+				customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty * 0.27f;
 			}
 			else {
-				// Call self to loop
-				StartCoroutine(SpawnCustomer());
+				customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty * 0.4f;
 			}
+
+			if(customerSpawnTimer < 3.0f) {
+				customerSpawnTimer = 3.0f;
+			}
+
+			//Debug.Log(customerSpawnTimer);
+			rand = UnityEngine.Random.Range(0, DataManager.Instance.GameData.RestaurantEvent.CustomerList.Count);
+			customerData = DataLoaderCustomer.GetData(DataManager.Instance.GameData.RestaurantEvent.CustomerList[rand]);
+
+			// Track in analytics
+			AnalyticsManager.Instance.TrackCustomerSpawned(customerData.ID);
+
+			GameObject customerPrefab = Resources.Load(customerData.Script) as GameObject;
+			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
+			customerNumber++;
+			cus.GetComponent<Customer>().behavFlow = customerData.BehavFlow;
+			cus.GetComponent<Customer>().Init(customerNumber, eventData);
+			cus.GetComponent<Customer>().behavFlow = customerData.BehavFlow;
+			customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
+			satisfactionAI.AddCustomer();
+			StartCoroutine(SpawnCustomer());
+		}
+		else {
+			// Call self to loop
+			StartCoroutine(SpawnCustomer());
 		}
 	}
 
@@ -190,20 +152,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 			if(customerHash.Count == 0) {
 				DataManager.Instance.GameData.DayTracker.DaysPlayed++;
 				DataManager.Instance.DaysInSession++;
-				if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT2") {
-					AnalyticsManager.Instance.TutorialFunnel("Finished tut day, 4 customers");
-				}
-				if(isTutorial) {
-					AnalyticsManager.Instance.TutorialFunnel("Finished tut day, 2 guided customers");
-					DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
-					DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = "EventT2";
-					isTutorial = false;
-					dayOver = false;
-					DataManager.Instance.GameData.RestaurantEvent.CustomerList.Add("CustomerRegular");
-					StopCoroutine(SpawnCustomer());
-					StartDay();
-				}
-				else {
+				
 					DataManager.Instance.GameData.DayTracker.AvgDifficulty = ((DataManager.Instance.GameData.DayTracker.AvgDifficulty + satisfactionAI.DifficultyLevel) / 2);
 					// Save data here
 					int dayNetCash = dayEarnedCash + Medic.Instance.MedicCost;
@@ -212,10 +161,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 					// Unlock new event generation for StartManager
 					DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
 
-					// Set tutorial to done if applies
-					if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT1") {
-						DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
-					}
+					
 //					else if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT3") {
 //						DataManager.Instance.GameData.Tutorial.IsTutorial3Done = true;
 //						AnalyticsManager.Instance.TutorialFunnel("Menu tut day complete");
@@ -233,7 +179,6 @@ public class RestaurantManagerArcade : RestaurantManager {
 
 					// Save game data
 					DataManager.Instance.SaveGameData();
-				}
 			}
 		}
 	}
@@ -258,27 +203,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 		StartCoroutine(SpawnCustomer());
 	}
 
-	private void RunPlayAreaTut() {
-		StartCoroutine("WaitASec");
-		//cus.GetComponent<Customer>().JumpToTable(i);
-	}
 
-	IEnumerator WaitASec() {
-		yield return (0);
-		for(int i = 0; i < 4; i++) {
-			ImmutableDataCustomer test;
-			test = DataLoaderCustomer.GetData(currCusSet[1]);
-			GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
-			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
-			cus.GetComponent<Customer>().Init(customerNumber, eventData);
-			customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
-			customerNumber++;
-			satisfactionAI.AddCustomer();
-			cus.GetComponent<Customer>().tableNum = i;
-			cus.GetComponent<Behav>().Reason();
-			GetTable(i).inUse = true;
-		}
-	}
 
 	void Update() {
 		if(!isPaused && dayOver == false) {
@@ -292,7 +217,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 	}
 
 	// Called from PauseUIController
-	public void QuitGame() {
+	public override void QuitGame() {
 		Time.timeScale = 1.0f;  // Remember to reset timescale!
 		if(!dayOver) {
 			IncompleteQuitAnalytics();
