@@ -3,7 +3,8 @@ using System.Collections;
 
 public class PropManager : Singleton<PropManager> {
 	public int minimumSpawnTier = 0;
-	public GameObject propRandomOrbit;	// Random props are space props that orbit (rotation) the planetoid
+	public GameObject propRandomOrbit;  // Random props are space props that orbit (rotation) the planetoid
+	public GameObject propGrowthParent;
 
 	public void InitProps() {
 		if(TierManager.Instance.CurrentTier >= minimumSpawnTier) {
@@ -29,7 +30,7 @@ public class PropManager : Singleton<PropManager> {
 
 	// Broadcast a message telling all prop growth nodes needs to initialize themselves
 	private void SpawnPropNodeGrowth() {
-		BroadcastMessage("GrowthPropInit");
+		propGrowthParent.BroadcastMessage("PropGrowthInit");
 	}
 
 	private void SpawnPropNodeEvent() {

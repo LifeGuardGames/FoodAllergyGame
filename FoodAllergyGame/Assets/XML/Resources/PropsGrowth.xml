@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PropsGrowth>
+  <PropGrowth ID="PropGrowthTree00">
+    <PropKey>PropGrowthTree</PropKey>
+    <TierUnlock>0</TierUnlock>
+    <PrefabName>PropGrowthTree00</PrefabName>
+  </PropGrowth>
+  <PropGrowth ID="PropGrowthTree01">
+    <PropKey>PropGrowthTree</PropKey>
+    <TierUnlock>1</TierUnlock>
+    <PrefabName>PropGrowthTree01</PrefabName>
+  </PropGrowth>
+  <PropGrowth ID="PropGrowthTree02">
+    <PropKey>PropGrowthTree</PropKey>
+    <TierUnlock>2</TierUnlock>
+    <PrefabName>PropGrowthTree02</PrefabName>
+  </PropGrowth>
+</PropsGrowth>
