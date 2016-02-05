@@ -98,6 +98,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[0]);
 			Behav wait = (Behav)Activator.CreateInstance(type);
 			wait.self = this;
+			currBehav = wait;
 			wait.Act();
 			wait = null;
 		}

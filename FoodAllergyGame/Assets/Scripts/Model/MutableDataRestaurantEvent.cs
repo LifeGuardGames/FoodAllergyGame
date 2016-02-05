@@ -9,7 +9,7 @@ public class MutableDataRestaurantEvent{
 	public List<string> CustomerList { get; set; }
 
 	public MutableDataRestaurantEvent(){
-		CurrentEvent = "EventT1";
+		CurrentEvent = "EventT3";
 		ShouldGenerateNewEvent = true;
 		CustomerList = new List<string>();
 

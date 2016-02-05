@@ -34,10 +34,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 		dayCashRevenue = 0;
 		restaurantUI.StartDay();
 		//Debug.Log("Starting Day - Event:" +  eventData.ID + ", Customer Set:" + currSet);
-		if(eventData.ID == "EventT1"){
-			isTutorial = true;
-			//customerSpawnTimer = customerTimer / satisfactionAI.DifficultyLevel + 1;
-		}
+
 		dayTime = eventData.DayLengthMod;
 		dayTimeLeft = dayTime;
 
@@ -81,7 +78,6 @@ public class RestaurantManagerArcade : RestaurantManager {
 			customerNumber++;
 			cus.GetComponent<Customer>().behavFlow = customerData.BehavFlow;
 			cus.GetComponent<Customer>().Init(customerNumber, eventData);
-			cus.GetComponent<Customer>().behavFlow = customerData.BehavFlow;
 			customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
 			satisfactionAI.AddCustomer();
 			StartCoroutine(SpawnCustomer());

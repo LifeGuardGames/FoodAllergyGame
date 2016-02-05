@@ -49,11 +49,10 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		temp = DataLoaderCustomerSet.GetData(chall.CustomerSet).CustomerSet;
 		Debug.Log(temp[0]);
 		for(int i = 0; i < temp.Length; i++) {
-			Debug.Log(i);
 			currCusSet.Add(temp[i]);
 		}
 
-		StartCoroutine(SpawnCustomer());
+		StartCoroutine("SpawnCustomer");
 		
 	}
 
@@ -96,13 +95,13 @@ public class RestaurantManagerChallenge : RestaurantManager{
 				challengeAI.AddCustomer();
 				interval++;
 				customerNumber++;
-				StartCoroutine(SpawnCustomer());
+				StartCoroutine("SpawnCustomer");
 			}
 
 		}
 		else {
 			// Call self to loop
-			StartCoroutine(SpawnCustomer());
+			StartCoroutine("SpawnCustomer");
 		}
 	}
 	
@@ -182,15 +181,15 @@ public class RestaurantManagerChallenge : RestaurantManager{
 
 				if(DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge == "ChallengeTut2") {
 					AnalyticsManager.Instance.TutorialFunnel("Finished tut day, 4 customers");
-					DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = chall.NextChall;
-                }
-				if(isTutorial) {
+				}
+
+			    if(isTutorial) {
 					AnalyticsManager.Instance.TutorialFunnel("Finished tut day, 2 guided customers");
 					DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
 					DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut2";
 					isTutorial = false;
 					DataManager.Instance.GameData.RestaurantEvent.CustomerList.Add("CustomerRegular");
-					StopCoroutine(SpawnCustomer());
+					StopCoroutine("SpawnCustomer");
 					interval = 0;
 					StartDay();
 				}
@@ -203,7 +202,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 					AnalyticsManager.Instance.EndGameUsageReport(playAreaUses, vipUses, microwaveUses);
 
 					// Show day complete UI
-					restaurantUI.dayOverUIController.Populate(challengeAI.MissingCustomers, dayEarnedCash, 0, dayCashRevenue);
+					restaurantUI.DayComplete(challengeAI.MissingCustomers, dayEarnedCash, 0, dayCashRevenue);
 					//restaurantUI.ChallengeComplete(challengeAI.Score,dayEarnedCash, challengeAI.MissingCustomers);
 					DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "";
 					// Save game data
@@ -248,7 +247,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		for(int i = 0; i < currCustomers.Count; i++) {
 			currCustomers[i].GetComponent<Customer>().customerUI.gameObject.SetActive(false);
 		}
-		StopCoroutine(SpawnCustomer());
+		StopCoroutine("SpawnCustomer");
 		StartCoroutine(LightsOut());
 	}
 
@@ -259,7 +258,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		for(int i = 0; i < currCustomers.Count; i++) {
 			currCustomers[i].GetComponent<Customer>().customerUI.gameObject.SetActive(true);
 		}
-		StartCoroutine(SpawnCustomer());
+		StartCoroutine("SpawnCustomer");
 	}
 
 	private void FullRestaurant() {
