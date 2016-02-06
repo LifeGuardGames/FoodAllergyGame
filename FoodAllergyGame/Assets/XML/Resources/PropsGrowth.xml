@@ -15,4 +15,20 @@
     <TierUnlock>2</TierUnlock>
     <PrefabName>PropGrowthTree02</PrefabName>
   </PropGrowth>
+
+  <PropGrowth ID="PropGrowthParking00">
+    <PropKey>PropGrowthParking</PropKey>
+    <TierUnlock>0</TierUnlock>
+    <PrefabName>PropGrowthParking00</PrefabName>
+  </PropGrowth>
+  <PropGrowth ID="PropGrowthParking01">
+    <PropKey>PropGrowthParking</PropKey>
+    <TierUnlock>1</TierUnlock>
+    <PrefabName>PropGrowthParking01</PrefabName>
+  </PropGrowth>
+  <PropGrowth ID="PropGrowthParking02">
+    <PropKey>PropGrowthParking</PropKey>
+    <TierUnlock>2</TierUnlock>
+    <PrefabName>PropGrowthParking02</PrefabName>
+  </PropGrowth>
 </PropsGrowth>
