@@ -16,8 +16,7 @@
 		<TierNumber>0</TierNumber>
 		<CashCutoffFloor>500</CashCutoffFloor>
 		<MenuSlots>5</MenuSlots>
-		<EventsUnlocked>
-		</EventsUnlocked>
+		<EventsUnlocked>Event00</EventsUnlocked>
 		<DecorationsUnlocked>
 		</DecorationsUnlocked>
 		<StartArtAssets>
@@ -28,7 +27,7 @@
 		<TierNumber>1</TierNumber>
 		<CashCutoffFloor>850</CashCutoffFloor>
 		<MenuSlots>5</MenuSlots>
-		<EventsUnlocked>Event00,Event01,Event02,Event03,Event04</EventsUnlocked>
+		<EventsUnlocked>Event01,Event02,Event03,Event04</EventsUnlocked>
 		<DecorationsUnlocked>
 		</DecorationsUnlocked>
 		<StartArtAssets>

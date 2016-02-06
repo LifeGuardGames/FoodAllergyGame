@@ -106,7 +106,7 @@ public class ImmutableDataChallenge  {
 		custSpawnTime = XMLUtils.GetFloat(hashElements["CustomerSpawnTimer"] as IXMLNode);
 		specialDecoMode = XMLUtils.GetInt(hashElements["SpecialDecoMode"] as IXMLNode);
 		startingHearts = XMLUtils.GetInt(hashElements["CustomerStartingHearts"] as IXMLNode);
-		if(hashElements.Contains("EventDescription")) {
+		if(hashElements.Contains("NextChallenge")) {
 			nextChall = XMLUtils.GetString(hashElements["NextChallenge"] as IXMLNode);
 		}
 	}

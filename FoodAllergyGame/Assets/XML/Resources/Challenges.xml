@@ -78,13 +78,13 @@
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
-    <NextChallenge>ChallengeTuT3</NextChallenge>
+    <NextChallenge>ChallengeTut3</NextChallenge>
   </Challenge>
   <Challenge ID="ChallengeTut3">
     <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
     <Tier>0</Tier>
     <KitchenTimer>5</KitchenTimer>
-    <CustomerSet>CustomerSet</CustomerSet>
+    <CustomerSet>CustomerSet00</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
     <DayLength>33</DayLength>
     <Allergy>None</Allergy>
@@ -100,46 +100,47 @@
 	<Challenge ID="TutDecoPlayArea">
 		<ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
 		<Tier>3</Tier>
-		<KitchenTimer>5</KitchenTimer>
-		<CustomerSet>CustomerSet01</CustomerSet>
-		<CustomerTimer>2</CustomerTimer>
-		<DayLength>30</DayLength>
-		<Allergy>None</Allergy>
+    <KitchenTimer>3</KitchenTimer>
+    <CustomerSet>CustomerSetTP</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>1</DayLength>
+    <Allergy>None</Allergy>
 		<Title>stuff</Title>
 		<WaiterMove>0</WaiterMove>
 		<RestMode>1</RestMode>
-		<CustomerSpawnTimer>6</CustomerSpawnTimer>
+		<CustomerSpawnTimer>2</CustomerSpawnTimer>
 		<SpecialDecoMode>0</SpecialDecoMode>
 		<CustomerStartingHearts>3</CustomerStartingHearts>
-    
 	</Challenge>
+  
 	<Challenge ID="TutDecoVIP">
 		<ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
 		<Tier>3</Tier>
-		<KitchenTimer>5</KitchenTimer>
-		<CustomerSet>CustomerSet01</CustomerSet>
-		<CustomerTimer>2</CustomerTimer>
-		<DayLength>30</DayLength>
-		<Allergy>None</Allergy>
+    <KitchenTimer>3</KitchenTimer>
+    <CustomerSet>CustomerSetTV</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>2</DayLength>
+    <Allergy>None</Allergy>
 		<Title>stuff</Title>
 		<WaiterMove>0</WaiterMove>
-		<RestMode>1</RestMode>
-		<CustomerSpawnTimer>6</CustomerSpawnTimer>
+		<RestMode>0</RestMode>
+		<CustomerSpawnTimer>2</CustomerSpawnTimer>
 		<SpecialDecoMode>0</SpecialDecoMode>
 		<CustomerStartingHearts>3</CustomerStartingHearts>
 	</Challenge>
-	<Challenge ID="TutDecoFlyThru">
+	
+  <Challenge ID="TutDecoFlyThru">
 		<ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
 		<Tier>3</Tier>
-		<KitchenTimer>5</KitchenTimer>
-		<CustomerSet>CustomerSet01</CustomerSet>
-		<CustomerTimer>2</CustomerTimer>
-		<DayLength>30</DayLength>
-		<Allergy>None</Allergy>
+    <KitchenTimer>3</KitchenTimer>
+    <CustomerSet>CustomerSetTF</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>2</DayLength>
+    <Allergy>None</Allergy>
 		<Title>stuff</Title>
 		<WaiterMove>0</WaiterMove>
-		<RestMode>1</RestMode>
-		<CustomerSpawnTimer>6</CustomerSpawnTimer>
+		<RestMode>0</RestMode>
+		<CustomerSpawnTimer>2</CustomerSpawnTimer>
 		<SpecialDecoMode>0</SpecialDecoMode>
 		<CustomerStartingHearts>3</CustomerStartingHearts>
 	</Challenge>
