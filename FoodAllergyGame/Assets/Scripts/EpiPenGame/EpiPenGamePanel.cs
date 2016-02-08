@@ -16,6 +16,9 @@ public class EpiPenGamePanel : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
 	public void OnBeginDrag(PointerEventData eventData) {
 		if(!isCorrect) { 
+			if(transform.parent.GetComponent<EpiPenGameComicSlot>() != null) {
+				EpiPenGameManager.Instance.submittedAnswers.Remove(transform.parent.GetComponent<EpiPenGameComicSlot>().slotNumber);
+			}
 			itemBeingDragged = gameObject;
 			startPosition = transform.localPosition;
 			startParent = transform.parent;

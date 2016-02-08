@@ -57,6 +57,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 				gamePanels[i].Locked();
 			}
 			else {
+				submittedAnswers.Remove(i);
 				PlaceInPos(gamePanels[i]);
 			}
 		}
