@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 public class EpiPenGameManager : Singleton<EpiPenGameManager>{
-
 	private List<bool> answers;
+	public List<Transform> pickSlots;
 	public List<EpiPenGamePanel> gamePanels;
-	public EpiPenGameUiManager uiManager;
+	public EpiPenGameUIManager UIManager;
 	public Dictionary<int, int> submittedAnswers;
 
 	void Start() {
@@ -58,7 +57,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 				gamePanels[i].Locked();
 			}
 			else {
-				uiManager.PlaceInPos(gamePanels[i]);
+				PlaceInPos(gamePanels[i]);
 			}
 		}
 	}
@@ -75,6 +74,17 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 			temp.RemoveAt(rand);
 			answers[rand] = false;
 			submittedAnswers.Remove(rand);
+		}
+	}
+
+	public void PlaceInPos(EpiPenGamePanel panel) {
+		foreach(Transform slot in pickSlots) {
+			if(slot.childCount == 0) {
+				panel.transform.SetParent(slot);
+				//panel.transform.position = spot.position;
+				panel.isCorrect = false;
+				break;
+			}
 		}
 	}
 }

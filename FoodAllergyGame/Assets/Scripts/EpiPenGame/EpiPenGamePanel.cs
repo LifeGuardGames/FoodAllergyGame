@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class EpiPenGamePanel : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
-
 	public static GameObject itemBeingDragged;
 	public int order;
 
@@ -12,7 +9,6 @@ public class EpiPenGamePanel : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	private Transform startParent;
 
 	public bool isCorrect = true;
-
 
 	public void Locked() {
 		isCorrect = true;
@@ -27,20 +23,17 @@ public class EpiPenGamePanel : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
 			//AudioManager.Instance.PlayClip("Button1Down");
 		}
-
 	}
 
 	public void OnDrag(PointerEventData data) {
 		if(!isCorrect) {
 #if UNITY_EDITOR
-
 			itemBeingDragged.transform.position = Input.mousePosition;
 #else
-		itemBeingDragged.transform.position = Input.GetTouch(0).position;
+			itemBeingDragged.transform.position = Input.GetTouch(0).position;
 #endif
 		}
 	}
-
 
 	public void OnEndDrag(PointerEventData eventData) {
 		if(!isCorrect) {
@@ -50,9 +43,8 @@ public class EpiPenGamePanel : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 			//	transform.SetParent(startParent);
 			//	transform.localPosition = startPosition;
 			if(transform.parent == startParent) {
-				EpiPenGameManager.Instance.uiManager.PlaceInPos(this);
+				EpiPenGameManager.Instance.PlaceInPos(this);
 			}
 		}
 	}
-
 }
