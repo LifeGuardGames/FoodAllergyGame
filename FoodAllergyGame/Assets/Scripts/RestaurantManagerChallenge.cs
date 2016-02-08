@@ -189,7 +189,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 					DataManager.Instance.GameData.DayTracker.ChallengesPlayed++;
 					DataManager.Instance.ChallengesInSession++;
 
-					//AnalyticsManager.Instance.EndChallengeReport(challengeAI.ScoreIt(), DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge, challengeAI.MissingCustomers, challengeAI.AvgSatisfaction());
+					AnalyticsManager.Instance.EndChallengeReport(challengeAI.ScoreIt(), DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge, challengeAI.MissingCustomers, challengeAI.AvgSatisfaction(), savedCustomers, attempted, inspectionButtonClicked);
 
 					AnalyticsManager.Instance.EndGameUsageReport(playAreaUses, vipUses, microwaveUses);
 
