@@ -32,6 +32,16 @@ public class SceneItem : Editor {
 		OpenScene(SceneUtils.DECO);
 	}
 
+	[MenuItem("Open Scene/ChallengeMenu")]
+	public static void OpenChallengeMenu() {
+		OpenScene(SceneUtils.CHALLENGEMENU);
+	}
+
+	[MenuItem("Open Scene/EpiPenGame")]
+	public static void OpenEpiPenGame() {
+		OpenScene(SceneUtils.EPIPEN);
+	}
+
 	static void OpenScene(string name){
 		if(EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()){
 			EditorSceneManager.OpenScene("Assets/Scenes/" + name + ".unity");
