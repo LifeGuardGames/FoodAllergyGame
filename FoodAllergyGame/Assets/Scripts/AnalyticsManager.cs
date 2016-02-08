@@ -8,7 +8,13 @@ public class AnalyticsManager : Singleton<AnalyticsManager> {
 	// When customer are leaving happy, what is their satisfaction?
 	public void CustomerLeaveHappy(int satisfaction) {
 		Mixpanel.SendEvent("Customer Leave Happy", new Dictionary<string, object>{
-			{ "Customer Satisfaction " , satisfaction.ToString()}});
+			{ "Customer Satisfaction:" , satisfaction.ToString()}});
+	}
+
+	public void CustomerLeaveHappyChallenge(int satisfaction, string Challenge) {
+		Mixpanel.SendEvent("Customer Leave Happy", new Dictionary<string, object>{
+			{ "Customer Satisfaction:" , satisfaction.ToString()},
+			{"Challenge ID:",  Challenge}});
 	}
 
 	// When customers are not leaving happy, what is their state and type?
@@ -16,6 +22,13 @@ public class AnalyticsManager : Singleton<AnalyticsManager> {
 		Mixpanel.SendEvent("Customer Leave Angry:", new Dictionary<string, object> {
 			{ "Customer Type:" , type.ToString() },
 			{"Customer State:" , state.ToString()}});
+	}
+
+	public void CustomerLeaveAngryChallenge(CustomerTypes type, CustomerStates state, string challenge) {
+		Mixpanel.SendEvent("Customer Leave Angry:", new Dictionary<string, object> {
+			{ "Customer Type:" , type.ToString() },
+			{"Customer State:" , state.ToString()},
+			{"Challenge ID:", challenge}});
 	}
 
 	public void EndGameDayReport(int totalCash, string currentEvent, int missingCustomers, float avgSatisfaction, int cashEarned,
@@ -32,12 +45,16 @@ public class AnalyticsManager : Singleton<AnalyticsManager> {
 			{ "Inspection Buttons Clicks:", inspectButtonClicked * 1.0f }});
 	}
 
-	public void EndChallengeReport(int score, string currentChallenge, int missingCustomers, float avgSatisfaction) {
+	public void EndChallengeReport(int score, string currentChallenge, int missingCustomers, float avgSatisfaction, int savedCustomers, int rescuesAttempted, int inspectButtonClicked) {
 		Mixpanel.SendEvent("End of Challenge Report:", new Dictionary<string, object> {
 			{ "Score:", score * (1.0f) },
 			{ "Challenge:" , currentChallenge },
 			{ "Missed Customers:", missingCustomers * 1.0f },
-			{ "Avg. Satisfaction:", avgSatisfaction }});
+			{ "Avg. Satisfaction:", avgSatisfaction },
+            { "Medic Saved:", savedCustomers * 1.0f },
+			{ "Attempted Rescues:", rescuesAttempted * 1.0f },
+			{ "Inspection Buttons Clicks:", inspectButtonClicked * 1.0f }
+	});
 	}
 
 	public void EndGameUsageReport(int playAreaUses, int vipUses, int microwaveUses) {

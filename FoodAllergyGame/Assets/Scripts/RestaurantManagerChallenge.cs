@@ -124,20 +124,13 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			float time;
 
 			// Track analytics based on happy or angry leaving
-			if(satisfaction > 0) {
-				// TODO: NEW SET OF ANALYTICS FOR CHALLENGES
-				/*
-				AnalyticsManager.Instance.CustomerLeaveHappy(satisfaction);
-				*/
-
+			if(satisfaction > 0) { 
+				AnalyticsManager.Instance.CustomerLeaveHappyChallenge(satisfaction, chall.ID);
 				priceMultiplier = customerData.priceMultiplier * VIPMultiplier;
 				time = Time.time - customerData.spawnTime;
 			}
 			else {
-				// TODO: NEW SET OF ANALYTICS FOR CHALLENGES
-				/*
-				AnalyticsManager.Instance.CustomerLeaveAngry(customerData.type, customerData.state);
-				*/
+				AnalyticsManager.Instance.CustomerLeaveAngryChallenge(customerData.type, customerData.state, chall.ID);
 
 				priceMultiplier = 1;
 				time = RestaurantManager.customerLeaveModifierTime;
@@ -161,10 +154,9 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	public override void CustomerLeftFlatCharge(Customer customerData, int deltaCoins, bool isModifiesDifficulty) {
 		if(customerHash.ContainsKey(customerData.customerID)) {
 			// Track analytics leaving state though not really angry
-			// TODO: NEW SET OF ANALYTICS FOR CHALLENGES
-			/*
-			AnalyticsManager.Instance.CustomerLeaveAngry(customerData.type, customerData.state);
-			*/
+			
+			AnalyticsManager.Instance.CustomerLeaveAngryChallenge(customerData.type, customerData.state, chall.ID);
+			
 
 			UpdateCash(challengeAI.CalculateBill(0, 1), customerData.transform.position);
 			customerHash.Remove(customerData.customerID);
@@ -197,7 +189,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 					DataManager.Instance.GameData.DayTracker.ChallengesPlayed++;
 					DataManager.Instance.ChallengesInSession++;
 
-					AnalyticsManager.Instance.EndChallengeReport(challengeAI.ScoreIt(), DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge, challengeAI.MissingCustomers, challengeAI.AvgSatisfaction());
+					//AnalyticsManager.Instance.EndChallengeReport(challengeAI.ScoreIt(), DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge, challengeAI.MissingCustomers, challengeAI.AvgSatisfaction());
 
 					AnalyticsManager.Instance.EndGameUsageReport(playAreaUses, vipUses, microwaveUses);
 
