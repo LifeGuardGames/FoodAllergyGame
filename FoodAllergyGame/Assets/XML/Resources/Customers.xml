@@ -78,7 +78,7 @@
     <CustomerDesc>CustomerDesc</CustomerDesc>
     <SpriteName>Customer</SpriteName>
     <Script>Customer</Script>
-    <Tier>0</Tier>
+    <Tier>18</Tier>
     <Flow>BehavFlow13</Flow>
   </Customer>
   <Customer ID="CustomerImpatientMakeYourMind">
@@ -151,7 +151,7 @@
     <CustomerDesc>CustomerDesc</CustomerDesc>
     <SpriteName>Customer</SpriteName>
     <Script>Customer</Script>
-    <Tier>0</Tier>
+    <Tier>18</Tier>
     <Flow>BehavFlow19</Flow>
   </Customer>
   <Customer ID="CustomerImpatientWrongOrder">
