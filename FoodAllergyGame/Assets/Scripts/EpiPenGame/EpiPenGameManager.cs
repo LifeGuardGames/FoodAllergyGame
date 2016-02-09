@@ -49,16 +49,19 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		for(int i = 0; i < epiPenTokens.Count; i++) {
 			temp.Add(epiPenTokens[i]);
 		}
-		Debug.Log(EpiPenGameManager.Instance.submittedAnswers.Count);
+//		Debug.Log(EpiPenGameManager.Instance.submittedAnswers.Count);
+
+		foreach(int randomIndex in NumberUtils.UniqueRandomList(3, 0, totalSteps - 1)) {
+
+		}
 		for(int i = 0; i < diff; i++) {
 			int rand = Random.Range(0, temp.Count - 1);
 			int auxIndex = temp[rand].order;	// Leverage list for removal, but still keep value
             temp.RemoveAt(rand);
-			Debug.Log("=" + rand);
 			submittedAnswers.Remove(auxIndex);
 			answers[auxIndex] = false;
 		}
-		Debug.Log(EpiPenGameManager.Instance.submittedAnswers.Count);
+//		Debug.Log(EpiPenGameManager.Instance.submittedAnswers.Count);
 	}
 
 	/// <summary>
