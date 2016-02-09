@@ -15,21 +15,25 @@ public class CFX_ShurikenThreadFix : MonoBehaviour
 	void OnEnable()
 	{
 		systems = GetComponentsInChildren<ParticleSystem>();
-		
+
+#pragma warning disable 0618
 		foreach(ParticleSystem ps in systems)
 			ps.enableEmission = false;
-		
+#pragma warning restore 0618
+
 		StartCoroutine("WaitFrame");
 	}
 	
 	IEnumerator WaitFrame()
 	{
 		yield return null;
-		
+
+#pragma warning disable 0618
 		foreach(ParticleSystem ps in systems)
 		{
 			ps.enableEmission = true;
 			ps.Play(true);
 		}
+#pragma warning restore 0618
 	}
 }
