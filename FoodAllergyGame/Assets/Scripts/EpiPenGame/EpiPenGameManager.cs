@@ -43,25 +43,18 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	/// to remove a piece we mark them as false in answers so that setUpScene will remove them from the slot and we remove it from the submitted anwsers
 	/// </summary>
 	private void RemovePieces() {
-		//int diff = TierManager.Instance.CurrentTier / 2;
-		int diff = 3;
+		//int tokensToRemove = TierManager.Instance.CurrentTier / 2;
+		int tokensToRemove = 3;
 		List<EpiPenGameToken> temp = new List<EpiPenGameToken>();
 		for(int i = 0; i < epiPenTokens.Count; i++) {
 			temp.Add(epiPenTokens[i]);
 		}
-//		Debug.Log(EpiPenGameManager.Instance.submittedAnswers.Count);
 
-		foreach(int randomIndex in NumberUtils.UniqueRandomList(3, 0, totalSteps - 1)) {
-
+		//Get a list of random values to remove
+		foreach(int randomIndex in NumberUtils.UniqueRandomList(tokensToRemove, 0, totalSteps - 1)) {
+			submittedAnswers.Remove(randomIndex);
+			answers[randomIndex] = false;
 		}
-		for(int i = 0; i < diff; i++) {
-			int rand = Random.Range(0, temp.Count - 1);
-			int auxIndex = temp[rand].order;	// Leverage list for removal, but still keep value
-            temp.RemoveAt(rand);
-			submittedAnswers.Remove(auxIndex);
-			answers[auxIndex] = false;
-		}
-//		Debug.Log(EpiPenGameManager.Instance.submittedAnswers.Count);
 	}
 
 	/// <summary>
