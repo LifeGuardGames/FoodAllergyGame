@@ -8,7 +8,7 @@ public class EpiPenGameSlot : MonoBehaviour, IDropHandler {
 
 	#region IDropHandler implementation
 	public void OnDrop(PointerEventData eventData) {
-		if(EpiPenGameToken.itemBeingDragged != null) {
+		if(EpiPenGameToken.itemBeingDragged != null && transform.childCount == 0) {
 			EpiPenGameToken panel = EpiPenGameToken.itemBeingDragged.GetComponent<EpiPenGameToken>();
 			panel.transform.SetParent(transform);
 			panel.transform.localPosition = Vector3.zero;
