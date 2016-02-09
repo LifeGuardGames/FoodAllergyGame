@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.EventSystems;
 
 public class EpiPenGameSlot : MonoBehaviour, IDropHandler {
@@ -15,7 +14,6 @@ public class EpiPenGameSlot : MonoBehaviour, IDropHandler {
 
 			if(isFinalSlot) {
 				EpiPenGameManager.Instance.submittedAnswers.Add(slotNumber, panel.order);
-				Debug.Log(EpiPenGameManager.Instance.submittedAnswers.Count);
 			}
 		}
 	}

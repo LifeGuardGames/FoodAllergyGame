@@ -32,6 +32,11 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		for(int i = 0; i < epiPenTokens.Count; i++) {
 			submittedAnswers.Add(i,i);
 		}
+
+		foreach(Transform transform in pickSlots) {
+			transform.gameObject.SetActive(true);
+		}
+
 		RemovePieces();
 		SetUpScene();
 	}
@@ -70,6 +75,13 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 				epiPenTokens[i].transform.parent.GetComponent<Image>().sprite = emptyFinalSlotSprite;
 				submittedAnswers.Remove(i);
 				PlaceInAuxSlot(epiPenTokens[i]);
+			}
+		}
+
+		// Remove the pick slots that are no longer valid and in use
+		foreach(Transform transform in pickSlots) {
+			if(transform.childCount == 0) {
+				transform.gameObject.SetActive(false);
 			}
 		}
 	}
