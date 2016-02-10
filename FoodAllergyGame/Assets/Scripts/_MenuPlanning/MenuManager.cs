@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Analytics;
 using System.Collections.Generic;
 
 public class MenuManager : Singleton<MenuManager>{
