@@ -1,16 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class EpiPenGameManager : Singleton<EpiPenGameManager>{
-	private List<bool> answers;
-	public List<Transform> pickSlots;
-	public List<EpiPenGamePanel> gamePanels;
+	public int totalSteps = 9;
 	public EpiPenGameUIManager UIManager;
+	public List<Transform> pickSlots;
+	public List<EpiPenGameToken> epiPenTokens;
 	public Dictionary<int, int> submittedAnswers;
+	public Transform activeDragParent;
+	public Sprite lockedFinalSlotSprite;
+	public Sprite emptyFinalSlotSprite;
+
+	private List<bool> answers;
 
 	void Start() {
 		StartGame();
 	}
+
 	/// <summary>
 	/// starts the game
 	/// sets up the list and dictionary
@@ -19,15 +26,66 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	public void StartGame() {
 		answers = new List<bool>();
 		submittedAnswers = new Dictionary<int, int>();
-		for(int i = 0; i < gamePanels.Count; i++) {
+		for(int i = 0; i < epiPenTokens.Count; i++) {
 			answers.Add(true);
 		}
-		for(int i = 0; i < gamePanels.Count; i++) {
+		for(int i = 0; i < epiPenTokens.Count; i++) {
 			submittedAnswers.Add(i,i);
 		}
+
+		foreach(Transform transform in pickSlots) {
+			transform.gameObject.SetActive(true);
+		}
+
 		RemovePieces();
 		SetUpScene();
 	}
+
+	/// <summary>
+	/// Only called once 
+	/// initial set up to remove a number of panels for the player to put back
+	/// the number is equal to half their current tier
+	/// to remove a piece we mark them as false in answers so that setUpScene will remove them from the slot and we remove it from the submitted anwsers
+	/// </summary>
+	private void RemovePieces() {
+		//int tokensToRemove = TierManager.Instance.CurrentTier / 2;
+		int tokensToRemove = 3;
+		List<EpiPenGameToken> temp = new List<EpiPenGameToken>();
+		for(int i = 0; i < epiPenTokens.Count; i++) {
+			temp.Add(epiPenTokens[i]);
+		}
+
+		//Get a list of random values to remove
+		foreach(int randomIndex in NumberUtils.UniqueRandomList(tokensToRemove, 0, totalSteps - 1)) {
+			submittedAnswers.Remove(randomIndex);
+			answers[randomIndex] = false;
+		}
+	}
+
+	/// <summary>
+	/// set up scene marks correct answers as locked so the player can not move them and removes incorrect answers based on the answer list
+	/// </summary>
+	private void SetUpScene() {
+		for(int i = 0; i < answers.Count; i++) {
+			if(answers[i]) {	// Correct answer
+				epiPenTokens[i].IsLocked = true;
+				epiPenTokens[i].transform.parent.GetComponent<Image>().sprite = lockedFinalSlotSprite;
+            }
+			else {              // Wrong answer
+				epiPenTokens[i].transform.parent.GetComponent<Image>().sprite = emptyFinalSlotSprite;
+				submittedAnswers.Remove(i);
+				PlaceInAuxSlot(epiPenTokens[i]);
+			}
+		}
+
+		// Remove the pick slots that are no longer valid and in use
+		foreach(Transform transform in pickSlots) {
+			if(transform.childCount == 0) {
+				transform.gameObject.SetActive(false);
+			}
+		}
+	}
+
 	/// <summary>
 	/// checks each answer in the submitted answers to see if it is correct
 	/// a correct entry should look like i == i
@@ -37,6 +95,12 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	/// otherwise we set up the scene again
 	/// </summary>
 	public void CheckAnswers() {
+		// Make sure all the slots are populated
+		if(submittedAnswers.Count != totalSteps) {
+			Debug.LogWarning("Answers not complete");
+			return;
+		}
+
 		for(int i = 0; i < submittedAnswers.Count; i++) {
 			if(submittedAnswers[i] == i) {
 				answers[i] = true;
@@ -47,6 +111,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		}
 		if(CheckForGameOver()) {
 			//You Win
+			UIManager.ShowGameOver();
 			//TODO preform game over logic here
 		}
 		else {
@@ -65,51 +130,17 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		}
 		return true;
 	}
-
+	
 	/// <summary>
-	/// set up scene marks correct answers as locked so the player can not move them and removes incorrect answers based on the answer list
+	/// Simply moves the in-play pieces to a slot and marks it as incorrect
 	/// </summary>
-	public void SetUpScene() {
-		for(int i = 0; i < answers.Count; i++) {
-			if(answers[i]) {
-				gamePanels[i].Locked();
-			}
-			else {
-				submittedAnswers.Remove(i);
-				PlaceInPos(gamePanels[i]);
-			}
-		}
-	}
-	/// <summary>
-	/// Only called once 
-	/// initial set up to remove a number of panels for the player to put back
-	/// the number is equal to half their current tier
-	/// to remove a piece we mark them as false in answers so that setUpScene will remove them from the slot and we remove it from the submitted anwsers
-	/// </summary>
-	public void RemovePieces() {
-		//int diff = TierManager.Instance.CurrentTier / 2;
-		int diff = 3;
-		List<EpiPenGamePanel> temp = new List<EpiPenGamePanel>();
-		for(int i = 0; i < gamePanels.Count; i++) {
-			temp.Add(gamePanels[i]);
-		}
-		for(int i = 0; i < diff; i++) {
-			int rand = Random.Range(0, temp.Count-1);
-			temp.RemoveAt(rand);
-			answers[rand] = false;
-			submittedAnswers.Remove(rand);
-		}
-	}
-	/// <summary>
-	/// Simply moves the in play pieces to a selection area and marks it as incorrect
-	/// </summary>
-	/// <param name="panel"></param>
-	public void PlaceInPos(EpiPenGamePanel panel) {
+	/// <param name="token"></param>
+	public void PlaceInAuxSlot(EpiPenGameToken token) {
 		foreach(Transform slot in pickSlots) {
 			if(slot.childCount == 0) {
-				panel.transform.SetParent(slot);
-
-				panel.isCorrect = false;
+				token.transform.SetParent(slot);
+				token.transform.localPosition = Vector3.zero;
+				token.IsLocked = false;
 				break;
 			}
 		}
