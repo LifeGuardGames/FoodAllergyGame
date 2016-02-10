@@ -91,3 +91,11 @@ public enum  PropNodeType{
 	Random
 }
 
+public enum ChallengeReward {
+	None,
+	Stone,
+	Bronze,
+	Silver,
+	Gold,
+}
+

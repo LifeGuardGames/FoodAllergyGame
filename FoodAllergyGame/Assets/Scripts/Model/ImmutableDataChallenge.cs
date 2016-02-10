@@ -83,7 +83,27 @@ public class ImmutableDataChallenge  {
 	private string nextChall;
 	public string NextChall {
 		get { return nextChall; }
-	}	
+	}
+
+	private int bronzeBreakPoint;
+	public int BronzeBreakPoint {
+	get { return bronzeBreakPoint; }
+	}
+
+	private int silverBreakPoint;
+	public int SilverBreakPoint {
+		get { return silverBreakPoint; }
+	}
+
+	private int goldBreakPoint;
+	public int GoldBreakPoint {
+		get { return goldBreakPoint; }
+	}
+
+	private int numOfTables;
+	public int NumOfTables {
+		get { return numOfTables; }
+	}
 
 	public ImmutableDataChallenge(string id, IXMLNode xmlNode, string error) {
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
@@ -109,5 +129,15 @@ public class ImmutableDataChallenge  {
 		if(hashElements.Contains("NextChallenge")) {
 			nextChall = XMLUtils.GetString(hashElements["NextChallenge"] as IXMLNode);
 		}
+		if(hashElements.Contains("Bronze")) {
+			bronzeBreakPoint = XMLUtils.GetInt(hashElements["Bronze"] as IXMLNode);
+		}
+		if(hashElements.Contains("Silver")) {
+			silverBreakPoint = XMLUtils.GetInt(hashElements["Silver"] as IXMLNode);
+		}
+		if(hashElements.Contains("Gold")) {
+			goldBreakPoint = XMLUtils.GetInt(hashElements["Gold"] as IXMLNode);
+		}
+		numOfTables = XMLUtils.GetInt(hashElements["Tables"] as IXMLNode);
 	}
 }

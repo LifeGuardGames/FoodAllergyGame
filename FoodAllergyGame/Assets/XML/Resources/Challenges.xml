@@ -2,9 +2,9 @@
 <Challenges>
 	<Challenge ID="Challenge01">
 		<ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
-		<Tier>3</Tier>
+		<Tier>20</Tier>
 		<KitchenTimer>5</KitchenTimer>
-		<CustomerSet>CustomerSet01</CustomerSet>
+		<CustomerSet>ChallengeSet01</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
 		<DayLength>30</DayLength>
 		<Allergy>None</Allergy>
@@ -14,37 +14,110 @@
 		<CustomerSpawnTimer>6</CustomerSpawnTimer>
 		<SpecialDecoMode>0</SpecialDecoMode>
 		<CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>200</Bronze>
+    <Silver>350</Silver>
+    <Gold>500</Gold>
+    <Tables>4</Tables>
 	</Challenge>
 	<Challenge ID="Challenge02">
 		<ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
-		<Tier>17</Tier>
+		<Tier>20</Tier>
 		<KitchenTimer>5</KitchenTimer>
-		<CustomerSet>CustomerSet02</CustomerSet>
+		<CustomerSet>ChallengeSet02</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
 		<DayLength>70</DayLength>
 		<Allergy>None</Allergy>
 		<Title>Make up Your Mind</Title>
 		<WaiterMove>0</WaiterMove>
-		<RestMode>1</RestMode>
+		<RestMode>0</RestMode>
 		<CustomerSpawnTimer>6</CustomerSpawnTimer>
 		<SpecialDecoMode>0</SpecialDecoMode>
 		<CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>200</Bronze>
+    <Silver>350</Silver>
+    <Gold>500</Gold>
+    <Tables>4</Tables>
 	</Challenge>
+  
 	<Challenge ID="Challenge03">
 		<ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
-		<Tier>17</Tier>
+		<Tier>20</Tier>
 		<KitchenTimer>5</KitchenTimer>
-		<CustomerSet>CustomerSet03</CustomerSet>
+		<CustomerSet>ChallengeSet03</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
 		<DayLength>70</DayLength>
 		<Allergy>None</Allergy>
 		<Title>Wrong Order</Title>
 		<WaiterMove>0</WaiterMove>
-		<RestMode>1</RestMode>
+		<RestMode>0</RestMode>
 		<CustomerSpawnTimer>6</CustomerSpawnTimer>
 		<SpecialDecoMode>0</SpecialDecoMode>
 		<CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>200</Bronze>
+    <Silver>350</Silver>
+    <Gold>500</Gold>
+    <Tables>4</Tables>
 	</Challenge>
+  
+  <Challenge ID="Challenge04">
+    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
+    <Tier>20</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSet04</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <Title>BlackOut</Title>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>0</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>200</Bronze>
+    <Silver>350</Silver>
+    <Gold>500</Gold>
+    <Tables>1</Tables>
+  </Challenge>
+
+  <Challenge ID="Challenge05">
+    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
+    <Tier>20</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSet05</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <Title>BlackOut</Title>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>2</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>1</CustomerStartingHearts>
+    <Bronze>200</Bronze>
+    <Silver>350</Silver>
+    <Gold>500</Gold>
+    <Tables>4</Tables>
+  </Challenge>
+
+  <Challenge ID="Challenge06">
+    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
+    <Tier>20</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSet01</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <Title>MemoryFood</Title>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>2</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>200</Bronze>
+    <Silver>350</Silver>
+    <Gold>500</Gold>
+    <Tables>4</Tables>
+  </Challenge>
 
 
 
@@ -63,6 +136,7 @@
 		<SpecialDecoMode>0</SpecialDecoMode>
 		<CustomerStartingHearts>3</CustomerStartingHearts>
     <NextChallenge>TuT2</NextChallenge>
+    <Tables>4</Tables>
 	</Challenge>
   <Challenge ID="ChallengeTut2">
     <ChallengeMenuSet>ChallengeMenuSet00</ChallengeMenuSet>
@@ -79,6 +153,7 @@
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
     <NextChallenge>ChallengeTut3</NextChallenge>
+    <Tables>4</Tables>
   </Challenge>
   <Challenge ID="ChallengeTut3">
     <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
@@ -95,6 +170,7 @@
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
     <NextChallenge>Random</NextChallenge>
+    <Tables>4</Tables>
   </Challenge>
   
 	<Challenge ID="TutDecoPlayArea">
@@ -111,6 +187,7 @@
 		<CustomerSpawnTimer>2</CustomerSpawnTimer>
 		<SpecialDecoMode>0</SpecialDecoMode>
 		<CustomerStartingHearts>3</CustomerStartingHearts>
+    <Tables>4</Tables>
 	</Challenge>
   
 	<Challenge ID="TutDecoVIP">
@@ -127,6 +204,7 @@
 		<CustomerSpawnTimer>2</CustomerSpawnTimer>
 		<SpecialDecoMode>0</SpecialDecoMode>
 		<CustomerStartingHearts>3</CustomerStartingHearts>
+    <Tables>4</Tables>
 	</Challenge>
 	
   <Challenge ID="TutDecoFlyThru">
@@ -143,5 +221,6 @@
 		<CustomerSpawnTimer>2</CustomerSpawnTimer>
 		<SpecialDecoMode>0</SpecialDecoMode>
 		<CustomerStartingHearts>3</CustomerStartingHearts>
+    <Tables>4</Tables>
 	</Challenge>
 </Challenges>

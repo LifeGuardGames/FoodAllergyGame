@@ -60,4 +60,12 @@
     <CustomerList>CustomerRegularWrongOrder,CustomerRegularWrongOrder,CustomerRegularWrongOrder,CustomerRegularWrongOrder,CustomerRegularWrongOrder,CustomerRegularWrongOrder,CustomerRegularWrongOrder,CustomerRegularWrongOrder</CustomerList>
   </CustomerSet>
 
+  <CustomerSet ID ="ChallengeSet04">
+    <CustomerList>CustomerTableSmasher,CustomerTableSmasher,CustomerTableSmasher,CustomerTableSmasher,CustomerTableSmasher,CustomerTableSmasher,CustomerTableSmasher,CustomerTableSmasher,CustomerTableSmasher,CustomerTableSmasher,CustomerTableSmasher</CustomerList>
+  </CustomerSet>
+
+  <CustomerSet ID ="ChallengeSet05">
+    <CustomerList>CustomerEater,CustomerRegular,CustomerEater,CustomerRegular,CustomerEater,CustomerRegular,CustomerEater,CustomerRegular,CustomerEater,CustomerRegular</CustomerList>
+  </CustomerSet>
+
 </CustomerSets>

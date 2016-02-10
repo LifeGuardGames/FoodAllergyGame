@@ -51,7 +51,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		for(int i = 0; i < temp.Length; i++) {
 			currCusSet.Add(temp[i]);
 		}
-
+		AvailableTables(chall.NumOfTables);
 		StartCoroutine("SpawnCustomer");
 		
 	}
@@ -121,19 +121,18 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		if(customerHash.ContainsKey(customerData.customerID)) {
 			int satisfaction = customerData.satisfaction;
 			int priceMultiplier;
-			float time;
+			
 
 			// Track analytics based on happy or angry leaving
 			if(satisfaction > 0) { 
 				AnalyticsManager.Instance.CustomerLeaveHappyChallenge(satisfaction, chall.ID);
 				priceMultiplier = customerData.priceMultiplier * VIPMultiplier;
-				time = Time.time - customerData.spawnTime;
+
 			}
 			else {
 				AnalyticsManager.Instance.CustomerLeaveAngryChallenge(customerData.type, customerData.state, chall.ID);
 
 				priceMultiplier = 1;
-				time = RestaurantManager.customerLeaveModifierTime;
 			}
 
 			// NOTE: Make sure not to track difficulty here
@@ -153,11 +152,8 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	/// <param name="isModifiesDifficulty">False for tutorials and challenges</param>
 	public override void CustomerLeftFlatCharge(Customer customerData, int deltaCoins, bool isModifiesDifficulty) {
 		if(customerHash.ContainsKey(customerData.customerID)) {
-			// Track analytics leaving state though not really angry
-			
+			// Track analytics leaving state though not really angry	
 			AnalyticsManager.Instance.CustomerLeaveAngryChallenge(customerData.type, customerData.state, chall.ID);
-			
-
 			UpdateCash(challengeAI.CalculateBill(0, 1), customerData.transform.position);
 			customerHash.Remove(customerData.customerID);
 			CheckForGameOver();
@@ -311,4 +307,26 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		challengeAI.AddCustomer();
 	}
 
+	public ChallengeReward RewardScore() {
+		if(challengeAI.Score >= chall.GoldBreakPoint) {
+			DataManager.Instance.GameData.chall.challengeProgress[chall.ID] = ChallengeReward.Gold;
+			return ChallengeReward.Gold;
+		}
+
+		else if(challengeAI.Score >= chall.SilverBreakPoint) {
+			if(DataManager.Instance.GameData.chall.challengeProgress[chall.ID] != ChallengeReward.Gold) {
+				DataManager.Instance.GameData.chall.challengeProgress[chall.ID] = ChallengeReward.Silver;
+			}
+			return ChallengeReward.Silver;
+		}
+		else if (challengeAI.Score >= chall.BronzeBreakPoint) {
+			if(DataManager.Instance.GameData.chall.challengeProgress[chall.ID] != ChallengeReward.Gold || DataManager.instance.GameData.chall.challengeProgress[chall.ID] != ChallengeReward.Silver) {
+				DataManager.Instance.GameData.chall.challengeProgress[chall.ID] = ChallengeReward.Bronze;
+			}
+			return ChallengeReward.Bronze;
+		}
+		else {
+			return ChallengeReward.Stone;
+		}
+	}
 }

@@ -93,8 +93,10 @@ public class Order : MonoBehaviour, IWaiterSelection{
 		}
 	}
 
-	public void ToggleShowOrderNumber(bool isShown){
-		textParent.SetActive(isShown);
+	public void ToggleShowOrderNumber(bool isShown) {
+		if(DataManager.Instance.GetChallenge() != "Challenge06") { 
+			textParent.SetActive(isShown);
+		}
 	}
 
 	#region IWaiterSelection implementation
