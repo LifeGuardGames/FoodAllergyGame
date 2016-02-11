@@ -39,7 +39,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
     public float spawnTime;
 	public bool saved = false;
 	public string behavFlow;
-	public bool SneakOut = false;
+	public bool sneakOut = false;
 
 	// Basic intitialzation
 	public virtual void Init(int num, ImmutableDataEvents mode){
@@ -526,7 +526,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	private IEnumerator PlayTime(){
 		yield return new WaitForSeconds(10.0f * PlayArea.Instance.timeMultiplier);
-		if(PlayArea.Instance.cantLeave) {
+		if(!PlayArea.Instance.cantLeave) {
 			// End play
 			PlayArea.Instance.EndPlayTime(playAreaIndexAux);
 			transform.localPosition = Vector3.zero; // Move the customer back to its position in line
@@ -563,5 +563,20 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			rand = UnityEngine.Random.Range(0.6f, 1.4f);
 		}
         return rand;
+	}
+
+	IEnumerator SneakOut() {
+		yield return new WaitForSeconds(5.0f);
+		sneakOut = true;
+		currBehav.Reason();
+	}
+
+	public void Annoyed() {
+		var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[6]);
+		Behav leave = (Behav)Activator.CreateInstance(type);
+		leave.self = this;
+		leave.Act();
+		currBehav = leave;
+		leave = null;
 	}
 }

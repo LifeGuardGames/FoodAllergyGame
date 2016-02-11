@@ -101,4 +101,9 @@
     <Name>NormalReorder</Name>
     <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFoodReorder,BehavEating,BehavWaitForCheck,BehavNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital</BehavList>
   </Behav>
+
+  <Behav ID="BehavFlow19">
+    <Name>NormalSneakOut</Name>
+    <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEating,BehavSneakOutWaitForCheck,BehavNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital</BehavList>
+  </Behav>
 </Behavs>

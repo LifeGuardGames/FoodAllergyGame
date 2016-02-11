@@ -2,14 +2,14 @@
 using System.Collections;
 using System;
 
-public class BehavSneakOutNotifyLeave : Behav {
+public class BehavSneakOutWaitForCheck : Behav {
 
-	public BehavSneakOutNotifyLeave() {
+	public BehavSneakOutWaitForCheck() {
 
 	}
 
 	public override void Reason() {
-		if(self.SneakOut) {
+		if(self.sneakOut) {
 			if(RestaurantManager.Instance.GetTable(self.tableNum).tableType == Table.TableType.VIP) {
 				RestaurantManager.Instance.CustomerLeftSatisfaction(self, false, VIPMultiplier: RestaurantManager.Instance.GetTable(self.tableNum).VIPMultiplier);
 			}
@@ -42,6 +42,7 @@ public class BehavSneakOutNotifyLeave : Behav {
 
 		}
 		else {
+			self.StopCoroutine("SneakOut");
 			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[6]);
 			Behav leave = (Behav)Activator.CreateInstance(type);
 			leave.self = self;
@@ -52,5 +53,6 @@ public class BehavSneakOutNotifyLeave : Behav {
 
 	public override void Act() {
 		self.state = CustomerStates.WaitForCheck;
+		self.StartCoroutine("SneakOut");
 	}
 }

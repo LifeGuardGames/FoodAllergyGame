@@ -31,6 +31,16 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		else if(chall.restMode == 2.0f) {
 			BlackoutDay();
 		}
+		else if(chall.restMode == 3.0f) {
+			PlayArea.Instance.cantLeave = true;
+		}
+		else if(chall.RestMode == 4.0f) {
+			ImmutableDataCustomer test;
+			test = DataLoaderCustomer.GetData("CustomerSpecialGossip");
+			GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
+			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
+			cus.GetComponent<CustomerSpecialGossiper>().init(chall.GossiperMode);
+		}
 
 		KitchenManager.Instance.Init(chall.KitchenTimerMod);
 		string[] temp = DataLoaderChallengeMenuSet.GetData(chall.ChallengeMenuSet).ChallengeMenuSet;

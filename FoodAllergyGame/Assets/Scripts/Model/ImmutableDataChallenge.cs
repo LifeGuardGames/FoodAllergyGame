@@ -105,6 +105,11 @@ public class ImmutableDataChallenge  {
 		get { return numOfTables; }
 	}
 
+	private int gossiperMode;
+	public int GossiperMode {
+		get { return gossiperMode; }
+	}
+
 	public ImmutableDataChallenge(string id, IXMLNode xmlNode, string error) {
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 
@@ -139,5 +144,8 @@ public class ImmutableDataChallenge  {
 			goldBreakPoint = XMLUtils.GetInt(hashElements["Gold"] as IXMLNode);
 		}
 		numOfTables = XMLUtils.GetInt(hashElements["Tables"] as IXMLNode);
+		if(hashElements.Contains("GossiperMode")) {
+			gossiperMode = XMLUtils.GetInt(hashElements["GossiperMode"]as IXMLNode);
+		}
 	}
 }

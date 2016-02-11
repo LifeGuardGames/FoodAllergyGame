@@ -185,7 +185,12 @@ public class Table : MonoBehaviour, IWaiterSelection{
                 inUse = true;
 			}
 			else if(isGossiped){
-			node.transform.GetChild(0).GetComponent<CustomerGossiper>().GoAway();
+				if(node.transform.GetChild(0).GetComponent<CustomerGossiper>() != null) {
+					node.transform.GetChild(0).GetComponent<CustomerGossiper>().GoAway();
+				}
+				else if(node.transform.GetChild(0).GetComponent<CustomerSpecialGossiper>()!= null) {
+					node.transform.GetChild(0).GetComponent<CustomerSpecialGossiper>().GoAway();
+                }
 			isGossiped = false;
 			}
 			// Move the waiter to the table to do what it does
