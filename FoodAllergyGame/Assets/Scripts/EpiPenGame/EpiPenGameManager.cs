@@ -1,13 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System.Linq;
+using System;
 
 public class EpiPenGameManager : Singleton<EpiPenGameManager>{
-	public int totalSteps = 9;
+	public int totalSteps = 8;
 	public EpiPenGameUIManager UIManager;
-	public List<Transform> pickSlots;
-	public List<EpiPenGameToken> epiPenTokens;
-	public Dictionary<int, int> submittedAnswers;
+	
+	public List<Transform> finalSlotList;
+	private List<int> allPickTokens = new List<int>();
+
+	public List<Transform> currentPickSlotList;
+	public GameObject tokenPrefab;
+
+//	public List<EpiPenGameToken> epiPenTokens;
+//	public Dictionary<int, int> submittedAnswers;
 	public Transform activeDragParent;
 	public Sprite lockedFinalSlotSprite;
 	public Sprite emptyFinalSlotSprite;
@@ -19,121 +27,84 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	private int pickSlotPageSize = 5;
 	private List<bool> answers;
 
+	private int attempts = 0;
+
 	void Start() {
 		StartGame();
 	}
 
 	/// <summary>
-	/// starts the game
-	/// sets up the list and dictionary
-	/// then calls remove pices and set up scene
+	/// Add all the final tokens to the top and keep internal list of all the pick tokens
 	/// </summary>
 	public void StartGame() {
-		answers = new List<bool>();
-		submittedAnswers = new Dictionary<int, int>();
-		for(int i = 0; i < epiPenTokens.Count; i++) {
-			answers.Add(true);
-		}
-		for(int i = 0; i < epiPenTokens.Count; i++) {
-			submittedAnswers.Add(i,i);
-		}
+		//int tokensToPick = TierManager.Instance.CurrentTier / 2;
+		int tokensToPick = 3;
 
-		foreach(Transform transform in pickSlots) {
-			transform.gameObject.SetActive(true);
-		}
+		// Populate the tokens to remove by order number
+		foreach(int randomIndex in NumberUtils.UniqueRandomList(tokensToPick, 0, totalSteps - 1)) {
+			allPickTokens.Add(randomIndex);
+        }
 
-		RemovePieces();
-		SetUpScene();
-	}
-
-	/// <summary>
-	/// Only called once 
-	/// initial set up to remove a number of panels for the player to put back
-	/// the number is equal to half their current tier
-	/// to remove a piece we mark them as false in answers so that setUpScene will remove them from the slot and we remove it from the submitted anwsers
-	/// </summary>
-	private void RemovePieces() {
-		//int tokensToRemove = TierManager.Instance.CurrentTier / 2;
-		int tokensToRemove = 3;
-		List<EpiPenGameToken> temp = new List<EpiPenGameToken>();
-		for(int i = 0; i < epiPenTokens.Count; i++) {
-			temp.Add(epiPenTokens[i]);
-		}
-
-		//Get a list of random values to remove
-		foreach(int randomIndex in NumberUtils.UniqueRandomList(tokensToRemove, 0, totalSteps - 1)) {
-			submittedAnswers.Remove(randomIndex);
-			answers[randomIndex] = false;
-		}
-	}
-
-	/// <summary>
-	/// set up scene marks correct answers as locked so the player can not move them and removes incorrect answers based on the answer list
-	/// </summary>
-	private void SetUpScene() {
-		for(int i = 0; i < answers.Count; i++) {
-			if(answers[i]) {	// Correct answer
-				epiPenTokens[i].IsLocked = true;
-				epiPenTokens[i].transform.parent.GetComponent<Image>().sprite = lockedFinalSlotSprite;
+		// Add all the children that are not in the pick token list
+		for(int i = 0; i < totalSteps; i++) {
+			if(!allPickTokens.Contains(i)) {
+				GameObject go = GameObjectUtils.AddChildGUI(finalSlotList[i].gameObject, tokenPrefab);
+				go.GetComponent<EpiPenGameToken>().Init(i, true);
             }
-			else {              // Wrong answer
-				epiPenTokens[i].transform.parent.GetComponent<Image>().sprite = emptyFinalSlotSprite;
-				submittedAnswers.Remove(i);
-				PlaceInAuxSlot(epiPenTokens[i]);
-			}
 		}
 
-		// Remove the pick slots that are no longer valid and in use
-		foreach(Transform transform in pickSlots) {
-			if(transform.childCount == 0) {
-				transform.gameObject.SetActive(false);
-			}
+		bool perfectCheck = RefreshTokenState();
+		if(perfectCheck) {
+			Debug.LogError("Perfect on start!");
 		}
-	}
+
+		RefreshButtonShowStatus();
+		ShowPage(0);
+    }
 
 	/// <summary>
-	/// checks each answer in the submitted answers to see if it is correct
-	/// a correct entry should look like i == i
-	/// an incorrect entry looks like i != i
-	/// it then fills the answer dictionary with true or false depending on the above statements
-	/// We then call check for game over which will return true if all the entries in answers equal true
-	/// otherwise we set up the scene again
+	/// Checks each answer in the submitted answers to see if it is correct
 	/// </summary>
-	public void CheckAnswers() {
-		// Make sure all the slots are populated
-		if(submittedAnswers.Count != totalSteps) {
-			Debug.LogWarning("Answers not complete");
-			return;
-		}
-
-		for(int i = 0; i < submittedAnswers.Count; i++) {
-			if(submittedAnswers[i] == i) {
-				answers[i] = true;
-			}
-			else {
-				answers[i] = false;
-			}
-		}
-		if(CheckForGameOver()) {
+	public void CheckAnswerButtonClicked() {
+		attempts++;
+        if(RefreshTokenState()) {
 			//You Win
-			UIManager.ShowGameOver();
+			UIManager.ShowGameOver(attempts);
 			//TODO preform game over logic here
 		}
 		else {
-			SetUpScene();
+			RefreshButtonShowStatus();
+			ShowPage(0);
 		}
 	}
 
 	/// <summary>
-	/// returns true if all the answers are correct else it will return false;
+	/// Returns true if every finalSlotList has a token and its order matches index
+	/// Otherwise, it updates the slot statuses and UI accordingly
 	/// </summary>
-	public bool CheckForGameOver() {
-		foreach(bool ans in answers) {
-			if(!ans) {
-				return false;
+	private bool RefreshTokenState() {
+		bool isPerfect = true;
+		for(int i = 0; i < finalSlotList.Count; i++) {
+			if(finalSlotList[i].childCount > 1) {
+				if(finalSlotList[i].GetComponentInChildren<EpiPenGameToken>().order == i) {
+					finalSlotList[i].GetComponentInChildren<EpiPenGameToken>().IsLocked = true;		// Lock the token
+
+					if(allPickTokens.Remove(i)) {       // Soft remove
+						finalSlotList[i].GetComponent<Image>().sprite = lockedFinalSlotSprite;
+					}
+				}
+				else {
+					Destroy(finalSlotList[i].GetComponentInChildren<EpiPenGameToken>().gameObject);
+					finalSlotList[i].GetComponent<Image>().sprite = emptyFinalSlotSprite;
+					isPerfect = false;
+				}
+			}
+			else {
+				finalSlotList[i].GetComponent<Image>().sprite = emptyFinalSlotSprite;
+				isPerfect = false;
 			}
 		}
-		return true;
+		return isPerfect;
 	}
 	
 	/// <summary>
@@ -141,7 +112,8 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	/// </summary>
 	/// <param name="token"></param>
 	public void PlaceInAuxSlot(EpiPenGameToken token) {
-		foreach(Transform slot in pickSlots) {
+		/*
+		foreach(Transform slot in allPickSlots) {
 			if(slot.childCount == 0) {
 				token.transform.SetParent(slot);
 				token.transform.localPosition = Vector3.zero;
@@ -149,10 +121,10 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 				break;
 			}
 		}
+		*/
 	}
 
 	#region Page button functions
-	/*
 	// Checks to see if the buttons need to appear
 	public void RefreshButtonShowStatus() {
 		// Check left most limit
@@ -163,7 +135,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 			leftButton.SetActive(true);
 		}
 		// Check right most limit
-		if((pickSlotPage * pickSlotPageSize) + pickSlotPageSize >= foodStockList.Count) {
+		if((pickSlotPage * pickSlotPageSize) + pickSlotPageSize >= allPickTokens.Count) {
 			rightButton.SetActive(false);
 		}
 		else {
@@ -184,27 +156,24 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	}
 
 	// Either refreshes current page, or shows a new page given page number
-	private void ShowPage(int foodStockPage) {
+	private void ShowPage(int pickSlotPage) {
 		// Destroy children beforehand
-		foreach(Transform slot in currentFoodStockSlotList) {
+		foreach(Transform slot in currentPickSlotList) {
 			foreach(Transform child in slot) {  // Auto detect all/none children
 				Destroy(child.gameObject);
 			}
 		}
-
-		int startingIndex = foodStockPage * pickSlotPageSize;
+		
+		int startingIndex = pickSlotPage * pickSlotPageSize;
 		int endingIndex = startingIndex + pickSlotPageSize;
 
 		for(int i = startingIndex; i < endingIndex; i++) {
-			if(foodStockList.Count == i) {      // Reached the end of list
+			if(allPickTokens.Count == i) {      // Reached the end of list
 				break;
 			}
-			if(!selectedMenuStringList.Contains(foodStockList[i].ID)) {
-				GameObject foodStockButton = GameObjectUtils.AddChildGUI(currentFoodStockSlotList[i % 4].gameObject, foodStockButtonPrefab);
-				foodStockButton.GetComponent<FoodStockButton>().Init(foodStockList[i]);
-			}
+			GameObject slotToken = GameObjectUtils.AddChildGUI(currentPickSlotList[i % pickSlotPageSize].gameObject, tokenPrefab);
+            slotToken.GetComponent<EpiPenGameToken>().Init(allPickTokens[i], false);
 		}
 	}
-	*/
 	#endregion
 }

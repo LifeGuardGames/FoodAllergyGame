@@ -1,23 +1,32 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class EpiPenGameToken : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
 	public static GameObject itemBeingDragged;
+	public Image image;
 	public int order;
 
 	private Transform startParent;
 
-	private bool isLocked = true;
+	private bool isLocked;
 	public bool IsLocked {
 		get { return IsLocked; }
 		set { isLocked = value; }
 	}
 
+	public void Init(int tokenOrder, bool isLockedIncoming) {
+		isLocked = isLockedIncoming;
+        gameObject.name = "Token" + tokenOrder;
+		image.sprite = SpriteCacheManager.GetEpiPenTokenSpriteData(tokenOrder);
+		order = tokenOrder;
+    }
+
 	public void OnBeginDrag(PointerEventData eventData) {
 		if(!isLocked) { 
-			if(transform.parent.GetComponent<EpiPenGameSlot>() != null && transform.parent.GetComponent<EpiPenGameSlot>().isFinalSlot) {
-				EpiPenGameManager.Instance.submittedAnswers.Remove(transform.parent.GetComponent<EpiPenGameSlot>().slotNumber);
-			}
+			//if(transform.parent.GetComponent<EpiPenGameSlot>() != null && transform.parent.GetComponent<EpiPenGameSlot>().isFinalSlot) {
+			//	EpiPenGameManager.Instance.submittedAnswers.Remove(transform.parent.GetComponent<EpiPenGameSlot>().slotNumber);
+			//}
 			itemBeingDragged = gameObject;
 			startParent = transform.parent;
 			GetComponent<CanvasGroup>().blocksRaycasts = false;
@@ -49,13 +58,9 @@ public class EpiPenGameToken : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 			if(transform.parent == EpiPenGameManager.Instance.activeDragParent) {
 				transform.SetParent(startParent);
 				transform.localPosition = Vector3.zero;
-			}
+            }
 			//AudioManager.Instance.PlayClip("Button1Up");
 			GetComponent<CanvasGroup>().blocksRaycasts = true;
-			
-			//if(transform.parent == startParent) {
-			//	EpiPenGameManager.Instance.PlaceInAuxSlot(this);
-			//}
 		}
 	}
 }

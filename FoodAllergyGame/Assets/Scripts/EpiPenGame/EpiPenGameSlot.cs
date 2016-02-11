@@ -7,14 +7,19 @@ public class EpiPenGameSlot : MonoBehaviour, IDropHandler {
 
 	#region IDropHandler implementation
 	public void OnDrop(PointerEventData eventData) {
-		if(EpiPenGameToken.itemBeingDragged != null && transform.childCount == 0) {
+		if(EpiPenGameToken.itemBeingDragged != null &&
+			((isFinalSlot && transform.childCount == 1) || (!isFinalSlot && transform.childCount == 0))) {
 			EpiPenGameToken panel = EpiPenGameToken.itemBeingDragged.GetComponent<EpiPenGameToken>();
 			panel.transform.SetParent(transform);
 			panel.transform.localPosition = Vector3.zero;
 
-			if(isFinalSlot) {
-				EpiPenGameManager.Instance.submittedAnswers.Add(slotNumber, panel.order);
-			}
+			RectTransform rect = panel.GetComponent<RectTransform>();
+			rect.offsetMin = new Vector2(10, 10);
+			rect.offsetMax = new Vector2(-10, -10);
+
+			//if(isFinalSlot) {
+			//	EpiPenGameManager.Instance.submittedAnswers.Add(slotNumber, panel.order);
+			//}
 		}
 	}
 	#endregion
