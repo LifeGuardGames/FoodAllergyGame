@@ -68,4 +68,16 @@
     <CustomerList>CustomerEater,CustomerRegular,CustomerEater,CustomerRegular,CustomerEater,CustomerRegular,CustomerEater,CustomerRegular,CustomerEater,CustomerRegular</CustomerList>
   </CustomerSet>
 
+  <CustomerSet ID ="ChallengeSet06">
+    <CustomerList>CustomerPlayful,CustomerRegular,CustomerPlayful,CustomerRegular,CustomerPlayful,CustomerRegular,CustomerPlayful,CustomerRegular,CustomerPlayful,CustomerRegular</CustomerList>
+  </CustomerSet>
+
+  <CustomerSet ID ="ChallengeSet07">
+    <CustomerList>CustomerRegularSneakout,CustomerRegular,CustomerRegularSneakout,CustomerRegular,CustomerRegularSneakout,CustomerRegular,CustomerRegularSneakout,CustomerRegular,CustomerRegularSneakout,CustomerRegular</CustomerList>
+  </CustomerSet>
+
+  <CustomerSet ID ="ChallengeSet08">
+    <CustomerList>CustomerDevious,CustomerDevious,CustomerDevious,CustomerDevious,CustomerDevious,CustomerDevious,CustomerDevious,CustomerDevious</CustomerList>
+  </CustomerSet>
+
 </CustomerSets>

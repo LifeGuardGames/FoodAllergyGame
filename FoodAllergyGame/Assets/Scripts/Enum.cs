@@ -99,3 +99,11 @@ public enum ChallengeReward {
 	Gold,
 }
 
+public enum GossiperMode {
+	None,
+	TableSmasher,
+	Eater,
+	Blackout,
+	All,
+}
+
