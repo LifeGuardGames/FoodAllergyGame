@@ -12,6 +12,11 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	public Sprite lockedFinalSlotSprite;
 	public Sprite emptyFinalSlotSprite;
 
+	public GameObject leftButton;
+	public GameObject rightButton;
+
+	private int pickSlotPage = 0;
+	private int pickSlotPageSize = 5;
 	private List<bool> answers;
 
 	void Start() {
@@ -145,4 +150,61 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 			}
 		}
 	}
+
+	#region Page button functions
+	/*
+	// Checks to see if the buttons need to appear
+	public void RefreshButtonShowStatus() {
+		// Check left most limit
+		if(pickSlotPage == 0) {
+			leftButton.SetActive(false);
+		}
+		else {
+			leftButton.SetActive(true);
+		}
+		// Check right most limit
+		if((pickSlotPage * pickSlotPageSize) + pickSlotPageSize >= foodStockList.Count) {
+			rightButton.SetActive(false);
+		}
+		else {
+			rightButton.SetActive(true);
+		}
+	}
+
+	public void PageButtonClicked(bool isRightButton) {
+		if(isRightButton) {
+			pickSlotPage++;
+		}
+		else {
+			pickSlotPage--;
+		}
+
+		ShowPage(pickSlotPage);
+		RefreshButtonShowStatus();
+	}
+
+	// Either refreshes current page, or shows a new page given page number
+	private void ShowPage(int foodStockPage) {
+		// Destroy children beforehand
+		foreach(Transform slot in currentFoodStockSlotList) {
+			foreach(Transform child in slot) {  // Auto detect all/none children
+				Destroy(child.gameObject);
+			}
+		}
+
+		int startingIndex = foodStockPage * pickSlotPageSize;
+		int endingIndex = startingIndex + pickSlotPageSize;
+
+		for(int i = startingIndex; i < endingIndex; i++) {
+			if(foodStockList.Count == i) {      // Reached the end of list
+				break;
+			}
+			if(!selectedMenuStringList.Contains(foodStockList[i].ID)) {
+				GameObject foodStockButton = GameObjectUtils.AddChildGUI(currentFoodStockSlotList[i % 4].gameObject, foodStockButtonPrefab);
+				foodStockButton.GetComponent<FoodStockButton>().Init(foodStockList[i]);
+			}
+		}
+	}
+	*/
+	#endregion
 }
