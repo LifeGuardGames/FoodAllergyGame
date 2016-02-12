@@ -40,6 +40,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public bool saved = false;
 	public string behavFlow;
 	public bool sneakOut = false;
+	public bool ordered = false;
 
 	// Basic intitialzation
 	public virtual void Init(int num, ImmutableDataEvents mode){
@@ -362,7 +363,6 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	// It's called when the button for food is hit get the customer to make his order and hand it to the waiter
 	public virtual void OrderTaken(ImmutableDataFood food){
 		if(order == null){
-			currBehav.Reason();
 			customerAnim.SetWaitingForFood();
 
 			customerUI.ToggleWait(false);
@@ -381,6 +381,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			// Unpause queue and continue waiter movement
 			TouchManager.Instance.UnpauseQueue();
 			Waiter.Instance.Finished();
+			currBehav.Reason();
 		}
 		else{
 			Debug.LogError("Order already exists: " + order.name);
@@ -546,7 +547,10 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 
 	public void Reorder() {
+		Debug.Log("Redorder");
 		DestroyOrder();
+		Debug.Log("Order Destroyed");
+		Waiter.Instance.RemoveMeal(tableNum);
 		customerUI.ToggleWait(true);
 		RestaurantManager.Instance.GetTable(tableNum).ToggleTableNum(false);
 		var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[1]);
@@ -555,6 +559,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		order.Act();
 		currBehav = order;
 		order = null;
+		Waiter.Instance.Finished();
 	}
 
 	public float RandomFactor() {

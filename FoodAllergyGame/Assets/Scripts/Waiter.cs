@@ -245,6 +245,7 @@ public class Waiter: Singleton<Waiter>{
 	}
 
 	public void RemoveMeal(int table){
+		Debug.Log(hand1);
 		if(hand1 != WaiterHands.None){
 			if(hand1Object != null){
 				if(hand1Object.GetComponent<Order>() != null){
@@ -259,7 +260,9 @@ public class Waiter: Singleton<Waiter>{
 				}
 			}
 			else{
-				Debug.LogError("No Object in Hand");
+				// changed to handle cases that happen where an order is destroyed outside this fuction
+				hand1 = WaiterHands.None;
+				//Debug.LogError("No Object in Hand");
 			}
 		}
 		if(hand2 != WaiterHands.None){
@@ -272,7 +275,9 @@ public class Waiter: Singleton<Waiter>{
 					}
 				}
 				else{
-					Debug.LogError("Object Name: " + hand2Object.name + " Table Number " + table);
+					// changed to handle cases that happen where an order is destroyed outside this fuction
+					hand2 = WaiterHands.None;
+					//Debug.LogError("Object Name: " + hand2Object.name + " Table Number " + table);
 				}
 			}
 			else{

@@ -22,6 +22,8 @@ public class BehavReadingMenu : Behav {
 	}
 
 	public override void Act() {
+		self.StartCoroutine("ReadMenu");
+		self.state = CustomerStates.ReadingMenu;
 		//get food choices 
 		self.choices = FoodManager.Instance.GetTwoMenuFoodChoices(self.desiredFood, self.allergy);
 		//stop the satisfaction timer, change the timer and then restart it

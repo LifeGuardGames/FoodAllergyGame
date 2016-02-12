@@ -69,7 +69,7 @@
   
   <Behav ID="BehavFlow13">
      <Name>NormalMakeMind</Name>
-     <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEating,BehavWaitForCheck,BehavNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital</BehavList>
+     <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavMakeYourMindWaitForOrder,BehavWaitForFood,BehavEating,BehavWaitForCheck,BehavNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital</BehavList>
   </Behav>
 
   <Behav ID="BehavFlow14">
@@ -102,17 +102,17 @@
     <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFoodReorder,BehavEating,BehavWaitForCheck,BehavNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital</BehavList>
   </Behav>
 
-  <Behav ID="BehavFlow19">
+  <Behav ID="BehavFlow20">
     <Name>NormalSneakOut</Name>
     <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEating,BehavSneakOutWaitForCheck,BehavNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital</BehavList>
   </Behav>
 
-  <Behav ID="BehavFlow20">
+  <Behav ID="BehavFlow21">
     <Name>Eater</Name>
     <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEating,BehavWaitForCheck,BehavEaterNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavNotifyLeave</BehavList>
   </Behav>
 
-  <Behav ID="BehavFlow21">
+  <Behav ID="BehavFlow22">
     <Name>Eater</Name>
     <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEaterEating,BehavWaitForCheck,BehavEaterNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavNotifyLeave</BehavList>
   </Behav>

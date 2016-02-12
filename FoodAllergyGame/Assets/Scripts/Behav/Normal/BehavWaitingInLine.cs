@@ -31,7 +31,6 @@ public class BehavWaitingInLine : Behav {
 		// begin reading menu
 		self.customerAnim.SetReadingMenu();
 
-		self.StartCoroutine("ReadMenu");
 		// TODO-SOUND Reading menu here
 		self.StopCoroutine("SatisfactionTimer");
 
