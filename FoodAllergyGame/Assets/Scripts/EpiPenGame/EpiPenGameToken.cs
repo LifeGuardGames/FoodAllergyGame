@@ -11,7 +11,7 @@ public class EpiPenGameToken : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
 	private bool isLocked;
 	public bool IsLocked {
-		get { return IsLocked; }
+		get { return isLocked; }
 		set { isLocked = value; }
 	}
 
