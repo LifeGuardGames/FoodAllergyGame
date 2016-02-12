@@ -209,5 +209,8 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		if(DataManager.Instance.GetChallenge() != "Challenge06") {
 			_canvas.SetActive(onOrOff);
 		}
+		else {
+			_canvas.SetActive(false);
+		}
 	}
 }

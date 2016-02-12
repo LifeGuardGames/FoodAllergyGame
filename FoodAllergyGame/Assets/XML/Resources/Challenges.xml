@@ -67,10 +67,10 @@
     <CustomerTimer>2</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
-    <Title>BlackOut</Title>
+    <Title>Hammer Time</Title>
     <WaiterMove>0</WaiterMove>
     <RestMode>0</RestMode>
-    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <CustomerSpawnTimer>12</CustomerSpawnTimer>
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
     <Bronze>200</Bronze>

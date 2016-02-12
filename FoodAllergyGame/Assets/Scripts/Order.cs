@@ -94,8 +94,11 @@ public class Order : MonoBehaviour, IWaiterSelection{
 	}
 
 	public void ToggleShowOrderNumber(bool isShown) {
-		if(DataManager.Instance.GetChallenge() != "Challenge06") { 
+		if(DataManager.Instance.GetChallenge() != "Challenge06") {
 			textParent.SetActive(isShown);
+		}
+		else {
+			textParent.SetActive(false);
 		}
 	}
 

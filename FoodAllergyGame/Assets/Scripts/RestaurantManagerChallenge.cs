@@ -287,7 +287,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			cus.GetComponent<Customer>().customerAnim.SetReadingMenu();
 
 			// TODO-SOUND Reading menu here
-			cus.GetComponent<Customer>().StopCoroutine("SatisfactionTimer");
+			cus.GetComponent<Customer>().StopCoroutine("SatisactionTimer");
 
 			// Table connection setup
 			cus.gameObject.GetComponentInParent<Table>().currentCustomerID = cus.GetComponent<Customer>().customerID;
