@@ -54,7 +54,7 @@
 		<SpriteName>CustomerEater</SpriteName>
 		<Script>CustomerEater</Script>
 		<Tier>13</Tier>
-    <Flow>BehavFlow20</Flow>
+    <Flow>BehavFlow21</Flow>
 	</Customer>
 	<Customer ID="CustomerBlackOut">
 		<CustomerNameKey>CustomerBlackOut</CustomerNameKey>
@@ -216,7 +216,7 @@
     <SpriteName>Customer</SpriteName>
     <Script>Customer</Script>
     <Tier>20</Tier>
-    <Flow>BehavFlow19</Flow>
+    <Flow>BehavFlow20</Flow>
   </Customer>
 
 	<Customer ID="CustomerTutorial">
@@ -265,6 +265,6 @@
     <SpriteName>CustomerHungryEater</SpriteName>
     <Script>CustomerHungryEater</Script>
     <Tier>-1</Tier>
-    <Flow>BehavFlow21</Flow>
+    <Flow>BehavFlow22</Flow>
   </Customer>
 </Customers>

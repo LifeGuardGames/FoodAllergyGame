@@ -9,6 +9,7 @@ using System;
 public class RestaurantManagerChallenge : RestaurantManager{
 	// our satisfaction ai 
 	private ChallengeAI challengeAI;
+	
 	ImmutableDataChallenge chall;
 	int interval = 0;
 	
@@ -62,7 +63,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		for(int i = 0; i < temp.Length; i++) {
 			currCusSet.Add(temp[i]);
 		}
-		AvailableTables(chall.NumOfTables);
+		actTables = chall.NumOfTables;
 		StartCoroutine("SpawnCustomer");
 		
 	}
@@ -121,6 +122,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		dayOver = false;
 		RunSetUp();
 		restaurantUI.StartDay();
+		AvailableTables(chall.NumOfTables);
 	}
 
 	/// <summary>
@@ -293,6 +295,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	}
 	public void AvailableTables(int tabs) {
 		for (int i = 3; i > tabs-1; i--) {
+			Debug.Log(tableList.Count);
 			Destroy(tableList[i]);
 		}
 	}

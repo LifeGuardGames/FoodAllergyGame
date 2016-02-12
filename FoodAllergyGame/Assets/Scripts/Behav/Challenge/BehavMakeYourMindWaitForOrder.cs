@@ -10,7 +10,7 @@ public class BehavMakeYourMindWaitForOrder : Behav {
 
 	public override void Reason() {
 		int rand = UnityEngine.Random.Range(0, 10);
-		if(rand > 60) {
+		if(rand > 6) {
 			self.Reorder();
 		}
 		else {

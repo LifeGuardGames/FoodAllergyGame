@@ -57,6 +57,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	public virtual void Init() {
 		if(SceneManager.GetActiveScene().name == SceneUtils.RESTAURANT) {
 			// Add youself to the list of tables
+			Debug.Log(RestaurantManager.Instance.name);
 			RestaurantManager.Instance.TableList.Add(gameObject);
 
 			// Get its node dynamically, which are pre-populated
