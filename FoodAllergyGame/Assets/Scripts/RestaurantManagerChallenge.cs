@@ -102,7 +102,8 @@ public class RestaurantManagerChallenge : RestaurantManager{
 				customerNumber++;
 				cus.GetComponent<Customer>().behavFlow = customerData.BehavFlow;
 				cus.GetComponent<Customer>().Init(customerNumber, chall);
-				cus.GetComponent<Customer>().UpdateSatisfaction(chall.StartingHearts);
+
+				cus.GetComponent<Customer>().UpdateSatisfaction(chall.StartingHearts - 3);
 				customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
 				challengeAI.AddCustomer();
 				interval++;
