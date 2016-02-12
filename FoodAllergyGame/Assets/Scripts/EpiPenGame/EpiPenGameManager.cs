@@ -141,17 +141,18 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		}
 
 		ShowPage(pickSlotPage);
-		RefreshButtonShowStatus();
 	}
 
 	// Either refreshes current page, or shows a new page given page number
-	private void ShowPage(int pickSlotPage, bool isCheckingAnswer = false) {
+	private void ShowPage(int incomingPickSlotPage, bool isCheckingAnswer = false) {
 		// Destroy children beforehand
 		foreach(EpiPenGameSlot slot in currentPickSlotList) {
 			slot.ClearToken();
 		}
+
+		pickSlotPage = incomingPickSlotPage;
 		
-		int startingIndex = pickSlotPage * pickSlotPageSize;
+		int startingIndex = incomingPickSlotPage * pickSlotPageSize;
 		int endingIndex = startingIndex + pickSlotPageSize;
 
 		for(int i = startingIndex; i < endingIndex; i++) {
