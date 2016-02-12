@@ -274,11 +274,32 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			test = DataLoaderCustomer.GetData(currCusSet[0]);
 			GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
 			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
-			cus.GetComponent<Customer>().Init(customerNumber, eventData);
+			cus.GetComponent<Customer>().behavFlow = test.BehavFlow;
+			cus.GetComponent<Customer>().tableNum = i;
+            cus.GetComponent<Customer>().Init(customerNumber, chall);
 			customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
 			customerNumber++;
 			challengeAI.AddCustomer();
-			//cus.GetComponent<Customer>().JumpToTable(i);
+			//sitting down
+			cus.transform.SetParent(RestaurantManager.Instance.GetTable(cus.GetComponent<Customer>().tableNum).Seat);
+			cus.transform.localPosition = Vector3.zero;
+			// begin reading menu
+			cus.GetComponent<Customer>().customerAnim.SetReadingMenu();
+
+			// TODO-SOUND Reading menu here
+			cus.GetComponent<Customer>().StopCoroutine("SatisfactionTimer");
+
+			// Table connection setup
+			cus.gameObject.GetComponentInParent<Table>().currentCustomerID = cus.GetComponent<Customer>().customerID;
+			cus.GetComponent<BoxCollider>().enabled = false;
+			RestaurantManager.Instance.lineController.FillInLine();
+			var type = Type.GetType(DataLoaderBehav.GetData(cus.GetComponent<Customer>().behavFlow).Behav[1]);
+			Behav read = (Behav)Activator.CreateInstance(type);
+			read.self = cus.GetComponent<Customer>();
+			read.Act();
+			//BehavReadingMenu read = new BehavReadingMenu(self);
+			cus.GetComponent<Customer>().currBehav = read;
+			read = null;
 			GetTable(i).inUse = true;
 		}
 	}
