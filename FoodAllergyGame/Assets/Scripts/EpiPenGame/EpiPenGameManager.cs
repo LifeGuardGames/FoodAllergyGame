@@ -38,7 +38,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	/// </summary>
 	public void StartGame() {
 		//int tokensToPick = TierManager.Instance.CurrentTier / 2;
-		int tokensToPick = 3;
+		int tokensToPick = 6;
 
 		// Populate the tokens to remove by order number
 		foreach(int randomIndex in NumberUtils.UniqueRandomList(tokensToPick, 0, totalSteps - 1)) {
