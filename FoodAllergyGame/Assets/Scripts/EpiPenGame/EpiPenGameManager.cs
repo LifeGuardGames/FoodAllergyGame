@@ -13,9 +13,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 
 	public List<Transform> currentPickSlotList;
 	public GameObject tokenPrefab;
-
-//	public List<EpiPenGameToken> epiPenTokens;
-//	public Dictionary<int, int> submittedAnswers;
+	
 	public Transform activeDragParent;
 	public Sprite lockedFinalSlotSprite;
 	public Sprite emptyFinalSlotSprite;
@@ -74,7 +72,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		}
 		else {
 			RefreshButtonShowStatus();
-			ShowPage(0);
+			ShowPage(0, isCheckingAnswer: true);
 		}
 	}
 
@@ -105,23 +103,6 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 			}
 		}
 		return isPerfect;
-	}
-	
-	/// <summary>
-	/// Simply moves the in-play pieces to a slot and marks it as incorrect
-	/// </summary>
-	/// <param name="token"></param>
-	public void PlaceInAuxSlot(EpiPenGameToken token) {
-		/*
-		foreach(Transform slot in allPickSlots) {
-			if(slot.childCount == 0) {
-				token.transform.SetParent(slot);
-				token.transform.localPosition = Vector3.zero;
-				token.IsLocked = false;
-				break;
-			}
-		}
-		*/
 	}
 
 	#region Page button functions
@@ -156,7 +137,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	}
 
 	// Either refreshes current page, or shows a new page given page number
-	private void ShowPage(int pickSlotPage) {
+	private void ShowPage(int pickSlotPage, bool isCheckingAnswer = false) {
 		// Destroy children beforehand
 		foreach(Transform slot in currentPickSlotList) {
 			foreach(Transform child in slot) {  // Auto detect all/none children
@@ -171,8 +152,20 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 			if(allPickTokens.Count == i) {      // Reached the end of list
 				break;
 			}
-			GameObject slotToken = GameObjectUtils.AddChildGUI(currentPickSlotList[i % pickSlotPageSize].gameObject, tokenPrefab);
-            slotToken.GetComponent<EpiPenGameToken>().Init(allPickTokens[i], false);
+
+			// Try to see if token exists already in final list
+			bool existsAlready = false;
+			foreach(Transform trans in finalSlotList) {
+				EpiPenGameToken token = trans.GetComponentInChildren<EpiPenGameToken>();
+                if(token != null && token.order == allPickTokens[i] && token.IsLocked == false) {
+					existsAlready = true;
+				}
+			}
+
+			if(!existsAlready || isCheckingAnswer) {
+				GameObject slotToken = GameObjectUtils.AddChildGUI(currentPickSlotList[i % pickSlotPageSize].gameObject, tokenPrefab);
+				slotToken.GetComponent<EpiPenGameToken>().Init(allPickTokens[i], false);
+			}
 		}
 	}
 	#endregion

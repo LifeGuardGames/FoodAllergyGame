@@ -17,9 +17,7 @@ public class EpiPenGameSlot : MonoBehaviour, IDropHandler {
 			rect.offsetMin = new Vector2(10, 10);
 			rect.offsetMax = new Vector2(-10, -10);
 
-			//if(isFinalSlot) {
-			//	EpiPenGameManager.Instance.submittedAnswers.Add(slotNumber, panel.order);
-			//}
+			
 		}
 	}
 	#endregion
