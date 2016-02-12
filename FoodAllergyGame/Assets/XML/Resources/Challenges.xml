@@ -149,9 +149,9 @@
     <Allergy>None</Allergy>
     <Title>Too Much Fun</Title>
     <WaiterMove>0</WaiterMove>
-    <RestMode>3</RestMode>
+    <RestMode>0</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
-    <SpecialDecoMode>0</SpecialDecoMode>
+    <SpecialDecoMode>1</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
     <Bronze>200</Bronze>
     <Silver>350</Silver>
@@ -167,7 +167,7 @@
     <CustomerTimer>2</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
-    <Title>Too Much Fun</Title>
+    <Title>Deviously crooked</Title>
     <WaiterMove>0</WaiterMove>
     <RestMode>0</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
@@ -187,11 +187,11 @@
     <CustomerTimer>2</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
-    <Title>Too Much Fun</Title>
+    <Title>We're not gonna pay it</Title>
     <WaiterMove>0</WaiterMove>
     <RestMode>0</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
-    <SpecialDecoMode>0</SpecialDecoMode>
+    <SpecialDecoMode>1</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
     <Bronze>200</Bronze>
     <Silver>350</Silver>
@@ -228,7 +228,7 @@
     <CustomerTimer>2</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
-    <Title>Talkie Talkie</Title>
+    <Title>Talkie Smash</Title>
     <WaiterMove>0</WaiterMove>
     <RestMode>4</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
@@ -249,7 +249,7 @@
     <CustomerTimer>2</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
-    <Title>Talkie Talkie</Title>
+    <Title>Talkie Eat</Title>
     <WaiterMove>0</WaiterMove>
     <RestMode>4</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
@@ -270,7 +270,7 @@
     <CustomerTimer>2</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
-    <Title>Talkie Talkie</Title>
+    <Title>Talkie Blackout</Title>
     <WaiterMove>0</WaiterMove>
     <RestMode>4</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
@@ -291,7 +291,7 @@
     <CustomerTimer>2</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
-    <Title>Talkie Talkie</Title>
+    <Title>Talkie All</Title>
     <WaiterMove>0</WaiterMove>
     <RestMode>4</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
@@ -303,6 +303,128 @@
     <Tables>4</Tables>
     <GossiperMode>4</GossiperMode>
   </Challenge>
+
+  <Challenge ID="Challenge16">
+    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
+    <Tier>20</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSet01</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>30</DayLength>
+    <Allergy>cc</Allergy>
+    <Title>Training Day</Title>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>0</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>200</Bronze>
+    <Silver>350</Silver>
+    <Gold>500</Gold>
+    <Tables>4</Tables>
+  </Challenge>
+
+  <Challenge ID="Challenge17">
+    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
+    <Tier>20</Tier>
+    <KitchenTimer>0</KitchenTimer>
+    <CustomerSet>ChallengeSet01</CustomerSet>
+    <CustomerTimer>0.5</CustomerTimer>
+    <DayLength>30</DayLength>
+    <Allergy>None</Allergy>
+    <Title>Instant Kitchen</Title>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>0</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>200</Bronze>
+    <Silver>350</Silver>
+    <Gold>500</Gold>
+    <Tables>4</Tables>
+  </Challenge>
+
+  <Challenge ID="Challenge18">
+    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
+    <Tier>20</Tier>
+    <KitchenTimer>0</KitchenTimer>
+    <CustomerSet>ChallengeSet01</CustomerSet>
+    <CustomerTimer>1</CustomerTimer>
+    <DayLength>30</DayLength>
+    <Allergy>None</Allergy>
+    <Title>Hungry Hungry Eater</Title>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>0</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>200</Bronze>
+    <Silver>350</Silver>
+    <Gold>500</Gold>
+    <Tables>4</Tables>
+  </Challenge>
+
+  <Challenge ID="Challenge19">
+    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
+    <Tier>20</Tier>
+    <KitchenTimer>0</KitchenTimer>
+    <CustomerSet>ChallengeSet01</CustomerSet>
+    <CustomerTimer>1</CustomerTimer>
+    <DayLength>30</DayLength>
+    <Allergy>None</Allergy>
+    <Title>Talkie Hungry Eater</Title>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>4</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>200</Bronze>
+    <Silver>350</Silver>
+    <Gold>500</Gold>
+    <Tables>4</Tables>
+    <GossiperMode>2</GossiperMode>
+  </Challenge>
+
+  <Challenge ID="Challenge20">
+    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
+    <Tier>20</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSet06</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <Title>Too Much work and no play</Title>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>1</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>200</Bronze>
+    <Silver>350</Silver>
+    <Gold>500</Gold>
+    <Tables>4</Tables>
+  </Challenge>
+
+  <Challenge ID="Challenge21">
+    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
+    <Tier>20</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSet07</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <Title>Under the cover of night</Title>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>2</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>1</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>200</Bronze>
+    <Silver>350</Silver>
+    <Gold>500</Gold>
+    <Tables>4</Tables>
+  </Challenge>
+
 
   <Challenge ID="ChallengeTut1">
 		<ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>

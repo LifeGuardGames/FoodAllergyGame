@@ -3,6 +3,8 @@ using System.Collections;
 
 public class CustomerEater : Customer {
 
+	public bool hasEaten = false;
+
 	public override void Init (int num, ImmutableDataEvents mode)
 	{
 		base.Init (num, mode);
