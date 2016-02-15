@@ -191,7 +191,7 @@
     <WaiterMove>0</WaiterMove>
     <RestMode>0</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
-    <SpecialDecoMode>1</SpecialDecoMode>
+    <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
     <Bronze>200</Bronze>
     <Silver>350</Silver>

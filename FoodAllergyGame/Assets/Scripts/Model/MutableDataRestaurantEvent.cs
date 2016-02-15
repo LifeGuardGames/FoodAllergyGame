@@ -24,6 +24,6 @@ public class MutableDataRestaurantEvent{
 			string[] customerSet = DataLoaderCustomerSet.GetData(Constants.GetDebugConstant<string>("CustomerSet")).CustomerSet;
             CustomerList = new List<string>(customerSet);
 		}
-		CurrentChallenge = "Challenge04";
+		CurrentChallenge = "Challenge11";
 	}
 }

@@ -78,18 +78,20 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 	}
 	#endregion
 
-	private object Manager;
-
-
+	//runs first in the scene
 	public virtual void StartPhase() {
+		// inits the lists of resturantmanager
 		Init();
 		MiddlePhase();
 	}
 
+	public abstract void Init();
+
+	// handles all deco load in and table setup this is so removing tables in end phase doesn't cause an error
 	public virtual void MiddlePhase() {
 		DecoLoader[] deco = GameObject.FindObjectsOfType<DecoLoader>(); 
 		foreach(DecoLoader dec in deco) {
-			dec.Init();
+			dec.ResturantInit();
 		}
 		Table[] tab = GameObject.FindObjectsOfType<Table>();
 		foreach(Table _tab in tab) {
@@ -97,20 +99,17 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 		}
 		EndPhase();
 	}
-
+	// end phase runs start day
 	public virtual void EndPhase() {
 		StartDay();
 	}
 
-	public abstract void Init();
 	
 	// Called at the start of the game day begins the day tracker coroutine 
 	public virtual void StartDay(){
     }
 
 	// When complete flips the dayOver bool once the bool is true customers will cease spawning and the game will be looking for the end point
-
-
 
 
 	/// <summary>

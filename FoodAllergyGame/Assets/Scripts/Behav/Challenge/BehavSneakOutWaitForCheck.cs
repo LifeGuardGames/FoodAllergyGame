@@ -10,12 +10,7 @@ public class BehavSneakOutWaitForCheck : Behav {
 
 	public override void Reason() {
 		if(self.sneakOut) {
-			if(RestaurantManager.Instance.GetTable(self.tableNum).tableType == Table.TableType.VIP) {
-				RestaurantManager.Instance.CustomerLeftSatisfaction(self, false, VIPMultiplier: RestaurantManager.Instance.GetTable(self.tableNum).VIPMultiplier);
-			}
-			else {
-				RestaurantManager.Instance.CustomerLeftSatisfaction(self, false);
-			}
+			RestaurantManager.Instance.CustomerLeftFlatCharge(self, 0, false);
 			if(self.satisfaction > 3) {
 				self.satisfaction = 3;
 			}

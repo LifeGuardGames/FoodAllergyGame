@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RestaurantmanagerLoader : MonoBehaviour {
+public class RestaurantManagerLoader : MonoBehaviour {
 	public GameObject RestArcade;
 	public GameObject RestChallenge;
 
