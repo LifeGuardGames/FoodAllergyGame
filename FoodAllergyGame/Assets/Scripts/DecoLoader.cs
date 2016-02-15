@@ -13,23 +13,28 @@ public abstract class DecoLoader : MonoBehaviour {
 	protected virtual void DecoInit(){}
 
 	void Start(){
-		DecoInit();	// Initialize all type specific variables in children
+		
 
 		if(SceneManager.GetActiveScene().name == SceneUtils.DECO){
+			DecoInit(); // Initialize all type specific variables in children
 			isDecoScene = true;
 			DecoManager.Instance.DecoLoaderHash.Add(decoType, this);
 		}
 		
-		if(DataManager.Instance.IsDebug){
-			if(isDebugEnableDeco){
+	}
+
+	public void Init() {
+		DecoInit();
+		if(DataManager.Instance.IsDebug) {
+			if(isDebugEnableDeco) {
 				ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(debugDecoID);
 				LoadDeco(decoData);
 			}
-			else{
+			else {
 				// Dont load anything if critical is not ticked on
 			}
 		}
-		else{
+		else {
 			ImmutableDataDecoItem decoData = DataManager.Instance.GetActiveDecoData(decoType);
 			LoadDeco(decoData);
 		}

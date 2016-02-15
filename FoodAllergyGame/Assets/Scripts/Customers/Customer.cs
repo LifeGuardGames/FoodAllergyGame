@@ -285,15 +285,34 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Note: Not capped
 	public void UpdateSatisfaction(int delta){
-		if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.VIP) {
-			if(delta < 0){
+		if(RestaurantManager.Instance.GetTable(tableNum) != null) {
+
+			if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.VIP) {
+				if(delta < 0) {
+					satisfaction += delta;
+					customerUI.UpdateSatisfaction(satisfaction);
+					customerAnim.UpdateSatisfaction(delta);
+
+					// If satisfaction is 0 or negative, we need to leave cause the service is rubbish
+					if(satisfaction <= 0) {
+						if(order != null) {
+							Destroy(order.gameObject);
+						}
+						BehavNotifyLeave leave = new BehavNotifyLeave();
+						leave.self = this;
+						leave.Act();
+					}
+				}
+			}
+			else {
 				satisfaction += delta;
-				customerUI.UpdateSatisfaction(satisfaction);
+				customerUI.UpdateSatisfaction(satisfaction, true, delta);
+
 				customerAnim.UpdateSatisfaction(delta);
-					
+
 				// If satisfaction is 0 or negative, we need to leave cause the service is rubbish
-				if(satisfaction <= 0){
-					if(order != null){
+				if(satisfaction <= 0) {
+					if(order != null) {
 						Destroy(order.gameObject);
 					}
 					BehavNotifyLeave leave = new BehavNotifyLeave();
@@ -302,15 +321,15 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				}
 			}
 		}
-		else{
+		else {
 			satisfaction += delta;
 			customerUI.UpdateSatisfaction(satisfaction, true, delta);
 
 			customerAnim.UpdateSatisfaction(delta);
-			
+
 			// If satisfaction is 0 or negative, we need to leave cause the service is rubbish
-			if(satisfaction <= 0){
-				if(order != null){
+			if(satisfaction <= 0) {
+				if(order != null) {
 					Destroy(order.gameObject);
 				}
 				BehavNotifyLeave leave = new BehavNotifyLeave();

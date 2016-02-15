@@ -21,7 +21,7 @@ public class BehavPlayfulReadingMenu : Behav {
 
 	public override void Act() { 
 		if(!self.gameObject.GetComponent<CustomerPlayful>().played){
-			self.satisfaction--;
+			self.UpdateSatisfaction(-1);
 		}
 		//get food choices 
 		self.choices = FoodManager.Instance.GetTwoMenuFoodChoices(self.desiredFood, self.allergy);

@@ -50,9 +50,6 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	public GameObject tableHighlight;
 	public GameObject spriteParent;
 
-	void Start(){
-		Init();
-	}
 
 	public virtual void Init() {
 		if(SceneManager.GetActiveScene().name == SceneUtils.RESTAURANT) {

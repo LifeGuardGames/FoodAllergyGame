@@ -22,7 +22,7 @@
 		<SpriteName>CustomerPlayful</SpriteName>
 		<Script>CustomerPlayful</Script>
 		<Tier>4</Tier>
-    <Flow>BehavFlow00</Flow>
+    <Flow>BehavFlow08</Flow>
 	</Customer>
 	<Customer ID="CustomerCoolKid">
 		<CustomerNameKey>CustomerCoolKid</CustomerNameKey>

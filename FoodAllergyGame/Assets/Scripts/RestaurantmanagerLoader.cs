@@ -9,11 +9,11 @@ public class RestaurantmanagerLoader : MonoBehaviour {
 		if(!string.IsNullOrEmpty(DataManager.Instance.GetChallenge())) {
 			Debug.Log(DataManager.Instance.GetChallenge());
 			RestArcade.SetActive(false);
-			RestaurantManagerChallenge.Instance.Init();
+			RestaurantManagerChallenge.Instance.StartPhase();
 		}
 		else {
 			RestChallenge.SetActive(false);
-			RestaurantManagerArcade.Instance.Init();
+			RestaurantManagerArcade.Instance.StartPhase();
 		}
 	}
 	

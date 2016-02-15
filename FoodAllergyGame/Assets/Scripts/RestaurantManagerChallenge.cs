@@ -18,13 +18,14 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		sickCustomers = new List<GameObject>();
 		customerHash = new Dictionary<string, GameObject>();
 		challengeAI = new ChallengeAI();
-		StartDay();
 	}
 
 
 	private void RunSetUp() {
 		chall = DataLoaderChallenge.GetData(DataManager.Instance.GetChallenge());
 		currCusSet = new List<string>();
+		actTables = chall.NumOfTables;
+		AvailableTables(chall.NumOfTables);
 		if(chall.restMode == 1.0f) {
 			FullRestaurant();
 		}
@@ -63,9 +64,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		for(int i = 0; i < temp.Length; i++) {
 			currCusSet.Add(temp[i]);
 		}
-		actTables = chall.NumOfTables;
 		StartCoroutine("SpawnCustomer");
-		
 	}
 
 	// Spawns a customer after a given amount of timer then it restarts the coroutine
@@ -123,7 +122,6 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		dayOver = false;
 		RunSetUp();
 		restaurantUI.StartDay();
-		AvailableTables(chall.NumOfTables);
 	}
 
 	/// <summary>
@@ -319,6 +317,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		for (int i = 3; i > tabs-1; i--) {
 			Debug.Log(tableList.Count);
 			Destroy(tableList[i]);
+			tableList.RemoveAt(i);
 		}
 	}
 

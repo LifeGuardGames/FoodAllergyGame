@@ -80,6 +80,28 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 
 	private object Manager;
 
+
+	public virtual void StartPhase() {
+		Init();
+		MiddlePhase();
+	}
+
+	public virtual void MiddlePhase() {
+		DecoLoader[] deco = GameObject.FindObjectsOfType<DecoLoader>(); 
+		foreach(DecoLoader dec in deco) {
+			dec.Init();
+		}
+		Table[] tab = GameObject.FindObjectsOfType<Table>();
+		foreach(Table _tab in tab) {
+			_tab.Init();
+		}
+		EndPhase();
+	}
+
+	public virtual void EndPhase() {
+		StartDay();
+	}
+
 	public abstract void Init();
 	
 	// Called at the start of the game day begins the day tracker coroutine 
