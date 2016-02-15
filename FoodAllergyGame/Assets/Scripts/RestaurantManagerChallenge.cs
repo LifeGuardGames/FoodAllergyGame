@@ -344,19 +344,19 @@ public class RestaurantManagerChallenge : RestaurantManager{
 
 	public ChallengeReward RewardScore() {
 		if(challengeAI.Score >= chall.GoldBreakPoint) {
-			DataManager.Instance.GameData.chall.challengeProgress[chall.ID] = ChallengeReward.Gold;
+			DataManager.Instance.GameData.Challenge.ChallengeProgress[chall.ID] = ChallengeReward.Gold;
 			return ChallengeReward.Gold;
 		}
 
 		else if(challengeAI.Score >= chall.SilverBreakPoint) {
-			if(DataManager.Instance.GameData.chall.challengeProgress[chall.ID] != ChallengeReward.Gold) {
-				DataManager.Instance.GameData.chall.challengeProgress[chall.ID] = ChallengeReward.Silver;
+			if(DataManager.Instance.GameData.Challenge.ChallengeProgress[chall.ID] != ChallengeReward.Gold) {
+				DataManager.Instance.GameData.Challenge.ChallengeProgress[chall.ID] = ChallengeReward.Silver;
 			}
 			return ChallengeReward.Silver;
 		}
 		else if (challengeAI.Score >= chall.BronzeBreakPoint) {
-			if(DataManager.Instance.GameData.chall.challengeProgress[chall.ID] != ChallengeReward.Gold || DataManager.instance.GameData.chall.challengeProgress[chall.ID] != ChallengeReward.Silver) {
-				DataManager.Instance.GameData.chall.challengeProgress[chall.ID] = ChallengeReward.Bronze;
+			if(DataManager.Instance.GameData.Challenge.ChallengeProgress[chall.ID] != ChallengeReward.Gold || DataManager.instance.GameData.Challenge.ChallengeProgress[chall.ID] != ChallengeReward.Silver) {
+				DataManager.Instance.GameData.Challenge.ChallengeProgress[chall.ID] = ChallengeReward.Bronze;
 			}
 			return ChallengeReward.Bronze;
 		}

@@ -1,12 +1,23 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ChallengeButton : MonoBehaviour {
-	public string challengeID;
+	private string challengeID;
 
-	public void StartChallenge() {
-		DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = challengeID;
-		SceneManager.LoadScene(SceneUtils.RESTAURANT);
+	public Text textTitle;
+	public Image imageBackground;
+
+	public void Init(ImmutableDataChallenge challengeData) {
+		challengeID = challengeData.ID;
+		ChallengeReward rewardProgress = DataManager.Instance.GameData.Challenge.ChallengeProgress[challengeID];
+		imageBackground.sprite = SpriteCacheManager.GetChallengeButton(rewardProgress);
+
+		// TODO Insert text here
+		//textTitle.text = ;
+    }
+
+	public void OnButtonClicked() {
+		Debug.Log("Buttonclicked for " + challengeID);
+		//ChallengeMenuManager.Instance.StartChallenge(challengeID);
 	}
 }

@@ -1,16 +1,13 @@
-﻿
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-public class MutableDataChallenge{
-
-	public Dictionary <string , ChallengeReward> challengeProgress;
+public class MutableDataChallenge {
+	public Dictionary <string , ChallengeReward> ChallengeProgress { get; set; }
 
 	public MutableDataChallenge() {
-		challengeProgress = new Dictionary<string, ChallengeReward>();
+		ChallengeProgress = new Dictionary<string, ChallengeReward>();
 		List<ImmutableDataChallenge> temp = DataLoaderChallenge.GetDataList();
 		for(int i = 0; i  < temp.Count; i++) {
-			challengeProgress.Add(temp[i].ID, ChallengeReward.None);
+			ChallengeProgress.Add(temp[i].ID, ChallengeReward.None);
 		}
 	}
 }

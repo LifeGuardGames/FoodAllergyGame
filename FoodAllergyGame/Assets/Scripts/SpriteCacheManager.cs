@@ -64,4 +64,9 @@ public class SpriteCacheManager : Singleton<SpriteCacheManager> {
 		Sprite sprite = Resources.Load<Sprite>("EpiPenToken" + tokenNumber.ToString());
 		return sprite;
 	}
+
+	public static Sprite GetChallengeButton(ChallengeReward rewardType) {
+		Sprite sprite = Resources.Load<Sprite>("ChallengeButton" + rewardType.ToString());
+		return sprite;
+	}
 }
