@@ -3,8 +3,10 @@ using System.Collections;
 
 public class CustomerSpecialGossiper : MonoBehaviour {
 
+	public CustomerAnimController customerAnim; // handles animations
 	private int tableNum;
 	private GossiperMode mod = GossiperMode.None;
+	private Vector3 startPosition;
 
 	public void init(int _mod) {
 		switch(_mod) {
@@ -21,6 +23,8 @@ public class CustomerSpecialGossiper : MonoBehaviour {
 				mod = GossiperMode.All;
 				break;
 		}
+		customerAnim.SetWaitingInLine();
+		startPosition = transform.position;
 		Gossip();
 	}
 
@@ -41,6 +45,7 @@ public class CustomerSpecialGossiper : MonoBehaviour {
 		}
 	}
 	public void GoAway() {
+		transform.position = startPosition;
 		StartCoroutine(WaitAFew());
 	}
 
