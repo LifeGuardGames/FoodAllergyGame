@@ -10,6 +10,11 @@ public class ImmutableDataChallenge  {
 		get { return id; }
 	}
 
+	private ChallengeTypes challengeType;
+	public ChallengeTypes ChallengeType {
+		get { return challengeType; }
+	}
+
 	private int tier;
 	public int Tier{
 		get {return tier;}
@@ -114,6 +119,7 @@ public class ImmutableDataChallenge  {
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 
 		this.id = id;
+		challengeType = (ChallengeTypes)Enum.Parse(typeof(ChallengeTypes), XMLUtils.GetString(hashElements["ChallengeType"] as IXMLNode, null, error));
 		tier = XMLUtils.GetInt(hashElements["Tier"] as IXMLNode);
 		challengeMenuSet = XMLUtils.GetString(hashElements["ChallengeMenuSet"] as IXMLNode, null, error);
 		kitchenTimerMod = XMLUtils.GetFloat(hashElements["KitchenTimer"] as IXMLNode);

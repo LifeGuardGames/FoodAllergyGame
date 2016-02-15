@@ -14,6 +14,11 @@ public enum AssetTypes{
 	Challenge
 }
 
+public enum ChallengeTypes {
+	Regular,
+	Tutorial
+}
+
 public enum FoodKeywords{
 	None,
 	Keyword1,

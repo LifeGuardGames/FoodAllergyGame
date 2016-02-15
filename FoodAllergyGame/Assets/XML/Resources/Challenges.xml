@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Challenges>
 	<Challenge ID="Challenge01">
+    <ChallengeType>Regular</ChallengeType>
 		<ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
 		<Tier>20</Tier>
 		<KitchenTimer>5</KitchenTimer>
@@ -20,6 +21,7 @@
     <Tables>4</Tables>
 	</Challenge>
 	<Challenge ID="Challenge02">
+    <ChallengeType>Regular</ChallengeType>
 		<ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
 		<Tier>20</Tier>
 		<KitchenTimer>5</KitchenTimer>
@@ -38,8 +40,8 @@
     <Gold>500</Gold>
     <Tables>4</Tables>
 	</Challenge>
-  
 	<Challenge ID="Challenge03">
+    <ChallengeType>Regular</ChallengeType>
 		<ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
 		<Tier>20</Tier>
 		<KitchenTimer>5</KitchenTimer>
@@ -60,6 +62,7 @@
 	</Challenge>
   
   <Challenge ID="Challenge04">
+    <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
     <Tier>20</Tier>
     <KitchenTimer>5</KitchenTimer>
@@ -80,6 +83,7 @@
   </Challenge>
 
   <Challenge ID="Challenge05">
+    <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
     <Tier>20</Tier>
     <KitchenTimer>5</KitchenTimer>
@@ -100,6 +104,7 @@
   </Challenge>
 
   <Challenge ID="Challenge06">
+    <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
     <Tier>20</Tier>
     <KitchenTimer>5</KitchenTimer>
@@ -120,6 +125,7 @@
   </Challenge>
 
   <Challenge ID="Challenge07">
+    <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
     <Tier>20</Tier>
     <KitchenTimer>5</KitchenTimer>
@@ -140,6 +146,7 @@
   </Challenge>
 
   <Challenge ID="Challenge08">
+    <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
     <Tier>20</Tier>
     <KitchenTimer>5</KitchenTimer>
@@ -160,6 +167,7 @@
   </Challenge>
 
   <Challenge ID="Challenge09">
+    <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
     <Tier>20</Tier>
     <KitchenTimer>5</KitchenTimer>
@@ -180,6 +188,7 @@
   </Challenge>
 
   <Challenge ID="Challenge10">
+    <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
     <Tier>20</Tier>
     <KitchenTimer>5</KitchenTimer>
@@ -200,6 +209,7 @@
   </Challenge>
   
   <Challenge ID="Challenge11">
+    <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
     <Tier>20</Tier>
     <KitchenTimer>5</KitchenTimer>
@@ -221,6 +231,7 @@
   </Challenge>
 
   <Challenge ID="Challenge12">
+    <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
     <Tier>20</Tier>
     <KitchenTimer>5</KitchenTimer>
@@ -242,6 +253,7 @@
   </Challenge>
 
   <Challenge ID="Challenge13">
+    <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
     <Tier>20</Tier>
     <KitchenTimer>5</KitchenTimer>
@@ -263,6 +275,7 @@
   </Challenge>
 
   <Challenge ID="Challenge14">
+    <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
     <Tier>20</Tier>
     <KitchenTimer>5</KitchenTimer>
@@ -284,6 +297,7 @@
   </Challenge>
 
   <Challenge ID="Challenge15">
+    <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
     <Tier>20</Tier>
     <KitchenTimer>5</KitchenTimer>
@@ -305,6 +319,7 @@
   </Challenge>
 
   <Challenge ID="Challenge16">
+    <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
     <Tier>20</Tier>
     <KitchenTimer>5</KitchenTimer>
@@ -325,6 +340,7 @@
   </Challenge>
 
   <Challenge ID="Challenge17">
+    <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
     <Tier>20</Tier>
     <KitchenTimer>0</KitchenTimer>
@@ -345,6 +361,7 @@
   </Challenge>
 
   <Challenge ID="Challenge18">
+    <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
     <Tier>20</Tier>
     <KitchenTimer>0</KitchenTimer>
@@ -365,6 +382,7 @@
   </Challenge>
 
   <Challenge ID="Challenge19">
+    <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
     <Tier>20</Tier>
     <KitchenTimer>0</KitchenTimer>
@@ -386,6 +404,7 @@
   </Challenge>
 
   <Challenge ID="Challenge20">
+    <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
     <Tier>20</Tier>
     <KitchenTimer>5</KitchenTimer>
@@ -406,6 +425,7 @@
   </Challenge>
 
   <Challenge ID="Challenge21">
+    <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
     <Tier>20</Tier>
     <KitchenTimer>5</KitchenTimer>
@@ -427,6 +447,7 @@
 
 
   <Challenge ID="ChallengeTut1">
+    <ChallengeType>Tutorial</ChallengeType>
 		<ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
 		<Tier>0</Tier>
 		<KitchenTimer>5</KitchenTimer>
@@ -444,6 +465,7 @@
     <Tables>4</Tables>
 	</Challenge>
   <Challenge ID="ChallengeTut2">
+    <ChallengeType>Tutorial</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet00</ChallengeMenuSet>
     <Tier>0</Tier>
     <KitchenTimer>5</KitchenTimer>
@@ -461,6 +483,7 @@
     <Tables>4</Tables>
   </Challenge>
   <Challenge ID="ChallengeTut3">
+    <ChallengeType>Tutorial</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
     <Tier>0</Tier>
     <KitchenTimer>5</KitchenTimer>
@@ -479,6 +502,7 @@
   </Challenge>
   
 	<Challenge ID="TutDecoPlayArea">
+    <ChallengeType>Tutorial</ChallengeType>
 		<ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
 		<Tier>3</Tier>
     <KitchenTimer>3</KitchenTimer>
@@ -496,6 +520,7 @@
 	</Challenge>
   
 	<Challenge ID="TutDecoVIP">
+    <ChallengeType>Tutorial</ChallengeType>
 		<ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
 		<Tier>3</Tier>
     <KitchenTimer>3</KitchenTimer>
@@ -513,6 +538,7 @@
 	</Challenge>
 	
   <Challenge ID="TutDecoFlyThru">
+    <ChallengeType>Tutorial</ChallengeType>
 		<ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
 		<Tier>3</Tier>
     <KitchenTimer>3</KitchenTimer>

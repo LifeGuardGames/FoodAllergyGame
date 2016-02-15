@@ -8,16 +8,16 @@ public class ChallengeButton : MonoBehaviour {
 	public Image imageBackground;
 
 	public void Init(ImmutableDataChallenge challengeData) {
+		gameObject.name = challengeData.ID;
 		challengeID = challengeData.ID;
 		ChallengeReward rewardProgress = DataManager.Instance.GameData.Challenge.ChallengeProgress[challengeID];
 		imageBackground.sprite = SpriteCacheManager.GetChallengeButton(rewardProgress);
 
 		// TODO Insert text here
-		//textTitle.text = ;
-    }
+		textTitle.text = challengeData.ID;
+	}
 
 	public void OnButtonClicked() {
-		Debug.Log("Buttonclicked for " + challengeID);
-		//ChallengeMenuManager.Instance.StartChallenge(challengeID);
+		ChallengeMenuManager.Instance.StartChallenge(challengeID);
 	}
 }
