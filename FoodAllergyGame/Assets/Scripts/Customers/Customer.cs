@@ -285,6 +285,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Note: Not capped
 	public void UpdateSatisfaction(int delta){
+		// added check incase table 0 is destroyed 
 		if(RestaurantManager.Instance.GetTable(tableNum) != null) {
 
 			if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.VIP) {
