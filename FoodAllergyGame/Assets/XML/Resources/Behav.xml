@@ -29,7 +29,7 @@
   
   <Behav ID="BehavFlow05">
     <Name>BlackOut</Name>
-    <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEating,BehavWaitForCheck,BehavBlackoutNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital</BehavList>
+    <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEating,BehavWaitForCheck,BehavBlackoutNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavNotifyLeave</BehavList>
   </Behav>
   
   <Behav ID="BehavFlow06">

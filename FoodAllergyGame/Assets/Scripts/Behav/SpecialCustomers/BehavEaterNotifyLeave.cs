@@ -10,7 +10,6 @@ public class BehavEaterNotifyLeave : Behav {
 	}
 
 	public override void Reason() {
-		throw new NotImplementedException();
 	}
 
 	public override void Act() {
@@ -23,7 +22,7 @@ public class BehavEaterNotifyLeave : Behav {
 		}
 		else {
 			// check to make sure the customer isnt waiting for the check or waiting in line or else the line may get rather short
-			if(self.state != CustomerStates.WaitForCheck && self.state != CustomerStates.InLine) {
+			if(self.state != CustomerStates.WaitForCheck && self.state != CustomerStates.InLine && self.satisfaction <=0 || self.isAnnoyed) {
 				//Debug.Log(state);
 				//check each table for a victi...meal to eat
 				for(int i = 0; i < RestaurantManager.Instance.actTables; i++) {
@@ -44,13 +43,19 @@ public class BehavEaterNotifyLeave : Behav {
 						}
 					}
 				}
+				Debug.Log(self.GetComponent<CustomerEater>().pastBehav.ToString());
+				self.currBehav = self.GetComponent<CustomerEater>().pastBehav;
 			}
 			else if(self.state == CustomerStates.InLine) {
-
+				var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[10]);
+				Behav leave = (Behav)Activator.CreateInstance(type);
+				leave.self = self;
+				leave.Act();
+				leave = null;
 			}
 			//if we need to just leave then leave
-			if(self.satisfaction == 0 || self.state == CustomerStates.WaitForCheck || self.state == CustomerStates.AllergyAttack) {
-				var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[9]);
+			if(self.state == CustomerStates.WaitForCheck) {
+				var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[10]);
 				Behav leave = (Behav)Activator.CreateInstance(type);
 				leave.self = self;
 				leave.Act();

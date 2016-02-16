@@ -39,7 +39,7 @@ public class StartManager : Singleton<StartManager>{
 		if(DataManager.Instance.GameData.Tutorial.IsTutorial1Done == false){
 			decoEntranceUIController.Hide();
 			unlockParent.SetActive(false); // TODO clean this up
-		//	DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut1";
+			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut1";
 		}
 		else {	// Default case
 			// Show the deco entrance

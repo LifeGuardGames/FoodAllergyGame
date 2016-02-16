@@ -4,6 +4,7 @@ using System.Collections;
 public class CustomerEater : Customer {
 
 	public bool hasEaten = false;
+	public Behav pastBehav;
 
 	public override void Init (int num, ImmutableDataEvents mode)
 	{

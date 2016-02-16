@@ -37,7 +37,7 @@ public class CustomerSpecialGossiper : MonoBehaviour {
 			RestaurantManager.Instance.GetTable(rand).isGossiped = true;
 			tableNum = rand;
 			if(mod != GossiperMode.None) {
-				
+				StartCoroutine("Annoy");
 			}
 		}
 		else {
@@ -47,6 +47,7 @@ public class CustomerSpecialGossiper : MonoBehaviour {
 	public void GoAway() {
 		transform.position = startPosition;
 		StartCoroutine(WaitAFew());
+		StopCoroutine("Annoy");
 	}
 
 	IEnumerator WaitAFew() {
@@ -59,22 +60,28 @@ public class CustomerSpecialGossiper : MonoBehaviour {
 		if(mod == GossiperMode.TableSmasher) {
 			if(RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerTableSmasher>() != null) {
 				RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerTableSmasher>().Annoyed();
-			}
+				GoAway();
+            }
         }
 		else if(mod == GossiperMode.Eater) {
 			if(RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerEater>() != null) {
-				RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerEater>().Annoyed();
-			}
+				RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerEater>().pastBehav = RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerEater>().currBehav;
+                RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerEater>().Annoyed();
+				GoAway();
+            }
 		}
 		else if(mod == GossiperMode.Blackout) {
 			if(RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerBlackOut>() != null) {
 				RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerBlackOut>().Annoyed();
-			}
+				GoAway();
+            }
 		}
 		else if (mod == GossiperMode.All) {
 			if(RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<Customer>() != null) {
+				Debug.Log("Annoy");
 				RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<Customer>().Annoyed();
-			}
+				GoAway();
+            }
 		}
 	}
 

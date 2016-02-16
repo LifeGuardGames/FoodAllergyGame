@@ -41,6 +41,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public string behavFlow;
 	public bool sneakOut = false;
 	public bool ordered = false;
+	public bool isAnnoyed = false;
 
 	// Basic intitialzation
 	public virtual void Init(int num, ImmutableDataEvents mode){
@@ -597,6 +598,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 
 	public void Annoyed() {
+		isAnnoyed = true;
 		var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[6]);
 		Behav leave = (Behav)Activator.CreateInstance(type);
 		leave.self = this;

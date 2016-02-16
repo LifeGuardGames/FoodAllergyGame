@@ -9,12 +9,19 @@ public class BehavBlackoutNotifyLeave : Behav {
 	}
 
 	public override void Reason() {
-		throw new NotImplementedException();
 	}
 
 	public override void Act() {
-		if(self.satisfaction == 0) {
+		if(self.satisfaction == 0 || self.isAnnoyed) {
 			RestaurantManager.Instance.Blackout();
+		}
+		else {
+			// Otherwise leave normally
+			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[10]);
+			Behav leave = (Behav)Activator.CreateInstance(type);
+			leave.self = self;
+			leave.Act();
+			leave = null;
 		}
 	}
 }

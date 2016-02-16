@@ -80,4 +80,19 @@
     <CustomerList>CustomerDevious,CustomerDevious,CustomerDevious,CustomerDevious,CustomerDevious,CustomerDevious,CustomerDevious,CustomerDevious</CustomerList>
   </CustomerSet>
 
+  <CustomerSet ID ="ChallengeSet09">
+    <CustomerList>CustomerTableSmasher,CustomerRegular,CustomerTableSmasher,CustomerRegular,CustomerTableSmasher,CustomerRegular,CustomerTableSmasher,CustomerRegular,CustomerTableSmasher,CustomerRegular,CustomerTableSmasher,CustomerRegular</CustomerList>
+  </CustomerSet>
+
+  <CustomerSet ID ="ChallengeSet10">
+    <CustomerList>CustomerEater,CustomerRegular,CustomerEater,CustomerRegular,CustomerEater,CustomerRegular,CustomerEater,CustomerRegular,CustomerEater,CustomerRegular,CustomerEater,CustomerRegular</CustomerList>
+  </CustomerSet>
+
+  <CustomerSet ID ="ChallengeSet11">
+    <CustomerList>CustomerBlackOut,CustomerRegular,CustomerBlackOut,CustomerRegular,CustomerBlackOut,CustomerRegular,CustomerBlackOut,CustomerRegular,CustomerBlackOut,CustomerRegular,CustomerBlackOut,CustomerRegular</CustomerList>
+  </CustomerSet>
+
+  <CustomerSet ID ="ChallengeSet12">
+    <CustomerList>CustomerBlackOut,CustomerRegular,CustomerTableSmasher,CustomerRegular,CustomerEater,CustomerRegular,CustomerBlackOut,CustomerRegular,CustomerTableSmasher,CustomerRegular,CustomerEater,CustomerRegular</CustomerList>
+  </CustomerSet>
 </CustomerSets>
