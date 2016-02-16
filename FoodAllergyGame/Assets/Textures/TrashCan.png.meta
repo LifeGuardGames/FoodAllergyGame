@@ -1,0 +1,101 @@
+fileFormatVersion: 2
+guid: de636dd64096aae4cb2e74b8015a35e6
+timeCreated: 1455648822
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: TrashCanBase
+    21300002: TrashCanLid
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 1.6
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: TrashCanBase
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 148
+        height: 233
+      alignment: 9
+      pivot: {x: 0.51888525, y: 0.101139545}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 53.20498, y: 198.43448}
+        - {x: 37.20498, y: 209.43448}
+        - {x: -39.79502, y: 209.43448}
+        - {x: -67.79502, y: 201.43448}
+        - {x: -76.79502, y: 173.43448}
+        - {x: -76.79502, y: 14.434486}
+        - {x: -38.79502, y: -23.565514}
+        - {x: 33.20498, y: -23.565514}
+        - {x: 37.20498, y: -22.565514}
+        - {x: 66.20498, y: 9.434486}
+        - {x: 71.20498, y: 81.43449}
+        - {x: 71.20498, y: 162.43448}
+    - name: TrashCanLid
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 77
+        width: 158
+        height: 147
+      alignment: 9
+      pivot: {x: 0.4999999, y: 0.56654817}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -41.999985, y: 63.717422}
+        - {x: -78.999985, y: 30.717422}
+        - {x: -78.999985, y: -59.282578}
+        - {x: -49.999985, y: -83.28258}
+        - {x: 38.000015, y: -83.28258}
+        - {x: 79.000015, y: -66.28258}
+        - {x: 79.000015, y: 25.717422}
+        - {x: 47.000015, y: 63.717422}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
