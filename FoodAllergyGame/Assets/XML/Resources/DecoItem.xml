@@ -32,6 +32,14 @@
 		<SpriteName>RestTableBasicGreen</SpriteName>
 		<Tier>6</Tier>
 	</DecoItem>
+  <DecoItem ID = "TableWizdyPetBlank">
+    <Type>Table</Type>
+    <Price>1000</Price>
+    <TitleKey>TableBasicGreen</TitleKey>
+    <DescriptionKey>TableBasicGreenDesc</DescriptionKey>
+    <SpriteName>RestTableBasicGreen</SpriteName>
+    <Tier>6</Tier>
+  </DecoItem>
 	
 	
 	<DecoItem ID = "FloorBasicAqua">

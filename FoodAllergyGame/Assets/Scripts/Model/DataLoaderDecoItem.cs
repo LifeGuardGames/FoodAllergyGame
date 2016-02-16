@@ -48,8 +48,8 @@ public class DataLoaderDecoItem: XMLLoaderGeneric<DataLoaderDecoItem> {
 			}
 		}
 
-		// Sort by cost
-		decoList.Sort((x,y) => x.ID.CompareTo(y.ID));
+		// Sort by Tier
+		decoList.Sort((x,y) => x.Tier.CompareTo(y.Tier));
 		return decoList;
 	}
 
