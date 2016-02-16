@@ -20,9 +20,9 @@ public class Pathfinding : Singleton<Pathfinding> {
 		get{ return nodeVIP; 	}
 	}
 
-	public GameObject nodeBathroom;
-	public GameObject NodeBathroom{
-		get{ return nodeBathroom; }
+	public GameObject nodeTrashCan;
+	public GameObject NodeTrashCan{
+		get{ return nodeTrashCan; }
 	}
 
 	public GameObject nodeKitchen;

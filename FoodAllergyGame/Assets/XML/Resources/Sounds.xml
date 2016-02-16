@@ -40,6 +40,7 @@
   <Sound ID="CoinGet2"></Sound>
   <Sound ID="CoinGet3"></Sound>
   <Sound ID="CoinLose"></Sound>
+  <Sound ID="TrashCanPut"></Sound>
 
   <!-- Special deco sounds -->
   <Sound ID="ArcadeOver"></Sound>
