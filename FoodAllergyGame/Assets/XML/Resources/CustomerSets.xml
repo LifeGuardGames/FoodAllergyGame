@@ -53,19 +53,19 @@
   </CustomerSet>
 
   <CustomerSet ID ="ChallengeSet02">
-    <CustomerList>CustomerRegularMakeYourMind,CustomerRegularMakeYourMind,CustomerRegularMakeYourMind,CustomerRegularMakeYourMind,CustomerRegularMakeYourMind,CustomerRegularMakeYourMind,CustomerRegularMakeYourMind,CustomerRegularMakeYourMind</CustomerList>
+    <CustomerList>CustomerRegularMakeYourMind,CustomerEaterMakeYourMind,CustomerBlackOutMakeYourMind,CustomerEaterMakeYourMind,CustomerImpatientMakeYourMind,CustomerImpatientMakeYourMind,CustomerBlackOutMakeYourMind,CustomerRegularMakeYourMind,CustomerEaterMakeYourMind,CustomerEaterMakeYourMind,CustomerBlackOutMakeYourMind,CustomerImpatientMakeYourMind,CustomerBlackOutMakeYourMind,CustomerRegularMakeYourMind,</CustomerList>
   </CustomerSet>
 
   <CustomerSet ID ="ChallengeSet03">
-    <CustomerList>CustomerRegularWrongOrder,CustomerRegularWrongOrder,CustomerRegularWrongOrder,CustomerRegularWrongOrder,CustomerRegularWrongOrder,CustomerRegularWrongOrder,CustomerRegularWrongOrder,CustomerRegularWrongOrder</CustomerList>
+    <CustomerList>CustomerRegularWrongOrder,CustomerPlayfulWrongOrder,CustomerPlayfulWrongOrder,CustomerCoolKidWrongOrder,CustomerPlayfulWrongOrder,CustomerCoolKidWrongOrder,CustomerCoolKidWrongOrder,CustomerPlayfulWrongOrder,CustomerCoolKidWrongOrder,CustomerPlayfulWrongOrder,CustomerPlayfulWrongOrder,CustomerPlayfulWrongOrder</CustomerList>
   </CustomerSet>
 
   <CustomerSet ID ="ChallengeSet04">
-    <CustomerList>CustomerTableSmasher,CustomerTableSmasher,CustomerTableSmasher,CustomerTableSmasher,CustomerTableSmasher,CustomerTableSmasher,CustomerTableSmasher,CustomerTableSmasher,CustomerTableSmasher,CustomerTableSmasher,CustomerTableSmasher</CustomerList>
+    <CustomerList>CustomerTableSmasher,CustomerTableSmasher,CustomerTableSmasher,CustomerTableSmasher,CustomerTableSmasher,CustomerTableSmasher,CustomerTableSmasher,CustomerTableSmasher,CustomerTableSmasher,CustomerTableSmasher</CustomerList>
   </CustomerSet>
 
   <CustomerSet ID ="ChallengeSet05">
-    <CustomerList>CustomerEater,CustomerRegular,CustomerEater,CustomerRegular,CustomerEater,CustomerRegular,CustomerEater,CustomerRegular,CustomerEater,CustomerRegular</CustomerList>
+    <CustomerList>CustomerEater,CustomerRegular,CustomerHospitalRunner,CustomerImpatient,CustomerGossiper,CustomerHospitalRunner,CustomerEater,CustomerRegular,CustomerGossiper,CustomerRegular</CustomerList>
   </CustomerSet>
 
   <CustomerSet ID ="ChallengeSet06">

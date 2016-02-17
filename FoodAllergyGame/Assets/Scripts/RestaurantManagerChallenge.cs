@@ -342,10 +342,9 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		}
 	}
 	public void AvailableTables(int tabs) {
-		for (int i = 3; i > tabs-1; i--) {
-			Debug.Log(tableList.Count);
-			Destroy(tableList[i]);
-			tableList.RemoveAt(i);
+		while(tableList.Count > chall.NumOfTables) {
+			Destroy(tableList[0]);
+			tableList.RemoveAt(0);
 		}
 	}
 

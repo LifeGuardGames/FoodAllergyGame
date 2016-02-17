@@ -49,7 +49,7 @@
   
   <Behav ID="BehavFlow09">
     <Name>BlackOutMakeMind</Name>
-    <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavMakeYourMindWaitForOrder,BehavWaitForFood,BehavEating,BehavWaitForCheck,BehavBlackoutNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital</BehavList>
+    <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavMakeYourMindWaitForOrder,BehavWaitForFood,BehavEating,BehavWaitForCheck,BehavBlackoutNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavNotifyLeave</BehavList>
   </Behav>
   
   <Behav ID="BehavFlow10">
@@ -84,7 +84,7 @@
 
   <Behav ID="BehavFlow16">
     <Name>BlackOutReorder</Name>
-    <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFoodReorder,BehavEating,BehavWaitForCheck,BehavBlackoutNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital</BehavList>
+    <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFoodReorder,BehavEating,BehavWaitForCheck,BehavBlackoutNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavNotifyLeave</BehavList>
   </Behav>
 
   <Behav ID="BehavFlow17">

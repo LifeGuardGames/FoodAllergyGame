@@ -36,12 +36,12 @@
 		<Title>Make up Your Mind</Title>
 		<WaiterMove>0</WaiterMove>
 		<RestMode>0</RestMode>
-		<CustomerSpawnTimer>6</CustomerSpawnTimer>
+		<CustomerSpawnTimer>5</CustomerSpawnTimer>
 		<SpecialDecoMode>0</SpecialDecoMode>
 		<CustomerStartingHearts>3</CustomerStartingHearts>
-    <Bronze>200</Bronze>
-    <Silver>350</Silver>
-    <Gold>500</Gold>
+    <Bronze>150</Bronze>
+    <Silver>250</Silver>
+    <Gold>350</Gold>
     <Tables>4</Tables>
     <PlayArea>0</PlayArea>
     <Vip>0</Vip>
@@ -55,7 +55,7 @@
 		<KitchenTimer>5</KitchenTimer>
 		<CustomerSet>ChallengeSet03</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
-		<DayLength>70</DayLength>
+		<DayLength>72</DayLength>
 		<Allergy>None</Allergy>
 		<Title>Wrong Order</Title>
 		<WaiterMove>0</WaiterMove>
@@ -63,11 +63,11 @@
 		<CustomerSpawnTimer>6</CustomerSpawnTimer>
 		<SpecialDecoMode>0</SpecialDecoMode>
 		<CustomerStartingHearts>3</CustomerStartingHearts>
-    <Bronze>200</Bronze>
-    <Silver>350</Silver>
-    <Gold>500</Gold>
+    <Bronze>150</Bronze>
+    <Silver>250</Silver>
+    <Gold>350</Gold>
     <Tables>4</Tables>
-    <PlayArea>0</PlayArea>
+    <PlayArea>PlayArea00</PlayArea>
     <Vip>0</Vip>
     <Flythru>0</Flythru>
 	</Challenge>
@@ -84,15 +84,15 @@
     <Title>Hammer Time</Title>
     <WaiterMove>0</WaiterMove>
     <RestMode>0</RestMode>
-    <CustomerSpawnTimer>12</CustomerSpawnTimer>
+    <CustomerSpawnTimer>7</CustomerSpawnTimer>
     <SpecialDecoMode>0</SpecialDecoMode>
-    <CustomerStartingHearts>3</CustomerStartingHearts>
-    <Bronze>200</Bronze>
-    <Silver>350</Silver>
-    <Gold>500</Gold>
+    <CustomerStartingHearts>1</CustomerStartingHearts>
+    <Bronze>150</Bronze>
+    <Silver>250</Silver>
+    <Gold>350</Gold>
     <Tables>1</Tables>
-    <PlayArea>0</PlayArea>
-    <Vip>0</Vip>
+    <PlayArea>PlayArea00</PlayArea>
+    <Vip>VIP00</Vip>
     <Flythru>0</Flythru>
   </Challenge>
 
@@ -110,7 +110,7 @@
     <RestMode>2</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
     <SpecialDecoMode>0</SpecialDecoMode>
-    <CustomerStartingHearts>1</CustomerStartingHearts>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
     <Bronze>200</Bronze>
     <Silver>350</Silver>
     <Gold>500</Gold>
@@ -163,7 +163,7 @@
     <Silver>350</Silver>
     <Gold>500</Gold>
     <Tables>4</Tables>
-    <PlayArea>0</PlayArea>
+    <PlayArea>PlayArea00</PlayArea>
     <Vip>0</Vip>
     <Flythru>0</Flythru>
   </Challenge>
@@ -187,7 +187,7 @@
     <Silver>350</Silver>
     <Gold>500</Gold>
     <Tables>4</Tables>
-    <PlayArea>0</PlayArea>
+    <PlayArea>PLayArea00</PlayArea>
     <Vip>0</Vip>
     <Flythru>0</Flythru>
   </Challenge>
