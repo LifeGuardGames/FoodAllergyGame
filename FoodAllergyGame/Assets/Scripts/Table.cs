@@ -128,7 +128,9 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		ToggleTableNum(false);
 		this.GetComponent<BoxCollider>().enabled = false;
 
-		
+		RestaurantManager.Instance.TableList.Remove(this.gameObject);
+		RestaurantManager.Instance.actTables--;
+		RestaurantManager.Instance.checkTablesForGameOver();
 		RestaurantManager.Instance.GetMenuUIController().CancelOrder(tableNumber);
 		ParticleUtils.PlayTableSmashedParticle(transform.position);
 		Invoke("TableSmashedCleanup", 4f);
@@ -183,13 +185,13 @@ public class Table : MonoBehaviour, IWaiterSelection{
                 inUse = true;
 			}
 			else if(isGossiped){
+				isGossiped = false;
 				if(node.transform.GetChild(0).GetComponent<CustomerGossiper>() != null) {
 					node.transform.GetChild(0).GetComponent<CustomerGossiper>().GoAway();
 				}
 				else if(node.transform.GetChild(0).GetComponent<CustomerSpecialGossiper>()!= null) {
 					node.transform.GetChild(0).GetComponent<CustomerSpecialGossiper>().GoAway();
                 }
-			isGossiped = false;
 			}
 			// Move the waiter to the table to do what it does
 			else{

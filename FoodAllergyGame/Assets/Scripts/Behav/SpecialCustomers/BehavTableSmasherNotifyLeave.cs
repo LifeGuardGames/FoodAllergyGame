@@ -17,6 +17,9 @@ public class BehavTableSmasherNotifyLeave : Behav {
 		// check to make sure he isn't inline as there is no table to smash while inline
 		// and he needs to able to leave normally
 		if(self.state != CustomerStates.InLine && self.satisfaction <= 0 || self.isAnnoyed) {
+
+			RestaurantManager.Instance.CustomerLeftSatisfaction(self, true);
+
 			// Flips the isBroken bool customers cannot be placed at tables where isBroken is true
 			RestaurantManager.Instance.GetTable(self.tableNum).TableSmashed();
 
@@ -27,8 +30,6 @@ public class BehavTableSmasherNotifyLeave : Behav {
 			// General customer leaving things
 			Waiter.Instance.RemoveMeal(self.tableNum);
 			KitchenManager.Instance.CancelOrder(self.tableNum);
-
-			RestaurantManager.Instance.CustomerLeftSatisfaction(self, true);
 
 			self.DestroySelf(6.5f);
 		}

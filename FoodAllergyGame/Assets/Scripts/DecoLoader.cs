@@ -35,8 +35,19 @@ public abstract class DecoLoader : MonoBehaviour {
 			}
 		}
 		else {
-			ImmutableDataDecoItem decoData = DataManager.Instance.GetActiveDecoData(decoType);
-			LoadDeco(decoData);
+			if(RestaurantManagerChallenge.Instance.GetComponent<RestaurantManagerChallenge>() != null) {
+				ImmutableDataDecoItem decoData = DataManager.Instance.GetActiveDecoData(decoType);
+				LoadDeco(decoData);
+			}
+			else {
+				if(decoType == DecoTypes.PlayArea || decoType == DecoTypes.VIP || decoType == DecoTypes.FlyThru) {
+					LoadDeco(null);
+				}
+				else {
+					ImmutableDataDecoItem decoData = DataManager.Instance.GetActiveDecoData(decoType);
+					LoadDeco(decoData);
+				}
+			}
 		}
 	}
 

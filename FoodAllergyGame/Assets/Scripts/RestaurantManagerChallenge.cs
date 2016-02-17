@@ -9,6 +9,9 @@ using System;
 public class RestaurantManagerChallenge : RestaurantManager{
 	// our satisfaction ai 
 	private ChallengeAI challengeAI;
+	public PlayAreaLoader play;
+	public VIPLoader vip;
+	public FlyThruLoader fly;
 	
 	ImmutableDataChallenge chall;
 	int interval = 0;
@@ -18,11 +21,22 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		sickCustomers = new List<GameObject>();
 		customerHash = new Dictionary<string, GameObject>();
 		challengeAI = new ChallengeAI();
+		
 	}
 
 
 	private void RunSetUp() {
+		
 		chall = DataLoaderChallenge.GetData(DataManager.Instance.GetChallenge());
+		if(chall.PlayArea != "0") {
+			play.LoadDeco(DataLoaderDecoItem.GetData(chall.PlayArea));
+		}
+		if(chall.VipTable != "0") {
+			vip.LoadDeco(DataLoaderDecoItem.GetData(chall.VipTable));
+		}
+		if(chall.FlyThru != "0") {
+			fly.LoadDeco(DataLoaderDecoItem.GetData(chall.FlyThru));
+		}
 		currCusSet = new List<string>();
 		actTables = chall.NumOfTables;
 		AvailableTables(chall.NumOfTables);
@@ -174,6 +188,19 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		else {
 			Debug.LogError("Invalid CustomerLeftAllergy call on " + customerData.customerID);
 		}
+	}
+
+	public override void checkTablesForGameOver() {
+		if(actTables == 0) {
+			// no tables so force a end of day
+			dayOver = true;
+			foreach(KeyValuePair<string, GameObject> val in customerHash) {
+				Destroy(val.Value);
+			}
+			customerHash.Clear();
+			CheckForGameOver();
+		}
+
 	}
 
 	protected override void CheckForGameOver() {
@@ -365,4 +392,6 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			return ChallengeReward.Stone;
 		}
 	}
+
+	
 }
