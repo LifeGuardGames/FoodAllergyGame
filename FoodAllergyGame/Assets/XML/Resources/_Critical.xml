@@ -8,9 +8,9 @@
   <Constant Name="IsTut1Done" Type="Bool" Value="True" Debug="Tutorial"> </Constant>
   <Constant Name="IsTut3Done" Type="Bool" Value="True" Debug="Tutorial"> </Constant>
   <Constant Name="IsDecoFingerTutDone" Type="Bool" Value="True" Debug="Tutorial"> </Constant>
-  <Constant Name="TableID" Type="String" Value="Table00" Debug="Deco"> </Constant>
-  <Constant Name="KitchenID" Type="String" Value="Kitchen00" Debug="Deco"> </Constant>
-  <Constant Name="FloorID" Type="String" Value="Floor00" Debug="Deco"> </Constant>
+  <Constant Name="TableID" Type="String" Value="TableBasicAqua" Debug="Deco"> </Constant>
+  <Constant Name="KitchenID" Type="String" Value="KitchenBasicAqua" Debug="Deco"> </Constant>
+  <Constant Name="FloorID" Type="String" Value="FloorBasicAqua" Debug="Deco"> </Constant>
   <Constant Name="PlayAreaOn" Type="Bool" Value="True" Debug="Deco"> </Constant>
   <Constant Name="PlayAreaID" Type="String" Value="PlayArea00" Debug="Deco"> </Constant>
   <Constant Name="VIPOn" Type="Bool" Value="False" Debug="Deco"> </Constant>

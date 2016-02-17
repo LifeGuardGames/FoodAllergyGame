@@ -54,7 +54,13 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 	
 	public bool IsCategoryUnlocked(DecoTypes deco) {
-		return !IsDecoUnlocked(deco.ToString() + "00");  // Checks the first deco to see if it is active yet
+		List<ImmutableDataDecoItem> decoTypeList = DataLoaderDecoItem.GetDecoDataByType(deco);
+		foreach(ImmutableDataDecoItem decoData in decoTypeList) {
+			if(IsDecoUnlocked(decoData.ID)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	#endregion
 
@@ -257,8 +263,10 @@ public class DecoManager : Singleton<DecoManager>{
 			// Repopulate the grid and get the first unbought deco
 			ImmutableDataDecoItem firstUnboughtDeco = PopulateDecoGrid();
 			
-			// Showcase the first buyable deco if there is any
-			showcaseController.ShowInfo(firstUnboughtDeco != null ? firstUnboughtDeco.ID : tabName + "00");
+			// Showcase the first buyable deco if there is any, if not show the lower tier decoration
+			showcaseController.ShowInfo(firstUnboughtDeco != null ?
+				firstUnboughtDeco.ID :
+				DataLoaderDecoItem.GetDecoDataByType((DecoTypes)Enum.Parse(typeof(DecoTypes), tabName))[0].ID);
 		}
 	}
 
