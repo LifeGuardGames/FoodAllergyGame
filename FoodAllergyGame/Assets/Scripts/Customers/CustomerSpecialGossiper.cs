@@ -29,19 +29,24 @@ public class CustomerSpecialGossiper : MonoBehaviour {
 	}
 
 	public void Gossip() {
-		int rand = UnityEngine.Random.Range(0, 4);
-		//Debug.Log ("Goissping " + rand.ToString());
-		if(!RestaurantManager.Instance.GetTable(rand).isGossiped && RestaurantManager.Instance.GetTable(rand).inUse) {
-			transform.SetParent(RestaurantManager.Instance.GetTable(rand).Node.transform);
-			transform.localPosition = Vector3.zero;
-			RestaurantManager.Instance.GetTable(rand).isGossiped = true;
-			tableNum = rand;
-			if(mod != GossiperMode.None) {
-				StartCoroutine("Annoy");
+		if(RestaurantManager.Instance.actTables > 0) {
+			int rand = UnityEngine.Random.Range(0, 4);
+			while(RestaurantManager.Instance.GetTable(rand) == null) {
+				rand = UnityEngine.Random.Range(0, 4);
 			}
-		}
-		else {
-			StartCoroutine(WaitAFew());
+			//Debug.Log ("Goissping " + rand.ToString());
+			if(!RestaurantManager.Instance.GetTable(rand).isGossiped && RestaurantManager.Instance.GetTable(rand).inUse) {
+				transform.SetParent(RestaurantManager.Instance.GetTable(rand).Node.transform);
+				transform.localPosition = Vector3.zero;
+				RestaurantManager.Instance.GetTable(rand).isGossiped = true;
+				tableNum = rand;
+				if(mod != GossiperMode.None) {
+					StartCoroutine("Annoy");
+				}
+			}
+			else {
+				StartCoroutine(WaitAFew());
+			}
 		}
 	}
 	public void GoAway() {

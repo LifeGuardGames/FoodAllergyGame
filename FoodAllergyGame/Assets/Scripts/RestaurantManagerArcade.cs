@@ -142,7 +142,18 @@ public class RestaurantManagerArcade : RestaurantManager {
 			Debug.LogError("Invalid CustomerLeftAllergy call on " + customerData.customerID);
 		}
 	}
+	public override void checkTablesForGameOver() {
+		if(actTables == 0) {
+			// no tables so force a end of day
+			dayOver = true;
+			foreach(KeyValuePair<string, GameObject> val in customerHash) {
+				Destroy(val.Value);
+			}
+			customerHash.Clear();
+			CheckForGameOver();
+		}
 
+	}
 	protected override void CheckForGameOver() {
 		if(dayOver) {
 			if(customerHash.Count == 0) {

@@ -19,7 +19,11 @@
     <Silver>350</Silver>
     <Gold>500</Gold>
     <Tables>4</Tables>
-	</Challenge>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+  </Challenge>
+  
 	<Challenge ID="Challenge02">
     <ChallengeType>Regular</ChallengeType>
 		<ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
@@ -39,7 +43,11 @@
     <Silver>350</Silver>
     <Gold>500</Gold>
     <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
 	</Challenge>
+  
 	<Challenge ID="Challenge03">
     <ChallengeType>Regular</ChallengeType>
 		<ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
@@ -59,6 +67,9 @@
     <Silver>350</Silver>
     <Gold>500</Gold>
     <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
 	</Challenge>
   
   <Challenge ID="Challenge04">
@@ -80,6 +91,9 @@
     <Silver>350</Silver>
     <Gold>500</Gold>
     <Tables>1</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
   </Challenge>
 
   <Challenge ID="Challenge05">
@@ -101,6 +115,9 @@
     <Silver>350</Silver>
     <Gold>500</Gold>
     <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
   </Challenge>
 
   <Challenge ID="Challenge06">
@@ -122,6 +139,9 @@
     <Silver>350</Silver>
     <Gold>500</Gold>
     <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
   </Challenge>
 
   <Challenge ID="Challenge07">
@@ -143,6 +163,9 @@
     <Silver>350</Silver>
     <Gold>500</Gold>
     <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
   </Challenge>
 
   <Challenge ID="Challenge08">
@@ -164,6 +187,9 @@
     <Silver>350</Silver>
     <Gold>500</Gold>
     <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
   </Challenge>
 
   <Challenge ID="Challenge09">
@@ -185,6 +211,9 @@
     <Silver>350</Silver>
     <Gold>500</Gold>
     <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
   </Challenge>
 
   <Challenge ID="Challenge10">
@@ -206,6 +235,9 @@
     <Silver>350</Silver>
     <Gold>500</Gold>
     <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
   </Challenge>
   
   <Challenge ID="Challenge11">
@@ -228,6 +260,9 @@
     <Gold>500</Gold>
     <Tables>4</Tables>
     <GossiperMode>0</GossiperMode>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
   </Challenge>
 
   <Challenge ID="Challenge12">
@@ -250,6 +285,9 @@
     <Gold>500</Gold>
     <Tables>4</Tables>
     <GossiperMode>1</GossiperMode>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
   </Challenge>
 
   <Challenge ID="Challenge13">
@@ -272,6 +310,9 @@
     <Gold>500</Gold>
     <Tables>4</Tables>
     <GossiperMode>2</GossiperMode>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
   </Challenge>
 
   <Challenge ID="Challenge14">
@@ -294,6 +335,9 @@
     <Gold>500</Gold>
     <Tables>4</Tables>
     <GossiperMode>3</GossiperMode>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
   </Challenge>
 
   <Challenge ID="Challenge15">
@@ -316,6 +360,9 @@
     <Gold>500</Gold>
     <Tables>4</Tables>
     <GossiperMode>4</GossiperMode>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
   </Challenge>
 
   <Challenge ID="Challenge16">
@@ -337,6 +384,9 @@
     <Silver>350</Silver>
     <Gold>500</Gold>
     <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
   </Challenge>
 
   <Challenge ID="Challenge17">
@@ -358,6 +408,9 @@
     <Silver>350</Silver>
     <Gold>500</Gold>
     <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
   </Challenge>
 
   <Challenge ID="Challenge18">
@@ -379,6 +432,9 @@
     <Silver>350</Silver>
     <Gold>500</Gold>
     <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
   </Challenge>
 
   <Challenge ID="Challenge19">
@@ -401,6 +457,9 @@
     <Gold>500</Gold>
     <Tables>4</Tables>
     <GossiperMode>2</GossiperMode>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
   </Challenge>
 
   <Challenge ID="Challenge20">
@@ -422,6 +481,9 @@
     <Silver>350</Silver>
     <Gold>500</Gold>
     <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
   </Challenge>
 
   <Challenge ID="Challenge21">
@@ -443,6 +505,9 @@
     <Silver>350</Silver>
     <Gold>500</Gold>
     <Tables>4</Tables>
+    <PlayArea>PlayArea00</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
   </Challenge>
 
 
@@ -463,7 +528,11 @@
 		<CustomerStartingHearts>3</CustomerStartingHearts>
     <NextChallenge>TuT2</NextChallenge>
     <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
 	</Challenge>
+  
   <Challenge ID="ChallengeTut2">
     <ChallengeType>Tutorial</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet00</ChallengeMenuSet>
@@ -481,7 +550,11 @@
     <CustomerStartingHearts>3</CustomerStartingHearts>
     <NextChallenge>ChallengeTut3</NextChallenge>
     <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
   </Challenge>
+  
   <Challenge ID="ChallengeTut3">
     <ChallengeType>Tutorial</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
@@ -499,6 +572,10 @@
     <CustomerStartingHearts>3</CustomerStartingHearts>
     <NextChallenge>Random</NextChallenge>
     <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    
   </Challenge>
   
 	<Challenge ID="TutDecoPlayArea">
@@ -517,6 +594,9 @@
 		<SpecialDecoMode>0</SpecialDecoMode>
 		<CustomerStartingHearts>3</CustomerStartingHearts>
     <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
 	</Challenge>
   
 	<Challenge ID="TutDecoVIP">
@@ -535,6 +615,9 @@
 		<SpecialDecoMode>0</SpecialDecoMode>
 		<CustomerStartingHearts>3</CustomerStartingHearts>
     <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
 	</Challenge>
 	
   <Challenge ID="TutDecoFlyThru">
@@ -553,5 +636,8 @@
 		<SpecialDecoMode>0</SpecialDecoMode>
 		<CustomerStartingHearts>3</CustomerStartingHearts>
     <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
 	</Challenge>
 </Challenges>

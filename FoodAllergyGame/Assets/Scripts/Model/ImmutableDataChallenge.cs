@@ -115,6 +115,21 @@ public class ImmutableDataChallenge  {
 		get { return gossiperMode; }
 	}
 
+	private string playArea;
+	public string PlayArea {
+		get { return playArea; }
+	}
+
+	private string vipTable;
+	public string VipTable {
+		get { return vipTable; }
+	}
+
+	private string flyThru;
+	public string FlyThru {
+		get { return flyThru; }
+	}
+
 	public ImmutableDataChallenge(string id, IXMLNode xmlNode, string error) {
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 
@@ -153,5 +168,8 @@ public class ImmutableDataChallenge  {
 		if(hashElements.Contains("GossiperMode")) {
 			gossiperMode = XMLUtils.GetInt(hashElements["GossiperMode"]as IXMLNode);
 		}
+		playArea = XMLUtils.GetString(hashElements["PlayArea"] as IXMLNode);
+		vipTable = XMLUtils.GetString(hashElements["Vip"] as IXMLNode);
+		flyThru = XMLUtils.GetString(hashElements["Flythru"] as IXMLNode);
 	}
 }
