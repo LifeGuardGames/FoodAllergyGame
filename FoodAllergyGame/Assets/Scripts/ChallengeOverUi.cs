@@ -30,6 +30,5 @@ public class ChallengeOverUi : MonoBehaviour {
 			Stone.gameObject.SetActive(false);
 			medal.gameObject.SetActive(true);
 		}
-
 	}
 }

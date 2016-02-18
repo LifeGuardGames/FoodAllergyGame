@@ -418,7 +418,7 @@
     <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
     <Tier>14</Tier>
     <KitchenTimer>0</KitchenTimer>
-    <CustomerSet>ChallengeSet01</CustomerSet>
+    <CustomerSet>ChallengeSet13</CustomerSet>
     <CustomerTimer>1</CustomerTimer>
     <DayLength>30</DayLength>
     <Allergy>None</Allergy>
@@ -442,7 +442,7 @@
     <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
     <Tier>14</Tier>
     <KitchenTimer>0</KitchenTimer>
-    <CustomerSet>ChallengeSet01</CustomerSet>
+    <CustomerSet>ChallengeSet13</CustomerSet>
     <CustomerTimer>1</CustomerTimer>
     <DayLength>30</DayLength>
     <Allergy>None</Allergy>

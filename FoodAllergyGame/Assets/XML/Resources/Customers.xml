@@ -260,10 +260,10 @@
     <Flow>BehavFlow00</Flow>
   </Customer>
   <Customer ID="CustomerHungryEater">
-    <CustomerNameKey>CustomerHungryEater</CustomerNameKey>
-    <CustomerDesc>CustomerHungryEater</CustomerDesc>
-    <SpriteName>CustomerHungryEater</SpriteName>
-    <Script>CustomerHungryEater</Script>
+    <CustomerNameKey>CustomerEater</CustomerNameKey>
+    <CustomerDesc>CustomerEater</CustomerDesc>
+    <SpriteName>CustomerEater</SpriteName>
+    <Script>CustomerEater</Script>
     <Tier>-1</Tier>
     <Flow>BehavFlow22</Flow>
   </Customer>
