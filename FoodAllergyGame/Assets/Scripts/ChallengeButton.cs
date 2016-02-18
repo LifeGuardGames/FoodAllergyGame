@@ -14,7 +14,7 @@ public class ChallengeButton : MonoBehaviour {
 		imageBackground.sprite = SpriteCacheManager.GetChallengeButton(rewardProgress);
 
 		// TODO Insert text here
-		textTitle.text = challengeData.ID;
+		textTitle.text = challengeData.Title;
 	}
 
 	public void OnButtonClicked() {

@@ -50,15 +50,16 @@ public class ImmutableDataChallenge  {
 		get { return allergy; }
 	}
 
+	private string title;
+	public string Title {
+		get { return title; }
+	}
+
 	private string eventDescription;    // Optional
 	public string EventDescription {
 		get { return eventDescription; }
 	}
 
-	private string eventTitle;
-	public string EventTitle {
-		get { return eventTitle; }
-	}
 
 	public float waiterMoveMod;
 	public float WaiterMoveMod{
@@ -142,11 +143,10 @@ public class ImmutableDataChallenge  {
 		customerTimerMod = XMLUtils.GetFloat(hashElements["CustomerTimer"] as IXMLNode);
 		dayLengthMod = XMLUtils.GetFloat(hashElements["DayLength"] as IXMLNode);
 		allergy = XMLUtils.GetString(hashElements["Allergy"] as IXMLNode, null, error);
-
+		title = XMLUtils.GetString(hashElements["Title"] as IXMLNode);
 		if(hashElements.Contains("EventDescription")) {
 			eventDescription = XMLUtils.GetString(hashElements["EventDescription"] as IXMLNode, "", error);     // Optional
 		}
-		eventTitle = XMLUtils.GetString(hashElements["Title"] as IXMLNode, null, error);
 		waiterMoveMod = XMLUtils.GetFloat(hashElements["WaiterMove"] as IXMLNode);
 		restMode = XMLUtils.GetFloat(hashElements["RestMode"] as IXMLNode);
 		custSpawnTime = XMLUtils.GetFloat(hashElements["CustomerSpawnTimer"] as IXMLNode);
@@ -171,5 +171,6 @@ public class ImmutableDataChallenge  {
 		playArea = XMLUtils.GetString(hashElements["PlayArea"] as IXMLNode);
 		vipTable = XMLUtils.GetString(hashElements["Vip"] as IXMLNode);
 		flyThru = XMLUtils.GetString(hashElements["Flythru"] as IXMLNode);
+		
 	}
 }
