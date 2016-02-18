@@ -181,7 +181,13 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		if(customerHash.ContainsKey(customerData.customerID)) {
 			// Track analytics leaving state though not really angry	
 			AnalyticsManager.Instance.CustomerLeaveAngryChallenge(customerData.type, customerData.state, chall.ID);
-			UpdateCash(challengeAI.CalculateBill(0, 1), customerData.transform.position);
+			if(deltaCoins == 0) {
+				UpdateCash(challengeAI.CalculateBill(0, 1), customerData.transform.position);
+			}
+			else {
+				challengeAI.CalculateBill(0, 1);
+				challengeAI.AddNegativeCash(deltaCoins);
+			}
 			customerHash.Remove(customerData.customerID);
 			CheckForGameOver();
 		}
@@ -230,8 +236,8 @@ public class RestaurantManagerChallenge : RestaurantManager{
 					AnalyticsManager.Instance.EndGameUsageReport(playAreaUses, vipUses, microwaveUses);
 
 					// Show day complete UI
-					restaurantUI.DayComplete(challengeAI.MissingCustomers, dayEarnedCash, 0, dayCashRevenue);
-					//restaurantUI.ChallengeComplete(challengeAI.Score,dayEarnedCash, challengeAI.MissingCustomers);
+					//restaurantUI.DayComplete(challengeAI.MissingCustomers, dayEarnedCash, 0, dayCashRevenue);
+					restaurantUI.ChallengeComplete(challengeAI.Score,dayEarnedCash, challengeAI.NegativeCash, RewardScore());
 					DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "";
 					// Save game data
 					DataManager.Instance.SaveGameData();
