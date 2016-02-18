@@ -19,14 +19,15 @@ public class BehavPlayfulReadingMenu : Behav {
 		order = null;
 	}
 
-	public override void Act() { 
+	public override void Act() {
+		self.state = CustomerStates.ReadingMenu;
 		if(!self.gameObject.GetComponent<CustomerPlayful>().played){
 			self.UpdateSatisfaction(-1);
 		}
 		self.StartCoroutine("ReadMenu");
 		//get food choices 
 		self.choices = FoodManager.Instance.GetTwoMenuFoodChoices(self.desiredFood, self.allergy);
-		self.state = CustomerStates.ReadingMenu;
+		
 		//stop the satisfaction timer, change the timer and then restart it
 		self.attentionSpan = 21.0f * self.timer;
 	}

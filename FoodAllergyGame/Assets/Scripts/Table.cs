@@ -179,10 +179,11 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	public virtual void OnClicked(){
 		if(tableType != TableType.FlyThru){
 			if(Waiter.Instance.CurrentLineCustomer != null && !inUse && !isBroken){
+				inUse = true;
 				Waiter.Instance.CurrentLineCustomer.transform.localScale = Vector3.one;
 				Waiter.Instance.CurrentLineCustomer.GetComponent<Customer>().tableNum = tableNumber;
 				Waiter.Instance.CurrentLineCustomer.GetComponent<Customer>().currBehav.Reason();
-                inUse = true;
+                
 			}
 			else if(isGossiped){
 				isGossiped = false;

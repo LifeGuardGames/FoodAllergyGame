@@ -13,16 +13,13 @@ public class BehavNotifyLeave : Behav {
 	}
 
 	public override void Act() {
+		Debug.Log(self.state);
 		if(RestaurantManager.Instance.actTables > 0) {
-			if(RestaurantManager.Instance.GetTable(self.tableNum).tableType == Table.TableType.VIP) {
-				RestaurantManager.Instance.CustomerLeftSatisfaction(self, true, VIPMultiplier: RestaurantManager.Instance.GetTable(self.tableNum).VIPMultiplier);
-			}
-			else {
-				RestaurantManager.Instance.CustomerLeftSatisfaction(self, true);
-			}
+			
 			if(self.satisfaction > 3) {
 				self.satisfaction = 3;
 			}
+
 			if(self.state != CustomerStates.InLine && self.state != CustomerStates.Saved) {
 				RestaurantManager.Instance.GetTable(self.tableNum).CustomerLeaving();
 				if(RestaurantManager.Instance.GetTable(self.tableNum).tableType == Table.TableType.FlyThru) {
@@ -37,6 +34,12 @@ public class BehavNotifyLeave : Behav {
 				self.gameObject.transform.SetParent(null);
 				RestaurantManager.Instance.lineCount--;
 				RestaurantManager.Instance.lineController.FillInLine();
+			}
+			if(RestaurantManager.Instance.GetTable(self.tableNum).tableType == Table.TableType.VIP) {
+				RestaurantManager.Instance.CustomerLeftSatisfaction(self, true, VIPMultiplier: RestaurantManager.Instance.GetTable(self.tableNum).VIPMultiplier);
+			}
+			else {
+				RestaurantManager.Instance.CustomerLeftSatisfaction(self, true);
 			}
 			if(self.hasPowerUp) {
 				//Waiter.Instance.GivePowerUp();

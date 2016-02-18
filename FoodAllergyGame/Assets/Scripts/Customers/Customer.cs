@@ -300,7 +300,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 						if(order != null) {
 							Destroy(order.gameObject);
 						}
-						BehavNotifyLeave leave = new BehavNotifyLeave();
+						var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[6]);
+						Behav leave = (Behav) Activator.CreateInstance(type);
 						leave.self = this;
 						leave.Act();
 					}
@@ -317,7 +318,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 					if(order != null) {
 						Destroy(order.gameObject);
 					}
-					BehavNotifyLeave leave = new BehavNotifyLeave();
+					var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[6]);
+					Behav leave = (Behav)Activator.CreateInstance(type);
 					leave.self = this;
 					leave.Act();
 				}
@@ -334,7 +336,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				if(order != null) {
 					Destroy(order.gameObject);
 				}
-				BehavNotifyLeave leave = new BehavNotifyLeave();
+				var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[6]);
+				Behav leave = (Behav)Activator.CreateInstance(type);
 				leave.self = this;
 				leave.Act();
 			}
@@ -550,9 +553,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		yield return new WaitForSeconds(10.0f * PlayArea.Instance.timeMultiplier);
 		if(!PlayArea.Instance.cantLeave) {
 			// End play
-			PlayArea.Instance.EndPlayTime(playAreaIndexAux);
 			transform.localPosition = Vector3.zero; // Move the customer back to its position in line
 		}
+		PlayArea.Instance.EndPlayTime(playAreaIndexAux);
 		GetComponent<BoxCollider>().enabled = true;
 		StartCoroutine("SatisfactionTimer");
 	}
