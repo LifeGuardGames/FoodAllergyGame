@@ -330,9 +330,9 @@
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
-    <Bronze>150</Bronze>
-    <Silver>250</Silver>
-    <Gold>350</Gold>
+    <Bronze>125</Bronze>
+    <Silver>150</Silver>
+    <Gold>175</Gold>
     <Tables>4</Tables>
     <PlayArea>0</PlayArea>
     <Vip>0</Vip>
@@ -341,7 +341,7 @@
 
   <Challenge ID="Challenge15">
     <ChallengeType>Regular</ChallengeType>
-    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
+    <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
     <Tier>12</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet10</CustomerSet>
@@ -354,9 +354,9 @@
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
-    <Bronze>150</Bronze>
-    <Silver>250</Silver>
-    <Gold>350</Gold>
+    <Bronze>175</Bronze>
+    <Silver>225</Silver>
+    <Gold>275</Gold>
     <Tables>4</Tables>
     <GossiperMode>2</GossiperMode>
     <PlayArea>0</PlayArea>
@@ -368,10 +368,10 @@
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
     <Tier>14</Tier>
-    <KitchenTimer>0</KitchenTimer>
+    <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet13</CustomerSet>
     <CustomerTimer>1</CustomerTimer>
-    <DayLength>30</DayLength>
+    <DayLength>70</DayLength>
     <Allergy>None</Allergy>
     <Title>Hungry Hungry Eato</Title>
     <WaiterMove>0</WaiterMove>
@@ -380,8 +380,8 @@
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
     <Bronze>150</Bronze>
-    <Silver>250</Silver>
-    <Gold>350</Gold>
+    <Silver>200</Silver>
+    <Gold>250</Gold>
     <Tables>4</Tables>
     <PlayArea>0</PlayArea>
     <Vip>0</Vip>
@@ -392,10 +392,10 @@
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
     <Tier>14</Tier>
-    <KitchenTimer>0</KitchenTimer>
+    <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet13</CustomerSet>
     <CustomerTimer>1</CustomerTimer>
-    <DayLength>30</DayLength>
+    <DayLength>70</DayLength>
     <Allergy>None</Allergy>
     <Title>Talkie Hungry Eatie</Title>
     <WaiterMove>0</WaiterMove>
@@ -404,11 +404,11 @@
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
     <Bronze>150</Bronze>
-    <Silver>250</Silver>
-    <Gold>350</Gold>
+    <Silver>200</Silver>
+    <Gold>250</Gold>
     <Tables>4</Tables>
     <GossiperMode>2</GossiperMode>
-    <PlayArea>0</PlayArea>
+    <PlayArea>PlayArea00</PlayArea>
     <Vip>0</Vip>
     <Flythru>0</Flythru>
   </Challenge>
@@ -428,9 +428,9 @@
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
-    <Bronze>150</Bronze>
-    <Silver>250</Silver>
-    <Gold>350</Gold>
+    <Bronze>125</Bronze>
+    <Silver>1750</Silver>
+    <Gold>225</Gold>
     <Tables>4</Tables>
     <GossiperMode>3</GossiperMode>
     <PlayArea>0</PlayArea>
@@ -454,8 +454,8 @@
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
     <Bronze>150</Bronze>
-    <Silver>250</Silver>
-    <Gold>350</Gold>
+    <Silver>200</Silver>
+    <Gold>250</Gold>
     <Tables>4</Tables>
     <GossiperMode>4</GossiperMode>
     <PlayArea>0</PlayArea>
