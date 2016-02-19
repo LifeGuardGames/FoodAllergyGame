@@ -99,5 +99,9 @@
   <CustomerSet ID="ChallengeSet13">
     <CustomerList>CustomerHungryEater,CustomerRegular,CustomerRegular,CustomerHungryEater,CustomerHungryEater,CustomerRegular,CustomerRegular,CustomerHungryEater,CustomerHungryEater,CustomerRegular,CustomerRegular,CustomerHungryEater</CustomerList>
   </CustomerSet>
+
+  <CustomerSet ID="ChallengeSet14">
+    <CustomerList>CustomerHungryEater,CustomerRegularWrongOrder,CustomerRegularWrongOrder,CustomerHungryEater,CustomerHungryEater,CustomerRegularWrongOrder,CustomerRegularWrongOrder,CustomerHungryEater,CustomerHungryEater,CustomerRegularWrongOrder,CustomerRegularWrongOrder,CustomerHungryEater</CustomerList>
+  </CustomerSet>
   
 </CustomerSets>

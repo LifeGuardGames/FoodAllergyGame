@@ -272,9 +272,9 @@
     <ChallengeMenuSet>ChallengeMenuSet02</ChallengeMenuSet>
     <Tier>10</Tier>
     <KitchenTimer>0</KitchenTimer>
-    <CustomerSet>ChallengeSet01</CustomerSet>
-    <CustomerTimer>0.5</CustomerTimer>
-    <DayLength>30</DayLength>
+    <CustomerSet>ChallengeSet14</CustomerSet>
+    <CustomerTimer>1</CustomerTimer>
+    <DayLength>70</DayLength>
     <Allergy>None</Allergy>
     <Title>Insta Kitchen</Title>
     <WaiterMove>0</WaiterMove>
@@ -282,9 +282,9 @@
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
-    <Bronze>150</Bronze>
-    <Silver>250</Silver>
-    <Gold>350</Gold>
+    <Bronze>125</Bronze>
+    <Silver>1750</Silver>
+    <Gold>225</Gold>
     <Tables>4</Tables>
     <PlayArea>0</PlayArea>
     <Vip>0</Vip>
