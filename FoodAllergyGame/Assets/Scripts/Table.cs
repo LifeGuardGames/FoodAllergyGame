@@ -206,7 +206,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	#endregion
 
 	public void ToggleTableNum(bool onOrOff) {
-		if(DataManager.Instance.GetChallenge() != "Challenge06") {
+		if(DataManager.Instance.GetChallenge() != "Challenge03") {
 			_canvas.SetActive(onOrOff);
 		}
 		else {

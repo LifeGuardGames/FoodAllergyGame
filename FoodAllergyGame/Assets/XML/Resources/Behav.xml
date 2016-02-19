@@ -34,7 +34,7 @@
   
   <Behav ID="BehavFlow06">
     <Name>Gossiper</Name>
-    <BehavList>BehavWaitingInLine,BehavGossipReadingMenu,BehavWaitForOrder,BehavGossipWaitForFood,BehavGossipEating,BehavWaitForCheck,BehavNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavGossip</BehavList>
+    <BehavList>BehavWaitingInLine,BehavGossipReadMenu,BehavWaitForOrder,BehavGossipWaitForFood,BehavGossipEating,BehavWaitForCheck,BehavNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavGossip</BehavList>
   </Behav>
   
   <Behav ID="BehavFlow07">

@@ -65,7 +65,7 @@
   </CustomerSet>
 
   <CustomerSet ID ="ChallengeSet05">
-    <CustomerList>CustomerEater,CustomerRegular,CustomerHospitalRunner,CustomerImpatient,CustomerGossiper,CustomerHospitalRunner,CustomerEater,CustomerRegular,CustomerGossiper,CustomerRegular</CustomerList>
+    <CustomerList>CustomerEater,CustomerRegular,CustomerTableSmasher,CustomerImpatient,CustomerGossiper,CustomerTableSmasher,CustomerEater,CustomerRegular,CustomerGossiper,CustomerRegular</CustomerList>
   </CustomerSet>
 
   <CustomerSet ID ="ChallengeSet06">

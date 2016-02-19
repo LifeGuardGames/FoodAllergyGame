@@ -3,7 +3,13 @@
 	<ChallengeMenuSet ID="ChallengeMenuSetT1">
 		<FoodList>FoodFruitPlatter,FoodChicken,FoodPeanutCandy,FoodYogurt,FoodCheeseStick,FoodPeanuts,FoodVeggieSandwich,FoodToast</FoodList>
 	</ChallengeMenuSet>
-	<ChallengeMenuSet ID="ChallengeMenuSet00">
-		<FoodList>FoodFruitPlatter,FoodChicken,FoodPeanutCandy,FoodYogurt,FoodCheeseStick,FoodPeanuts,FoodVeggieSandwich,FoodToast</FoodList>
+	<ChallengeMenuSet ID="ChallengeMenuSet01">
+		<FoodList>FoodFruitPlatter,FoodChicken,FoodPeanutCandy,FoodYogurt,FoodCheeseStick,FoodPeanuts,FoodVeggieSandwich,FoodToast,FoodTrailMix,FoodMilk,FoodPastaTomatoSauce</FoodList>
 	</ChallengeMenuSet>
+  <ChallengeMenuSet ID="ChallengeMenuSet02">
+    <FoodList>FoodFruitPlatter,FoodChicken,FoodPeanutCandy,FoodYogurt,FoodCheeseStick,FoodPeanuts,FoodVeggieSandwich,FoodToast,FoodTrailMix,FoodMilk,FoodPastaTomatoSauce,FoodPBJelly,FoodPBCookies,FoodPBPretzels,FoodPeanutMMs,FoodMacAndCheese</FoodList>
+  </ChallengeMenuSet>
+  <ChallengeMenuSet ID="ChallengeMenuSet03">
+    <FoodList>FoodFruitPlatter,FoodChicken,FoodPeanutCandy,FoodYogurt,FoodCheeseStick,FoodPeanuts,FoodVeggieSandwich,FoodToast,FoodTrailMix,FoodMilk,FoodPastaTomatoSauce,FoodPBJelly,FoodPBCookies,FoodPBPretzels,FoodPeanutMMs,FoodMacAndCheese,FoodOreos,FoodPancake,FoodGranolaBar,FoodPeanutBrownies,FoodPeanutIceCreamBar,FoodYogurtParfait,FoodPBCheeseCrackers</FoodList>
+  </ChallengeMenuSet>
 </ChallengeMenuSets>

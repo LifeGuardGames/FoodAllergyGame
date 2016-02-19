@@ -22,4 +22,9 @@ public class RestaurantManagerLoader : MonoBehaviour {
 		Time.timeScale = 1.0f;  // Remember to reset timescale!
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
 	}
+	// Called from PauseUIController
+	public void QuitGameChallenge() {
+		Time.timeScale = 1.0f;  // Remember to reset timescale!
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.CHALLENGEMENU);
+	}
 }

@@ -22,7 +22,9 @@ public class LineController : MonoBehaviour {
                 for(int j = i; j <lineList.Count; j++){
                     if (lineList[j].childCount != 0) {
                         lineList[j].transform.GetChild(0).SetParent(lineList[i].transform);
-                        lineList[i].transform.GetChild(0).position = lineList[i].transform.position;
+						if(lineList[i].transform.GetChild(0).position == lineList[j].transform.position) {
+							lineList[i].transform.GetChild(0).position = lineList[i].transform.position;
+						}
                         break;
                     }
                 }
