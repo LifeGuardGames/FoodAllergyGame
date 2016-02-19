@@ -23,8 +23,7 @@ public class WaiterAnimController : MonoBehaviour {
 
 	void Start() {
 		skeletonAnim.state.Start += delegate {
-			Debug.Log("Resetting pose");
-			skeletonAnim.skeleton.SetToSetupPose();
+			skeletonAnim.skeleton.SetToSetupPose();		// NOTE: Make sure default mix time is 0!!!
 		};
 	}
 
@@ -57,10 +56,10 @@ public class WaiterAnimController : MonoBehaviour {
 				SetBodyAnimation("Run");
             }
 			else if(hand1 != WaiterHands.None && hand2 == WaiterHands.None) {
-				SetBodyAnimation(isFacingRight ? "RunCarryBack" : "RunCarryFront");
+				SetBodyAnimation(isFacingRight ? "RunCarryFront" : "RunCarryBack");
 			}
 			else if(hand1 == WaiterHands.None && hand2 != WaiterHands.None) {
-				SetBodyAnimation(isFacingRight ? "RunCarryFront" : "RunCarryBack");
+				SetBodyAnimation(isFacingRight ? "RunCarryBack" : "RunCarryFront");
 			}
 			else if(hand1 != WaiterHands.None && hand2 != WaiterHands.None) {
 				SetBodyAnimation("RunCarryBoth");
@@ -74,10 +73,10 @@ public class WaiterAnimController : MonoBehaviour {
 				SetBodyAnimation("Idle");
 			}
 			else if(hand1 != WaiterHands.None && hand2 == WaiterHands.None) {
-				SetBodyAnimation(isFacingRight ? "IdleCarryBack" : "IdleCarryFront");
+				SetBodyAnimation(isFacingRight ? "IdleCarryFront" : "IdleCarryBack");
 			}
 			else if(hand1 == WaiterHands.None && hand2 != WaiterHands.None) {
-				SetBodyAnimation(isFacingRight ? "IdleCarryFront" : "IdleCarryBack");
+				SetBodyAnimation(isFacingRight ? "IdleCarryBack" : "IdleCarryFront");
 			}
 			else if(hand1 != WaiterHands.None && hand2 != WaiterHands.None) {
 				SetBodyAnimation("IdleCarryBoth");
@@ -90,10 +89,7 @@ public class WaiterAnimController : MonoBehaviour {
 
 	private void SetBodyAnimation(string bodyAnimation) {
 		if(currentBodyAnimation != bodyAnimation) {
-			Debug.Log("SETTING " + bodyAnimation);
 			currentBodyAnimation = bodyAnimation;
-			//Reset();
-			
 			skeletonAnim.state.SetAnimation(0, bodyAnimation, true);
 		}
 	}
