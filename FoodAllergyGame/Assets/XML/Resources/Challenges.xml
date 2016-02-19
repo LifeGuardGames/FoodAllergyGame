@@ -478,9 +478,9 @@
     <CustomerSpawnTimer>5</CustomerSpawnTimer>
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
-    <Bronze>150</Bronze>
+    <Bronze>200</Bronze>
     <Silver>250</Silver>
-    <Gold>350</Gold>
+    <Gold>300</Gold>
     <Tables>4</Tables>
     <PlayArea>0</PlayArea>
     <Vip>0</Vip>
@@ -502,9 +502,9 @@
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
-    <Bronze>150</Bronze>
+    <Bronze>200</Bronze>
     <Silver>250</Silver>
-    <Gold>350</Gold>
+    <Gold>300</Gold>
     <Tables>4</Tables>
     <PlayArea>0</PlayArea>
     <Vip>0</Vip>
