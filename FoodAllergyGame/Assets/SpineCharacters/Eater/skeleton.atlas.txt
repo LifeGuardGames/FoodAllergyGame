@@ -1,185 +1,167 @@
 
 skeleton.png
-size: 512,512
-format: RGBA8888
-filter: Linear,Linear
-repeat: none
-Body
-  rotate: false
-  xy: 2, 180
-  size: 477, 329
-  orig: 477, 329
-  offset: 0, 0
-  index: -1
-EyeSquint
-  rotate: true
-  xy: 225, 12
-  size: 166, 69
-  orig: 166, 69
-  offset: 0, 0
-  index: -1
-LowerArm
-  rotate: true
-  xy: 296, 72
-  size: 106, 207
-  orig: 106, 207
-  offset: 0, 0
-  index: -1
-TopLid
-  rotate: false
-  xy: 296, 2
-  size: 191, 68
-  orig: 191, 68
-  offset: 0, 0
-  index: -1
-UpperArm
-  rotate: true
-  xy: 2, 2
-  size: 176, 221
-  orig: 176, 221
-  offset: 0, 0
-  index: -1
-
-skeleton2.png
-size: 512,512
+size: 1024,1024
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 Antenna
-  rotate: false
-  xy: 478, 59
+  rotate: true
+  xy: 2, 38
   size: 30, 118
   orig: 30, 118
   offset: 0, 0
   index: -1
-BodyChoking
+Body
   rotate: false
-  xy: 2, 179
+  xy: 2, 693
   size: 477, 329
   orig: 477, 329
   offset: 0, 0
   index: -1
-MouthOpen1
+BodyChoking
   rotate: false
-  xy: 2, 22
-  size: 474, 155
-  orig: 474, 155
+  xy: 2, 362
+  size: 477, 329
+  orig: 477, 329
   offset: 0, 0
   index: -1
-
-skeleton3.png
-size: 512,512
-format: RGBA8888
-filter: Linear,Linear
-repeat: none
-Mouth
-  rotate: false
-  xy: 2, 2
-  size: 470, 95
-  orig: 470, 95
-  offset: 0, 0
-  index: -1
-MouthOpen2
-  rotate: false
-  xy: 2, 289
-  size: 474, 221
-  orig: 474, 221
-  offset: 0, 0
-  index: -1
-MouthSadOpen
-  rotate: false
-  xy: 2, 99
-  size: 470, 188
-  orig: 470, 188
-  offset: 0, 0
-  index: -1
-
-skeleton4.png
-size: 512,512
-format: RGBA8888
-filter: Linear,Linear
-repeat: none
 Chewing1
   rotate: true
-  xy: 317, 5
+  xy: 473, 14
   size: 105, 127
   orig: 105, 127
   offset: 0, 0
   index: -1
 Chewing2
-  rotate: true
-  xy: 335, 176
+  rotate: false
+  xy: 789, 113
   size: 106, 130
   orig: 106, 130
   offset: 0, 0
   index: -1
 ChewingMouth
-  rotate: false
-  xy: 2, 221
+  rotate: true
+  xy: 957, 691
   size: 331, 61
   orig: 331, 61
   offset: 0, 0
   index: -1
 Eye
   rotate: false
-  xy: 2, 97
+  xy: 474, 121
   size: 185, 122
   orig: 185, 122
   offset: 0, 0
   index: -1
+EyeSquint
+  rotate: true
+  xy: 953, 331
+  size: 166, 69
+  orig: 166, 69
+  offset: 0, 0
+  index: -1
 Foot
-  rotate: false
-  xy: 2, 5
+  rotate: true
+  xy: 602, 2
   size: 109, 90
   orig: 109, 90
   offset: 0, 0
   index: -1
 Leg
   rotate: false
-  xy: 189, 94
+  xy: 661, 118
   size: 126, 125
   orig: 126, 125
   offset: 0, 0
   index: -1
+LowerArm
+  rotate: true
+  xy: 704, 315
+  size: 106, 207
+  orig: 106, 207
+  offset: 0, 0
+  index: -1
 LowerLid
-  rotate: false
-  xy: 317, 112
+  rotate: true
+  xy: 960, 499
   size: 190, 62
   orig: 190, 62
   offset: 0, 0
   index: -1
 Menu
-  rotate: false
-  xy: 446, 49
+  rotate: true
+  xy: 122, 10
   size: 58, 61
   orig: 58, 61
   offset: 0, 0
   index: -1
+Mouth
+  rotate: false
+  xy: 481, 423
+  size: 470, 95
+  orig: 470, 95
+  offset: 0, 0
+  index: -1
 MouthHappy
   rotate: false
-  xy: 2, 284
+  xy: 2, 70
   size: 469, 100
   orig: 469, 100
   offset: 0, 0
   index: -1
+MouthOpen1
+  rotate: false
+  xy: 481, 644
+  size: 474, 155
+  orig: 474, 155
+  offset: 0, 0
+  index: -1
+MouthOpen2
+  rotate: false
+  xy: 481, 801
+  size: 474, 221
+  orig: 474, 221
+  offset: 0, 0
+  index: -1
 MouthSad
   rotate: false
-  xy: 2, 386
+  xy: 481, 520
   size: 477, 122
   orig: 477, 122
   offset: 0, 0
   index: -1
+MouthSadOpen
+  rotate: false
+  xy: 2, 172
+  size: 470, 188
+  orig: 470, 188
+  offset: 0, 0
+  index: -1
 Pupil
-  rotate: true
-  xy: 446, 2
+  rotate: false
+  xy: 185, 17
   size: 45, 51
   orig: 45, 51
   offset: 0, 0
   index: -1
 Thumb
   rotate: false
-  xy: 113, 15
+  xy: 694, 36
   size: 62, 80
   orig: 62, 80
+  offset: 0, 0
+  index: -1
+TopLid
+  rotate: false
+  xy: 704, 245
+  size: 191, 68
+  orig: 191, 68
+  offset: 0, 0
+  index: -1
+UpperArm
+  rotate: true
+  xy: 481, 245
+  size: 176, 221
+  orig: 176, 221
   offset: 0, 0
   index: -1
