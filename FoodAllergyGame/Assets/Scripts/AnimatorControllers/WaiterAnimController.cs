@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Spine;
 
 /// <summary>
 /// Custom animation controller for the waiter
@@ -20,9 +21,16 @@ public class WaiterAnimController : MonoBehaviour {
 		// TODO Finish this!!!
 	}
 
+	void Start() {
+		skeletonAnim.state.Start += delegate {
+			Debug.Log("Resetting pose");
+			skeletonAnim.skeleton.SetToSetupPose();
+		};
+	}
+
 	private void Reset() {
-		skeletonAnim.state.ClearTracks();
-		skeletonAnim.state.SetAnimation(0, "Reset", false);
+		//skeletonAnim.state.ClearTracks();
+		//skeletonAnim.state.SetAnimation(0, "Reset", false);
 	}
 
 	public void SetMoving(bool isMoving) {
@@ -82,11 +90,11 @@ public class WaiterAnimController : MonoBehaviour {
 
 	private void SetBodyAnimation(string bodyAnimation) {
 		if(currentBodyAnimation != bodyAnimation) {
-//			Debug.Log("SETTING " + bodyAnimation);
+			Debug.Log("SETTING " + bodyAnimation);
 			currentBodyAnimation = bodyAnimation;
-			Reset();
+			//Reset();
 			
-			skeletonAnim.state.AddAnimation(0, bodyAnimation, true, 0f);
+			skeletonAnim.state.SetAnimation(0, bodyAnimation, true);
 		}
 	}
 }
