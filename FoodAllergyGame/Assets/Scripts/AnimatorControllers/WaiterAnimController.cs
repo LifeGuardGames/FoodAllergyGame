@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Spine;
 
 /// <summary>
 /// Custom animation controller for the waiter
@@ -20,9 +21,15 @@ public class WaiterAnimController : MonoBehaviour {
 		// TODO Finish this!!!
 	}
 
+	void Start() {
+		skeletonAnim.state.Start += delegate {
+			skeletonAnim.skeleton.SetToSetupPose();		// NOTE: Make sure default mix time is 0!!!
+		};
+	}
+
 	private void Reset() {
-		skeletonAnim.state.ClearTracks();
-		skeletonAnim.state.SetAnimation(0, "Reset", false);
+		//skeletonAnim.state.ClearTracks();
+		//skeletonAnim.state.SetAnimation(0, "Reset", false);
 	}
 
 	public void SetMoving(bool isMoving) {
@@ -49,10 +56,10 @@ public class WaiterAnimController : MonoBehaviour {
 				SetBodyAnimation("Run");
             }
 			else if(hand1 != WaiterHands.None && hand2 == WaiterHands.None) {
-				SetBodyAnimation(isFacingRight ? "RunCarryBack" : "RunCarryFront");
+				SetBodyAnimation(isFacingRight ? "RunCarryFront" : "RunCarryBack");
 			}
 			else if(hand1 == WaiterHands.None && hand2 != WaiterHands.None) {
-				SetBodyAnimation(isFacingRight ? "RunCarryFront" : "RunCarryBack");
+				SetBodyAnimation(isFacingRight ? "RunCarryBack" : "RunCarryFront");
 			}
 			else if(hand1 != WaiterHands.None && hand2 != WaiterHands.None) {
 				SetBodyAnimation("RunCarryBoth");
@@ -66,10 +73,10 @@ public class WaiterAnimController : MonoBehaviour {
 				SetBodyAnimation("Idle");
 			}
 			else if(hand1 != WaiterHands.None && hand2 == WaiterHands.None) {
-				SetBodyAnimation(isFacingRight ? "IdleCarryBack" : "IdleCarryFront");
+				SetBodyAnimation(isFacingRight ? "IdleCarryFront" : "IdleCarryBack");
 			}
 			else if(hand1 == WaiterHands.None && hand2 != WaiterHands.None) {
-				SetBodyAnimation(isFacingRight ? "IdleCarryFront" : "IdleCarryBack");
+				SetBodyAnimation(isFacingRight ? "IdleCarryBack" : "IdleCarryFront");
 			}
 			else if(hand1 != WaiterHands.None && hand2 != WaiterHands.None) {
 				SetBodyAnimation("IdleCarryBoth");
@@ -82,11 +89,8 @@ public class WaiterAnimController : MonoBehaviour {
 
 	private void SetBodyAnimation(string bodyAnimation) {
 		if(currentBodyAnimation != bodyAnimation) {
-//			Debug.Log("SETTING " + bodyAnimation);
 			currentBodyAnimation = bodyAnimation;
-			Reset();
-			
-			skeletonAnim.state.AddAnimation(0, bodyAnimation, true, 0f);
+			skeletonAnim.state.SetAnimation(0, bodyAnimation, true);
 		}
 	}
 }

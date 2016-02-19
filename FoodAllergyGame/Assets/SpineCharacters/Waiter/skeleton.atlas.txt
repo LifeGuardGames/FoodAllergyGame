@@ -6,238 +6,238 @@ filter: Linear,Linear
 repeat: none
 BodyWhole
   rotate: false
-  xy: 2, 392
+  xy: 2, 388
   size: 447, 627
   orig: 447, 627
   offset: 0, 0
   index: -1
 Bow
   rotate: false
-  xy: 550, 298
+  xy: 550, 294
   size: 94, 53
   orig: 94, 53
   offset: 0, 0
   index: -1
 BrowL
   rotate: true
-  xy: 167, 44
+  xy: 167, 40
   size: 60, 33
   orig: 60, 33
   offset: 0, 0
   index: -1
 BrowR
   rotate: true
-  xy: 929, 806
+  xy: 929, 802
   size: 90, 48
   orig: 90, 48
   offset: 0, 0
   index: -1
 EyeL
   rotate: false
-  xy: 771, 757
+  xy: 771, 753
   size: 84, 139
   orig: 84, 139
   offset: 0, 0
   index: -1
 EyeR
   rotate: false
-  xy: 2, 114
+  xy: 2, 110
   size: 92, 138
   orig: 92, 138
   offset: 0, 0
   index: -1
 FootL
   rotate: true
-  xy: 979, 847
+  xy: 979, 843
   size: 68, 39
   orig: 68, 39
   offset: 0, 0
   index: -1
 FootR
   rotate: false
-  xy: 314, 241
+  xy: 314, 237
   size: 63, 46
   orig: 63, 46
   offset: 0, 0
   index: -1
 FrontView/BodyFront
   rotate: false
-  xy: 451, 353
+  xy: 451, 349
   size: 318, 666
   orig: 318, 666
   offset: 0, 0
   index: -1
 FrontView/Bow
   rotate: true
-  xy: 771, 651
+  xy: 771, 647
   size: 104, 68
   orig: 104, 68
   offset: 0, 0
   index: -1
 HandL
   rotate: true
-  xy: 979, 787
+  xy: 979, 783
   size: 58, 40
   orig: 58, 40
   offset: 0, 0
   index: -1
 HandR
   rotate: true
-  xy: 807, 425
+  xy: 807, 421
   size: 47, 49
   orig: 47, 49
   offset: 0, 0
   index: -1
 LidBL
   rotate: false
-  xy: 646, 291
+  xy: 646, 287
   size: 89, 60
   orig: 89, 60
   offset: 0, 0
   index: -1
 LidBR
   rotate: true
-  xy: 771, 550
+  xy: 771, 546
   size: 99, 60
   orig: 99, 60
   offset: 0, 0
   index: -1
 LidTopL
   rotate: false
-  xy: 2, 6
+  xy: 2, 2
   size: 91, 106
   orig: 91, 106
   offset: 0, 0
   index: -1
 LidTopR
   rotate: false
-  xy: 96, 150
+  xy: 96, 146
   size: 101, 102
   orig: 101, 102
   offset: 0, 0
   index: -1
 LowerArmL
   rotate: false
-  xy: 857, 806
+  xy: 857, 802
   size: 70, 90
   orig: 70, 90
   offset: 0, 0
   index: -1
 LowerArmR
   rotate: false
-  xy: 95, 23
+  xy: 95, 19
   size: 70, 81
   orig: 70, 81
   offset: 0, 0
   index: -1
 LowerLegL
   rotate: true
-  xy: 857, 763
+  xy: 857, 759
   size: 41, 90
   orig: 41, 90
   offset: 0, 0
   index: -1
 LowerLegR
   rotate: false
-  xy: 402, 295
+  xy: 402, 291
   size: 46, 95
   orig: 46, 95
   offset: 0, 0
   index: -1
 MouthFrust
   rotate: true
-  xy: 771, 424
+  xy: 771, 420
   size: 124, 34
   orig: 124, 34
   offset: 0, 0
   index: -1
 MouthOpen
   rotate: false
-  xy: 96, 106
+  xy: 96, 102
   size: 87, 42
   orig: 87, 42
   offset: 0, 0
   index: -1
 MouthSmirk
   rotate: true
-  xy: 811, 355
+  xy: 811, 351
   size: 68, 49
   orig: 68, 49
   offset: 0, 0
   index: -1
 PupilL
   rotate: false
-  xy: 771, 348
+  xy: 771, 344
   size: 38, 74
   orig: 38, 74
   offset: 0, 0
   index: -1
 PupilR
   rotate: false
-  xy: 807, 474
+  xy: 807, 470
   size: 41, 74
   orig: 41, 74
   offset: 0, 0
   index: -1
 ServingArm
   rotate: false
-  xy: 771, 898
+  xy: 771, 894
   size: 195, 121
   orig: 195, 121
   offset: 0, 0
   index: -1
 SideView/ArmRunF
   rotate: false
-  xy: 2, 254
+  xy: 2, 250
   size: 204, 136
   orig: 204, 136
   offset: 0, 0
   index: -1
 ThumbL
   rotate: false
-  xy: 737, 300
+  xy: 737, 296
   size: 26, 51
   orig: 26, 51
   offset: 0, 0
   index: -1
 ThumbR
   rotate: false
-  xy: 379, 253
+  xy: 379, 249
   size: 18, 34
   orig: 18, 34
   offset: 0, 0
   index: -1
 UpperArmL
   rotate: false
-  xy: 314, 289
+  xy: 314, 285
   size: 86, 101
   orig: 86, 101
   offset: 0, 0
   index: -1
 UpperArmR
   rotate: false
-  xy: 208, 268
+  xy: 208, 264
   size: 104, 122
   orig: 104, 122
   offset: 0, 0
   index: -1
 UpperLegL
   rotate: false
-  xy: 968, 917
+  xy: 968, 913
   size: 50, 102
   orig: 50, 102
   offset: 0, 0
   index: -1
 UpperLegR
   rotate: true
-  xy: 450, 301
+  xy: 450, 297
   size: 50, 98
   orig: 50, 98
   offset: 0, 0
   index: -1
 WristR
   rotate: false
-  xy: 949, 778
+  xy: 949, 774
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
