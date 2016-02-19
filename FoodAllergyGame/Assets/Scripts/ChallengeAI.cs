@@ -17,7 +17,17 @@ public class ChallengeAI  {
 		get { return missingCustomers; }
 	}
 
+
+	private int negativeCash;
+	public int NegativeCash {
+		get { return negativeCash; }
+	}
+
 	private float totalSatisfaction;
+
+	public void AddNegativeCash(int amount) {
+		negativeCash += amount;
+	}
 
 	// Calculates the money given to the player once a customer leaves
 	public int CalculateBill(int customerSatisfaction, int priceMultiplier) {
@@ -44,7 +54,7 @@ public class ChallengeAI  {
 	}
 
 	public int ScoreIt() {
-		score = RestaurantManagerChallenge.Instance.DayEarnedCash - 50 * missingCustomers;
+		score = RestaurantManagerChallenge.Instance.DayEarnedCash -(( 50 * missingCustomers)+ negativeCash);
 		return score;
 	}
 

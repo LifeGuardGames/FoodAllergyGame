@@ -95,4 +95,9 @@
   <CustomerSet ID ="ChallengeSet12">
     <CustomerList>CustomerBlackOut,CustomerRegular,CustomerTableSmasher,CustomerRegular,CustomerEater,CustomerRegular,CustomerBlackOut,CustomerRegular,CustomerTableSmasher,CustomerRegular,CustomerEater,CustomerRegular</CustomerList>
   </CustomerSet>
+
+  <CustomerSet ID="ChallengeSet13">
+    <CustomerList>CustomerHungryEater,CustomerRegular,CustomerRegular,CustomerHungryEater,CustomerHungryEater,CustomerRegular,CustomerRegular,CustomerHungryEater,CustomerHungryEater,CustomerRegular,CustomerRegular,CustomerHungryEater</CustomerList>
+  </CustomerSet>
+  
 </CustomerSets>
