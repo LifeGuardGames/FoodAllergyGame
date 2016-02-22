@@ -12,6 +12,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	public PlayAreaLoader play;
 	public VIPLoader vip;
 	public FlyThruLoader fly;
+	public ChallengeScoreController scoreBoard;
 	
 	ImmutableDataChallenge chall;
 	int interval = 0;
@@ -21,13 +22,14 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		sickCustomers = new List<GameObject>();
 		customerHash = new Dictionary<string, GameObject>();
 		challengeAI = new ChallengeAI();
-		
 	}
 
 
 	private void RunSetUp() {
 		
 		chall = DataLoaderChallenge.GetData(DataManager.Instance.GetChallenge());
+		scoreBoard.gameObject.SetActive(true);
+		scoreBoard.UpDateScore(0);
 		if(chall.PlayArea != "0") {
 			play.LoadDeco(DataLoaderDecoItem.GetData(chall.PlayArea));
 		}
@@ -166,6 +168,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			UpdateCash(challengeAI.CalculateBill(satisfaction, priceMultiplier), customerData.transform.position);
 			customerHash.Remove(customerData.customerID);
 			CheckForGameOver();
+			scoreBoard.UpDateScore(challengeAI.ScoreIt());
 		}
 		else {
 			Debug.LogError("Invalid CustomerLeftSatisfaction call on " + customerData.customerID);
@@ -376,6 +379,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	}
 
 	public ChallengeReward RewardScore() {
+		challengeAI.ScoreIt();
 		if(challengeAI.Score >= chall.GoldBreakPoint) {
 			DataManager.Instance.GameData.Challenge.ChallengeProgress[chall.ID] = ChallengeReward.Gold;
 			return ChallengeReward.Gold;
@@ -394,7 +398,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			return ChallengeReward.Bronze;
 		}
 		else {
-			return ChallengeReward.Stone;
+			return ChallengeReward.None;
 		}
 	}
 
