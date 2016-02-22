@@ -17,7 +17,6 @@ public class FoodTipController : MonoBehaviour {
 	public Image foodImage;
 	public Text foodText;
 
-	private int unlockedFoodCount = -1;		// Init to force initialization
 	private List<ImmutableDataFood> internalFoodList;
 
 	void Start() {
@@ -27,10 +26,7 @@ public class FoodTipController : MonoBehaviour {
 
 	private void RefreshInternalList() {
 		List<ImmutableDataFood> newFoodList = DataLoaderFood.GetDataListWithinTier(TierManager.Instance.CurrentTier);
-		if(newFoodList.Count != unlockedFoodCount){
-			internalFoodList = newFoodList;
-			unlockedFoodCount = internalFoodList.Count;
-		}
+		internalFoodList = newFoodList;
 	}
 
 	private ImmutableDataFood GetRandomFood() {
