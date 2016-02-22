@@ -108,7 +108,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	//in the unfortunate circumstance a customer gets eaten we need to take care of the mess
 	public virtual void CustomerEaten(){
 		if(foodSpot.childCount > 0){
-			Destroy(foodSpot.GetChild(0));
+			Destroy(foodSpot.GetChild(0).gameObject);
 		}
 		RestaurantManager.Instance.GetMenuUIController().CancelOrder(tableNumber);
 		Customer customerToEat = GetComponentInChildren<Customer>();

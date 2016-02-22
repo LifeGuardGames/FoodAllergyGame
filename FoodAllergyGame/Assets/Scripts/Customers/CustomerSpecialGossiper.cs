@@ -70,7 +70,7 @@ public class CustomerSpecialGossiper : MonoBehaviour {
         }
 		else if(mod == GossiperMode.Eater) {
 			if(RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerEater>() != null) {
-				RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerEater>().pastBehav = RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerEater>().currBehav;
+				RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerEater>().pastBehav = RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<Customer>().currBehav;
                 RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerEater>().Annoyed();
 				GoAway();
             }

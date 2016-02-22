@@ -113,7 +113,7 @@
   </Behav>
 
   <Behav ID="BehavFlow22">
-    <Name>Eater</Name>
+    <Name>Hungry Eater</Name>
     <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEaterEating,BehavWaitForCheck,BehavEaterNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavNotifyLeave</BehavList>
   </Behav>
   

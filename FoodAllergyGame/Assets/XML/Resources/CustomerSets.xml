@@ -93,7 +93,7 @@
   </CustomerSet>
 
   <CustomerSet ID ="ChallengeSet12">
-    <CustomerList>CustomerBlackOut,CustomerRegular,CustomerTableSmasher,CustomerRegular,CustomerEater,CustomerRegular,CustomerBlackOut,CustomerRegular,CustomerTableSmasher,CustomerRegular,CustomerEater,CustomerRegular</CustomerList>
+    <CustomerList>CustomerBlackOut,CustomerBlackOut,CustomerBlackOut,CustomerBlackOut,CustomerRegular,CustomerTableSmasher,CustomerRegular,CustomerEater,CustomerRegular,CustomerBlackOut,CustomerRegular,CustomerTableSmasher,CustomerRegular,CustomerEater,CustomerRegular</CustomerList>
   </CustomerSet>
 
   <CustomerSet ID="ChallengeSet13">

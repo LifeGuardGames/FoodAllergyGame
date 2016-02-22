@@ -43,7 +43,6 @@ public class BehavEaterNotifyLeave : Behav {
 						}
 					}
 				}
-				Debug.Log(self.GetComponent<CustomerEater>().pastBehav.ToString());
 				self.currBehav = self.GetComponent<CustomerEater>().pastBehav;
 			}
 			else if(self.state == CustomerStates.InLine) {

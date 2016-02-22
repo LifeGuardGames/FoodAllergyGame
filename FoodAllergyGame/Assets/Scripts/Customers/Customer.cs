@@ -430,6 +430,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				}
 			}
 		}
+		Debug.Log(currBehav.ToString());
 		currBehav.Reason();
 	}
 
@@ -580,8 +581,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[1]);
 		Behav order = (Behav)Activator.CreateInstance(type);
 		order.self = this;
-		order.Act();
 		currBehav = order;
+		order.Act();
 		order = null;
 		Waiter.Instance.Finished();
 	}
@@ -605,8 +606,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[6]);
 		Behav leave = (Behav)Activator.CreateInstance(type);
 		leave.self = this;
-		leave.Act();
 		currBehav = leave;
+		leave.Act();
 		leave = null;
 	}
 }
