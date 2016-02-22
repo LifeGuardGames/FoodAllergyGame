@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEditor.SceneManagement;
@@ -26,53 +25,41 @@ public class UIHelper : EditorWindow {
 		if(tagsList.Length > 0){
 			UIElementsList = GameObject.FindGameObjectsWithTag("UIElementList")[0].GetComponent<UIHelperList>().UIElementList;
 			elementBoolList = GameObject.FindGameObjectsWithTag("UIElementList")[0].GetComponent<UIHelperList>().defaultBools;
+			Debug.Log("RELOADED");
 		}
 	}
 
-	public void OnInspectorUpdate(){
-		if(EditorApplication.isCompiling){
-			isCompileAux = true;
-		}
-		bool isFinishedCompiling = isCompileAux && !EditorApplication.isCompiling;
-
-		if(currentScene != EditorSceneManager.GetActiveScene().name || isFinishedCompiling){
+	public void OnHierarchyChange() {
+		if(currentScene != EditorSceneManager.GetActiveScene().name) {
 			isCompileAux = false;
-			Repaint();
 			Reload();
 		}
 	}
 
 	void OnGUI(){
 		if(tagsList != null && tagsList.Length > 0){
-			try{
-				scrollPosition = GUILayout.BeginScrollView(scrollPosition, false, false);
+			scrollPosition = GUILayout.BeginScrollView(scrollPosition, false, false);
 
-				GUILayout.Label("Toggle UI Elements", EditorStyles.boldLabel);
-
-				if(GUILayout.Button("Disable All")){
-					DisableUIElements();
-				}
-
-				for(int i = 0; i < UIElementsList.Count; i++){
+			GUILayout.Label("Toggle UI Elements", EditorStyles.boldLabel);
+			if(GUILayout.Button("Disable All")){
+				DisableUIElements();
+			}
+			for(int i = 0; i < UIElementsList.Count; i++){
+				if(UIElementsList[i] != null) {	// Some elements are persistent-destroyed
 					GUILayout.BeginHorizontal();
 					GUILayout.Toggle(elementBoolList[i], "");
 					GUILayout.Label(UIElementsList[i].name);
-					if(GUILayout.Button("Solo", GUILayout.Width(50))){
+					if(GUILayout.Button("Solo", GUILayout.Width(50))) {
 						SoloUI(UIElementsList[i]);
 					}
 					GUILayout.EndHorizontal();
 				}
-
-				if(GUILayout.Button("Reset", GUILayout.Height(50))){
-					ResetUIElements();
-				}
-
-				GUILayout.EndScrollView();
 			}
-			catch(Exception e){
-				Debug.LogWarning("UIHelper exception caught, reloading..." + e.ToString());
-				Reload();
+
+			if(GUILayout.Button("Reset", GUILayout.Height(50))){
+				ResetUIElements();
 			}
+			GUILayout.EndScrollView();
 		}
 	}
 
