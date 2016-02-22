@@ -10,4 +10,13 @@ public class MutableDataChallenge {
 			ChallengeProgress.Add(temp[i].ID, ChallengeReward.None);
 		}
 	}
+
+	public void PostLogicCheck() {
+		List<ImmutableDataChallenge> temp = DataLoaderChallenge.GetDataList();
+		for(int i = 0; i < temp.Count; i++) {
+			if(!ChallengeProgress.ContainsKey(temp[i].ID)) {
+				ChallengeProgress.Add(temp[i].ID, ChallengeReward.None);
+			}
+		}
+	}
 }

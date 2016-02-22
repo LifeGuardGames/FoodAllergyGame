@@ -47,26 +47,33 @@ public class FoodTipController : MonoBehaviour {
 		ImmutableDataFood randomFoodData = GetRandomFood();
 		foodImage.sprite = SpriteCacheManager.GetFoodSpriteData(randomFoodData.SpriteName);
 		foodText.text = LocalizationText.GetText(randomFoodData.FoodNameKey);
+		
+		foreach(Transform child in allergy2Image.transform) {
+			child.gameObject.SetActive(true);
+		}
+		foreach(Transform child in allergy3Image.transform) {
+			child.gameObject.SetActive(true);
+		}
 
 		// Populate the allergies and turn off unused ones
 		switch(randomFoodData.AllergyList.Count) {
 			case 1:
 				allergy1Image.sprite = SpriteCacheManager.GetAllergySpriteData(randomFoodData.AllergyList[0]);
-				Destroy(allergy2Image.GetComponent<Image>());        // Destroy everything but not object itself
+				allergy2Image.enabled = false;
 				foreach(Transform child in allergy2Image.transform) {
-					Destroy(child.gameObject);
+					child.gameObject.SetActive(false);
 				}
-				Destroy(allergy3Image.GetComponent<Image>());        // Destroy everything but not object itself
+				allergy3Image.enabled = false;
 				foreach(Transform child in allergy3Image.transform) {
-					Destroy(child.gameObject);
+					child.gameObject.SetActive(false);
 				}
 				break;
 			case 2:
 				allergy1Image.sprite = SpriteCacheManager.GetAllergySpriteData(randomFoodData.AllergyList[0]);
 				allergy2Image.sprite = SpriteCacheManager.GetAllergySpriteData(randomFoodData.AllergyList[1]);
-				Destroy(allergy3Image.GetComponent<Image>());        // Destroy everything but not object itself
+				allergy3Image.enabled = false;
 				foreach(Transform child in allergy3Image.transform) {
-					Destroy(child.gameObject);
+					child.gameObject.SetActive(false);
 				}
 				break;
 			case 3:

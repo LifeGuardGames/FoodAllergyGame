@@ -62,6 +62,7 @@ public class DataManager : Singleton<DataManager> {
 		}
 		else{
 			LoadGameData();
+			PostLoadLogic();
 		}
 		GameData.Session.start = System.DateTime.Now;
 		Mixpanel.Token = "9b68a5560f74b183728b7c30cb4a54fc";
@@ -153,7 +154,9 @@ public class DataManager : Singleton<DataManager> {
 			}
 		}
     }
-
+	private void PostLoadLogic() {
+		gameData.Challenge.PostLogicCheck();
+	}
 	#region Multi-scene Data Handling
 
 	// This is called from both Restaurant and Deco scene, have this datamanager handle this
