@@ -398,7 +398,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			return ChallengeReward.Bronze;
 		}
 		else {
-			return ChallengeReward.None;
+			return ChallengeReward.Stone;
 		}
 	}
 
