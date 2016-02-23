@@ -42,8 +42,8 @@ public class RestaurantUIManager : MonoBehaviour{
 		AudioManager.Instance.PlayClip("EndOfDay");
 	}
 
-	public void ChallengeComplete(int score, int cashEarned, int negativeCash, ChallengeReward rew) {
-		challengeOverUiController.Populate(negativeCash, cashEarned, score, rew);
+	public void ChallengeComplete(int score, int cashEarned, int negativeCash) {
+		challengeOverUiController.Populate(negativeCash, cashEarned, score);
 		challengeOverUiController.gameObject.SetActive(true);
 		challengeOverUiController.StartBar();
 		AudioManager.Instance.FadeOutPlayNewBackground(null);

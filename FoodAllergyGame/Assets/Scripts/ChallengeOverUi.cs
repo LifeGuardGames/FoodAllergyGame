@@ -14,13 +14,22 @@ public class ChallengeOverUi : MonoBehaviour {
 	public Image Bronze;
 	public Image Stone;
 	public ChallengeProgressBarController prog;
+	public int deltaCoinsAux;
 
-	public void Populate(int negativeCash, int cashEarned, int score, ChallengeReward rew) {
-		textScore.text = score.ToString();
+	public void Populate(int negativeCash, int cashEarned, int score) {
 		textPointsEarned.text = cashEarned.ToString();
 		textPointsLost.text = negativeCash.ToString();
+		deltaCoinsAux = score;
+	}
+
+	public void StartBar() {
+		StartCoroutine("ChangePoints");
+		prog.MoveBar();
+	}
+
+	public void UpdateImage(ChallengeReward rew) {
 		if(rew == ChallengeReward.Silver) {
-			Stone.gameObject.SetActive(false);
+			Bronze.gameObject.SetActive(false);
 			Silver.gameObject.SetActive(true);
 		}
 		if(rew == ChallengeReward.Bronze) {
@@ -28,12 +37,26 @@ public class ChallengeOverUi : MonoBehaviour {
 			Bronze.gameObject.SetActive(true);
 		}
 		if(rew == ChallengeReward.Gold) {
-			Stone.gameObject.SetActive(false);
+			Silver.gameObject.SetActive(false);
 			medal.gameObject.SetActive(true);
 		}
 	}
-
-	public void StartBar() {
-		prog.MoveBar();
+	private IEnumerator ChangePoints() {
+		yield return new WaitForSeconds(0.5f);
+		Debug.Log("Scrolling");
+		int currentCoinsAux = 0;
+		int step = 1;
+		while(currentCoinsAux != deltaCoinsAux) {
+			if(deltaCoinsAux > 0) {
+				currentCoinsAux = Mathf.Max(currentCoinsAux += step, 0);
+			}
+			else {
+				currentCoinsAux = Mathf.Min(currentCoinsAux -= step, 0);
+			}
+			textScore.text = currentCoinsAux.ToString();
+			Debug.Log("Posting");
+			// wait one frame
+			yield return 0;
+		}
 	}
 }

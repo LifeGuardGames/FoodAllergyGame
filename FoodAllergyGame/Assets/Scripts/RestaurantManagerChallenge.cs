@@ -240,7 +240,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 
 					// Show day complete UI
 					//restaurantUI.DayComplete(challengeAI.MissingCustomers, dayEarnedCash, 0, dayCashRevenue);
-					restaurantUI.ChallengeComplete(challengeAI.Score,dayEarnedCash, challengeAI.NegativeCash, RewardScore());
+					restaurantUI.ChallengeComplete(challengeAI.Score,dayEarnedCash, challengeAI.NegativeCash);
 					DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "";
 					// Save game data
 					DataManager.Instance.SaveGameData();
