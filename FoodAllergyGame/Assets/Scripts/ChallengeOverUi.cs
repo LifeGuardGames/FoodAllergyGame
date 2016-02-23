@@ -13,6 +13,7 @@ public class ChallengeOverUi : MonoBehaviour {
 	public Image Silver;
 	public Image Bronze;
 	public Image Stone;
+	public ChallengeProgressBarController prog;
 
 	public void Populate(int negativeCash, int cashEarned, int score, ChallengeReward rew) {
 		textScore.text = score.ToString();
@@ -30,5 +31,9 @@ public class ChallengeOverUi : MonoBehaviour {
 			Stone.gameObject.SetActive(false);
 			medal.gameObject.SetActive(true);
 		}
+	}
+
+	public void StartBar() {
+		prog.MoveBar();
 	}
 }

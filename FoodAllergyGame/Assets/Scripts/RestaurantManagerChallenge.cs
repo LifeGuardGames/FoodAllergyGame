@@ -14,7 +14,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	public FlyThruLoader fly;
 	public ChallengeScoreController scoreBoard;
 	
-	ImmutableDataChallenge chall;
+	public ImmutableDataChallenge chall;
 	int interval = 0;
 	
 
@@ -401,6 +401,8 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			return ChallengeReward.Stone;
 		}
 	}
-
+	public int GetScore() {
+		return challengeAI.Score;
+	}
 	
 }
