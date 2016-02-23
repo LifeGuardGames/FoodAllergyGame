@@ -43,7 +43,6 @@ public class ChallengeOverUi : MonoBehaviour {
 	}
 	private IEnumerator ChangePoints() {
 		yield return new WaitForSeconds(0.5f);
-		Debug.Log("Scrolling");
 		int currentCoinsAux = 0;
 		int step = 1;
 		while(currentCoinsAux != deltaCoinsAux) {
@@ -54,7 +53,6 @@ public class ChallengeOverUi : MonoBehaviour {
 				currentCoinsAux = Mathf.Min(currentCoinsAux -= step, 0);
 			}
 			textScore.text = currentCoinsAux.ToString();
-			Debug.Log("Posting");
 			// wait one frame
 			yield return 0;
 		}

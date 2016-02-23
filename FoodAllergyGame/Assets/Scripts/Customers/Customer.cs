@@ -35,7 +35,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public List <ImmutableDataFood> choices;	// a list containing possible options the user would like to eat
 	public bool hasPowerUp;
 	public int priceMultiplier;
-	private int playAreaIndexAux;				// For use in coroutine, needs parameter with string call
+	private int playAreaIndexAux = -1;				// For use in coroutine, needs parameter with string call
     public float spawnTime;
 	public bool saved = false;
 	public string behavFlow;
@@ -357,6 +357,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	// Time spent reading menu before ordering
 	IEnumerator ReadMenu(){
 		yield return new WaitForSeconds(menuTimer);
+		if(PlayArea.Instance.cantLeave && playAreaIndexAux != -1) {
+			PlayArea.Instance.EndPlayTime(playAreaIndexAux);
+		}
 		currBehav.Reason();
 		if(RestaurantManager.Instance.isTutorial) {
 			this.GetComponent<CustomerTutorial>().NextTableFinger();
@@ -555,8 +558,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		if(!PlayArea.Instance.cantLeave) {
 			// End play
 			transform.localPosition = Vector3.zero; // Move the customer back to its position in line
+			PlayArea.Instance.EndPlayTime(playAreaIndexAux);
 		}
-		PlayArea.Instance.EndPlayTime(playAreaIndexAux);
+		
 		GetComponent<BoxCollider>().enabled = true;
 		StartCoroutine("SatisfactionTimer");
 	}
