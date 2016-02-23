@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
-using System;
 using UnityEditor.SceneManagement;
 
 public class UIHelper : EditorWindow {
@@ -25,7 +24,6 @@ public class UIHelper : EditorWindow {
 		if(tagsList.Length > 0){
 			UIElementsList = GameObject.FindGameObjectsWithTag("UIElementList")[0].GetComponent<UIHelperList>().UIElementList;
 			elementBoolList = GameObject.FindGameObjectsWithTag("UIElementList")[0].GetComponent<UIHelperList>().defaultBools;
-			Debug.Log("RELOADED");
 		}
 	}
 
