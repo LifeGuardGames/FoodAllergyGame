@@ -144,8 +144,8 @@ public class ImmutableDataChallenge  {
 		dayLengthMod = XMLUtils.GetFloat(hashElements["DayLength"] as IXMLNode);
 		allergy = XMLUtils.GetString(hashElements["Allergy"] as IXMLNode, null, error);
 		title = XMLUtils.GetString(hashElements["Title"] as IXMLNode);
-		if(hashElements.Contains("EventDescription")) {
-			challengeDescription = XMLUtils.GetString(hashElements["EventDescription"] as IXMLNode, "", error);     // Optional
+		if(hashElements.Contains("Description")) {
+			challengeDescription = XMLUtils.GetString(hashElements["Description"] as IXMLNode, "", error);     // Optional
 		}
 		waiterMoveMod = XMLUtils.GetFloat(hashElements["WaiterMove"] as IXMLNode);
 		restMode = XMLUtils.GetFloat(hashElements["RestMode"] as IXMLNode);

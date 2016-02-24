@@ -18,6 +18,6 @@ public class ChallengeButton : MonoBehaviour {
 	}
 
 	public void OnButtonClicked() {
-		ChallengeMenuManager.Instance.StartChallenge(challengeID);
+		ChallengeMenuManager.Instance.ShowPrompt(challengeID);
 	}
 }
