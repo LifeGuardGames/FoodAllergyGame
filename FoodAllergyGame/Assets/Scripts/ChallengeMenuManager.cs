@@ -35,7 +35,6 @@ public class ChallengeMenuManager : Singleton<ChallengeMenuManager> {
 
 	public void ShowPrompt(string challengeID) {
 		challengeDescription.Populate(challengeID);
-		challengeDescription.gameObject.SetActive(true);
 	}
 
 }

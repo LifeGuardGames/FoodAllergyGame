@@ -10,6 +10,7 @@ public class ChallengeDescriptionController : MonoBehaviour {
 	public Text silverBrake;
 	public Text goldBrake;
 	public Button accept;
+	public TweenToggle tween;
 
 	public void Populate(string challengeID) {
 		ImmutableDataChallenge details = DataLoaderChallenge.GetData(challengeID);
@@ -20,10 +21,11 @@ public class ChallengeDescriptionController : MonoBehaviour {
 		bronzeBrake.text = details.BronzeBreakPoint.ToString();
 		silverBrake.text = details.SilverBreakPoint.ToString();
 		goldBrake.text = details.GoldBreakPoint.ToString();
-		accept.onClick.AddListener(() => ChallengeMenuManager.Instance.StartChallenge(challengeID)); 
+		accept.onClick.AddListener(() => ChallengeMenuManager.Instance.StartChallenge(challengeID));
+		tween.Show();
 	}
 
 	public void Cancel() {
-		this.gameObject.SetActive(false);
+		tween.Hide();
 	} 
 }
