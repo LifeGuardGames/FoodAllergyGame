@@ -11,6 +11,7 @@
     <DayLength>30</DayLength>
     <Allergy>cc</Allergy>
     <Title>Training Day</Title>
+    <Description>Challenge01Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>0</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
@@ -35,6 +36,7 @@
 		<DayLength>30</DayLength>
 		<Allergy>None</Allergy>
 		<Title>Packed In</Title>
+    <Description>Challenge02Desc</Description>
 		<WaiterMove>0</WaiterMove>
 		<RestMode>1</RestMode>
 		<CustomerSpawnTimer>6</CustomerSpawnTimer>
@@ -59,6 +61,7 @@
     <DayLength>66</DayLength>
     <Allergy>None</Allergy>
     <Title>MemoryFood</Title>
+    <Description>Challenge03Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>0</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
@@ -83,6 +86,7 @@
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
     <Title>Temper, Temper</Title>
+    <Description>Challenge04Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>0</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
@@ -107,6 +111,7 @@
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
     <Title>Too Much Fun</Title>
+    <Description>Challenge05Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>0</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
@@ -131,6 +136,7 @@
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
     <Title>All work and no play</Title>
+    <Description>Challenge06Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>1</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
@@ -155,6 +161,7 @@
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
     <Title>We're not gonna pay it</Title>
+    <Description>Challenge07Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>0</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
@@ -179,6 +186,7 @@
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
     <Title>Talkie Talkie</Title>
+    <Description>Challenge08Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>4</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
@@ -204,6 +212,7 @@
 		<DayLength>72</DayLength>
 		<Allergy>None</Allergy>
 		<Title>Wrong Order</Title>
+    <Description>Challenge09Desc</Description>
 		<WaiterMove>0</WaiterMove>
 		<RestMode>0</RestMode>
 		<CustomerSpawnTimer>6</CustomerSpawnTimer>
@@ -228,6 +237,7 @@
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
     <Title>Talkie Smashie</Title>
+    <Description>Challenge10Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>4</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
@@ -253,6 +263,7 @@
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
     <Title>Hammer Time</Title>
+    <Description>Challenge11Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>0</RestMode>
     <CustomerSpawnTimer>7</CustomerSpawnTimer>
@@ -266,25 +277,26 @@
     <Vip>VIP00</Vip>
     <Flythru>0</Flythru>
   </Challenge>
-<!-- Rebalance -->
+
   <Challenge ID="Challenge12">
     <ChallengeType>Regular</ChallengeType>
-    <ChallengeMenuSet>ChallengeMenuSet02</ChallengeMenuSet>
+    <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
     <Tier>10</Tier>
-    <KitchenTimer>0</KitchenTimer>
-    <CustomerSet>ChallengeSet14</CustomerSet>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSet13</CustomerSet>
     <CustomerTimer>1</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
-    <Title>Insta Kitchen</Title>
+    <Title>Hungry Hungry Eato</Title>
+    <Description>Challenge12Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>0</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
-    <Bronze>125</Bronze>
-    <Silver>1750</Silver>
-    <Gold>225</Gold>
+    <Bronze>150</Bronze>
+    <Silver>200</Silver>
+    <Gold>250</Gold>
     <Tables>4</Tables>
     <PlayArea>0</PlayArea>
     <Vip>0</Vip>
@@ -301,6 +313,7 @@
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
     <Title>BlackOut</Title>
+    <Description>Challenge13Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>2</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
@@ -325,6 +338,7 @@
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
     <Title>Deviously crooked</Title>
+    <Description>Challenge14Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>0</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
@@ -349,6 +363,7 @@
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
     <Title>Talkie Eatie</Title>
+    <Description>Challenge15Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>4</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
@@ -366,22 +381,23 @@
 
   <Challenge ID="Challenge16">
     <ChallengeType>Regular</ChallengeType>
-    <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
+    <ChallengeMenuSet>ChallengeMenuSet02</ChallengeMenuSet>
     <Tier>14</Tier>
-    <KitchenTimer>5</KitchenTimer>
-    <CustomerSet>ChallengeSet13</CustomerSet>
+    <KitchenTimer>0</KitchenTimer>
+    <CustomerSet>ChallengeSet14</CustomerSet>
     <CustomerTimer>1</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
-    <Title>Hungry Hungry Eato</Title>
+    <Title>Insta Kitchen</Title>
+    <Description>Challenge16Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>0</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
-    <Bronze>150</Bronze>
-    <Silver>200</Silver>
-    <Gold>250</Gold>
+    <Bronze>125</Bronze>
+    <Silver>1750</Silver>
+    <Gold>225</Gold>
     <Tables>4</Tables>
     <PlayArea>0</PlayArea>
     <Vip>0</Vip>
@@ -398,6 +414,7 @@
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
     <Title>Talkie Hungry Eatie</Title>
+    <Description>Challenge17Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>4</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
@@ -423,6 +440,7 @@
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
     <Title>Talkie Black Outie</Title>
+    <Description>Challenge18Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>4</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
@@ -448,6 +466,7 @@
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
     <Title>Talkie All...ie?</Title>
+    <Description>Challenge19Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>4</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
@@ -473,6 +492,7 @@
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
     <Title>Make up Your Mind</Title>
+    <Descriptions>Challenge20Desc</Descriptions>
     <WaiterMove>0</WaiterMove>
     <RestMode>0</RestMode>
     <CustomerSpawnTimer>5</CustomerSpawnTimer>
@@ -497,6 +517,7 @@
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
     <Title>Under the cover of night</Title>
+    <Description>Challenge21Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>2</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>

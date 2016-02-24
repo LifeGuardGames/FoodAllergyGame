@@ -5,6 +5,8 @@ public class EpiPenGameUIManager : MonoBehaviour{
 
 	public TweenToggle gameOverTween;
 	public Text textGrade;
+	public GameTimer tim;
+	public Text timer;
 
 	public void ShowGameOver(int attempts) {
 
@@ -20,7 +22,7 @@ public class EpiPenGameUIManager : MonoBehaviour{
 		else if(attempts > 3) {
 			textGrade.text = "D";
 		}
-
+		timer.text =  tim.counter.text;
 		gameOverTween.Show();
     }
 
