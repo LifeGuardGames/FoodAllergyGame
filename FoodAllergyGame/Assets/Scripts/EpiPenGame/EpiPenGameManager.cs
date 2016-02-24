@@ -23,6 +23,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	private int pickSlotPage = 0;
 	private int pickSlotPageSize = 5;
 	private List<bool> answers;
+	public bool isGameover = false;
 
 	private int attempts = 0;
 
@@ -88,6 +89,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		attempts++;
         if(RefreshTokenState()) {
 			//You Win
+			isGameover = true;
 			UIManager.ShowGameOver(attempts);
 			//TODO preform game over logic here
 		}
