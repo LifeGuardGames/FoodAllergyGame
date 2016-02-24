@@ -6,6 +6,7 @@ using System.Linq;
 public class ChallengeMenuManager : Singleton<ChallengeMenuManager> {
 	public GridLayoutGroup challengeGrid;
 	public GameObject challengeButtonPrefab;
+	public ChallengeDescriptionController challengeDescription;
 
 	void Start() {
 		List<ImmutableDataChallenge> unorderedList = DataLoaderChallenge.GetDataList();
@@ -31,4 +32,10 @@ public class ChallengeMenuManager : Singleton<ChallengeMenuManager> {
 		DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = challengeID;
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, showFoodTip: true);
 	}
+
+	public void ShowPrompt(string challengeID) {
+		challengeDescription.Populate(challengeID);
+		challengeDescription.gameObject.SetActive(true);
+	}
+
 }

@@ -55,9 +55,9 @@ public class ImmutableDataChallenge  {
 		get { return title; }
 	}
 
-	private string eventDescription;    // Optional
-	public string EventDescription {
-		get { return eventDescription; }
+	private string challengeDescription;    // Optional
+	public string ChallengeDescription {
+		get { return challengeDescription; }
 	}
 
 
@@ -145,7 +145,7 @@ public class ImmutableDataChallenge  {
 		allergy = XMLUtils.GetString(hashElements["Allergy"] as IXMLNode, null, error);
 		title = XMLUtils.GetString(hashElements["Title"] as IXMLNode);
 		if(hashElements.Contains("EventDescription")) {
-			eventDescription = XMLUtils.GetString(hashElements["EventDescription"] as IXMLNode, "", error);     // Optional
+			challengeDescription = XMLUtils.GetString(hashElements["EventDescription"] as IXMLNode, "", error);     // Optional
 		}
 		waiterMoveMod = XMLUtils.GetFloat(hashElements["WaiterMove"] as IXMLNode);
 		restMode = XMLUtils.GetFloat(hashElements["RestMode"] as IXMLNode);

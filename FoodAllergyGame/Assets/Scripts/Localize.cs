@@ -8,12 +8,16 @@ public class Localize : MonoBehaviour {
 	protected Text textComponent;
 
 	void Start(){
-		if(key != null && key != ""){
+		LocalizeText();
+	}
+
+
+	public void LocalizeText() {
+		if(key != null && key != "") {
 			localizedText = LocalizationText.GetText(key);
 			textComponent = GetComponent<Text>();
 			textComponent.text = localizedText;
 		}
-		_Start();
 	}
 
 	public virtual void _Start(){}
