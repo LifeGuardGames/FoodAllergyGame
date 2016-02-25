@@ -557,7 +557,7 @@
   
   <Challenge ID="ChallengeTut2">
     <ChallengeType>Tutorial</ChallengeType>
-    <ChallengeMenuSet>ChallengeMenuSet00</ChallengeMenuSet>
+    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
     <Tier>0</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>CustomerSetT2</CustomerSet>

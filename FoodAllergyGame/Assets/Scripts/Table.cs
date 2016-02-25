@@ -106,7 +106,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	}
 
 	//in the unfortunate circumstance a customer gets eaten we need to take care of the mess
-	public virtual void CustomerEaten(){
+	public virtual void CustomerEaten(GameObject eater){
 		if(foodSpot.childCount > 0){
 			Destroy(foodSpot.GetChild(0).gameObject);
 		}
@@ -114,7 +114,15 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		Customer customerToEat = GetComponentInChildren<Customer>();
 		customerToEat.state = CustomerStates.Eaten;
 		RestaurantManager.Instance.CustomerLeftSatisfaction(customerToEat, false);
-		CustomerLeaving();
+		Debug.Log("gettingcalled");
+		LeanTween.move(customerToEat.gameObject, eater.transform.position, 5.0f);
+		//CustomerLeaving();
+		inUse = false;
+		Waiter.Instance.RemoveMeal(tableNumber);
+		KitchenManager.Instance.CancelOrder(tableNumber);
+		RestaurantManager.Instance.GetMenuUIController().CancelOrder(tableNumber);
+		ToggleTableNum(false);
+		customerToEat.DestroySelf(5.0f);
 	}
 	
 	//for use by sir table smasher when he does his thing

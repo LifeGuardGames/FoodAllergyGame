@@ -3,8 +3,8 @@
   <Constant Name="EventID" Type="String" Value="Event04" Debug="Core"> </Constant>
   <Constant Name="CustomerSet" Type="String" Value="CustomerSet03" Debug="Core"> </Constant>
   <Constant Name="CurrentCash" Type="Int" Value="1100" Debug="Core"> </Constant>
-  <Constant Name="TotalCash" Type="Int" Value="2000" Debug="Core"> </Constant>
-  <Constant Name="LastTotalCash" Type="Int" Value="1900" Debug="Core"> </Constant>
+  <Constant Name="TotalCash" Type="Int" Value="1200000" Debug="Core"> </Constant>
+  <Constant Name="LastTotalCash" Type="Int" Value="100000" Debug="Core"> </Constant>
   <Constant Name="IsTut1Done" Type="Bool" Value="True" Debug="Tutorial"> </Constant>
   <Constant Name="IsTut3Done" Type="Bool" Value="True" Debug="Tutorial"> </Constant>
   <Constant Name="IsDecoFingerTutDone" Type="Bool" Value="True" Debug="Tutorial"> </Constant>

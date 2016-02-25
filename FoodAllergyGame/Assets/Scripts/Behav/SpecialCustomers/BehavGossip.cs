@@ -20,6 +20,8 @@ public class BehavGossip : Behav {
 			self.transform.SetParent(RestaurantManager.Instance.GetTable(rand).Node.transform);
 			self.transform.localPosition = Vector3.zero;
 			RestaurantManager.Instance.GetTable(rand).isGossiped = true;
+			CustomerAnimationControllerGossiper goss = self.customerAnim as CustomerAnimationControllerGossiper;
+			goss.Gossip();
 		}
 	}
 }

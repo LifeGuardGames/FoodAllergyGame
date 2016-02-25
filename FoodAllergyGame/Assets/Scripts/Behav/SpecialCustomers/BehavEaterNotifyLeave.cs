@@ -35,15 +35,24 @@ public class BehavEaterNotifyLeave : Behav {
 							&& targetCustomer.state != CustomerStates.WaitForOrder
 							&& targetCustomer.gameObject != self.gameObject) {
 
-							// otherwise enjoy the meal
-							RestaurantManager.Instance.GetTable(i).CustomerEaten();
-							targetCustomer.GetComponent<Customer>().DestroySelf(0);
 							self.UpdateSatisfaction(1);
+							// otherwise enjoy the meal
+							RestaurantManager.Instance.GetTable(i).CustomerEaten(self.gameObject);
+							//targetCustomer.GetComponent<Customer>().DestroySelf(0);
+							CustomerAnimControllerEater eat = self.customerAnim as CustomerAnimControllerEater;
+							eat.EatCustomer();
+							self.currBehav = self.GetComponent<CustomerEater>().pastBehav;
 							break;
 						}
 					}
+					if(self.satisfaction == 0) {
+						CustomerAnimControllerEater eat = self.customerAnim as CustomerAnimControllerEater;
+						eat.EatCustomerFail();
+						self.GetComponent<CustomerEater>().StartCoroutine("Eating");
+
+					}
 				}
-				self.currBehav = self.GetComponent<CustomerEater>().pastBehav;
+				
 			}
 			else if(self.state == CustomerStates.InLine) {
 				var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[10]);

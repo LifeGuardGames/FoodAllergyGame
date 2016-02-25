@@ -28,8 +28,10 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	private void RunSetUp() {
 		
 		chall = DataLoaderChallenge.GetData(DataManager.Instance.GetChallenge());
-		scoreBoard.gameObject.SetActive(true);
-		scoreBoard.UpDateScore(0);
+		if(chall.ChallengeType != ChallengeTypes.Tutorial) {
+			scoreBoard.gameObject.SetActive(true);
+			scoreBoard.UpDateScore(0);
+		}
 		if(chall.PlayArea != "0") {
 			play.LoadDeco(DataLoaderDecoItem.GetData(chall.PlayArea));
 		}
@@ -239,8 +241,12 @@ public class RestaurantManagerChallenge : RestaurantManager{
 					AnalyticsManager.Instance.EndGameUsageReport(playAreaUses, vipUses, microwaveUses);
 
 					// Show day complete UI
-					//restaurantUI.DayComplete(challengeAI.MissingCustomers, dayEarnedCash, 0, dayCashRevenue);
-					restaurantUI.ChallengeComplete(challengeAI.Score,dayEarnedCash, challengeAI.NegativeCash);
+					if(chall.ChallengeType == ChallengeTypes.Tutorial) {
+						restaurantUI.DayComplete(challengeAI.MissingCustomers, dayEarnedCash, 0, dayCashRevenue);
+					}
+					else {
+						restaurantUI.ChallengeComplete(challengeAI.Score, dayEarnedCash, challengeAI.NegativeCash);
+					}
 					DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "";
 					// Save game data
 					DataManager.Instance.SaveGameData();

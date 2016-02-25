@@ -32,7 +32,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 		dayCashRevenue = 0;
 		restaurantUI.StartDay();
 		//Debug.Log("Starting Day - Event:" +  eventData.ID + ", Customer Set:" + currSet);
-
+		actTables = 4;
 		dayTime = eventData.DayLengthMod;
 		dayTimeLeft = dayTime;
 

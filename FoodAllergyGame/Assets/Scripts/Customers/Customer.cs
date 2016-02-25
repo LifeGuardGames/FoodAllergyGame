@@ -355,10 +355,12 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 
 	// Time spent reading menu before ordering
-	IEnumerator ReadMenu(){
+	IEnumerator ReadMenu() {
 		yield return new WaitForSeconds(menuTimer);
-		if(PlayArea.Instance.cantLeave && playAreaIndexAux != -1) {
-			PlayArea.Instance.EndPlayTime(playAreaIndexAux);
+		if(PlayArea.Instance != null) { 
+			if(PlayArea.Instance.cantLeave && playAreaIndexAux != -1) {
+				PlayArea.Instance.EndPlayTime(playAreaIndexAux);
+			}
 		}
 		currBehav.Reason();
 		if(RestaurantManager.Instance.isTutorial) {

@@ -13,7 +13,7 @@ public class GameTimer : MonoBehaviour {
 			time += Time.deltaTime;
 			float min = Mathf.Floor(time / 60);
 			float seconds = Mathf.Floor(time % 60);
-			counter.text = min.ToString("00") + " : " + Mathf.RoundToInt(seconds).ToString("00");
+			counter.text = min.ToString("00") + ":" + Mathf.RoundToInt(seconds).ToString("00");
 		}
 	}
 }

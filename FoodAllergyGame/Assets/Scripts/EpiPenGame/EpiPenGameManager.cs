@@ -35,6 +35,9 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	/// Add all the final tokens to the top and keep internal list of all the pick tokens
 	/// </summary>
 	public void StartGame() {
+		UIManager.tim.time = 0.0f;
+		isGameover = false;
+		attempts = 0;
 		allPickTokens = new List<int>();
 
 		// Destroy children beforehand

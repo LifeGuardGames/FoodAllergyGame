@@ -27,7 +27,7 @@ public class BehavGossipReadMenu : Behav {
 		int rand = UnityEngine.Random.Range(0, 10);
 		if(rand > 7) {
 			self.GetComponent<CustomerGossiper>().Gossip();
-			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[2]);
+			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[10]);
 			Behav goss = (Behav)Activator.CreateInstance(type);
 			goss.self = self;
 			goss.Act();

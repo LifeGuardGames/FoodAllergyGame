@@ -13,9 +13,9 @@ public class BehavNotifyLeave : Behav {
 	}
 
 	public override void Act() {
-		Debug.Log(self.state);
+		
 		if(RestaurantManager.Instance.actTables > 0) {
-			
+			Debug.Log(self.state);
 			if(self.satisfaction > 3) {
 				self.satisfaction = 3;
 			}

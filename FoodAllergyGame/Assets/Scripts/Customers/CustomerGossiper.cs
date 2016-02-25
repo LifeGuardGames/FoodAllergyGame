@@ -25,6 +25,7 @@ public class CustomerGossiper : Customer{
 	}
 
 	public void GoAway(){
+		customerAnim.skeletonAnim.state.SetAnimation(0, "WaitingPassive", false);
 		currBehav.Reason();
 		currBehav = pastBehav; 
 	}

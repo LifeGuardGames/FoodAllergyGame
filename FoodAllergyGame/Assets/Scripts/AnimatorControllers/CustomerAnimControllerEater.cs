@@ -8,4 +8,11 @@ public class CustomerAnimControllerEater : CustomerAnimController {
 		skeletonAnim.state.SetAnimation(0, "AllergySaved", false);
 		skeletonAnim.state.AddAnimation(0, "WaitingActive", true, 0f);
 	}
+
+	public void EatCustomer (){
+		skeletonAnim.state.SetAnimation(0, "EatCustomerPass",false);
+	}
+	public void EatCustomerFail() {
+		skeletonAnim.state.SetAnimation(0, "EatCustomerFail", false);
+	}
 }

@@ -219,6 +219,6 @@
 		<DecorationsUnlocked>Table03,Kitchen03</DecorationsUnlocked>
 		<StartArtAssets>
 		</StartArtAssets>
-		<IsLastTier>False</IsLastTier>
+		<IsLastTier>True</IsLastTier>
 	</Tier>
 </Tiers>
