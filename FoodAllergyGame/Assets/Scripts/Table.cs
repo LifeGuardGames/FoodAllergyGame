@@ -115,16 +115,24 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		customerToEat.state = CustomerStates.Eaten;
 		RestaurantManager.Instance.CustomerLeftSatisfaction(customerToEat, false);
 		Debug.Log("gettingcalled");
-		LeanTween.move(customerToEat.gameObject, eater.transform.position, 5.0f);
+		StartCoroutine(Eaten(eater));
 		//CustomerLeaving();
 		inUse = false;
 		Waiter.Instance.RemoveMeal(tableNumber);
 		KitchenManager.Instance.CancelOrder(tableNumber);
 		RestaurantManager.Instance.GetMenuUIController().CancelOrder(tableNumber);
 		ToggleTableNum(false);
-		customerToEat.DestroySelf(5.0f);
+		
 	}
 	
+	IEnumerator Eaten(GameObject eater) {
+		yield return new WaitForSeconds(3.0f);
+		Customer customerToEat = GetComponentInChildren<Customer>();
+		customerToEat.customerAnim.skeletonAnim.GetComponent<MeshRenderer>().sortingOrder = eater.GetComponent<Customer>().customerAnim.skeletonAnim.GetComponent<MeshRenderer>().sortingOrder + 1;
+		LeanTween.move(customerToEat.gameObject, eater.transform.position, 5.0f);
+		customerToEat.DestroySelf(5.0f);
+	}
+
 	//for use by sir table smasher when he does his thing
 	public virtual void TableSmashed(){
 		isBroken = true;

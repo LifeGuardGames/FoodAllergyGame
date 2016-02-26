@@ -32,7 +32,6 @@ public class BehavEaterNotifyLeave : Behav {
 						// check the customer to make sure they arn't ordering or aren't currently being eaten and of course make sure he isn't eating himself
 						if(targetCustomer.state != CustomerStates.Saved
 							&& targetCustomer.state != CustomerStates.Eaten
-							&& targetCustomer.state != CustomerStates.WaitForOrder
 							&& targetCustomer.gameObject != self.gameObject) {
 
 							self.UpdateSatisfaction(1);
@@ -49,7 +48,6 @@ public class BehavEaterNotifyLeave : Behav {
 						CustomerAnimControllerEater eat = self.customerAnim as CustomerAnimControllerEater;
 						eat.EatCustomerFail();
 						self.GetComponent<CustomerEater>().StartCoroutine("Eating");
-
 					}
 				}
 				
