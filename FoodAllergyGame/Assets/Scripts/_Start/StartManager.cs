@@ -176,4 +176,8 @@ public class StartManager : Singleton<StartManager>{
 		infoCategoriesDemux.Hide();
 		startDemux.Hide();
 	}
+
+	public void CheatyScene() {
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.CHEATY);
+	}
 }
