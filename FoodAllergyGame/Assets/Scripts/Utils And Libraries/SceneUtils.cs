@@ -9,4 +9,5 @@ public static class SceneUtils{
 	public const string DECO = "DecoScene";
 	public const string EPIPEN = "EpiPenGame";
 	public const string CHALLENGEMENU = "ChallengeMenu";
+	public const string CHEATY = "CheatyScene";
 }

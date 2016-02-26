@@ -42,6 +42,11 @@ public class SceneItem : Editor {
 		OpenScene(SceneUtils.EPIPEN);
 	}
 
+	[MenuItem("Open Scene/CheatyScene")]
+	public static void OpenCheaty() {
+		OpenScene(SceneUtils.CHEATY);
+	}
+
 	static void OpenScene(string name){
 		if(EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()){
 			EditorSceneManager.OpenScene("Assets/Scenes/" + name + ".unity");
