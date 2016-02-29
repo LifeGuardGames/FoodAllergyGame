@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class ShopEntranceUIController : MonoBehaviour {
 
@@ -10,7 +9,7 @@ public class ShopEntranceUIController : MonoBehaviour {
 	public void Show(bool isFirstTime){
 		gameObject.SetActive(true);
 		if(isFirstTime){
-			StartManager.Instance.DecoEntranceUIController.ToggleClickable(false);
+			ToggleClickable(false);
 			StartManager.Instance.DinerEntranceUIController.ToggleClickable(false);
 			PlayAppearAnimation();
 		}
@@ -44,7 +43,7 @@ public class ShopEntranceUIController : MonoBehaviour {
 		Debug.Log("CALL ME");
 		// Show the tutorial finger
 		tutorialFinger.SetActive(true);
-		StartManager.Instance.DecoEntranceUIController.ToggleClickable(true); // NOTE: Don't show diner
+		ToggleClickable(true); // NOTE: Don't show diner
 	}
 
 	public void ToggleClickable(bool isClickable){

@@ -14,14 +14,19 @@ public class StartManager : Singleton<StartManager>{
 
 	public GameObject unlockParent;
 
-	public ShopEntranceUIController decoEntranceUIController;
-	public ShopEntranceUIController DecoEntranceUIController {
-		get { return decoEntranceUIController; }
-	}
-
 	public DinerEntranceUIController dinerEntranceUIController;
 	public DinerEntranceUIController DinerEntranceUIController {
 		get { return dinerEntranceUIController; }
+	}
+
+	public ShopEntranceUIController shopEntranceUIController;
+	public ShopEntranceUIController ShopEntranceUIController {
+		get { return shopEntranceUIController; }
+	}
+
+	public ChallengeMenuEntranceUIController challengeMenuEntranceUIController;
+	public ChallengeMenuEntranceUIController ChallengeMenuEntranceUIController {
+		get { return challengeMenuEntranceUIController; }
 	}
 
 	public NewItemUIController newItemUIController;
@@ -37,21 +42,35 @@ public class StartManager : Singleton<StartManager>{
 
 		// First restaurant tutorial
 		if(DataManager.Instance.GameData.Tutorial.IsTutorial1Done == false){
-			decoEntranceUIController.Hide();
+			shopEntranceUIController.Hide();
 			unlockParent.SetActive(false); // TODO clean this up
 			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut1";
 		}
 		else {	// Default case
+			// TODO Refactor this logic
 			// Show the deco entrance
 			if(TierManager.Instance.CurrentTier >= 3) {
-				bool isFirstTimeEntrance = DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance;
-				IsShopAppearHideDinerOverride = isFirstTimeEntrance;
-                decoEntranceUIController.Show(isFirstTimeEntrance);
+				bool isFirstTimeShop = DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance;
+				IsShopAppearHideDinerOverride = isFirstTimeShop;
+                shopEntranceUIController.Show(isFirstTimeShop);
 			}
 			else {
-				decoEntranceUIController.Hide();
+				shopEntranceUIController.Hide();
 			}
-            unlockParent.SetActive(false); // TODO clean this up
+
+			// Show the challenge menu entrance
+			if(TierManager.Instance.CurrentTier >= 3) {
+				bool isFirstTimeChallenge = DataManager.Instance.GameData.Challenge.IsFirstTimeChallengeEntrance;
+				if(!IsShopAppearHideDinerOverride) {
+					IsShopAppearHideDinerOverride = isFirstTimeChallenge;
+				}
+				ChallengeMenuEntranceUIController.Show(isFirstTimeChallenge);
+			}
+			else {
+				ChallengeMenuEntranceUIController.Hide();
+			}
+
+			unlockParent.SetActive(false); // TODO clean this up
 
 			if(DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent) {
 				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = TierManager.Instance.GetNewEvent();
@@ -67,7 +86,7 @@ public class StartManager : Singleton<StartManager>{
 
 		// Check if tier bar needs to be updated
 		if(CashManager.Instance.IsNeedToSyncTotalCash()) {
-			DecoEntranceUIController.ToggleClickable(false);
+			ShopEntranceUIController.ToggleClickable(false);
 			DinerEntranceUIController.ToggleClickable(false);
 
 			int oldTotalCash = CashManager.Instance.LastSeenTotalCash;
@@ -78,7 +97,7 @@ public class StartManager : Singleton<StartManager>{
 
 		if(TierManager.Instance.IsNewUnlocksAvailable){
 			if(!string.IsNullOrEmpty(DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge)){
-				DecoEntranceUIController.ToggleClickable(false);
+				ShopEntranceUIController.ToggleClickable(false);
 				DinerEntranceUIController.ToggleClickable(false);
 			}
 
@@ -153,7 +172,9 @@ public class StartManager : Singleton<StartManager>{
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.DECO, "LoadingKeyDecoration");
 	}
 
-	public void OnInfoButtonClicked(){
+	public void ChallengeMenuButtonClicked(){
+		DataManager.Instance.GameData.Challenge.IsFirstTimeChallengeEntrance = false;
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.CHALLENGEMENU, "LoadingKeyDecoration");
 	}
 
 	public void ShowStartDemux(){

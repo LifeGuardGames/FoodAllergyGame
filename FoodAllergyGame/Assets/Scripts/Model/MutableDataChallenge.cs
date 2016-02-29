@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
 
 public class MutableDataChallenge {
+	public bool IsFirstTimeChallengeEntrance { get; set; }
 	public Dictionary <string , ChallengeReward> ChallengeProgress { get; set; }
 
 	public MutableDataChallenge() {
+		IsFirstTimeChallengeEntrance = true;
+
 		ChallengeProgress = new Dictionary<string, ChallengeReward>();
 		List<ImmutableDataChallenge> temp = DataLoaderChallenge.GetDataList();
 		for(int i = 0; i  < temp.Count; i++) {
