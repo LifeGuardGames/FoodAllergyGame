@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class DecoTabController : MonoBehaviour {
 	public DecoTypes deco;
-	// Use this for initialization
-	void Start () {
+
+	void Start() {
+		Debug.Log("UNlocked ? " + DecoManager.Instance.IsCategoryUnlocked(deco));
 		if(!DecoManager.Instance.IsCategoryUnlocked(deco)) {
-			this.gameObject.SetActive(false);
+			gameObject.SetActive(false);
 		}
 	}
 }

@@ -27,56 +27,70 @@ public class TierManager : Singleton<TierManager> {
 		get{ return currentTierUnlocks; }
 	}
 
+	private bool isTierDataInitialized = false;	// Making sure data is only initialized once
+	public bool IsTierDataInitialized {
+		get{ return isTierDataInitialized; }
+	}
+
+	void Awake() {
+		if(!isTierDataInitialized) {
+			RecalculateTier();
+        }
+	}
+
 	// Recalculate the tier given a certain algorithm
-	// NOTE: Should be done on StartScene ONLY, does NOT support multiple tiers!
-	public void RecalculateTier(){
-		isNewUnlocksAvailable = false;
-		int oldTier = DataLoaderTiers.GetTierFromCash(CashManager.Instance.LastSeenTotalCash);
-		currentTier = oldTier; // TODO Triple check this line
-		int newTier = DataLoaderTiers.GetTierFromCash(CashManager.Instance.TotalCash);
+	// NOTE: does NOT support multiple tiers!
+	public void RecalculateTier() {
+		if(!isTierDataInitialized) {
+			isTierDataInitialized = true;
+			isNewUnlocksAvailable = false;
+			int oldTier = DataLoaderTiers.GetTierFromCash(CashManager.Instance.LastSeenTotalCash);
+			currentTier = oldTier; // TODO Triple check this line
+			int newTier = DataLoaderTiers.GetTierFromCash(CashManager.Instance.TotalCash);
 
-		// If there is a change in tier, run logic
-		// INVARIABLE: Tiers are maximum one above, never multiple tiers at once
-		if(oldTier < newTier){
-			if(newTier - oldTier > 1){
-				Debug.LogError("Multiple tiers progressed, messes with unlock progression");
-			}
-			currentTierUnlocks = GetAllUnlocksAtTier(newTier);
+			// If there is a change in tier, run logic
+			// INVARIABLE: Tiers are maximum one above, never multiple tiers at once
+			if(oldTier < newTier) {
+				if(newTier - oldTier > 1) {
+					Debug.LogError("Multiple tiers progressed, messes with unlock progression");
+				}
+				currentTierUnlocks = GetAllUnlocksAtTier(newTier);
 
-			// Check if the data structure has any unlocks
-			foreach(KeyValuePair<AssetTypes, List<string>> hashEntry in currentTierUnlocks){
-				if(hashEntry.Key == AssetTypes.Slot){	// Slot always has an entry, check value
-					if(hashEntry.Value[0] != "0"){
-						isNewUnlocksAvailable = true;
-						break;
+				// Check if the data structure has any unlocks
+				foreach(KeyValuePair<AssetTypes, List<string>> hashEntry in currentTierUnlocks) {
+					if(hashEntry.Key == AssetTypes.Slot) {  // Slot always has an entry, check value
+						if(hashEntry.Value[0] != "0") {
+							isNewUnlocksAvailable = true;
+							break;
+						}
+					}
+					else {
+						if(hashEntry.Value.Count > 0) {
+							isNewUnlocksAvailable = true;
+							break;
+						}
 					}
 				}
-				else{
-					if(hashEntry.Value.Count > 0){
-						isNewUnlocksAvailable = true;
-						break;
+
+				if(isNewUnlocksAvailable) {
+					// Add any tutorial overrides to be loaded next
+					List<string> unlockedSpecialDecos = currentTierUnlocks[AssetTypes.DecoSpecial];
+					if(unlockedSpecialDecos.Contains("VIP00")) {
+						DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoVIP";
+					}
+					else if(unlockedSpecialDecos.Contains("PlayArea00")) {
+						DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoPlayArea";
+					}
+					else if(unlockedSpecialDecos.Contains("FlyThru00")) {
+						DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoFlyThru";
 					}
 				}
+				currentTier = newTier;
 			}
 
-			if(isNewUnlocksAvailable){
-				// Add any tutorial overrides to be loaded next
-				List<string> unlockedSpecialDecos = currentTierUnlocks[AssetTypes.DecoSpecial];
-				if(unlockedSpecialDecos.Contains("VIP00")){
-					DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoVIP";
-				}
-				else if(unlockedSpecialDecos.Contains("PlayArea00")){
-					DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoPlayArea";
-				}
-				else if(unlockedSpecialDecos.Contains("FlyThru00")){
-					DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoFlyThru";
-				}
-			}
-			currentTier = newTier;
+			// Print out tier
+			Debug.Log("New tier:" + currentTier + "  ||  total cash:" + CashManager.Instance.TotalCash + "  ||  new unlocks? " + IsNewUnlocksAvailable);
 		}
-
-		// Print out tier
-		Debug.Log("New tier:" + currentTier + "  ||  total cash:" + CashManager.Instance.TotalCash + "  ||  new unlocks? " + IsNewUnlocksAvailable);
 	}
 
 	public int GetMenuSlots(){
