@@ -9,6 +9,9 @@ public class CheatyTierUpgrade : MonoBehaviour {
 	/// </summary>
 	public void UpgradeTier() {
 		switch(TierManager.Instance.CurrentTier) {
+			case 0:
+				DataManager.Instance.GameData.Cash.TotalCash = 850;
+				break;
 			case 1:
 				DataManager.Instance.GameData.Cash.TotalCash = 2450;
 				break;

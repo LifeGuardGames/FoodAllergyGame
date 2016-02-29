@@ -12,18 +12,18 @@ public abstract class DecoLoader : MonoBehaviour {
 
 	protected virtual void DecoInit(){}
 
+	// If the deco scene, load by itself
 	void Start(){
-		
 		if(SceneManager.GetActiveScene().name == SceneUtils.DECO){
 			DecoInit(); // Initialize all type specific variables in children
 			isDecoScene = true;
 			DecoManager.Instance.DecoLoaderHash.Add(decoType, this);
+			ImmutableDataDecoItem decoData = DataManager.Instance.GetActiveDecoData(decoType);
+			LoadDeco(decoData);
 		}
-		
 	}
 	// now handles deco init in the resturant scene so we can control when the deco is initialized
 	public void ResturantInit() {
-		
 		DecoInit();
 		if(DataManager.Instance.IsDebug) {
 			if(isDebugEnableDeco) {
@@ -70,7 +70,7 @@ public abstract class DecoLoader : MonoBehaviour {
 			// HACK Disable colliders while not in deco scene
 			if(isDecoScene){
 				loadedObject.GetComponent<Collider>().enabled = false;
-			}
+            }
 		}
 	}
 }

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 public class TableLoader : DecoLoader {
@@ -28,6 +27,8 @@ public class TableLoader : DecoLoader {
 			// HACK Delete colliders while not in deco scene
 			if(isDecoScene){
 				loadedObject.GetComponent<Collider>().enabled = false;
+				loadedObject.GetComponent<Table>().TurnOffHighlight();
+				loadedObject.GetComponent<Table>().ToggleTableNum(false);
 			}
 
 			// Set the index of the table number to index
