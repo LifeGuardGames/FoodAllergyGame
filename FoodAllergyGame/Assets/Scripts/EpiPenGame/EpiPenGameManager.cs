@@ -24,6 +24,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	private int pickSlotPageSize = 5;
 	private List<bool> answers;
 	public bool isGameover = false;
+	public Transform center;
 
 	private int attempts = 0;
 
@@ -93,7 +94,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
         if(RefreshTokenState()) {
 			//You Win
 			isGameover = true;
-			UIManager.ShowGameOver(attempts);
+			AnimateEnding();
 			//TODO preform game over logic here
 		}
 		else {
@@ -201,4 +202,35 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		}
 	}
 	#endregion
+	public void AnimateEnding(int card = 0) {
+		GameObject panel = GameObject.Instantiate(tokenPrefab, finalSlotList[card].transform.position,finalSlotList[card].transform.rotation) as GameObject;
+		finalSlotList[card].GetToken().GetComponent<Image>().enabled = false;
+		panel.transform.SetParent(center.transform);
+		panel.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+		panel.GetComponent<RectTransform>().sizeDelta = finalSlotList[card].GetComponent<RectTransform>().sizeDelta;
+		LeanTween.move(panel, center.transform.position, 2.0f);
+		LeanTween.scale(panel, new Vector3(2f, 2f, 1), 2.0f);
+		//playAnimation start coroutine after
+		StartCoroutine(PlayAnimation(card, panel));
+	}
+
+	IEnumerator PlayAnimation(int card,GameObject panel) {
+		yield return new WaitForSeconds(4.0f);
+		LeanTween.move(panel,finalSlotList[card].transform.position, 2.0f);
+		LeanTween.scale(panel, new Vector3(0.5f, 0.5f, 1), 2.0f);
+		StartCoroutine(ResetAnimation(card, panel));
+	}
+
+	IEnumerator ResetAnimation(int card, GameObject panel) {
+		yield return new WaitForSeconds(2.0f);
+		finalSlotList[card].GetToken().GetComponent<Image>().enabled = true;
+		Destroy(panel.gameObject);
+		card++;
+		if(card < 8) { 
+			AnimateEnding(card);
+		}
+		else {
+			UIManager.ShowGameOver(attempts);
+		}
+	}
 }
