@@ -19,6 +19,7 @@ public class BehavTutorialReadingMenu : Behav {
 	}
 
 	public override void Act() {
+		self.transform.GetChild(3).gameObject.SetActive(false);
 		self.StartCoroutine("ReadMenu");
 		//get food choices 
 		self.choices = FoodManager.Instance.GetTwoMenuFoodChoices(self.desiredFood, self.allergy);

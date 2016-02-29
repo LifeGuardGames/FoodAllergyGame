@@ -26,11 +26,13 @@ public class CustomerTutorial : Customer{
 		hideFinger();
 		base.OrderTaken(food);
 		StartCoroutine("ShowTutFinger");
+		transform.GetChild(3).gameObject.SetActive(false);
 	}
 
 	public override void Eating(){
 		hideTableFinger();
 		base.Eating();
+		transform.GetChild(3).gameObject.SetActive(false);
 		if(!isAllergy){
 			RestaurantManagerChallenge.Instance.GetComponent<RestaurantManagerChallenge>().SpawnSecondTut();
 		}
@@ -62,6 +64,6 @@ public class CustomerTutorial : Customer{
 
 	IEnumerator ShowTableFinger(){
 		yield return new WaitForSeconds(0.2f);
-		transform.GetChild(2).gameObject.SetActive(true);
+		transform.GetChild(3).gameObject.SetActive(true);
 	}
 }
