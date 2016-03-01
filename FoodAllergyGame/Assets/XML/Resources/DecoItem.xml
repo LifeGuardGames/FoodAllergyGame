@@ -106,6 +106,38 @@
 		<SpriteName>RestFloorWizdyPetsPurple</SpriteName>
 		<Tier>12</Tier>
 	</DecoItem>
+  <DecoItem ID = "FloorFancyRed">
+		<Type>Floor</Type>
+		<Price>2200</Price>
+		<TitleKey>FloorFancyRed</TitleKey>
+		<DescriptionKey>FloorFancyRedDesc</DescriptionKey>
+		<SpriteName>RestFloorFancyRed</SpriteName>
+		<Tier>12</Tier>
+	</DecoItem>
+  <DecoItem ID = "FloorFancyBlue">
+		<Type>Floor</Type>
+		<Price>2200</Price>
+		<TitleKey>FloorFancyBlue</TitleKey>
+		<DescriptionKey>FloorFancyBlueDesc</DescriptionKey>
+		<SpriteName>RestFloorFancyBlue</SpriteName>
+		<Tier>14</Tier>
+	</DecoItem>
+  <DecoItem ID = "FloorFancyPurple">
+		<Type>Floor</Type>
+		<Price>2200</Price>
+		<TitleKey>FloorFancyPurple</TitleKey>
+		<DescriptionKey>FloorFancyPurpleDesc</DescriptionKey>
+		<SpriteName>RestFloorFancyPurple</SpriteName>
+		<Tier>16</Tier>
+	</DecoItem>
+  <DecoItem ID = "FloorFancyGold">
+		<Type>Floor</Type>
+		<Price>2200</Price>
+		<TitleKey>FloorFancyGold</TitleKey>
+		<DescriptionKey>FloorFancyGoldDesc</DescriptionKey>
+		<SpriteName>RestFloorFancyGold</SpriteName>
+		<Tier>18</Tier>
+	</DecoItem>
   
 	
 	
