@@ -30,6 +30,17 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	private int attempts = 0;
 
 	void Start() {
+		if(DataManager.Instance.IsDebug) {
+			isTutorial = Constants.GetConstant<bool>("IsEpiPenTutorialDone");
+		}
+		else {
+			if(DataManager.Instance.GameData.Tutorial.IsEpiPenGameTutorialDone) {
+				isTutorial = false;
+			}
+			else {
+				isTutorial = true;
+			}
+		}
 		StartGame();
 	}
 
@@ -37,6 +48,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	/// Add all the final tokens to the top and keep internal list of all the pick tokens
 	/// </summary>
 	public void StartGame() {
+		
 		if(!isTutorial) {
 			UIManager.tim.time = 0.0f;
 			isGameover = false;
