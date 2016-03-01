@@ -25,7 +25,8 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	private List<bool> answers;
 	public bool isGameover = false;
 	public Transform center;
-
+	public bool isTutorial;
+	public GameObject tutFingers;
 	private int attempts = 0;
 
 	void Start() {
@@ -36,8 +37,10 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	/// Add all the final tokens to the top and keep internal list of all the pick tokens
 	/// </summary>
 	public void StartGame() {
-		UIManager.tim.time = 0.0f;
-		isGameover = false;
+		if(!isTutorial) {
+			UIManager.tim.time = 0.0f;
+			isGameover = false;
+		}
 		attempts = 0;
 		allPickTokens = new List<int>();
 
@@ -56,10 +59,17 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 
 		//int tokensToPick = TierManager.Instance.CurrentTier / 2;
 		int tokensToPick = 6;
-
-		// Populate the tokens to remove by order number
-		foreach(int randomIndex in NumberUtils.UniqueRandomList(tokensToPick, 0, totalSteps - 1)) {
-			allPickTokens.Add(randomIndex);
+		if(!isTutorial) {
+			// Populate the tokens to remove by order number
+			foreach(int randomIndex in NumberUtils.UniqueRandomList(tokensToPick, 0, totalSteps - 1)) {
+				allPickTokens.Add(randomIndex);
+			}
+		}
+		else {
+			allPickTokens.Add(0);
+			allPickTokens.Add(3);
+			allPickTokens.Add(7);
+			allPickTokens.Add(5);
 		}
 
 		// Add all the children that are not in the pick token list
@@ -76,6 +86,9 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		}
 		
 		ShowPage(0);
+		if(isTutorial) {
+			PlayAnimation();
+		}
 	}
 
 	/// <summary>
@@ -232,5 +245,60 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		else {
 			UIManager.ShowGameOver(attempts);
 		}
+	}
+
+	private void PlayAnimation(int animat = 0) {
+		tutFingers.transform.GetChild(animat).gameObject.SetActive(true);
+		switch(animat) {
+			case 0:
+				LeanTween.move(currentPickSlotList[animat].GetToken().gameObject, finalSlotList[allPickTokens[animat]].gameObject.transform.position, 1.0f);
+				break;
+			case 1:
+				LeanTween.move(currentPickSlotList[animat].GetToken().gameObject, finalSlotList[5].gameObject.transform.position, 1.0f);
+				break;
+			case 2:
+				LeanTween.move(currentPickSlotList[animat].GetToken().gameObject, finalSlotList[3].gameObject.transform.position, 1.0f);
+				break;
+			case 3:
+				LeanTween.move(currentPickSlotList[animat].GetToken().gameObject, finalSlotList[7].gameObject.transform.position, 1.0f);
+				break;
+		}
+		
+		StartCoroutine(DragPiece(animat));
+	}
+
+	IEnumerator DragPiece(int animat) {
+		yield return new WaitForSeconds(1.0f);
+		tutFingers.transform.GetChild(animat).gameObject.SetActive(false);
+		switch(animat) {
+			case 0:
+				currentPickSlotList[animat].GetToken().gameObject.transform.SetParent(finalSlotList[allPickTokens[animat]].gameObject.transform);
+				break;
+			case 1:
+				currentPickSlotList[animat].GetToken().gameObject.transform.SetParent(finalSlotList[5].gameObject.transform);
+				break;
+			case 2:
+				currentPickSlotList[animat].GetToken().gameObject.transform.SetParent(finalSlotList[3].gameObject.transform);
+				break;
+			case 3:
+				currentPickSlotList[animat].GetToken().gameObject.transform.SetParent(finalSlotList[7].gameObject.transform);
+				break;
+		}
+		
+        animat++;
+		if(animat < 4) {
+			PlayAnimation(animat);
+		}
+		else {
+			tutFingers.transform.GetChild(animat).gameObject.SetActive(true);
+			StartCoroutine(EndTutorial());
+		}
+	}
+
+	IEnumerator EndTutorial() {
+		yield return new WaitForSeconds(1.0f);
+		tutFingers.transform.GetChild(4).gameObject.SetActive(false);
+		isTutorial = false;
+		CheckAnswerButtonClicked();
 	}
 }
