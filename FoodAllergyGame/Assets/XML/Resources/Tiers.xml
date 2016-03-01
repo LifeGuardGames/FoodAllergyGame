@@ -87,7 +87,7 @@
 		<DecorationsUnlocked>Table03,Kitchen03</DecorationsUnlocked>
 		<StartArtAssets>
 		</StartArtAssets>
-		<IsLastTier>True</IsLastTier>
+		<IsLastTier>False</IsLastTier>
 	</Tier>
 	<Tier ID="Tier07">
 		<TierNumber>7</TierNumber>
