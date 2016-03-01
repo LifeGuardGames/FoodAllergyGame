@@ -14,7 +14,7 @@ public class CustomerEater : Customer {
 	}
 
 
-	IEnumerator Eating() {
+	IEnumerator Leaving() {
 		yield return new WaitForSeconds(6.0f);
 		var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[10]);
 		Behav leave = (Behav)Activator.CreateInstance(type);
