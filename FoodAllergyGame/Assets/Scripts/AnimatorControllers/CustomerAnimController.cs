@@ -2,6 +2,7 @@
 
 public class CustomerAnimController : MonoBehaviour {
 	public SkeletonAnimation skeletonAnim;
+	public ParticleSystem puke;
 	protected string currentWaitingStateString;	// For use after losing heart, revert to corrosponding waiting animation
 
 	public bool isLimitAllergyAttackAnim = false;
@@ -50,7 +51,7 @@ public class CustomerAnimController : MonoBehaviour {
 		currentWaitingStateString = "WaitingPassive";
 	}
 
-	public void SetRandomAllergyAttack(){
+	public virtual void SetRandomAllergyAttack(){
 		if(isLimitAllergyAttackAnim){
 			skeletonAnim.state.SetAnimation(0, "AllergyAttack1", false);
 		}
