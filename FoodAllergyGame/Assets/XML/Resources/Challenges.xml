@@ -104,7 +104,7 @@
   <Challenge ID="Challenge05">
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
-    <Tier>5</Tier>
+    <Tier>8</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet06</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
@@ -129,7 +129,7 @@
   <Challenge ID="Challenge06">
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet02</ChallengeMenuSet>
-    <Tier>5</Tier>
+    <Tier>10</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet06</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
@@ -154,7 +154,7 @@
   <Challenge ID="Challenge07">
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet02</ChallengeMenuSet>
-    <Tier>8</Tier>
+    <Tier>12</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet07</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
@@ -179,7 +179,7 @@
   <Challenge ID="Challenge08">
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet02</ChallengeMenuSet>
-    <Tier>8</Tier>
+    <Tier>14</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet01</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
@@ -205,7 +205,7 @@
 	<Challenge ID="Challenge09">
     <ChallengeType>Regular</ChallengeType>
 		<ChallengeMenuSet>ChallengeMenuSet02</ChallengeMenuSet>
-		<Tier>8</Tier>
+		<Tier>16</Tier>
 		<KitchenTimer>5</KitchenTimer>
 		<CustomerSet>ChallengeSet03</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
@@ -230,7 +230,7 @@
   <Challenge ID="Challenge10">
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet02</ChallengeMenuSet>
-    <Tier>10</Tier>
+    <Tier>18</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet09</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
@@ -256,7 +256,7 @@
   <Challenge ID="Challenge11">
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet02</ChallengeMenuSet>
-    <Tier>10</Tier>
+    <Tier>20</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet04</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
@@ -281,7 +281,7 @@
   <Challenge ID="Challenge12">
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
-    <Tier>10</Tier>
+    <Tier>22</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet13</CustomerSet>
     <CustomerTimer>1</CustomerTimer>
@@ -306,7 +306,7 @@
   <Challenge ID="Challenge13">
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
-    <Tier>12</Tier>
+    <Tier>24</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet05</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
@@ -331,7 +331,7 @@
   <Challenge ID="Challenge14">
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
-    <Tier>12</Tier>
+    <Tier>26</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet08</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
@@ -356,7 +356,7 @@
   <Challenge ID="Challenge15">
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
-    <Tier>12</Tier>
+    <Tier>28</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet10</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
@@ -382,7 +382,7 @@
   <Challenge ID="Challenge16">
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet02</ChallengeMenuSet>
-    <Tier>14</Tier>
+    <Tier>30</Tier>
     <KitchenTimer>0</KitchenTimer>
     <CustomerSet>ChallengeSet14</CustomerSet>
     <CustomerTimer>1</CustomerTimer>
@@ -407,7 +407,7 @@
   <Challenge ID="Challenge17">
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
-    <Tier>14</Tier>
+    <Tier>32</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet13</CustomerSet>
     <CustomerTimer>1</CustomerTimer>
@@ -433,7 +433,7 @@
   <Challenge ID="Challenge18">
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
-    <Tier>14</Tier>
+    <Tier>34</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet11</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
@@ -459,7 +459,7 @@
   <Challenge ID="Challenge19">
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
-    <Tier>16</Tier>
+    <Tier>36</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet12</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
@@ -485,7 +485,7 @@
   <Challenge ID="Challenge20">
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
-    <Tier>16</Tier>
+    <Tier>36</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet02</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
@@ -510,7 +510,7 @@
   <Challenge ID="Challenge21">
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
-    <Tier>16</Tier>
+    <Tier>36</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet07</CustomerSet>
     <CustomerTimer>2</CustomerTimer>

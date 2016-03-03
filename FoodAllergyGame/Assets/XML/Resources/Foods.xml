@@ -140,7 +140,7 @@
 		<SpriteName>FoodOreos</SpriteName>
 		<Allergies>Wheat,Dairy</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
-		<Tier>7</Tier>
+		<Tier>9</Tier>
 		<Reward>3</Reward>
 		<Slot>1</Slot>
 	</Food>
@@ -149,7 +149,7 @@
 		<SpriteName>FoodPancake</SpriteName>
 		<Allergies>Wheat,Dairy</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
-		<Tier>5</Tier>
+		<Tier>11</Tier>
 		<Reward>3</Reward>
 		<Slot>1</Slot>
 	</Food>
@@ -158,7 +158,7 @@
 		<SpriteName>FoodGranolaBar</SpriteName>
 		<Allergies>Wheat,Dairy,Peanut</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
-		<Tier>5</Tier>
+		<Tier>15</Tier>
 		<Reward>5</Reward>
 		<Slot>1</Slot>
 	</Food>
@@ -176,7 +176,7 @@
 		<SpriteName>FoodPeanutIceCreamBar</SpriteName>
 		<Allergies>Dairy,Peanut</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
-		<Tier>5</Tier>
+		<Tier>17</Tier>
 		<Reward>3</Reward>
 		<Slot>1</Slot>
 	</Food>
@@ -185,7 +185,7 @@
 		<SpriteName>FoodYogurtParfait</SpriteName>
 		<Allergies>Dairy,Peanut</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
-		<Tier>11</Tier>
+		<Tier>19</Tier>
 		<Reward>3</Reward>
 		<Slot>1</Slot>
 	</Food>
@@ -203,7 +203,7 @@
 		<SpriteName>FoodPBCheeseCrackers</SpriteName>
 		<Allergies>Wheat,Dairy,Peanut</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
-		<Tier>11</Tier>
+		<Tier>21</Tier>
 		<Reward>5</Reward>
 		<Slot>1</Slot>
 	</Food>
