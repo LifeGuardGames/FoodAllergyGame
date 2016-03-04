@@ -14,7 +14,7 @@
 		<SpriteName>FoodChicken</SpriteName>
 		<Allergies>None</Allergies>
 		<Keywords>Meal</Keywords>
-		<Tier>13</Tier>
+		<Tier>3</Tier>
 		<Reward>1</Reward>
 		<Slot>1</Slot>
 	</Food>
