@@ -1,11 +1,8 @@
 using UnityEngine;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 
 public class TierManager : Singleton<TierManager> {
-
-	private string tierXMLPrefix = "Tier";	// Prefix of the tier xml keys, ie. "Tier04"
+	private string tierXMLPrefix = "Tier";			// Prefix of the tier xml keys, ie. "Tier04"
 
 	private int currentTier;						// Cached tier for use throughout game
 	public int CurrentTier{
@@ -35,7 +32,7 @@ public class TierManager : Singleton<TierManager> {
 	void Awake() {
 		if(!isTierDataInitialized) {
 			RecalculateTier();
-        }
+		}
 	}
 
 	// Recalculate the tier given a certain algorithm
@@ -163,5 +160,26 @@ public class TierManager : Singleton<TierManager> {
 		unlockHash.Add(AssetTypes.Slot, slotList);
 
 		return unlockHash;
+	}
+
+	public void PrintAllUnlocksDebug() {
+		for(int i = 0; i < 36; i++) {
+			Debug.Log(i + " --------------");
+			// Check if the data structure has any unlocks
+			foreach(KeyValuePair<AssetTypes, List<string>> hashEntry in GetAllUnlocksAtTier(i)) {
+				if(hashEntry.Key == AssetTypes.Slot) {  // Slot always has an entry, check value
+					if(hashEntry.Value[0] != "0") {
+						Debug.Log("   slot");
+					}
+				}
+				else {
+					if(hashEntry.Value.Count > 0) {
+						foreach(string s in hashEntry.Value) {
+							Debug.Log("   " + s);
+						}
+					}
+				}
+			}
+		}
 	}
 }
