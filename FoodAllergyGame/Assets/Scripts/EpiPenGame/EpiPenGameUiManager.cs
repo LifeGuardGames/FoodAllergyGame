@@ -4,23 +4,23 @@ using UnityEngine.UI;
 public class EpiPenGameUIManager : MonoBehaviour{
 
 	public TweenToggle gameOverTween;
-	public Text textGrade;
+	public Image imgRank;
 	public GameTimer tim;
 	public Text timer;
 
 	public void ShowGameOver(int attempts) {
 
 		if(attempts == 1) {
-			textGrade.text = "A";
+			imgRank.sprite = SpriteCacheManager.GetChallengeButton(ChallengeReward.Gold);
 		}
 		else if(attempts == 2) {
-			textGrade.text = "B";
+			imgRank.sprite = SpriteCacheManager.GetChallengeButton(ChallengeReward.Silver);
 		}
 		else if(attempts == 3) {
-			textGrade.text = "C";
+			imgRank.sprite = SpriteCacheManager.GetChallengeButton(ChallengeReward.Bronze);
 		}
 		else if(attempts > 3) {
-			textGrade.text = "D";
+			imgRank.sprite = SpriteCacheManager.GetChallengeButton(ChallengeReward.Stone);
 		}
 		timer.text =  tim.counter.text;
 		gameOverTween.Show();

@@ -33,6 +33,7 @@ public class TierManager : Singleton<TierManager> {
 		if(!isTierDataInitialized) {
 			RecalculateTier();
 		}
+		PrintAllUnlocksDebug();
 	}
 
 	// Recalculate the tier given a certain algorithm
@@ -163,7 +164,7 @@ public class TierManager : Singleton<TierManager> {
 	}
 
 	public void PrintAllUnlocksDebug() {
-		for(int i = 0; i < 36; i++) {
+		for(int i = 0; i < 37; i++) {
 			Debug.Log(i + " --------------");
 			// Check if the data structure has any unlocks
 			foreach(KeyValuePair<AssetTypes, List<string>> hashEntry in GetAllUnlocksAtTier(i)) {

@@ -51,7 +51,7 @@ public class StartManager : Singleton<StartManager>{
 			// Show the deco entrance
 			if(TierManager.Instance.CurrentTier >= 3) {
 				bool isFirstTimeShop = DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance;
-				IsShopAppearHideDinerOverride = isFirstTimeShop;
+				IsShopAppearHideDinerOverride = false;
                 shopEntranceUIController.Show(isFirstTimeShop);
 			}
 			else {
@@ -62,7 +62,7 @@ public class StartManager : Singleton<StartManager>{
 			if(TierManager.Instance.CurrentTier >= 3) {
 				bool isFirstTimeChallenge = DataManager.Instance.GameData.Challenge.IsFirstTimeChallengeEntrance;
 				if(!IsShopAppearHideDinerOverride) {
-					IsShopAppearHideDinerOverride = isFirstTimeChallenge;
+					IsShopAppearHideDinerOverride = false;
 				}
 				ChallengeMenuEntranceUIController.Show(isFirstTimeChallenge);
 			}
@@ -94,7 +94,7 @@ public class StartManager : Singleton<StartManager>{
 			NotificationQueueDataTierProgress tierNotif = new NotificationQueueDataTierProgress(SceneUtils.START, oldTotalCash, newTotalCash);
 			NotificationManager.Instance.AddNotification(tierNotif);
 		}
-
+		
 		if(TierManager.Instance.IsNewUnlocksAvailable){
 			if(!string.IsNullOrEmpty(DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge)){
 				ShopEntranceUIController.ToggleClickable(false);

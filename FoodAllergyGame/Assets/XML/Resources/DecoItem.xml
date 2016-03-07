@@ -199,7 +199,7 @@
     <TitleKey>PlayAreaArcade</TitleKey>
     <DescriptionKey>PlayAreaArcadeDesc</DescriptionKey>
     <SpriteName>RestPlayAreaArcade</SpriteName>
-    <Tier>10</Tier>
+    <Tier>-1</Tier>
   </DecoItem>
 	
 	
@@ -209,7 +209,7 @@
 		<TitleKey>None</TitleKey>
 		<DescriptionKey>NoneDesc</DescriptionKey>
 		<SpriteName>None</SpriteName>
-		<Tier>10</Tier>
+		<Tier>-1</Tier>
 	</DecoItem>
   
 

@@ -70,7 +70,7 @@
 	<Tier ID="Tier05">
 		<TierNumber>5</TierNumber>
 		<CashCutoffFloor>4650</CashCutoffFloor>
-		<MenuSlots>7</MenuSlots>
+		<MenuSlots>6</MenuSlots>
 		<EventsUnlocked>Event10,Event11,Event12,Event13,Event14</EventsUnlocked>
 		<DecorationsUnlocked>
 		</DecorationsUnlocked>
@@ -81,7 +81,7 @@
 	<Tier ID="Tier06">
 		<TierNumber>6</TierNumber>
 		<CashCutoffFloor>5800</CashCutoffFloor>
-		<MenuSlots>7</MenuSlots>
+		<MenuSlots>6</MenuSlots>
 		<EventsUnlocked>
 		</EventsUnlocked>
 		<DecorationsUnlocked>Table03,Kitchen03</DecorationsUnlocked>
@@ -92,7 +92,7 @@
 	<Tier ID="Tier07">
 		<TierNumber>7</TierNumber>
 		<CashCutoffFloor>7000</CashCutoffFloor>
-		<MenuSlots>8</MenuSlots>
+		<MenuSlots>7</MenuSlots>
 		<EventsUnlocked>
 		</EventsUnlocked>
 		<DecorationsUnlocked>Table03,Kitchen03</DecorationsUnlocked>
@@ -103,7 +103,7 @@
 	<Tier ID="Tier08">
 		<TierNumber>8</TierNumber>
 		<CashCutoffFloor>8300</CashCutoffFloor>
-		<MenuSlots>8</MenuSlots>
+		<MenuSlots>7</MenuSlots>
 		<EventsUnlocked>
 		</EventsUnlocked>
 		<DecorationsUnlocked>Table03,Kitchen03</DecorationsUnlocked>
@@ -114,7 +114,7 @@
 	<Tier ID="Tier09">
 		<TierNumber>9</TierNumber>
 		<CashCutoffFloor>10000</CashCutoffFloor>
-		<MenuSlots>9</MenuSlots>
+		<MenuSlots>7</MenuSlots>
 		<EventsUnlocked>
 		</EventsUnlocked>
 		<DecorationsUnlocked>Table03,Kitchen03</DecorationsUnlocked>
@@ -125,7 +125,7 @@
 	<Tier ID="Tier10">
 		<TierNumber>10</TierNumber>
 		<CashCutoffFloor>11300</CashCutoffFloor>
-		<MenuSlots>9</MenuSlots>
+		<MenuSlots>7</MenuSlots>
 		<EventsUnlocked>
 		</EventsUnlocked>
 		<DecorationsUnlocked>Table03,Kitchen03</DecorationsUnlocked>
@@ -136,7 +136,7 @@
 	<Tier ID="Tier11">
 		<TierNumber>11</TierNumber>
 		<CashCutoffFloor>12600</CashCutoffFloor>
-		<MenuSlots>10</MenuSlots>
+		<MenuSlots>8</MenuSlots>
 		<EventsUnlocked>
 		</EventsUnlocked>
 		<DecorationsUnlocked>Table03,Kitchen03</DecorationsUnlocked>
@@ -147,7 +147,7 @@
 	<Tier ID="Tier12">
 		<TierNumber>12</TierNumber>
 		<CashCutoffFloor>13900</CashCutoffFloor>
-		<MenuSlots>10</MenuSlots>
+		<MenuSlots>8</MenuSlots>
 		<EventsUnlocked>
 		</EventsUnlocked>
 		<DecorationsUnlocked>Table03,Kitchen03</DecorationsUnlocked>
@@ -158,7 +158,7 @@
 	<Tier ID="Tier13">
 		<TierNumber>13</TierNumber>
 		<CashCutoffFloor>15200</CashCutoffFloor>
-		<MenuSlots>10</MenuSlots>
+		<MenuSlots>8</MenuSlots>
 		<EventsUnlocked>
 		</EventsUnlocked>
 		<DecorationsUnlocked>Table03,Kitchen03</DecorationsUnlocked>
@@ -169,7 +169,7 @@
 	<Tier ID="Tier14">
 		<TierNumber>14</TierNumber>
 		<CashCutoffFloor>16500</CashCutoffFloor>
-		<MenuSlots>10</MenuSlots>
+		<MenuSlots>8</MenuSlots>
 		<EventsUnlocked>
 		</EventsUnlocked>
 		<DecorationsUnlocked>Table03,Kitchen03</DecorationsUnlocked>
@@ -180,7 +180,7 @@
 	<Tier ID="Tier15">
 		<TierNumber>15</TierNumber>
 		<CashCutoffFloor>17800</CashCutoffFloor>
-		<MenuSlots>10</MenuSlots>
+		<MenuSlots>9</MenuSlots>
 		<EventsUnlocked>
 		</EventsUnlocked>
 		<DecorationsUnlocked>Table03,Kitchen03</DecorationsUnlocked>
@@ -191,7 +191,7 @@
 	<Tier ID="Tier16">
 		<TierNumber>16</TierNumber>
 		<CashCutoffFloor>19100</CashCutoffFloor>
-		<MenuSlots>10</MenuSlots>
+		<MenuSlots>9</MenuSlots>
 		<EventsUnlocked>
 		</EventsUnlocked>
 		<DecorationsUnlocked>Table03,Kitchen03</DecorationsUnlocked>
@@ -202,7 +202,7 @@
 	<Tier ID="Tier17">
 		<TierNumber>17</TierNumber>
 		<CashCutoffFloor>20400</CashCutoffFloor>
-		<MenuSlots>10</MenuSlots>
+		<MenuSlots>9</MenuSlots>
 		<EventsUnlocked>
 		</EventsUnlocked>
 		<DecorationsUnlocked>Table03,Kitchen03</DecorationsUnlocked>
@@ -213,7 +213,7 @@
 	<Tier ID="Tier18">
 		<TierNumber>18</TierNumber>
 		<CashCutoffFloor>21700</CashCutoffFloor>
-		<MenuSlots>10</MenuSlots>
+		<MenuSlots>9</MenuSlots>
 		<EventsUnlocked>
 		</EventsUnlocked>
 		<DecorationsUnlocked>Table03,Kitchen03</DecorationsUnlocked>
@@ -224,7 +224,7 @@
 <Tier ID="Tier19">
 		<TierNumber>19</TierNumber>
 		<CashCutoffFloor>23000</CashCutoffFloor>
-		<MenuSlots>10</MenuSlots>
+		<MenuSlots>9</MenuSlots>
 		<EventsUnlocked>
 		</EventsUnlocked>
 		<DecorationsUnlocked>Table03,Kitchen03</DecorationsUnlocked>
@@ -236,7 +236,7 @@
 <Tier ID="Tier20">
 		<TierNumber>20</TierNumber>
 		<CashCutoffFloor>24300</CashCutoffFloor>
-		<MenuSlots>10</MenuSlots>
+		<MenuSlots>9</MenuSlots>
 		<EventsUnlocked>
 		</EventsUnlocked>
 		<DecorationsUnlocked>Table03,Kitchen03</DecorationsUnlocked>
