@@ -33,7 +33,7 @@ public class TierManager : Singleton<TierManager> {
 		if(!isTierDataInitialized) {
 			RecalculateTier();
 		}
-		PrintAllUnlocksDebug();
+		//PrintAllUnlocksDebug();
 	}
 
 	// Recalculate the tier given a certain algorithm
@@ -151,8 +151,8 @@ public class TierManager : Singleton<TierManager> {
 	public Dictionary<AssetTypes, List<string>> GetAllUnlocksAtTier(int tier){
 		Dictionary<AssetTypes, List<string>> unlockHash = new Dictionary<AssetTypes, List<string>>();
 		unlockHash.Add(AssetTypes.Customer, DataLoaderCustomer.GetIDUnlockedAtTier(tier));
-		unlockHash.Add(AssetTypes.DecoSpecial, DataLoaderDecoItem.GetBasicDecoIDUnlockedAtTier(tier));
-		unlockHash.Add(AssetTypes.DecoBasic,  DataLoaderDecoItem.GetSpecialDecoIDUnlockedAtTier(tier));
+		unlockHash.Add(AssetTypes.DecoSpecial, DataLoaderDecoItem.GetSpecialDecoIDUnlockedAtTier(tier));
+		unlockHash.Add(AssetTypes.DecoBasic, DataLoaderDecoItem.GetBasicDecoIDUnlockedAtTier(tier) );
 		unlockHash.Add(AssetTypes.Food, DataLoaderFood.GetIDUnlockedAtTier(tier));
 		unlockHash.Add(AssetTypes.Challenge, DataLoaderChallenge.GetIDUnlockedAtTier(tier));
 

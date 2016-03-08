@@ -9,6 +9,7 @@ public class MutableDataTutorial{
 	public bool IsMenuPlanningFingerTutDone { get; set; }	// Finger dragging tutorial for menuplanning
 	public bool IsEpiPenGameTutorialDone { get; set; }
 	public int MissedMedic { get; set; }
+	public bool IsSpeDecoTutDone { get; set; }
 
 	public MutableDataTutorial(){
 		IsComicViewed = false;
@@ -18,5 +19,6 @@ public class MutableDataTutorial{
 		IsDecoFingerTutDone = DataManager.Instance.IsDebug ? Constants.GetDebugConstant<bool>("IsDecoFingerTutDone") : false;
 		IsMenuPlanningFingerTutDone = false;
 		IsEpiPenGameTutorialDone = false;
+		IsSpeDecoTutDone = false;
     }
 }

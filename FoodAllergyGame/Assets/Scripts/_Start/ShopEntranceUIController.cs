@@ -6,10 +6,21 @@ public class ShopEntranceUIController : MonoBehaviour {
 	public Animator animator;
 	public GameObject glowSprite;
 
+	void Start() {
+		if(DataManager.Instance.GameData.Tutorial.IsSpeDecoTutDone) {
+			bool isFirstTimeShop = DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance;
+			StartManager.Instance.IsShopAppearHideDinerOverride = isFirstTimeShop;
+			Show(isFirstTimeShop);
+		}
+		else {
+			Hide();
+		}
+	}
+
 	public void Show(bool isFirstTime){
 		gameObject.SetActive(true);
 		if(isFirstTime){
-			ToggleClickable(false);
+			ToggleClickable(true);
 			StartManager.Instance.DinerEntranceUIController.ToggleClickable(false);
 			PlayAppearAnimation();
 		}

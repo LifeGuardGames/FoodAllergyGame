@@ -116,5 +116,12 @@
     <Name>Hungry Eater</Name>
     <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEaterEating,BehavWaitForCheck,BehavEaterNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavNotifyLeave</BehavList>
   </Behav>
-  
+ <Behav ID="BehavFlow23">
+    <Name>VipTutorial</Name>
+    <BehavList>BehavWaitingInLine,BehavVIPTutReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEating,BehavWaitForCheck,BehavVipTutNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital</BehavList>
+  </Behav>  
+ <Behav ID="BehavFlow24">
+    <Name>PlayAreaTutorial</Name>
+    <BehavList>BehavWaitingInLine,BehavPlayAreaTutReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEating,BehavWaitForCheck,BehavNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital</BehavList>
+  </Behav>
 </Behavs>

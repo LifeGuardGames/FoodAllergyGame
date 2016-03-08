@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class TableVIP : Table {
 
@@ -8,13 +9,15 @@ public class TableVIP : Table {
 		Init();
 	}
 	public override void Init() {
-		base.Init();
-		node = Pathfinding.Instance.NodeVIP;
-		CustomerUIController customerUI = this.GetComponent<CustomerUIController>();
-		customerUI.ToggleWait(false);
-		customerUI.ToggleStar(false);
-		customerUI.ToggleAllergyAttack(false);
-		this.GetComponent<BoxCollider>().enabled = true;
+		if(SceneManager.GetActiveScene() != SceneManager.GetSceneByName(SceneUtils.DECO)) {
+			base.Init();
+			node = Pathfinding.Instance.NodeVIP;
+			CustomerUIController customerUI = this.GetComponent<CustomerUIController>();
+			customerUI.ToggleWait(false);
+			customerUI.ToggleStar(false);
+			customerUI.ToggleAllergyAttack(false);
+			this.GetComponent<BoxCollider>().enabled = true;
+		}
 	}
 
 	public override void CustomerLeaving() {

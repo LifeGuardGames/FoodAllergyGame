@@ -57,7 +57,7 @@ public class ShowcaseController : MonoBehaviour {
 		costText.text = decoData.Cost.ToString();
 		
 		// Show the corrosponding buttons based on item state
-		if(DecoManager.Instance.IsDecoUnlocked(decoData.ID)) {		// Locked
+		if(!DecoManager.Instance.IsDecoUnlocked(decoData.ID)) {		// Locked
 			buttonParentBoughtDemux.Hide();
 			buttonParentUnboughtDemux.Hide();
 			buttonParentActiveDemux.Hide();

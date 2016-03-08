@@ -6,6 +6,17 @@ public class ChallengeMenuEntranceUIController : MonoBehaviour {
 	public Animator animator;
 	public GameObject glowSprite;
 
+	void Start() {
+		// Show the challenge menu entrance
+		if(TierManager.Instance.CurrentTier >= 3) {
+			bool isFirstTimeChallenge = DataManager.Instance.GameData.Challenge.IsFirstTimeChallengeEntrance;
+			Show(isFirstTimeChallenge);
+		}
+		else {
+			Hide();
+		}
+	}
+
 	public void Show(bool isFirstTime) {
 		gameObject.SetActive(true);
 		if(isFirstTime) {

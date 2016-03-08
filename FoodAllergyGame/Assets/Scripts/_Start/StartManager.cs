@@ -24,11 +24,6 @@ public class StartManager : Singleton<StartManager>{
 		get { return shopEntranceUIController; }
 	}
 
-	public ChallengeMenuEntranceUIController challengeMenuEntranceUIController;
-	public ChallengeMenuEntranceUIController ChallengeMenuEntranceUIController {
-		get { return challengeMenuEntranceUIController; }
-	}
-
 	public NewItemUIController newItemUIController;
 	public NewItemUIController NewItemUIController{
 		get{ return newItemUIController; }
@@ -49,26 +44,7 @@ public class StartManager : Singleton<StartManager>{
 		else {	// Default case
 			// TODO Refactor this logic
 			// Show the deco entrance
-			if(TierManager.Instance.CurrentTier >= 3) {
-				bool isFirstTimeShop = DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance;
-				IsShopAppearHideDinerOverride = false;
-                shopEntranceUIController.Show(isFirstTimeShop);
-			}
-			else {
-				shopEntranceUIController.Hide();
-			}
-
-			// Show the challenge menu entrance
-			if(TierManager.Instance.CurrentTier >= 3) {
-				bool isFirstTimeChallenge = DataManager.Instance.GameData.Challenge.IsFirstTimeChallengeEntrance;
-				if(!IsShopAppearHideDinerOverride) {
-					IsShopAppearHideDinerOverride = false;
-				}
-				ChallengeMenuEntranceUIController.Show(isFirstTimeChallenge);
-			}
-			else {
-				ChallengeMenuEntranceUIController.Hide();
-			}
+		
 
 			unlockParent.SetActive(false); // TODO clean this up
 

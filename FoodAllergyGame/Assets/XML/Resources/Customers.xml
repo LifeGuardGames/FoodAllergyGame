@@ -233,7 +233,7 @@
 		<SpriteName>CustomerPlayAreaTut</SpriteName>
 		<Script>CustomerPlayAreaTut</Script>
 		<Tier>-1</Tier>
-		<Flow>BehavFlow00</Flow>
+		<Flow>BehavFlow24</Flow>
 	</Customer>
 	<Customer ID="CustomerVIPTut">
 		<CustomerNameKey>CustomerVIPTut</CustomerNameKey>
@@ -241,7 +241,7 @@
 		<SpriteName>CustomerVIPTut</SpriteName>
 		<Script>CustomerVIPTut</Script>
 		<Tier>-1</Tier>
-    <Flow>BehavFlow00</Flow>
+    <Flow>BehavFlow23</Flow>
 	</Customer>
 	<Customer ID="CustomerFlyThruTut">
 		<CustomerNameKey>CustomerFlyThruTut</CustomerNameKey>

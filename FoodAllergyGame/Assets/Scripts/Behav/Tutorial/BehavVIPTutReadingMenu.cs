@@ -21,7 +21,8 @@ public class BehavVIPTutReadingMenu : Behav {
 	public override void Act() {
 		self.StartCoroutine("ReadMenu");
 		self.gameObject.GetComponent<CustomerVIPTut>().tutFingers.transform.GetChild(5).gameObject.SetActive(false);
-		for(int i = 0; i < 4; i++) {
+		self.gameObject.GetComponent<CustomerVIPTut>().HideTableFinger();
+        for(int i = 0; i < 4; i++) {
 			RestaurantManager.Instance.GetTable(i).gameObject.GetComponent<BoxCollider>().enabled = true;
 		}
 		//get food choices 
