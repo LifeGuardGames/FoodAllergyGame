@@ -5,8 +5,8 @@ public class EpiPenGameUIManager : MonoBehaviour{
 
 	public TweenToggle gameOverTween;
 	public Image imgRank;
-	public GameTimer tim;
-	public Text timer;
+	public GameTimer timer;
+	public Text timerText;
 
 	public void ShowGameOver(int attempts) {
 
@@ -22,7 +22,7 @@ public class EpiPenGameUIManager : MonoBehaviour{
 		else if(attempts > 3) {
 			imgRank.sprite = SpriteCacheManager.GetChallengeButton(ChallengeReward.Stone);
 		}
-		timer.text =  tim.counter.text;
+		timerText.text =  timer.counter.text;
 		gameOverTween.Show();
     }
 

@@ -50,7 +50,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	public void StartGame() {
 		
 		if(!isTutorial) {
-			UIManager.tim.time = 0.0f;
+			UIManager.timer.time = 0.0f;
 			isGameover = false;
 		}
 		attempts = 0;
