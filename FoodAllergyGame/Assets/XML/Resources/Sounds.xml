@@ -4,9 +4,9 @@
 	<Sound ID="Button1Down"></Sound>
 	<Sound ID="Button1Up"></Sound>
 
-  <!-- Special deco sounds -->
-  <Sound ID="comicIntro"></Sound>
-  <Sound ID="comicPanic"></Sound>
+  <!-- Comic sounds -->
+  <Sound ID="ComicPage2SFX"></Sound>
+  <Sound ID="ComicPage3SFX"></Sound>
   <Sound ID="comicEnding"></Sound>
   
   <!-- Start scene -->

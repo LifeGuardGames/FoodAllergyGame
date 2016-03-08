@@ -25,14 +25,15 @@ public class ComicManager : MonoBehaviour {
 			comicPage.GetComponentInChildren<Button>().onClick.AddListener(() => ComicStep(2));
 			break;
 		case 2:
-			AudioManager.Instance.FadeOutPlayNewBackground("BgComic2");
+			AudioManager.Instance.LowerBackgroundVolume(0.5f);
+			AudioManager.Instance.PlayClip("ComicPage2SFX");
 			Destroy(comicPage);
 			currScene = Resources.Load("ComicPage2")as GameObject;
 			comicPage = GameObjectUtils.AddChildGUI(canvas, currScene);
 			comicPage.GetComponentInChildren<Button>().onClick.AddListener(() => ComicStep(3));
 			break;
 		case 3:
-			AudioManager.Instance.FadeOutPlayNewBackground("BgComic3");
+			AudioManager.Instance.PlayClip("ComicPage3SFX");
 			Destroy(comicPage);
 			currScene = Resources.Load("ComicPage3")as GameObject;
 			comicPage = GameObjectUtils.AddChildGUI(canvas, currScene);
