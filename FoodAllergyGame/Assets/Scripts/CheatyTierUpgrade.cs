@@ -121,6 +121,33 @@ public class CheatyTierUpgrade : MonoBehaviour {
 				break;
 		}
 		SceneManager.LoadScene(SceneUtils.START);
-			
+
+	}
+
+	public void SkipOpeningTut() {
+		DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "";
+		DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
+		SceneManager.LoadScene(SceneUtils.START);
+	}
+
+	public void SkipEverthing() {
+		DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "";
+		DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
+		DataManager.Instance.GameData.Cash.LastSeenTotalCash = 45200;
+		DataManager.Instance.GameData.Cash.TotalCash = 45700;
+		DataManager.Instance.GameData.Tutorial.IsSpeDecoTutDone = true;
+		DataManager.Instance.GameData.Tutorial.IsMenuPlanningFingerTutDone = true;
+		DataManager.Instance.GameData.Tutorial.IsDecoFingerTutDone = true;
+		DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
+		TierManager.Instance.RecalculateTier();
+		DataManager.Instance.GameData.Decoration.BoughtDeco.Add("VIP00","");
+		DataManager.Instance.GameData.Decoration.BoughtDeco.Add("PlayArea00", "");
+		DataManager.Instance.GameData.Decoration.BoughtDeco.Add("FlyThru00", "");
+		SceneManager.LoadScene(SceneUtils.START);
+	}
+
+	public void GetCash() {
+		DataManager.Instance.GameData.Cash.CurrentCash += 10000;
+		SceneManager.LoadScene(SceneUtils.START);
 	}
 }

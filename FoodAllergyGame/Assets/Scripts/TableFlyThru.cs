@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.SceneManagement;
 public class TableFlyThru : Table {
 
 	public TweenToggle FlyThruToggle;
@@ -11,11 +11,13 @@ public class TableFlyThru : Table {
 	}
 
 	public override void Init() {
-		base.Init();
-		if(DataManager.Instance.GetEvent() == "EventTFlyThru") {
-			GameObject.Find("TutFingers").transform.GetChild(9).gameObject.SetActive(true);
+		if(SceneManager.GetActiveScene() != SceneManager.GetSceneByName(SceneUtils.DECO)) {
+			base.Init();
+			if(DataManager.Instance.GetEvent() == "EventTFlyThru") {
+				GameObject.Find("TutFingers").transform.GetChild(9).gameObject.SetActive(true);
+			}
+			node = Pathfinding.Instance.NodeFlyThru;
 		}
-		node = Pathfinding.Instance.NodeFlyThru;
 	}
 
 	public override void TalkToConsumer() {
