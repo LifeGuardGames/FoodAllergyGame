@@ -17,9 +17,11 @@ public class ChallengeMenuManager : Singleton<ChallengeMenuManager> {
 		int regularChallengeCount = 0;
 		foreach(ImmutableDataChallenge challengeData in challengeList) {
 			if(challengeData.ChallengeType == ChallengeTypes.Regular) {
-				GameObject challengeButton = GameObjectUtils.AddChildGUI(challengeGrid.gameObject, challengeButtonPrefab);
-				challengeButton.GetComponent<ChallengeButton>().Init(challengeData);
-				regularChallengeCount++;
+				if(challengeData.Tier <= TierManager.Instance.CurrentTier) {
+					GameObject challengeButton = GameObjectUtils.AddChildGUI(challengeGrid.gameObject, challengeButtonPrefab);
+					challengeButton.GetComponent<ChallengeButton>().Init(challengeData);
+					regularChallengeCount++;
+				}
             }
 		}
 
@@ -32,6 +34,11 @@ public class ChallengeMenuManager : Singleton<ChallengeMenuManager> {
 		DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = challengeID;
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, showFoodTip: true);
 	}
+
+	public void OnBackButtonClicked() {
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
+	}
+
 
 	public void ShowPrompt(string challengeID) {
 		challengeDescription.Populate(challengeID);

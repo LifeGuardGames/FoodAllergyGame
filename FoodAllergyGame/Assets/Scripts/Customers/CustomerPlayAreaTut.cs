@@ -6,7 +6,7 @@ public class CustomerPlayAreaTut : Customer {
 	public GameObject tutFingers;
 	//public bool usedPlayArea = false;
 	// Use this for initialization
-	public override void Init (int num, ImmutableDataEvents mode){
+	public override void Init (int num, ImmutableDataChallenge mode){
 		tutFingers = GameObject.Find("TutFingers");
 		transform.GetChild(2).gameObject.SetActive(true);
 		base.Init(num, mode);
