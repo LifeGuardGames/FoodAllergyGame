@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// This class handles all game data. No game logic
 /// Saves and loads data into player preference
+/// NOTE: Other persistent objects should not call anything on Awake!!!!
 /// </summary>
 public class DataManager : Singleton<DataManager> {
 

@@ -33,6 +33,7 @@ public class StartManager : Singleton<StartManager>{
 
 	void Start(){
 		// Refresh tier calculation, always do this first
+		Debug.Log("CALCULATING!!!");
 		TierManager.Instance.RecalculateTier();
 
 		// First restaurant tutorial
@@ -119,6 +120,7 @@ public class StartManager : Singleton<StartManager>{
 
 	// Given the event, generate a few set of food stocks, capped by event menussets and tier
 	public void GenerateUnlockedFoodStock(){
+		Debug.Log("Current Tier" + TierManager.Instance.CurrentTier.ToString());
 		List<ImmutableDataFood> unlockedFoodStock = DataLoaderFood.GetDataListWithinTier(TierManager.Instance.CurrentTier);
 
 		// First remove all the foods that are not used for event
