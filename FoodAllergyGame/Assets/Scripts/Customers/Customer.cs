@@ -421,7 +421,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public virtual void Eating(){
 		if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.FlyThru) {
 			Waiter.Instance.Finished();
-			this.GetComponent<Behav>().Reason();
+			this.currBehav.Reason();
 			for(int i = 0; i < allergy.Count; i++) { 
 				if(order.GetComponent<Order>().allergy.Contains(allergy[i]) && !allergy.Contains(Allergies.None)) {
 					Medic.Instance.BillRestaurant(-100);

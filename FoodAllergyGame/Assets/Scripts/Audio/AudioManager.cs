@@ -97,6 +97,10 @@ public class AudioManager : LgAudioManager<AudioManager>{
 			backgroundMusic = "BgDeco";
 			FadeOutPlayNewBackground(backgroundMusic);
 		}
+		else if (currentScene == SceneUtils.CHALLENGEMENU) {
+			backgroundMusic = "BgChallenge";
+			FadeOutPlayNewBackground(backgroundMusic);
+		}
 		else if (backgroundMusic != "BgStart") {
 			backgroundMusic = "BgStart";
 			FadeOutPlayNewBackground(backgroundMusic);

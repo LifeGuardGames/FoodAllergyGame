@@ -313,7 +313,12 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		yield return (0);
 		for(int i = 0; i < 4; i++) {
 			ImmutableDataCustomer test;
-			test = DataLoaderCustomer.GetData(currCusSet[0]);
+			if(chall.ID == "TutDecoPlayArea") {
+				test = DataLoaderCustomer.GetData("CustomerRegular");
+			}
+			else {
+				test = DataLoaderCustomer.GetData(currCusSet[0]);
+			}
 			GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
 			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 			cus.GetComponent<Customer>().behavFlow = test.BehavFlow;

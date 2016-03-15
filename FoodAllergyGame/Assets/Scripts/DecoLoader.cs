@@ -35,7 +35,7 @@ public abstract class DecoLoader : MonoBehaviour {
 			}
 		}
 		else {
-			if(RestaurantManagerChallenge.Instance.GetComponent<RestaurantManagerChallenge>() != null) {
+			if(RestaurantManagerChallenge.Instance.GetComponent<RestaurantManagerChallenge>() == null) {
 				ImmutableDataDecoItem decoData = DataManager.Instance.GetActiveDecoData(decoType);
 				LoadDeco(decoData);
 			}
