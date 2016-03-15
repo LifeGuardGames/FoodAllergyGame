@@ -10,7 +10,7 @@
     <CustomerTimer>2</CustomerTimer>
     <DayLength>30</DayLength>
     <Allergy>cc</Allergy>
-    <Title>Training Day</Title>
+    <Title>TrainingDay</Title>
     <Description>Challenge01Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>0</RestMode>
@@ -35,7 +35,7 @@
 		<CustomerTimer>2</CustomerTimer>
 		<DayLength>30</DayLength>
 		<Allergy>None</Allergy>
-		<Title>Packed In</Title>
+		<Title>PackedIn</Title>
     <Description>Challenge02Desc</Description>
 		<WaiterMove>0</WaiterMove>
 		<RestMode>1</RestMode>
@@ -85,7 +85,7 @@
     <CustomerTimer>2</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
-    <Title>Temper, Temper</Title>
+    <Title>Temper,Temper</Title>
     <Description>Challenge04Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>0</RestMode>
@@ -110,7 +110,7 @@
     <CustomerTimer>2</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
-    <Title>Too Much Fun</Title>
+    <Title>TooMuchFun</Title>
     <Description>Challenge05Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>0</RestMode>
@@ -135,7 +135,7 @@
     <CustomerTimer>2</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
-    <Title>All work and no play</Title>
+    <Title>Allworkandnoplay</Title>
     <Description>Challenge06Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>1</RestMode>
@@ -160,7 +160,7 @@
     <CustomerTimer>2</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
-    <Title>We're not gonna pay it</Title>
+    <Title>We'renotgonnapayit</Title>
     <Description>Challenge07Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>0</RestMode>
@@ -185,7 +185,7 @@
     <CustomerTimer>2</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
-    <Title>Talkie Talkie</Title>
+    <Title>TalkieTalkie</Title>
     <Description>Challenge08Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>4</RestMode>
@@ -211,7 +211,7 @@
 		<CustomerTimer>2</CustomerTimer>
 		<DayLength>72</DayLength>
 		<Allergy>None</Allergy>
-		<Title>Wrong Order</Title>
+		<Title>WrongOrder</Title>
     <Description>Challenge09Desc</Description>
 		<WaiterMove>0</WaiterMove>
 		<RestMode>0</RestMode>
@@ -236,7 +236,7 @@
     <CustomerTimer>2</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
-    <Title>Talkie Smashie</Title>
+    <Title>TalkieSmashie</Title>
     <Description>Challenge10Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>4</RestMode>
@@ -262,7 +262,7 @@
     <CustomerTimer>2</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
-    <Title>Hammer Time</Title>
+    <Title>HammerTime</Title>
     <Description>Challenge11Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>0</RestMode>
@@ -287,7 +287,7 @@
     <CustomerTimer>1</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
-    <Title>Hungry Hungry Eato</Title>
+    <Title>HungryHungryEato</Title>
     <Description>Challenge12Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>0</RestMode>
@@ -337,7 +337,7 @@
     <CustomerTimer>2</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
-    <Title>Deviously crooked</Title>
+    <Title>Deviouslycrooked</Title>
     <Description>Challenge14Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>0</RestMode>
@@ -362,7 +362,7 @@
     <CustomerTimer>2</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
-    <Title>Talkie Eatie</Title>
+    <Title>TalkieEatie</Title>
     <Description>Challenge15Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>4</RestMode>
@@ -388,7 +388,7 @@
     <CustomerTimer>1</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
-    <Title>Insta Kitchen</Title>
+    <Title>InstaKitchen</Title>
     <Description>Challenge16Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>0</RestMode>
@@ -413,7 +413,7 @@
     <CustomerTimer>1</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
-    <Title>Talkie Hungry Eatie</Title>
+    <Title>TalkieHungryEatie</Title>
     <Description>Challenge17Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>4</RestMode>
@@ -439,7 +439,7 @@
     <CustomerTimer>2</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
-    <Title>Talkie Black Outie</Title>
+    <Title>TalkieBlackOutie</Title>
     <Description>Challenge18Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>4</RestMode>
@@ -465,7 +465,7 @@
     <CustomerTimer>2</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
-    <Title>Talkie All...ie?</Title>
+    <Title>TalkieAll...ie?</Title>
     <Description>Challenge19Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>4</RestMode>
@@ -491,7 +491,7 @@
     <CustomerTimer>2</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
-    <Title>Make up Your Mind</Title>
+    <Title>MakeupYourMind</Title>
     <Descriptions>Challenge20Desc</Descriptions>
     <WaiterMove>0</WaiterMove>
     <RestMode>0</RestMode>
@@ -516,7 +516,7 @@
     <CustomerTimer>2</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
-    <Title>Under the cover of night</Title>
+    <Title>Underthecoverofnight</Title>
     <Description>Challenge21Desc</Description>
     <WaiterMove>0</WaiterMove>
     <RestMode>2</RestMode>
