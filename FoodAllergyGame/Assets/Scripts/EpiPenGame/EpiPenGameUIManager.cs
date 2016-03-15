@@ -7,9 +7,22 @@ public class EpiPenGameUIManager : MonoBehaviour{
 	public Image imgRank;
 	public GameTimer timer;
 	public Text timerText;
+	public TweenToggle checkButtonTween;
+
+	public void CheckButtonToggle(bool isShown) {
+		if(isShown) {
+			checkButtonTween.Show();
+		}
+		else {
+			checkButtonTween.Hide();
+		}
+	}
+
+	public void StartGame() {
+
+	}
 
 	public void ShowGameOver(int attempts) {
-
 		if(attempts == 1) {
 			imgRank.sprite = SpriteCacheManager.GetChallengeButton(ChallengeReward.Gold);
 		}
@@ -22,9 +35,7 @@ public class EpiPenGameUIManager : MonoBehaviour{
 		else if(attempts > 3) {
 			imgRank.sprite = SpriteCacheManager.GetChallengeButton(ChallengeReward.Stone);
 		}
-		timerText.text =  timer.counter.text;
+		timerText.text = timer.Report();
 		gameOverTween.Show();
     }
-
-	
 }

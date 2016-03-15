@@ -1,19 +1,36 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class GameTimer : MonoBehaviour {
+	public Text textCounter;
 
-	public float time = 0.0f;
-	public Text counter;
+	private float timerTick = 0f;
+	private bool isPaused;
+
+	public void ResetTimer() {
+		timerTick = 0f;
+		isPaused = false;
+    }
+
+	public void PauseTimer() {
+		isPaused = true;
+	}
+
+	public void ContinueTimer() {
+		isPaused = false;
+	}
+
+	public string Report() {
+		TimeSpan span = TimeSpan.FromSeconds(timerTick);
+		return span.Minutes + ":" + span.Seconds;
+	}
 	
-	// Update is called once per frame
-	void Update () {
-		if(!EpiPenGameManager.Instance.isGameover) {
-			time += Time.deltaTime;
-			float min = Mathf.Floor(time / 60);
-			float seconds = Mathf.Floor(time % 60);
-			counter.text = min.ToString("00") + ":" + Mathf.RoundToInt(seconds).ToString("00");
+	void Update() {
+		if(!isPaused) {
+			timerTick += Time.deltaTime;
+			TimeSpan span = TimeSpan.FromSeconds(timerTick);
+            textCounter.text = span.Minutes + ":" + span.Seconds;
 		}
 	}
 }

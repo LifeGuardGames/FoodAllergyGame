@@ -80,6 +80,15 @@ public static class GameObjectUtils{
 		return go;
 	}
 
+	static public GameObject AddChildGUIWithPosition(GameObject parent, GameObject prefab) {
+		GameObject go = AddChildGUI(parent, prefab);
+		if(go != null) {
+			RectTransform rt = prefab.GetComponent<RectTransform>();
+			go.GetComponent<RectTransform>().localPosition = rt.localPosition;
+		}
+		return go;
+    }
+
 	/// <summary>
 	/// Instantiate an object and add it to the specified parent. use the localposition and localscale of the prefab
 	/// </summary>

@@ -17,17 +17,22 @@ public class EpiPenGameSlot : MonoBehaviour, IDropHandler {
 		}
 	}
 
+	// Sets token as this slot's child
+	public void SetToken(EpiPenGameToken token) {
+		token.transform.SetParent(transform);
+		token.transform.localPosition = Vector3.zero;
+
+		RectTransform rect = token.GetComponent<RectTransform>();
+		rect.offsetMin = new Vector2(10, 10);
+		rect.offsetMax = new Vector2(-10, -10);
+	}
+
 	#region IDropHandler implementation
 	public void OnDrop(PointerEventData eventData) {
 		if(EpiPenGameToken.itemBeingDragged != null &&
 			((isFinalSlot && transform.childCount == 1) || (!isFinalSlot && transform.childCount == 0))) {
-			EpiPenGameToken panel = EpiPenGameToken.itemBeingDragged.GetComponent<EpiPenGameToken>();
-			panel.transform.SetParent(transform);
-			panel.transform.localPosition = Vector3.zero;
 
-			RectTransform rect = panel.GetComponent<RectTransform>();
-			rect.offsetMin = new Vector2(10, 10);
-			rect.offsetMax = new Vector2(-10, -10);
+			SetToken(EpiPenGameToken.itemBeingDragged.GetComponent<EpiPenGameToken>());
 		}
 	}
 	#endregion

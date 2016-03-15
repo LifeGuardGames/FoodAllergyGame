@@ -24,9 +24,9 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	private int pickSlotPageSize = 5;
 	private List<bool> answers;
 	public bool isGameover = false;
-	public Transform center;
+	public RectTransform animationTokenParent;
 	public bool isTutorial;
-	public GameObject tutFingers;
+	public GameObject tutFingerPrefab;
 	private int attempts = 0;
 
 	void Start() {
@@ -48,11 +48,8 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	/// Add all the final tokens to the top and keep internal list of all the pick tokens
 	/// </summary>
 	public void StartGame() {
-		
-		if(!isTutorial) {
-			UIManager.timer.time = 0.0f;
-			isGameover = false;
-		}
+		UIManager.StartGame();
+
 		attempts = 0;
 		allPickTokens = new List<int>();
 
@@ -99,14 +96,30 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		
 		ShowPage(0);
 		if(isTutorial) {
-			PlayAnimation();
+			StartTutorial();
 		}
+	}
+
+	/// <summary>
+	/// Further token logic checking here
+	/// </summary>
+	public void TokenPlaced() {
+		// Checks if all final slots are filled, show the check answer button if all filled
+		int placedTokenCount = 0;
+        foreach(EpiPenGameSlot slot in finalSlotList) {
+			if(slot.GetComponentInChildren<EpiPenGameToken>() != null) {
+				placedTokenCount++;
+			}
+		}
+		UIManager.CheckButtonToggle(placedTokenCount == finalSlotList.Count ? true : false);
 	}
 
 	/// <summary>
 	/// Checks each answer in the submitted answers to see if it is correct
 	/// </summary>
 	public void CheckAnswerButtonClicked() {
+		UIManager.CheckButtonToggle(false);
+
 		// Check if all the tokens are filled
 		foreach(EpiPenGameSlot slot in finalSlotList) {
 			if(slot.GetToken() == null) {
@@ -118,7 +131,6 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		attempts++;
         if(RefreshTokenState()) {
 			//You Win
-			isGameover = true;
 			AnimateEnding();
 			//TODO preform game over logic here
 		}
@@ -227,27 +239,30 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		}
 	}
 	#endregion
+
 	public void AnimateEnding(int card = 0) {
-		GameObject panel = GameObject.Instantiate(tokenPrefab, finalSlotList[card].transform.position,finalSlotList[card].transform.rotation) as GameObject;
+		// Hide the icon itself to fake it tweening
 		finalSlotList[card].GetToken().GetComponent<Image>().enabled = false;
-		panel.transform.SetParent(center.transform);
-		panel.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-		panel.GetComponent<RectTransform>().sizeDelta = finalSlotList[card].GetComponent<RectTransform>().sizeDelta;
-		LeanTween.move(panel, center.transform.position, 2.0f);
-		LeanTween.scale(panel, new Vector3(2f, 2f, 1), 2.0f);
+
+		// Spawn another panel that actually tweens
+		GameObject panel = GameObjectUtils.AddChildGUI(animationTokenParent.gameObject, tokenPrefab);
+		panel.transform.position = finalSlotList[card].GetComponent<RectTransform>().position;
+
+		LeanTween.move(panel, animationTokenParent.position, 1.0f);
+		LeanTween.scale(panel, new Vector3(2f, 2f, 1f), 1.0f);
 		//playAnimation start coroutine after
 		StartCoroutine(PlayAnimation(card, panel));
 	}
 
-	IEnumerator PlayAnimation(int card,GameObject panel) {
-		yield return new WaitForSeconds(4.0f);
-		LeanTween.move(panel,finalSlotList[card].transform.position, 2.0f);
-		LeanTween.scale(panel, new Vector3(0.5f, 0.5f, 1), 2.0f);
+	IEnumerator PlayAnimation(int card, GameObject panel) {
+		yield return new WaitForSeconds(2.0f);
+		LeanTween.move(panel, finalSlotList[card].transform.position, 1.0f);
+		LeanTween.scale(panel, Vector3.one, 1.0f);
 		StartCoroutine(ResetAnimation(card, panel));
 	}
 
 	IEnumerator ResetAnimation(int card, GameObject panel) {
-		yield return new WaitForSeconds(2.0f);
+		yield return new WaitForSeconds(1.0f);
 		finalSlotList[card].GetToken().GetComponent<Image>().enabled = true;
 		Destroy(panel.gameObject);
 		card++;
@@ -259,58 +274,67 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		}
 	}
 
-	private void PlayAnimation(int animat = 0) {
-		tutFingers.transform.GetChild(animat).gameObject.SetActive(true);
-		switch(animat) {
+	#region Tutorial
+	private void StartTutorial(int step = 0) {
+		switch(step) {
 			case 0:
-				LeanTween.move(currentPickSlotList[animat].GetToken().gameObject, finalSlotList[allPickTokens[animat]].gameObject.transform.position, 1.0f);
+				GameObjectUtils.AddChildGUI(currentPickSlotList[step].GetToken().gameObject, tutFingerPrefab);
+				LeanTween.move(currentPickSlotList[step].GetToken().gameObject, finalSlotList[0].transform.position, 1.0f)
+					.setEase(LeanTweenType.easeInOutQuad)
+					.setOnComplete(delegate () { OnTutorialTweenComplete(step); });
 				break;
 			case 1:
-				LeanTween.move(currentPickSlotList[animat].GetToken().gameObject, finalSlotList[5].gameObject.transform.position, 1.0f);
+				GameObjectUtils.AddChildGUI(currentPickSlotList[step].GetToken().gameObject, tutFingerPrefab);
+				LeanTween.move(currentPickSlotList[step].GetToken().gameObject, finalSlotList[5].transform.position, 1.0f)
+					.setEase(LeanTweenType.easeInOutQuad)
+					.setOnComplete(delegate () { OnTutorialTweenComplete(step); });
 				break;
 			case 2:
-				LeanTween.move(currentPickSlotList[animat].GetToken().gameObject, finalSlotList[3].gameObject.transform.position, 1.0f);
+				GameObjectUtils.AddChildGUI(currentPickSlotList[step].GetToken().gameObject, tutFingerPrefab);
+				LeanTween.move(currentPickSlotList[step].GetToken().gameObject, finalSlotList[3].transform.position, 1.0f)
+					.setEase(LeanTweenType.easeInOutQuad)
+					.setOnComplete(delegate () { OnTutorialTweenComplete(step); });
 				break;
 			case 3:
-				LeanTween.move(currentPickSlotList[animat].GetToken().gameObject, finalSlotList[7].gameObject.transform.position, 1.0f);
+				GameObjectUtils.AddChildGUI(currentPickSlotList[step].GetToken().gameObject, tutFingerPrefab);
+				LeanTween.move(currentPickSlotList[step].GetToken().gameObject, finalSlotList[7].transform.position, 1.0f)
+					.setEase(LeanTweenType.easeInOutQuad)
+					.setOnComplete(delegate () { OnTutorialTweenComplete(step); });
 				break;
 		}
-		
-		StartCoroutine(DragPiece(animat));
 	}
 
-	IEnumerator DragPiece(int animat) {
-		yield return new WaitForSeconds(1.0f);
-		tutFingers.transform.GetChild(animat).gameObject.SetActive(false);
-		switch(animat) {
+	private void OnTutorialTweenComplete(int step) {
+		Destroy(currentPickSlotList[step].GetToken().transform.GetChild(0).gameObject);
+		switch(step) {
 			case 0:
-				currentPickSlotList[animat].GetToken().gameObject.transform.SetParent(finalSlotList[allPickTokens[animat]].gameObject.transform);
+                finalSlotList[0].SetToken(currentPickSlotList[step].GetToken());
 				break;
 			case 1:
-				currentPickSlotList[animat].GetToken().gameObject.transform.SetParent(finalSlotList[5].gameObject.transform);
+				finalSlotList[5].SetToken(currentPickSlotList[step].GetToken());
 				break;
 			case 2:
-				currentPickSlotList[animat].GetToken().gameObject.transform.SetParent(finalSlotList[3].gameObject.transform);
+				finalSlotList[3].SetToken(currentPickSlotList[step].GetToken());
 				break;
 			case 3:
-				currentPickSlotList[animat].GetToken().gameObject.transform.SetParent(finalSlotList[7].gameObject.transform);
+				finalSlotList[7].SetToken(currentPickSlotList[step].GetToken());
 				break;
 		}
-		
-        animat++;
-		if(animat < 4) {
-			PlayAnimation(animat);
+
+		step++;
+		if(step < 4) {
+			StartTutorial(step);
 		}
 		else {
-			tutFingers.transform.GetChild(animat).gameObject.SetActive(true);
-			StartCoroutine(EndTutorial());
+			StartCoroutine(EndTutorialCheckButton());
 		}
 	}
 
-	IEnumerator EndTutorial() {
+	IEnumerator EndTutorialCheckButton() {
+		UIManager.CheckButtonToggle(true);
 		yield return new WaitForSeconds(1.0f);
-		tutFingers.transform.GetChild(4).gameObject.SetActive(false);
 		isTutorial = false;
 		CheckAnswerButtonClicked();
 	}
+	#endregion
 }
