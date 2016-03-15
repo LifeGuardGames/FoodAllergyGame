@@ -61,6 +61,8 @@ public class EpiPenGameToken : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             }
 			//AudioManager.Instance.PlayClip("Button1Up");
 			GetComponent<CanvasGroup>().blocksRaycasts = true;
+
+			EpiPenGameManager.Instance.TokenPlaced();
 		}
 	}
 }
