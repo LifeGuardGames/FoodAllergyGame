@@ -239,7 +239,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		}
 	}
 	#endregion
-
+	#region Check tokens animations
 	public void AnimateEnding(int card = 0) {
 		// Hide the icon itself to fake it tweening
 		finalSlotList[card].GetToken().GetComponent<Image>().enabled = false;
@@ -248,21 +248,20 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		GameObject panel = GameObjectUtils.AddChildGUI(animationTokenParent.gameObject, tokenPrefab);
 		panel.transform.position = finalSlotList[card].GetComponent<RectTransform>().position;
 
-		LeanTween.move(panel, animationTokenParent.position, 1.0f);
-		LeanTween.scale(panel, new Vector3(2f, 2f, 1f), 1.0f);
+		LeanTween.move(panel, animationTokenParent.position, 0.5f).setEase(LeanTweenType.easeInOutQuad);
+		LeanTween.scale(panel, new Vector3(2f, 2f, 1f), 0.5f).setEase(LeanTweenType.easeInOutQuad);
 		//playAnimation start coroutine after
 		StartCoroutine(PlayAnimation(card, panel));
 	}
 
 	IEnumerator PlayAnimation(int card, GameObject panel) {
 		yield return new WaitForSeconds(2.0f);
-		LeanTween.move(panel, finalSlotList[card].transform.position, 1.0f);
-		LeanTween.scale(panel, Vector3.one, 1.0f);
-		StartCoroutine(ResetAnimation(card, panel));
+		LeanTween.move(panel, finalSlotList[card].transform.position, 0.5f).setEase(LeanTweenType.easeInOutQuad);
+		LeanTween.scale(panel, Vector3.one, 0.5f).setEase(LeanTweenType.easeInOutQuad)
+			.setOnComplete(delegate() { OnTokenAnimationDone(card, panel); });
 	}
 
-	IEnumerator ResetAnimation(int card, GameObject panel) {
-		yield return new WaitForSeconds(1.0f);
+	private void OnTokenAnimationDone(int card, GameObject panel) {
 		finalSlotList[card].GetToken().GetComponent<Image>().enabled = true;
 		Destroy(panel.gameObject);
 		card++;
@@ -273,7 +272,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 			UIManager.ShowGameOver(attempts);
 		}
 	}
-
+	#endregion
 	#region Tutorial
 	private void StartTutorial(int step = 0) {
 		switch(step) {
@@ -320,7 +319,6 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 				finalSlotList[7].SetToken(currentPickSlotList[step].GetToken());
 				break;
 		}
-
 		step++;
 		if(step < 4) {
 			StartTutorial(step);
@@ -335,6 +333,9 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		yield return new WaitForSeconds(1.0f);
 		isTutorial = false;
 		CheckAnswerButtonClicked();
-	}
+
+		// Special case, circumvent new game here
+		UIManager.StartGame();
+    }
 	#endregion
 }
