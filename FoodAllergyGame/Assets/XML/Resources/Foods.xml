@@ -97,7 +97,7 @@
 		<Keywords>Drink,Dessert</Keywords>
 		<Tier>3</Tier>
 		<Reward>3</Reward>
-		<Slot>1</Slot>
+		<Slot>2</Slot>
 	</Food>
 	<Food ID="FoodPBCookies">
 		<FoodNameKey>FoodPBCookies</FoodNameKey>

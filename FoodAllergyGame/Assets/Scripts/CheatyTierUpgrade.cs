@@ -135,9 +135,11 @@ public class CheatyTierUpgrade : MonoBehaviour {
 		DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
 		DataManager.Instance.GameData.Cash.LastSeenTotalCash = 45200;
 		DataManager.Instance.GameData.Cash.TotalCash = 45700;
-		DataManager.Instance.GameData.Tutorial.IsSpeDecoTutDone = true;
-		DataManager.Instance.GameData.Tutorial.IsMenuPlanningFingerTutDone = true;
+		DataManager.Instance.GameData.Tutorial.IsSpeDecoTutDone =true;
+		DataManager.Instance.GameData.Challenge.IsFirstTimeChallengeEntrance = false;
+        DataManager.Instance.GameData.Tutorial.IsMenuPlanningFingerTutDone = true;
 		DataManager.Instance.GameData.Tutorial.IsDecoFingerTutDone = true;
+		DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance = false;
 		DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
 		TierManager.Instance.RecalculateTier();
 		DataManager.Instance.GameData.Decoration.BoughtDeco.Add("VIP00","");

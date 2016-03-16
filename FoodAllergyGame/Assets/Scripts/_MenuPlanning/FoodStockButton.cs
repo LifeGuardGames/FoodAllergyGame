@@ -52,11 +52,11 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 		image.sprite = SpriteCacheManager.GetFoodSpriteData(foodData.SpriteName);
 
 		// Different panel tiers for different reward levels
-		switch(foodData.Reward) {
-			case 3:
+		switch(foodData.Slots) {
+			case 2:
 				panelImage.sprite = silverPanel;
                 break;
-			case 4:
+			case 3:
 				panelImage.sprite = goldPanel;
 				break;
 			default:

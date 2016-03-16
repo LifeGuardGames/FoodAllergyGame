@@ -9,8 +9,7 @@ public class BehavGossip : Behav {
 	}
 
 	public override void Reason() {
-		self.transform.SetParent(RestaurantManager.Instance.GetTable(self.tableNum).Seat);
-		self.transform.localPosition = Vector3.zero;
+		
 	}
 
 	public override void Act() {

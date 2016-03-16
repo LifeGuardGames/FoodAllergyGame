@@ -5,28 +5,11 @@ public class CustomerGossiper : Customer{
 
 	public Behav pastBehav;
 
-
-	public override void OrderTaken (ImmutableDataFood food){
-		base.OrderTaken (food);
-		int rand = Random.Range(0,10);
-		if(rand > 7){
-			Gossip();
-		}
-	}
-	public override void Eating ()	{
-		base.Eating ();
-		int rand = Random.Range(0,10);
-		if(rand > 7){
-			Gossip();
-		}
-	}
-	public void Gossip(){
-		pastBehav = currBehav;
-	}
-
 	public void GoAway(){
+		Debug.Log("Behav!!!!"+ currBehav.ToString());
 		customerAnim.skeletonAnim.state.SetAnimation(0, "WaitingPassive", false);
-		currBehav.Reason();
+		transform.SetParent(RestaurantManager.Instance.GetTable(tableNum).Seat);
+		transform.localPosition = Vector3.zero;
 		currBehav = pastBehav; 
 	}
 }
