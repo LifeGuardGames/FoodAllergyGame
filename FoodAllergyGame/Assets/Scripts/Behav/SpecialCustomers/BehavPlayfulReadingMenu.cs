@@ -21,7 +21,7 @@ public class BehavPlayfulReadingMenu : Behav {
 
 	public override void Act() {
 		self.state = CustomerStates.ReadingMenu;
-		if(!self.gameObject.GetComponent<CustomerPlayful>().played){
+		if(!self.gameObject.GetComponent<CustomerPlayful>().played && RestaurantManager.Instance.GetTable(self.tableNum).tableType != Table.TableType.FlyThru) {
 			self.UpdateSatisfaction(-1);
 		}
 		self.StartCoroutine("ReadMenu");
