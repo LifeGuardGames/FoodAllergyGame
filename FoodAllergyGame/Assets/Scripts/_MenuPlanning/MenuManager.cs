@@ -214,7 +214,7 @@ public class MenuManager : Singleton<MenuManager>{
 
 	public void OnMenuSelectionDone(){
 		// Check to see if we have all selection slots filled
-		if(selectedMenuStringList.Count == menuSize){
+		if(slotBarController.IsSlotsFull()) {
 			// Track in analytics
 			AnalyticsManager.Instance.TrackMenuChoices(selectedMenuStringList);
 			if(isMenuTutAux) {

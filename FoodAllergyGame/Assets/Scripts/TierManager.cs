@@ -61,12 +61,15 @@ public class TierManager : Singleton<TierManager> {
 				List<string> unlockedSpecialDecos = currentTierUnlocks[AssetTypes.DecoSpecial];
 				if(unlockedSpecialDecos.Contains("VIP00")) {
 					DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoVIP";
+					DataManager.Instance.GameData.Decoration.BoughtDeco.Add("VIP00","");
 				}
 				else if(unlockedSpecialDecos.Contains("PlayArea00")) {
 					DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoPlayArea";
+					DataManager.Instance.GameData.Decoration.BoughtDeco.Add("PlayArea00", "");
 				}
 				else if(unlockedSpecialDecos.Contains("FlyThru00")) {
 					DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoFlyThru";
+					DataManager.Instance.GameData.Decoration.BoughtDeco.Add("FlyThru00", "");
 				}
 			}
 			currentTier = newTier;
