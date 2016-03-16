@@ -2,7 +2,6 @@
 using UnityEngine.UI;
 
 public class EpiPenGameUIManager : MonoBehaviour{
-
 	public TweenToggle gameOverTween;
 	public Image imgRank;
 	public GameTimer timer;
@@ -19,7 +18,7 @@ public class EpiPenGameUIManager : MonoBehaviour{
 	}
 
 	public void StartGame() {
-
+		timer.ResetTimer();
 	}
 
 	public void ShowGameOver(int attempts) {

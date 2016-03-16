@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
-using System;
 
 public class RestaurantUIManager : MonoBehaviour{
+	public DoorController doorController;
 	public DayOverUIController dayOverUIController;
 	public ChallengeOverUi challengeOverUiController;
 	public Image clockBarFill;
@@ -68,5 +67,9 @@ public class RestaurantUIManager : MonoBehaviour{
 		else if(billAmount < 0) {
 			AudioManager.Instance.PlayClip("CoinLose");
 		}
+	}
+
+	public void OpenAndCloseDoor() {
+		doorController.OpenAndCloseDoor();
 	}
 }

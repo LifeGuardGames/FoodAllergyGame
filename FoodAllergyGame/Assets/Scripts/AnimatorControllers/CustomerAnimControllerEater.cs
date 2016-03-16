@@ -6,7 +6,7 @@ public class CustomerAnimControllerEater : CustomerAnimController {
 	public override void SetSavedAllergyAttack() {
 		puke.Stop();
 		Debug.LogWarning("anim Temp error PATCH - sean will fix this");
-		skeletonAnim.state.SetAnimation(0, "AllergySaved", false);
+		skeletonAnim.state.SetAnimation(0, "SavedAllergy", false);
 		skeletonAnim.state.AddAnimation(0, "WaitingActive", true, 0f);
 	}
 

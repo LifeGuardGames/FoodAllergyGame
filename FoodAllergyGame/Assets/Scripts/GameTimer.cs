@@ -23,14 +23,14 @@ public class GameTimer : MonoBehaviour {
 
 	public string Report() {
 		TimeSpan span = TimeSpan.FromSeconds(timerTick);
-		return span.Minutes + ":" + span.Seconds;
+		return StringUtils.FormatIntToDoubleDigitString(span.Minutes)
+			+ ":" + StringUtils.FormatIntToDoubleDigitString(span.Seconds);
 	}
 	
 	void Update() {
 		if(!isPaused) {
 			timerTick += Time.deltaTime;
-			TimeSpan span = TimeSpan.FromSeconds(timerTick);
-            textCounter.text = span.Minutes + ":" + span.Seconds;
+            textCounter.text = Report();
 		}
 	}
 }

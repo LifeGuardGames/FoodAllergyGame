@@ -33,7 +33,6 @@ public class StartManager : Singleton<StartManager>{
 
 	void Start(){
 		// Refresh tier calculation, always do this first
-		Debug.Log("CALCULATING!!!");
 		TierManager.Instance.RecalculateTier();
 
 		// First restaurant tutorial

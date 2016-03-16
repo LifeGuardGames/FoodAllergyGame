@@ -92,7 +92,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				flyThruTable.FlyThruDropDown();
 			}
 			else{
-				this.gameObject.transform.SetParent(RestaurantManager.Instance.GetLine().NewCustomer());
+				RestaurantManager.Instance.restaurantUI.OpenAndCloseDoor();
+                this.gameObject.transform.SetParent(RestaurantManager.Instance.GetLine().NewCustomer());
 				RestaurantManager.Instance.lineCount++;
 			}
 			this.gameObject.transform.position = transform.parent.position;

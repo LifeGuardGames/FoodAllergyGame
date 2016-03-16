@@ -1,10 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using System.Linq;
-using UnityEngine.Analytics;
-using System;
 
 public abstract class RestaurantManager : Singleton<RestaurantManager>{
 	public static float customerLeaveModifierTime = 30f;	// When player error, notify leave will use this value for balancing
@@ -41,7 +36,6 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 	protected ImmutableDataEvents eventData;
 	public LineController lineController;
 	public RestaurantMenuUIController menuUIController;
-	public DoorController doorController;
 
 	public bool firstSickCustomer = false;
 	public GameObject medicButton;

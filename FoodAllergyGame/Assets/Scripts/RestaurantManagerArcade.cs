@@ -1,14 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using System.Linq;
-using UnityEngine.Analytics;
-using System;
 
 public class RestaurantManagerArcade : RestaurantManager {
 
-	// our satisfaction ai 
+	// our satisfaction ai
 	private SatisfactionAI satisfactionAI;
 	public override void Init() {
 		eventData = DataLoaderEvents.GetData(DataManager.instance.GetEvent());
@@ -46,9 +43,6 @@ public class RestaurantManagerArcade : RestaurantManager {
 
 			int rand;
 		if(!dayOver && lineCount < 8) {
-
-			doorController.OpenAndCloseDoor();
-
 			ImmutableDataCustomer customerData;
 			if(DataManager.Instance.GameData.DayTracker.AvgDifficulty == 15.0f) {
 				customerSpawnTimer = 6.0f;
