@@ -1,9 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using System.Linq;
-using UnityEngine.Analytics;
 using System;
 
 public class RestaurantManagerChallenge : RestaurantManager{
@@ -16,17 +13,14 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	
 	public ImmutableDataChallenge chall;
 	int interval = 0;
-	
 
 	public override void Init() {
 		sickCustomers = new List<GameObject>();
 		customerHash = new Dictionary<string, GameObject>();
 		challengeAI = new ChallengeAI();
 	}
-
-
+	
 	private void RunSetUp() {
-		
 		chall = DataLoaderChallenge.GetData(DataManager.Instance.GetChallenge());
 		if(chall.ChallengeType != ChallengeTypes.Tutorial) {
 			scoreBoard.gameObject.SetActive(true);
@@ -90,11 +84,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	IEnumerator SpawnCustomer() {
 		yield return 0;
 		yield return new WaitForSeconds(customerSpawnTimer);
-
 			if(!dayOver && lineCount < 8 && interval < currCusSet.Count) {
-			
-			doorController.OpenAndCloseDoor();
-
 			if(isTutorial) {
 				ImmutableDataCustomer test;
 				test = DataLoaderCustomer.GetData("CustomerTutorial");
@@ -109,8 +99,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			else {
 				ImmutableDataCustomer customerData;
 				customerSpawnTimer = chall.CustSpawnTime;
-
-
+				
 				customerData = DataLoaderCustomer.GetData(currCusSet[interval]);
 
 				// Track in analytics
@@ -128,7 +117,6 @@ public class RestaurantManagerChallenge : RestaurantManager{
 				customerNumber++;
 				StartCoroutine("SpawnCustomer");
 			}
-
 		}
 		else {
 			// Call self to loop
@@ -136,7 +124,6 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		}
 	}
 	
-
 	public override void StartDay() {
 		dayOver = false;
 		RunSetUp();
@@ -153,16 +140,13 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			int satisfaction = customerData.satisfaction;
 			int priceMultiplier;
 			
-
 			// Track analytics based on happy or angry leaving
 			if(satisfaction > 0) { 
 				AnalyticsManager.Instance.CustomerLeaveHappyChallenge(satisfaction, chall.ID);
 				priceMultiplier = customerData.priceMultiplier * VIPMultiplier;
-
 			}
 			else {
 				AnalyticsManager.Instance.CustomerLeaveAngryChallenge(customerData.type, customerData.state, chall.ID);
-
 				priceMultiplier = 1;
 			}
 
@@ -211,13 +195,11 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			customerHash.Clear();
 			CheckForGameOver();
 		}
-
 	}
 
 	protected override void CheckForGameOver() {
 		if(dayOver) {
 			if(customerHash.Count == 0) {
-
 				if(DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge == "ChallengeTut2") {
 					AnalyticsManager.Instance.TutorialFunnel("Finished tut day, 4 customers");
 				}
@@ -237,7 +219,6 @@ public class RestaurantManagerChallenge : RestaurantManager{
 					DataManager.Instance.ChallengesInSession++;
 
 					AnalyticsManager.Instance.EndChallengeReport(challengeAI.ScoreIt(), DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge, challengeAI.MissingCustomers, challengeAI.AvgSatisfaction(), savedCustomers, attempted, inspectionButtonClicked);
-
 					AnalyticsManager.Instance.EndGameUsageReport(playAreaUses, vipUses, microwaveUses);
 
 					// Show day complete UI
