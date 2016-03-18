@@ -11,7 +11,6 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	private List<int> allPickTokens;
 
 	public List<EpiPenGameSlot> currentPickSlotList;
-	public GameObject tokenPrefab;
 	
 	public Transform activeDragParent;
 	public Sprite lockedFinalSlotSprite;
@@ -29,7 +28,12 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	public GameObject tutFingerPrefab;
 	private int attempts = 0;
 
+	private string epipenSetPrefix;		// "A" or "B", 'TokenA1' format
+
 	void Start() {
+		int randomIndex = UnityEngine.Random.Range(0, 2);
+		epipenSetPrefix = randomIndex == 0 ? "A" : "A";
+
 		if(DataManager.Instance.IsDebug) {
 			isTutorial = Constants.GetConstant<bool>("IsEpiPenTutorialDone");
 		}
@@ -84,7 +88,8 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		// Add all the children that are not in the pick token list
 		for(int i = 0; i < totalSteps; i++) {
 			if(!allPickTokens.Contains(i)) {
-				GameObject go = GameObjectUtils.AddChildGUI(finalSlotList[i].gameObject, tokenPrefab);
+				GameObject token = Resources.Load("Token" + epipenSetPrefix + 0) as GameObject;
+				GameObject go = GameObjectUtils.AddChildGUI(finalSlotList[i].gameObject, token);
 				go.GetComponent<EpiPenGameToken>().Init(i, true);
 			}
 		}
@@ -214,7 +219,8 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 
 			// Only show it again if youre checking answer, or if it doesnt exist in finalSlot
 			if(!existsAlready || isCheckingAnswer) {
-				GameObject slotToken = GameObjectUtils.AddChildGUI(currentPickSlotList[i % pickSlotPageSize].gameObject, tokenPrefab);
+				GameObject token = Resources.Load("Token" + epipenSetPrefix + 0) as GameObject;
+				GameObject slotToken = GameObjectUtils.AddChildGUI(currentPickSlotList[i % pickSlotPageSize].gameObject, token);
 				slotToken.GetComponent<EpiPenGameToken>().Init(allPickTokens[i], false);
 			}
 		}
@@ -245,7 +251,8 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		finalSlotList[card].GetToken().GetComponent<Image>().enabled = false;
 
 		// Spawn another panel that actually tweens
-		GameObject panel = GameObjectUtils.AddChildGUI(animationTokenParent.gameObject, tokenPrefab);
+		GameObject token = Resources.Load("Token" + epipenSetPrefix + 0) as GameObject;
+		GameObject panel = GameObjectUtils.AddChildGUI(animationTokenParent.gameObject, token);
 		panel.transform.position = finalSlotList[card].GetComponent<RectTransform>().position;
 
 		LeanTween.move(panel, animationTokenParent.position, 0.5f).setEase(LeanTweenType.easeInOutQuad);
@@ -255,6 +262,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	}
 
 	IEnumerator PlayAnimation(int card, GameObject panel) {
+		panel.GetComponent<EpiPenGameToken>().SetAnimateState(true);
 		yield return new WaitForSeconds(2.0f);
 		LeanTween.move(panel, finalSlotList[card].transform.position, 0.5f).setEase(LeanTweenType.easeInOutQuad);
 		LeanTween.scale(panel, Vector3.one, 0.5f).setEase(LeanTweenType.easeInOutQuad)
@@ -275,27 +283,24 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	#endregion
 	#region Tutorial
 	private void StartTutorial(int step = 0) {
+		GameObjectUtils.AddChildGUI(currentPickSlotList[step].GetToken().gameObject, tutFingerPrefab).name = "EpipenFinger";
 		switch(step) {
 			case 0:
-				GameObjectUtils.AddChildGUI(currentPickSlotList[step].GetToken().gameObject, tutFingerPrefab);
 				LeanTween.move(currentPickSlotList[step].GetToken().gameObject, finalSlotList[0].transform.position, 1.0f)
 					.setEase(LeanTweenType.easeInOutQuad)
 					.setOnComplete(delegate () { OnTutorialTweenComplete(step); });
 				break;
 			case 1:
-				GameObjectUtils.AddChildGUI(currentPickSlotList[step].GetToken().gameObject, tutFingerPrefab);
 				LeanTween.move(currentPickSlotList[step].GetToken().gameObject, finalSlotList[5].transform.position, 1.0f)
 					.setEase(LeanTweenType.easeInOutQuad)
 					.setOnComplete(delegate () { OnTutorialTweenComplete(step); });
 				break;
 			case 2:
-				GameObjectUtils.AddChildGUI(currentPickSlotList[step].GetToken().gameObject, tutFingerPrefab);
 				LeanTween.move(currentPickSlotList[step].GetToken().gameObject, finalSlotList[3].transform.position, 1.0f)
 					.setEase(LeanTweenType.easeInOutQuad)
 					.setOnComplete(delegate () { OnTutorialTweenComplete(step); });
 				break;
 			case 3:
-				GameObjectUtils.AddChildGUI(currentPickSlotList[step].GetToken().gameObject, tutFingerPrefab);
 				LeanTween.move(currentPickSlotList[step].GetToken().gameObject, finalSlotList[7].transform.position, 1.0f)
 					.setEase(LeanTweenType.easeInOutQuad)
 					.setOnComplete(delegate () { OnTutorialTweenComplete(step); });
@@ -304,7 +309,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	}
 
 	private void OnTutorialTweenComplete(int step) {
-		Destroy(currentPickSlotList[step].GetToken().transform.GetChild(0).gameObject);
+		Destroy(currentPickSlotList[step].GetToken().transform.Find("EpipenFinger").gameObject);
 		switch(step) {
 			case 0:
                 finalSlotList[0].SetToken(currentPickSlotList[step].GetToken());

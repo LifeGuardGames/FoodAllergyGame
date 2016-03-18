@@ -4,8 +4,8 @@ using UnityEngine.EventSystems;
 
 public class EpiPenGameToken : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
 	public static GameObject itemBeingDragged;
-	public Image image;
 	public int order;
+	public Animator animator;
 
 	private Transform startParent;
 
@@ -18,9 +18,13 @@ public class EpiPenGameToken : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	public void Init(int tokenOrder, bool isLockedIncoming) {
 		isLocked = isLockedIncoming;
         gameObject.name = "Token" + tokenOrder;
-		image.sprite = SpriteCacheManager.GetEpiPenTokenSpriteData(tokenOrder);
 		order = tokenOrder;
+		SetAnimateState(false);
     }
+
+	public void SetAnimateState(bool isAnimate) {
+		animator.Play(isAnimate ? "AnimateState" : "TokenState");
+	}
 
 	public void OnBeginDrag(PointerEventData eventData) {
 		if(!isLocked) {
