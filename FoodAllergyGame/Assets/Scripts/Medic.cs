@@ -76,7 +76,8 @@ public class Medic : Singleton<Medic> {
 		if(RestaurantManager.Instance.sickCustomers.Count > 0){
 			ShowThoughtBubble();
 			RestaurantManager.Instance.sickCustomers[0].GetComponent<Customer>().saved = true;
-			yield return new WaitForSeconds(3.0f);
+			RestaurantManager.Instance.sickCustomers[0].GetComponent<Customer>().StopCoroutine("AllergyTimer");
+            yield return new WaitForSeconds(3.0f);
 			RestaurantManager.Instance.sickCustomers[0].GetComponent<Customer>().currBehav.Reason();
 		}
 		// Missed the person... oh well

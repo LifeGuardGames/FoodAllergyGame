@@ -369,6 +369,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		UIManager.CheckButtonToggle(true);
 		yield return new WaitForSeconds(1.0f);
 		isTutorial = false;
+		DataManager.Instance.GameData.Tutorial.IsEpiPenGameTutorialDone = true;
 		CheckAnswerButtonClicked();
 
 		// Special case, circumvent new game here

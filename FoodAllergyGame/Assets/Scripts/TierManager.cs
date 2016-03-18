@@ -38,6 +38,8 @@ public class TierManager : Singleton<TierManager> {
 			if(newTier - oldTier > 1) {
 				Debug.LogError("Multiple tiers progressed, messes with unlock progression");
 			}
+			DataManager.Instance.GameData.Epi.HasPlayedEpiPenGameThisTier = false;
+			DataManager.Instance.GameData.Epi.Difficulty++;
 			currentTierUnlocks = GetAllUnlocksAtTier(newTier);
 
 			// Check if the data structure has any unlocks

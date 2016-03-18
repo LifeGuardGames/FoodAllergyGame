@@ -9,6 +9,7 @@ public class GameData {
 	public MutableDataStartObject StartObject{get; set;}
 	public MutableDataSessionCount Session { get; set;}
 	public MutableDataChallenge Challenge { get; set; }
+	public MutableDataEpiPenGame Epi { get; set; }
 
 	public GameData(){
 		Init();
@@ -23,5 +24,6 @@ public class GameData {
 		StartObject = new MutableDataStartObject();
 		Session = new MutableDataSessionCount();
 		Challenge = new MutableDataChallenge();
+		Epi = new MutableDataEpiPenGame();
 	}
 }

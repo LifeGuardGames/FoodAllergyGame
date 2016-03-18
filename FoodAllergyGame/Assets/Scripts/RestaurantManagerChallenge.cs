@@ -202,6 +202,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			if(customerHash.Count == 0) {
 				if(DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge == "ChallengeTut2") {
 					AnalyticsManager.Instance.TutorialFunnel("Finished tut day, 4 customers");
+					DataManager.Instance.GameData.Cash.TotalCash = 850;
 				}
 
 			    if(isTutorial) {
