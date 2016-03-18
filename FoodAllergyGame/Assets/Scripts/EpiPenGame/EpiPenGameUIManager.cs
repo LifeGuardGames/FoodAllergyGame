@@ -21,6 +21,10 @@ public class EpiPenGameUIManager : MonoBehaviour{
 		timer.ResetTimer();
 	}
 
+	public void OnCheckButton() {
+		timer.PauseTimer();
+	}
+
 	public void ShowGameOver(int attempts) {
 		if(attempts == 1) {
 			imgRank.sprite = SpriteCacheManager.GetChallengeButton(ChallengeReward.Gold);

@@ -6,7 +6,7 @@ public class EpiPenGameSlot : MonoBehaviour, IDropHandler {
 	public int slotNumber;
 
 	public EpiPenGameToken GetToken() {
-		return GetComponentInChildren<EpiPenGameToken>();
+		return GetComponentInChildren<EpiPenGameToken>(includeInactive: true);
 	}
 
 	// Used for resetting the game
