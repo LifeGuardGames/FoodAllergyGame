@@ -22,15 +22,11 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	private int pickSlotPage = 0;
 	private int pickSlotPageSize = 5;
 	private List<bool> answers;
-	public bool isGameover = false;
 	public RectTransform animationTokenParent;
 	public bool isTutorial;
 	public GameObject tutFingerPrefab;
 	private int attempts = 0;
-
 	private string epipenSetPrefix;     // "A" or "B", 'TokenA1' format
-
-	private bool isPerfect = true;
 
 	void Start() {
 		int randomIndex = UnityEngine.Random.Range(0, 2);
@@ -95,11 +91,6 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 				go.GetComponent<EpiPenGameToken>().Init(i, true);
 			}
 		}
-
-		bool perfectCheck = RefreshTokenState();
-		if(perfectCheck) {
-			Debug.LogError("Perfect on start!");
-		}
 		
 		ShowPage(0);
 		if(isTutorial) {
@@ -137,49 +128,13 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		}
 
 		attempts++;
-        if(RefreshTokenState()) {
-			//You Win
-			AnimateEnding();
-			//TODO preform game over logic here
-		}
-		else {
-			ShowPage(0, isCheckingAnswer: true);
-		}
+		AnimateEnding();
 	}
 
 	public void GameOverButtonClicked() {
 		// Temp stuff
 		UIManager.gameOverTween.Hide();
 		StartGame();
-	}
-
-	/// <summary>
-	/// Returns true if every finalSlotList has a token and its order matches index
-	/// Otherwise, it updates the slot statuses and UI accordingly
-	/// </summary>
-	private bool RefreshTokenState() {
-		bool isPerfect = true;
-		for(int i = 0; i < finalSlotList.Count; i++) {
-			if(finalSlotList[i].GetToken() != null) {
-				if(finalSlotList[i].GetToken().order == i) {
-					finalSlotList[i].GetToken().IsLocked = true;		// Lock the token
-
-					if(allPickTokens.Remove(i)) {       // Soft remove
-						finalSlotList[i].GetComponent<Image>().sprite = lockedFinalSlotSprite;
-					}
-				}
-				else {
-					Destroy(finalSlotList[i].GetToken().gameObject);
-					finalSlotList[i].GetComponent<Image>().sprite = emptyFinalSlotSprite;
-					isPerfect = false;
-				}
-			}
-			else {
-				finalSlotList[i].GetComponent<Image>().sprite = emptyFinalSlotSprite;
-				isPerfect = false;
-			}
-		}
-		return isPerfect;
 	}
 
 	private bool IsTokenCorrect(int finalSlotIndex) {
@@ -194,7 +149,6 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		else {
 			pickSlotPage--;
 		}
-
 		ShowPage(pickSlotPage);
 	}
 
@@ -292,10 +246,12 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 
 			// Return all tokens, this and after
 			for(int i = tokenIndex; i < totalSteps; i++) {
-				Destroy(finalSlotList[i].GetToken().gameObject);
-				finalSlotList[i].GetComponent<Image>().sprite = emptyFinalSlotSprite;
-				isPerfect = false;
+				if(!finalSlotList[i].GetToken().IsLocked) {
+					Destroy(finalSlotList[i].GetToken().gameObject);
+					finalSlotList[i].GetComponent<Image>().sprite = emptyFinalSlotSprite;
+				}
 			}
+			ShowPage(0, isCheckingAnswer: true);
 		}
 	}
 
