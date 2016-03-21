@@ -33,8 +33,8 @@ public class BehavGossipWaitForFood : Behav {
 			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[4]);
 			Behav eat = (Behav)Activator.CreateInstance(type);
 			eat.self = self;
-			eat.Act();
 			self.currBehav = eat;
+			eat.Act();
 			eat = null;
 			self.state = CustomerStates.Eating;
 			self.StartCoroutine("EatingTimer");
@@ -50,6 +50,7 @@ public class BehavGossipWaitForFood : Behav {
 			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[10]);
 			Behav goss = (Behav)Activator.CreateInstance(type);
 			goss.self = self;
+			Debug.Log("Pre gossip: " + self.currBehav.ToString());
 			self.gameObject.GetComponent<CustomerGossiper>().pastBehav = self.currBehav;
 			self.currBehav = goss;
 			Debug.Log(self.currBehav.ToString());

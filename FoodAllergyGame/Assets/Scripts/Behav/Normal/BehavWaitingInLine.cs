@@ -41,9 +41,9 @@ public class BehavWaitingInLine : Behav {
 		var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[1]);
 		Behav read = (Behav)Activator.CreateInstance(type);
 		read.self = self;
+		self.currBehav = read;
 		read.Act();
 		//BehavReadingMenu read = new BehavReadingMenu(self);
-		self.currBehav = read;
 		read = null;
 	}
 
