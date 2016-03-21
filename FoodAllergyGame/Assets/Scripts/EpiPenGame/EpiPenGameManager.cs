@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	public int totalSteps = 8;
@@ -22,13 +22,11 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	private int pickSlotPage = 0;
 	private int pickSlotPageSize = 5;
 	private List<bool> answers;
-	public bool isGameover = false;
 	public RectTransform animationTokenParent;
 	public bool isTutorial;
 	public GameObject tutFingerPrefab;
 	private int attempts = 0;
-
-	private string epipenSetPrefix;		// "A" or "B", 'TokenA1' format
+	private string epipenSetPrefix;     // "A" or "B", 'TokenA1' format
 
 	void Start() {
 		int randomIndex = UnityEngine.Random.Range(0, 2);
@@ -93,11 +91,6 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 				go.GetComponent<EpiPenGameToken>().Init(i, true);
 			}
 		}
-
-		bool perfectCheck = RefreshTokenState();
-		if(perfectCheck) {
-			Debug.LogError("Perfect on start!");
-		}
 		
 		ShowPage(0);
 		if(isTutorial) {
@@ -124,6 +117,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	/// </summary>
 	public void CheckAnswerButtonClicked() {
 		UIManager.CheckButtonToggle(false);
+		UIManager.OnCheckButton();
 
 		// Check if all the tokens are filled
 		foreach(EpiPenGameSlot slot in finalSlotList) {
@@ -134,14 +128,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		}
 
 		attempts++;
-        if(RefreshTokenState()) {
-			//You Win
-			AnimateEnding();
-			//TODO preform game over logic here
-		}
-		else {
-			ShowPage(0, isCheckingAnswer: true);
-		}
+		AnimateEnding();
 	}
 
 	public void GameOverButtonClicked() {
@@ -150,34 +137,9 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		StartGame();
 	}
 
-	/// <summary>
-	/// Returns true if every finalSlotList has a token and its order matches index
-	/// Otherwise, it updates the slot statuses and UI accordingly
-	/// </summary>
-	private bool RefreshTokenState() {
-		bool isPerfect = true;
-		for(int i = 0; i < finalSlotList.Count; i++) {
-			if(finalSlotList[i].GetToken() != null) {
-				if(finalSlotList[i].GetToken().order == i) {
-					finalSlotList[i].GetToken().IsLocked = true;		// Lock the token
-
-					if(allPickTokens.Remove(i)) {       // Soft remove
-						finalSlotList[i].GetComponent<Image>().sprite = lockedFinalSlotSprite;
-					}
-				}
-				else {
-					Destroy(finalSlotList[i].GetToken().gameObject);
-					finalSlotList[i].GetComponent<Image>().sprite = emptyFinalSlotSprite;
-					isPerfect = false;
-				}
-			}
-			else {
-				finalSlotList[i].GetComponent<Image>().sprite = emptyFinalSlotSprite;
-				isPerfect = false;
-			}
-		}
-		return isPerfect;
-	}
+	private bool IsTokenCorrect(int finalSlotIndex) {
+		return finalSlotList[finalSlotIndex].GetToken().order == finalSlotIndex;
+    }
 
 	#region Page button functions
 	public void PageButtonClicked(bool isRightButton) {
@@ -187,7 +149,6 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		else {
 			pickSlotPage--;
 		}
-
 		ShowPage(pickSlotPage);
 	}
 
@@ -246,35 +207,62 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	}
 	#endregion
 	#region Check tokens animations
-	public void AnimateEnding(int card = 0) {
+	public void AnimateEnding(int tokenIndex = 0) {
 		// Hide the icon itself to fake it tweening
-		finalSlotList[card].GetToken().GetComponent<Image>().enabled = false;
+		finalSlotList[tokenIndex].GetToken().gameObject.SetActive(false);
 
 		// Spawn another panel that actually tweens
-		GameObject token = Resources.Load("Token" + epipenSetPrefix + 0) as GameObject;
-		GameObject panel = GameObjectUtils.AddChildGUI(animationTokenParent.gameObject, token);
-		panel.transform.position = finalSlotList[card].GetComponent<RectTransform>().position;
+		GameObject tokenPrefab = Resources.Load("Token" + epipenSetPrefix + 0) as GameObject;
+		GameObject animationTokenAux = GameObjectUtils.AddChildGUI(animationTokenParent.gameObject, tokenPrefab);
+		animationTokenAux.transform.position = finalSlotList[tokenIndex].GetComponent<RectTransform>().position;
 
-		LeanTween.move(panel, animationTokenParent.position, 0.5f).setEase(LeanTweenType.easeInOutQuad);
-		LeanTween.scale(panel, new Vector3(2f, 2f, 1f), 0.5f).setEase(LeanTweenType.easeInOutQuad);
+		LeanTween.move(animationTokenAux, animationTokenParent.position, 0.5f).setEase(LeanTweenType.easeInOutQuad);
+		LeanTween.scale(animationTokenAux, new Vector3(2f, 2f, 1f), 0.5f).setEase(LeanTweenType.easeInOutQuad);
 		//playAnimation start coroutine after
-		StartCoroutine(PlayAnimation(card, panel));
+		StartCoroutine(PlayAnimation(tokenIndex, animationTokenAux));
 	}
 
-	IEnumerator PlayAnimation(int card, GameObject panel) {
-		panel.GetComponent<EpiPenGameToken>().SetAnimateState(true);
-		yield return new WaitForSeconds(2.0f);
-		LeanTween.move(panel, finalSlotList[card].transform.position, 0.5f).setEase(LeanTweenType.easeInOutQuad);
-		LeanTween.scale(panel, Vector3.one, 0.5f).setEase(LeanTweenType.easeInOutQuad)
-			.setOnComplete(delegate() { OnTokenAnimationDone(card, panel); });
+	IEnumerator PlayAnimation(int tokenIndex, GameObject animationTokenAux) {
+		animationTokenAux.GetComponent<EpiPenGameToken>().SetAnimateState(true);
+		yield return new WaitForSeconds(1.0f);
+
+		// Check to see if it is correct and do the appropriate action
+		if(IsTokenCorrect(tokenIndex)) {
+			finalSlotList[tokenIndex].GetToken().IsLocked = true;       // Lock the token
+			if(allPickTokens.Remove(tokenIndex)) {						// Soft remove from pick list
+				finalSlotList[tokenIndex].GetComponent<Image>().sprite = lockedFinalSlotSprite;	// Change slot color
+			}
+
+			// Continue animation sequence
+			LeanTween.move(animationTokenAux, finalSlotList[tokenIndex].transform.position, 0.5f).setEase(LeanTweenType.easeInOutQuad);
+			LeanTween.scale(animationTokenAux, Vector3.one, 0.5f).setEase(LeanTweenType.easeInOutQuad)
+				.setOnComplete(delegate () { OnTokenAnimationDone(tokenIndex, animationTokenAux); });
+		}
+		else {
+			// TODO Show some UI - X the token
+
+
+			Destroy(animationTokenAux.gameObject);
+
+			// Return all tokens, this and after
+			for(int i = tokenIndex; i < totalSteps; i++) {
+				if(!finalSlotList[i].GetToken().IsLocked) {
+					Destroy(finalSlotList[i].GetToken().gameObject);
+					finalSlotList[i].GetComponent<Image>().sprite = emptyFinalSlotSprite;
+				}
+			}
+			ShowPage(0, isCheckingAnswer: true);
+		}
 	}
 
-	private void OnTokenAnimationDone(int card, GameObject panel) {
-		finalSlotList[card].GetToken().GetComponent<Image>().enabled = true;
-		Destroy(panel.gameObject);
-		card++;
-		if(card < 8) { 
-			AnimateEnding(card);
+	private void OnTokenAnimationDone(int tokenIndex, GameObject animationTokenAux) {
+		Debug.Log("SETTING " + tokenIndex + " " + finalSlotList[tokenIndex].name);
+		finalSlotList[tokenIndex].GetToken().gameObject.SetActive(true);
+		Debug.Log("SETTING ACTIVE DONE");
+		Destroy(animationTokenAux.gameObject);
+		tokenIndex++;
+		if(tokenIndex < 8) { 
+			AnimateEnding(tokenIndex);
 		}
 		else {
 			UIManager.ShowGameOver(attempts);
