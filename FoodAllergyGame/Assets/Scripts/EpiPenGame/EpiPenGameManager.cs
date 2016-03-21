@@ -256,9 +256,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	}
 
 	private void OnTokenAnimationDone(int tokenIndex, GameObject animationTokenAux) {
-		Debug.Log("SETTING " + tokenIndex + " " + finalSlotList[tokenIndex].name);
 		finalSlotList[tokenIndex].GetToken().gameObject.SetActive(true);
-		Debug.Log("SETTING ACTIVE DONE");
 		Destroy(animationTokenAux.gameObject);
 		tokenIndex++;
 		if(tokenIndex < 8) { 
