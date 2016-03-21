@@ -22,5 +22,8 @@ public class BehavGossip : Behav {
 			CustomerAnimationControllerGossiper goss = self.customerAnim as CustomerAnimationControllerGossiper;
 			goss.Gossip();
 		}
+		else {
+			self.GetComponent<CustomerGossiper>().GoAway();
+		}
 	}
 }
