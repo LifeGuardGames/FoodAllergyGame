@@ -38,6 +38,17 @@ public class TierManager : Singleton<TierManager> {
 			if(newTier - oldTier > 1) {
 				Debug.LogError("Multiple tiers progressed, messes with unlock progression");
 			}
+			
+			//deco new list compilation
+			List<string> temp = DataLoaderDecoItem.GetBasicDecoIDUnlockedAtTier(newTier);
+			List<string> specialTemp = DataLoaderDecoItem.GetSpecialDecoIDUnlockedAtTier(newTier);
+			foreach(string id in specialTemp) {
+				temp.Add(id);
+			}
+			foreach(string id in temp) {
+				DataManager.Instance.GameData.Decoration.NewDeco.Add(id);
+			}
+
 			DataManager.Instance.GameData.Epi.HasPlayedEpiPenGameThisTier = false;
 			DataManager.Instance.GameData.Epi.Difficulty++;
 			currentTierUnlocks = GetAllUnlocksAtTier(newTier);

@@ -9,6 +9,7 @@ public class DecoButton : MonoBehaviour {
 
 	public Image decoImage;
 	public Text decoNameText;
+	public Text newTag;
 
 	public Sprite removeSprite;
 	public Sprite unboughtSpriteTop;
@@ -29,6 +30,10 @@ public class DecoButton : MonoBehaviour {
 		decoImage.sprite = SpriteCacheManager.GetDecoSpriteData(spriteName);
 
 		isUnLocked = DecoManager.Instance.IsDecoUnlocked(decoID);
+		if(DataManager.Instance.GameData.Decoration.NewDeco.Contains(decoData.ID)&& isUnLocked) {
+			DataManager.Instance.GameData.Decoration.NewDeco.Remove(decoData.ID);
+			newTag.enabled = true;
+        }
 		RefreshButtonState();
 	}
 
