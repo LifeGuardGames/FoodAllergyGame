@@ -5,6 +5,7 @@ public class MutableDataDecoration{
 	public bool IsFirstTimeEntrance;
 	public Dictionary<DecoTypes, string> ActiveDeco;
 	public Dictionary<string, string> BoughtDeco;
+	public List<string> NewDeco;
 
 	public MutableDataDecoration(){
 		IsFirstTimeEntrance = true;
@@ -20,5 +21,7 @@ public class MutableDataDecoration{
 		ActiveDeco.Add(DecoTypes.Floor, "FloorBasicAqua");
 		ActiveDeco.Add(DecoTypes.Table, "TableBasicAqua");
 		ActiveDeco.Add(DecoTypes.Kitchen, "KitchenBasicAqua");
+
+		NewDeco = new List<string>();
 	}
 }

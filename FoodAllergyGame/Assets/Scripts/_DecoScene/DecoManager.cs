@@ -49,6 +49,10 @@ public class DecoManager : Singleton<DecoManager>{
 		return DataManager.Instance.GameData.Decoration.ActiveDeco.ContainsValue(decoID);
 	}
 
+	public bool IsDecoInRange(string decoID) {
+		return (DataLoaderDecoItem.GetData(decoID).Tier <= TierManager.Instance.CurrentTier + 2) ? true : false;
+	}
+
 	public bool IsDecoUnlocked(string decoID) {
 		return (DataLoaderDecoItem.GetData(decoID).Tier <= TierManager.Instance.CurrentTier) ? true : false;
 	}
@@ -56,7 +60,7 @@ public class DecoManager : Singleton<DecoManager>{
 	public bool IsCategoryUnlocked(DecoTypes deco) {
 		List<ImmutableDataDecoItem> decoTypeList = DataLoaderDecoItem.GetDecoDataByType(deco);
 		foreach(ImmutableDataDecoItem decoData in decoTypeList) {
-			if(IsDecoUnlocked(decoData.ID)) {
+			if(IsDecoInRange(decoData.ID)) {
 				return true;
 			}
 		}
