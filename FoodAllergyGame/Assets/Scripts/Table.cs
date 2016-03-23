@@ -16,7 +16,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	}
 
 	public TableType tableType;
-
+	public bool cantLeave;
 	// Table Number hard coded number to distinguish between tables, from TableLoader
 	public int tableNumber;
 	public int TableNumber{
