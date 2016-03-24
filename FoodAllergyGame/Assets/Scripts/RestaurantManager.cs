@@ -47,7 +47,9 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 	public PauseUIController pauseUI;
 	public float baseCustomerTimer;
 	public float customerTimerDiffMod;
-
+	public int wheatServed;
+	public int dairyServed;
+	public int peanutServed;
 	#region Analytics
 	public int inspectionButtonClicked;
 	protected int attempted;

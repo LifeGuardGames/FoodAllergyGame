@@ -50,6 +50,21 @@ public class ImmutableDataEvents{
 		get{return eventTitle;}
 	}
 
+	private string objectiveID;
+	public string ObjectiveID{
+		get { return objectiveID; }	
+	}
+
+	private int restMode;
+	public int RestMode {
+		get { return restMode; }
+	}
+
+	private string flowList;
+	public string FlowList {
+		get { return flowList; }
+	}
+
 
 //	public string eventPropLeft;
 //	public string EventPropLeft {
@@ -76,6 +91,13 @@ public class ImmutableDataEvents{
 			eventDescription = XMLUtils.GetString(hashElements["EventDescription"] as IXMLNode, "", error);		// Optional
 		}
 		eventTitle = XMLUtils.GetString(hashElements["Title"] as IXMLNode, null, error);
+		objectiveID = XMLUtils.GetString(hashElements["ObjectiveID"] as IXMLNode, null, error);
+		if(hashElements.Contains("restMode")) {
+			restMode = XMLUtils.GetInt(hashElements["restMode"] as IXMLNode);
+		}
+		if(hashElements.Contains("FlowList")) {
+			flowList = XMLUtils.GetString(hashElements["FlowList"] as IXMLNode);
+		}
 		//eventPropLeft = XMLUtils.GetString(hashElements["ePLeft"] as IXMLNode, null, error);
 		//eventPropRight = XMLUtils.GetString(hashElements["ePRight"] as IXMLNode, null, error);
 	}

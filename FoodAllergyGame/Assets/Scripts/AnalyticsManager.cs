@@ -110,12 +110,17 @@ public class AnalyticsManager : Singleton<AnalyticsManager> {
 	}
 
 	// When do people quit the game?
-    public void TrackGameQuitScene() {
+	public void TrackGameQuitScene() {
 		TimeSpan timeInSession = System.DateTime.Now.Subtract(DataManager.Instance.GameData.Session.start);
-        Mixpanel.SendEvent("Quit Game:", new Dictionary<string, object> {
+		Mixpanel.SendEvent("Quit Game:", new Dictionary<string, object> {
 			{ "Scene:" , SceneManager.GetActiveScene().name },
 			{ "Sessions Played:" , DataManager.Instance.DaysInSession * 1.0f },
 			{ "Time In Sesson ", timeInSession.TotalMinutes} });
+
+	}
+
+	//Epi Pen Game
+	public void epiPenGameAalytics(int attempts) {
 
 	}
 }

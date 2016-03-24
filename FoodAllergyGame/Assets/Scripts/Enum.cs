@@ -111,3 +111,13 @@ public enum GossiperMode {
 	All,
 }
 
+public enum Objectives {
+	None,
+	Cash,
+	MissedCustomers,
+	WheatServed,
+	DairyServed,
+	PeanutServed,
+	AllergyAttack,
+}
+

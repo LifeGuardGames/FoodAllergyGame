@@ -17,6 +17,15 @@ public class BehavWaitForFood : Behav {
 		self.order.GetComponent<Order>().ToggleShowOrderNumber(false);
 		self.StopCoroutine("SatisfactionTimer");
 		for(int i = 0; i < self.allergy.Count; i++) {
+			if(self.order.GetComponent<Order>().allergy[i] == Allergies.Dairy) {
+				RestaurantManager.Instance.dairyServed++;
+			}
+			else if(self.order.GetComponent<Order>().allergy[i] == Allergies.Wheat) {
+				RestaurantManager.Instance.wheatServed++;
+			}
+			else if(self.order.GetComponent<Order>().allergy[i] == Allergies.Peanut) {
+				RestaurantManager.Instance.peanutServed++;
+			}
 			if(self.order.GetComponent<Order>().allergy.Contains(self.allergy[i]) && !self.allergy.Contains(Allergies.None)) {
 				self.state = CustomerStates.AllergyAttack;
 				var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[7]);
@@ -30,6 +39,17 @@ public class BehavWaitForFood : Behav {
 		}
 
 			if(self.state == CustomerStates.WaitForFood) {
+				for(int i = 0; i < self.order.GetComponent<Order>().allergy.Count; i++) {
+					if(self.order.GetComponent<Order>().allergy[i] == Allergies.Dairy) {
+						RestaurantManager.Instance.dairyServed++;
+					}
+					else if(self.order.GetComponent<Order>().allergy[i] == Allergies.Wheat) {
+						RestaurantManager.Instance.wheatServed++;
+					}
+					else if(self.order.GetComponent<Order>().allergy[i] == Allergies.Peanut) {
+						RestaurantManager.Instance.peanutServed++;
+					}
+			}
 				var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[4]);
 				Behav eat = (Behav)Activator.CreateInstance(type);
 				eat.self = self;

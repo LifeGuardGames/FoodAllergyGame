@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<BonusObjectives>
+  <Objective ID ="Objective00">
+    <objType>Cash</objType>
+     <Amount>100</Amount>
+  </Objective>
+</BonusObjectives>

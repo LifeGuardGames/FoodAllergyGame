@@ -10,7 +10,7 @@ public class BehavEating :Behav {
 	}
 
 	public override void Reason() {
-		if(RestaurantManager.Instance.GetTable(self.tableNum).cantLeave) {
+		if(!RestaurantManager.Instance.GetTable(self.tableNum).cantLeave) {
 			self.customerUI.ToggleStar(true);
 		}
 		self.attentionSpan = 10.0f * self.timer;

@@ -5,6 +5,9 @@ using System.Linq;
 
 public class RestaurantManagerArcade : RestaurantManager {
 
+	public int flowMod;
+	public List<string> flowList;
+
 	// our satisfaction ai
 	private SatisfactionAI satisfactionAI;
 	public override void Init() {
@@ -19,6 +22,13 @@ public class RestaurantManagerArcade : RestaurantManager {
 		}
 	}
 
+	public void RunSetup() {
+
+		switch(eventData.RestMode) {
+
+		}
+	}
+
 	public override void StartDay() {
 		this.eventData = DataLoaderEvents.GetData(DataManager.instance.GetEvent());
 		customerTimerDiffMod = DataManager.Instance.GameData.DayTracker.AvgDifficulty;
@@ -30,10 +40,16 @@ public class RestaurantManagerArcade : RestaurantManager {
 		restaurantUI.StartDay();
 		//Debug.Log("Starting Day - Event:" +  eventData.ID + ", Customer Set:" + currSet);
 		actTables = 4;
+		RunSetup();
 		dayTime = eventData.DayLengthMod;
 		dayTimeLeft = dayTime;
-
-		StartCoroutine(SpawnCustomer());
+		flowList = new List<string>();
+		string [] temp = DataLoaderCustomerFlow.GetData(eventData.FlowList).FlowList;
+		for(int i = 0; i < temp.Length; i++) {
+			flowList.Add(temp[i]);
+		}
+		StartCoroutine("NextWave");
+        StartCoroutine(SpawnCustomer());
 	}
 
 	// Spawns a customer after a given amount of timer then it restarts the coroutine
@@ -41,21 +57,21 @@ public class RestaurantManagerArcade : RestaurantManager {
 		yield return 0;
 		yield return new WaitForSeconds(customerSpawnTimer);
 
-			int rand;
+		int rand;
 		if(!dayOver && lineCount < 8) {
 			ImmutableDataCustomer customerData;
 			if(DataManager.Instance.GameData.DayTracker.AvgDifficulty == 15.0f) {
 				customerSpawnTimer = 6.0f;
 			}
 			else if(IsTableAvilable()) {
-				customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty * 0.27f;
+				customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty * 0.27f + flowMod;
 			}
 			else {
-				customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty * 0.4f;
+				customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty * 0.4f + flowMod;
 			}
 
 			if(customerSpawnTimer < 3.0f) {
-				customerSpawnTimer = 3.0f;
+				customerSpawnTimer = 3.0f + flowMod;
 			}
 
 			//Debug.Log(customerSpawnTimer);
@@ -153,9 +169,15 @@ public class RestaurantManagerArcade : RestaurantManager {
 				DataManager.Instance.DaysInSession++;
 				
 					DataManager.Instance.GameData.DayTracker.AvgDifficulty = ((DataManager.Instance.GameData.DayTracker.AvgDifficulty + satisfactionAI.DifficultyLevel) / 2);
-					// Save data here
-					int dayNetCash = dayEarnedCash + Medic.Instance.MedicCost;
-					CashManager.Instance.RestaurantEndCashUpdate(dayNetCash, dayCashRevenue);
+				// Save data here
+					int dayNetCash;
+				if(checkBonus()) {
+					dayNetCash = dayEarnedCash + Medic.Instance.MedicCost + 100;
+				}
+				else {
+					dayNetCash = dayEarnedCash + Medic.Instance.MedicCost;
+				}
+                    CashManager.Instance.RestaurantEndCashUpdate(dayNetCash, dayCashRevenue);
 
 					// Unlock new event generation for StartManager
 					DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
@@ -241,4 +263,62 @@ public class RestaurantManagerArcade : RestaurantManager {
 				DayEarnedCash, Medic.Instance.MedicCost);
 	}
 
+	public bool checkBonus() {
+		ImmutableDataBonusObjective temp = DataLoaderBonusObjective.GetData(eventData.ObjectiveID);
+		switch(temp.ObjType) {
+			case "Cash":
+				if(temp.Num < dayEarnedCash) {
+					return true;
+				}
+				break;
+			case "AllergyAttack":
+				if(temp.Num <= savedCustomers) {
+					return true;
+				}
+				break;
+			case "Missed":
+				if(temp.Num > satisfactionAI.MissingCustomers) {
+					return true;
+				}
+				break;
+			case "wheat":
+				if(temp.Num < wheatServed) {
+					return true;
+				}
+				break;
+			case "dairy":
+				if(temp.Num < dairyServed) {
+					return true;
+				}
+				break;
+			case "peanut":
+				if(temp.Num < wheatServed) {
+					return true;
+				}
+				break;
+		}
+		return false;
+	}
+
+	IEnumerator NextWave() {
+		yield return new WaitForSeconds(dayTime / 4);
+		switch(flowList[0]) {
+			case "0":
+				Debug.Log(0);
+				flowMod = 0;
+				break;
+			case "1":
+				Debug.Log(1);
+				flowMod = 5;
+				break;
+			case "-1":
+				Debug.Log(-1);
+				flowMod = -3;
+				break;
+		}
+		flowList.RemoveAt(0);
+		if(!dayOver) { 
+		StartCoroutine("NextWave");
+		}
+	}
 }
