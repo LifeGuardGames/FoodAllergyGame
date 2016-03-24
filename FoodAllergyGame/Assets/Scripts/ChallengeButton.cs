@@ -12,9 +12,7 @@ public class ChallengeButton : MonoBehaviour {
 		challengeID = challengeData.ID;
 		ChallengeReward rewardProgress = DataManager.Instance.GameData.Challenge.ChallengeProgress[challengeID];
 		imageBackground.sprite = SpriteCacheManager.GetChallengeButton(rewardProgress);
-
-		// TODO Insert text here
-		textTitle.text = challengeData.Title;
+		textTitle.text = LocalizationText.GetText(challengeData.Title);
 	}
 
 	public void OnButtonClicked() {

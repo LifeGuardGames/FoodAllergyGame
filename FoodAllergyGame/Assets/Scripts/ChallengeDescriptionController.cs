@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
+using System.Collections;
 
 public class ChallengeDescriptionController : MonoBehaviour {
-
 	public Text description;
 	public Text title;
 	public Text bronzeBrake;
@@ -12,20 +11,31 @@ public class ChallengeDescriptionController : MonoBehaviour {
 	public Button accept;
 	public TweenToggle tween;
 
+	private string currentChallengeID;
+
 	public void Populate(string challengeID) {
-		ImmutableDataChallenge details = DataLoaderChallenge.GetData(challengeID);
-		title.GetComponent<Localize>().key = details.Title;
-		title.GetComponent<Localize>().LocalizeText();
-		description.GetComponent<Localize>().key = details.ChallengeDescription;
-		description.GetComponent<Localize>().LocalizeText(); ;
-		bronzeBrake.text = details.BronzeBreakPoint.ToString();
-		silverBrake.text = details.SilverBreakPoint.ToString();
-		goldBrake.text = details.GoldBreakPoint.ToString();
-		accept.onClick.AddListener(() => ChallengeMenuManager.Instance.StartChallenge(challengeID));
+		currentChallengeID = challengeID;
+		ImmutableDataChallenge challengeData = DataLoaderChallenge.GetData(challengeID);
+		title.text = LocalizationText.GetText(challengeData.Title);
+		Debug.Log(challengeData.Title);
+		Debug.Log(challengeData.ChallengeDescription);
+		description.text = LocalizationText.GetText(challengeData.ChallengeDescription);
+		bronzeBrake.text = challengeData.BronzeBreakPoint.ToString();
+		silverBrake.text = challengeData.SilverBreakPoint.ToString();
+		goldBrake.text = challengeData.GoldBreakPoint.ToString();
 		tween.Show();
 	}
 
-	public void Cancel() {
+	public void OnCancelButton(){
 		tween.Hide();
-	} 
+	}
+
+	public void OnPlayButton(){
+		if(!string.IsNullOrEmpty(currentChallengeID)){
+			ChallengeMenuManager.Instance.StartChallenge(currentChallengeID);
+		}
+		else{
+			Debug.LogError("Null string for challengeID");
+		}
+	}
 }
