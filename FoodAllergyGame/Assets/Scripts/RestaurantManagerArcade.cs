@@ -304,15 +304,12 @@ public class RestaurantManagerArcade : RestaurantManager {
 		yield return new WaitForSeconds(dayTime / 4);
 		switch(flowList[0]) {
 			case "0":
-				Debug.Log(0);
 				flowMod = 0;
 				break;
 			case "1":
-				Debug.Log(1);
 				flowMod = 5;
 				break;
 			case "-1":
-				Debug.Log(-1);
 				flowMod = -3;
 				break;
 		}
