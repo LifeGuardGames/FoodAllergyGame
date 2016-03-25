@@ -7,6 +7,7 @@ public class EpiPenGameUIManager : MonoBehaviour{
 	public GameTimer timer;
 	public Text timerText;
 	public TweenToggle checkButtonTween;
+	public TweenToggle fadePanel;
 
 	public void CheckButtonToggle(bool isShown) {
 		if(isShown) {
@@ -24,6 +25,15 @@ public class EpiPenGameUIManager : MonoBehaviour{
 	public void OnCheckButton() {
 		timer.PauseTimer();
 	}
+
+	public void FadeToggle(bool isShown) {
+		if(isShown) {
+			fadePanel.Show();
+		}
+		else {
+			fadePanel.Hide();
+		}
+    }
 
 	public void ShowGameOver(int attempts) {
 		if(attempts == 1) {

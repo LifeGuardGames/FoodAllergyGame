@@ -18,7 +18,6 @@ public class EpiPenGameToken : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	}
 
 	public void Init(int _tokenNumber, bool _isLocked) {
-		Debug.Log("INIT " + _tokenNumber);
 		isLocked = _isLocked;
 		tokenNumber = _tokenNumber;
         gameObject.name = "Token" + _tokenNumber;
