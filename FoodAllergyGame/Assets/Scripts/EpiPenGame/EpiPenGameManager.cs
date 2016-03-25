@@ -19,6 +19,8 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	public GameObject leftButton;
 	public GameObject rightButton;
 
+	public Transform trashSlot;
+
 	private int pickSlotPage = 0;
 	private int pickSlotPageSize = 5;
 	private List<bool> answers;
@@ -92,7 +94,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 				go.GetComponent<EpiPenGameToken>().Init(i, true);
 			}
 		}
-		
+
 		ShowPage(0);
 		if(isTutorial) {
 			StartTutorial();
@@ -178,6 +180,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		int endingIndex = startingIndex + pickSlotPageSize;
 
 		int pickTokensIndex = 0;
+		
 		for(int i = startingIndex; i < endingIndex; i++) {
 			if(allPickTokens.Count == i) {      // Reached the end of list
 				break;
@@ -223,6 +226,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		// Spawn another panel that actually tweens
 		GameObject tokenPrefab = Resources.Load("Token" + epipenSetPrefix + tokenNumber) as GameObject;
 		GameObject animationTokenAux = GameObjectUtils.AddChildGUI(animationTokenParent.gameObject, tokenPrefab);
+		animationTokenAux.GetComponent<EpiPenGameToken>().AuxInit();
 		animationTokenAux.transform.position = finalSlotList[slotIndex].GetComponent<RectTransform>().position;
 
 		LeanTween.move(animationTokenAux, animationTokenParent.position, 0.5f).setEase(LeanTweenType.easeInOutQuad);
@@ -234,10 +238,17 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		animationTokenAux.GetComponent<EpiPenGameToken>().SetAnimateState(true);
 		yield return new WaitForSeconds(1.0f);
 
+		// Show the symbol animation
+		bool isCorrect = IsTokenCorrect(slotIndex);
+		animationTokenAux.GetComponent<EpiPenGameToken>().SetMark(isCorrect, true);
+
+		yield return new WaitForSeconds(0.5f);
+
 		// Check to see if it is correct and do the appropriate action
-		if(IsTokenCorrect(slotIndex)) {
+		if(isCorrect) {
 			finalSlotList[slotIndex].GetToken().IsLocked = true;       // Lock the token
-			if(allPickTokens.Remove(slotIndex)) {						// Soft remove from pick list
+			finalSlotList[slotIndex].GetToken().SetMark(true, false);
+            if(allPickTokens.Remove(slotIndex)) {						// Soft remove from pick list
 				finalSlotList[slotIndex].GetComponent<Image>().sprite = lockedFinalSlotSprite;	// Change slot color
 			}
 
@@ -252,11 +263,17 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 
 			Destroy(animationTokenAux.gameObject);
 
+			// Hide all the marks if there are any
+			foreach(EpiPenGameSlot slot in finalSlotList) {
+				slot.GetToken().HideMark();
+			}
+
 			// Return all tokens that is not locked, this and after
 			for(int i = slotIndex; i < totalSteps; i++) {
-				if(!finalSlotList[i].GetToken().IsLocked) {
-					Destroy(finalSlotList[i].GetToken().gameObject);
-					finalSlotList[i].GetComponent<Image>().sprite = emptyFinalSlotSprite;
+				EpiPenGameSlot finalSlot = finalSlotList[i];
+                if(!finalSlot.GetToken().IsLocked) {
+					finalSlot.ClearToken();
+					finalSlot.GetComponent<Image>().sprite = emptyFinalSlotSprite;
 				}
 			}
 			ShowPage(0);
