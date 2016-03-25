@@ -17,8 +17,6 @@ public class ChallengeDescriptionController : MonoBehaviour {
 		currentChallengeID = challengeID;
 		ImmutableDataChallenge challengeData = DataLoaderChallenge.GetData(challengeID);
 		title.text = LocalizationText.GetText(challengeData.Title);
-		Debug.Log(challengeData.Title);
-		Debug.Log(challengeData.ChallengeDescription);
 		description.text = LocalizationText.GetText(challengeData.ChallengeDescription);
 		bronzeBrake.text = challengeData.BronzeBreakPoint.ToString();
 		silverBrake.text = challengeData.SilverBreakPoint.ToString();

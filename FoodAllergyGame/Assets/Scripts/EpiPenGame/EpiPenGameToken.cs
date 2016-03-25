@@ -4,8 +4,10 @@ using UnityEngine.EventSystems;
 
 public class EpiPenGameToken : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
 	public static GameObject itemBeingDragged;
-	public int order;
+	public int tokenNumber;
 	public Animator animator;
+	public Animation checkMarkAnim;
+	public Animation xMarkAnim;
 
 	private Transform startParent;
 
@@ -15,15 +17,26 @@ public class EpiPenGameToken : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 		set { isLocked = value; }
 	}
 
-	public void Init(int tokenOrder, bool isLockedIncoming) {
-		isLocked = isLockedIncoming;
-        gameObject.name = "Token" + tokenOrder;
-		order = tokenOrder;
+	public void Init(int _tokenNumber, bool _isLocked) {
+		isLocked = _isLocked;
+		tokenNumber = _tokenNumber;
+        gameObject.name = "Token" + _tokenNumber;
 		SetAnimateState(false);
     }
 
 	public void SetAnimateState(bool isAnimate) {
 		animator.Play(isAnimate ? "AnimateState" : "TokenState");
+	}
+
+	public void SetMark(bool isCorrect) {
+		if(isCorrect) {
+			checkMarkAnim.gameObject.SetActive(isCorrect);
+			checkMarkAnim.Play();
+		}
+	}
+
+	public void HideMark() {
+
 	}
 
 	public void OnBeginDrag(PointerEventData eventData) {
