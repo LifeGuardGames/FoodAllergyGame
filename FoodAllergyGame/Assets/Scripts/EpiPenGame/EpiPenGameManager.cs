@@ -28,6 +28,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	public bool isTutorial;
 	public GameObject tutFingerPrefab;
 	private int attempts = 0;
+	private int difficulty = 0;
 	private string epipenSetPrefix;     // "A" or "B", 'TokenA1' format
 
 	void Start() {
@@ -70,8 +71,9 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		// Wait one frame, wait for everything to destroy
 		yield return 0;
 
-		//int tokensToPick = TierManager.Instance.CurrentTier / 2;
+		//int tokensToPick = DataManager.Instance.GameData.Epi.Difficulty;
 		int tokensToPick = 6;
+		difficulty = tokensToPick;
 		if(!isTutorial) {
 			// Populate the tokens to remove by order number
 			foreach(int randomIndex in NumberUtils.UniqueRandomList(tokensToPick, 0, totalSteps - 1)) {
@@ -271,14 +273,16 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 			// Return all tokens that is not locked, this and after
 			for(int i = slotIndex; i < totalSteps; i++) {
 				EpiPenGameSlot finalSlot = finalSlotList[i];
-					AnalyticsManager.Instance.MissedPiece(finalSlotList[i].GetToken().tokenNumber);
+				AnalyticsManager.Instance.MissedPiece(finalSlotList[i].GetToken().tokenNumber);
+				if(!finalSlot.GetToken().IsLocked) {
 					finalSlot.ClearToken();
 					finalSlot.GetComponent<Image>().sprite = emptyFinalSlotSprite;
 				}
 			}
-			ShowPage(0);
 		}
+		ShowPage(0);
 	}
+	
 
 	private void OnTokenAnimationDone(int slotIndex, GameObject animationTokenAux) {
 		finalSlotList[slotIndex].GetToken().gameObject.SetActive(true);
@@ -289,7 +293,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		}
 		else {
 			UIManager.ShowGameOver(attempts);
-		//	AnalyticsManager.Instance.EpiPenGameResultsAalytics(attempts,difficulty,)
+			AnalyticsManager.Instance.EpiPenGameResultsAalytics(attempts, difficulty, UIManager.timerText.text, true);
 		}
 	}
 	#endregion
