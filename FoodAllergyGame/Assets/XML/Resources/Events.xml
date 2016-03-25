@@ -66,6 +66,7 @@
 		<EventDescription>EventDesc01</EventDescription>
 		<Title>Event01</Title>
     <ObjectiveID>Objective00</ObjectiveID>
+    <FlowList>Flow00</FlowList>
 	</Event>
 	<Event ID="Event02">     <!-- A Busy day -->
 		<RemoveMenuSet>RemoveMenuSet01</RemoveMenuSet>
@@ -77,6 +78,7 @@
 		<EventDescription>EventDesc02</EventDescription>
 		<Title>Event02</Title>
     <ObjectiveID>Objective00</ObjectiveID>
+    <FlowList>Flow00</FlowList>
 	</Event>
 	<Event ID="Event03">     <!-- Chef's Bad Day -->
 		<RemoveMenuSet>RemoveMenuSet01</RemoveMenuSet>
@@ -88,6 +90,7 @@
 		<EventDescription>EventDesc03</EventDescription>
 		<Title>Event03</Title>
     <ObjectiveID>Objective00</ObjectiveID>
+    <FlowList>Flow00</FlowList>
 	</Event>
 	<Event ID="Event04">      <!-- Rush Hour -->
 		<RemoveMenuSet>RemoveMenuSet01</RemoveMenuSet>
@@ -99,6 +102,7 @@
 		<EventDescription>EventDesc04</EventDescription>
 		<Title>Event04</Title>
     <ObjectiveID>Objective00</ObjectiveID>
+    <FlowList>Flow00</FlowList>
 	</Event>
 
 	<Event ID="Event05">
@@ -111,6 +115,7 @@
 		<EventDescription>EventDesc00</EventDescription>
 		<Title>Event00</Title>
     <ObjectiveID>Objective00</ObjectiveID>
+    <FlowList>Flow00</FlowList>
 	</Event>
 	<Event ID="Event06">
 		<RemoveMenuSet>RemoveMenuSet02</RemoveMenuSet>
@@ -122,6 +127,7 @@
 		<EventDescription>EventDesc01</EventDescription>
 		<Title>Event01</Title>
     <ObjectiveID>Objective00</ObjectiveID>
+    <FlowList>Flow00</FlowList>
 	</Event>
 	<Event ID="Event07">
 		<RemoveMenuSet>RemoveMenuSet02</RemoveMenuSet>
@@ -133,6 +139,7 @@
 		<EventDescription>EventDesc02</EventDescription>
 		<Title>Event02</Title>
     <ObjectiveID>Objective00</ObjectiveID>
+    <FlowList>Flow00</FlowList>
 	</Event>
 	<Event ID="Event08">
 		<RemoveMenuSet>RemoveMenuSet02</RemoveMenuSet>
@@ -144,6 +151,7 @@
 		<EventDescription>EventDesc03</EventDescription>
 		<Title>Event03</Title>
     <ObjectiveID>Objective00</ObjectiveID>
+    <FlowList>Flow00</FlowList>
 	</Event>
 	<Event ID="Event09">
 		<RemoveMenuSet>RemoveMenuSet02</RemoveMenuSet>
@@ -155,6 +163,7 @@
 		<EventDescription>EventDesc04</EventDescription>
 		<Title>Event04</Title>
     <ObjectiveID>Objective00</ObjectiveID>
+    <FlowList>Flow00</FlowList>
 	</Event>
 
 	<Event ID="Event10">
@@ -167,6 +176,7 @@
 		<EventDescription>EventDesc01</EventDescription>
 		<Title>Event01</Title>
     <ObjectiveID>Objective00</ObjectiveID>
+    <FlowList>Flow00</FlowList>
 	</Event>
 	<Event ID="Event11">
 		<RemoveMenuSet>RemoveMenuSet03</RemoveMenuSet>
@@ -178,6 +188,7 @@
 		<EventDescription>EventDesc02</EventDescription>
 		<Title>Event02</Title>
     <ObjectiveID>Objective00</ObjectiveID>
+    <FlowList>Flow00</FlowList>
 	</Event>
 	<Event ID="Event12">
 		<RemoveMenuSet>RemoveMenuSet03</RemoveMenuSet>
@@ -189,6 +200,7 @@
 		<EventDescription>EventDesc03</EventDescription>
 		<Title>Event03</Title>
     <ObjectiveID>Objective00</ObjectiveID>
+    <FlowList>Flow00</FlowList>
 	</Event>
 	<Event ID="Event13">
 		<RemoveMenuSet>RemoveMenuSet03</RemoveMenuSet>
@@ -200,8 +212,9 @@
 		<EventDescription>EventDesc04</EventDescription>
 		<Title>Event04</Title>
     <ObjectiveID>Objective00</ObjectiveID>
+    <FlowList>Flow00</FlowList>
 	</Event>
-	<Event ID="Event14"> <!-- A Victory For Good Taste-->-->
+	<Event ID="Event14"> <!-- A Victory For Good Taste-->
 		<RemoveMenuSet>RemoveMenuSet03</RemoveMenuSet>
 		<KitchenTimer>3</KitchenTimer>
 		<CustomerSet>CustomerSet04</CustomerSet>
@@ -211,6 +224,7 @@
 		<EventDescription>EventDesc14</EventDescription>
 		<Title>Event14</Title>
     <ObjectiveID>Objective00</ObjectiveID>
+    <FlowList>Flow00</FlowList>
 	</Event>
   <Event ID="Event15">
     <!-- An ordinary day -->
@@ -223,6 +237,7 @@
     <EventDescription>EventDesc00</EventDescription>
     <Title>Event00</Title>
     <ObjectiveID>Objective00</ObjectiveID>
+    <FlowList>Flow00</FlowList>
   </Event>
 </Events>
 

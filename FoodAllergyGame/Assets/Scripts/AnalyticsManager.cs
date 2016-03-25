@@ -120,7 +120,16 @@ public class AnalyticsManager : Singleton<AnalyticsManager> {
 	}
 
 	//Epi Pen Game
-	public void epiPenGameAalytics(int attempts) {
+	public void EpiPenGameResultsAalytics(int attempts, int difficulty, string time, bool practicePlays) {
+		Mixpanel.SendEvent("Epi Pen Game Results", new Dictionary<string, object> {
+			{ "Attempts:" , attempts},
+			{"Difficulty:", difficulty },
+			{"Time Taken:", time },
+			{"Is Practice Play:", practicePlays }});
+	}
 
+	public void MissedPiece(int wrongPiece) {
+		Mixpanel.SendEvent("Wrong Piece: ", new Dictionary<string, object> {
+			{"Piece: ", wrongPiece }});
 	}
 }

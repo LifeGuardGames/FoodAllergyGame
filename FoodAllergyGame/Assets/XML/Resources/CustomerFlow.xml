@@ -3,4 +3,19 @@
   <Flow ID ="Flow00">
     <FlowList>-1,1,-1,-1</FlowList>
   </Flow>
+  <Flow ID ="Flow01">
+    <FlowList>-1,-1,0,-1</FlowList>
+  </Flow>
+  <Flow ID ="Flow02">
+    <FlowList>-1,-1,-1,-1</FlowList>
+  </Flow>
+  <Flow ID ="Flow03">
+    <FlowList>-1,-0,1,-1</FlowList>
+  </Flow>
+  <Flow ID ="Flow04">
+    <FlowList>-1,0,1,0</FlowList>
+  </Flow>
+  <Flow ID ="Flow06">
+    <FlowList>0,1,0,-1</FlowList>
+  </Flow>
 </CustomerFlow>

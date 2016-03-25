@@ -255,6 +255,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 			// Return all tokens that is not locked, this and after
 			for(int i = slotIndex; i < totalSteps; i++) {
 				if(!finalSlotList[i].GetToken().IsLocked) {
+					AnalyticsManager.Instance.MissedPiece(finalSlotList[i].GetToken().tokenNumber);
 					Destroy(finalSlotList[i].GetToken().gameObject);
 					finalSlotList[i].GetComponent<Image>().sprite = emptyFinalSlotSprite;
 				}
@@ -272,6 +273,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		}
 		else {
 			UIManager.ShowGameOver(attempts);
+		//	AnalyticsManager.Instance.EpiPenGameResultsAalytics(attempts,difficulty,)
 		}
 	}
 	#endregion

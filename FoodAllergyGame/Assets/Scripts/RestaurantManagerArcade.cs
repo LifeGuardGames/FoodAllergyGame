@@ -24,9 +24,9 @@ public class RestaurantManagerArcade : RestaurantManager {
 
 	public void RunSetup() {
 
-		switch(eventData.RestMode) {
+	//	switch(eventData.RestMode) {
 
-		}
+		//}
 	}
 
 	public override void StartDay() {
