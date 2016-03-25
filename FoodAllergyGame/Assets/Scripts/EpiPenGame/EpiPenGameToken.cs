@@ -18,25 +18,44 @@ public class EpiPenGameToken : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	}
 
 	public void Init(int _tokenNumber, bool _isLocked) {
+		Debug.Log("INIT " + _tokenNumber);
 		isLocked = _isLocked;
 		tokenNumber = _tokenNumber;
         gameObject.name = "Token" + _tokenNumber;
 		SetAnimateState(false);
+		HideMark();
     }
+
+	// Init function for the animation aux token
+	public void AuxInit() {
+		HideMark();
+	}
 
 	public void SetAnimateState(bool isAnimate) {
 		animator.Play(isAnimate ? "AnimateState" : "TokenState");
 	}
 
-	public void SetMark(bool isCorrect) {
+	// Show the punch mark for either a check or an X
+	public void SetMark(bool isCorrect, bool playAnimation) {
 		if(isCorrect) {
-			checkMarkAnim.gameObject.SetActive(isCorrect);
-			checkMarkAnim.Play();
+			checkMarkAnim.gameObject.SetActive(true);
+			xMarkAnim.gameObject.SetActive(false);
+			if(playAnimation) {
+				checkMarkAnim.Play();
+			}
+		}
+		else {
+			checkMarkAnim.gameObject.SetActive(false);
+			xMarkAnim.gameObject.SetActive(true);
+			if(playAnimation) {
+				xMarkAnim.Play();
+			}
 		}
 	}
-
+	
 	public void HideMark() {
-
+		checkMarkAnim.gameObject.SetActive(false);
+		xMarkAnim.gameObject.SetActive(false);
 	}
 
 	public void OnBeginDrag(PointerEventData eventData) {
