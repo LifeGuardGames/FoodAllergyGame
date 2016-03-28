@@ -235,17 +235,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 		if(!dayOver) {
 			IncompleteQuitAnalytics();
 		}
-		int rand = Random.Range(0, 10);
-		if(rand > DataManager.Instance.GameData.Epi.ChanceOfEpiGame) {
-			DataManager.Instance.GameData.Epi.HasPlayedEpiPenGameThisTier = true;
-            LoadLevelManager.Instance.StartLoadTransition(SceneUtils.EPIPEN, additionalImageKey:"LoadingImageEpipen");
-		}
-		else {
-			if(!DataManager.Instance.GameData.Epi.HasPlayedEpiPenGameThisTier) {
-				DataManager.Instance.GameData.Epi.ChanceOfEpiGame += 2;
-            }
-			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
-		}
+		
 	}
 
 	// Used in OnApplicationPaused in Restaurant and quit button

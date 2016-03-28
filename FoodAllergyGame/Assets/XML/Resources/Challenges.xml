@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Challenges>
-  <Challenge ID="EpiPenPractice">
-    <Title>ChallengeEpiPen</Title>
-    <Description>ChallengeEpiPenDesc</Description>
+  <Challenge ID="Challenge00">
+    <Title>ChallengePracticeEpi</Title>
+    <Description>ChallengePracticeEpiDesc</Description>
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
     <Tier>0</Tier>

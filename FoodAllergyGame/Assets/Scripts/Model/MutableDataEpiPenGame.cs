@@ -9,7 +9,7 @@ public class MutableDataEpiPenGame {
 
 	public MutableDataEpiPenGame() {
 		HasPlayedEpiPenGameThisTier = false;
-		ChanceOfEpiGame = 10;
+		ChanceOfEpiGame = 0;
 		Difficulty = 3;
 	}
 }

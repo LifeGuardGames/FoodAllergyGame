@@ -31,7 +31,7 @@ public class ChallengeMenuManager : Singleton<ChallengeMenuManager> {
 	}
 
 	public void StartChallenge(string challengeID) {
-		if(challengeID == "EpiPenPractice") {
+		if(challengeID == "Challenge00") {
 			AnalyticsManager.Instance.EpiPenGamePractice();
 			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.EPIPEN, additionalImageKey: "LoadingImageEpipen");
 		}
