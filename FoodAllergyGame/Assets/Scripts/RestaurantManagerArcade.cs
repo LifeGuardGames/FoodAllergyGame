@@ -22,13 +22,6 @@ public class RestaurantManagerArcade : RestaurantManager {
 		}
 	}
 
-	public void RunSetup() {
-
-	//	switch(eventData.RestMode) {
-
-		//}
-	}
-
 	public override void StartDay() {
 		this.eventData = DataLoaderEvents.GetData(DataManager.instance.GetEvent());
 		customerTimerDiffMod = DataManager.Instance.GameData.DayTracker.AvgDifficulty;
@@ -40,7 +33,6 @@ public class RestaurantManagerArcade : RestaurantManager {
 		restaurantUI.StartDay();
 		//Debug.Log("Starting Day - Event:" +  eventData.ID + ", Customer Set:" + currSet);
 		actTables = 4;
-		RunSetup();
 		dayTime = eventData.DayLengthMod;
 		dayTimeLeft = dayTime;
 		flowList = new List<string>();

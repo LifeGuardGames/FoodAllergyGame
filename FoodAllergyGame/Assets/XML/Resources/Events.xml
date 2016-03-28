@@ -239,5 +239,18 @@
     <ObjectiveID>Objective00</ObjectiveID>
     <FlowList>Flow00</FlowList>
   </Event>
+  <Event ID="Event16">
+    <!-- Fast Forward -->
+    <RemoveMenuSet>RemoveMenuSet01</RemoveMenuSet>
+    <KitchenTimer>0</KitchenTimer>
+    <CustomerSet>CustomerSet01</CustomerSet>
+    <CustomerTimer>1</CustomerTimer>
+    <DayLength>72</DayLength>
+    <Allergy>cc</Allergy>
+    <EventDescription>EventDesc00</EventDescription>
+    <Title>Event00</Title>
+    <ObjectiveID>Objective00</ObjectiveID>
+    <FlowList>Flow00</FlowList>
+  </Event>
 </Events>
 

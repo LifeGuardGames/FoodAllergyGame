@@ -20,6 +20,9 @@ public class FoodManager : Singleton<FoodManager>{
 		get{ return menuList; }
 	}
 
+	public ImmutableDataFood specialFood;
+	public ImmutableDataFood bannedFood;
+
 	////////////////////////////////////
 
 	#region MenuPlanning scene functions
@@ -124,4 +127,14 @@ public class FoodManager : Singleton<FoodManager>{
 		return desiredFoodList;
 	}
 	#endregion
+
+	public void ChooseSpecialFood() {
+		int rand = Random.Range(0, foodStockList.Count);
+		specialFood = foodStockList[rand];
+		while(foodStockList[rand] == specialFood) {
+			rand = Random.Range(0, foodStockList.Count);
+		}
+		bannedFood = foodStockList[rand];
+	}
+
 }

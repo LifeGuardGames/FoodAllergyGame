@@ -399,7 +399,15 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 			order = GameObjectUtils.AddChildWithPositionAndScale(null, OrderPrefab);
 			order.GetComponent<Order>().Init(food.ID, tableNum, food.AllergyList);
-			priceMultiplier = food.Reward;
+			if(food == FoodManager.Instance.specialFood) {
+				priceMultiplier = food.Reward * 2;
+			}
+			else if (food == FoodManager.Instance.bannedFood) {
+				priceMultiplier = 0;
+			}
+			else {
+				priceMultiplier = food.Reward;
+			}
 			RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().OrderObtained(order);
 			attentionSpan = 20.0f * timer;
 
