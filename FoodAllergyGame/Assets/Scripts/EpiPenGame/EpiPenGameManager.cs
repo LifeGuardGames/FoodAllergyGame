@@ -20,6 +20,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	public GameObject rightButton;
 
 	public Transform trashSlot;
+	public GameObject checkButton;
 
 	private int pickSlotPage = 0;
 	private int pickSlotPageSize = 5;
@@ -27,6 +28,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	public RectTransform animationTokenParent;
 	public bool isTutorial;
 	public GameObject tutFingerPrefab;
+	public GameObject tutFingerPressPrefab;
 	private int attempts = 0;
 	private int difficulty = 0;
 	private string epipenSetPrefix;     // "A" or "B", 'TokenA1' format
@@ -36,7 +38,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		epipenSetPrefix = randomIndex == 0 ? "A" : "A";		// TODO make different version
 
 		if(DataManager.Instance.IsDebug) {
-			isTutorial = Constants.GetConstant<bool>("IsEpiPenTutorialDone");
+			isTutorial = !Constants.GetConstant<bool>("IsEpiPenTutorialDone");
 		}
 		else {
 			if(DataManager.Instance.GameData.Tutorial.IsEpiPenGameTutorialDone) {
@@ -75,6 +77,8 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		int tokensToPick = 6;
 		difficulty = tokensToPick;
 		if(!isTutorial) {
+			Debug.Log("REG GAME");
+
 			// Populate the tokens to remove by order number
 			foreach(int randomIndex in NumberUtils.UniqueRandomList(tokensToPick, 0, totalSteps - 1)) {
 				allPickTokens.Add(randomIndex);
@@ -136,7 +140,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		AnimateEnding();
 	}
 
-	public void GameOverButtonClicked() {
+	public void OnGameOverButtonClicked() {
 		// Temp stuff
 		UIManager.gameOverTween.Hide();
 		StartGame();
@@ -230,10 +234,11 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		GameObject animationTokenAux = GameObjectUtils.AddChildGUI(animationTokenParent.gameObject, tokenPrefab);
 		animationTokenAux.GetComponent<EpiPenGameToken>().AuxInit();
 		animationTokenAux.transform.position = finalSlotList[slotIndex].GetComponent<RectTransform>().position;
-
 		LeanTween.move(animationTokenAux, animationTokenParent.position, 0.5f).setEase(LeanTweenType.easeInOutQuad);
 		LeanTween.scale(animationTokenAux, new Vector3(2f, 2f, 1f), 0.5f).setEase(LeanTweenType.easeInOutQuad)
 			.setOnComplete(delegate () { StartCoroutine(PlayAnimation(slotIndex, animationTokenAux)); });
+
+		UIManager.FadeToggle(true);
 	}
 
 	IEnumerator PlayAnimation(int slotIndex, GameObject animationTokenAux) {
@@ -258,11 +263,11 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 			LeanTween.move(animationTokenAux, finalSlotList[slotIndex].transform.position, 0.5f).setEase(LeanTweenType.easeInOutQuad);
 			LeanTween.scale(animationTokenAux, Vector3.one, 0.5f).setEase(LeanTweenType.easeInOutQuad)
 				.setOnComplete(delegate () { OnTokenAnimationDone(slotIndex, animationTokenAux); });
+
+			UIManager.FadeToggle(false);
 		}
 		else {
-			// TODO Show some UI - X the token
-
-
+			UIManager.FadeToggle(false);
 			Destroy(animationTokenAux.gameObject);
 
 			// Hide all the marks if there are any
@@ -283,7 +288,6 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		ShowPage(0);
 	}
 	
-
 	private void OnTokenAnimationDone(int slotIndex, GameObject animationTokenAux) {
 		finalSlotList[slotIndex].GetToken().gameObject.SetActive(true);
 		Destroy(animationTokenAux.gameObject);
@@ -297,6 +301,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		}
 	}
 	#endregion
+
 	#region Tutorial
 	private void StartTutorial(int step = 0) {
 		GameObjectUtils.AddChildGUI(currentPickSlotList[step].GetToken().gameObject, tutFingerPrefab).name = "EpipenFinger";
@@ -351,6 +356,8 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 
 	IEnumerator EndTutorialCheckButton() {
 		UIManager.CheckButtonToggle(true);
+		GameObject go = GameObjectUtils.AddChildGUI(checkButton, tutFingerPressPrefab);
+		Destroy(go, 1.2f);
 		yield return new WaitForSeconds(1.0f);
 		isTutorial = false;
 		DataManager.Instance.GameData.Tutorial.IsEpiPenGameTutorialDone = true;

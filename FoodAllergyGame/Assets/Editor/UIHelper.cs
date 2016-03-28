@@ -2,15 +2,46 @@
 using UnityEditor;
 using System.Collections.Generic;
 using UnityEditor.SceneManagement;
+using EditorExtended;
 
+[InitializeOnLoad]
+[ExecuteInEditMode]
 public class UIHelper : EditorWindow {
 	private GameObject[] tagsList;
 	private string currentScene = "";
 	private GameObject UIElementListObject;	// Object in the scene that keeps of all UIElements
 	private List<GameObject> UIElementsList;
 	private List<bool> elementBoolList;
+	private List<bool> savedElementBoolList;
 	private bool isCompileAux = false;
 	private Vector2 scrollPosition = Vector2.zero;
+
+	void OnEnable() {
+		EditorPlayMode.PlayModeChanged += OnPlayModeChanged;
+	}
+	
+	// Automatic setup of UIs before being played
+	private void OnPlayModeChanged(PlayModeState currentMode, PlayModeState changedMode) {
+		switch(changedMode) {
+			case PlayModeState.Playing:
+				// Save the current state of bools to repopulate later
+				savedElementBoolList = new List<bool>();
+                foreach(GameObject go in UIElementsList) {
+					savedElementBoolList.Add(go.activeSelf);
+				}
+
+				ResetUIElements();		// Reset the elements to correct toggle
+				break;
+			case PlayModeState.Stopped:
+				for(int i = 0; i < UIElementsList.Count; i++) {
+					UIElementsList[i].SetActive(savedElementBoolList[i]);
+				}
+				break;
+			default:
+				// Do nothing
+				break;
+		}
+	}
 
 	[MenuItem("LGG/UI Helper")]
 	public static void ShowWindow(){

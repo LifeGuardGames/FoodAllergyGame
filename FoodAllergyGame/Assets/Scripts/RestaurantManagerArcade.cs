@@ -238,7 +238,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 		int rand = Random.Range(0, 10);
 		if(rand > DataManager.Instance.GameData.Epi.ChanceOfEpiGame) {
 			DataManager.Instance.GameData.Epi.HasPlayedEpiPenGameThisTier = true;
-            LoadLevelManager.Instance.StartLoadTransition(SceneUtils.EPIPEN);
+            LoadLevelManager.Instance.StartLoadTransition(SceneUtils.EPIPEN, additionalImageKey:"LoadingImageEpipen");
 		}
 		else {
 			if(!DataManager.Instance.GameData.Epi.HasPlayedEpiPenGameThisTier) {
