@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Challenges>
+  <Challenge ID="EpiPenPractice">
+    <Title>ChallengeEpiPen</Title>
+    <Description>ChallengeEpiPenDesc</Description>
+    <ChallengeType>Regular</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSet01</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>30</DayLength>
+    <Allergy>cc</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>0</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>3</Bronze>
+    <Silver>2</Silver>
+    <Gold>1</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+  </Challenge>
 	<Challenge ID="Challenge01">
 	    <Title>ChallengeTrainingDay</Title>
 	    <Description>ChallengeTrainingDayDesc</Description>

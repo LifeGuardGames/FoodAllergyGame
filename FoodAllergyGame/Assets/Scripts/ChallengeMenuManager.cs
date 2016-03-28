@@ -31,8 +31,14 @@ public class ChallengeMenuManager : Singleton<ChallengeMenuManager> {
 	}
 
 	public void StartChallenge(string challengeID) {
-		DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = challengeID;
-		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, showFoodTip: true);
+		if(challengeID == "EpiPenPractice") {
+			AnalyticsManager.Instance.EpiPenGamePractice();
+			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.EPIPEN, showFoodTip: false);
+		}
+		else {
+			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = challengeID;
+			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, showFoodTip: true);
+		}
 	}
 
 	public void OnBackButtonClicked() {

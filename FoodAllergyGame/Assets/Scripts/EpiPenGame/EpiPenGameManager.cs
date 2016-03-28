@@ -297,7 +297,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		}
 		else {
 			UIManager.ShowGameOver(attempts);
-			AnalyticsManager.Instance.EpiPenGameResultsAalytics(attempts, difficulty, UIManager.timerText.text, true);
+			AnalyticsManager.Instance.EpiPenGameResultsAalytics(attempts, difficulty, UIManager.timerText.text);
 		}
 	}
 	#endregion
