@@ -12,6 +12,7 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 	public FoodTipController foodTipController;
 	public float foodTipWait = 1.3f;		// How long to wait if the food tip controller is showing
 	private bool isShowingFoodTip = false;
+	private bool isShowingImageTip = false;
 	private string sceneToLoad;
 
 	void Awake(){
@@ -31,6 +32,7 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 	/// <param name="sceneName">Scene to be loaded</param>
 	public void StartLoadTransition(string sceneName, string additionalTextKey = null, string additionalImageKey = null, bool showFoodTip = false){
 		isShowingFoodTip = false;
+		isShowingImageTip = false;
 
 		// Reset everything first
 		loadText.text = "";
@@ -42,7 +44,8 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 		if(additionalImageKey != null) {
 			loadImage.gameObject.SetActive(true);
 			loadImage.sprite = SpriteCacheManager.GetLoadingImageData(additionalImageKey);
-		}
+			isShowingImageTip = true;
+        }
 		if(showFoodTip){
 			isShowingFoodTip = true;
 			foodTipController.ShowFoodTip();
@@ -57,7 +60,7 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 	/// </summary>
 	public void ShowFinishedCallback(){
 		if(sceneToLoad != null){
-			if(isShowingFoodTip) {
+			if(isShowingFoodTip || isShowingImageTip) {
 				Invoke("LoadLevel", foodTipWait);
 			}
 			else {
