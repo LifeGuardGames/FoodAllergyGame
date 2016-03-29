@@ -10,7 +10,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	public VIPLoader vip;
 	public FlyThruLoader fly;
 	public ChallengeScoreController scoreBoard;
-	
+	public GameObject skipButton;
 	public ImmutableDataChallenge chall;
 	int interval = 0;
 
@@ -86,6 +86,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		yield return new WaitForSeconds(customerSpawnTimer);
 			if(!dayOver && lineCount < 8 && interval < currCusSet.Count) {
 			if(isTutorial) {
+				skipButton.SetActive(true);
 				ImmutableDataCustomer test;
 				test = DataLoaderCustomer.GetData("CustomerTutorial");
 				GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
@@ -213,6 +214,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 					DataManager.Instance.GameData.RestaurantEvent.CustomerList.Add("CustomerRegular");
 					StopCoroutine("SpawnCustomer");
 					interval = 0;
+					customerSpawnTimer = 0;
 					StartDay();
 				}
 				else {

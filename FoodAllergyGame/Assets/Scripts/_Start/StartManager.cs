@@ -34,6 +34,8 @@ public class StartManager : Singleton<StartManager>{
 		get{ return rewardUIController; }
 	}
 
+	public GameObject replayTutButton;
+
 	public bool IsShopAppearHideDinerOverride = false;
 
 	void Start(){
@@ -46,7 +48,9 @@ public class StartManager : Singleton<StartManager>{
 			unlockParent.SetActive(false); // TODO clean this up
 			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut1";
 		}
-		else {	// Default case
+		else {
+			replayTutButton.SetActive(true);
+			// Default case
 			// TODO Refactor this logic
 			// Show the deco entrance
 		
@@ -198,4 +202,10 @@ public class StartManager : Singleton<StartManager>{
 		Debug.LogError("Invalid entrance detected");
 		return Vector3.zero;
 	}
+
+	public void LaunchTutorial() {
+		DataManager.Instance.GameData.Tutorial.IsTutorial1Done = false;
+		DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut1";
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, showFoodTip: true);
+    }
 }
