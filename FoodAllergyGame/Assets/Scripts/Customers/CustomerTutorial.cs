@@ -4,6 +4,7 @@ using System.Collections;
 public class CustomerTutorial : Customer{
 
 	public GameObject tutFingers;
+	public GameObject ownFinger;
 	public int step = 0;
 	public bool isAllergy = false;
 
@@ -18,6 +19,7 @@ public class CustomerTutorial : Customer{
 		}
 		else {
 			allergy[0] = Allergies.Peanut;
+			menuTimer *= 2;
 		}
 		
 	}
@@ -48,7 +50,7 @@ public class CustomerTutorial : Customer{
 	}
 
 	public void hideTableFinger(){
-		transform.GetChild(2).gameObject.SetActive(false);
+		ownFinger.SetActive(false);
 		StopCoroutine("ShowTableFinger");
 	}
 
