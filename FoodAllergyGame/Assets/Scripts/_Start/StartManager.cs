@@ -83,11 +83,8 @@ public class StartManager : Singleton<StartManager>{
 			}
 
 			// Spawn the unlock drop pod here
-
-			/* TODO
-			NotificationQueueDataNewItem itemNotif = new NotificationQueueDataNewItem(SceneUtils.START, specialItemID[0]);
-			NotificationManager.Instance.AddNotification(itemNotif);
-			*/
+			NotificationQueueDataReward rewardNotif = new NotificationQueueDataReward(SceneUtils.START);
+			NotificationManager.Instance.AddNotification(rewardNotif);
         }
 
 		// Save game data again, lock down on an event

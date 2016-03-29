@@ -22,11 +22,14 @@ public class RewardUIController : MonoBehaviour {
 	public GameObject rewardItemPrefab;
 	public GameObject rewardItemsParent;
 	public float distanceBetweenItems = 400f;
+	public GameObject leftArrow;
+	public GameObject rightArrow;
 
 	private NotificationQueueDataReward caller;
 	private Dictionary<AssetTypes, List<string>> currentTierUnlocks;
 	private List<RewardItem> rewardItemList;
-	private int internalSpawnIndex;
+	private int internalSpawnIndex;		// Used for spawning in sequence
+	private int showingItemIndex;		// Used for tracking item display index
 
 	// Fade out and spawn the drop pod
 	public void Init(NotificationQueueDataReward _caller){
@@ -34,7 +37,10 @@ public class RewardUIController : MonoBehaviour {
 		dropPodAnimator.Play("DropPodAppearUI");
 		rewardItemList = new List<RewardItem>();
 		internalSpawnIndex = 0;
+		showingItemIndex = 0;
 		isRewardClickable = false;
+		leftArrow.SetActive(false);
+		rightArrow.SetActive(false);
 
 		currentTierUnlocks = TierManager.Instance.CurrentTierUnlocks;   // Get the tier list
 		foreach(KeyValuePair<AssetTypes, List<string>> hashEntry in currentTierUnlocks) {
@@ -56,6 +62,7 @@ public class RewardUIController : MonoBehaviour {
 	}
 
 	private void PopulateRewardItemInList(AssetTypes assetType, string itemID) {
+		Debug.Log("Populating " + assetType.ToString());
 		// Spawn the actual object
 		GameObject go = GameObjectUtils.AddChildGUI(rewardItemsParent, rewardItemPrefab);
 		go.transform.localPosition = new Vector3(internalSpawnIndex * distanceBetweenItems, 0f);
@@ -71,16 +78,16 @@ public class RewardUIController : MonoBehaviour {
 	// Once all the objects have been initialized, start the showing process
 	private IEnumerator StartItemsAppear(int itemIndex) {
 		yield return new WaitForSeconds(0.2f);
-
+		Debug.Log("Items appearing");
 		// Detect if it is the last element
 		if(itemIndex >= rewardItemList.Count - 1) {
-			isRewardClickable = true;	// Allow clicking from here on
+			isRewardClickable = true;   // Allow clicking from here on
+			RefreshArrowStatus();
         }
 		else {
 			itemIndex++;
 			StartCoroutine(StartItemsAppear(itemIndex));
 		}
-
 	}
 
 	// Open the drop pod and pop out the RewardItems
@@ -115,5 +122,21 @@ public class RewardUIController : MonoBehaviour {
 		else {
 			fadeToggle.Hide();
 		}
+	}
+
+	public void OnNextArrowClicked(bool isRight) {
+		if(isRight) {
+			showingItemIndex++;
+        }
+		else {
+			showingItemIndex--;
+        }
+		RefreshArrowStatus();
+    }
+
+	// Refresh to see if the arrows needs to be shown
+	private void RefreshArrowStatus() {
+		leftArrow.SetActive(showingItemIndex <= 0 ? false : true);
+		rightArrow.SetActive(showingItemIndex >= rewardItemList.Count - 1 ? false : true);
 	}
 }
