@@ -24,9 +24,14 @@ public class StartManager : Singleton<StartManager>{
 		get { return shopEntranceUIController; }
 	}
 
-	public NewItemUIController newItemUIController;
-	public NewItemUIController NewItemUIController{
-		get{ return newItemUIController; }
+	public ChallengeMenuEntranceUIController challengeMenuEntranceUIController;
+	public ChallengeMenuEntranceUIController ChallengeMenuEntranceUIController {
+		get { return challengeMenuEntranceUIController; }
+	}
+
+	public RewardUIController rewardUIController;
+	public RewardUIController RewardUIController{
+		get{ return rewardUIController; }
 	}
 
 	public bool IsShopAppearHideDinerOverride = false;
@@ -76,6 +81,8 @@ public class StartManager : Singleton<StartManager>{
 				ShopEntranceUIController.ToggleClickable(false);
 				DinerEntranceUIController.ToggleClickable(false);
 			}
+
+			// Spawn the unlock drop pod here
 
 			/* TODO
 			NotificationQueueDataNewItem itemNotif = new NotificationQueueDataNewItem(SceneUtils.START, specialItemID[0]);
@@ -177,5 +184,18 @@ public class StartManager : Singleton<StartManager>{
 
 	public void CheatyScene() {
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.CHEATY);
+	}
+
+	public Vector3 GetEntrancePosition(StartMenuEntrances entrance) {
+		switch(entrance) {
+		case StartMenuEntrances.DinerEntrance:
+			return DinerEntranceUIController.transform.position;
+		case StartMenuEntrances.DecoEntrance:
+			return ShopEntranceUIController.transform.position;
+		case StartMenuEntrances.ChallengeEntrance:
+			return ChallengeMenuEntranceUIController.transform.position;
+		}
+		Debug.LogError("Invalid entrance detected");
+		return Vector3.zero;
 	}
 }
