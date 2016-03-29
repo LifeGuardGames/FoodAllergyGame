@@ -1,24 +1,24 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class NotificationQueueDataNewItem : NotificationQueueData {
-	public string itemIDToShow;
+/// <summary>
+/// Template of a NotificationQueueData
+/// Launches the drop pod which then spawns the RewardUIController sequence for all unlocks at that tier.
+/// </summary>
+public class NotificationQueueDataReward : NotificationQueueData {
 	public GameObject giftInstance;
 
-	public NotificationQueueDataNewItem(string allowedScene, string itemID){
+	public NotificationQueueDataReward(string allowedScene){
 		this.allowedScene = allowedScene;
-		itemIDToShow = itemID;
 	}
 
 	public override void Start(){
 		if(allowedScene == SceneManager.GetActiveScene().name){
-
-			GameObject giftPrefab = Resources.Load("GiftDropPod") as GameObject;
+			GameObject giftPrefab = Resources.Load("RewardDropPod") as GameObject;
 			giftInstance = GameObjectUtils.AddChildWithPositionAndScale(StartManager.Instance.SceneObjectParent, giftPrefab);
 
 			// Pass the finish call here
-			giftInstance.GetComponent<AnimationNewItem>().Init(this, itemIDToShow);
+			giftInstance.GetComponent<RewardAnimationMeta>().Init(this);
 		}
 		else{
 			Finish();

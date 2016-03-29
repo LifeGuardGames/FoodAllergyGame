@@ -326,7 +326,6 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	public void OnExitButtonClicked(){
-
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
 	}
 }
