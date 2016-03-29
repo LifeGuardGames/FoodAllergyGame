@@ -528,6 +528,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		if(state == CustomerStates.InLine){
 			// If you were already selecting a customer, untween that
 			if(Waiter.Instance.CurrentLineCustomer != null){
+				if(this.GetComponent<CustomerTutorial>()) {
+					this.GetComponent<CustomerTutorial>().hideTableFinger();
+                }
 				Customer otherCustomerScript = Waiter.Instance.CurrentLineCustomer.GetComponent<Customer>();
 				if(otherCustomerScript != null){
 					if(otherCustomerScript.state == CustomerStates.InLine){

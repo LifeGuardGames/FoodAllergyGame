@@ -44,4 +44,10 @@ public class RestaurantManagerLoader : MonoBehaviour {
 		Time.timeScale = 1.0f;  // Remember to reset timescale!
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.CHALLENGEMENU);
 	}
+
+	public void SkipTutorial() {
+		DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "";
+		DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
+	}
 }
