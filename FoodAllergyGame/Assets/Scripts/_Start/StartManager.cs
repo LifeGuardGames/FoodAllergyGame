@@ -7,12 +7,6 @@ public class StartManager : Singleton<StartManager>{
 	public GameObject SceneObjectParent{
 		get{ return sceneObjectParent; }
 	}
-	public TweenToggleDemux startDemux;
-	public TweenToggleDemux infoCategoriesDemux;
-	public TweenToggleDemux infoDetailDemux;
-	public AlphaTweenToggle infoFadeBackground;
-
-	public GameObject unlockParent;
 
 	public DinerEntranceUIController dinerEntranceUIController;
 	public DinerEntranceUIController DinerEntranceUIController {
@@ -45,7 +39,6 @@ public class StartManager : Singleton<StartManager>{
 		// First restaurant tutorial
 		if(DataManager.Instance.GameData.Tutorial.IsTutorial1Done == false){
 			shopEntranceUIController.Hide();
-			unlockParent.SetActive(false); // TODO clean this up
 			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut1";
 		}
 		else {
@@ -54,9 +47,6 @@ public class StartManager : Singleton<StartManager>{
 			// TODO Refactor this logic
 			// Show the deco entrance
 		
-
-			unlockParent.SetActive(false); // TODO clean this up
-
 			if(DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent) {
 				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = TierManager.Instance.GetNewEvent();
 				// Lock the generate event bool until day is completed
@@ -160,28 +150,7 @@ public class StartManager : Singleton<StartManager>{
 		DataManager.Instance.GameData.Challenge.IsFirstTimeChallengeEntrance = false;
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.CHALLENGEMENU, "LoadingKeyDecoration");
 	}
-
-	public void ShowStartDemux(){
-		infoDetailDemux.Hide();
-		infoCategoriesDemux.Hide();
-		startDemux.Show();
-		infoFadeBackground.Hide();
-	}
 	
-	public void ShowInfoCategoriesDemux(){
-		infoDetailDemux.Hide();
-		infoCategoriesDemux.Show();
-		startDemux.Hide();
-		InfoManager.Instance.ClearDetail();
-		infoFadeBackground.Show();
-	}
-	
-	public void ShowInfoDetailDemux(){
-		infoDetailDemux.Show();
-		infoCategoriesDemux.Hide();
-		startDemux.Hide();
-	}
-
 	public void CheatyScene() {
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.CHEATY);
 	}
@@ -199,7 +168,7 @@ public class StartManager : Singleton<StartManager>{
 		return Vector3.zero;
 	}
 
-	public void LaunchTutorial() {
+	public void OnLaunchTutorialButton() {
 		DataManager.Instance.GameData.Tutorial.IsTutorial1Done = false;
 		DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut1";
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, showFoodTip: true);
