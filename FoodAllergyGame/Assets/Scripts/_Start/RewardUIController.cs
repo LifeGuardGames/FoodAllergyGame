@@ -109,7 +109,6 @@ public class RewardUIController : MonoBehaviour {
 	}
 
 	public bool IsCapsuleClickable(RewardItem rewardItemScript) {
-		Debug.Log(showingItemIndex);
 		if(rewardItemScript == rewardItemList[showingItemIndex]) {
 			return true;
 		}
