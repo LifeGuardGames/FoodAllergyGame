@@ -16,6 +16,7 @@ public class RewardUIController : MonoBehaviour {
 		get { return isRewardClickable; }
 	}
 
+	public TweenToggleDemux UIDemux;
 	public Animator dropPodAnimator;
 	public AlphaTweenToggle fadeToggle;
 	public TweenToggle doneButtonTween;
@@ -34,7 +35,7 @@ public class RewardUIController : MonoBehaviour {
 	// Fade out and spawn the drop pod
 	public void Init(NotificationQueueDataReward _caller){
 		caller = _caller;
-		dropPodAnimator.Play("DropPodAppearUI");
+		dropPodAnimator.Play("DropPodHide");
 		rewardItemList = new List<RewardItem>();
 		internalSpawnIndex = 0;
 		showingItemIndex = 0;
@@ -58,8 +59,8 @@ public class RewardUIController : MonoBehaviour {
 			}
 		}
 
-		StartCoroutine(StartItemsAppear(0));
-	}
+		UIDemux.Show();
+    }
 
 	private void PopulateRewardItemInList(AssetTypes assetType, string itemID) {
 		Debug.Log("Populating " + assetType.ToString());
@@ -74,6 +75,20 @@ public class RewardUIController : MonoBehaviour {
 
 		internalSpawnIndex++;
     }
+
+	public void OnUITweenComplete() {
+		dropPodAnimator.Play("DropPodAppearUI");
+	}
+
+	// Open the drop pod and pop out the RewardItems
+	public void OnDropPodClicked() {
+		Debug.Log("DROP POD CLICKED");
+		dropPodAnimator.Play("DropPodOpenUI");
+	}
+
+	public void OnDropPodOpenAnimationDone() {
+		StartCoroutine(StartItemsAppear(0));
+	}
 
 	// Once all the objects have been initialized, start the showing process
 	private IEnumerator StartItemsAppear(int itemIndex) {
@@ -90,10 +105,7 @@ public class RewardUIController : MonoBehaviour {
 		}
 	}
 
-	// Open the drop pod and pop out the RewardItems
-	public void OnDropPodClicked() {
-		dropPodAnimator.Play("DropPodOpenUI");
-	}
+	
 
 	// Show the doneButton when all the RewardItems are opened
 	public void DoneButtonToggle(bool isShow) {

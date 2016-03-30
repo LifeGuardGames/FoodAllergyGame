@@ -22,14 +22,16 @@ public class RewardItem : MonoBehaviour {
 		switch(assetType) {
 			// ...
 		}
+
+		rewardItemAnimator.Play("CapsuleHide");
 	}
 
 	public void AnimationAppear() {
-		rewardItemAnimator.Play("Appear");
+		rewardItemAnimator.Play("CapsuleAppear");
 	}
 
 	public void AnimationOpen() {
-		rewardItemAnimator.Play("Open");
+		rewardItemAnimator.Play("CapsuleOpen");
 	}
 
 	// On done button from UI, fly all the items into their respective locations
