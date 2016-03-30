@@ -6,20 +6,26 @@
 /// </summary>
 public class RewardAnimationMeta : MonoBehaviour {
 	public Animator dropPodAnimator;
+	public ParticleSystem smokeTrail;
 
 	private NotificationQueueDataReward caller;
 
 	// Save the information to pass through
-	public void Init(NotificationQueueDataReward caller){
-		this.caller = caller;
+	public void Init(NotificationQueueDataReward _caller){
+		caller = _caller;
+	}
+
+	public void StartFlightEvent() {
+
 	}
 
 	// Animation event
-	public void ImpactAnimationEvent(){
+	public void ImpactAnimationEvent() {
 		Camera.main.GetComponent<Animation>().Play();
-	}
+		smokeTrail.Play();
+    }
 
-	void OnMouseUpAsButton(){
+	void OnMouseUpAsButton() {
 		StartManager.Instance.RewardUIController.Init(caller);
 	}
 }
