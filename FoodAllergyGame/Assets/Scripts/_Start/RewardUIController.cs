@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -25,6 +26,8 @@ public class RewardUIController : MonoBehaviour {
 	public float distanceBetweenItems = 400f;
 	public GameObject leftArrow;
 	public GameObject rightArrow;
+	public Text textTitle;
+	public Text textDescription;
 
 	private NotificationQueueDataReward caller;
 	private Dictionary<AssetTypes, List<string>> currentTierUnlocks;
@@ -63,12 +66,11 @@ public class RewardUIController : MonoBehaviour {
     }
 
 	private void PopulateRewardItemInList(AssetTypes assetType, string itemID) {
-		Debug.Log("Populating " + assetType.ToString());
 		// Spawn the actual object
 		GameObject go = GameObjectUtils.AddChildGUI(rewardItemsParent, rewardItemPrefab);
 		go.transform.localPosition = new Vector3(internalSpawnIndex * distanceBetweenItems, 0f);
 		RewardItem itemScript = go.GetComponent<RewardItem>();
-		itemScript.InitItem(assetType, itemID);
+		itemScript.InitItem(assetType, itemID, this);
 
 		// Add to internal list
 		rewardItemList.Add(itemScript);
@@ -82,7 +84,6 @@ public class RewardUIController : MonoBehaviour {
 
 	// Open the drop pod and pop out the RewardItems
 	public void OnDropPodClicked() {
-		Debug.Log("DROP POD CLICKED");
 		dropPodAnimator.Play("DropPodOpenUI");
 	}
 
@@ -93,7 +94,9 @@ public class RewardUIController : MonoBehaviour {
 	// Once all the objects have been initialized, start the showing process
 	private IEnumerator StartItemsAppear(int itemIndex) {
 		yield return new WaitForSeconds(0.2f);
-		Debug.Log("Items appearing");
+		ChangeSize(rewardItemList[itemIndex].gameObject, itemIndex == 0 ? true : false);
+		rewardItemList[itemIndex].AnimationAppear();
+
 		// Detect if it is the last element
 		if(itemIndex >= rewardItemList.Count - 1) {
 			isRewardClickable = true;   // Allow clicking from here on
@@ -105,10 +108,25 @@ public class RewardUIController : MonoBehaviour {
 		}
 	}
 
-	
+	public bool IsCapsuleClickable(RewardItem rewardItemScript) {
+		Debug.Log(showingItemIndex);
+		if(rewardItemScript == rewardItemList[showingItemIndex]) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 
-	// Show the doneButton when all the RewardItems are opened
-	public void DoneButtonToggle(bool isShow) {
+	// Does a check to see if it needs to show the done button
+	public void DoneButtonToggleCheck() {
+		bool isShow = true;
+		foreach(RewardItem item in rewardItemList) {
+			if(!item.IsOpened) {
+				isShow = false;
+				break;
+            }
+		}
 		if(isShow) {
 			doneButtonTween.Show();
 		}
@@ -117,9 +135,10 @@ public class RewardUIController : MonoBehaviour {
 		}
 	}
 
-	// Exit everything, and close out the UI, start tweening  RewardUI into its respective positions
+	// Exit everything, and close out the UI, start tweening RewardItem into its respective positions
 	public void OnDoneButtonClicked() {
-
+		UIDemux.Hide();
+		doneButtonTween.Hide();
 	}
 
 	// Making sure to call finish
@@ -137,14 +156,37 @@ public class RewardUIController : MonoBehaviour {
 	}
 
 	public void OnNextArrowClicked(bool isRight) {
+		ChangeSize(rewardItemList[showingItemIndex].gameObject, false);     // Minimize the previous item
+
 		if(isRight) {
 			showingItemIndex++;
         }
 		else {
 			showingItemIndex--;
         }
-		RefreshArrowStatus();
+		LeanTween.moveLocalX(rewardItemsParent, -distanceBetweenItems * showingItemIndex, 0.2f)
+			.setEase(LeanTweenType.easeInOutQuad);
+
+		ChangeSize(rewardItemList[showingItemIndex].gameObject, true);     // Maximize the current item
+		rewardItemList[showingItemIndex].ShowDescription();
+        RefreshArrowStatus();
     }
+
+	// Info pumped through the rewardItem, show none if null
+	public void ShowInfo(string titleKey, string descriptionKey) {
+		textTitle.text = !string.IsNullOrEmpty(titleKey) ? LocalizationText.GetText(titleKey) : "";
+		textDescription.text = !string.IsNullOrEmpty(descriptionKey) ? LocalizationText.GetText(descriptionKey) : "";
+	}
+
+	// Used to define which object is currently in focus
+	public void ChangeSize(GameObject go, bool isLarge) {
+		if(isLarge) {
+			LeanTween.scale(go, Vector3.one, 0.2f).setEase(LeanTweenType.easeOutBack);
+		}
+		else {
+			LeanTween.scale(go, new Vector3(0.6f, 0.6f, 1f), 0.2f);
+		}
+	}
 
 	// Refresh to see if the arrows needs to be shown
 	private void RefreshArrowStatus() {

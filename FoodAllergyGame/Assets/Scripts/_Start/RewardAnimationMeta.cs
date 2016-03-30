@@ -27,5 +27,10 @@ public class RewardAnimationMeta : MonoBehaviour {
 
 	void OnMouseUpAsButton() {
 		StartManager.Instance.RewardUIController.Init(caller);
+		dropPodAnimator.Play("DropPodDestroySelf");
+    }
+
+	public void DestroySelf() {
+		Destroy(gameObject, 0.5f);
 	}
 }

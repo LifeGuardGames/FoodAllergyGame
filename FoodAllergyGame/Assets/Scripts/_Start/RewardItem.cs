@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 /// <summary>
 /// One item of the reward unlocks, a series of these are spawned and tracked by the RewardUIController
@@ -13,14 +12,54 @@ public class RewardItem : MonoBehaviour {
 
 	private AssetTypes assetType;
 	private string itemID;
+	private string titleKey = null;
+	private string descriptionKey = null;
+	private RewardUIController rewardUIController;
 
-	public void InitItem(AssetTypes _assetType, string _itemID) {
+	private bool isOpened;
+	public bool IsOpened {
+		get { return isOpened; }
+		set { isOpened = value; }
+	}
+
+	public void InitItem(AssetTypes _assetType, string _itemID, RewardUIController _rewardUIController) {
 		assetType = _assetType;
 		itemID = _itemID;
+		rewardUIController = _rewardUIController;
+		IsOpened = false;
 
 		// Do self initialization here
 		switch(assetType) {
-			// ...
+			case AssetTypes.Challenge:
+				ImmutableDataChallenge challengeData = DataLoaderChallenge.GetData(itemID);
+                titleKey = challengeData.Title;
+				descriptionKey = challengeData.ChallengeDescription;
+				// itemSprite.sprite = ...
+				break;
+			case AssetTypes.Customer:
+				ImmutableDataCustomer customerData = DataLoaderCustomer.GetData(itemID);
+				titleKey = customerData.CustomerNameKey;
+				descriptionKey = customerData.CustomerDescription;
+				// itemSprite.sprite = ...
+				break;
+			case AssetTypes.DecoBasic:
+			case AssetTypes.DecoSpecial:
+				ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(itemID);
+				titleKey = decoData.TitleKey;
+				if(!string.Equals(decoData.DescriptionKey, "None")){
+					descriptionKey = decoData.DescriptionKey;
+				}
+				itemSprite.sprite = SpriteCacheManager.GetDecoSpriteData(decoData.SpriteName);
+                break;
+			case AssetTypes.Food:
+				ImmutableDataFood foodData = DataLoaderFood.GetData(itemID);
+				titleKey = foodData.FoodNameKey;
+				itemSprite.sprite = SpriteCacheManager.GetFoodSpriteData(foodData.SpriteName);
+				break;
+			case AssetTypes.Slot:
+				titleKey = "NewFoodSlotItem";
+				// itemSprite.sprite = ...
+                break;
 		}
 
 		rewardItemAnimator.Play("CapsuleHide");
@@ -30,12 +69,26 @@ public class RewardItem : MonoBehaviour {
 		rewardItemAnimator.Play("CapsuleAppear");
 	}
 
-	public void AnimationOpen() {
-		rewardItemAnimator.Play("CapsuleOpen");
+	public void OnCapsuleClicked() {
+		if(!IsOpened && rewardUIController.IsCapsuleClickable(this)) {
+			rewardItemAnimator.Play("CapsuleOpen");
+			IsOpened = true;
+			rewardUIController.DoneButtonToggleCheck();
+        }
 	}
 
+	// Called from animation vent and on item change
+	public void ShowDescription() {
+		if(!IsOpened) {
+			rewardUIController.ShowInfo(null, null);
+		}
+		else {
+			rewardUIController.ShowInfo(titleKey, descriptionKey);
+		}
+    }
+
 	// On done button from UI, fly all the items into their respective locations
-	public void FlyToEntrance() {
+/*	public void FlyToEntrance() {
 		Vector3 position;
         switch(assetType) {
 			case AssetTypes.Challenge:
@@ -55,4 +108,5 @@ public class RewardItem : MonoBehaviour {
 		// Do some conversion with position here
 		// ...
 	}
+	*/
 }
