@@ -181,7 +181,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 //						CashManager.Instance.TutorialOverrideTotalCash(850);
 //					}
 
-					AnalyticsManager.Instance.EndGameDayReport(CashManager.Instance.TotalCash,
+					AnalyticsManager.Instance.EndGameDayReport(
 						DataManager.Instance.GameData.RestaurantEvent.CurrentEvent, satisfactionAI.MissingCustomers, satisfactionAI.AvgSatisfaction(),
 						DayEarnedCash, Medic.Instance.MedicCost, savedCustomers, attempted, inspectionButtonClicked);
 
