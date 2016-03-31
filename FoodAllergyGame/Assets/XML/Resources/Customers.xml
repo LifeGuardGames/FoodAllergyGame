@@ -37,7 +37,7 @@
 		<CustomerDesc>CustomerTableSmasherDesc</CustomerDesc>
 		<SpriteName>CustomerTableSmasher</SpriteName>
 		<Script>CustomerTableSmasher</Script>
-		<Tier>9</Tier>
+		<Tier>6</Tier>
     <Flow>BehavFlow02</Flow>
 	</Customer>
 	<Customer ID="CustomerHospitalRunner">

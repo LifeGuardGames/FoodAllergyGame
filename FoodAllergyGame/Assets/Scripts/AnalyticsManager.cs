@@ -31,10 +31,10 @@ public class AnalyticsManager : Singleton<AnalyticsManager> {
 			{"Challenge ID:", challenge}});
 	}
 
-	public void EndGameDayReport(int totalCash, string currentEvent, int missingCustomers, float avgSatisfaction, int cashEarned,
+	public void EndGameDayReport(string currentEvent, int missingCustomers, float avgSatisfaction, int cashEarned,
 		int medicCost, int savedCustomers, int rescuesAttempted, int inspectButtonClicked) {
 		Mixpanel.SendEvent("End of Day Report:", new Dictionary<string, object> {
-			{ "TotalCash:", totalCash*(1.0f) },
+			{ "TotalCash:", TierManager.Instance.CurrentTier*(1.0f) },
 			{ "Event:" , currentEvent },
 			{ "Missed Customers:", missingCustomers*1.0f },
 			{ "Avg. Satisfaction:", avgSatisfaction },
