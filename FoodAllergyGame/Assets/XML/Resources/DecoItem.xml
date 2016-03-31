@@ -205,6 +205,38 @@
 		<SpriteName>RestKitchenBasicGreen</SpriteName>
 		<Tier>6</Tier>
 	</DecoItem>
+  <DecoItem ID = "KitchenFancyBlank">
+    <Type>Kitchen</Type>
+    <Price>900</Price>
+    <TitleKey>KitchenFancyBlank</TitleKey>
+    <DescriptionKey>KitchenFancyBlankDesc</DescriptionKey>
+    <SpriteName>RestKitchenFancyBlank</SpriteName>
+    <Tier>6</Tier>
+  </DecoItem>
+  <DecoItem ID = "KitchenFancyStars">
+    <Type>Kitchen</Type>
+    <Price>900</Price>
+    <TitleKey>KitchenFancyStars</TitleKey>
+    <DescriptionKey>KitchenFancyStarsDesc</DescriptionKey>
+    <SpriteName>RestKitchenFancyStars</SpriteName>
+    <Tier>6</Tier>
+  </DecoItem>
+  <DecoItem ID = "KitchenFancyRailing">
+    <Type>Kitchen</Type>
+    <Price>900</Price>
+    <TitleKey>KitchenFancyRailing</TitleKey>
+    <DescriptionKey>KitchenFancyRailingDesc</DescriptionKey>
+    <SpriteName>RestKitchenFancyRailing</SpriteName>
+    <Tier>6</Tier>
+  </DecoItem>
+  <DecoItem ID = "KitchenFancyBanner">
+    <Type>Kitchen</Type>
+    <Price>900</Price>
+    <TitleKey>KitchenFancyBanner</TitleKey>
+    <DescriptionKey>KitchenFancyBannerDesc</DescriptionKey>
+    <SpriteName>RestKitchenFancyBanner</SpriteName>
+    <Tier>6</Tier>
+  </DecoItem>
 	
   
   <DecoItem ID = "VIP00">
