@@ -9,7 +9,7 @@
   <Constant Name="IsTut3Done" Type="Bool" Value="True" Debug="Tutorial"> </Constant>
   <Constant Name="IsDecoFingerTutDone" Type="Bool" Value="True" Debug="Tutorial"> </Constant>
   <Constant Name="IsEpiPenTutorialDone" Type="Bool" Value="True" Debug="Tutorial"> </Constant>
-  <Constant Name="TableID" Type="String" Value="RestTableFancy" Debug="Deco"> </Constant>
+  <Constant Name="TableID" Type="String" Value="TableFancyBlank" Debug="Deco"> </Constant>
   <Constant Name="KitchenID" Type="String" Value="KitchenBasicAqua" Debug="Deco"> </Constant>
   <Constant Name="FloorID" Type="String" Value="FloorBasicAqua" Debug="Deco"> </Constant>
   <Constant Name="VIPOn" Type="Bool" Value="True" Debug="Deco"> </Constant>
