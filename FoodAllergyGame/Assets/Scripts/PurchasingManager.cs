@@ -19,7 +19,7 @@ public class PurchasingManager : MonoBehaviour, IStoreListener {
 	
 
 
-	private static string kProductNameAppleNonConsumable = "com.lifeguardgames.foodallergy.iap.pro";      // Apple App Store identifier for the non-consumable product.
+	private static string kProductNameAppleNonConsumable = "com.LifeGuardGames.FoodAllergy.IAP.Pro";      // Apple App Store identifier for the non-consumable product.
 	
 
 	
