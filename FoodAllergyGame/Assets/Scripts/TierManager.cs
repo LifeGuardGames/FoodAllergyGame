@@ -28,6 +28,9 @@ public class TierManager : Singleton<TierManager> {
 	// NOTE: does NOT support multiple tiers!
 	public void RecalculateTier() {
 		isNewUnlocksAvailable = false;
+		if(CashManager.Instance.TotalCash > 5800 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates) {
+			CashManager.Instance.OverrideTotalCash(5800);
+        }
 		int oldTier = DataLoaderTiers.GetTierFromCash(CashManager.Instance.LastSeenTotalCash);
 		currentTier = oldTier; // TODO Triple check this line
 		int newTier = DataLoaderTiers.GetTierFromCash(CashManager.Instance.TotalCash);
