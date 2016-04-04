@@ -29,6 +29,7 @@ public class StartManager : Singleton<StartManager>{
 	}
 
 	public GameObject replayTutButton;
+	public TweenToggle MoreCratesButton;
 
 	public bool IsShopAppearHideDinerOverride = false;
 
@@ -80,6 +81,10 @@ public class StartManager : Singleton<StartManager>{
 			NotificationQueueDataReward rewardNotif = new NotificationQueueDataReward(SceneUtils.START);
 			NotificationManager.Instance.AddNotification(rewardNotif);
         }
+
+		if(TierManager.Instance.CurrentTier == 6 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates) {
+			MoreCratesButton.Show();
+		}
 
 		// Save game data again, lock down on an event
 		DataManager.Instance.SaveGameData();

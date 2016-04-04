@@ -22,6 +22,10 @@ public class CashManager : Singleton<CashManager> {
 		}
 	}
 
+	public void OverrideTotalCash(int newCash) {
+		cashData.TotalCash = newCash;
+	}
+
 	#region DecoScene calls
 	// Wrap this in another layer for extra control
 	public bool DecoBuyCash(int cost){

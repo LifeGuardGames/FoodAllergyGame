@@ -9,20 +9,22 @@ public class PurchasingManager : MonoBehaviour, IStoreListener {
 	private static IStoreController m_StoreController;                                                                  // Reference to the Purchasing system.
 	private static IExtensionProvider m_StoreExtensionProvider;                                                         // Reference to store-specific Purchasing subsystems.
 
+	public TweenToggle productPage;
+
 	// Product identifiers for all products capable of being purchased: "convenience" general identifiers for use with Purchasing, and their store-specific identifier counterparts 
 	// for use with and outside of Unity Purchasing. Define store-specific identifiers also on each platform's publisher dashboard (iTunes Connect, Google Play Developer Console, etc.)
 
-	private static string kProductIDConsumable = "consumable";                                                         // General handle for the consumable product.
-	private static string kProductIDNonConsumable = "nonconsumable";                                                  // General handle for the non-consumable product.
-	private static string kProductIDSubscription = "subscription";                                                   // General handle for the subscription product.
+	
+	private static string kProductIDNonConsumable = "com.lifeguardgames.foodallergy.iap.pro";                                                  // General handle for the non-consumable product.
+	
 
-	private static string kProductNameAppleConsumable = "com.unity3d.test.services.purchasing.consumable";             // Apple App Store identifier for the consumable product.
+
 	private static string kProductNameAppleNonConsumable = "com.unity3d.test.services.purchasing.nonconsumable";      // Apple App Store identifier for the non-consumable product.
-	private static string kProductNameAppleSubscription = "com.unity3d.test.services.purchasing.subscription";       // Apple App Store identifier for the subscription product.
+	
 
-	private static string kProductNameGooglePlayConsumable = "com.unity3d.test.services.purchasing.consumable";        // Google Play Store identifier for the consumable product.
-	private static string kProductNameGooglePlayNonConsumable = "com.unity3d.test.services.purchasing.nonconsumable";     // Google Play Store identifier for the non-consumable product.
-	private static string kProductNameGooglePlaySubscription = "com.unity3d.test.services.purchasing.subscription";  // Google Play Store identifier for the subscription product.
+	
+	private static string kProductNameGooglePlayNonConsumable = "com.lifeguardgames.foodallergy.iap.pro";     // Google Play Store identifier for the non-consumable product.
+
 
 	void Start() {
 		// If we haven't set up the Unity Purchasing reference
@@ -54,22 +56,12 @@ public class PurchasingManager : MonoBehaviour, IStoreListener {
 	}
 
 
-	public void BuyConsumable() {
-		// Buy the consumable product using its general identifier. Expect a response either through ProcessPurchase or OnPurchaseFailed asynchronously.
-		BuyProductID(kProductIDConsumable);
-	}
-
 
 	public void BuyNonConsumable() {
 		// Buy the non-consumable product using its general identifier. Expect a response either through ProcessPurchase or OnPurchaseFailed asynchronously.
 		BuyProductID(kProductIDNonConsumable);
 	}
 
-
-	public void BuySubscription() {
-		// Buy the subscription product using its the general identifier. Expect a response either through ProcessPurchase or OnPurchaseFailed asynchronously.
-		BuyProductID(kProductIDSubscription);
-	}
 
 
 	void BuyProductID(string productId) {
@@ -167,6 +159,8 @@ public class PurchasingManager : MonoBehaviour, IStoreListener {
 		else {
 			Debug.Log(string.Format("ProcessPurchase: FAIL. Unrecognized product: '{0}'", args.purchasedProduct.definition.id));
 		}// Return a flag indicating wither this product has completely been received, or if the application needs to be reminded of this purchase at next app launch. Is useful when saving purchased products to the cloud, and when that save is delayed.
+		DataManager.Instance.GameData.DayTracker.IsMoreCrates = true;
+		productPage.Hide();
 		return PurchaseProcessingResult.Complete;
 	}
 
@@ -175,5 +169,10 @@ public class PurchasingManager : MonoBehaviour, IStoreListener {
 		// A product purchase attempt did not succeed. Check failureReason for more detail. Consider sharing this reason with the user.
 		Debug.Log(string.Format("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}", product.definition.storeSpecificId, failureReason));
 	}
+
+	public void ShowProductPage() {
+		productPage.Show();
+	}
+
 }
 
