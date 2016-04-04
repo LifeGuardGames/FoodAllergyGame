@@ -1,25 +1,23 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class RestaurantUIManager : MonoBehaviour{
 	public DoorController doorController;
 	public DayOverUIController dayOverUIController;
 	public ChallengeOverUi challengeOverUiController;
-	public Image clockBarFill;
-	public GameObject clockFinishedImage;
+	public TweenToggle finishedDayImage;
 	private bool isClockFinished;
 
 	public void StartDay(){
 		isClockFinished = false;
-		clockFinishedImage.SetActive(false);
-		clockBarFill.fillAmount = 0f;
-	}
+		finishedDayImage.Hide();
+		doorController.ResetDayAlpha();
+    }
 
 	public void UpdateClock(float totalTime, float timeLeft){
 		if(!isClockFinished){
 			float timeElapsed = totalTime - timeLeft;
 			float percentage = timeElapsed / totalTime;
-			clockBarFill.fillAmount = percentage;
+			doorController.DayAlphaTweenUpdate(percentage);
 		}
 		else{
 			Debug.LogWarning("Clock finished already but still updating");
@@ -27,7 +25,7 @@ public class RestaurantUIManager : MonoBehaviour{
 	}
 
 	public void FinishClock(){
-		clockFinishedImage.SetActive(true);
+		finishedDayImage.Show();
 	}
 
 	public void OnPauseButton(){

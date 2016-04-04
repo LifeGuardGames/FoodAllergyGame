@@ -1,9 +1,25 @@
 ﻿using UnityEngine;
-using System.Collections;
 
+/// <summary>
+/// All calls from RestaurantUIManager
+/// </summary>
 public class DoorController : MonoBehaviour {
-
 	public TweenToggleDemux doorDemux;
+	public SpriteRenderer skyTopLayer;
+
+	private Color skyTopLayerColor;
+
+	void Awake() {
+		skyTopLayerColor = skyTopLayer.color;
+	}
+
+	public void ResetDayAlpha() {
+		skyTopLayer.color = skyTopLayerColor;
+	}
+
+	public void DayAlphaTweenUpdate(float percentage) {
+		skyTopLayer.color = new Color(skyTopLayerColor.r, skyTopLayerColor.g, skyTopLayerColor.b, 1f - percentage);
+	}
 
 	public void OpenAndCloseDoor(){
 		doorDemux.Hide();
