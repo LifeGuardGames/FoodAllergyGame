@@ -19,7 +19,7 @@ public class PurchasingManager : MonoBehaviour, IStoreListener {
 	
 
 
-	private static string kProductNameAppleNonConsumable = "com.unity3d.test.services.purchasing.nonconsumable";      // Apple App Store identifier for the non-consumable product.
+	private static string kProductNameAppleNonConsumable = "com.lifeguardgames.foodallergy.iap.pro";      // Apple App Store identifier for the non-consumable product.
 	
 
 	
