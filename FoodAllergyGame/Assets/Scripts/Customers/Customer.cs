@@ -29,7 +29,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public GameObject order;			//the order created by the customer used to have easy access to the
 										//	order should the customer leave before they eat it
 
-	public CustomerUIController customerUI;		// ui controller for the customers handles hearts, timer icon and death icon
+	public CustomerUIController customerUI;     // ui controller for the customers handles hearts, timer icon and death icon
+	public MeshRenderer customerMeshRenderer;
 	public CustomerAnimController customerAnim;	// handles animations
 	public GameObject OrderPrefab;				// temp variable used for instatiation
 	public List <ImmutableDataFood> choices;	// a list containing possible options the user would like to eat
@@ -45,7 +46,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Basic intitialzation
 	public virtual void Init(int num, ImmutableDataEvents mode){
-        spawnTime = Time.time;
+		spawnTime = Time.time;
         AudioManager.Instance.PlayClip("CustomerEnter");
 
 		customerUI.ToggleWait(false);
@@ -72,8 +73,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		attentionSpan = 15f * timer;
 		menuTimer *= RandomFactor();
 		eatTimer *= RandomFactor();
+
 		// customers refuse to line up out the door
-		if(RestaurantManager.Instance.GetLine().NewCustomer() == null){
+		if(!RestaurantManager.Instance.LineController.HasEmptySpot()){
 			Destroy(this.gameObject);
 		}
 		else{
@@ -81,7 +83,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			TableFlyThru flyThruTable = RestaurantManager.Instance.GetFlyThruTable();
 			if((flyThruTable != null) && UnityEngine.Random.Range(0,10) > 3 && !flyThruTable.inUse && Constants.GetConstant<bool>("FlyThruOn")|| mode.ID == "EventTFlyThru"){
 				flyThruTable.inUse = true;
-				this.gameObject.transform.SetParent(flyThruTable.seat);
+				this.transform.SetParent(flyThruTable.seat);
 				tableNum = flyThruTable.TableNumber;
 				state = CustomerStates.ReadingMenu;
 				StartCoroutine("ReadMenu");
@@ -93,10 +95,10 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			}
 			else{
 				RestaurantManager.Instance.restaurantUI.OpenAndCloseDoor();
-                this.gameObject.transform.SetParent(RestaurantManager.Instance.GetLine().NewCustomer());
+				RestaurantManager.Instance.LineController.PlaceCustomerInEmptySpot(this);   // Set customer line spot and update base sorting order
 				RestaurantManager.Instance.lineCount++;
 			}
-			this.gameObject.transform.position = transform.parent.position;
+			this.transform.position = transform.parent.position;
 
 			var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[0]);
 			Behav wait = (Behav)Activator.CreateInstance(type);
@@ -150,8 +152,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		timer = mode.CustomerTimerMod;
 		//calculates the initial attentionSpan
 		attentionSpan = 15f * timer * RandomFactor();
+
 		// customers refuse to line up out the door
-		if(RestaurantManager.Instance.GetLine().NewCustomer() == null) {
+		if(!RestaurantManager.Instance.LineController.HasEmptySpot()) {
 			Destroy(this.gameObject);
 		}
 		else {
@@ -159,7 +162,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			TableFlyThru flyThruTable = RestaurantManager.Instance.GetFlyThruTable();
 			if((flyThruTable != null) && UnityEngine.Random.Range(0, 10) > 3 && !flyThruTable.inUse && Constants.GetConstant<bool>("FlyThruOn") || mode.ID == "EventTFlyThru") {
 				flyThruTable.inUse = true;
-				this.gameObject.transform.SetParent(flyThruTable.seat);
+				this.transform.SetParent(flyThruTable.seat);
 				tableNum = flyThruTable.TableNumber;
 				state = CustomerStates.ReadingMenu;
 				StartCoroutine("ReadMenu");
@@ -170,10 +173,11 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				flyThruTable.FlyThruDropDown();
 			}
 			else {
-				this.gameObject.transform.SetParent(RestaurantManager.Instance.GetLine().NewCustomer());
+				RestaurantManager.Instance.restaurantUI.OpenAndCloseDoor();
+				RestaurantManager.Instance.LineController.PlaceCustomerInEmptySpot(this);   // Set customer line spot and update base sorting order
 				RestaurantManager.Instance.lineCount++;
 			}
-			this.gameObject.transform.position = transform.parent.position;
+			this.transform.position = transform.parent.position;
 			var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[0]);
 			Behav wait = (Behav)Activator.CreateInstance(type);
 			currBehav = wait;
@@ -197,6 +201,15 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				desiredFood = FoodKeywords.Dessert;
 				break;
 		}
+	}
+
+	/// <summary>
+	/// Base sorting order from the node placed itself
+	/// If customer mesh order is B, customer UI canvas is set to B+5, table will be set in the middle B+1 and B+2
+	/// </summary>
+	public void SetBaseSortingOrder(int baseSortingOrder) {
+		customerMeshRenderer.sortingOrder = baseSortingOrder;
+		customerUI.UpdateSortingOrder(baseSortingOrder + 5);
 	}
 
 	// chooses an allergy cases where specific allergy is noted we use a weighted random to get the desired result
@@ -381,7 +394,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				StopCoroutine("SatisfactionTimer");
 				// lock our waiter
 				Waiter.Instance.CanMove = false;
-				RestaurantManager.Instance.GetMenuUIController().ShowChoices(choices, tableNum, allergy);
+				RestaurantManager.Instance.MenuUIController.ShowChoices(choices, tableNum, allergy);
 			}
 		}
 		else{

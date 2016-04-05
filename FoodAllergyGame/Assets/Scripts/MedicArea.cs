@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class MedicArea : MonoBehaviour, IWaiterSelection{
-
+	public Animation pulseAnim;
 	private GameObject node;
 
 	void Start(){
@@ -11,7 +11,8 @@ public class MedicArea : MonoBehaviour, IWaiterSelection{
 
 	#region IWaiterSelection implementation
 	public void OnWaiterArrived(){
-		RestaurantManager.Instance.DeployMedic();
+		pulseAnim.Play();
+        RestaurantManager.Instance.DeployMedic();
 		Waiter.Instance.Finished();
 	}
 	

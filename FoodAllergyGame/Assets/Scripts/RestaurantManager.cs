@@ -34,8 +34,16 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 
 	public RestaurantUIManager restaurantUI;
 	protected ImmutableDataEvents eventData;
-	public LineController lineController;
+
 	public RestaurantMenuUIController menuUIController;
+	public RestaurantMenuUIController MenuUIController {
+		get { return menuUIController; }
+	}
+
+	public LineController lineController;
+	public LineController LineController {
+		get { return lineController; }
+	}
 
 	public bool firstSickCustomer = false;
 	public GameObject medicButton;
@@ -171,14 +179,6 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 		}
 	}
 
-	public LineController GetLine(){
-		return lineController;
-	}
-
-	public RestaurantMenuUIController GetMenuUIController(){
-		return menuUIController;
-	}
-
 	public Dictionary<string, GameObject>.ValueCollection GetCurrentCustomers(){
 		return customerHash.Values;
 	}
@@ -207,7 +207,7 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 		
 	}
 
-	public abstract void checkTablesForGameOver();
+	public abstract void CheckTablesForGameOver();
 
 	public bool IsTableAvilable(){
 		for(int i = 0; i < actTables; i++){
