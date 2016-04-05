@@ -134,6 +134,19 @@ public class AnalyticsManager : Singleton<AnalyticsManager> {
 
 	public void EpiPenGamePractice() {
 		Mixpanel.SendEvent("Epi Pen Game Practice", new Dictionary< string, object>{
-			{ "Is Practice Play:", true}});
+			{ "Is Practice Play: ", true}});
+	}
+
+	public void TimeSpentOnComicPage(float sec, int pageNum) {
+		if(sec > 60) {
+			Mixpanel.SendEvent("Page Finished: ", new Dictionary<string, object>{
+				{ "Page: ", pageNum },
+				{"Time: ", "60+"}});
+		}
+		else { 
+			Mixpanel.SendEvent("Page Finished: ", new Dictionary<string, object>{
+				{ "Page: ", pageNum },
+				{"Time: ", sec }});
+		}
 	}
 }

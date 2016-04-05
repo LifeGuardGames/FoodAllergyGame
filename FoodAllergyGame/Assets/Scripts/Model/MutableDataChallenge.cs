@@ -3,10 +3,13 @@
 public class MutableDataChallenge {
 	public bool IsFirstTimeChallengeEntrance { get; set; }
 	public Dictionary <string , ChallengeReward> ChallengeProgress { get; set; }
+	public int StarCoresEarned { get; set; }
+	public int LastSeenStarCoresEarned { get; set; }
 
 	public MutableDataChallenge() {
 		IsFirstTimeChallengeEntrance = true;
-
+		StarCoresEarned = 0;
+		LastSeenStarCoresEarned = 0;
 		ChallengeProgress = new Dictionary<string, ChallengeReward>();
 		List<ImmutableDataChallenge> temp = DataLoaderChallenge.GetDataList();
 		for(int i = 0; i  < temp.Count; i++) {

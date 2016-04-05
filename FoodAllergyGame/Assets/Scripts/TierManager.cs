@@ -9,6 +9,11 @@ public class TierManager : Singleton<TierManager> {
 		get{ return currentTier; }
 	}
 
+	private bool hasNewStarCore;
+	public bool HasNewStarCore {
+		get { return hasNewStarCore; }
+	}
+
 	private bool isNewUnlocksAvailable = false;
 	public bool IsNewUnlocksAvailable{
 		get{ return isNewUnlocksAvailable; }
@@ -27,6 +32,7 @@ public class TierManager : Singleton<TierManager> {
 	// Recalculate the tier given a certain algorithm
 	// NOTE: does NOT support multiple tiers!
 	public void RecalculateTier() {
+		
 		isNewUnlocksAvailable = false;
 		if(CashManager.Instance.TotalCash > 5800 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates) {
 			CashManager.Instance.OverrideTotalCash(5800);
@@ -185,6 +191,14 @@ public class TierManager : Singleton<TierManager> {
 					}
 				}
 			}
+		}
+	}
+	private void UpdateStarCoreCount() {
+		if(DataManager.Instance.GameData.Challenge.StarCoresEarned > DataManager.Instance.GameData.Challenge.LastSeenStarCoresEarned) {
+			hasNewStarCore = true;
+		}
+		else {
+			hasNewStarCore = false;
 		}
 	}
 }

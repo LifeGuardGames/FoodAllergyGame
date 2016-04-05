@@ -180,6 +180,7 @@ public class MenuManager : Singleton<MenuManager>{
 			}
 			return true;
 		}
+		ParticleUtils.PlaySlotssFullFloaty(doneButtonTween.GetShowPos());
 		return false;
 	}
 

@@ -28,6 +28,13 @@ public static class ParticleUtils{
 		AudioManager.Instance.PlayClip("HandsFull");
 	}
 
+	static public void PlaySlotssFullFloaty(Vector3 pos) {
+		GameObject go = Resources.Load("SlotsFullFloaty") as GameObject;
+		GameObject instance = GameObjectUtils.AddChildGUI(GameObject.Find("Canvas"), go);
+		instance.transform.position = pos;
+		AudioManager.Instance.PlayClip("HandsFull");
+	}
+
 	static public void PlayDecoChangePoof(Vector3 pos){
 		GameObject go = Resources.Load("DecoPoof") as GameObject;
 		GameObject.Instantiate(go, pos, go.transform.rotation);
