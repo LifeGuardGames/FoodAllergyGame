@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class CustomerUIController : MonoBehaviour {
-
+	public Canvas uiCanvas;
 	public Image satisfaction1;
 	public Image satisfaction2;
 	public Image satisfaction3;
@@ -14,9 +14,12 @@ public class CustomerUIController : MonoBehaviour {
 
 	public ParticleSystem angryParticle;
 
-//	public GameObject thoughtObject;
-//	public Image allergyImage;
-//	public Text allergyText;
+	/// <summary>
+	/// Handled from customer base class only
+	/// </summary>
+	public void UpdateSortingOrder(int canvasSortingOrder) {
+		uiCanvas.sortingOrder = canvasSortingOrder;
+	}
 
 	/// <summary>
 	/// Update absolute satisfaction

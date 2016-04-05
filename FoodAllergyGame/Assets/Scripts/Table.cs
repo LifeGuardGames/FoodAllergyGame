@@ -29,27 +29,22 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		get{ return seat; }
 	}
 
-	public int seatLayerOrder;	// Sprite order, should be one below table order
-	public int SeatLayerOrder{
-		get{ return seatLayerOrder; }
-	}
-
 	protected GameObject node;
 	public GameObject Node{
 		get{ return node; }
 	}
 	public int VIPMultiplier;
 
+	public SpriteRenderer tableSprite;
+	public Canvas uiCanvas;
+	public SpriteRenderer tableHighlight;
+
 	public Transform foodSpot;
 	public bool inUse = false;
 	public string currentCustomerID;
 	public bool isBroken;
-	public GameObject _canvas;
 	public Text text;
 	public bool isGossiped;
-	public GameObject tableHighlight;
-	public GameObject spriteParent;
-
 
 	public virtual void Init() {
 		if(SceneManager.GetActiveScene().name == SceneUtils.RESTAURANT) {
@@ -100,7 +95,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		inUse = false;
 		Waiter.Instance.RemoveMeal(tableNumber);
 		KitchenManager.Instance.CancelOrder(tableNumber);
-        RestaurantManager.Instance.GetMenuUIController().CancelOrder(tableNumber);
+        RestaurantManager.Instance.MenuUIController.CancelOrder(tableNumber);
 		ToggleTableNum(false);
 	}
 
@@ -109,7 +104,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		if(foodSpot.childCount > 0){
 			Destroy(foodSpot.GetChild(0).gameObject);
 		}
-		RestaurantManager.Instance.GetMenuUIController().CancelOrder(tableNumber);
+		RestaurantManager.Instance.MenuUIController.CancelOrder(tableNumber);
 		Customer customerToEat = GetComponentInChildren<Customer>();
 		customerToEat.state = CustomerStates.Eaten;
 		RestaurantManager.Instance.CustomerLeftSatisfaction(customerToEat, false);
@@ -119,7 +114,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		inUse = false;
 		Waiter.Instance.RemoveMeal(tableNumber);
 		KitchenManager.Instance.CancelOrder(tableNumber);
-		RestaurantManager.Instance.GetMenuUIController().CancelOrder(tableNumber);
+		RestaurantManager.Instance.MenuUIController.CancelOrder(tableNumber);
 		ToggleTableNum(false);
 		
 	}
@@ -138,33 +133,33 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		
 		// Turn off all components
 		if(tableHighlight != null) {
-			tableHighlight.SetActive(false);
+			tableHighlight.gameObject.SetActive(false);
 		}
 		ToggleTableNum(false);
 		this.GetComponent<BoxCollider>().enabled = false;
 
 		RestaurantManager.Instance.TableList.Remove(this.gameObject);
 		RestaurantManager.Instance.actTables--;
-		RestaurantManager.Instance.checkTablesForGameOver();
-		RestaurantManager.Instance.GetMenuUIController().CancelOrder(tableNumber);
+		RestaurantManager.Instance.CheckTablesForGameOver();
+		RestaurantManager.Instance.MenuUIController.CancelOrder(tableNumber);
 		ParticleUtils.PlayTableSmashedParticle(transform.position);
 		Invoke("TableSmashedCleanup", 4f);
 		// TODO balance this
 	}
 
 	public virtual void TableSmashedCleanup() {
-		spriteParent.SetActive(false);
+		tableSprite.gameObject.SetActive(false);
     }
 
 	public virtual void TurnOnHighlight(){
 		if(tableHighlight != null && !inUse){
-			tableHighlight.SetActive(true);
+			tableHighlight.gameObject.SetActive(true);
 		}
 	}
 	
 	public virtual void TurnOffHighlight(){
 		if(tableHighlight != null){
-			tableHighlight.SetActive(false);
+			tableHighlight.gameObject.SetActive(false);
 		}
 	}
 
@@ -222,10 +217,19 @@ public class Table : MonoBehaviour, IWaiterSelection{
 
 	public void ToggleTableNum(bool onOrOff) {
 		if(DataManager.Instance.GetChallenge() != "Challenge03") {
-			_canvas.SetActive(onOrOff);
+			uiCanvas.gameObject.SetActive(onOrOff);
 		}
 		else {
-			_canvas.SetActive(false);
+			uiCanvas.gameObject.SetActive(false);
 		}
 	}
+
+	/// <summary>
+	/// Base sorting order from the node placed itself
+	/// </summary>
+	public void SetBaseSortingOrder(int baseSortingOrder) {
+		tableSprite.sortingOrder = baseSortingOrder + 2;
+		uiCanvas.sortingOrder = baseSortingOrder + 3;
+		tableHighlight.sortingOrder = baseSortingOrder + 4;
+    }
 }

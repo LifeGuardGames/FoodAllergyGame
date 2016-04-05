@@ -186,7 +186,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		}
 	}
 
-	public override void checkTablesForGameOver() {
+	public override void CheckTablesForGameOver() {
 		if(actTables == 0) {
 			// no tables so force a end of day
 			dayOver = true;
