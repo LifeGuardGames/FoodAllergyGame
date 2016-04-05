@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -7,6 +8,11 @@ public class ComicManager : MonoBehaviour {
 	public GameObject canvas;
 	private GameObject currScene;
 	private GameObject comicPage;
+	float start;
+	float end;
+	float Final;
+
+
 
 	void Start(){
 		if(DataManager.Instance.GameData.Tutorial.IsComicViewed) {
@@ -44,5 +50,15 @@ public class ComicManager : MonoBehaviour {
 			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
 			break;
 		}
+	}
+
+	void OnPageStart(TimeSpan tim) {
+		start = tim.Seconds;
+	}
+
+	void OnPageEnd(TimeSpan tim, int pageNum) {
+		end = tim.Seconds;
+		Final = end - start;
+		AnalyticsManager.Instance.TimeSpentOnComicPage(Final, pageNum);
 	}
 }
