@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System;
 
 public class BehavWaitingInLine : Behav {
-
-
 	public BehavWaitingInLine() {
 
 	}
@@ -14,19 +11,18 @@ public class BehavWaitingInLine : Behav {
 		RestaurantManager.Instance.CustomerLineSelectHighlightOff();
 		Waiter.Instance.CurrentLineCustomer = null;
 		AudioManager.Instance.PlayClip("CustomerSeated");
+
 		//sitting down
-		self.transform.SetParent(RestaurantManager.Instance.GetTable(self.tableNum).Seat);
+		Table selfTable = RestaurantManager.Instance.GetTable(self.tableNum);
+        self.transform.SetParent(selfTable.Seat);
+		self.SetBaseSortingOrder(selfTable.BaseSortingOrder);
 		self.transform.localPosition = Vector3.zero;
-		if(RestaurantManager.Instance.GetTable(self.tableNum).tableType == Table.TableType.VIP) {    // TODO connect this with logic rather than number
+		if(selfTable.tableType == Table.TableType.VIP) {    // TODO connect this with logic rather than number
 			RestaurantManager.Instance.VIPUses++;
 			self.customerUI = self.gameObject.transform.GetComponentInParent<CustomerUIController>();
-			//customerUI.satisfaction1.gameObject.SetActive(true);
-			//customerUI.satisfaction2.gameObject.SetActive(true);
-			//customerUI.satisfaction3.gameObject.SetActive(true);
-			self.timer /= RestaurantManager.Instance.GetTable(self.tableNum).VIPMultiplier;
+			self.timer /= selfTable.VIPMultiplier;
 			self.SetSatisfaction(4);
 			AudioManager.Instance.PlayClip("VIPEnter");
-
 		}
 		// begin reading menu
 		self.customerAnim.SetReadingMenu();

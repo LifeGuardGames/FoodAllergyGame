@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 public class Waiter: Singleton<Waiter>{
@@ -36,6 +35,7 @@ public class Waiter: Singleton<Waiter>{
 		set{ canMove = value; }
 	}
 
+	public MeshRenderer waiterMeshRenderer;
 	public WaiterAnimController waiterAnimController;
 	public bool isMedicTut;
 	public GameObject currentNode;
@@ -95,7 +95,7 @@ public class Waiter: Singleton<Waiter>{
 				}
 
 				// Change the waiter image layer order
-				waiterAnimController.ChangeOrderInLayer(currentNode.GetComponent<Node>().layerOrderBase);
+				SetBaseSortingOrder(currentNode.GetComponent<Node>().BaseSortingOrder);
 			}
 			// Keep moving
 			else{
@@ -212,7 +212,8 @@ public class Waiter: Singleton<Waiter>{
 		if(hand1 == WaiterHands.Meal && hand1Object.GetComponent<Order>().tableNumber == tableNum){
 			GameObject tempFood = hand1Object;
 			tempFood.transform.SetParent(RestaurantManager.Instance.GetTable(tableNum).foodSpot);
-			tempFood.transform.localPosition = new Vector3(0, 0, 0);
+			tempFood.GetComponent<Order>().SetBaseSortingOrder(RestaurantManager.Instance.GetTable(tableNum).BaseSortingOrder);
+            tempFood.transform.localPosition = new Vector3(0, 0, 0);
 			hand1Object = null;
 			hand1 = WaiterHands.None;
 			waiterAnimController.RefreshHand();
@@ -221,6 +222,7 @@ public class Waiter: Singleton<Waiter>{
 		else if(hand2 == WaiterHands.Meal && hand2Object.GetComponent<Order>().tableNumber == tableNum){
 			GameObject tempFood = hand2Object;
 			tempFood.transform.SetParent(RestaurantManager.Instance.GetTable(tableNum).foodSpot);
+			tempFood.GetComponent<Order>().SetBaseSortingOrder(RestaurantManager.Instance.GetTable(tableNum).BaseSortingOrder);
 			tempFood.transform.localPosition = new Vector3(0, 0, 0);
 			hand2Object = null;
 			hand2 = WaiterHands.None;
@@ -245,7 +247,6 @@ public class Waiter: Singleton<Waiter>{
 	}
 
 	public void RemoveMeal(int table){
-		Debug.Log(hand1);
 		if(hand1 != WaiterHands.None){
 			if(hand1Object != null){
 				if(hand1Object.GetComponent<Order>() != null){
@@ -360,6 +361,16 @@ public class Waiter: Singleton<Waiter>{
 		if(hand2 != WaiterHands.None) {
 			RestaurantManager.Instance.GetTable(hand2Object.GetComponent<Order>().tableNumber).seat.GetChild(0).GetComponent<Customer>().Reorder();
 			hand2 = WaiterHands.None;
+		}
+	}
+
+	public void SetBaseSortingOrder(int _baseSortingOrder) {
+		waiterMeshRenderer.sortingOrder = _baseSortingOrder;
+		if(hand1 != WaiterHands.None) {
+			hand1Object.GetComponent<Order>().SetBaseSortingOrder(_baseSortingOrder);
+        }
+		if(hand2 != WaiterHands.None) {
+			hand2Object.GetComponent<Order>().SetBaseSortingOrder(_baseSortingOrder);
 		}
 	}
 }

@@ -55,7 +55,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 			if(DataManager.Instance.GameData.DayTracker.AvgDifficulty == 15.0f) {
 				customerSpawnTimer = 6.0f;
 			}
-			else if(IsTableAvilable()) {
+			else if(IsTableAvailable()) {
 				customerSpawnTimer = DataManager.Instance.GameData.DayTracker.AvgDifficulty * 0.27f + flowMod;
 			}
 			else {

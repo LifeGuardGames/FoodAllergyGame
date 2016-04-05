@@ -1,8 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Custom special customer that appears in challenge only, no regular customer logic
+/// </summary>
 public class CustomerSpecialGossiper : MonoBehaviour {
 
+	public MeshRenderer customerMeshRenderer;
+	public CustomerUIController customerUI;
 	public CustomerAnimController customerAnim; // handles animations
 	private int tableNum;
 	private GossiperMode mod = GossiperMode.None;
@@ -37,6 +42,7 @@ public class CustomerSpecialGossiper : MonoBehaviour {
 			//Debug.Log ("Goissping " + rand.ToString());
 			if(!RestaurantManager.Instance.GetTable(rand).isGossiped && RestaurantManager.Instance.GetTable(rand).inUse) {
 				transform.SetParent(RestaurantManager.Instance.GetTable(rand).Node.transform);
+				SetBaseSortingOrder(RestaurantManager.Instance.GetTable(rand).Node.GetComponent<Node>().BaseSortingOrder);
 				transform.localPosition = Vector3.zero;
 				RestaurantManager.Instance.GetTable(rand).isGossiped = true;
 				tableNum = rand;
@@ -89,5 +95,13 @@ public class CustomerSpecialGossiper : MonoBehaviour {
             }
 		}
 	}
-
+	
+	/// <summary>
+	/// Base sorting order from the node placed itself
+	/// If customer mesh order is B, customer UI canvas is set to B+5, table will be set in the middle B+1 and B+2
+	/// </summary>
+	public void SetBaseSortingOrder(int baseSortingOrder) {
+		customerMeshRenderer.sortingOrder = baseSortingOrder;
+		customerUI.UpdateSortingOrder(baseSortingOrder + 5);
+	}
 }

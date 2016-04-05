@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class CustomerGossiper : Customer{
-
 	public Behav pastBehav;
 
 	public void GoAway(){
 		Debug.Log("Behav!!!!"+ currBehav.ToString());
 		Debug.Log("PastBehav!!!!" + pastBehav.ToString());
 		customerAnim.skeletonAnim.state.SetAnimation(0, "WaitingPassive", false);
-		transform.SetParent(RestaurantManager.Instance.GetTable(tableNum).Seat);
+
+		Table originalTable = RestaurantManager.Instance.GetTable(tableNum);
+        transform.SetParent(originalTable.Seat);
+		SetBaseSortingOrder(originalTable.BaseSortingOrder);
 		transform.localPosition = Vector3.zero;
 		if(currBehav.ToString() == "BehavGossipEating") {
 			StartCoroutine("EatingTimer");
@@ -18,6 +19,5 @@ public class CustomerGossiper : Customer{
 		if(currBehav.ToString() == "BehavGossipReadMenu") {
 			currBehav.Reason();
 		}
-		
 	}
 }

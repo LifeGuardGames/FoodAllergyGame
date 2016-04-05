@@ -1,28 +1,40 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 	public List<Transform> orderSpotList;
 	public float cookTimer;				// times it takes to cook food
-	public GameObject waiterNode;
 
+	private GameObject waiterNode;
+	public GameObject WaiterNode {
+		get { return waiterNode; }
+	}
+	
 	public ChefAnimController chefAnimController;
-	private int ordersCooking = 0;		// Keep an aux count for animation
+	private int ordersCooking = 0;      // Keep an aux count for animation
 
-	public GameObject spinnerHighlight;
-	public GameObject chefParent;
+	public SpriteRenderer kitchenSprite;
+	public SpriteRenderer spinnerHighlight;
+	public MeshRenderer chefMeshRenderer;
 
+	private int baseSortingOrder;
+	public int BaseSortingOrder {
+		get {
+			return baseSortingOrder;
+		}
+	}
+	
 	void Start(){
 		if(SceneManager.GetActiveScene().name == SceneUtils.RESTAURANT){
 			// Connect scene variables
 			waiterNode = Pathfinding.Instance.NodeKitchen;
 		}
 		else{
-			chefParent.SetActive(false);
+			chefMeshRenderer.gameObject.SetActive(false);
 		}
-		spinnerHighlight.SetActive(false);
+		SetBaseSortingOrder(KitchenLoader.baseSortingOrder);
+        spinnerHighlight.gameObject.SetActive(false);
 	}
 
 	// changes the cooking time based off the event
@@ -32,7 +44,7 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 
 	// takes the orders from the waiter and cooks them
 	public void CookOrder(List <GameObject> order){
-		spinnerHighlight.SetActive(false);
+		spinnerHighlight.gameObject.SetActive(false);
 		if(order.Count > 1){
 			order[0].transform.SetParent(this.gameObject.transform);
 			order[0].GetComponent<Order>().StartCooking(cookTimer);
@@ -57,6 +69,7 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 		for(int i = 0; i < orderSpotList.Count; i ++){
 			if(orderSpotList[i].transform.childCount == 0){
 				order.transform.SetParent(orderSpotList[i].transform);
+				order.GetComponent<Order>().SetBaseSortingOrder(baseSortingOrder + i);		// Increment by their position
 				order.transform.localPosition = new Vector3(0, 0, 0);
 			}
 		}
@@ -106,7 +119,14 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 	}
 
 	public void NotifySpinnerHighlight(){
-		spinnerHighlight.SetActive(true);
+		spinnerHighlight.gameObject.SetActive(true);
 	}
 	#endregion
+
+	public void SetBaseSortingOrder(int _baseSortingOrder) {
+		baseSortingOrder = _baseSortingOrder;
+		kitchenSprite.sortingOrder = _baseSortingOrder;
+        spinnerHighlight.sortingOrder = _baseSortingOrder + 7;
+		chefMeshRenderer.sortingOrder = _baseSortingOrder + 1;
+    }
 }

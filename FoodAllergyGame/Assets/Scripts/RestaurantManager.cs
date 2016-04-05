@@ -209,7 +209,7 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 
 	public abstract void CheckTablesForGameOver();
 
-	public bool IsTableAvilable(){
+	public bool IsTableAvailable(){
 		for(int i = 0; i < actTables; i++){
 			if(!GetTable(i).inUse){
 				return true;

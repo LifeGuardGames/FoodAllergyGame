@@ -305,31 +305,36 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			}
 			GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
 			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
-			cus.GetComponent<Customer>().behavFlow = test.BehavFlow;
-			cus.GetComponent<Customer>().tableNum = i;
-            cus.GetComponent<Customer>().Init(customerNumber, chall);
-			customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
+			Customer customerScript = cus.GetComponent<Customer>();
+
+			customerScript.behavFlow = test.BehavFlow;
+			customerScript.tableNum = i;
+			customerScript.Init(customerNumber, chall);
+			customerHash.Add(customerScript.customerID, cus);
 			customerNumber++;
 			challengeAI.AddCustomer();
+
 			//sitting down
-			cus.transform.SetParent(RestaurantManager.Instance.GetTable(cus.GetComponent<Customer>().tableNum).Seat);
-			cus.transform.localPosition = Vector3.zero;
+			cus.transform.SetParent(GetTable(customerScript.tableNum).Seat);
+			customerScript.SetBaseSortingOrder(GetTable(customerScript.tableNum).BaseSortingOrder);
+            cus.transform.localPosition = Vector3.zero;
+
 			// begin reading menu
-			cus.GetComponent<Customer>().customerAnim.SetReadingMenu();
+			customerScript.customerAnim.SetReadingMenu();
 
 			// TODO-SOUND Reading menu here
-			cus.GetComponent<Customer>().StopCoroutine("SatisactionTimer");
+			customerScript.StopCoroutine("SatisactionTimer");
 
 			// Table connection setup
-			cus.gameObject.GetComponentInParent<Table>().currentCustomerID = cus.GetComponent<Customer>().customerID;
+			cus.gameObject.GetComponentInParent<Table>().currentCustomerID = customerScript.customerID;
 			cus.GetComponent<BoxCollider>().enabled = false;
-			RestaurantManager.Instance.lineController.FillInLine();
-			var type = Type.GetType(DataLoaderBehav.GetData(cus.GetComponent<Customer>().behavFlow).Behav[1]);
+			lineController.FillInLine();
+			var type = Type.GetType(DataLoaderBehav.GetData(customerScript.behavFlow).Behav[1]);
 			Behav read = (Behav)Activator.CreateInstance(type);
-			read.self = cus.GetComponent<Customer>();
+			read.self = customerScript;
 			read.Act();
 			//BehavReadingMenu read = new BehavReadingMenu(self);
-			cus.GetComponent<Customer>().currBehav = read;
+			customerScript.currBehav = read;
 			read = null;
 			GetTable(i).inUse = true;
 		}

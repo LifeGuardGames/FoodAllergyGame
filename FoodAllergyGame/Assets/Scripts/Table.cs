@@ -10,15 +10,13 @@ public class Table : MonoBehaviour, IWaiterSelection{
 
 	public enum TableType{
 		Normal,
-		//VIP tables do not gain hearts but increases payout
-		VIP,
-		FlyThru,
+		VIP,        //VIP tables do not gain hearts but increases payout
+		FlyThru
 	}
 
 	public TableType tableType;
 	public bool cantLeave;
-	// Table Number hard coded number to distinguish between tables, from TableLoader
-	public int tableNumber;
+	public int tableNumber;     // Table Number hard coded number to distinguish between tables, from TableLoader
 	public int TableNumber{
 		get{ return tableNumber; }
 		set{ tableNumber = value; }
@@ -29,10 +27,16 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		get{ return seat; }
 	}
 
+	protected int baseSortingOrder;
+	public int BaseSortingOrder {
+		get { return baseSortingOrder; }
+	}
+
 	protected GameObject node;
 	public GameObject Node{
 		get{ return node; }
 	}
+
 	public int VIPMultiplier;
 
 	public SpriteRenderer tableSprite;
@@ -68,7 +72,6 @@ public class Table : MonoBehaviour, IWaiterSelection{
 
 	//facilitates talk between customer and waiter
 	public virtual void TalkToConsumer(){
-		
 		if(inUse){
 			// CheckState will handle waiter finish
 			transform.GetComponentInChildren<Customer>().CheckState();
@@ -227,9 +230,10 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	/// <summary>
 	/// Base sorting order from the node placed itself
 	/// </summary>
-	public void SetBaseSortingOrder(int baseSortingOrder) {
-		tableSprite.sortingOrder = baseSortingOrder + 2;
-		uiCanvas.sortingOrder = baseSortingOrder + 3;
-		tableHighlight.sortingOrder = baseSortingOrder + 4;
+	public virtual void SetBaseSortingOrder(int _baseSortingOrder) {
+		baseSortingOrder = _baseSortingOrder;
+		tableSprite.sortingOrder = _baseSortingOrder + 2;
+		uiCanvas.sortingOrder = _baseSortingOrder + 3;
+		tableHighlight.sortingOrder = _baseSortingOrder + 5;
     }
 }

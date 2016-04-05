@@ -24,10 +24,14 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public int satisfaction;			// The satisfaction the customer has, everytime the attention span 
 										//	ticks down to 0 the customer will lose satisfaction
 
-	public FoodKeywords desiredFood;	// The keyword to help foodmanager find what the customer wants
+	public FoodKeywords desiredFood;    // The keyword to help foodmanager find what the customer wants
 
-	public GameObject order;			//the order created by the customer used to have easy access to the
+	private GameObject order;           //the order created by the customer used to have easy access to the
 										//	order should the customer leave before they eat it
+	public GameObject Order {
+		get { return order; }
+		set { order = value; }
+	}
 
 	public CustomerUIController customerUI;     // ui controller for the customers handles hearts, timer icon and death icon
 	public MeshRenderer customerMeshRenderer;
@@ -289,8 +293,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 		// If satisfaction is 0 or negative, we need to leave cause the service is rubbish
 		if(satisfaction <= 0){
-			if(order != null){
-				Destroy(order.gameObject);
+			if(Order != null){
+				Destroy(Order.gameObject);
 			}
 			BehavNotifyLeave leave = new BehavNotifyLeave();
 			leave.self = this;
@@ -311,8 +315,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 					// If satisfaction is 0 or negative, we need to leave cause the service is rubbish
 					if(satisfaction <= 0) {
-						if(order != null) {
-							Destroy(order.gameObject);
+						if(Order != null) {
+							Destroy(Order.gameObject);
 						}
 						var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[6]);
 						Behav leave = (Behav) Activator.CreateInstance(type);
@@ -329,8 +333,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 				// If satisfaction is 0 or negative, we need to leave cause the service is rubbish
 				if(satisfaction <= 0) {
-					if(order != null) {
-						Destroy(order.gameObject);
+					if(Order != null) {
+						Destroy(Order.gameObject);
 					}
 					var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[6]);
 					Behav leave = (Behav)Activator.CreateInstance(type);
@@ -347,8 +351,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 			// If satisfaction is 0 or negative, we need to leave cause the service is rubbish
 			if(satisfaction <= 0) {
-				if(order != null) {
-					Destroy(order.gameObject);
+				if(Order != null) {
+					Destroy(Order.gameObject);
 				}
 				var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[6]);
 				Behav leave = (Behav)Activator.CreateInstance(type);
@@ -405,13 +409,13 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// It's called when the button for food is hit get the customer to make his order and hand it to the waiter
 	public virtual void OrderTaken(ImmutableDataFood food){
-		if(order == null){
+		if(Order == null){
 			customerAnim.SetWaitingForFood();
 
 			customerUI.ToggleWait(false);
 
-			order = GameObjectUtils.AddChildWithPositionAndScale(null, OrderPrefab);
-			order.GetComponent<Order>().Init(food.ID, tableNum, food.AllergyList);
+			Order = GameObjectUtils.AddChildWithPositionAndScale(null, OrderPrefab);
+			Order.GetComponent<Order>().Init(food.ID, tableNum, food.AllergyList);
 			if(food == FoodManager.Instance.specialFood) {
 				priceMultiplier = food.Reward * 2;
 			}
@@ -421,7 +425,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			else {
 				priceMultiplier = food.Reward;
 			}
-			RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().OrderObtained(order);
+			RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().OrderObtained(Order);
 			attentionSpan = 20.0f * timer;
 
 			UpdateSatisfaction(1);
@@ -435,7 +439,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			currBehav.Reason();
 		}
 		else{
-			Debug.LogError("Order already exists: " + order.name);
+			Debug.LogError("Order already exists: " + Order.name);
 		}
 	}
 
@@ -445,19 +449,18 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			Waiter.Instance.Finished();
 			this.currBehav.Reason();
 			for(int i = 0; i < allergy.Count; i++) { 
-				if(order.GetComponent<Order>().allergy.Contains(allergy[i]) && !allergy.Contains(Allergies.None)) {
+				if(Order.GetComponent<Order>().allergy.Contains(allergy[i]) && !allergy.Contains(Allergies.None)) {
 					Medic.Instance.BillRestaurant(-100);
 					ParticleUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(tableNum).gameObject.transform.position, -100);
 
 					AudioManager.Instance.PlayClip("CustomerDead");
-					if(order.gameObject != null) {
-						Destroy(order.gameObject);
+					if(Order.gameObject != null) {
+						Destroy(Order.gameObject);
 					}
 					SetSatisfaction(0);
 				}
 			}
 		}
-		Debug.Log(currBehav.ToString());
 		currBehav.Reason();
 	}
 
@@ -597,8 +600,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 
 	public void DestroyOrder() {
-		if(order.gameObject != null) {
-			Destroy(order.gameObject);
+		if(Order.gameObject != null) {
+			Destroy(Order.gameObject);
 		}
 	}
 

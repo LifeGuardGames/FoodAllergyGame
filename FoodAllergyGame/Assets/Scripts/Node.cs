@@ -4,7 +4,11 @@ using System.Collections;
 public class Node : MonoBehaviour {
 
 	public Node[] neighbors;
-	public int layerOrderBase;
+
+	public int baseSortingOrder;
+	public int BaseSortingOrder {
+		get { return baseSortingOrder; }
+	}
 
 #if UNITY_EDITOR
 	void OnDrawGizmos(){

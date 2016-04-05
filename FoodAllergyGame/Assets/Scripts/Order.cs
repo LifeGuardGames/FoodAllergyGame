@@ -1,6 +1,6 @@
 using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
 
 public class Order : MonoBehaviour, IWaiterSelection{
@@ -48,6 +48,10 @@ public class Order : MonoBehaviour, IWaiterSelection{
 			RestaurantManager.Instance.GetTable(tableNumber).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
 		}
 	}
+
+	public void SetBaseSortingOrder(int baseSortingOrder) {
+		orderImage.GetComponent<SpriteRenderer>().sortingOrder = baseSortingOrder + 4;
+    }
 
 	public void StartCooking(float _cookingTimer){
 		if(RestaurantManager.Instance.isTutorial){
@@ -128,7 +132,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 	}
 
 	public void OnClicked(){
-		Waiter.Instance.FindRoute(KitchenManager.Instance.waiterNode, this);
+		Waiter.Instance.FindRoute(KitchenManager.Instance.WaiterNode, this);
 	}
 	#endregion
 }

@@ -1,13 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class TableVIP : Table {
-
-	// Use this for initialization
 	void Start () {
 		Init();
 	}
+
 	public override void Init() {
 		if(SceneManager.GetActiveScene() != SceneManager.GetSceneByName(SceneUtils.DECO)) {
 			base.Init();
@@ -17,6 +15,8 @@ public class TableVIP : Table {
 			customerUI.ToggleStar(false);
 			customerUI.ToggleAllergyAttack(false);
 			this.GetComponent<BoxCollider>().enabled = true;
+
+			SetBaseSortingOrder(VIPLoader.baseSortingOrder);
 		}
 	}
 

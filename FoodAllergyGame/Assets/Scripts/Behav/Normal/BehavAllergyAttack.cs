@@ -55,7 +55,7 @@ public class BehavAllergyAttack : Behav {
 			Waiter.Instance.CancelMove();
 			RestaurantManager.Instance.medicTutorial.SetActive(true);
 			//TouchManager.Instance.PauseQueue();
-			string foodSpriteName = DataLoaderFood.GetData(self.order.GetComponent<Order>().foodID).SpriteName;
+			string foodSpriteName = DataLoaderFood.GetData(self.Order.GetComponent<Order>().foodID).SpriteName;
 			RestaurantManager.Instance.medicTutorial.GetComponent<SickTutorialController>().Show(self.allergy[0], foodSpriteName);
 		}
 	}

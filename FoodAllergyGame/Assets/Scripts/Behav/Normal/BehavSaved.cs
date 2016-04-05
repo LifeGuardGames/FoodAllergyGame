@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System;
 
 public class BehavSaved : Behav {
-
-
+	
 	public BehavSaved() {
 
 	}
@@ -14,7 +11,6 @@ public class BehavSaved : Behav {
 	}
 
 	public override void Act() {
-		Debug.Log("Saved");
 		AudioManager.Instance.PlayClip("CustomerSaved");
 		RestaurantManager.Instance.savedCustomers++;
 		self.customerAnim.SetSavedAllergyAttack();

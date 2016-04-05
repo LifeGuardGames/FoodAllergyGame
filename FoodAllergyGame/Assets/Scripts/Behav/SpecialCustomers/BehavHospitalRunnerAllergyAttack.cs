@@ -16,7 +16,7 @@ public class BehavHospitalRunnerAllergyAttack : Behav {
 		self.SetSatisfaction(-20);
 
 		//Also delete their food
-		if(self.order.gameObject != null) {
+		if(self.Order.gameObject != null) {
 			self.DestroyOrder();
 		}
 

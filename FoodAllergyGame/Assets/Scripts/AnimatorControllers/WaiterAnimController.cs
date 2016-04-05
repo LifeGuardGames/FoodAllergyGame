@@ -17,10 +17,6 @@ public class WaiterAnimController : MonoBehaviour {
 	//private WaiterHands lastHand2 = WaiterHands.None;
 	private string currentBodyAnimation = "";
 
-	public void ChangeOrderInLayer(int order) {
-		// TODO Finish this!!!
-	}
-
 	void Start() {
 		skeletonAnim.state.Start += delegate {
 			skeletonAnim.skeleton.SetToSetupPose();		// NOTE: Make sure default mix time is 0!!!

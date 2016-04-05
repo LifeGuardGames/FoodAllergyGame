@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.SceneManagement;
-public class TableFlyThru : Table {
 
+public class TableFlyThru : Table {
 	public TweenToggle FlyThruToggle;
 
-	// Use this for initialization
 	void Start () {
 		Init();
 	}
@@ -17,6 +15,9 @@ public class TableFlyThru : Table {
 				GameObject.Find("TutFingers").transform.GetChild(9).gameObject.SetActive(true);
 			}
 			node = Pathfinding.Instance.NodeFlyThru;
+
+			// Set the custom sorting order
+			SetBaseSortingOrder(FlyThruLoader.baseSortingOrder);
 		}
 	}
 
@@ -35,5 +36,12 @@ public class TableFlyThru : Table {
 	public void FlyThruLeave() {
 		AudioManager.Instance.PlayClip("FlyThruLeave");
 		FlyThruToggle.Hide();
+	}
+
+	// Special case for FlyThru
+	public override void SetBaseSortingOrder(int _baseSortingOrder) {
+		baseSortingOrder = _baseSortingOrder;
+
+		// ....
 	}
 }
