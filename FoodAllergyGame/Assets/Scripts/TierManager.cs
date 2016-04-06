@@ -81,9 +81,9 @@ public class TierManager : Singleton<TierManager> {
 			if(isNewUnlocksAvailable) {
 				// Add any tutorial overrides to be loaded next
 				List<string> unlockedSpecialDecos = currentTierUnlocks[AssetTypes.DecoSpecial];
-				if(unlockedSpecialDecos.Contains("VIP00")) {
+				if(unlockedSpecialDecos.Contains("VIPBasic")) {
 					DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoVIP";
-					DataManager.Instance.GameData.Decoration.BoughtDeco.Add("VIP00","");
+					DataManager.Instance.GameData.Decoration.BoughtDeco.Add("VIPBasic","");
 				}
 				else if(unlockedSpecialDecos.Contains("PlayArea00")) {
 					DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoPlayArea";

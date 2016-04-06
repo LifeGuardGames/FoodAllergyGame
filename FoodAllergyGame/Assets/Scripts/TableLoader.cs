@@ -25,8 +25,7 @@ public class TableLoader : DecoLoader {
 			if(isPlayPoof){
 				ParticleUtils.PlayDecoChangePoof(tableParentList[i].transform.position);
 			}
-
-
+			
 			// HACK Delete colliders while not in deco scene
 			if(isDecoScene){
 				loadedObject.GetComponent<Collider>().enabled = false;
@@ -34,7 +33,7 @@ public class TableLoader : DecoLoader {
 				tableScript.ToggleTableNum(false);
 			}
 
-			tableScript.TableNumber = i;     // Set index of the table number to index
+			tableScript.TableNumber = i;									// Set index of the table number to index
 			tableScript.SetBaseSortingOrder(tableBaseSortingOrders[i]);		// Set base sorting order for regular tables
         }
 	}

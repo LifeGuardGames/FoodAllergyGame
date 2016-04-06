@@ -93,7 +93,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		ToggleTableNum(true);
 	}
 
-	//makes sure there is no left over food should a customer leave ealy
+	//makes sure there is no left over food should a customer leave early
 	public virtual void CustomerLeaving(){
 		inUse = false;
 		Waiter.Instance.RemoveMeal(tableNumber);
@@ -165,8 +165,6 @@ public class Table : MonoBehaviour, IWaiterSelection{
 			tableHighlight.gameObject.SetActive(false);
 		}
 	}
-
-	
 
 	#region IWaiterSelection implementation
 	public virtual void OnWaiterArrived(){

@@ -142,7 +142,7 @@ public class CheatyTierUpgrade : MonoBehaviour {
 		DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance = false;
 		DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
 		TierManager.Instance.RecalculateTier();
-		DataManager.Instance.GameData.Decoration.BoughtDeco.Add("VIP00","");
+		DataManager.Instance.GameData.Decoration.BoughtDeco.Add("VIPBasic","");
 		DataManager.Instance.GameData.Decoration.BoughtDeco.Add("PlayArea00", "");
 		DataManager.Instance.GameData.Decoration.BoughtDeco.Add("FlyThru00", "");
 		SceneManager.LoadScene(SceneUtils.START);
