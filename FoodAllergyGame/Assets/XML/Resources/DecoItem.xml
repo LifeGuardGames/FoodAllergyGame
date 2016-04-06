@@ -303,6 +303,14 @@
 		<SpriteName>RestVIPBasic</SpriteName>
 		<Tier>2</Tier>
 	</DecoItem>
+  <DecoItem ID = "VIPBlackHole">
+    <Type>VIP</Type>
+    <Price>1000</Price>
+    <TitleKey>VIPBlackHole</TitleKey>
+    <DescriptionKey>VIPBlackHoleDesc</DescriptionKey>
+    <SpriteName>RestVIPBlackHole</SpriteName>
+    <Tier>12</Tier>
+  </DecoItem>
 
 	
 	<DecoItem ID = "PlayArea00">

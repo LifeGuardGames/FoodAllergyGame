@@ -6,6 +6,7 @@ public class TableVIP : Table {
 	public SpriteRenderer topSprite;
 	public SpriteRenderer baseSprite;
 	public Canvas statusCanvas;
+	public ParticleSystem activeParticle;
 
 	void Start () {
 		Init();
@@ -56,13 +57,32 @@ public class TableVIP : Table {
 		VIPTableAnimator.SetBool("InUse", isActive);
 		if(isActive) {
 			AudioManager.Instance.PlayClip("VIPEnter");
+			if(activeParticle != null) {
+				activeParticle.Play();
+			}
 		}
+		else {
+			if(activeParticle != null) {
+				activeParticle.Stop();
+			}
+		}
+		
 	}
 
 	public override void SetBaseSortingOrder(int _baseSortingOrder) {
 		baseSortingOrder = _baseSortingOrder;
 		baseSprite.sortingOrder = _baseSortingOrder + 1;
 		topSprite.sortingOrder = _baseSortingOrder + 2;
+
+		if(activeParticle != null) {
+			Renderer[] renderers = activeParticle.GetComponentsInChildren<Renderer>(true);
+			foreach(Renderer r in renderers) {
+				if(r.gameObject.GetComponent<ParticleSystem>() != null) {
+					r.sortingOrder = _baseSortingOrder + 3;
+                }
+			}
+		}
+
         uiCanvas.sortingOrder = _baseSortingOrder + 3;
 		statusCanvas.sortingOrder = _baseSortingOrder + 4;
         tableHighlight.sortingOrder = _baseSortingOrder + 5;

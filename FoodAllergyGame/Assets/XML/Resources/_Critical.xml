@@ -13,7 +13,7 @@
   <Constant Name="KitchenID" Type="String" Value="KitchenBasicRed" Debug="Deco"> </Constant>
   <Constant Name="FloorID" Type="String" Value="FloorFancyPurple" Debug="Deco"> </Constant>
   <Constant Name="VIPOn" Type="Bool" Value="True" Debug="Deco"> </Constant>
-  <Constant Name="VIPID" Type="String" Value="VIPBasic" Debug="Deco"> </Constant>
+  <Constant Name="VIPID" Type="String" Value="VIPBlackHole" Debug="Deco"> </Constant>
   <Constant Name="PlayAreaOn" Type="Bool" Value="False" Debug="Deco"> </Constant>
   <Constant Name="PlayAreaID" Type="String" Value="PlayArea00" Debug="Deco"> </Constant>
   <Constant Name="FlyThruOn" Type="Bool" Value="False" Debug="Deco"> </Constant>
