@@ -44,6 +44,7 @@ public class Waiter: Singleton<Waiter>{
 	private List<GameObject> pathList;
 	private GameObject targetNode;
 	private IWaiterSelection currentCaller;
+	private int baseSortingOrder;
 
 	void Start(){
 		ResetHands();
@@ -122,7 +123,8 @@ public class Waiter: Singleton<Waiter>{
 				hand1 = WaiterHands.Order;
 				waiterAnimController.RefreshHand();
 				hand1Object = order;
-				hand1Object.transform.SetParent(hand1Parent);		// Show order in hand
+				hand1Object.transform.SetParent(hand1Parent);       // Show order in hand
+				hand1Object.GetComponent<Order>().SetBaseSortingOrder(baseSortingOrder);
 				hand1Object.transform.localPosition = new Vector3(0, 0, 0);
 
 				// Tell kitchen manager to highlight spinner
@@ -132,7 +134,8 @@ public class Waiter: Singleton<Waiter>{
 				hand1 = WaiterHands.Meal;
 				waiterAnimController.RefreshHand();
 				hand1Object = order;
-				hand1Object.transform.SetParent(hand1Parent);		// Show order in hand
+				hand1Object.transform.SetParent(hand1Parent);       // Show order in hand
+				hand1Object.GetComponent<Order>().SetBaseSortingOrder(baseSortingOrder);
 				hand1Object.transform.localPosition = new Vector3(0, 0, 0);
 			}
 		}
@@ -141,7 +144,8 @@ public class Waiter: Singleton<Waiter>{
 				hand2 = WaiterHands.Order;
 				waiterAnimController.RefreshHand();
 				hand2Object = order;
-				hand2Object.transform.SetParent(hand2Parent);		// Show order in hand
+				hand2Object.transform.SetParent(hand2Parent);       // Show order in hand
+				hand2Object.GetComponent<Order>().SetBaseSortingOrder(baseSortingOrder);
 				hand2Object.transform.localPosition = new Vector3(0, 0, 0);
 
 				// Tell kitchen manager to highlight spinner
@@ -151,7 +155,8 @@ public class Waiter: Singleton<Waiter>{
 				hand2 = WaiterHands.Meal;
 				waiterAnimController.RefreshHand();
 				hand2Object = order;
-				hand2Object.transform.SetParent(hand2Parent);		// Show order in hand
+				hand2Object.transform.SetParent(hand2Parent);       // Show order in hand
+				hand2Object.GetComponent<Order>().SetBaseSortingOrder(baseSortingOrder);
 				hand2Object.transform.localPosition = new Vector3(0, 0, 0);
 			}
 		}
@@ -365,7 +370,8 @@ public class Waiter: Singleton<Waiter>{
 	}
 
 	public void SetBaseSortingOrder(int _baseSortingOrder) {
-		waiterMeshRenderer.sortingOrder = _baseSortingOrder;
+		baseSortingOrder = _baseSortingOrder;
+        waiterMeshRenderer.sortingOrder = _baseSortingOrder;
 		if(hand1 != WaiterHands.None) {
 			hand1Object.GetComponent<Order>().SetBaseSortingOrder(_baseSortingOrder);
         }

@@ -297,7 +297,7 @@
 	    <Gold>425</Gold>
 	    <Tables>1</Tables>
 	    <PlayArea>PlayArea00</PlayArea>
-	    <Vip>VIP00</Vip>
+	    <Vip>VIPBasic</Vip>
 	    <Flythru>0</Flythru>
 	</Challenge>
 
@@ -659,7 +659,7 @@
 		<CustomerStartingHearts>3</CustomerStartingHearts>
 	    <Tables>4</Tables>
 	    <PlayArea>0</PlayArea>
-	    <Vip>VIP00</Vip>
+	    <Vip>VIPBasic</Vip>
 	    <Flythru>0</Flythru>
 	</Challenge>
 

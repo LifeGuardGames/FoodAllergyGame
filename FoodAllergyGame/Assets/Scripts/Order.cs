@@ -22,13 +22,14 @@ public class Order : MonoBehaviour, IWaiterSelection{
 		set{
 			isCooked = value;
 			if(isCooked == true){
-				orderImage.GetComponent<SpriteRenderer>().sprite = SpriteCacheManager.GetFoodSpriteData(DataLoaderFood.GetData(foodID).SpriteName);
+				orderImage.sprite = SpriteCacheManager.GetFoodSpriteData(DataLoaderFood.GetData(foodID).SpriteName);
 			}
 		}
 	}
 
 	public List<Allergies> allergy;
-	public GameObject orderImage;
+	public SpriteRenderer orderImage;
+	public Canvas orderCanvas;
 	public GameObject textParent;
 
 	// Initialize the order when it is first spawned
@@ -50,7 +51,8 @@ public class Order : MonoBehaviour, IWaiterSelection{
 	}
 
 	public void SetBaseSortingOrder(int baseSortingOrder) {
-		orderImage.GetComponent<SpriteRenderer>().sortingOrder = baseSortingOrder + 4;
+		orderImage.sortingOrder = baseSortingOrder + 4;
+		orderCanvas.sortingOrder = baseSortingOrder + 5;
     }
 
 	public void StartCooking(float _cookingTimer){
@@ -58,7 +60,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 			RestaurantManager.Instance.GetTable(tableNumber).Seat.GetComponentInChildren<CustomerTutorial>().hideFinger();
 		}
 		cookTimer = _cookingTimer;
-		orderImage.SetActive(false);
+		orderImage.gameObject.SetActive(false);
 		StartCoroutine("Cooking");
 		cookTimer = _cookingTimer;
 	}
@@ -66,7 +68,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 	private IEnumerator Cooking(){
 		yield return new WaitForSeconds(cookTimer);
 		IsCooked = true;
-		orderImage.SetActive(true);
+		orderImage.gameObject.SetActive(true);
 		ToggleShowOrderNumber(true);
 		this.gameObject.GetComponent<BoxCollider>().enabled = true;
 		KitchenManager.Instance.FinishCooking(this.gameObject);

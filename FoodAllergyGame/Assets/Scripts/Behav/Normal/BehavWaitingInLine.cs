@@ -17,12 +17,13 @@ public class BehavWaitingInLine : Behav {
         self.transform.SetParent(selfTable.Seat);
 		self.SetBaseSortingOrder(selfTable.BaseSortingOrder);
 		self.transform.localPosition = Vector3.zero;
-		if(selfTable.tableType == Table.TableType.VIP) {    // TODO connect this with logic rather than number
+		if(selfTable.tableType == Table.TableType.VIP) {
 			RestaurantManager.Instance.VIPUses++;
 			self.customerUI = self.gameObject.transform.GetComponentInParent<CustomerUIController>();
 			self.timer /= selfTable.VIPMultiplier;
 			self.SetSatisfaction(4);
-			AudioManager.Instance.PlayClip("VIPEnter");
+			TableVIP vipTable = (TableVIP)selfTable;
+			vipTable.TableActiveToggle(true);
 		}
 		// begin reading menu
 		self.customerAnim.SetReadingMenu();

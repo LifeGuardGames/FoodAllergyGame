@@ -171,7 +171,7 @@ public class DecoManager : Singleton<DecoManager>{
 		if(IsDecoInitSanityCheck(decoID, decoType)){	// Sanity check
 			if(decoID == null || IsDecoBought(decoID)) {
 				//if(isTutroial && decoID == "PlayArea00"){
-				if(isTutorial && decoID == "VIP00") {
+				if(isTutorial && decoID == "VIPBasic") {
 					tutObj3.SetActive(false);
 					isTutorial = false;
 					DataManager.Instance.GameData.Tutorial.IsDecoFingerTutDone = true;
