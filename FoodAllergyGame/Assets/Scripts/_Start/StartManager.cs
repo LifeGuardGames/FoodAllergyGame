@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.UI;
 
 public class StartManager : Singleton<StartManager>{
 	public GameObject sceneObjectParent;
@@ -30,6 +31,9 @@ public class StartManager : Singleton<StartManager>{
 
 	public GameObject replayTutButton;
 	public TweenToggle MoreCratesButton;
+
+	public GameObject ageAskerPrefab;
+	public GameObject canvas;
 
 	public bool IsShopAppearHideDinerOverride = false;
 
@@ -76,10 +80,16 @@ public class StartManager : Singleton<StartManager>{
 				ShopEntranceUIController.ToggleClickable(false);
 				DinerEntranceUIController.ToggleClickable(false);
 			}
-
-			// Spawn the unlock drop pod here
-			NotificationQueueDataReward rewardNotif = new NotificationQueueDataReward(SceneUtils.START);
-			NotificationManager.Instance.AddNotification(rewardNotif);
+			if(TierManager.Instance.CurrentTier == 2 && !DataManager.Instance.GameData.DayTracker.hasCollectedAge) {
+				GameObject go = GameObjectUtils.AddChildGUI(canvas, ageAskerPrefab);
+				ageAskerPrefab = go;
+				ageAskerPrefab.GetComponentInChildren<Button>().onClick.AddListener(() => { CollectAge(); });
+			}
+			else {
+				// Spawn the unlock drop pod here
+				NotificationQueueDataReward rewardNotif = new NotificationQueueDataReward(SceneUtils.START);
+				NotificationManager.Instance.AddNotification(rewardNotif);
+			}
         }
 
 		if(TierManager.Instance.CurrentTier == 6 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates) {
@@ -178,4 +188,13 @@ public class StartManager : Singleton<StartManager>{
 		DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut1";
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, showFoodTip: true);
     }
+
+	public void CollectAge() {
+		DataManager.Instance.GameData.DayTracker.hasCollectedAge = true;
+		AnalyticsManager.Instance.SendAge(ageAskerPrefab.GetComponentInChildren<InputField>().text);
+		Destroy(ageAskerPrefab);
+		// Spawn the unlock drop pod here
+		NotificationQueueDataReward rewardNotif = new NotificationQueueDataReward(SceneUtils.START);
+		NotificationManager.Instance.AddNotification(rewardNotif);
+	}
 }

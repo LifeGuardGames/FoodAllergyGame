@@ -149,4 +149,9 @@ public class AnalyticsManager : Singleton<AnalyticsManager> {
 				{"Time: ", sec }});
 		}
 	}
+
+	public void SendAge(string _age) {
+		Mixpanel.SendEvent("Age: ", new Dictionary<string, object> {
+			{"Age: ", _age }});
+	}
 }
