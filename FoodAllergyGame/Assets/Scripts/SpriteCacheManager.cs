@@ -60,6 +60,11 @@ public class SpriteCacheManager : Singleton<SpriteCacheManager> {
 		return sprite;
 	}
 
+	public static Sprite GetSlotItemSpriteData() {
+		Sprite sprite = Resources.Load<Sprite>("ItemSlot");
+		return sprite;
+	}
+
 	public static Sprite GetEpiPenTokenSpriteData(int tokenNumber) {
 		Sprite sprite = Resources.Load<Sprite>("EpiPenToken" + tokenNumber.ToString());
 		return sprite;
@@ -67,6 +72,11 @@ public class SpriteCacheManager : Singleton<SpriteCacheManager> {
 
 	public static Sprite GetChallengeButton(ChallengeReward rewardType) {
 		Sprite sprite = Resources.Load<Sprite>("ChallengeButton" + rewardType.ToString());
+		return sprite;
+	}
+
+	public static Sprite GetChallengeItemSpriteData() {
+		Sprite sprite = Resources.Load<Sprite>("ItemChallenge");
 		return sprite;
 	}
 }
