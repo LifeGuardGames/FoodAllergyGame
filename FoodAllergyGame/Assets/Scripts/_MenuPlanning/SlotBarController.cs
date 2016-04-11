@@ -8,8 +8,8 @@ public class SlotBarController : MonoBehaviour {
 	public GridLayoutGroup gridLayout;
 	public RectTransform gridImageTransform;
 
-	public Color slotActiveColor;
-	public Color slotInactiveColor;
+	public Sprite slotOnSprite;
+	public Sprite slotOffSprite;
 
 	private List<GameObject> slotList;		// List to keep track of the actual image slots
 	private List<bool> slotListBoolAux;		// Aux to keep track of active or not for slotList
@@ -54,7 +54,7 @@ public class SlotBarController : MonoBehaviour {
 					for(int j = i; j < i + slotCount; j++) {	// Now actually change it
 						slotListBoolAux[j] = true;
 						slotList[j].GetComponent<Animation>().Play();
-						slotList[j].GetComponent<Image>().color = slotActiveColor;
+						slotList[j].GetComponent<Image>().sprite = slotOnSprite;
 					}
 					return true;
 				}
@@ -81,7 +81,7 @@ public class SlotBarController : MonoBehaviour {
 					}
 					for(int j = i; j > i - slotCount; j--) {   // Now actually change it
 						slotListBoolAux[j] = false;
-						slotList[j].GetComponent<Image>().color = slotInactiveColor;
+						slotList[j].GetComponent<Image>().sprite = slotOffSprite;
 					}
 					return true;
 				}
