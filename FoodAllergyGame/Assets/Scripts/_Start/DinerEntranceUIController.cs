@@ -2,7 +2,7 @@
 
 public class DinerEntranceUIController : MonoBehaviour {
 
-	public GameObject glowSprite;
+	public Animator dinerEntranceAnimator;
 
 	void OnMouseUpAsButton(){
 		StartManager.Instance.OnPlayButtonClicked();
@@ -10,6 +10,6 @@ public class DinerEntranceUIController : MonoBehaviour {
 
 	public void ToggleClickable(bool isClickable){
 		GetComponent<BoxCollider2D>().enabled = isClickable;
-		glowSprite.SetActive(isClickable);
-	}
+		dinerEntranceAnimator.SetBool("IsClickable", isClickable);
+    }
 }
