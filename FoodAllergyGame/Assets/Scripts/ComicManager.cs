@@ -8,9 +8,9 @@ public class ComicManager : MonoBehaviour {
 	public GameObject canvas;
 	private GameObject currScene;
 	private GameObject comicPage;
-	float start;
-	float end;
-	float Final;
+	private float start;
+	private float end;
+	private float final;
 
 
 
@@ -52,13 +52,13 @@ public class ComicManager : MonoBehaviour {
 		}
 	}
 
-	void OnPageStart(TimeSpan tim) {
+	private void OnPageStart(TimeSpan tim) {
 		start = tim.Seconds;
 	}
 
-	void OnPageEnd(TimeSpan tim, int pageNum) {
+	private void OnPageEnd(TimeSpan tim, int pageNum) {
 		end = tim.Seconds;
-		Final = end - start;
-		AnalyticsManager.Instance.TimeSpentOnComicPage(Final, pageNum);
+		final = end - start;
+		AnalyticsManager.Instance.TimeSpentOnComicPage(final, pageNum);
 	}
 }

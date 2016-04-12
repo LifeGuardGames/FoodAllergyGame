@@ -141,7 +141,7 @@ public class StartManager : Singleton<StartManager>{
 				unlockedFoodStock.Remove(DataLoaderFood.GetData(foodID));
 			}
 		}
-
+		unlockedFoodStock.Reverse();
 		// Populate in FoodManager for use in MenuPlanning
 		FoodManager.Instance.FoodStockList = unlockedFoodStock;
 	}

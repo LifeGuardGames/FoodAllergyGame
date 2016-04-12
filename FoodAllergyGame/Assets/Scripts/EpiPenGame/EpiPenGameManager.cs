@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	public int totalSteps = 8;
@@ -142,8 +143,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 
 	public void OnGameOverButtonClicked() {
 		// Temp stuff
-		UIManager.gameOverTween.Hide();
-		StartGame();
+		SceneManager.LoadScene(1);
 	}
 
 	private bool IsTokenCorrect(int finalSlotIndex) {
