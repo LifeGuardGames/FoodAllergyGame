@@ -6,6 +6,8 @@ public class ComicManager : MonoBehaviour {
 	public Animator comicAnimator;
 	public TweenToggle fadeTween;
 
+	private int nextStepAux = 0;
+
 	private float start;
 	private float end;
 	private float final;
