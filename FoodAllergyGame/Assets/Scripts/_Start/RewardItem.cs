@@ -34,13 +34,13 @@ public class RewardItem : MonoBehaviour {
 				ImmutableDataChallenge challengeData = DataLoaderChallenge.GetData(itemID);
                 titleKey = challengeData.Title;
 				descriptionKey = challengeData.ChallengeDescription;
-				// itemSprite.sprite = ...
+				itemSprite.sprite = SpriteCacheManager.GetChallengeItemSpriteData();
 				break;
 			case AssetTypes.Customer:
 				ImmutableDataCustomer customerData = DataLoaderCustomer.GetData(itemID);
 				titleKey = customerData.CustomerNameKey;
 				descriptionKey = customerData.CustomerDescription;
-				// itemSprite.sprite = ...
+				itemSprite.sprite = SpriteCacheManager.GetCustomerSpriteData(customerData.SpriteName);
 				break;
 			case AssetTypes.DecoBasic:
 			case AssetTypes.DecoSpecial:
@@ -58,7 +58,7 @@ public class RewardItem : MonoBehaviour {
 				break;
 			case AssetTypes.Slot:
 				titleKey = "NewFoodSlotItem";
-				// itemSprite.sprite = ...
+				itemSprite.sprite = SpriteCacheManager.GetSlotItemSpriteData();
                 break;
 		}
 
