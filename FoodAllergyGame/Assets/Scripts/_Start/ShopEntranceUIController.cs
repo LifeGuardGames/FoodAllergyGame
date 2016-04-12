@@ -3,8 +3,7 @@
 public class ShopEntranceUIController : MonoBehaviour {
 
 	public GameObject tutorialFinger;
-	public Animator animator;
-	public GameObject glowSprite;
+	public Animator decoEntranceAnimator;
 
 	void Start() {
 		if(DataManager.Instance.GameData.Tutorial.IsSpeDecoTutDone) {
@@ -44,7 +43,7 @@ public class ShopEntranceUIController : MonoBehaviour {
 //	}
 
 	private void PlayAppearAnimation(){
-		animator.Play("ShopAppear");
+		decoEntranceAnimator.Play("ShopAppear");
 	}
 
 	public void AppearAnimationStartEvent() {
@@ -59,6 +58,6 @@ public class ShopEntranceUIController : MonoBehaviour {
 
 	public void ToggleClickable(bool isClickable){
 		GetComponent<BoxCollider2D>().enabled = isClickable;
-		glowSprite.SetActive(isClickable);
+		decoEntranceAnimator.SetBool("IsClickable", isClickable);
 	}
 }

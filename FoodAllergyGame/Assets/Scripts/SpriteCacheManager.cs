@@ -79,4 +79,30 @@ public class SpriteCacheManager : Singleton<SpriteCacheManager> {
 		Sprite sprite = Resources.Load<Sprite>("ItemChallenge");
 		return sprite;
 	}
+
+	/// <summary>
+	/// Used for initializing
+	/// </summary>
+	/// <param name="tiers">Your current tier</param>
+	/// <param name="totalTiersInOneStar">Number of tiers that complete one star</param>
+	/// <param name="starIndex">Star index in question, initializing stars in a list</param>
+	/// <returns>Sprite of star fill of the current star index, null if empty</returns>
+	public static Sprite GetStarFillSpriteData(int tiers, int totalTiersInOneStar, int starIndex) {
+		int suffixFill = 0;
+		int starAux = (starIndex + 1) * totalTiersInOneStar;
+		if(starAux > tiers) {	// Partial or empty
+			if(starAux - tiers < 6) {
+				suffixFill = starAux - tiers;
+            }
+			else {
+				return null;
+			}
+		}
+		else {					// Full
+			suffixFill = 6;
+        }
+		
+		Sprite sprite = Resources.Load<Sprite>("StarPiece" + suffixFill);
+		return sprite;
+	}
 }

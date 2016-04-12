@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class ChallengeMenuEntranceUIController : MonoBehaviour {
 
-	public Animator animator;
-	public GameObject glowSprite;
+	public Animator challengeMenuEntranceAnimator;
 
 	void Start() {
 		// Show the challenge menu entrance
@@ -22,7 +20,11 @@ public class ChallengeMenuEntranceUIController : MonoBehaviour {
 		ToggleClickable(true);
 		if(isFirstTime) {
 			StartManager.Instance.DinerEntranceUIController.ToggleClickable(false);
-			PlayAppearAnimation();
+			StartManager.Instance.ShopEntranceUIController.ToggleClickable(false);
+			challengeMenuEntranceAnimator.Play("PirateShipAppear");
+        }
+		else {
+			challengeMenuEntranceAnimator.Play("PirateShipHover");
 		}
 	}
 
@@ -40,19 +42,12 @@ public class ChallengeMenuEntranceUIController : MonoBehaviour {
 	//		}
 	//	}
 
-	private void PlayAppearAnimation() {
-		
-	}
-
-	public void AppearAnimationStartEvent() {
-	}
-
 	public void AppearAnimationDoneEvent() {
 		ToggleClickable(true); // NOTE: Don't show diner
 	}
 
 	public void ToggleClickable(bool isClickable) {
 		GetComponent<BoxCollider2D>().enabled = isClickable;
-		glowSprite.SetActive(isClickable);
-	}
+		challengeMenuEntranceAnimator.SetBool("IsClickable", isClickable);
+    }
 }
