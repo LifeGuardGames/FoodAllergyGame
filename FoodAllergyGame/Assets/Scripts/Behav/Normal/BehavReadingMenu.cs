@@ -22,6 +22,7 @@ public class BehavReadingMenu : Behav {
 	}
 
 	public override void Act() {
+		self.customerAnim.SetReadingMenu();
 		self.StartCoroutine("ReadMenu");
 		self.state = CustomerStates.ReadingMenu;
 		//get food choices 

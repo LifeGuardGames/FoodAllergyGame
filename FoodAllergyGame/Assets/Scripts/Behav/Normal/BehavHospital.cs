@@ -21,7 +21,6 @@ public class BehavHospital : Behav {
 		RestaurantManager.Instance.CustomerLeftFlatCharge(self, Medic.HospitalPrice, true);
 
 		AudioManager.Instance.PlayClip("CustomerDead");
-		self.SetSatisfaction(0);
 		self.DestroyOrder();
 		self.DestroySelf(0);
 	}
