@@ -152,4 +152,8 @@ public class CheatyTierUpgrade : MonoBehaviour {
 		DataManager.Instance.GameData.Cash.CurrentCash += 10000;
 		SceneManager.LoadScene(SceneUtils.START);
 	}
+
+	public void OnLoadEpipenButton() {
+		SceneManager.LoadScene(SceneUtils.EPIPEN);
+	}
 }

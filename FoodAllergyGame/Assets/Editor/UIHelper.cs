@@ -16,6 +16,7 @@ public class UIHelper : EditorWindow {
 	private bool isCompileAux = false;
 	private Vector2 scrollPosition = Vector2.zero;
 
+	/*
 	void OnEnable() {
 		EditorPlayMode.PlayModeChanged += OnPlayModeChanged;
 	}
@@ -42,6 +43,7 @@ public class UIHelper : EditorWindow {
 				break;
 		}
 	}
+	*/
 
 	[MenuItem("LGG/UI Helper")]
 	public static void ShowWindow(){

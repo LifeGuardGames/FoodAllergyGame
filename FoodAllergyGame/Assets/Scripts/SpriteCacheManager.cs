@@ -80,6 +80,11 @@ public class SpriteCacheManager : Singleton<SpriteCacheManager> {
 		return sprite;
 	}
 
+	public static Sprite GetTrophySpriteData(ChallengeReward rewardType) {
+		Sprite sprite = Resources.Load<Sprite>("Trophy" + rewardType.ToString());
+		return sprite;
+	}
+
 	/// <summary>
 	/// Used for initializing
 	/// </summary>

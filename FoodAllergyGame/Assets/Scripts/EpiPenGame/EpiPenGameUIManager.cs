@@ -37,16 +37,16 @@ public class EpiPenGameUIManager : MonoBehaviour{
 
 	public void ShowGameOver(int attempts) {
 		if(attempts == 1) {
-			imgRank.sprite = SpriteCacheManager.GetChallengeButton(ChallengeReward.Gold);
+			imgRank.sprite = SpriteCacheManager.GetTrophySpriteData(ChallengeReward.Gold);
 		}
 		else if(attempts == 2) {
-			imgRank.sprite = SpriteCacheManager.GetChallengeButton(ChallengeReward.Silver);
+			imgRank.sprite = SpriteCacheManager.GetTrophySpriteData(ChallengeReward.Silver);
 		}
 		else if(attempts == 3) {
-			imgRank.sprite = SpriteCacheManager.GetChallengeButton(ChallengeReward.Bronze);
+			imgRank.sprite = SpriteCacheManager.GetTrophySpriteData(ChallengeReward.Bronze);
 		}
 		else if(attempts > 3) {
-			imgRank.sprite = SpriteCacheManager.GetChallengeButton(ChallengeReward.Stone);
+			imgRank.sprite = SpriteCacheManager.GetTrophySpriteData(ChallengeReward.Stone);
 		}
 		timerText.text = timer.Report();
 		gameOverTween.Show();
