@@ -26,6 +26,5 @@ public class MutableDataRestaurantEvent{
             CustomerList = new List<string>(customerSet);
 		}
 		CurrentChallenge = "";
-		
 	}
 }

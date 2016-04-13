@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class RestaurantManagerLoader : MonoBehaviour {
 	public GameObject RestArcade;
@@ -38,11 +37,6 @@ public class RestaurantManagerLoader : MonoBehaviour {
 		else {
 			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
 		}
-	}
-	// Called from PauseUIController
-	public void QuitGameChallenge() {
-		Time.timeScale = 1.0f;  // Remember to reset timescale!
-		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.CHALLENGEMENU);
 	}
 
 	public void SkipTutorial() {
