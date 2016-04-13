@@ -1,12 +1,9 @@
-﻿using System.Collections;
-
-public class MutableDataDayTracker {
-
+﻿public class MutableDataDayTracker {
 	public float AvgDifficulty { get; set; }
 	public int DaysPlayed { get; set; }
 	public int ChallengesPlayed {get;set;}
 	public bool IsMoreCrates { get; set; }
-	public bool hasCollectedAge { get; set; }
+	public bool HasCollectedAge { get; set; }
 
 	public MutableDataDayTracker(){
 		AvgDifficulty = 15.0f;
@@ -14,6 +11,6 @@ public class MutableDataDayTracker {
 		ChallengesPlayed = 0;
 		//pro toggle
 		IsMoreCrates = false;
-		hasCollectedAge = false;
+		HasCollectedAge = false;
 	}
 }

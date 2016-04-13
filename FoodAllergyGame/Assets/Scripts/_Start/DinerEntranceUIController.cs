@@ -4,33 +4,28 @@ using System.Collections.Generic;
 public class DinerEntranceUIController : MonoBehaviour {
 
 	public Animator dinerEntranceAnimator;
-
 	public List<SpriteRenderer> starBaseList;
 	public List<SpriteRenderer> starCoreList;
-	public Sprite starShellSprite;
-	public Sprite starBaseSprite;
 
 	void Start() {
 		// Populate star cores list from data
 		for(int i = 0; i < starCoreList.Count; i++) {
 			if(i < DataManager.Instance.GameData.Challenge.StarCoresEarned) {
-				starCoreList[i].enabled = false;
+				starCoreList[i].enabled = true;
 			}
 			else {
-				starCoreList[i].enabled = true;
+				starCoreList[i].enabled = false;
 			}
 		}
 
 		// Populate star base list from tiers
-
-		// TODO USE CUSTOM SPRITES (SETS OF 6)
 		for(int i = 0; i < starBaseList.Count; i++) {
 			Sprite loadedSprite = SpriteCacheManager.GetStarFillSpriteData(TierManager.Instance.CurrentTier, 6, i);
 			if(loadedSprite != null) {
-				starCoreList[i].sprite = loadedSprite;
+				starBaseList[i].sprite = loadedSprite;
 			}
 			else {
-				starCoreList[i].enabled = false;
+				starBaseList[i].enabled = false;
             }
         }
 	}
@@ -40,6 +35,7 @@ public class DinerEntranceUIController : MonoBehaviour {
 	}
 
 	public void ToggleClickable(bool isClickable){
+		Debug.Log("TOGGLED DINER " + isClickable);
 		GetComponent<BoxCollider2D>().enabled = isClickable;
 		dinerEntranceAnimator.SetBool("IsClickable", isClickable);
     }

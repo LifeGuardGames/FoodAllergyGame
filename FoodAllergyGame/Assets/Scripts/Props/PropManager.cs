@@ -30,7 +30,7 @@ public class PropManager : Singleton<PropManager> {
 
 	// Broadcast a message telling all prop growth nodes needs to initialize themselves
 	private void SpawnPropNodeGrowth() {
-		propGrowthParent.BroadcastMessage("PropGrowthInit");
+		propGrowthParent.BroadcastMessage("PropGrowthInit", SendMessageOptions.DontRequireReceiver);
 	}
 
 	private void SpawnPropNodeEvent() {

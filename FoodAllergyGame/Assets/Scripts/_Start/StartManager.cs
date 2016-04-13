@@ -1,7 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEngine.UI;
 
 public class StartManager : Singleton<StartManager>{
 	public GameObject sceneObjectParent;
@@ -32,10 +30,9 @@ public class StartManager : Singleton<StartManager>{
 	public GameObject replayTutButton;
 	public TweenToggle MoreCratesButton;
 
-	public GameObject ageAskerPrefab;
-	public GameObject canvas;
+	public AgeAskController ageAskController;
 
-	public bool IsShopAppearHideDinerOverride = false;
+	public bool isShopAppearHideDinerOverride = false;
 
 	void Start(){
 		// Refresh tier calculation, always do this first
@@ -80,11 +77,9 @@ public class StartManager : Singleton<StartManager>{
 				ShopEntranceUIController.ToggleClickable(false);
 				DinerEntranceUIController.ToggleClickable(false);
 			}
-			if(TierManager.Instance.CurrentTier == 2 && !DataManager.Instance.GameData.DayTracker.hasCollectedAge) {
-				GameObject go = GameObjectUtils.AddChildGUI(canvas, ageAskerPrefab);
-				ageAskerPrefab = go;
-				ageAskerPrefab.GetComponentInChildren<Button>().onClick.AddListener(() => { CollectAge(); });
-			}
+			if(TierManager.Instance.CurrentTier == 2 && !DataManager.Instance.GameData.DayTracker.HasCollectedAge) {
+				ageAskController.ShowPanel();
+            }
 			else {
 				// Spawn the unlock drop pod here
 				NotificationQueueDataReward rewardNotif = new NotificationQueueDataReward(SceneUtils.START);
@@ -189,10 +184,11 @@ public class StartManager : Singleton<StartManager>{
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, showFoodTip: true);
     }
 
-	public void CollectAge() {
-		DataManager.Instance.GameData.DayTracker.hasCollectedAge = true;
-		AnalyticsManager.Instance.SendAge(ageAskerPrefab.GetComponentInChildren<InputField>().text);
-		Destroy(ageAskerPrefab);
+	// Called from AgeAskController
+	public void CollectAge(string age) {
+		DataManager.Instance.GameData.DayTracker.HasCollectedAge = true;
+		AnalyticsManager.Instance.SendAge(age);
+
 		// Spawn the unlock drop pod here
 		NotificationQueueDataReward rewardNotif = new NotificationQueueDataReward(SceneUtils.START);
 		NotificationManager.Instance.AddNotification(rewardNotif);

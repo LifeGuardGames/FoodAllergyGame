@@ -66,7 +66,7 @@ public class NotificationManager : Singleton<NotificationManager> {
 				StartManager.Instance.ShopEntranceUIController.ToggleClickable(true);
 
 				// Keep diner unclickable ONLY when first time deco entrance and challenge
-				if(StartManager.Instance.IsShopAppearHideDinerOverride) {
+				if(StartManager.Instance.isShopAppearHideDinerOverride) {
 					StartManager.Instance.DinerEntranceUIController.ToggleClickable(false);
 				}
 				else {

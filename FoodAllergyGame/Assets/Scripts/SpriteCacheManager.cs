@@ -88,11 +88,12 @@ public class SpriteCacheManager : Singleton<SpriteCacheManager> {
 	/// <param name="starIndex">Star index in question, initializing stars in a list</param>
 	/// <returns>Sprite of star fill of the current star index, null if empty</returns>
 	public static Sprite GetStarFillSpriteData(int tiers, int totalTiersInOneStar, int starIndex) {
-		int suffixFill = 0;
+        int suffixFill = 0;
 		int starAux = (starIndex + 1) * totalTiersInOneStar;
+		
 		if(starAux > tiers) {	// Partial or empty
 			if(starAux - tiers < 6) {
-				suffixFill = starAux - tiers;
+				suffixFill = tiers % 6;
             }
 			else {
 				return null;
@@ -101,8 +102,8 @@ public class SpriteCacheManager : Singleton<SpriteCacheManager> {
 		else {					// Full
 			suffixFill = 6;
         }
-		
-		Sprite sprite = Resources.Load<Sprite>("StarPiece" + suffixFill);
+		string loadString = suffixFill == 6 ? "StarsBase" : "StarPiece" + suffixFill;
+        Sprite sprite = Resources.Load<Sprite>(loadString);
 		return sprite;
 	}
 }

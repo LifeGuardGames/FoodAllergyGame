@@ -7,7 +7,7 @@ public class RestaurantManagerLoader : MonoBehaviour {
 
 	void Start() {
 		if(!string.IsNullOrEmpty(DataManager.Instance.GetChallenge())) {
-			Debug.Log(DataManager.Instance.GetChallenge());
+			//Debug.Log(DataManager.Instance.GetChallenge());
 			RestArcade.SetActive(false);
 			RestaurantManagerChallenge.Instance.StartPhase();
 		}

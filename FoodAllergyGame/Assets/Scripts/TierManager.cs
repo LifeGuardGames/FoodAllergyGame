@@ -148,7 +148,6 @@ public class TierManager : Singleton<TierManager> {
 	public string GetNewEvent(){
 		List <string> eventList = GetEventsUnlocked();
 		int rand = UnityEngine.Random.Range(0, eventList.Count);
-        Debug.Log(rand);
 		return eventList[rand];
 	}
 

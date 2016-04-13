@@ -73,7 +73,6 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		dayTime = chall.DayLengthMod;
 		dayTimeLeft = dayTime;
 		temp = DataLoaderCustomerSet.GetData(chall.CustomerSet).CustomerSet;
-		Debug.Log(temp[0]);
 		for(int i = 0; i < temp.Length; i++) {
 			currCusSet.Add(temp[i]);
 		}
