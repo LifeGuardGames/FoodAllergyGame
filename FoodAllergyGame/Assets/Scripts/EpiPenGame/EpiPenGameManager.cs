@@ -74,7 +74,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		yield return 0;
 
 		//int tokensToPick = DataManager.Instance.GameData.Epi.Difficulty;
-		int tokensToPick = 6;
+		int tokensToPick = 5;
 		difficulty = tokensToPick;
 		if(!isTutorial) {
 			Debug.Log("REG GAME");
