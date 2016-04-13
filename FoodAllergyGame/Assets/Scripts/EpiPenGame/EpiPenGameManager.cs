@@ -360,6 +360,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		isTutorial = false;
 		DataManager.Instance.GameData.Tutorial.IsEpiPenGameTutorialDone = true;
 		CheckAnswerButtonClicked();
+		attempts = 0;
 
 		// Special case, circumvent new game here
 		UIManager.StartGame();
