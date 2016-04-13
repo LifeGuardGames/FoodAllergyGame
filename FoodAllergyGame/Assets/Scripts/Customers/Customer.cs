@@ -327,6 +327,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			}
 			else {
 				satisfaction += delta;
+				if(satisfaction > 3) {
+					satisfaction = 3;
+				}
 				customerUI.UpdateSatisfaction(satisfaction, true, delta);
 
 				customerAnim.UpdateSatisfaction(delta);
