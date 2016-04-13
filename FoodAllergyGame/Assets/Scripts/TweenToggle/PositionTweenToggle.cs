@@ -13,6 +13,7 @@ public class PositionTweenToggle : TweenToggle {
 		if(isGUI){
 			showingPos = GUIRectTransform.anchoredPosition3D;
 			hiddenPos = GUIRectTransform.anchoredPosition3D + new Vector3(hideDeltaX, hideDeltaY, hideDeltaZ);
+
 		}
 		else{
 			showingPos = gameObject.transform.localPosition;
@@ -24,6 +25,7 @@ public class PositionTweenToggle : TweenToggle {
 		if(startsHidden){
 			if(isGUI){
 				GUIRectTransform.anchoredPosition3D = hiddenPos;
+				Debug.Log("tweentoggle");
 			}
 			else{
 				gameObject.transform.localPosition = hiddenPos;

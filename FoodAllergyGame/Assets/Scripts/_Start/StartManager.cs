@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class StartManager : Singleton<StartManager>{
@@ -77,9 +78,10 @@ public class StartManager : Singleton<StartManager>{
 				ShopEntranceUIController.ToggleClickable(false);
 				DinerEntranceUIController.ToggleClickable(false);
 			}
-			if(TierManager.Instance.CurrentTier == 2 && !DataManager.Instance.GameData.DayTracker.HasCollectedAge) {
-				ageAskController.ShowPanel();
-            }
+		/*	if(TierManager.Instance.CurrentTier == 1 && !DataManager.Instance.GameData.DayTracker.HasCollectedAge) {
+				DinerEntranceUIController.ToggleClickable(false);
+				StartCoroutine(WaitOneFram());
+			}*/
 			else {
 				// Spawn the unlock drop pod here
 				NotificationQueueDataReward rewardNotif = new NotificationQueueDataReward(SceneUtils.START);
@@ -186,11 +188,17 @@ public class StartManager : Singleton<StartManager>{
 
 	// Called from AgeAskController
 	public void CollectAge(string age) {
+		Debug.Log("working");
 		DataManager.Instance.GameData.DayTracker.HasCollectedAge = true;
 		AnalyticsManager.Instance.SendAge(age);
-
 		// Spawn the unlock drop pod here
 		NotificationQueueDataReward rewardNotif = new NotificationQueueDataReward(SceneUtils.START);
 		NotificationManager.Instance.AddNotification(rewardNotif);
+		DinerEntranceUIController.ToggleClickable(true);
+	}
+
+	private  IEnumerator WaitOneFram() {
+		yield return 0;
+		ageAskController.ShowPanel();
 	}
 }

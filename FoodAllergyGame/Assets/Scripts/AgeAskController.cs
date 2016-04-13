@@ -19,7 +19,7 @@ public class AgeAskController : MonoBehaviour {
 	}
 
 	public void OnCollectAgeButton() {
-		StartManager.Instance.CollectAge(GetAge());
 		HidePanel();
+		StartManager.Instance.CollectAge(GetAge());
     }
 }
