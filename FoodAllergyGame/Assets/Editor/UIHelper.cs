@@ -89,7 +89,8 @@ public class UIHelper : EditorWindow {
 
 			if(GUILayout.Button("Reset", GUILayout.Height(50))){
 				ResetUIElements();
-			}
+				EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+            }
 			GUILayout.EndScrollView();
 		}
 	}
