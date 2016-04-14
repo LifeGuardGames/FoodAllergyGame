@@ -64,6 +64,7 @@ public class NotificationManager : Singleton<NotificationManager> {
 			Debug.Log("ALL notifications finished");
 			if(SceneManager.GetActiveScene().name == SceneUtils.START) {
 				StartManager.Instance.ShopEntranceUIController.ToggleClickable(true);
+				StartManager.Instance.ChallengeMenuEntranceUIController.ToggleClickable(true);
 
 				// Keep diner unclickable ONLY when first time deco entrance and challenge
 				if(StartManager.Instance.isShopAppearHideDinerOverride) {

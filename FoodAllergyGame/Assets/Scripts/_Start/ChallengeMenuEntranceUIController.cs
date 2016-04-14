@@ -17,7 +17,7 @@ public class ChallengeMenuEntranceUIController : MonoBehaviour {
 
 	public void Show(bool isFirstTime) {
 		gameObject.SetActive(true);
-		ToggleClickable(true);
+		//ToggleClickable(true);
 		if(isFirstTime) {
 			StartManager.Instance.DinerEntranceUIController.ToggleClickable(false);
 			StartManager.Instance.ShopEntranceUIController.ToggleClickable(false);
