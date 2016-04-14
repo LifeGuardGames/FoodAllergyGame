@@ -305,12 +305,34 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	// Note: Not capped
 	public void UpdateSatisfaction(int delta){
 		// added check incase table 0 is destroyed 
-		if(RestaurantManager.Instance.GetTable(tableNum) != null) {
+		if(!RestaurantManager.Instance.isTutorial) {
+			if(RestaurantManager.Instance.GetTable(tableNum) != null) {
 
-			if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.VIP) {
-				if(delta < 0) {
+				if(RestaurantManager.Instance.GetTable(tableNum).tableType == Table.TableType.VIP) {
+					if(delta < 0) {
+						satisfaction += delta;
+						customerUI.UpdateSatisfaction(satisfaction);
+						customerAnim.UpdateSatisfaction(delta);
+
+						// If satisfaction is 0 or negative, we need to leave cause the service is rubbish
+						if(satisfaction <= 0) {
+							if(Order != null) {
+								Destroy(Order.gameObject);
+							}
+							var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[6]);
+							Behav leave = (Behav)Activator.CreateInstance(type);
+							leave.self = this;
+							leave.Act();
+						}
+					}
+				}
+				else {
 					satisfaction += delta;
-					customerUI.UpdateSatisfaction(satisfaction);
+					if(satisfaction > 3) {
+						satisfaction = 3;
+					}
+					customerUI.UpdateSatisfaction(satisfaction, true, delta);
+
 					customerAnim.UpdateSatisfaction(delta);
 
 					// If satisfaction is 0 or negative, we need to leave cause the service is rubbish
@@ -319,7 +341,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 							Destroy(Order.gameObject);
 						}
 						var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[6]);
-						Behav leave = (Behav) Activator.CreateInstance(type);
+						Behav leave = (Behav)Activator.CreateInstance(type);
 						leave.self = this;
 						leave.Act();
 					}
@@ -327,9 +349,6 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			}
 			else {
 				satisfaction += delta;
-				if(satisfaction > 3) {
-					satisfaction = 3;
-				}
 				customerUI.UpdateSatisfaction(satisfaction, true, delta);
 
 				customerAnim.UpdateSatisfaction(delta);
@@ -344,23 +363,6 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 					leave.self = this;
 					leave.Act();
 				}
-			}
-		}
-		else {
-			satisfaction += delta;
-			customerUI.UpdateSatisfaction(satisfaction, true, delta);
-
-			customerAnim.UpdateSatisfaction(delta);
-
-			// If satisfaction is 0 or negative, we need to leave cause the service is rubbish
-			if(satisfaction <= 0) {
-				if(Order != null) {
-					Destroy(Order.gameObject);
-				}
-				var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[6]);
-				Behav leave = (Behav)Activator.CreateInstance(type);
-				leave.self = this;
-				leave.Act();
 			}
 		}
 	}

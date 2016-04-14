@@ -78,6 +78,7 @@ public class StartManager : Singleton<StartManager>{
 			if(!string.IsNullOrEmpty(DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge)){
 				ShopEntranceUIController.ToggleClickable(false);
 				DinerEntranceUIController.ToggleClickable(false);
+				ChallengeMenuEntranceUIController.ToggleClickable(false);
 			}
 		if(TierManager.Instance.CurrentTier == 2 && !DataManager.Instance.GameData.DayTracker.HasCollectedAge) {
 				//instantiate notification and then add it to queue when called it will show the panel

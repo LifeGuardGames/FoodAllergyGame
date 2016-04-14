@@ -560,7 +560,7 @@
 	    <ChallengeType>Tutorial</ChallengeType>
 		<ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
 		<Tier>0</Tier>
-		<KitchenTimer>5</KitchenTimer>
+		<KitchenTimer>2</KitchenTimer>
 		<CustomerSet>CustomerSetT1</CustomerSet>
 		<CustomerTimer>2</CustomerTimer>
 		<DayLength>27</DayLength>
@@ -582,7 +582,7 @@
 	    <ChallengeType>Tutorial</ChallengeType>
 	    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
 	    <Tier>0</Tier>
-	    <KitchenTimer>5</KitchenTimer>
+	    <KitchenTimer>3</KitchenTimer>
 	    <CustomerSet>CustomerSetT2</CustomerSet>
 	    <CustomerTimer>2</CustomerTimer>
 	    <DayLength>30</DayLength>
