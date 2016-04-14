@@ -16,25 +16,31 @@ public class DataManager : Singleton<DataManager> {
 	private static bool isCreated;
 
 	public bool isDebug = false;
-	public bool IsDebug{
-		get{ return isDebug; }
+	public bool IsDebug {
+		get { return isDebug; }
 	}
 
-	private GameData gameData;		// Super class that stores all the game data
+	private GameData gameData;      // Super class that stores all the game data
 	public GameData GameData {
-		get{ return gameData; }
+		get { return gameData; }
 	}
 
 	private int daysInSession = 0;
 	public int DaysInSession {
-		get{ return daysInSession; }
-		set{ daysInSession = value; }
+		get { return daysInSession; }
+		set { daysInSession = value; }
 	}
 
 	private int challengesInSession = 0;
 	public int ChallengesInSession {
 		get { return challengesInSession; }
 		set { challengesInSession = value; }
+	}
+
+	private string priceStringAux = "";         // Keep a storage of the price of IAP wall
+	public string PriceStringAux {
+		get { return priceStringAux; }
+		set { priceStringAux = value; }
 	}
 
 	void Awake(){

@@ -29,7 +29,7 @@ public class StartManager : Singleton<StartManager>{
 	}
 
 	public GameObject replayTutButton;
-	public TweenToggle MoreCratesButton;
+	public GameObject beaconNode;
 
 	public AgeAskController ageAskController;
 	private NotificationQueueDataAge ageNotification;
@@ -89,8 +89,10 @@ public class StartManager : Singleton<StartManager>{
 			NotificationManager.Instance.AddNotification(rewardNotif);
         }
 
+		// Load beacon for more crates
 		if(TierManager.Instance.CurrentTier == 6 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates) {
-			MoreCratesButton.Show();
+			GameObject beacon = Resources.Load("Beacon") as GameObject;
+			GameObjectUtils.AddChild(beaconNode, beacon);
 		}
 
 		// Save game data again, lock down on an event
