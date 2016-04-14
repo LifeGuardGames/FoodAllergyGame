@@ -32,6 +32,7 @@ public class StartManager : Singleton<StartManager>{
 	public TweenToggle MoreCratesButton;
 
 	public AgeAskController ageAskController;
+	private NotificationQueueDataAge ageNotification;
 
 	public bool isShopAppearHideDinerOverride = false;
 
@@ -78,15 +79,14 @@ public class StartManager : Singleton<StartManager>{
 				ShopEntranceUIController.ToggleClickable(false);
 				DinerEntranceUIController.ToggleClickable(false);
 			}
-		/*	if(TierManager.Instance.CurrentTier == 1 && !DataManager.Instance.GameData.DayTracker.HasCollectedAge) {
-				DinerEntranceUIController.ToggleClickable(false);
-				StartCoroutine(WaitOneFram());
-			}*/
-			else {
-				// Spawn the unlock drop pod here
-				NotificationQueueDataReward rewardNotif = new NotificationQueueDataReward(SceneUtils.START);
-				NotificationManager.Instance.AddNotification(rewardNotif);
+		if(TierManager.Instance.CurrentTier == 2 && !DataManager.Instance.GameData.DayTracker.HasCollectedAge) {
+				//instantiate notification and then add it to queue when called it will show the panel
+				ageNotification = new NotificationQueueDataAge();
+				NotificationManager.Instance.AddNotification(ageNotification);
 			}
+			// Spawn the unlock drop pod here
+			NotificationQueueDataReward rewardNotif = new NotificationQueueDataReward(SceneUtils.START);
+			NotificationManager.Instance.AddNotification(rewardNotif);
         }
 
 		if(TierManager.Instance.CurrentTier == 6 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates) {
@@ -188,13 +188,10 @@ public class StartManager : Singleton<StartManager>{
 
 	// Called from AgeAskController
 	public void CollectAge(string age) {
-		Debug.Log("working");
 		DataManager.Instance.GameData.DayTracker.HasCollectedAge = true;
 		AnalyticsManager.Instance.SendAge(age);
-		// Spawn the unlock drop pod here
-		NotificationQueueDataReward rewardNotif = new NotificationQueueDataReward(SceneUtils.START);
-		NotificationManager.Instance.AddNotification(rewardNotif);
-		DinerEntranceUIController.ToggleClickable(true);
+		//send the finish call to wrap it up and move on
+		ageNotification.Finish();
 	}
 
 	private  IEnumerator WaitOneFram() {

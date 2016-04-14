@@ -17,7 +17,7 @@ public class AgeAskController : MonoBehaviour {
 	public string GetAge() {
 		return inputText.text;
 	}
-
+	// hide panel and then call start manager to clean up
 	public void OnCollectAgeButton() {
 		HidePanel();
 		StartManager.Instance.CollectAge(GetAge());

@@ -25,7 +25,6 @@ public class PositionTweenToggle : TweenToggle {
 		if(startsHidden){
 			if(isGUI){
 				GUIRectTransform.anchoredPosition3D = hiddenPos;
-				Debug.Log("tweentoggle");
 			}
 			else{
 				gameObject.transform.localPosition = hiddenPos;
