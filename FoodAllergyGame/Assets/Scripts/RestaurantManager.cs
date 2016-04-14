@@ -234,20 +234,16 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 		isPaused = false;
 	}
 
-public virtual void QuitGame() {
+	public virtual void QuitGame() {
 		Time.timeScale = 1.0f;  // Remember to reset timescale!
 		DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "";
 		if(!dayOver) {
 			IncompleteQuitAnalytics();
 		}
-
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
 	}
 
 	public virtual void IncompleteQuitAnalytics() {
-		
 	}
 	#endregion
-
-
 }

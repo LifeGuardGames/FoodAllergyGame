@@ -181,7 +181,6 @@ public class StartManager : Singleton<StartManager>{
 	}
 
 	public void OnLaunchTutorialButton() {
-		DataManager.Instance.GameData.Tutorial.IsTutorial1Done = false;
 		DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut1";
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, showFoodTip: true);
     }
