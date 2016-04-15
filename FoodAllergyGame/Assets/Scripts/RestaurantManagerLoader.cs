@@ -25,11 +25,12 @@ public class RestaurantManagerLoader : MonoBehaviour {
 			Debug.Log("Chance: " + DataManager.Instance.GameData.Epi.ChanceOfEpiGame);
 			if(rand < DataManager.Instance.GameData.Epi.ChanceOfEpiGame) {
 				DataManager.Instance.GameData.Epi.HasPlayedEpiPenGameThisTier = true;
-				LoadLevelManager.Instance.StartLoadTransition(SceneUtils.EPIPEN, additionalImageKey: "LoadingImageEpipen");
+				DataManager.Instance.GameData.Epi.ChanceOfEpiGame = 0;
+                LoadLevelManager.Instance.StartLoadTransition(SceneUtils.EPIPEN, additionalImageKey: "LoadingImageEpipen");
 			}
 			else {
 				if(!DataManager.Instance.GameData.Epi.HasPlayedEpiPenGameThisTier) {
-					DataManager.Instance.GameData.Epi.ChanceOfEpiGame += 10;
+					DataManager.Instance.GameData.Epi.ChanceOfEpiGame += 1;
 				}
 				LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
 			}
