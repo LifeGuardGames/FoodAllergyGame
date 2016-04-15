@@ -1,11 +1,12 @@
 ﻿//// Copyright (c) 2015 LifeGuard Games Inc.
-
-using UnityEngine;
 using UnityEditor;
-using System.Collections;
 using UnityEditor.SceneManagement;
 
 public class SceneItem : Editor {
+	[MenuItem("Open Scene/LoadingScene")]
+	public static void OpenLoadingScene() {
+		OpenScene(SceneUtils.LOADING);
+	}
 
 	[MenuItem("Open Scene/ComicScene")]
 	public static void OpenComicScene(){
