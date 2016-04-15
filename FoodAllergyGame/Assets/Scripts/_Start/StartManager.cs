@@ -200,4 +200,8 @@ public class StartManager : Singleton<StartManager>{
 		yield return 0;
 		ageAskController.ShowPanel();
 	}
+
+	public void OnDebugEpipenGameButton(){
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.EPIPEN);
+	}
 }
