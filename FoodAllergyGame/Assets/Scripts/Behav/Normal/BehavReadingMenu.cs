@@ -28,7 +28,6 @@ public class BehavReadingMenu : Behav {
 		//get food choices 
 		self.choices = FoodManager.Instance.GetTwoMenuFoodChoices(self.desiredFood, self.allergy);
 		//stop the satisfaction timer, change the timer and then restart it
-		self.attentionSpan = 21.0f * self.timer;	
+		self.attentionSpan = (16.0f * self.timer) + 4.0f;	
 	}
-
 }

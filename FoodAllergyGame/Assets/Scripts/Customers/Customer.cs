@@ -431,7 +431,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				priceMultiplier = food.Reward;
 			}
 			RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().OrderObtained(Order);
-			attentionSpan = 20.0f * timer;
+			attentionSpan =  KitchenManager.Instance.cookTimer + (10.0f * timer);
 
 			UpdateSatisfaction(1);
 
