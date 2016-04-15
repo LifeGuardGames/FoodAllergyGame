@@ -13,7 +13,7 @@ public class BehavEating :Behav {
 		if(!RestaurantManager.Instance.GetTable(self.tableNum).cantLeave) {
 			self.customerUI.ToggleStar(true);
 		}
-		self.attentionSpan = 10.0f * self.timer;
+		self.attentionSpan =  self.eatTimer + (8.0f * self.timer);
 		self.state = CustomerStates.WaitForCheck;
 		self.StartCoroutine("SatisfactionTimer");
 		AudioManager.Instance.PlayClip("CustomerReadyForCheck");
