@@ -15,6 +15,10 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 	private bool isShowingImageTip = false;
 	private string sceneToLoad;
 
+	public string GetCurrentSceneName() {
+		 return SceneManager.GetActiveScene().name;
+	}
+
 	void Awake(){
 		// Make object persistent
 		if(isCreated){

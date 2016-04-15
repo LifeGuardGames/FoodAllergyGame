@@ -4,16 +4,17 @@ using UnityEngine.Purchasing;
 
 public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 
-	private static IStoreController m_StoreController;                                                                  // Reference to the Purchasing system.
-	private static IExtensionProvider m_StoreExtensionProvider;                                                         // Reference to store-specific Purchasing subsystems.
+	private static IStoreController m_StoreController;			// Reference to the Purchasing system.
+	private static IExtensionProvider m_StoreExtensionProvider;	// Reference to store-specific Purchasing subsystems.
 
-	public ProductPageUIController productPageUIController;
+	public ProductPageUIController productPageUIController;		// Window to purchase ads
+	public IAPStatusPageUIController statusPageUIController;	// Status window of purchase
 
 	// Product identifiers for all products capable of being purchased: "convenience" general identifiers for use with Purchasing, and their store-specific identifier counterparts 
 	// for use with and outside of Unity Purchasing. Define store-specific identifiers also on each platform's publisher dashboard (iTunes Connect, Google Play Developer Console, etc.)
-	private static string kProductIDNonConsumable = "com.lifeguardgames.foodallergy.iap.pro";				// General handle for the non-consumable product.
-	private static string kProductNameAppleNonConsumable = "com.LifeGuardGames.FoodAllergy.IAP.Pro";		// Apple App Store identifier for the non-consumable product.
-	private static string kProductNameGooglePlayNonConsumable = "com.lifeguardgames.foodallergy.iap.pro";	// Google Play Store identifier for the non-consumable product.
+	private static string kProductIDPro = "com.lifeguardgames.foodallergy.iap.pro";				// General handle for the non-consumable product.
+	private static string kProductNameApplePro = "com.LifeGuardGames.FoodAllergy.IAP.Pro";		// Apple App Store identifier for the non-consumable product.
+	private static string kProductNameGooglePlayPro = "com.lifeguardgames.foodallergy.iap.pro";	// Google Play Store identifier for the non-consumable product.
 
 	void Start() {
 		// If we haven't set up the Unity Purchasing reference
@@ -34,7 +35,7 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 		var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
 
 		// Add a product to sell / restore by way of its identifier, associating the general identifier with its store-specific identifiers.
-		builder.AddProduct(kProductIDNonConsumable, ProductType.NonConsumable, new IDs() { { kProductNameAppleNonConsumable, AppleAppStore.Name }, { kProductNameGooglePlayNonConsumable, GooglePlay.Name }, });// And finish adding the subscription product.
+		builder.AddProduct(kProductIDPro, ProductType.NonConsumable, new IDs() { { kProductNameApplePro, AppleAppStore.Name }, { kProductNameGooglePlayPro, GooglePlay.Name }, });// And finish adding the subscription product.
 		UnityPurchasing.Initialize(this, builder);
 	}
 	
@@ -45,7 +46,7 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 	
 	public void BuyNonConsumable() {
 		// Buy the non-consumable product using its general identifier. Expect a response either through ProcessPurchase or OnPurchaseFailed asynchronously.
-		BuyProductID(kProductIDNonConsumable);
+		BuyProductID(kProductIDPro);
 	}
 	
 	void BuyProductID(string productId) {
@@ -123,7 +124,7 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 		m_StoreExtensionProvider = extensions;
 
 		// Save the localized price to DataManager
-		DataManager.Instance.PriceStringAux = m_StoreController.products.WithID(kProductIDNonConsumable).metadata.localizedPriceString;
+		DataManager.Instance.PriceStringAux = m_StoreController.products.WithID(kProductIDPro).metadata.localizedPriceString;
 	}
 	
 	public void OnInitializeFailed(InitializationFailureReason error) {
@@ -131,26 +132,39 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 		Debug.Log("OnInitializeFailed InitializationFailureReason:" + error);
 	}
 	
+	// NOTE: Android calls this on game start automatically if you have a purchase to redeem
 	public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args) {
 		// Or ... a non-consumable product has been purchased by this user.
-		if(String.Equals(args.purchasedProduct.definition.id, kProductIDNonConsumable, StringComparison.Ordinal)) {
+		if(String.Equals(args.purchasedProduct.definition.id, kProductIDPro, StringComparison.Ordinal)) {
 			Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-			DataManager.Instance.GameData.DayTracker.IsMoreCrates = true;
+
+			UnlockMoreCrates();
+			productPageUIController.HidePanel();
+			statusPageUIController.ShowPanel(true);
 		}
 		// Or ... an unknown product has been purchased by this user. Fill in additional products here.
 		else {
 			Debug.Log(string.Format("ProcessPurchase: FAIL. Unrecognized product: '{0}'", args.purchasedProduct.definition.id));
-		}// Return a flag indicating wither this product has completely been received, or if the application needs to be reminded of this purchase at next app launch. Is useful when saving purchased products to the cloud, and when that save is delayed.
 
-		productPageUIController.HidePanel();
+			productPageUIController.HidePanel();
+			statusPageUIController.ShowPanel(false);
+		}
+
+		// Return a flag indicating wither this product has completely been received, 
+		// or if the application needs to be reminded of this purchase at next app launch.
+		// Is useful when saving purchased products to the cloud, and when that save is delayed.
 		return PurchaseProcessingResult.Complete;
 	}
 	
 	public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason) {
 		// A product purchase attempt did not succeed. Check failureReason for more detail. Consider sharing this reason with the user.
 		Debug.Log(string.Format("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}", product.definition.storeSpecificId, failureReason));
+
+		productPageUIController.HidePanel();
+		statusPageUIController.ShowPanel(false);
 	}
 
+	// Called from beacon gameobject
 	public void ShowProductPage() {
 		productPageUIController.ShowPanel();
 	}
@@ -159,5 +173,20 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 	public string GetPriceButtonText() {
 		return DataManager.Instance.PriceStringAux == "" ? "Buy" : DataManager.Instance.PriceStringAux;
     }
+
+	public void BuyPro() {
+		BuyProductID(kProductIDPro);
+	}
+
+	// Called on success or restore
+	private void UnlockMoreCrates() {
+		DataManager.Instance.GameData.DayTracker.IsMoreCrates = true;
+
+		// Do other things here, remove UI - if it is the correct scene
+		if(LoadLevelManager.Instance.GetCurrentSceneName() == SceneUtils.START) {
+			// Destroy this for now
+			Destroy(StartManager.Instance.beaconNode.transform.GetChild(0));
+		}
+	}
 }
 
