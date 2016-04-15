@@ -131,6 +131,11 @@ public class ImmutableDataChallenge  {
 		get { return flyThru; }
 	}
 
+	private bool isBossChallenge;
+	public bool IsBossChallenge {
+		get { return isBossChallenge; }
+	}
+
 	public ImmutableDataChallenge(string id, IXMLNode xmlNode, string error) {
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 
@@ -171,6 +176,6 @@ public class ImmutableDataChallenge  {
 		playArea = XMLUtils.GetString(hashElements["PlayArea"] as IXMLNode);
 		vipTable = XMLUtils.GetString(hashElements["Vip"] as IXMLNode);
 		flyThru = XMLUtils.GetString(hashElements["Flythru"] as IXMLNode);
-		
+		isBossChallenge = XMLUtils.GetBool(hashElements["isBossChallenge"] as IXMLNode);
 	}
 }
