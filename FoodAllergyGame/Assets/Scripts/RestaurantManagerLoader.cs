@@ -20,7 +20,7 @@ public class RestaurantManagerLoader : MonoBehaviour {
 	public void QuitGame() {
 		Time.timeScale = 1.0f;  // Remember to reset timescale!
 		if(RestArcade.activeSelf) {
-			int rand = Random.Range(1, 10);
+			int rand = Random.Range(0, 10);
 			Debug.Log("Rand: " + rand);
 			Debug.Log("Chance: " + DataManager.Instance.GameData.Epi.ChanceOfEpiGame);
 			if(rand < DataManager.Instance.GameData.Epi.ChanceOfEpiGame) {
@@ -29,7 +29,7 @@ public class RestaurantManagerLoader : MonoBehaviour {
 			}
 			else {
 				if(!DataManager.Instance.GameData.Epi.HasPlayedEpiPenGameThisTier) {
-					//DataManager.Instance.GameData.Epi.ChanceOfEpiGame += 10;
+					DataManager.Instance.GameData.Epi.ChanceOfEpiGame += 10;
 				}
 				LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
 			}
