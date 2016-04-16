@@ -10,7 +10,7 @@ public class BehavHospital : Behav {
 
 	public override void Act() {
 		RestaurantManager.Instance.sickCustomers.Remove(self.gameObject);
-		
+		RestaurantManager.Instance.GetTable(self.tableNum).inUse = false;
 		DataManager.Instance.GameData.Tutorial.MissedMedic++;
 		if(DataManager.Instance.GameData.Tutorial.MissedMedic >= 3) {
 			DataManager.Instance.GameData.Tutorial.IsMedicTut2Done = false;
