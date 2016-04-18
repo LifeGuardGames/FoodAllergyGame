@@ -37,7 +37,8 @@ public class MenuManager : Singleton<MenuManager>{
 	public GameObject tutFinger;
 
 	public TweenToggle doneButtonTween;
-
+	public Animation slotBarFullAnim;
+	public GameObject floatyParent;
 	private bool isMenuTutAux = false;
 
 	void Start(){
@@ -180,8 +181,9 @@ public class MenuManager : Singleton<MenuManager>{
 			}
 			return true;
 		}
-		ParticleUtils.PlaySlotssFullFloaty(doneButtonTween.GetShowPos());
-		return false;
+		ParticleUtils.PlaySlotsFullFloaty(floatyParent.transform.position);
+		slotBarFullAnim.Play();
+        return false;
 	}
 
 	public bool RemoveFoodFromMenuList(string foodID){
