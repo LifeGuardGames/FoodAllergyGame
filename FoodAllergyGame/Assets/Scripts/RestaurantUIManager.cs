@@ -4,12 +4,10 @@ public class RestaurantUIManager : MonoBehaviour{
 	public DoorController doorController;
 	public DayOverUIController dayOverUIController;
 	public ChallengeOverUi challengeOverUiController;
-	public TweenToggle finishedDayImage;
 	private bool isClockFinished;
 
 	public void StartDay(){
 		isClockFinished = false;
-		finishedDayImage.Hide();
 		doorController.ResetDayAlpha();
     }
 
@@ -25,8 +23,8 @@ public class RestaurantUIManager : MonoBehaviour{
 	}
 
 	public void FinishClock(){
-		finishedDayImage.Show();
-	}
+		doorController.LockdownDoor();
+    }
 
 	public void OnPauseButton(){
 		RestaurantManager.Instance.PauseGame();
