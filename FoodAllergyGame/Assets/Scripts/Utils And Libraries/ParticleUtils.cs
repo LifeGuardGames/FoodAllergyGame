@@ -28,7 +28,7 @@ public static class ParticleUtils{
 		AudioManager.Instance.PlayClip("HandsFull");
 	}
 
-	static public void PlaySlotssFullFloaty(Vector3 pos) {
+	static public void PlaySlotsFullFloaty(Vector3 pos) {
 		GameObject go = Resources.Load("SlotsFullFloaty") as GameObject;
 		GameObject instance = GameObjectUtils.AddChildGUI(GameObject.Find("Canvas"), go);
 		instance.transform.position = pos;

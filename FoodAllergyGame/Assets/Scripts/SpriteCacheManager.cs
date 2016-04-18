@@ -56,7 +56,7 @@ public class SpriteCacheManager : Singleton<SpriteCacheManager> {
 	}
 
 	public static Sprite GetSlotSpriteData(int slots){
-		Sprite sprite = Resources.Load<Sprite>("Slots" + slots.ToString());
+		Sprite sprite = Resources.Load<Sprite>("SlotCoin" + slots.ToString());
 		return sprite;
 	}
 

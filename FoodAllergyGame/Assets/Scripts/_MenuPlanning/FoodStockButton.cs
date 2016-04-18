@@ -15,10 +15,6 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	public Sprite silverPanel;
 	public Sprite goldPanel;
 
-	public Sprite slot1Sprite;
-	public Sprite slot2Sprite;
-	public Sprite slot3Sprite;
-
 	public Image allergy1;
 	public Image allergy2;
 	public Image allergy3;
