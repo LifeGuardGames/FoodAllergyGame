@@ -21,11 +21,11 @@ public class AgeAskController : MonoBehaviour {
 
 	// hide panel and then call start manager to clean up
 	public void OnCollectAgeButton() {
-		HidePanel();
 		if(string.Equals(GetAge(), "Age") || string.IsNullOrEmpty(GetAge())){
 			inputPulse.Play();
         }
 		else {
+			HidePanel();
 			StartManager.Instance.CollectAge(GetAge());
 		}
     }
