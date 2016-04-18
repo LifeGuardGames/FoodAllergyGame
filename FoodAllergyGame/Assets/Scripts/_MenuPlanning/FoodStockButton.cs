@@ -60,7 +60,7 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 				break;
 		}
 
-		slotNode.sprite = SpriteCacheManager.GetSlotSpriteData(foodData.Slots);
+		slotNode.sprite = SpriteCacheManager.GetSlotSpriteData(foodData.Reward);
 
 		// Set allergy sprite indicators
 		// NOTE: None counts as an allergy
