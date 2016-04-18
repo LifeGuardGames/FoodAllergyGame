@@ -21,7 +21,8 @@ public class ChallengeMenuEntranceUIController : MonoBehaviour {
 		if(isFirstTime) {
 			StartManager.Instance.DinerEntranceUIController.ToggleClickable(false);
 			StartManager.Instance.ShopEntranceUIController.ToggleClickable(false);
-			challengeMenuEntranceAnimator.Play("PirateShipAppear");
+			DataManager.Instance.GameData.Challenge.IsFirstTimeChallengeEntrance = false;
+            challengeMenuEntranceAnimator.Play("PirateShipAppear");
         }
 		else {
 			challengeMenuEntranceAnimator.Play("PirateShipHover");
@@ -43,7 +44,7 @@ public class ChallengeMenuEntranceUIController : MonoBehaviour {
 	//	}
 
 	public void AppearAnimationDoneEvent() {
-		ToggleClickable(true); // NOTE: Don't show diner
+		//ToggleClickable(true); // NOTE: Don't show diner
 	}
 
 	public void ToggleClickable(bool isClickable) {
