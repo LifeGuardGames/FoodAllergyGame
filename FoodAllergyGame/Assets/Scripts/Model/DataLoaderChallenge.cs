@@ -18,7 +18,7 @@ public class DataLoaderChallenge : XMLLoaderGeneric<DataLoaderChallenge> {
 	public static List<string> GetIDUnlockedAtTier(int tier){
 		List<string> challengesAtTierList = new List<string>();
 		foreach(ImmutableDataChallenge challengeData in GetDataList()){
-			if(challengeData.Tier == tier){
+			if(challengeData.Tier == tier && challengeData.ChallengeType != ChallengeTypes.Tutorial){
 				challengesAtTierList.Add(challengeData.ID);
 			}
 		}

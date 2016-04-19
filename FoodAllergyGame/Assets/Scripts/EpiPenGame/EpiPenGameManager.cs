@@ -361,7 +361,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		DataManager.Instance.GameData.Tutorial.IsEpiPenGameTutorialDone = true;
 		CheckAnswerButtonClicked();
 		attempts = 0;
-
+		UIManager.timer.ResetTimer();
 		// Special case, circumvent new game here
 		UIManager.StartGame();
     }
