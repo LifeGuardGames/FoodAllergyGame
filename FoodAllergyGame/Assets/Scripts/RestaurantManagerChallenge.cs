@@ -65,6 +65,11 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		for(int i = 0; i< temp.Length; i++) {
 			menuList.Add(temp[i]);
 		}
+		if(isTutorial) {
+			tableList[1].GetComponent<Table>().inUse = true;
+			tableList[2].GetComponent<Table>().inUse = true;
+			tableList[3].GetComponent<Table>().inUse = true;
+		}
 
         FoodManager.Instance.GenerateMenu(menuList);
 		customerTimerDiffMod = chall.CustomerTimerMod;
@@ -97,6 +102,14 @@ public class RestaurantManagerChallenge : RestaurantManager{
 				challengeAI.AddCustomer();
 			}
 			else {
+				//stops the user from placing the VIP tut customer at a regular table
+				if(DataManager.Instance.GetChallenge() == "TutDecoVIP") {
+					foreach(GameObject tab in TableList) {
+						if (tab.GetComponent<Table>().tableType != Table.TableType.VIP) {
+							tab.GetComponent<Table>().inUse = true;
+						}
+					}
+				}
 				ImmutableDataCustomer customerData;
 				customerSpawnTimer = chall.CustSpawnTime;
 				
@@ -200,6 +213,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	protected override void CheckForGameOver() {
 		if(dayOver) {
 			if(customerHash.Count == 0) {
+				pauseUI.isActive = false;
 				if(DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge == "ChallengeTut2") {
 					AnalyticsManager.Instance.TutorialFunnel("Finished tut day, 4 customers");
 					DataManager.Instance.GameData.Cash.TotalCash = 850;
@@ -217,6 +231,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 					StartDay();
 				}
 				else {
+				
 					DataManager.Instance.GameData.DayTracker.ChallengesPlayed++;
 					DataManager.Instance.ChallengesInSession++;
 

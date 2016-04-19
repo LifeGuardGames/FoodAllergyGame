@@ -29,5 +29,8 @@ public class BehavTutorialReadingMenu : Behav {
 		if(self.gameObject.GetComponent<CustomerTutorial>().isAllergy) {
 			self.menuTimer *= 2;
 		}
+		else {
+			RestaurantManager.Instance.TableList[2].GetComponent<Table>().inUse = false;
+		}
 	}
 }

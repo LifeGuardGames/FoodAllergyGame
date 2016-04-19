@@ -615,7 +615,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		DestroyOrder();
 		Debug.Log("Order Destroyed");
 		Waiter.Instance.RemoveMeal(tableNum);
-		customerUI.ToggleWait(true);
+		customerUI.ToggleWait(false);
 		RestaurantManager.Instance.GetTable(tableNum).ToggleTableNum(false);
 		var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[1]);
 		Behav order = (Behav)Activator.CreateInstance(type);

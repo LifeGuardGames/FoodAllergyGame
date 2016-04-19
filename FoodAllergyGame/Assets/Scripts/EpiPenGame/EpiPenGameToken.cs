@@ -58,7 +58,7 @@ public class EpiPenGameToken : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	}
 
 	public void OnBeginDrag(PointerEventData eventData) {
-		if(!isLocked) {
+		if(!isLocked && !EpiPenGameManager.Instance.isTutorial) {
 			//if(transform.parent.GetComponent<EpiPenGameSlot>() != null && transform.parent.GetComponent<EpiPenGameSlot>().isFinalSlot) {
 			//	EpiPenGameManager.Instance.submittedAnswers.Remove(transform.parent.GetComponent<EpiPenGameSlot>().slotNumber);
 			//}
@@ -72,7 +72,7 @@ public class EpiPenGameToken : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	}
 
 	public void OnDrag(PointerEventData data) {
-		if(!isLocked) {
+		if(!isLocked && !EpiPenGameManager.Instance.isTutorial) {
 #if UNITY_EDITOR
 			itemBeingDragged.transform.position = Input.mousePosition;
 #else
@@ -86,7 +86,7 @@ public class EpiPenGameToken : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	/// </summary>
 	/// <param name="eventData"></param>
 	public void OnEndDrag(PointerEventData eventData) {
-		if(!isLocked) {
+		if(!isLocked && !EpiPenGameManager.Instance.isTutorial) {
 			itemBeingDragged = null;
 
 			// Reset to its start position, invalid dragging target

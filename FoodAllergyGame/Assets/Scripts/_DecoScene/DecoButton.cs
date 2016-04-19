@@ -30,10 +30,13 @@ public class DecoButton : MonoBehaviour {
 		decoImage.sprite = SpriteCacheManager.GetDecoSpriteData(spriteName);
 
 		isUnLocked = DecoManager.Instance.IsDecoUnlocked(decoID);
-		if(DataManager.Instance.GameData.Decoration.NewDeco.Contains(decoData.ID)&& isUnLocked) {
+		if(DataManager.Instance.GameData.Decoration.NewDeco.Contains(decoData.ID) && isUnLocked) {
 			DataManager.Instance.GameData.Decoration.NewDeco.Remove(decoData.ID);
 			newTag.enabled = true;
         }
+		else {
+			newTag.enabled = false;
+		}
 		RefreshButtonState();
 	}
 
