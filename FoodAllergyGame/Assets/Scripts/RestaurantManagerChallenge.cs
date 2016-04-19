@@ -65,11 +65,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		for(int i = 0; i< temp.Length; i++) {
 			menuList.Add(temp[i]);
 		}
-		if(isTutorial) {
-			tableList[1].GetComponent<Table>().inUse = true;
-			tableList[2].GetComponent<Table>().inUse = true;
-			tableList[3].GetComponent<Table>().inUse = true;
-		}
+
 
         FoodManager.Instance.GenerateMenu(menuList);
 		customerTimerDiffMod = chall.CustomerTimerMod;
