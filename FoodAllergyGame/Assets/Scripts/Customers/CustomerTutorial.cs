@@ -16,6 +16,9 @@ public class CustomerTutorial : Customer{
 		base.Init(num, mode);
 		if(!isAllergy) {
 			allergy[0] = Allergies.None;
+			RestaurantManager.Instance.TableList[0].GetComponent<Table>().inUse = true;
+			RestaurantManager.Instance.TableList[2].GetComponent<Table>().inUse = true;
+			RestaurantManager.Instance.TableList[1].GetComponent<Table>().inUse = true;
 		}
 		else {
 			allergy[0] = Allergies.Peanut;

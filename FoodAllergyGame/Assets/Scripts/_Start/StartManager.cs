@@ -67,7 +67,8 @@ public class StartManager : Singleton<StartManager>{
 		if(CashManager.Instance.IsNeedToSyncTotalCash()) {
 			ShopEntranceUIController.ToggleClickable(false);
 			DinerEntranceUIController.ToggleClickable(false);
-
+			ChallengeMenuEntranceUIController.ToggleClickable(false);
+			replayTutButton.SetActive(false);
 			int oldTotalCash = CashManager.Instance.LastSeenTotalCash;
 			int newTotalCash = CashManager.Instance.TotalCash;
 			NotificationQueueDataTierProgress tierNotif = new NotificationQueueDataTierProgress(SceneUtils.START, oldTotalCash, newTotalCash);
@@ -79,6 +80,7 @@ public class StartManager : Singleton<StartManager>{
 				ShopEntranceUIController.ToggleClickable(false);
 				DinerEntranceUIController.ToggleClickable(false);
 				ChallengeMenuEntranceUIController.ToggleClickable(false);
+				replayTutButton.SetActive(false);
 			}
 		if(TierManager.Instance.CurrentTier == 2 && !DataManager.Instance.GameData.DayTracker.HasCollectedAge) {
 				//instantiate notification and then add it to queue when called it will show the panel

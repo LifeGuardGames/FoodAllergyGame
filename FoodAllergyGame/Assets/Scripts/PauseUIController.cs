@@ -4,9 +4,12 @@ using System.Collections;
 public class PauseUIController : MonoBehaviour {
 
 	public TweenToggleDemux pauseMenuTween;
+	public bool isActive = true;
 
-	public void Show(){
-		pauseMenuTween.Show();
+	public void Show() {
+		if(isActive) { 
+			pauseMenuTween.Show();
+		}
 	}
 
 	public void Hide(){

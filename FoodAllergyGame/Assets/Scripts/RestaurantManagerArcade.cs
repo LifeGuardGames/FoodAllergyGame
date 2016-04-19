@@ -157,6 +157,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 	protected override void CheckForGameOver() {
 		if(dayOver) {
 			if(customerHash.Count == 0) {
+				pauseUI.isActive = false;
 				DataManager.Instance.GameData.DayTracker.DaysPlayed++;
 				DataManager.Instance.DaysInSession++;
 				
