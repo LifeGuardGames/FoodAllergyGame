@@ -2,10 +2,15 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class TierManager : Singleton<TierManager> {
-	private string tierXMLPrefix = "Tier";			// Prefix of the tier xml keys, ie. "Tier04"
+	private string tierXMLPrefix = "Tier";          // Prefix of the tier xml keys, ie. "Tier04"
+
+	private int oldTier;							// Cached old tier for use throughout game
+	public int OldTier {
+		get { return oldTier; }
+	}
 
 	private int currentTier;						// Cached tier for use throughout game
-	public int CurrentTier{
+	public int CurrentTier {
 		get{ return currentTier; }
 	}
 
@@ -15,35 +20,43 @@ public class TierManager : Singleton<TierManager> {
 	}
 
 	private bool isNewUnlocksAvailable = false;
-	public bool IsNewUnlocksAvailable{
+	public bool IsNewUnlocksAvailable {
 		get{ return isNewUnlocksAvailable; }
 	}
 
+	private bool isTierUp = false;
+	public bool IsTierUp {
+		get { return isTierUp; }
+	}
+
 	private bool isPlayDecoTutorialNext = false;
-	public bool IsPlayDecoTutorialNext{
+	public bool IsPlayDecoTutorialNext {
 		get{ return isPlayDecoTutorialNext; }
 	}
 
 	private Dictionary<AssetTypes, List<string>> currentTierUnlocks;	// A hash of all the types of unlocks with their tiers
-	public Dictionary<AssetTypes, List<string>> CurrentTierUnlocks{
+	public Dictionary<AssetTypes, List<string>> CurrentTierUnlocks {
 		get{ return currentTierUnlocks; }
 	}
 
 	// Recalculate the tier given a certain algorithm
 	// NOTE: does NOT support multiple tiers!
 	public void RecalculateTier() {
-		
 		isNewUnlocksAvailable = false;
-		if(CashManager.Instance.TotalCash > 5800 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates) {
+		isTierUp = false;
+
+        if(CashManager.Instance.TotalCash > 5800 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates) {
 			CashManager.Instance.OverrideTotalCash(5800);
         }
-		int oldTier = DataLoaderTiers.GetTierFromCash(CashManager.Instance.LastSeenTotalCash);
+		oldTier = DataLoaderTiers.GetTierFromCash(CashManager.Instance.LastSeenTotalCash);
 		currentTier = oldTier; // TODO Triple check this line
 		int newTier = DataLoaderTiers.GetTierFromCash(CashManager.Instance.TotalCash);
 
 		// If there is a change in tier, run logic
 		// INVARIABLE: Tiers are maximum one above, never multiple tiers at once
 		if(oldTier < newTier) {
+			isTierUp = true;
+
 			if(newTier - oldTier > 1) {
 				Debug.LogError("Multiple tiers progressed, messes with unlock progression");
 			}

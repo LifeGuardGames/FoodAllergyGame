@@ -97,18 +97,26 @@ public class SpriteCacheManager : Singleton<SpriteCacheManager> {
 		int starAux = (starIndex + 1) * totalTiersInOneStar;
 		
 		if(starAux > tiers) {	// Partial or empty
-			if(starAux - tiers < 6) {
-				suffixFill = tiers % 6;
+			if(starAux - tiers < totalTiersInOneStar) {
+				suffixFill = tiers % totalTiersInOneStar;
             }
 			else {
 				return null;
 			}
 		}
 		else {					// Full
-			suffixFill = 6;
+			suffixFill = totalTiersInOneStar;
         }
-		string loadString = suffixFill == 6 ? "StarsBase" : "StarPiece" + suffixFill;
-        Sprite sprite = Resources.Load<Sprite>(loadString);
+		return GetStarFillHelper(suffixFill, totalTiersInOneStar);
+	}
+
+	public static Sprite GetStarFillHelper(int suffixFill, int totalTiersInOneStar) {
+		if(suffixFill == 0) {
+			return null;
+		}
+        string loadString = suffixFill == totalTiersInOneStar ? "StarsBase" : "StarPiece" + suffixFill;
+		Debug.Log("Loading " + loadString);
+		Sprite sprite = Resources.Load<Sprite>(loadString);
 		return sprite;
 	}
 }
