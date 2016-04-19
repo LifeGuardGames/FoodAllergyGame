@@ -6,6 +6,7 @@
 public class DoorController : MonoBehaviour {
 	public TweenToggleDemux doorDemux;
 	public SpriteRenderer skyTopLayer;
+	public TweenToggle doorLockdownTween;
 
 	private Color skyTopLayerColor;
 
@@ -28,4 +29,9 @@ public class DoorController : MonoBehaviour {
 	private void CloseDoor(){
 		doorDemux.Show();
 	}
+
+	// End of day restaurant, lock the door
+	public void LockdownDoor() {
+		doorLockdownTween.Show();
+    }
 }

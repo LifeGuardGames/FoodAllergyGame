@@ -8,7 +8,7 @@ public class FloatyAndParticleLogic : MonoBehaviour {
 		RectTransform canvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>();
 		Vector2 viewportPosition;
 
-		if(SceneManager.GetActiveScene().name == SceneUtils.DECO){
+		if(SceneManager.GetActiveScene().name == SceneUtils.DECO || SceneManager.GetActiveScene().name == SceneUtils.MENUPLANNING) {
 			viewportPosition = Camera.main.ScreenToViewportPoint(transform.position);
 		}
 		else{

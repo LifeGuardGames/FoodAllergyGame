@@ -28,10 +28,17 @@ public static class ParticleUtils{
 		AudioManager.Instance.PlayClip("HandsFull");
 	}
 
-	static public void PlaySlotsFullFloaty(Vector3 pos) {
+	static public void PlaySlotsFullFloaty(GameObject _parent) {
+		GameObject parent;
+        if(_parent == null) {
+			parent = GameObject.Find("Canvas");
+        }
+		else {
+			parent = _parent;
+		}
 		GameObject go = Resources.Load("SlotsFullFloaty") as GameObject;
-		GameObject instance = GameObjectUtils.AddChildGUI(GameObject.Find("Canvas"), go);
-		instance.transform.position = pos;
+		GameObject instance = GameObjectUtils.AddChildGUI(parent, go);
+		instance.transform.localPosition = Vector3.zero;
 		AudioManager.Instance.PlayClip("HandsFull");
 	}
 
