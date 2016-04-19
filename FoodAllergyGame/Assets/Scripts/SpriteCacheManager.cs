@@ -115,7 +115,6 @@ public class SpriteCacheManager : Singleton<SpriteCacheManager> {
 			return null;
 		}
         string loadString = suffixFill == totalTiersInOneStar ? "StarsBase" : "StarPiece" + suffixFill;
-		Debug.Log("Loading " + loadString);
 		Sprite sprite = Resources.Load<Sprite>(loadString);
 		return sprite;
 	}
