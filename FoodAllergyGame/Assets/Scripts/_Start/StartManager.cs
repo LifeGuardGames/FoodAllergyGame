@@ -28,6 +28,11 @@ public class StartManager : Singleton<StartManager>{
 		get{ return rewardUIController; }
 	}
 
+	public StarsUIController starsUIController;
+	public StarsUIController StarsUIController {
+		get { return starsUIController; }
+	}
+
 	public GameObject replayTutButton;
 	public GameObject beaconNode;
 
@@ -71,10 +76,26 @@ public class StartManager : Singleton<StartManager>{
 			replayTutButton.SetActive(false);
 			int oldTotalCash = CashManager.Instance.LastSeenTotalCash;
 			int newTotalCash = CashManager.Instance.TotalCash;
-			NotificationQueueDataTierProgress tierNotif = new NotificationQueueDataTierProgress(SceneUtils.START, oldTotalCash, newTotalCash);
+			NotificationQueueDataTierProgress tierNotif =
+				new NotificationQueueDataTierProgress(SceneUtils.START, oldTotalCash, newTotalCash);
 			NotificationManager.Instance.AddNotification(tierNotif);
 		}
-		
+
+		// Then check if any star pieces needs to be rewarded
+		if(TierManager.Instance.IsTierUp) {
+			NotificationQueueDataStarPieceReward starPieceNotif =
+				new NotificationQueueDataStarPieceReward(SceneUtils.START, TierManager.Instance.OldTier, TierManager.Instance.CurrentTier);
+			NotificationManager.Instance.AddNotification(starPieceNotif);
+		}
+
+		// Then check if any star cores needs to be rewarded
+		if(TierManager.Instance.HasNewStarCore) {
+			NotificationQueueDataStarCoreReward starCoreNotif =
+				new NotificationQueueDataStarCoreReward(SceneUtils.START);
+			NotificationManager.Instance.AddNotification(starCoreNotif);
+		}
+
+		// Then check for reward crate
 		if(TierManager.Instance.IsNewUnlocksAvailable){
 			if(!string.IsNullOrEmpty(DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge)){
 				ShopEntranceUIController.ToggleClickable(false);
@@ -92,13 +113,13 @@ public class StartManager : Singleton<StartManager>{
 			NotificationManager.Instance.AddNotification(rewardNotif);
         }
 
-		// Load beacon for more crates
+		// Check if you need to load beacon for more crates
 		if(TierManager.Instance.CurrentTier == 6 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates) {
 			GameObject beacon = Resources.Load("Beacon") as GameObject;
 			GameObjectUtils.AddChild(beaconNode, beacon);
 		}
 
-		// Save game data again, lock down on an event
+		// Save game data again, lock down on the event
 		DataManager.Instance.SaveGameData();
 		GenerateCustomerList();
 		GenerateUnlockedFoodStock();

@@ -12,7 +12,6 @@ public class ChallengeButton : MonoBehaviour {
 		challengeID = challengeData.ID;
 		ChallengeReward rewardProgress = DataManager.Instance.GameData.Challenge.ChallengeProgress[challengeID];
 		imageBackground.sprite = SpriteCacheManager.GetChallengeButton(rewardProgress);
-		Debug.Log(LocalizationText.GetText("ChallengeEpiPenDesc"));
 		textTitle.text = LocalizationText.GetText(challengeData.Title);
 	}
 
