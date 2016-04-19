@@ -224,6 +224,9 @@ public class RestaurantManagerChallenge : RestaurantManager{
 					StopCoroutine("SpawnCustomer");
 					interval = 0;
 					customerSpawnTimer = 0;
+					TableList[0].GetComponent<Table>().inUse = false;
+					TableList[1].GetComponent<Table>().inUse = false;
+					pauseUI.isActive = true;
 					StartDay();
 				}
 				else {
