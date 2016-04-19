@@ -82,7 +82,7 @@ public class StartManager : Singleton<StartManager>{
 				ChallengeMenuEntranceUIController.ToggleClickable(false);
 				replayTutButton.SetActive(false);
 			}
-		if(TierManager.Instance.CurrentTier == 2 && !DataManager.Instance.GameData.DayTracker.HasCollectedAge) {
+			if(TierManager.Instance.CurrentTier == 2 && !DataManager.Instance.GameData.DayTracker.HasCollectedAge) {
 				//instantiate notification and then add it to queue when called it will show the panel
 				ageNotification = new NotificationQueueDataAge();
 				NotificationManager.Instance.AddNotification(ageNotification);
