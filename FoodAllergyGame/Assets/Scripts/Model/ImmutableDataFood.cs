@@ -14,6 +14,11 @@ public class ImmutableDataFood{
 		get{ return foodNameKey; }
 	}
 
+	private string shortNameKey;
+	public string ShortNameKey {
+		get { return shortNameKey; }
+	}
+
 	private string spriteName;
 	public string SpriteName{
 		get{ return spriteName; }
@@ -61,12 +66,17 @@ public class ImmutableDataFood{
 			}
 		}
 
+		// get the short food name key(optional)
+		if(hashElements.ContainsKey("FoodShortNameKey")){
+			shortNameKey = XMLUtils.GetString(hashElements["FoodShortNameKey"] as IXMLNode, null, error);
+		}
+
 		// get the keywords list(optional)
-		if(hashElements.ContainsKey("Keywords")){
+		if(hashElements.ContainsKey("FoodShortNameKey")) {
 			keywordList = new List<FoodKeywords>();
 			string strKeywords = XMLUtils.GetString(hashElements["Keywords"] as IXMLNode);
 			string[] arrayAmounts = strKeywords.Split(","[0]);
-			for(int i = 0; i < arrayAmounts.Length; ++i){
+			for(int i = 0; i < arrayAmounts.Length; ++i) {
 				keywordList.Add((FoodKeywords)Enum.Parse(typeof(FoodKeywords), arrayAmounts[i]));
 			}
 		}

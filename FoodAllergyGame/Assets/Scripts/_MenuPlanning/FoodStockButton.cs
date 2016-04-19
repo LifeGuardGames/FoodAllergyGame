@@ -44,7 +44,9 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	public void Init(ImmutableDataFood foodData){
 		foodID = foodData.ID;
 		gameObject.name = foodData.ID;
-		label.text = LocalizationText.GetText(foodData.FoodNameKey);
+	
+		// Get the shortened name if a key for it exists
+		label.text = LocalizationText.GetText(string.IsNullOrEmpty(foodData.ShortNameKey) ? foodData.FoodNameKey : foodData.ShortNameKey);
 		image.sprite = SpriteCacheManager.GetFoodSpriteData(foodData.SpriteName);
 
 		// Different panel tiers for different reward levels

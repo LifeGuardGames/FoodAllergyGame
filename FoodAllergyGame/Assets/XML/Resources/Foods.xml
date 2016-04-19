@@ -101,6 +101,7 @@
 	</Food>
 	<Food ID="FoodPBCookies">
 		<FoodNameKey>FoodPBCookies</FoodNameKey>
+    <FoodShortNameKey>FoodPBCookiesShort</FoodShortNameKey>
 		<SpriteName>FoodPBCookies</SpriteName>
 		<Allergies>Wheat,Peanut</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
@@ -110,6 +111,7 @@
 	</Food>
 	<Food ID="FoodPBPretzels">
 		<FoodNameKey>FoodPBPretzels</FoodNameKey>
+    <FoodShortNameKey>FoodPBPretzelsShort</FoodShortNameKey>
 		<SpriteName>FoodPBPretzels</SpriteName>
 		<Allergies>Wheat,Peanut</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
@@ -200,6 +202,7 @@
 	</Food>
 	<Food ID="FoodPBCheeseCrackers">
 		<FoodNameKey>FoodPBCheeseCrackers</FoodNameKey>
+    <FoodShortNameKey>FoodPBCheeseCrackersShort</FoodShortNameKey>
 		<SpriteName>FoodPBCheeseCrackers</SpriteName>
 		<Allergies>Wheat,Dairy,Peanut</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
