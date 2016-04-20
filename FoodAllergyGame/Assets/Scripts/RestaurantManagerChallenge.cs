@@ -393,6 +393,11 @@ public class RestaurantManagerChallenge : RestaurantManager{
 
 	public ChallengeReward RewardScore() {
 		challengeAI.ScoreIt();
+		if(challengeAI.Score >= chall.BronzeBreakPoint) {
+			if(chall.IsBossChallenge) {
+				DataManager.Instance.GameData.Challenge.BossConquored(chall.ID);
+			}
+		}
 		if(challengeAI.Score >= chall.GoldBreakPoint) {
 			DataManager.Instance.GameData.Challenge.ChallengeProgress[chall.ID] = ChallengeReward.Gold;
 			return ChallengeReward.Gold;
@@ -412,11 +417,6 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		}
 		else {
 			return ChallengeReward.Stone;
-		}
-		if(challengeAI.Score >= chall.BronzeBreakPoint) {
-			if(chall.IsBossChallenge) {
-				DataManager.Instance.GameData.Challenge.BossConquored(chall.ID);
-			}
 		}
 	}
 	public int GetScore() {
