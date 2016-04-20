@@ -93,7 +93,8 @@ public class StartManager : Singleton<StartManager>{
 			NotificationQueueDataStarCoreReward starCoreNotif =
 				new NotificationQueueDataStarCoreReward(SceneUtils.START);
 			NotificationManager.Instance.AddNotification(starCoreNotif);
-		}
+			TierManager.Instance.UpdateStarCoreCount();
+        }
 
 		// Then check for reward crate
 		if(TierManager.Instance.IsNewUnlocksAvailable){
