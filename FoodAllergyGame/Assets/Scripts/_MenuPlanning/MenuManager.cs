@@ -118,7 +118,7 @@ public class MenuManager : Singleton<MenuManager>{
 		}
 	}
 
-	public void PageButtonClicked(bool isRightButton){
+	public void OnPageButtonClicked(bool isRightButton){
 		if(isRightButton){
 			foodStockPage++;
 		}
