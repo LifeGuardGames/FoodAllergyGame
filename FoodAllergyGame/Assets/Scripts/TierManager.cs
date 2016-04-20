@@ -209,7 +209,8 @@ public class TierManager : Singleton<TierManager> {
 	private void UpdateStarCoreCount() {
 		if(DataManager.Instance.GameData.Challenge.StarCoresEarned > DataManager.Instance.GameData.Challenge.LastSeenStarCoresEarned) {
 			hasNewStarCore = true;
-		}
+			DataManager.Instance.GameData.Challenge.LastSeenStarCoresEarned = DataManager.Instance.GameData.Challenge.StarCoresEarned;
+        }
 		else {
 			hasNewStarCore = false;
 		}

@@ -413,6 +413,11 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		else {
 			return ChallengeReward.Stone;
 		}
+		if(challengeAI.Score >= chall.BronzeBreakPoint) {
+			if(chall.IsBossChallenge) {
+				DataManager.Instance.GameData.Challenge.BossConquored(chall.ID);
+			}
+		}
 	}
 	public int GetScore() {
 		return challengeAI.Score;

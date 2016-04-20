@@ -5,6 +5,7 @@ public class MutableDataChallenge {
 	public Dictionary <string , ChallengeReward> ChallengeProgress { get; set; }
 	public int StarCoresEarned { get; set; }
 	public int LastSeenStarCoresEarned { get; set; }
+	public List<string> BossChallengeCompleted;
 
 	public MutableDataChallenge() {
 		IsFirstTimeChallengeEntrance = true;
@@ -15,6 +16,7 @@ public class MutableDataChallenge {
 		for(int i = 0; i  < temp.Count; i++) {
 			ChallengeProgress.Add(temp[i].ID, ChallengeReward.None);
 		}
+		BossChallengeCompleted = new List<string>();
 	}
 
 	public void PostLogicCheck() {
@@ -23,6 +25,12 @@ public class MutableDataChallenge {
 			if(!ChallengeProgress.ContainsKey(temp[i].ID)) {
 				ChallengeProgress.Add(temp[i].ID, ChallengeReward.None);
 			}
+		}
+	}
+	public void BossConquored(string id) {
+		if(!BossChallengeCompleted.Contains(id)) {
+			BossChallengeCompleted.Add(id);
+			StarCoresEarned++;
 		}
 	}
 }
