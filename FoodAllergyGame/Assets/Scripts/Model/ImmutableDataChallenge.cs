@@ -176,6 +176,6 @@ public class ImmutableDataChallenge  {
 		playArea = XMLUtils.GetString(hashElements["PlayArea"] as IXMLNode);
 		vipTable = XMLUtils.GetString(hashElements["Vip"] as IXMLNode);
 		flyThru = XMLUtils.GetString(hashElements["Flythru"] as IXMLNode);
-		isBossChallenge = XMLUtils.GetBool(hashElements["isBossChallenge"] as IXMLNode);
+		isBossChallenge = XMLUtils.GetBool(hashElements["IsBossChallenge"] as IXMLNode, false);
 	}
 }
