@@ -10,7 +10,7 @@
 	</DecoItem>
 	<DecoItem ID = "TableBasicGreen">
 		<Type>Table</Type>
-		<Price>1000</Price>
+		<Price>400</Price>
 		<TitleKey>TableBasicGreen</TitleKey>
 		<DescriptionKey>TableBasicGreenDesc</DescriptionKey>
 		<SpriteName>RestTableBasicGreen</SpriteName>
@@ -26,7 +26,7 @@
 	</DecoItem>
 	<DecoItem ID = "TableBasicRed">
 		<Type>Table</Type>
-		<Price>400</Price>
+		<Price>1000</Price>
 		<TitleKey>TableBasicRed</TitleKey>
 		<DescriptionKey>TableBasicRedDesc</DescriptionKey>
 		<SpriteName>RestTableBasicRed</SpriteName>
@@ -34,7 +34,7 @@
 	</DecoItem>
   <DecoItem ID = "TableWizdyPetsBlank">
     <Type>Table</Type>
-    <Price>1000</Price>
+    <Price>1400</Price>
     <TitleKey>TableWizdyPetsBlank</TitleKey>
     <DescriptionKey>TableWizdyPetsBlankDesc</DescriptionKey>
     <SpriteName>RestTableWizdyPetsBlank</SpriteName>
@@ -42,7 +42,7 @@
   </DecoItem>
   <DecoItem ID = "TableWizdyPetsPet">
     <Type>Table</Type>
-    <Price>1000</Price>
+    <Price>1600</Price>
     <TitleKey>TableWizdyPetsPet</TitleKey>
     <DescriptionKey>TableWizdyPetsPetDesc</DescriptionKey>
     <SpriteName>RestTableWizdyPetsPet</SpriteName>
@@ -50,7 +50,7 @@
   </DecoItem>
   <DecoItem ID = "TableWizdyPetsNinja">
     <Type>Table</Type>
-    <Price>1000</Price>
+    <Price>1800</Price>
     <TitleKey>TableWizdyPetsNinja</TitleKey>
     <DescriptionKey>TableWizdyPetsNinjaDesc</DescriptionKey>
     <SpriteName>RestTableWizdyPetsNinja</SpriteName>
@@ -58,7 +58,7 @@
   </DecoItem>
   <DecoItem ID = "TableWizdyPetsFire">
     <Type>Table</Type>
-    <Price>1000</Price>
+    <Price>2000</Price>
     <TitleKey>TableWizdyPetsFire</TitleKey>
     <DescriptionKey>TableWizdyPetsFireDesc</DescriptionKey>
     <SpriteName>RestTableWizdyPetsFire</SpriteName>
@@ -66,7 +66,7 @@
   </DecoItem>
   <DecoItem ID = "TableFancyBlank">
     <Type>Table</Type>
-    <Price>1000</Price>
+    <Price>2200</Price>
     <TitleKey>TableFancyBlank</TitleKey>
     <DescriptionKey>TableFancyBlankDesc</DescriptionKey>
     <SpriteName>RestTableFancyBlank</SpriteName>
@@ -74,7 +74,7 @@
   </DecoItem>
   <DecoItem ID = "TableFancyStars">
     <Type>Table</Type>
-    <Price>1000</Price>
+    <Price>2400</Price>
     <TitleKey>TableFancyStars</TitleKey>
     <DescriptionKey>TableFancyStarsDesc</DescriptionKey>
     <SpriteName>RestTableFancyStars</SpriteName>
@@ -82,7 +82,7 @@
   </DecoItem>
   <DecoItem ID = "TableFancyRailing">
     <Type>Table</Type>
-    <Price>1000</Price>
+    <Price>2600</Price>
     <TitleKey>TableFancyRailing</TitleKey>
     <DescriptionKey>TableFancyRailingDesc</DescriptionKey>
     <SpriteName>RestTableFancyRailing</SpriteName>
@@ -90,7 +90,7 @@
   </DecoItem>
   <DecoItem ID = "TableFancyBanner">
     <Type>Table</Type>
-    <Price>1000</Price>
+    <Price>2800</Price>
     <TitleKey>TableFancyBanner</TitleKey>
     <DescriptionKey>TableFancyBannerDesc</DescriptionKey>
     <SpriteName>RestTableFancyBanner</SpriteName>
@@ -108,7 +108,7 @@
 	</DecoItem>
   <DecoItem ID = "FloorBasicGreen">
 		<Type>Floor</Type>
-		<Price>2200</Price>
+		<Price>800</Price>
 		<TitleKey>FloorBasicGreen</TitleKey>
 		<DescriptionKey>FloorBasicGreenDesc</DescriptionKey>
 		<SpriteName>RestFloorBasicGreen</SpriteName>
@@ -116,7 +116,7 @@
 	</DecoItem>
 	<DecoItem ID = "FloorBasicPurple">
 		<Type>Floor</Type>
-		<Price>800</Price>
+		<Price>1500</Price>
 		<TitleKey>FloorBasicPurple</TitleKey>
 		<DescriptionKey>FloorBasicPurpleDesc</DescriptionKey>
 		<SpriteName>RestFloorBasicPurple</SpriteName>
@@ -124,7 +124,7 @@
 	</DecoItem>
 	<DecoItem ID = "FloorBasicRed">
 		<Type>Floor</Type>
-		<Price>1500</Price>
+		<Price>2200</Price>
 		<TitleKey>FloorBasicRed</TitleKey>
 		<DescriptionKey>FloorBasicRedDesc</DescriptionKey>
 		<SpriteName>RestFloorBasicRed</SpriteName>
@@ -132,7 +132,7 @@
 	</DecoItem>
   <DecoItem ID = "FloorWizdyPetsBlue">
 		<Type>Floor</Type>
-		<Price>2200</Price>
+		<Price>3000</Price>
 		<TitleKey>FloorWizdyPetsBlue</TitleKey>
 		<DescriptionKey>FloorWizdyPetsBlueDesc</DescriptionKey>
 		<SpriteName>RestFloorWizdyPetsBlue</SpriteName>
@@ -140,7 +140,7 @@
 	</DecoItem>
   <DecoItem ID = "FloorWizdyPetsGreen">
 		<Type>Floor</Type>
-		<Price>2200</Price>
+		<Price>3400</Price>
 		<TitleKey>FloorWizdyPetsGreen</TitleKey>
 		<DescriptionKey>FloorWizdyPetsGreenDesc</DescriptionKey>
 		<SpriteName>RestFloorWizdyPetsGreen</SpriteName>
@@ -148,7 +148,7 @@
 	</DecoItem>
   <DecoItem ID = "FloorWizdyPetsRed">
 		<Type>Floor</Type>
-		<Price>2200</Price>
+		<Price>3800</Price>
 		<TitleKey>FloorWizdyPetsRed</TitleKey>
 		<DescriptionKey>FloorWizdyPetsRedDesc</DescriptionKey>
 		<SpriteName>RestFloorWizdyPetsRed</SpriteName>
@@ -156,7 +156,7 @@
 	</DecoItem>
   <DecoItem ID = "FloorWizdyPetsPurple">
 		<Type>Floor</Type>
-		<Price>2200</Price>
+		<Price>4200</Price>
 		<TitleKey>FloorWizdyPetsPurple</TitleKey>
 		<DescriptionKey>FloorWizdyPetsPurpleDesc</DescriptionKey>
 		<SpriteName>RestFloorWizdyPetsPurple</SpriteName>
@@ -164,7 +164,7 @@
 	</DecoItem>
   <DecoItem ID = "FloorFancyRed">
 		<Type>Floor</Type>
-		<Price>2200</Price>
+		<Price>4200</Price>
 		<TitleKey>FloorFancyRed</TitleKey>
 		<DescriptionKey>FloorFancyRedDesc</DescriptionKey>
 		<SpriteName>RestFloorFancyRed</SpriteName>
@@ -172,7 +172,7 @@
 	</DecoItem>
   <DecoItem ID = "FloorFancyGreen">
 		<Type>Floor</Type>
-		<Price>2200</Price>
+		<Price>4600</Price>
 		<TitleKey>FloorFancyGreen</TitleKey>
 		<DescriptionKey>FloorFancyGreenDesc</DescriptionKey>
 		<SpriteName>RestFloorFancyGreen</SpriteName>
@@ -180,7 +180,7 @@
 	</DecoItem>
   <DecoItem ID = "FloorFancyBlue">
 		<Type>Floor</Type>
-		<Price>2200</Price>
+		<Price>5000</Price>
 		<TitleKey>FloorFancyBlue</TitleKey>
 		<DescriptionKey>FloorFancyBlueDesc</DescriptionKey>
 		<SpriteName>RestFloorFancyBlue</SpriteName>
@@ -188,7 +188,7 @@
 	</DecoItem>
   <DecoItem ID = "FloorFancyPurple">
 		<Type>Floor</Type>
-		<Price>2200</Price>
+		<Price>5400</Price>
 		<TitleKey>FloorFancyPurple</TitleKey>
 		<DescriptionKey>FloorFancyPurpleDesc</DescriptionKey>
 		<SpriteName>RestFloorFancyPurple</SpriteName>
@@ -207,7 +207,7 @@
 	</DecoItem>
 	<DecoItem ID = "KitchenBasicGreen">
 		<Type>Kitchen</Type>
-		<Price>900</Price>
+		<Price>300</Price>
 		<TitleKey>KitchenBasicGreen</TitleKey>
 		<DescriptionKey>KitchenBasicGreenDesc</DescriptionKey>
 		<SpriteName>RestKitchenBasicGreen</SpriteName>
@@ -223,7 +223,7 @@
 	</DecoItem>
 	<DecoItem ID = "KitchenBasicRed">
 		<Type>Kitchen</Type>
-		<Price>300</Price>
+		<Price>900</Price>
 		<TitleKey>KitchenBasicRed</TitleKey>
 		<DescriptionKey>KitchenBasicRedDesc</DescriptionKey>
 		<SpriteName>RestKitchenBasicRed</SpriteName>
@@ -231,7 +231,7 @@
 	</DecoItem>
   <DecoItem ID = "KitchenWizdyPetsBlank">
     <Type>Kitchen</Type>
-    <Price>900</Price>
+    <Price>1200</Price>
     <TitleKey>KitchenWizdyPetsBlank</TitleKey>
     <DescriptionKey>KitchenWizdyPetsBlankDesc</DescriptionKey>
     <SpriteName>RestKitchenWizdyPetsBlank</SpriteName>
@@ -239,7 +239,7 @@
   </DecoItem>
   <DecoItem ID = "KitchenWizdyPetsPet">
     <Type>Kitchen</Type>
-    <Price>900</Price>
+    <Price>1500</Price>
     <TitleKey>KitchenWizdyPetsPet</TitleKey>
     <DescriptionKey>KitchenWizdyPetsPetDesc</DescriptionKey>
     <SpriteName>RestKitchenWizdyPetsPet</SpriteName>
@@ -247,7 +247,7 @@
   </DecoItem>
   <DecoItem ID = "KitchenWizdyPetsNinja">
     <Type>Kitchen</Type>
-    <Price>900</Price>
+    <Price>1800</Price>
     <TitleKey>KitchenWizdyPetsNinja</TitleKey>
     <DescriptionKey>KitchenWizdyPetsNinjaDesc</DescriptionKey>
     <SpriteName>RestKitchenWizdyPetsNinja</SpriteName>
@@ -255,7 +255,7 @@
   </DecoItem>
   <DecoItem ID = "KitchenWizdyPetsFire">
     <Type>Kitchen</Type>
-    <Price>900</Price>
+    <Price>2100</Price>
     <TitleKey>KitchenWizdyPetsFire</TitleKey>
     <DescriptionKey>KitchenWizdyPetsFireDesc</DescriptionKey>
     <SpriteName>RestKitchenWizdyPetsFire</SpriteName>
@@ -263,7 +263,7 @@
   </DecoItem>
   <DecoItem ID = "KitchenFancyBlank">
     <Type>Kitchen</Type>
-    <Price>900</Price>
+    <Price>2400</Price>
     <TitleKey>KitchenFancyBlank</TitleKey>
     <DescriptionKey>KitchenFancyBlankDesc</DescriptionKey>
     <SpriteName>RestKitchenFancyBlank</SpriteName>
@@ -271,7 +271,7 @@
   </DecoItem>
   <DecoItem ID = "KitchenFancyStars">
     <Type>Kitchen</Type>
-    <Price>900</Price>
+    <Price>2700</Price>
     <TitleKey>KitchenFancyStars</TitleKey>
     <DescriptionKey>KitchenFancyStarsDesc</DescriptionKey>
     <SpriteName>RestKitchenFancyStars</SpriteName>
@@ -279,7 +279,7 @@
   </DecoItem>
   <DecoItem ID = "KitchenFancyRailing">
     <Type>Kitchen</Type>
-    <Price>900</Price>
+    <Price>3000</Price>
     <TitleKey>KitchenFancyRailing</TitleKey>
     <DescriptionKey>KitchenFancyRailingDesc</DescriptionKey>
     <SpriteName>RestKitchenFancyRailing</SpriteName>
@@ -287,7 +287,7 @@
   </DecoItem>
   <DecoItem ID = "KitchenFancyBanner">
     <Type>Kitchen</Type>
-    <Price>900</Price>
+    <Price>3300</Price>
     <TitleKey>KitchenFancyBanner</TitleKey>
     <DescriptionKey>KitchenFancyBannerDesc</DescriptionKey>
     <SpriteName>RestKitchenFancyBanner</SpriteName>
@@ -305,7 +305,7 @@
 	</DecoItem>
   <DecoItem ID = "VIPBlackHole">
     <Type>VIP</Type>
-    <Price>1000</Price>
+    <Price>30000</Price>
     <TitleKey>VIPBlackHole</TitleKey>
     <DescriptionKey>VIPBlackHoleDesc</DescriptionKey>
     <SpriteName>RestVIPBlackHole</SpriteName>
@@ -323,7 +323,7 @@
 	</DecoItem>
   <DecoItem ID = "PlayArea01">
     <Type>PlayArea</Type>
-    <Price>1</Price>
+    <Price>40000</Price>
     <TitleKey>PlayAreaArcade</TitleKey>
     <DescriptionKey>PlayAreaArcadeDesc</DescriptionKey>
     <SpriteName>RestPlayAreaArcade</SpriteName>
@@ -343,7 +343,7 @@
 
 	<DecoItem ID = "FlyThru00">
 		<Type>FlyThru</Type>
-		<Price>100</Price>
+    <Price>0</Price>
 		<TitleKey>FlyThruBasic</TitleKey>
 		<DescriptionKey>FlyThruBasicDesc</DescriptionKey>
 		<SpriteName>RestFlyThruBasicSample</SpriteName>

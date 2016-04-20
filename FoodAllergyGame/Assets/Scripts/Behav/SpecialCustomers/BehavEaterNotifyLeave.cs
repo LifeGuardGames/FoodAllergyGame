@@ -33,7 +33,7 @@ public class BehavEaterNotifyLeave : Behav {
 						if(targetCustomer.state != CustomerStates.Saved
 							&& targetCustomer.state != CustomerStates.Eaten
 							&& targetCustomer.gameObject != self.gameObject) {
-
+							self.SetSatisfaction(1);
 							self.UpdateSatisfaction(1);
 							// otherwise enjoy the meal
 							RestaurantManager.Instance.GetTable(i).CustomerEaten(self.gameObject);
