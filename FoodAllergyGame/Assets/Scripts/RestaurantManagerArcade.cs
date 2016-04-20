@@ -63,7 +63,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 			}
 
 			if(customerSpawnTimer < 3.0f) {
-				customerSpawnTimer = 3.0f + flowMod;
+				customerSpawnTimer = 3.0f;
 			}
 
 			//Debug.Log(customerSpawnTimer);
