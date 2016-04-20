@@ -1,11 +1,9 @@
 using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
-using System;
 
 public class RestaurantMenuUIController : MonoBehaviour {
-
 	public GameObject button1;
 	public Image button1Image;
 	public List<RestMenuButtonAllergyNode> button1AllergyNodeList;
@@ -27,7 +25,7 @@ public class RestaurantMenuUIController : MonoBehaviour {
 	public Image customerAllergy3;
 	public Text allergyText;
 
-	public TweenToggle menuTweenToggle;
+	public TweenToggleDemux menuTweenToggle;
 
 	// Current customer menu choosing info
 	private ImmutableDataFood[] choices;
@@ -52,7 +50,7 @@ public class RestaurantMenuUIController : MonoBehaviour {
 				case 1:
 					allergyString = LocalizationText.GetText(customerAllergyList[0].ToString());
                     customerAllergy1.gameObject.SetActive(true);
-					customerAllergy1.transform.localPosition = new Vector3(0, 220f, 0);
+					customerAllergy1.transform.localPosition = new Vector3(0, 120f, 0);
 					customerAllergy1.sprite = SpriteCacheManager.GetAllergySpriteData(customerAllergyList[0]);
 					customerAllergy2.gameObject.SetActive(false);
 					customerAllergy3.gameObject.SetActive(false);
@@ -61,10 +59,10 @@ public class RestaurantMenuUIController : MonoBehaviour {
 					allergyString = LocalizationText.GetText(customerAllergyList[0].ToString()) + " and " +
 						LocalizationText.GetText(customerAllergyList[1].ToString());
 					customerAllergy1.gameObject.SetActive(true);
-					customerAllergy1.transform.localPosition = new Vector3(-85f, 220f, 0);
+					customerAllergy1.transform.localPosition = new Vector3(-85f, 120f, 0);
 					customerAllergy1.sprite = SpriteCacheManager.GetAllergySpriteData(customerAllergyList[0]);
 					customerAllergy2.gameObject.SetActive(true);
-					customerAllergy2.transform.localPosition = new Vector3(85f, 220f, 0);
+					customerAllergy2.transform.localPosition = new Vector3(85f, 120f, 0);
 					customerAllergy1.sprite = SpriteCacheManager.GetAllergySpriteData(customerAllergyList[1]);
 					customerAllergy3.gameObject.SetActive(false);
 					break;
@@ -73,13 +71,13 @@ public class RestaurantMenuUIController : MonoBehaviour {
 						LocalizationText.GetText(customerAllergyList[1].ToString()) + ", and " +
 						LocalizationText.GetText(customerAllergyList[2].ToString());
 					customerAllergy1.gameObject.SetActive(true);
-					customerAllergy1.transform.localPosition = new Vector3(-135, 210f, 0);
+					customerAllergy1.transform.localPosition = new Vector3(-135, 120f, 0);
 					customerAllergy1.sprite = SpriteCacheManager.GetAllergySpriteData(customerAllergyList[0]);
 					customerAllergy1.gameObject.SetActive(true);
-					customerAllergy2.transform.localPosition = new Vector3(0, 220f, 0);
+					customerAllergy2.transform.localPosition = new Vector3(0, 120f, 0);
 					customerAllergy1.sprite = SpriteCacheManager.GetAllergySpriteData(customerAllergyList[1]);
 					customerAllergy1.gameObject.SetActive(true);
-					customerAllergy3.transform.localPosition = new Vector3(135, 210f, 0);
+					customerAllergy3.transform.localPosition = new Vector3(135, 120f, 0);
 					customerAllergy1.sprite = SpriteCacheManager.GetAllergySpriteData(customerAllergyList[2]);
 					break;
 				default:

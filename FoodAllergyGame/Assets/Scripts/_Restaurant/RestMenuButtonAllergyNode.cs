@@ -1,21 +1,17 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class RestMenuButtonAllergyNode : MonoBehaviour {
 	public Image thisImage;
-	public GameObject childObject;
 	public TweenToggle tweenToggle;
 	private bool isUsed;
 
 	public void Init(bool isUsed, Allergies allergyType) {
 		if(!isUsed) {
 			thisImage.enabled = false;
-			childObject.SetActive(false);
 		}
 		else {
 			thisImage.enabled = true;
-			childObject.SetActive(true);
 			switch(allergyType) {
 				case Allergies.None:
 					thisImage.sprite = SpriteCacheManager.GetAllergySpriteData(Allergies.None);
