@@ -11,6 +11,9 @@ public class BehavSaved : Behav {
 	}
 
 	public override void Act() {
+		if(RestaurantManager.Instance.GetTable(self.tableNum).tableType == Table.TableType.VIP) {
+			RestaurantManager.Instance.GetTable(self.tableNum).CustomerLeaving();
+		}
 		AudioManager.Instance.PlayClip("CustomerSaved");
 		RestaurantManager.Instance.savedCustomers++;
 		self.customerAnim.SetSavedAllergyAttack();
@@ -20,9 +23,7 @@ public class BehavSaved : Behav {
 		self.state = CustomerStates.Saved;
 		self.StopCoroutine("AllergyTimer");
 		RestaurantManager.Instance.GetTable(self.tableNum).inUse = false;
-		if(RestaurantManager.Instance.GetTable(self.tableNum).tableType == Table.TableType.VIP) {
-			self.customerUI.enabled = false;
-        }
+	
 
 		// Removes customer and bills the restaurant
 		RestaurantManager.Instance.CustomerLeftFlatCharge(self, Medic.MedicPrice, true);
