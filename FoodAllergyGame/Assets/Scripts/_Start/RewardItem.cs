@@ -32,8 +32,8 @@ public class RewardItem : MonoBehaviour {
 		switch(assetType) {
 			case AssetTypes.Challenge:
 				ImmutableDataChallenge challengeData = DataLoaderChallenge.GetData(itemID);
-                titleKey = challengeData.Title;
-				descriptionKey = challengeData.ChallengeDescription;
+                titleKey = "ChallengeItemTitle";
+                descriptionKey = challengeData.Title;
 				itemSprite.sprite = SpriteCacheManager.GetChallengeItemSpriteData();
 				break;
 			case AssetTypes.Customer:
