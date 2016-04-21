@@ -175,6 +175,9 @@ public class RewardUIController : MonoBehaviour {
 	public void ShowInfo(string titleKey, string descriptionKey) {
 		textTitle.text = !string.IsNullOrEmpty(titleKey) ? LocalizationText.GetText(titleKey) : "";
 		textDescription.text = !string.IsNullOrEmpty(descriptionKey) ? LocalizationText.GetText(descriptionKey) : "";
+		if(LocalizationText.GetText(descriptionKey) == "None") {
+			textDescription.text = "";
+        }
 	}
 
 	// Used to define which object is currently in focus
