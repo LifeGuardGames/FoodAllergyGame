@@ -9,6 +9,7 @@ public class AgeAskController : MonoBehaviour {
 	public GameObject button;
 
 	public void ShowPanel() {
+		button.SetActive(false);
 		panelTween.Show();
 	}
 
