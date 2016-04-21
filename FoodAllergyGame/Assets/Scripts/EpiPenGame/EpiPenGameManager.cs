@@ -97,6 +97,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 				string suffixID = epipenSetPrefix + i;
                 GameObject token = Resources.Load("Token" + suffixID) as GameObject;
 				GameObject go = GameObjectUtils.AddChildGUI(finalSlotList[i].gameObject, token);
+				finalSlotList[i].GetComponent<Image>().sprite = lockedFinalSlotSprite;
 				go.GetComponent<EpiPenGameToken>().Init(i, true);
 			}
 		}
