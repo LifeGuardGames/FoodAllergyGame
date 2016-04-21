@@ -14,11 +14,6 @@ public class TierManager : Singleton<TierManager> {
 		get{ return currentTier; }
 	}
 
-	private bool hasNewStarCore;
-	public bool HasNewStarCore {
-		get { return hasNewStarCore; }
-	}
-
 	private bool isNewUnlocksAvailable = false;
 	public bool IsNewUnlocksAvailable {
 		get{ return isNewUnlocksAvailable; }
@@ -205,15 +200,15 @@ public class TierManager : Singleton<TierManager> {
 			}
 		}
 	}
-
-	// Called from startmanager when the core reward UI has run
-	public void UpdateStarCoreCount() {
+	
+	// Called from startmanager when checking for cores, to auto updates
+	public bool HasNewCoreAndSync() {
 		if(DataManager.Instance.GameData.Challenge.StarCoresEarned > DataManager.Instance.GameData.Challenge.LastSeenStarCoresEarned) {
-			hasNewStarCore = true;
 			DataManager.Instance.GameData.Challenge.LastSeenStarCoresEarned = DataManager.Instance.GameData.Challenge.StarCoresEarned;
+			return true;
         }
 		else {
-			hasNewStarCore = false;
+			return false;
 		}
 	}
 }

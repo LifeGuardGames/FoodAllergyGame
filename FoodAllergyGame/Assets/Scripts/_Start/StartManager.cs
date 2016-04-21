@@ -83,25 +83,20 @@ public class StartManager : Singleton<StartManager>{
 
 		// Then check if any star pieces needs to be rewarded
 		if(TierManager.Instance.IsTierUp) {
-			Debug.Log("TIERING UP NOTIF");
 			NotificationQueueDataStarPieceReward starPieceNotif =
 				new NotificationQueueDataStarPieceReward(SceneUtils.START, TierManager.Instance.OldTier, TierManager.Instance.CurrentTier);
 			NotificationManager.Instance.AddNotification(starPieceNotif);
 		}
 
 		// Then check if any star cores needs to be rewarded
-		if(TierManager.Instance.HasNewStarCore) {
-			Debug.Log("Has new star core");
-
+		if(TierManager.Instance.HasNewCoreAndSync()) {
 			NotificationQueueDataStarCoreReward starCoreNotif =
 				new NotificationQueueDataStarCoreReward(SceneUtils.START);
 			NotificationManager.Instance.AddNotification(starCoreNotif);
-			TierManager.Instance.UpdateStarCoreCount();
         }
 
 		// Then check for reward crate
 		if(TierManager.Instance.IsNewUnlocksAvailable){
-			Debug.Log("NEW UNLOCKS NOTIF");
 			if(!string.IsNullOrEmpty(DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge)){
 				ShopEntranceUIController.ToggleClickable(false);
 				DinerEntranceUIController.ToggleClickable(false);

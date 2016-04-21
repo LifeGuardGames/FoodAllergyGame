@@ -16,7 +16,6 @@ public class StarsUIController : MonoBehaviour {
 
 	#region Star Piece Rewarding
 	public void RewardStarPiece(NotificationQueueData notifData, int oldTier, int newTier) {
-		Debug.Log("old tier " + oldTier + " new tier " + newTier);
 		if(oldTier % 6 == 0) {
 			starBase.enabled = false;
 		}
@@ -33,7 +32,6 @@ public class StarsUIController : MonoBehaviour {
 
 	public void OnNewStarSpriteEvent() {
 		starBase.enabled = true;
-		Debug.Log("POPPING " + nextStarSpriteAux);
 		starBase.sprite = nextStarSpriteAux;
 	}
 	#endregion
