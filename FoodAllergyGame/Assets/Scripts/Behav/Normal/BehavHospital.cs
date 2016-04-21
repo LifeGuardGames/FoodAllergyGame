@@ -16,7 +16,9 @@ public class BehavHospital : Behav {
 			DataManager.Instance.GameData.Tutorial.IsMedicTut2Done = false;
 			DataManager.Instance.GameData.Tutorial.MissedMedic = 0;
 		}
-		
+		if(RestaurantManager.Instance.GetTable(self.tableNum).tableType == Table.TableType.VIP) {
+			self.customerUI.enabled = false;
+		}
 		// Removes customer and bills the restaurant
 		RestaurantManager.Instance.CustomerLeftFlatCharge(self, Medic.HospitalPrice, true);
 

@@ -6,6 +6,7 @@ public class AgeAskController : MonoBehaviour {
 	public TweenToggle panelTween;
 	public InputField inputText;
 	public Animation inputPulse;
+	public GameObject button;
 
 	public void ShowPanel() {
 		panelTween.Show();
@@ -17,6 +18,10 @@ public class AgeAskController : MonoBehaviour {
 
 	public string GetAge() {
 		return inputText.text;
+	}
+
+	public void ShowAgeButton() {
+		button.SetActive(true);
 	}
 
 	// hide panel and then call start manager to clean up
