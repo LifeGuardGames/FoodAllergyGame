@@ -65,5 +65,11 @@ public class BehavWaitForFood : Behav {
 
 	public override void Act() {
 		self.state = CustomerStates.WaitForFood;
+		if(self.Order.GetComponent<Order>().allergy.Contains(self.allergy[0]) && !RestaurantManager.Instance.isTutorial && !DataManager.Instance.GameData.Tutorial.IsTrashCanTutDone) {
+			RestaurantManager.Instance.trashCanTutorial.SetActive(true);
+            string foodSpriteName = DataLoaderFood.GetData(self.Order.GetComponent<Order>().foodID).SpriteName;
+			RestaurantManager.Instance.trashCanTutorial.GetComponent<SickTutorialController>().Show(self.allergy[0], foodSpriteName);
+			self.StopCoroutine("SatisfactionTimer");
+		}
 	}
 }

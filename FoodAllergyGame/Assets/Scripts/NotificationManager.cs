@@ -74,6 +74,12 @@ public class NotificationManager : Singleton<NotificationManager> {
 				else {
 					StartManager.Instance.DinerEntranceUIController.ToggleClickable(true);
 				}
+				// Check if you need to load beacon for more crates
+				if(TierManager.Instance.CurrentTier == 6 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates) {
+					Debug.Log("LOADING BEACON");
+					GameObject beacon = Resources.Load("Beacon") as GameObject;
+					GameObjectUtils.AddChild(StartManager.Instance.beaconNode, beacon);
+				}
 			}
 
 			if(OnAllNotificationsFinished != null) {        // Throw event

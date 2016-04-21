@@ -113,13 +113,6 @@ public class StartManager : Singleton<StartManager>{
 			NotificationManager.Instance.AddNotification(rewardNotif);
         }
 
-		// Check if you need to load beacon for more crates
-		if(TierManager.Instance.CurrentTier == 6 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates) {
-			Debug.Log("LOADING BEACON");
-			GameObject beacon = Resources.Load("Beacon") as GameObject;
-			GameObjectUtils.AddChild(beaconNode, beacon);
-		}
-
 		// Make sure recalculate tier doesnt get called again
 		CashManager.Instance.SyncLastSeenTotalCash();
 

@@ -10,6 +10,7 @@ public class MutableDataTutorial{
 	public bool IsEpiPenGameTutorialDone { get; set; }
 	public int MissedMedic { get; set; }
 	public bool IsSpeDecoTutDone { get; set; }
+	public bool IsTrashCanTutDone { get; set; }
 
 	public MutableDataTutorial(){
 		IsComicViewed = false;
@@ -20,5 +21,6 @@ public class MutableDataTutorial{
 		IsMenuPlanningFingerTutDone = false;
 		IsEpiPenGameTutorialDone = false;
 		IsSpeDecoTutDone = false;
+		IsTrashCanTutDone = false;
     }
 }
