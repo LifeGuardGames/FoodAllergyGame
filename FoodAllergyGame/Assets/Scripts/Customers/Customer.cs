@@ -611,11 +611,16 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 
 	public void Reorder() {
+		if(RestaurantManager.Instance.trashCanTutorial.activeSelf) {
+			RestaurantManager.Instance.trashCanTutorial.SetActive(false);
+			DataManager.Instance.GameData.Tutorial.IsTrashCanTutDone = true;
+        }
 		Debug.Log("Redorder");
 		DestroyOrder();
 		Debug.Log("Order Destroyed");
 		Waiter.Instance.RemoveMeal(tableNum);
 		customerUI.ToggleWait(false);
+		KitchenManager.Instance.spinnerHighlight.gameObject.SetActive(false);
 		RestaurantManager.Instance.GetTable(tableNum).ToggleTableNum(false);
 		var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[1]);
 		Behav order = (Behav)Activator.CreateInstance(type);
