@@ -32,6 +32,10 @@ public class CustomerVIPTut : Customer {
 	public void HideTableFinger() {
 		tutFingers.transform.GetChild(tutNumber).gameObject.SetActive(false);
 	}
-
+	public override void Deselect() {
+		showCustomerFinger();
+		tutFingers.transform.GetChild(tutNumber).gameObject.SetActive(false);
+		base.Deselect();
+	}
 
 }

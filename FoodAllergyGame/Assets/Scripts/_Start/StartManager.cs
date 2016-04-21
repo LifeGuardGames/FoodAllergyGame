@@ -183,7 +183,7 @@ public class StartManager : Singleton<StartManager>{
 
 	public void ChallengeMenuButtonClicked(){
 		DataManager.Instance.GameData.Challenge.IsFirstTimeChallengeEntrance = false;
-		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.CHALLENGEMENU, "LoadingKeyDecoration");
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.CHALLENGEMENU, showFoodTip:true);
 	}
 	
 	public void CheatyScene() {

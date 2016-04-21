@@ -22,7 +22,9 @@ public class BehavHospitalRunnerAllergyAttack : Behav {
 
 		// Removes customer and bills the restaurant
 		RestaurantManager.Instance.CustomerLeftFlatCharge(self, Medic.HospitalPrice, true);
-
+		if(RestaurantManager.Instance.GetTable(self.tableNum).tableType == Table.TableType.VIP) {
+			RestaurantManager.Instance.GetTable(self.tableNum).CustomerLeaving();
+        }
 		RestaurantManager.Instance.sickCustomers.Remove(self.gameObject);
 		DataManager.Instance.GameData.Tutorial.MissedMedic++;
 		if(DataManager.Instance.GameData.Tutorial.MissedMedic >= 3) {
