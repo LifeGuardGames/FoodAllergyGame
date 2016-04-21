@@ -25,6 +25,7 @@ public class StarsUIController : MonoBehaviour {
 		}
 		nextStarSpriteAux = SpriteCacheManager.GetStarFillHelper(newTier % 6, 6);
 		Debug.Log(nextStarSpriteAux.name);
+
 		internalNotifData = notifData;
         starsDemux.Show();
         starsAnimator.Play("StarPieceReward");
@@ -32,6 +33,7 @@ public class StarsUIController : MonoBehaviour {
 
 	public void OnNewStarSpriteEvent() {
 		starBase.enabled = true;
+		Debug.Log("POPPING " + nextStarSpriteAux);
 		starBase.sprite = nextStarSpriteAux;
 	}
 	#endregion
@@ -42,6 +44,11 @@ public class StarsUIController : MonoBehaviour {
 		starsDemux.Show();
 		starsAnimator.Play("StarCoreReward");
     }
+
+	// NOTE: Animator overrides all instances of sprite change if it is changed somewhere
+	public void OnCoreRewardStart() {
+		starBase.sprite = SpriteCacheManager.GetStarFillHelper(6, 6);
+	}
 	#endregion
 	
 	// Called from StarAnimHelper

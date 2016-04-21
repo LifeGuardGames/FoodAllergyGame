@@ -83,6 +83,7 @@ public class StartManager : Singleton<StartManager>{
 
 		// Then check if any star pieces needs to be rewarded
 		if(TierManager.Instance.IsTierUp) {
+			Debug.Log("TIERING UP NOTIF");
 			NotificationQueueDataStarPieceReward starPieceNotif =
 				new NotificationQueueDataStarPieceReward(SceneUtils.START, TierManager.Instance.OldTier, TierManager.Instance.CurrentTier);
 			NotificationManager.Instance.AddNotification(starPieceNotif);
@@ -90,6 +91,8 @@ public class StartManager : Singleton<StartManager>{
 
 		// Then check if any star cores needs to be rewarded
 		if(TierManager.Instance.HasNewStarCore) {
+			Debug.Log("Has new star core");
+
 			NotificationQueueDataStarCoreReward starCoreNotif =
 				new NotificationQueueDataStarCoreReward(SceneUtils.START);
 			NotificationManager.Instance.AddNotification(starCoreNotif);
@@ -98,6 +101,7 @@ public class StartManager : Singleton<StartManager>{
 
 		// Then check for reward crate
 		if(TierManager.Instance.IsNewUnlocksAvailable){
+			Debug.Log("NEW UNLOCKS NOTIF");
 			if(!string.IsNullOrEmpty(DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge)){
 				ShopEntranceUIController.ToggleClickable(false);
 				DinerEntranceUIController.ToggleClickable(false);
@@ -116,6 +120,7 @@ public class StartManager : Singleton<StartManager>{
 
 		// Check if you need to load beacon for more crates
 		if(TierManager.Instance.CurrentTier == 6 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates) {
+			Debug.Log("LOADING BEACON");
 			GameObject beacon = Resources.Load("Beacon") as GameObject;
 			GameObjectUtils.AddChild(beaconNode, beacon);
 		}
@@ -191,7 +196,8 @@ public class StartManager : Singleton<StartManager>{
 	}
 	
 	public void CheatyScene() {
-		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.CHEATY);
+		NotificationManager.Instance.DebugClearNotification();
+        LoadLevelManager.Instance.StartLoadTransition(SceneUtils.CHEATY);
 	}
 
 	public Vector3 GetEntrancePosition(StartMenuEntrances entrance) {

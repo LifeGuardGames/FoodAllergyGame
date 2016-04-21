@@ -8,18 +8,22 @@ public class CheatyTierUpgrade : MonoBehaviour {
 	/// we set the total cash as to not skip any tiers
 	/// </summary>
 	public void UpgradeTier() {
+		DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "";
 		switch(TierManager.Instance.CurrentTier) {
 			case 0:
 				DataManager.Instance.GameData.Cash.TotalCash = 850;
-				break;
+				DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
+                break;
 			case 1:
 				DataManager.Instance.GameData.Cash.TotalCash = 1500;
 				break;
 			case 2:
-				DataManager.Instance.GameData.Cash.TotalCash = 2550;
-				break;
+				DataManager.Instance.GameData.Tutorial.IsSpeDecoTutDone = true;
+                DataManager.Instance.GameData.Cash.TotalCash = 2550;
+                break;
 			case 3:
-				DataManager.Instance.GameData.Cash.TotalCash = 3600;
+				DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance = false;
+                DataManager.Instance.GameData.Cash.TotalCash = 3600;
 				break;
 			case 4:
 				DataManager.Instance.GameData.Cash.TotalCash = 4650;

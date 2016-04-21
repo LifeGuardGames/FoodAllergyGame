@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
@@ -80,5 +80,11 @@ public class NotificationManager : Singleton<NotificationManager> {
 				OnAllNotificationsFinished(this, EventArgs.Empty);
 			}
 		}
+	}
+
+	// NOTE: Use for cheaty button ONLY!!!
+	public void DebugClearNotification() {
+		notificationQueue = new Queue<NotificationQueueData>();
+		isNotificationActive = false;
 	}
 }

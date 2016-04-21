@@ -111,11 +111,14 @@ public class SpriteCacheManager : Singleton<SpriteCacheManager> {
 	}
 
 	public static Sprite GetStarFillHelper(int suffixFill, int totalTiersInOneStar) {
-		if(suffixFill == 0) {
-			return null;
+		string loadingString;
+		if(suffixFill == 0 || suffixFill == totalTiersInOneStar) {
+			loadingString = "StarsBase";
+        }
+		else {
+			loadingString = "StarPiece" + suffixFill;
 		}
-        string loadString = suffixFill == totalTiersInOneStar ? "StarsBase" : "StarPiece" + suffixFill;
-		Sprite sprite = Resources.Load<Sprite>(loadString);
+		Sprite sprite = Resources.Load<Sprite>(loadingString);
 		return sprite;
 	}
 }
