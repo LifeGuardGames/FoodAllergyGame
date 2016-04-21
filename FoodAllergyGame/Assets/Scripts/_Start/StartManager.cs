@@ -120,6 +120,9 @@ public class StartManager : Singleton<StartManager>{
 			GameObjectUtils.AddChild(beaconNode, beacon);
 		}
 
+		// Make sure recalculate tier doesnt get called again
+		CashManager.Instance.SyncLastSeenTotalCash();
+
 		// Save game data again, lock down on the event
 		DataManager.Instance.SaveGameData();
 		GenerateCustomerList();

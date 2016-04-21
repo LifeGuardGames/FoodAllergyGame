@@ -154,7 +154,6 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 
 	// Tier sequence complete
 	private void OnTweenCompleteFinishTier() {
-		CashManager.Instance.SyncLastSeenTotalCash();
 		tierCaller.Finish();
 	}
 	#endregion
