@@ -10,7 +10,7 @@ using System.Collections.Generic;
 /// If new foods are unlocked, reset your list
 /// </summary>
 public class FoodTipController : MonoBehaviour {
-	public Animator tipAnimator;	// Animates the nodes
+	public TweenToggleDemux foodDemux;
 	public Image allergy1Image;
 	public Image allergy2Image;
 	public Image allergy3Image;
@@ -21,7 +21,6 @@ public class FoodTipController : MonoBehaviour {
 
 	void Start() {
 		RefreshInternalList();
-		tipAnimator.SetBool("IsShow", false);
 	}
 
 	private void RefreshInternalList() {
@@ -82,10 +81,10 @@ public class FoodTipController : MonoBehaviour {
 				break;
 		}
 
-		tipAnimator.SetBool("IsShow", true);
-	}
+		foodDemux.Show();
+    }
 
 	public void HideFoodTip() {
-		tipAnimator.SetBool("IsShow", false);
-	}
+		foodDemux.Hide();
+    }
 }

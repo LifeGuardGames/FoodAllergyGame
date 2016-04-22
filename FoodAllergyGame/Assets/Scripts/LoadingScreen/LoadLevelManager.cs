@@ -10,6 +10,7 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 	public Text loadText;
 	public Image loadImage;
 	public FoodTipController foodTipController;
+	public GameObject logo;
 	public float foodTipWait = 1.3f;		// How long to wait if the food tip controller is showing
 	private bool isShowingFoodTip = false;
 	private bool isShowingImageTip = false;
@@ -43,14 +44,17 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 		loadImage.gameObject.SetActive(false);
 
 		if(additionalTextKey != null) {
+			logo.SetActive(true);
 			loadText.text = LocalizationText.GetText(additionalTextKey);
 		}
 		if(additionalImageKey != null) {
+			logo.SetActive(false);
 			loadImage.gameObject.SetActive(true);
 			loadImage.sprite = SpriteCacheManager.GetLoadingImageData(additionalImageKey);
 			isShowingImageTip = true;
         }
 		if(showFoodTip){
+			logo.SetActive(true);
 			isShowingFoodTip = true;
 			foodTipController.ShowFoodTip();
 		}

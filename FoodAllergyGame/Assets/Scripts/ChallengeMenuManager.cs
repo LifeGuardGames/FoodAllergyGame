@@ -42,7 +42,7 @@ public class ChallengeMenuManager : Singleton<ChallengeMenuManager> {
 	}
 
 	public void OnBackButtonClicked() {
-		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START, showFoodTip: true);
 	}
 
 
