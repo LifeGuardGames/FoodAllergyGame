@@ -35,7 +35,6 @@ public class DinerEntranceUIController : MonoBehaviour {
 	}
 
 	public void ToggleClickable(bool isClickable){
-		Debug.Log("TOGGLED DINER " + isClickable);
 		GetComponent<BoxCollider2D>().enabled = isClickable;
 		dinerEntranceAnimator.SetBool("IsClickable", isClickable);
     }

@@ -7,7 +7,6 @@ public class ShopEntranceUIController : MonoBehaviour {
 
 	void Start() {
 		if(DataManager.Instance.GameData.Tutorial.IsSpeDecoTutDone) {
-			Debug.Log("SHOP SHOW UP");
 			bool isFirstTimeShop = DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance;
 			StartManager.Instance.isShopAppearHideDinerOverride = isFirstTimeShop;
 			Show(isFirstTimeShop);
