@@ -206,7 +206,7 @@ public class StartManager : Singleton<StartManager>{
 
 	public void OnLaunchTutorialButton() {
 		DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut1";
-		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, showFoodTip: true);
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, "LoadingKeyTutorial" ,showFoodTip: false);
     }
 
 	// Called from AgeAskController
