@@ -160,4 +160,8 @@ public class CheatyTierUpgrade : MonoBehaviour {
 	public void OnLoadEpipenButton() {
 		SceneManager.LoadScene(SceneUtils.EPIPEN);
 	}
+
+	public void OnClearDataButton() {
+		DataManager.Instance._DebugClearData();
+	}
 }

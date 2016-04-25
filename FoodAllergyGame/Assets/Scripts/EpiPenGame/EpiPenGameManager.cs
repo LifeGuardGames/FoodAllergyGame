@@ -18,8 +18,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 
 	public GameObject leftButton;
 	public GameObject rightButton;
-
-	public Transform trashSlot;
+	
 	public GameObject checkButton;
 
 	private int pickSlotPage = 0;
