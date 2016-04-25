@@ -8,11 +8,13 @@ public class RestaurantMenuUIController : MonoBehaviour {
 	public Image button1Image;
 	public List<RestMenuButtonAllergyNode> button1AllergyNodeList;
 	private int button1AllergyNodeCount;
+	public Image button1Coins;
 
 	public GameObject button2;
 	public Image button2Image;
 	public List<RestMenuButtonAllergyNode> button2AllergyNodeList;
 	private int button2AllergyNodeCount;
+	public Image button2Coins;
 
 	public Animation inspectAnimation;
 	public GameObject allergyButtonParent;
@@ -139,6 +141,8 @@ public class RestaurantMenuUIController : MonoBehaviour {
 					button1AllergyNodeList[i].Init(false, Allergies.None);
 				}
 			}
+
+			button1Coins.sprite = SpriteCacheManager.GetSlotSpriteData(foodData.Reward);
 		}
 		// Right button
 		else {
@@ -152,6 +156,8 @@ public class RestaurantMenuUIController : MonoBehaviour {
 					button2AllergyNodeList[i].Init(false, Allergies.None);
 				}
 			}
+
+			button2Coins.sprite = SpriteCacheManager.GetSlotSpriteData(foodData.Reward);
 		}
 	}
 
@@ -166,8 +172,6 @@ public class RestaurantMenuUIController : MonoBehaviour {
 			button1.GetComponent<Button>().interactable = true;
 			button2.GetComponent<Button>().interactable = true;
 			RestaurantManager.Instance.GetTable(Waiter.Instance.CurrentTable).Seat.GetComponentInChildren<CustomerTutorial>().hideFinger();
-			//RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<CustomerTutorial>().step = 5;
-			//RestaurantManager.Instance.GetTable(Waiter.Instance.currentTable).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
 		}
 		RestaurantManager.Instance.inspectionButtonClicked++;
 		StopCoroutine("StartAnimation");

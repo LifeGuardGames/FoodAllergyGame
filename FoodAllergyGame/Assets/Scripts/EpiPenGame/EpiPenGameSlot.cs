@@ -13,7 +13,6 @@ public class EpiPenGameSlot : MonoBehaviour, IDropHandler {
 	public void ClearToken() {
 		EpiPenGameToken token = GetToken();
 		if(token != null) {
-			token.transform.SetParent(EpiPenGameManager.Instance.trashSlot);
 			Destroy(token.gameObject);
 		}
 	}

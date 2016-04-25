@@ -161,6 +161,7 @@ public class DataManager : Singleton<DataManager> {
 			}
 		}
     }
+
 	private void PostLoadLogic() {
 		gameData.Challenge.PostLogicCheck();
 	}
@@ -175,6 +176,9 @@ public class DataManager : Singleton<DataManager> {
 			return null;
 		}
 	}
-
 	#endregion
+
+	public void _DebugClearData() {
+		PlayerPrefs.DeleteAll();
+	}
 }
