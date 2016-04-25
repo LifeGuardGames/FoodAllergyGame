@@ -7,7 +7,7 @@ public class DecoButton : MonoBehaviour {
 	public Image buttonImageTop;
 
 	public Image decoImage;
-	public Text newTag;
+	public GameObject newTag;
 
 	public Sprite removeSprite;
 	public Sprite unboughtSpriteTop;
@@ -17,7 +17,7 @@ public class DecoButton : MonoBehaviour {
 	public GameObject checkMark;
 	public GameObject padlock;
 
-	private bool isUnLocked = false;			// Cached on instantiate
+	private bool isUnlocked = false;			// Cached on instantiate
 
 	public void Init(ImmutableDataDecoItem decoData){
 		decoID = decoData.ID;
@@ -26,20 +26,20 @@ public class DecoButton : MonoBehaviour {
 		string spriteName = decoData.SpriteName;
 		decoImage.sprite = SpriteCacheManager.GetDecoSpriteData(spriteName);
 
-		isUnLocked = DecoManager.Instance.IsDecoUnlocked(decoID);
-		if(DataManager.Instance.GameData.Decoration.NewDeco.Contains(decoData.ID) && isUnLocked) {
+		isUnlocked = DecoManager.Instance.IsDecoUnlocked(decoID);
+		if(DataManager.Instance.GameData.Decoration.NewDeco.Contains(decoData.ID) && isUnlocked) {
 			DataManager.Instance.GameData.Decoration.NewDeco.Remove(decoData.ID);
-			newTag.enabled = true;
+			newTag.SetActive(true);
         }
 		else {
-			newTag.enabled = false;
+			newTag.SetActive(false);
 		}
 		RefreshButtonState();
 	}
 
 	// Change button colors based on the state of the decoration
 	public void RefreshButtonState(){
-		if(isUnLocked) {
+		if(isUnlocked) {
 			padlock.SetActive(false);
 			// Check if it was bought already
 			if(DecoManager.IsDecoBought(decoID)){
@@ -54,6 +54,7 @@ public class DecoButton : MonoBehaviour {
 		else {
 			checkMark.SetActive(false);
 			padlock.SetActive(true);
+			decoImage.color = new Color(0.5f, 0.5f, 0.5f);
             buttonImageTop.sprite = lockedSpriteTop;
         }
 	}
