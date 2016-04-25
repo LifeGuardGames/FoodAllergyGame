@@ -212,12 +212,12 @@ public class RestaurantManagerChallenge : RestaurantManager{
 				pauseUI.isActive = false;
 				if(DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge == "ChallengeTut2") {
 					AnalyticsManager.Instance.TutorialFunnel("Finished tut day, 4 customers");
-					DataManager.Instance.GameData.Cash.TotalCash = 850;
 				}
 
 			    if(isTutorial) {
 					AnalyticsManager.Instance.TutorialFunnel("Finished tut day, 2 guided customers");
 					DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
+					DataManager.Instance.SaveGameData();
 					DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut2";
 					isTutorial = false;
 					DataManager.Instance.GameData.RestaurantEvent.CustomerList.Add("CustomerRegular");
@@ -230,7 +230,9 @@ public class RestaurantManagerChallenge : RestaurantManager{
 					StartDay();
 				}
 				else {
-				
+					if(TierManager.Instance.CurrentTier == 0) {
+						DataManager.Instance.GameData.Cash.TotalCash = 850;
+					}
 					DataManager.Instance.GameData.DayTracker.ChallengesPlayed++;
 					DataManager.Instance.ChallengesInSession++;
 
