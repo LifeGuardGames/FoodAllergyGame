@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class DecoButton : MonoBehaviour {
 	private string decoID;
@@ -8,7 +7,6 @@ public class DecoButton : MonoBehaviour {
 	public Image buttonImageTop;
 
 	public Image decoImage;
-	public Text decoNameText;
 	public Text newTag;
 
 	public Sprite removeSprite;
@@ -24,7 +22,6 @@ public class DecoButton : MonoBehaviour {
 	public void Init(ImmutableDataDecoItem decoData){
 		decoID = decoData.ID;
 		gameObject.name = decoData.ID;
-		decoNameText.text = LocalizationText.GetText(decoData.TitleKey);
 		
 		string spriteName = decoData.SpriteName;
 		decoImage.sprite = SpriteCacheManager.GetDecoSpriteData(spriteName);

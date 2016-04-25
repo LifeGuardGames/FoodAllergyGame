@@ -139,7 +139,6 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	public void ShowCaseDeco(string decoID){
-		Debug.Log(decoID);
 		ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
 		showcaseController.ShowInfo(decoData);
 	}

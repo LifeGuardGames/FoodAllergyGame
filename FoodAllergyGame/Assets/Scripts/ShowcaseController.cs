@@ -50,7 +50,7 @@ public class ShowcaseController : MonoBehaviour {
 		titleText.text = LocalizationText.GetText(decoData.TitleKey);
 
 		descriptionText.text = LocalizationText.GetText(decoData.DescriptionKey);
-		if(descriptionText.text.Contains("No text for ")) { // Hard code ignore empty text
+		if(descriptionText.text == "None") {						// Hard code ignore empty text
 			descriptionText.text = "";
 		}
 
