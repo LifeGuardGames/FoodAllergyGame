@@ -101,8 +101,11 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 			}
 		}
 
-		ShowPage(0);
+		StartCoroutine(ShowPage(0));
 		if(isTutorial) {
+			// Wait for show page to complete destroying and instantiating children
+			yield return 0;
+			yield return 0;
 			StartTutorial();
 		}
 	}
@@ -118,6 +121,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 				placedTokenCount++;
 			}
 		}
+		Debug.Log(placedTokenCount);
 		UIManager.CheckButtonToggle(placedTokenCount == finalSlotList.Count ? true : false);
 	}
 
@@ -168,21 +172,21 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		else {
 			pickSlotPage--;
 		}
-		ShowPage(pickSlotPage);
+		StartCoroutine(ShowPage(pickSlotPage));
 	}
 
 	// Either refreshes current page, or shows a new page given page number
-	private void ShowPage(int _pickSlotPage) {
+	private IEnumerator ShowPage(int _pickSlotPage) {
 		// Destroy children beforehand
 		foreach(EpiPenGameSlot slot in currentPickSlotList) {
 			slot.ClearToken();
 		}
+		yield return 0;
 
 		pickSlotPage = _pickSlotPage;
 		
 		int startingIndex = _pickSlotPage * pickSlotPageSize;
 		int endingIndex = startingIndex + pickSlotPageSize;
-
 		int pickTokensIndex = 0;
 		
 		for(int i = startingIndex; i < endingIndex; i++) {
@@ -191,7 +195,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 			}
 
 			int currentPickTokenNumber = allPickTokens[pickTokensIndex];
-            if(!IsTokenIndexInFinalSlot(currentPickTokenNumber)) {	// TODO Needs to read from token list
+            if(!IsTokenIndexInFinalSlot(currentPickTokenNumber)) {  // TODO Needs to read from token list
 				string suffixID = epipenSetPrefix + currentPickTokenNumber;
                 GameObject token = Resources.Load("Token" + suffixID) as GameObject;
 				GameObject slotToken = GameObjectUtils.AddChildGUI(currentPickSlotList[i % pickSlotPageSize].gameObject, token);
@@ -274,16 +278,21 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 			}
 
 			// Return all tokens that is not locked, this and after
+			List<EpiPenGameSlot> auxSlotListToRemove = new List<EpiPenGameSlot>();	// Temp list to delete
 			for(int i = slotIndex; i < totalSteps; i++) {
 				EpiPenGameSlot finalSlot = finalSlotList[i];
 				AnalyticsManager.Instance.MissedPiece(finalSlotList[i].GetToken().tokenNumber);
 				if(!finalSlot.GetToken().IsLocked) {
 					finalSlot.ClearToken();
+//					auxSlotListToRemove.Add(finalSlot);
 					finalSlot.GetComponent<Image>().sprite = emptyFinalSlotSprite;
 				}
 			}
+			//foreach(EpiPenGameSlot slotToRemove in auxSlotListToRemove) {
+			//	finalSlotList.Remove(slotToRemove);
+			//}
 		}
-		ShowPage(0);
+		StartCoroutine(ShowPage(0));
 	}
 	
 	private void OnTokenAnimationDone(int slotIndex, GameObject animationTokenAux) {
