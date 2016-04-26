@@ -26,7 +26,7 @@ public class ChallengeProgressBarController : MonoBehaviour{
 	}
 
 	public void MoveBar(){
-		int score = 170;//RestaurantManagerChallenge.Instance.GetComponent<RestaurantManagerChallenge>().GetScore();
+		int score = RestaurantManagerChallenge.Instance.GetComponent<RestaurantManagerChallenge>().GetScore();
 		int bronzeBreakPoint = RestaurantManagerChallenge.Instance.GetComponent<RestaurantManagerChallenge>().chall.BronzeBreakPoint;
 		int silverBreakPoint = RestaurantManagerChallenge.Instance.GetComponent<RestaurantManagerChallenge>().chall.SilverBreakPoint;
 		int goldBreakPoint = RestaurantManagerChallenge.Instance.GetComponent<RestaurantManagerChallenge>().chall.GoldBreakPoint;
