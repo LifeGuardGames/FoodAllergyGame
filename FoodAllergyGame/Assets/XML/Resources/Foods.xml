@@ -41,9 +41,9 @@
 		<SpriteName>FoodCheeseStick</SpriteName>
 		<Allergies>Dairy</Allergies>
 		<Keywords>Dessert,Meal</Keywords>
-		<Tier>0</Tier>
-		<Reward>2</Reward>
-		<Slot>1</Slot>
+		<Tier>1</Tier>
+		<Reward>3</Reward>
+		<Slot>2</Slot>
 	</Food>
 	<Food ID="FoodPeanuts">
 		<FoodNameKey>FoodPeanuts</FoodNameKey>
@@ -86,9 +86,9 @@
 		<SpriteName>FoodMilk</SpriteName>
 		<Allergies>Dairy</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
-		<Tier>1</Tier>
-		<Reward>3</Reward>
-		<Slot>2</Slot>
+		<Tier>0</Tier>
+		<Reward>2</Reward>
+		<Slot>1</Slot>
 	</Food>
 	<Food ID="FoodPBJelly">
 		<FoodNameKey>FoodPBJelly</FoodNameKey>
@@ -105,7 +105,7 @@
 		<SpriteName>FoodPBCookies</SpriteName>
 		<Allergies>Wheat,Peanut</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
-		<Tier>7</Tier>
+		<Tier>13</Tier>
 		<Reward>4</Reward>
 		<Slot>2</Slot>
 	</Food>
@@ -115,7 +115,7 @@
 		<SpriteName>FoodPBPretzels</SpriteName>
 		<Allergies>Wheat,Peanut</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
-		<Tier>5</Tier>
+		<Tier>17</Tier>
 		<Reward>4</Reward>
 		<Slot>2</Slot>
 	</Food>
@@ -124,9 +124,9 @@
 		<SpriteName>FoodPeanutMMs</SpriteName>
 		<Allergies>Dairy,Peanut</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
-		<Tier>13</Tier>
-		<Reward>5</Reward>
-		<Slot>3</Slot>
+		<Tier>7</Tier>
+		<Reward>4</Reward>
+		<Slot>2</Slot>
 	</Food>
 	<Food ID="FoodMacAndCheese">
 		<FoodNameKey>FoodMacAndCheese</FoodNameKey>
@@ -170,17 +170,17 @@
 		<Allergies>Wheat,Dairy,Peanut</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
 		<Tier>3</Tier>
-		<Reward>4</Reward>
-		<Slot>2</Slot>
+		<Reward>6</Reward>
+		<Slot>3</Slot>
 	</Food>
 	<Food ID="FoodPeanutIceCreamBar">
 		<FoodNameKey>FoodPeanutIceCreamBar</FoodNameKey>
 		<SpriteName>FoodPeanutIceCreamBar</SpriteName>
 		<Allergies>Dairy,Peanut</Allergies>
 		<Keywords>Drink,Dessert</Keywords>
-		<Tier>17</Tier>
-		<Reward>5</Reward>
-		<Slot>3</Slot>
+		<Tier>5</Tier>
+		<Reward>4</Reward>
+		<Slot>2</Slot>
 	</Food>
 	<Food ID="FoodYogurtParfait">
 		<FoodNameKey>FoodYogurtParfait</FoodNameKey>
