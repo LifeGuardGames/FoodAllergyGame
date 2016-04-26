@@ -15,7 +15,6 @@ public class ChallengeProgressBarController : MonoBehaviour{
 
 	void Start(){
 		parentBarWidth = barParent.rect.width;
-		Debug.Log("Width " + parentBarWidth);
 
 		bronzeBarFillAux = 0;
 		silverBarFillAux = 0;
