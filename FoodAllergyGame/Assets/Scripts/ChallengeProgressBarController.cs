@@ -1,61 +1,94 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
+using System.Collections;
 
-public class ChallengeProgressBarController : MonoBehaviour {
+public class ChallengeProgressBarController : MonoBehaviour{
+	public RectTransform barParent;
+	public RectTransform bronzeBar;
+	public RectTransform silverBar;
+	public RectTransform goldBar;
 
-	public Image Bronze;
-	public Image Silver;
-	public Image Gold;
+	private float parentBarWidth;
+	private float bronzeBarFillAux;
+	private float silverBarFillAux;
+	private float goldBarFillAux;
 
+	void Start(){
+		parentBarWidth = barParent.rect.width;
 
-	public void MoveBar() {
-		if(Bronze.fillAmount < 1.0f) {
-			if(RestaurantManagerChallenge.Instance.GetComponent<RestaurantManagerChallenge>().GetScore() > RestaurantManagerChallenge.Instance.GetComponent<RestaurantManagerChallenge>().chall.BronzeBreakPoint) {
-				LeanTween.value(this.gameObject, UpdateBronzeBar, 0f, 1f, 3.0f);
+		bronzeBarFillAux = 0;
+		silverBarFillAux = 0;
+		goldBarFillAux = 0;
+	}
+
+	public void DebugButton(){
+		MoveBar();
+	}
+
+	public void MoveBar(){
+		int score = 170;//RestaurantManagerChallenge.Instance.GetComponent<RestaurantManagerChallenge>().GetScore();
+		int bronzeBreakPoint = RestaurantManagerChallenge.Instance.GetComponent<RestaurantManagerChallenge>().chall.BronzeBreakPoint;
+		int silverBreakPoint = RestaurantManagerChallenge.Instance.GetComponent<RestaurantManagerChallenge>().chall.SilverBreakPoint;
+		int goldBreakPoint = RestaurantManagerChallenge.Instance.GetComponent<RestaurantManagerChallenge>().chall.GoldBreakPoint;
+
+		if(bronzeBarFillAux < 1.0f){
+			if(score >= bronzeBreakPoint){
+				LeanTween.value(this.gameObject, UpdateBronzeBar, 0f, 1f, 2f).setEase(LeanTweenType.easeInOutQuad).setOnComplete(OnBronzeBarComplete);
 			}
-			else {
-				LeanTween.value(this.gameObject, UpdateBronzeBar, 0f, (float)RestaurantManagerChallenge.Instance.GetComponent<RestaurantManagerChallenge>().GetScore() / (float)RestaurantManagerChallenge.Instance.GetComponent<RestaurantManagerChallenge>().chall.BronzeBreakPoint, 3.0f);
+			else{
+				LeanTween.value(this.gameObject, UpdateBronzeBar, 0f, (float)score / (float)bronzeBreakPoint, 2f).setEase(LeanTweenType.easeInOutQuad);
 			}
 		}
-		else if(Silver.fillAmount < 1.0f) {
-			if(RestaurantManagerChallenge.Instance.GetComponent<RestaurantManagerChallenge>().GetScore() > RestaurantManagerChallenge.Instance.GetComponent<RestaurantManagerChallenge>().chall.SilverBreakPoint) { 
-				LeanTween.value(this.gameObject, UpdateSilverBar, 0f, 1f, 3.0f);
-				}
-		else {
-			LeanTween.value(this.gameObject, UpdateSilverBar, 0f, (float)RestaurantManagerChallenge.Instance.GetComponent<RestaurantManagerChallenge>().GetScore() / (float)RestaurantManagerChallenge.Instance.GetComponent<RestaurantManagerChallenge>().chall.SilverBreakPoint, 3.0f);
+		else if(silverBarFillAux < 1.0f){
+			if(score >= silverBreakPoint){ 
+				LeanTween.value(this.gameObject, UpdateSilverBar, 0f, 1f, 2f).setEase(LeanTweenType.easeInOutQuad).setOnComplete(OnSilverBarComplete);
+			}
+			else{
+				LeanTween.value(this.gameObject, UpdateSilverBar, 0f, (float)score / (float)silverBreakPoint, 2f).setEase(LeanTweenType.easeInOutQuad);
 			}
 		}
-		else if(Gold.fillAmount < 1.0f) {
-			if(RestaurantManagerChallenge.Instance.GetComponent<RestaurantManagerChallenge>().GetScore() > RestaurantManagerChallenge.Instance.GetComponent<RestaurantManagerChallenge>().chall.GoldBreakPoint) {
-				LeanTween.value(this.gameObject, UpdateGoldBar, 0f, 1f, 3.0f);
+		else if(goldBarFillAux < 1.0f){
+			if(score >= goldBreakPoint){
+				LeanTween.value(this.gameObject, UpdateGoldBar, 0f, 1f, 2f).setEase(LeanTweenType.easeInOutQuad).setOnComplete(OnGoldBarComplete);
 			}
-			else {
-				LeanTween.value(this.gameObject, UpdateGoldBar, 0f,(float) RestaurantManagerChallenge.Instance.GetComponent<RestaurantManagerChallenge>().GetScore() / (float)RestaurantManagerChallenge.Instance.GetComponent<RestaurantManagerChallenge>().chall.GoldBreakPoint, 3.0f);
+			else{
+				LeanTween.value(this.gameObject, UpdateGoldBar, 0f, (float)score / (float)goldBreakPoint, 2f).setEase(LeanTweenType.easeInOutQuad);
 			}
 		}
 	}
 
-	void UpdateBronzeBar(float val) {
-			Bronze.fillAmount = val;
-		if(Bronze.fillAmount == 1.0f) {
-			transform.parent.GetComponent<ChallengeOverUi>().UpdateImage(ChallengeReward.Bronze);
+	private void UpdateBronzeBar(float val){
+		bronzeBarFillAux = val;
+		bronzeBar.offsetMax = new Vector2(-parentBarWidth * (1f - val), 0f);
+	}
+
+	private void OnBronzeBarComplete(){
+		if(bronzeBarFillAux == 1.0f){
+			transform.parent.GetComponent<ChallengeOverUi>().UpdateTrophy(ChallengeReward.Bronze);
 			MoveBar();
 		}
 	}
 
-	void UpdateSilverBar(float val) {
-		Silver.fillAmount = val;
-		if(Silver.fillAmount == 1.0f) {
-			transform.parent.GetComponent<ChallengeOverUi>().UpdateImage(ChallengeReward.Silver);
+	private void UpdateSilverBar(float val){
+		silverBarFillAux = val;
+		silverBar.offsetMax = new Vector2(-parentBarWidth * (1f - val), 0f);
+	}
+
+	private void OnSilverBarComplete(){
+		if(silverBarFillAux == 1.0f){
+			transform.parent.GetComponent<ChallengeOverUi>().UpdateTrophy(ChallengeReward.Silver);
 			MoveBar();
 		}
 	}
 
-	void UpdateGoldBar(float val) {
-		Gold.fillAmount = val;
-		if(Gold.fillAmount == 1.0f) {
-			transform.parent.GetComponent<ChallengeOverUi>().UpdateImage(ChallengeReward.Gold);
+	private void UpdateGoldBar(float val){
+		goldBarFillAux = val;
+		goldBar.offsetMax = new Vector2(-parentBarWidth * (1f - val), 0f);
+	}
+
+	private void OnGoldBarComplete(){
+		if(goldBarFillAux == 1.0f){
+			transform.parent.GetComponent<ChallengeOverUi>().UpdateTrophy(ChallengeReward.Gold);
 		}
 	}
 }

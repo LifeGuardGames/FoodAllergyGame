@@ -3,17 +3,11 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class ChallengeOverUi : MonoBehaviour {
-
-
-	//public Text textCustomersMissed;
 	public Text textScore;
 	public Text textPointsEarned;
 	public Text textPointsLost;
-	public Image medal;
-	public Image Silver;
-	public Image Bronze;
-	public Image Stone;
-	public ChallengeProgressBarController prog;
+	public Image trophyImage;
+	public ChallengeProgressBarController progressBarController;
 	public int deltaCoinsAux;
 
 	public void Populate(int negativeCash, int cashEarned, int score) {
@@ -24,23 +18,13 @@ public class ChallengeOverUi : MonoBehaviour {
 
 	public void StartBar() {
 		StartCoroutine("ChangePoints");
-		prog.MoveBar();
+		progressBarController.MoveBar();
 	}
 
-	public void UpdateImage(ChallengeReward rew) {
-		if(rew == ChallengeReward.Silver) {
-			Bronze.gameObject.SetActive(false);
-			Silver.gameObject.SetActive(true);
-		}
-		if(rew == ChallengeReward.Bronze) {
-			Stone.gameObject.SetActive(false);
-			Bronze.gameObject.SetActive(true);
-		}
-		if(rew == ChallengeReward.Gold) {
-			Silver.gameObject.SetActive(false);
-			medal.gameObject.SetActive(true);
-		}
+	public void UpdateTrophy(ChallengeReward reward) {
+		trophyImage.sprite = SpriteCacheManager.GetTrophySpriteData(reward);
 	}
+
 	private IEnumerator ChangePoints() {
 		yield return new WaitForSeconds(0.5f);
 		int currentCoinsAux = 0;
