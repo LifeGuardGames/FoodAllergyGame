@@ -227,6 +227,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 					TableList[0].GetComponent<Table>().inUse = false;
 					TableList[1].GetComponent<Table>().inUse = false;
 					pauseUI.isActive = true;
+					restaurantUI.ResetDoor();
 					StartDay();
 				}
 				else {
