@@ -34,4 +34,9 @@ public class DoorController : MonoBehaviour {
 	public void LockdownDoor() {
 		doorLockdownTween.Show();
     }
+
+
+	public void ResetDoor() {
+		doorLockdownTween.Hide();
+	}
 }

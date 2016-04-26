@@ -227,6 +227,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 					TableList[0].GetComponent<Table>().inUse = false;
 					TableList[1].GetComponent<Table>().inUse = false;
 					pauseUI.isActive = true;
+					restaurantUI.ResetDoor();
 					StartDay();
 				}
 				else {
@@ -401,6 +402,12 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			}
 		}
 		if(challengeAI.Score >= chall.GoldBreakPoint) {
+			if(DataManager.Instance.GameData.Challenge.ChallengeProgress[chall.ID] != ChallengeReward.Gold) {
+				CashManager.Instance.RestaurantEndCashUpdate(500, 500);
+			}
+			else {
+				CashManager.Instance.RestaurantEndCashUpdate(20, 20);
+			}
 			DataManager.Instance.GameData.Challenge.ChallengeProgress[chall.ID] = ChallengeReward.Gold;
 			return ChallengeReward.Gold;
 		}
@@ -409,12 +416,14 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			if(DataManager.Instance.GameData.Challenge.ChallengeProgress[chall.ID] != ChallengeReward.Gold) {
 				DataManager.Instance.GameData.Challenge.ChallengeProgress[chall.ID] = ChallengeReward.Silver;
 			}
+			CashManager.Instance.RestaurantEndCashUpdate(10, 10);
 			return ChallengeReward.Silver;
 		}
 		else if (challengeAI.Score >= chall.BronzeBreakPoint) {
 			if(DataManager.Instance.GameData.Challenge.ChallengeProgress[chall.ID] != ChallengeReward.Gold || DataManager.instance.GameData.Challenge.ChallengeProgress[chall.ID] != ChallengeReward.Silver) {
 				DataManager.Instance.GameData.Challenge.ChallengeProgress[chall.ID] = ChallengeReward.Bronze;
 			}
+			CashManager.Instance.RestaurantEndCashUpdate(5, 5);
 			return ChallengeReward.Bronze;
 		}
 		else {

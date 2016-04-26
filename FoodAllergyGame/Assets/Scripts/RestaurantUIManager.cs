@@ -68,4 +68,8 @@ public class RestaurantUIManager : MonoBehaviour{
 	public void OpenAndCloseDoor() {
 		doorController.OpenAndCloseDoor();
 	}
+
+	public void ResetDoor() {
+		doorController.ResetDoor();
+	}
 }
