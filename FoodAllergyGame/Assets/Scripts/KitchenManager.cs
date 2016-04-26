@@ -24,6 +24,7 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 			return baseSortingOrder;
 		}
 	}
+	public bool IsTrachcanTut = false;
 	
 	void Start(){
 		if(SceneManager.GetActiveScene().name == SceneUtils.RESTAURANT){
@@ -106,7 +107,9 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 
 	#region IWaiterSelection implementation
 	public void OnWaiterArrived(){
-		CookOrder(Waiter.Instance.OrderChef());
+		if(!IsTrachcanTut) {
+			CookOrder(Waiter.Instance.OrderChef());
+		}
 		Waiter.Instance.Finished();
 	}
 

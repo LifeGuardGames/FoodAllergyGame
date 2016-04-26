@@ -614,6 +614,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		if(RestaurantManager.Instance.trashCanTutorial.activeSelf) {
 			RestaurantManager.Instance.trashCanTutorial.SetActive(false);
 			DataManager.Instance.GameData.Tutorial.IsTrashCanTutDone = true;
+			KitchenManager.Instance.IsTrachcanTut = false;
         }
 		Debug.Log("Redorder");
 		DestroyOrder();
