@@ -22,6 +22,10 @@ public class EpiPenGameUIManager : MonoBehaviour{
 		timer.ResetTimer();
 	}
 
+	public void ContinueTimer() {
+		timer.ContinueTimer();
+	}
+
 	public void OnCheckButton() {
 		timer.PauseTimer();
 	}

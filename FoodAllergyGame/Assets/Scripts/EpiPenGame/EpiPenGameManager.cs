@@ -72,12 +72,9 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		// Wait one frame, wait for everything to destroy
 		yield return 0;
 
-		//int tokensToPick = DataManager.Instance.GameData.Epi.Difficulty;
-		int tokensToPick = 5;
+		int tokensToPick = DataManager.Instance.GameData.Epi.Difficulty;
 		difficulty = tokensToPick;
 		if(!isTutorial) {
-			Debug.Log("REG GAME");
-
 			// Populate the tokens to remove by order number
 			foreach(int randomIndex in NumberUtils.UniqueRandomList(tokensToPick, 0, totalSteps - 1)) {
 				allPickTokens.Add(randomIndex);
@@ -121,7 +118,6 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 				placedTokenCount++;
 			}
 		}
-		Debug.Log(placedTokenCount);
 		UIManager.CheckButtonToggle(placedTokenCount == finalSlotList.Count ? true : false);
 	}
 
@@ -187,21 +183,19 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		
 		int startingIndex = _pickSlotPage * pickSlotPageSize;
 		int endingIndex = startingIndex + pickSlotPageSize;
-		int pickTokensIndex = 0;
-		
+
 		for(int i = startingIndex; i < endingIndex; i++) {
 			if(allPickTokens.Count == i) {      // Reached the end of list
 				break;
 			}
 
-			int currentPickTokenNumber = allPickTokens[pickTokensIndex];
+			int currentPickTokenNumber = allPickTokens[i];
             if(!IsTokenIndexInFinalSlot(currentPickTokenNumber)) {  // TODO Needs to read from token list
 				string suffixID = epipenSetPrefix + currentPickTokenNumber;
                 GameObject token = Resources.Load("Token" + suffixID) as GameObject;
 				GameObject slotToken = GameObjectUtils.AddChildGUI(currentPickSlotList[i % pickSlotPageSize].gameObject, token);
 				slotToken.GetComponent<EpiPenGameToken>().Init(currentPickTokenNumber, false);
 			}
-			pickTokensIndex++;
 		}
 		RefreshButtonShowStatus();
 	}
@@ -224,6 +218,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		}
 	}
 	#endregion
+
 	#region Check tokens animations
 	public void AnimateEnding(int slotIndex = 0) {
 		// Grab token info and hide the token itself to fake it tweening
@@ -284,13 +279,12 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 				AnalyticsManager.Instance.MissedPiece(finalSlotList[i].GetToken().tokenNumber);
 				if(!finalSlot.GetToken().IsLocked) {
 					finalSlot.ClearToken();
-//					auxSlotListToRemove.Add(finalSlot);
 					finalSlot.GetComponent<Image>().sprite = emptyFinalSlotSprite;
 				}
 			}
-			//foreach(EpiPenGameSlot slotToRemove in auxSlotListToRemove) {
-			//	finalSlotList.Remove(slotToRemove);
-			//}
+
+			// Continue the timer since incorrect
+			UIManager.ContinueTimer();
 		}
 		StartCoroutine(ShowPage(0));
 	}
