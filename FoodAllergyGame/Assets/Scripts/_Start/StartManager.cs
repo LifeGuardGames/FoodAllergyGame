@@ -48,6 +48,7 @@ public class StartManager : Singleton<StartManager>{
 		// First restaurant tutorial
 		if(DataManager.Instance.GameData.Tutorial.IsTutorial1Done == false){
 			shopEntranceUIController.Hide();
+			replayTutButton.SetActive(false);
 			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut1";
 		}
 		else {
