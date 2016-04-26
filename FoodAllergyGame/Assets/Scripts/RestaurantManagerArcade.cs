@@ -171,9 +171,11 @@ public class RestaurantManagerArcade : RestaurantManager {
 					dayNetCash = dayEarnedCash + Medic.Instance.MedicCost;
 				}
                     CashManager.Instance.RestaurantEndCashUpdate(dayNetCash, dayCashRevenue);
-
-					// Unlock new event generation for StartManager
-					DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
+				if(TierManager.Instance.CurrentTier == 0) {
+					DataManager.Instance.GameData.Cash.TotalCash = 850;
+				}
+				// Unlock new event generation for StartManager
+				DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
 
 					
 //					else if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT3") {

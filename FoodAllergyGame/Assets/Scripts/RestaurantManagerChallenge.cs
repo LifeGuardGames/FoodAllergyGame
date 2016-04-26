@@ -234,7 +234,13 @@ public class RestaurantManagerChallenge : RestaurantManager{
 					if(TierManager.Instance.CurrentTier == 0) {
 						DataManager.Instance.GameData.Cash.TotalCash = 850;
 					}
-					DataManager.Instance.GameData.DayTracker.ChallengesPlayed++;
+					if(chall.ID == "TutDecoPlayArea") {
+						DataManager.Instance.GameData.Tutorial.IsPlayAreaTutDone = true;
+					}
+					if(chall.ID == "TutDecoFlyThru") {
+						DataManager.Instance.GameData.Tutorial.IsFlyThruTutDone = true;
+					}
+                    DataManager.Instance.GameData.DayTracker.ChallengesPlayed++;
 					DataManager.Instance.ChallengesInSession++;
 
 					AnalyticsManager.Instance.EndChallengeReport(challengeAI.ScoreIt(), DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge, challengeAI.MissingCustomers, challengeAI.AvgSatisfaction(), savedCustomers, attempted, inspectionButtonClicked);

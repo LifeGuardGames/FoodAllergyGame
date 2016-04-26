@@ -116,7 +116,12 @@ public class StartManager : Singleton<StartManager>{
 
 		// Make sure recalculate tier doesnt get called again
 		CashManager.Instance.SyncLastSeenTotalCash();
-
+		if(TierManager.Instance.CurrentTier == 4 && !DataManager.Instance.GameData.Tutorial.IsPlayAreaTutDone) {
+			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoPlayArea";
+		}
+		else if(TierManager.Instance.CurrentTier == 6 && !DataManager.Instance.GameData.Tutorial.IsFlyThruTutDone) {
+			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoFlyThru";
+        }
 		// Save game data again, lock down on the event
 		DataManager.Instance.SaveGameData();
 		GenerateCustomerList();
