@@ -20,6 +20,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	public GameObject rightButton;
 	
 	public GameObject checkButton;
+	//public TweenToggle skipButtonTween;
 
 	private int pickSlotPage = 0;
 	private int pickSlotPageSize = 5;
@@ -30,6 +31,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	public GameObject tutFingerPressPrefab;
 	private int attempts = 0;
 	private int difficulty = 0;
+	private bool isAnimatingEnding = false;		// Used for skipping
 	private string epipenSetPrefix;     // "A" or "B", 'TokenA1' format
 
 	void Start() {
@@ -48,7 +50,8 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 			}
 		}
 		StartGame();
-	}
+		//skipButtonTween.Hide();
+    }
 
 	/// <summary>
 	/// Add all the final tokens to the top and keep internal list of all the pick tokens
@@ -221,7 +224,15 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	#endregion
 
 	#region Check tokens animations
+	public void OnSkipAnimationButton() {
+		if(isAnimatingEnding) {
+			// TODO implement, think about architecture...
+		}
+    }
+
 	public void AnimateEnding(int slotIndex = 0) {
+		isAnimatingEnding = true;
+
 		// Grab token info and hide the token itself to fake it tweening
 		EpiPenGameToken tokenInSlot = finalSlotList[slotIndex].GetToken();
 		int tokenNumber = tokenInSlot.tokenNumber;
@@ -284,6 +295,8 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 
 			// Continue the timer since incorrect
 			UIManager.ContinueTimer();
+
+			isAnimatingEnding = false;
 		}
 		StartCoroutine(ShowPage(0));
 	}
@@ -296,7 +309,8 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 			AnimateEnding(slotIndex);
 		}
 		else {
-			UIManager.ShowGameOver(attempts);
+			isAnimatingEnding = false;
+            UIManager.ShowGameOver(attempts);
 			AnalyticsManager.Instance.EpiPenGameResultsAalytics(attempts, difficulty, UIManager.timerText.text);
 		}
 	}

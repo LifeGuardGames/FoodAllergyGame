@@ -43,7 +43,6 @@ public class EpiPenGameToken : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 				checkMarkAnim.Play();
 			}
 			AudioManager.Instance.PlayClip("EpipenRight");
-			Debug.Log("RIGHT");
 		}
 		else {
 			checkMarkAnim.gameObject.SetActive(false);
