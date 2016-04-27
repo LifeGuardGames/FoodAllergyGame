@@ -166,6 +166,9 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 
 	// Called from beacon gameobject
 	public void ShowProductPage() {
+		StartManager.Instance.ChallengeMenuEntranceUIController.ToggleClickable(false);
+		StartManager.Instance.dinerEntranceUIController.ToggleClickable(false);
+		StartManager.Instance.shopEntranceUIController.ToggleClickable(false);
 		productPageUIController.ShowPanel();
 	}
 
