@@ -14,7 +14,7 @@ public class BehavEaterNotifyLeave : Behav {
 
 	public override void Act() {
 		if(self.tableNum == 5) {
-			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[9]);
+			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[10]);
 			Behav leave = (Behav)Activator.CreateInstance(type);
 			leave.self = self;
 			leave.Act();
