@@ -51,7 +51,7 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 			order[0].GetComponent<Order>().StartCooking(cookTimer);
 			order[1].transform.SetParent(this.gameObject.transform);
 			order[1].GetComponent<Order>().StartCooking(cookTimer);
-			AnimSetCooking(1);
+			AnimSetCooking(2);
 
 			AudioManager.Instance.PlayClip("GiveOrder");
 			AudioManager.Instance.PlayClip("Cooking", variations:3);
