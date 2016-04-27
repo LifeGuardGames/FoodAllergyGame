@@ -13,8 +13,8 @@ public class TableVIP : Table {
 	}
 
 	public override void Init() {
-		if(SceneManager.GetActiveScene() != SceneManager.GetSceneByName(SceneUtils.DECO)) {
-			base.Init();
+		base.Init();
+		if(SceneManager.GetActiveScene().name == SceneUtils.RESTAURANT) {
 			node = Pathfinding.Instance.NodeVIP;
 			CustomerUIController customerUI = this.GetComponent<CustomerUIController>();
 			customerUI.ToggleWait(false);

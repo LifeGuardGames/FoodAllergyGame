@@ -1,6 +1,6 @@
 using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
+using System.Collections;
 
 //Handles the interaction between the customer and the waiter telling the waiter what action to perform based on the customers state
 using UnityEngine.SceneManagement;
@@ -62,11 +62,13 @@ public class Table : MonoBehaviour, IWaiterSelection{
 			if(DataManager.Instance.GetEvent() == "EventTVIP") {
 				this.GetComponent<BoxCollider>().enabled = false;
 			}
+			// can't get reference to disabled objects during runtime
+			ToggleTableNum(true);
+			text.text = (tableNumber + 1).ToString();
 		}
 		TurnOffHighlight();
-		// can't get reference to disabled objects during runtime
-		ToggleTableNum(true);
-		text.text = (tableNumber + 1).ToString();
+
+		// Turning this off after it has been set
 		ToggleTableNum(false);
 	}
 
