@@ -122,6 +122,12 @@ public class StartManager : Singleton<StartManager>{
 		else if(TierManager.Instance.CurrentTier == 6 && !DataManager.Instance.GameData.Tutorial.IsFlyThruTutDone) {
 			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoFlyThru";
         }
+
+		if(TierManager.Instance.CurrentTier == 6 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates && !TierManager.instance.IsNewUnlocksAvailable) {
+			Debug.Log("LOADING BEACON");
+			GameObject beacon = Resources.Load("Beacon") as GameObject;
+			GameObjectUtils.AddChild(beaconNode, beacon);
+		}
 		// Save game data again, lock down on the event
 		DataManager.Instance.SaveGameData();
 		GenerateCustomerList();
