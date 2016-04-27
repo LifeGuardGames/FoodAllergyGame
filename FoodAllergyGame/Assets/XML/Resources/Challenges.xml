@@ -370,7 +370,7 @@
     <Description>ChallengeDeviouslyCrookedDesc</Description>
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
-    <Tier>26</Tier>
+    <Tier>27</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet08</CustomerSet>
     <CustomerTimer>2</CustomerTimer>

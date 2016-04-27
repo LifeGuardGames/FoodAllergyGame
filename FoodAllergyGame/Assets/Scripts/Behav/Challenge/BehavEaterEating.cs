@@ -12,9 +12,7 @@ public class BehavEaterEating : Behav {
 	public override void Reason() {
 
 		if(self.GetComponent<CustomerEater>().hasEaten) {
-			if(RestaurantManager.Instance.GetTable(self.tableNum).cantLeave) {
-				self.customerUI.ToggleStar(true);
-			}
+			self.customerUI.ToggleStar(true);
 			self.attentionSpan = 10.0f * self.timer;
 			self.state = CustomerStates.WaitForCheck;
 			self.StartCoroutine("SatisfactionTimer");
