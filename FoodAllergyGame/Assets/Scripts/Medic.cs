@@ -15,31 +15,17 @@ public class Medic : Singleton<Medic> {
 	private Vector3 firstCustomerPositionAux;
 	private Vector3 medicOffset = new Vector3(-100f, 0f, 0f);
 
-	public GameObject thoughtBubbleParent;
-	public SpriteRenderer thoughtBubbleSkin;
-
-	public Color defaultSkinColor;
-	public Color regularSkinColor;
-	public Color impatientSkinColor;
-	public Color coolKidSkinColor;
-	public Color tableSmasherSkinColor;
+	public Animator medicAnimator;
 
 	// Have the medic leave its base before moving to customers	
 	public void SetOutFromHome(Vector3 customerPosition){
 		AudioManager.Instance.PlayClip("MedicEnter");
 		firstCustomerPositionAux = customerPosition + medicOffset;
-		LeanTween.cancel(gameObject);
-		LeanTween.move(gameObject, new Vector3(transform.position.x + 300f, transform.position.y, transform.position.z), 0.666f)
-			.setOnComplete(OnSetOutFromHomeFinished);
-	}
-
-	private void OnSetOutFromHomeFinished(){
 		MoveToLocation(firstCustomerPositionAux);
 	}
 
 	// Move toward the next customer on the list
 	public void MoveToLocation(Vector3 customer){
-		this.gameObject.GetComponentInChildren<Animation>().Play("MedicCartwheel");
 		// If the waiter is already at its location, just call what it needs to call
 		if(transform.position == customer){
 			SaveCustomer();
@@ -48,20 +34,21 @@ public class Medic : Singleton<Medic> {
 		// Otherwise, move to the location and wait for callback
 		else{
 			LeanTween.cancel(gameObject);
-			LeanTween.move(gameObject, customer, 0.666f).setOnComplete(SaveCustomer);
+			LeanTween.move(gameObject, customer, 1.2f).setEase(LeanTweenType.easeInOutQuad).setOnComplete(SaveCustomer);
+			medicAnimator.Play("MedicFrontFlip");
 		}
 	}
+
 	// if no one is sick theres no need for the medic to leave his office so he goes back
 	public void MoveHome(){
-		this.gameObject.GetComponentInChildren<Animation>().Play("MedicReverseCartwheel");
+		medicAnimator.Play("MedicReturn");
 		LeanTween.cancel(gameObject);
-		LeanTween.move(gameObject, startPos.transform.position, 0.666f);
+		LeanTween.move(gameObject, startPos.transform.position, 1f).setEase(LeanTweenType.easeInOutQuad);
 	}
 
 	// Stops the customer from having an allergy attack
 	public void SaveCustomer(){
 		StartCoroutine("TreatCustomer");
-
 	}
 
 	public void BillRestaurant(int expense){
@@ -95,29 +82,10 @@ public class Medic : Singleton<Medic> {
 	}
 
 	private void ShowThoughtBubble() {
-		// Change the skin type to that of the customer by type
-		CustomerTypes type = RestaurantManager.Instance.sickCustomers[0].GetComponent<Customer>().type;
-		switch(type) {
-			case CustomerTypes.Normal:
-				thoughtBubbleSkin.color = regularSkinColor;
-                break;
-			case CustomerTypes.TableSmasher:
-				thoughtBubbleSkin.color = tableSmasherSkinColor;
-				break;
-			case CustomerTypes.Impatient:
-				thoughtBubbleSkin.color = impatientSkinColor;
-				break;
-			case CustomerTypes.CoolKid:
-				thoughtBubbleSkin.color = coolKidSkinColor;
-				break;
-			default:
-				thoughtBubbleSkin.color = defaultSkinColor;
-				break;
-		}
-		thoughtBubbleParent.SetActive(true);
-	}
+		medicAnimator.SetBool("IsThoughtOn", true);
+    }
 
 	private void HideThoughtBubble() {
-		thoughtBubbleParent.SetActive(false);
+		medicAnimator.SetBool("IsThoughtOn", false);
 	}
 }
