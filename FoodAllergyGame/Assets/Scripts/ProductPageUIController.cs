@@ -19,9 +19,6 @@ public class ProductPageUIController : MonoBehaviour {
 	}
 
 	public void HidePanel() {
-		StartManager.Instance.ChallengeMenuEntranceUIController.ToggleClickable(true);
-		StartManager.Instance.dinerEntranceUIController.ToggleClickable(true);
-		StartManager.Instance.shopEntranceUIController.ToggleClickable(true);
 		demux.Hide();
 	}
 

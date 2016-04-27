@@ -188,7 +188,7 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 		// Do other things here, remove UI - if it is the correct scene
 		if(LoadLevelManager.Instance.GetCurrentSceneName() == SceneUtils.START) {
 			// Destroy this for now
-			Destroy(StartManager.Instance.beaconNode.transform.GetChild(0));
+			Destroy(StartManager.Instance.beaconNode.transform.GetChild(0).gameObject);
 		}
 	}
 }
