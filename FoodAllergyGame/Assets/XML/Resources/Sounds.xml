@@ -3,13 +3,12 @@
 	<!-- UI Sounds -->
 	<Sound ID="Button1Down"></Sound>
 	<Sound ID="Button1Up"></Sound>
-  <Sound ID="PickUp"></Sound>
-  <Sound ID="Drop"></Sound>
+  <Sound ID="PickUp" Volume="0.3"></Sound>
+  <Sound ID="Drop" Volume="0.8"></Sound>
 
   <!-- Comic sounds -->
   <Sound ID="ComicPage2SFX"></Sound>
   <Sound ID="ComicPage3SFX"></Sound>
-  <Sound ID="comicEnding"></Sound>
   
   <!-- Start scene -->
   <Sound ID="Firework1"></Sound>
@@ -29,6 +28,7 @@
   
   <!-- Epipen scene -->
   <Sound ID="EpipenWrong"></Sound>
+  <Sound ID="EpipenRight"></Sound>
   <Sound ID="EpipenCheck"></Sound>
 
   <!-- Customer sounds -->
@@ -44,9 +44,9 @@
 
   <!-- Restaurant sounds -->
   <Sound ID="RestaurantDoorClose"></Sound>
-  <Sound ID="Cooking1"></Sound>
-  <Sound ID="Cooking2"></Sound>
-  <Sound ID="Cooking3"></Sound>
+  <Sound ID="Cooking1" Volume="1"></Sound>
+  <Sound ID="Cooking2" Volume="1"></Sound>
+  <Sound ID="Cooking3" Volume="1"></Sound>
   <Sound ID="MenuOpen"></Sound>
   <Sound ID="HandsFull" Volume="1"></Sound>
   <Sound ID="GiveOrder"></Sound>

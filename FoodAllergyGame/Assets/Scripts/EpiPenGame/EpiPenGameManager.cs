@@ -252,7 +252,6 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		// Check to see if it is correct and do the appropriate action
 		if(isCorrect) {
 			finalSlotList[slotIndex].GetToken().IsLocked = true;       // Lock the token
-			finalSlotList[slotIndex].GetToken().SetMark(true, false);
             if(allPickTokens.Remove(slotIndex)) {						// Soft remove from pick list
 				finalSlotList[slotIndex].GetComponent<Image>().sprite = lockedFinalSlotSprite;	// Change slot color
 			}
@@ -265,7 +264,6 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 			UIManager.FadeToggle(false);
 		}
 		else {
-			AudioManager.Instance.PlayClip("EpipenWrong");
 			UIManager.FadeToggle(false);
 			Destroy(animationTokenAux.gameObject);
 
@@ -309,21 +307,25 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		GameObjectUtils.AddChildGUI(currentPickSlotList[step].GetToken().gameObject, tutFingerPrefab).name = "EpipenFinger";
 		switch(step) {
 			case 0:
+				AudioManager.Instance.PlayClip("PickUp");
 				LeanTween.move(currentPickSlotList[step].GetToken().gameObject, finalSlotList[0].transform.position, 1.0f)
 					.setEase(LeanTweenType.easeInOutQuad)
 					.setOnComplete(delegate () { OnTutorialTweenComplete(step); });
 				break;
 			case 1:
+				AudioManager.Instance.PlayClip("PickUp");
 				LeanTween.move(currentPickSlotList[step].GetToken().gameObject, finalSlotList[5].transform.position, 1.0f)
 					.setEase(LeanTweenType.easeInOutQuad)
 					.setOnComplete(delegate () { OnTutorialTweenComplete(step); });
 				break;
 			case 2:
+				AudioManager.Instance.PlayClip("PickUp");
 				LeanTween.move(currentPickSlotList[step].GetToken().gameObject, finalSlotList[3].transform.position, 1.0f)
 					.setEase(LeanTweenType.easeInOutQuad)
 					.setOnComplete(delegate () { OnTutorialTweenComplete(step); });
 				break;
 			case 3:
+				AudioManager.Instance.PlayClip("PickUp");
 				LeanTween.move(currentPickSlotList[step].GetToken().gameObject, finalSlotList[7].transform.position, 1.0f)
 					.setEase(LeanTweenType.easeInOutQuad)
 					.setOnComplete(delegate () { OnTutorialTweenComplete(step); });
@@ -335,15 +337,19 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		Destroy(currentPickSlotList[step].GetToken().transform.Find("EpipenFinger").gameObject);
 		switch(step) {
 			case 0:
-                finalSlotList[0].SetToken(currentPickSlotList[step].GetToken());
+				AudioManager.Instance.PlayClip("Drop");
+				finalSlotList[0].SetToken(currentPickSlotList[step].GetToken());
 				break;
 			case 1:
+				AudioManager.Instance.PlayClip("Drop");
 				finalSlotList[5].SetToken(currentPickSlotList[step].GetToken());
 				break;
 			case 2:
+				AudioManager.Instance.PlayClip("Drop");
 				finalSlotList[3].SetToken(currentPickSlotList[step].GetToken());
 				break;
 			case 3:
+				AudioManager.Instance.PlayClip("Drop");
 				finalSlotList[7].SetToken(currentPickSlotList[step].GetToken());
 				break;
 		}

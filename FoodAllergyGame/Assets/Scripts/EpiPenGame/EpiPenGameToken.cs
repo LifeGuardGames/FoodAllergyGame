@@ -42,6 +42,8 @@ public class EpiPenGameToken : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 			if(playAnimation) {
 				checkMarkAnim.Play();
 			}
+			AudioManager.Instance.PlayClip("EpipenRight");
+			Debug.Log("RIGHT");
 		}
 		else {
 			checkMarkAnim.gameObject.SetActive(false);
@@ -49,6 +51,7 @@ public class EpiPenGameToken : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 			if(playAnimation) {
 				xMarkAnim.Play();
 			}
+			AudioManager.Instance.PlayClip("EpipenWrong");
 		}
 	}
 	
