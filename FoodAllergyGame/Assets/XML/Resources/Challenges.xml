@@ -370,7 +370,7 @@
     <Description>ChallengeDeviouslyCrookedDesc</Description>
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
-    <Tier>26</Tier>
+    <Tier>27</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet08</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
@@ -462,7 +462,7 @@
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
     <Bronze>125</Bronze>
-    <Silver>1750</Silver>
+    <Silver>175</Silver>
     <Gold>225</Gold>
     <Tables>4</Tables>
     <PlayArea>0</PlayArea>
@@ -488,7 +488,7 @@
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
     <Bronze>125</Bronze>
-    <Silver>1750</Silver>
+    <Silver>175</Silver>
     <Gold>225</Gold>
     <Tables>4</Tables>
     <GossiperMode>3</GossiperMode>
