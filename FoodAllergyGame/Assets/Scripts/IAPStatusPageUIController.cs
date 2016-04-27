@@ -11,6 +11,9 @@ public class IAPStatusPageUIController : MonoBehaviour {
 	}
 
 	public void OnOkButtonClicked() {
+		StartManager.Instance.ChallengeMenuEntranceUIController.ToggleClickable(true);
+		StartManager.Instance.dinerEntranceUIController.ToggleClickable(true);
+		StartManager.Instance.shopEntranceUIController.ToggleClickable(true);
 		panelTween.Hide();
 	}
 }
