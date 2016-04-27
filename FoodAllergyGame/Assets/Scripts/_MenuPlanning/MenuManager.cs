@@ -12,9 +12,6 @@ public class MenuManager : Singleton<MenuManager>{
 	public EventPopupController eventPopController;
 	public SlotBarController slotBarController;
 
-	public TweenToggle trashTweenToggle;
-	public MenuDragTrashSlot trashSlot;
-
 	public List<Transform> currentFoodStockSlotList;			// Slots of the menu food stock
 	private List<ImmutableDataFood> foodStockList = new List<ImmutableDataFood>();	// All the foods that are allowed for today
 	private int foodStockPage = 0;
@@ -199,16 +196,6 @@ public class MenuManager : Singleton<MenuManager>{
 			Debug.LogError("Removing a food that doesnt exist");
 			return false;
 		}
-	}
-
-	public void ShowTrashCan(){
-		trashTweenToggle.Show();
-		trashSlot.enabled = true;
-	}
-
-	public void HideTrashCan(){
-		trashTweenToggle.Hide();
-		trashSlot.enabled = false;	// Disable script incase of drag slot overlay
 	}
 
 	public void OnBackButtonClicked(){

@@ -56,6 +56,8 @@ public class PlayArea : Singleton<PlayArea>, IWaiterSelection {
 
 			// Turn off the active customer highlights
 			RestaurantManager.Instance.CustomerLineSelectHighlightOff();
+
+			AudioManager.Instance.PlayClip("ArcadePlay");
 		}
 	}
 

@@ -13,7 +13,7 @@ public class UIHelper : EditorWindow {
 	private List<GameObject> UIElementsList;
 	private List<bool> elementBoolList;
 	private List<bool> savedElementBoolList;
-	private bool isCompileAux = false;
+	//private bool isCompileAux = false;
 	private Vector2 scrollPosition = Vector2.zero;
 
 	/*
@@ -62,7 +62,7 @@ public class UIHelper : EditorWindow {
 
 	public void OnHierarchyChange() {
 		if(currentScene != EditorSceneManager.GetActiveScene().name) {
-			isCompileAux = false;
+			//isCompileAux = false;
 			Reload();
 		}
 	}

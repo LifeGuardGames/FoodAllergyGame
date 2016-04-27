@@ -33,5 +33,6 @@ public class ChallengeButton : MonoBehaviour {
 
 	public void OnButtonClicked() {
 		ChallengeMenuManager.Instance.ShowPrompt(challengeID);
+		AudioManager.Instance.PlayClip("ChallengePick");
 	}
 }

@@ -24,11 +24,13 @@ public class ChallengeDescriptionController : MonoBehaviour {
 	}
 
 	public void OnCancelButton(){
+		AudioManager.Instance.PlayClip("ChallengeDecline");
 		tween.Hide();
 	}
 
 	public void OnPlayButton(){
 		if(!string.IsNullOrEmpty(currentChallengeID)){
+			AudioManager.Instance.PlayClip("ChallengeAccept");
 			ChallengeMenuManager.Instance.StartChallenge(currentChallengeID);
 		}
 		else{

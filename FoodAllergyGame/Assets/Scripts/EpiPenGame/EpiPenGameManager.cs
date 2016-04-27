@@ -125,6 +125,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	/// Checks each answer in the submitted answers to see if it is correct
 	/// </summary>
 	public void CheckAnswerButtonClicked() {
+		AudioManager.Instance.PlayClip("EpipenCheck");
 		UIManager.CheckButtonToggle(false);
 		UIManager.OnCheckButton();
 
@@ -264,6 +265,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 			UIManager.FadeToggle(false);
 		}
 		else {
+			AudioManager.Instance.PlayClip("EpipenWrong");
 			UIManager.FadeToggle(false);
 			Destroy(animationTokenAux.gameObject);
 
@@ -273,7 +275,6 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 			}
 
 			// Return all tokens that is not locked, this and after
-			List<EpiPenGameSlot> auxSlotListToRemove = new List<EpiPenGameSlot>();	// Temp list to delete
 			for(int i = slotIndex; i < totalSteps; i++) {
 				EpiPenGameSlot finalSlot = finalSlotList[i];
 				AnalyticsManager.Instance.MissedPiece(finalSlotList[i].GetToken().tokenNumber);

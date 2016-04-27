@@ -54,6 +54,7 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 			AnimSetCooking(1);
 
 			AudioManager.Instance.PlayClip("GiveOrder");
+			AudioManager.Instance.PlayClip("Cooking", variations:3);
 		}
 		else if(order.Count == 1){
 			order[0].transform.SetParent(this.gameObject.transform);
@@ -61,6 +62,7 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 			AnimSetCooking(1);
 
 			AudioManager.Instance.PlayClip("GiveOrder");
+			AudioManager.Instance.PlayClip("Cooking", variations: 3);
 		}
 	}
 

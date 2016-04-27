@@ -129,6 +129,8 @@ public class RestaurantMenuUIController : MonoBehaviour {
 			StopCoroutine("StartAnimation");
 			StartCoroutine("StartAnimation");
 		}
+
+		AudioManager.Instance.PlayClip("MenuOpen");
 	}
 
 	private void InitButton(int buttonIndex, ImmutableDataFood foodData) {

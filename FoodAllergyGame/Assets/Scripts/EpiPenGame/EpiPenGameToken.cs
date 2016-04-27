@@ -59,15 +59,12 @@ public class EpiPenGameToken : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
 	public void OnBeginDrag(PointerEventData eventData) {
 		if(!isLocked && !EpiPenGameManager.Instance.isTutorial) {
-			//if(transform.parent.GetComponent<EpiPenGameSlot>() != null && transform.parent.GetComponent<EpiPenGameSlot>().isFinalSlot) {
-			//	EpiPenGameManager.Instance.submittedAnswers.Remove(transform.parent.GetComponent<EpiPenGameSlot>().slotNumber);
-			//}
 			itemBeingDragged = gameObject;
 			startParent = transform.parent;
 			GetComponent<CanvasGroup>().blocksRaycasts = false;
 
 			transform.SetParent(EpiPenGameManager.Instance.activeDragParent);
-			//AudioManager.Instance.PlayClip("Button1Down");
+			AudioManager.Instance.PlayClip("PickUp");
 		}
 	}
 
@@ -94,7 +91,7 @@ public class EpiPenGameToken : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 				transform.SetParent(startParent);
 				transform.localPosition = Vector3.zero;
             }
-			//AudioManager.Instance.PlayClip("Button1Up");
+			AudioManager.Instance.PlayClip("Drop");
 			GetComponent<CanvasGroup>().blocksRaycasts = true;
 
 			EpiPenGameManager.Instance.TokenPlaced();

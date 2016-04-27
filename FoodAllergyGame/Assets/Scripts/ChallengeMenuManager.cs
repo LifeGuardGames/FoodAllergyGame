@@ -28,6 +28,8 @@ public class ChallengeMenuManager : Singleton<ChallengeMenuManager> {
 		// Adjust the grid height based on the height of the cell and spacing
 		float gridHeight = regularChallengeCount * (challengeGrid.cellSize.y + challengeGrid.spacing.y);
         challengeGrid.GetComponent<RectTransform>().sizeDelta = new Vector2(challengeGrid.cellSize.x, gridHeight);
+
+		AudioManager.Instance.PlayClip("ChallengeShipEnter");
 	}
 
 	public void StartChallenge(string challengeID) {

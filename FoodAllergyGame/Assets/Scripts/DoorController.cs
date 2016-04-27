@@ -33,7 +33,8 @@ public class DoorController : MonoBehaviour {
 	// End of day restaurant, lock the door
 	public void LockdownDoor() {
 		doorLockdownTween.Show();
-    }
+		AudioManager.Instance.PlayClip("RestaurantDoorClose");
+	}
 
 
 	public void ResetDoor() {

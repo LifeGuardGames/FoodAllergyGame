@@ -5,7 +5,6 @@ using System.Collections;
 
 public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler{
 	public static GameObject itemBeingDragged;
-//	public static bool canDrag = true;			// Prevent item from being dragged before all animation is done
 
 	public string foodID;
 	public Image image;
@@ -27,7 +26,6 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	public Animator foodButtonAnimator;
 
 	private Transform dragAux;
-	private Transform trashAux;
 	private Vector3 startPosition;
 	private Transform startParent;
 
@@ -112,7 +110,6 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
 	void Start(){
 		dragAux = MenuManager.Instance.dragAux;
-		trashAux = MenuManager.Instance.trashSlot.transform;
 	}
 	
 	#region IBeginDragHandler implementation
@@ -128,9 +125,10 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
 		if(!inFoodStockSlot){
 			// Show trash can if dragging from selected slot
-			MenuManager.Instance.ShowTrashCan();
 			MenuManager.Instance.RemoveFoodFromMenuList(foodID);
 		}
+
+		AudioManager.Instance.PlayClip("PickUp");
 	}
 	#endregion
 	
@@ -161,9 +159,6 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 				foodButtonAnimator.SetTrigger("PutDownUnselected");
 			}
 		}
-		else if(transform.parent == trashAux){
-			StartCoroutine(DestroySelf());
-		}
 		else{	// Save new parent
 			startParent = transform.parent;
 			startPosition = transform.localPosition;
@@ -175,8 +170,7 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 			}
 		}
 
-		// Try to hide trash can no matter what
-		MenuManager.Instance.HideTrashCan();
+		AudioManager.Instance.PlayClip("Drop");
 	}
 	#endregion
 
