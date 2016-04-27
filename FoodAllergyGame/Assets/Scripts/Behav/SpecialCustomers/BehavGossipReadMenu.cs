@@ -25,17 +25,19 @@ public class BehavGossipReadMenu : Behav {
 		//stop the satisfaction timer, change the timer and then restart it
 		self.attentionSpan = 21.0f * self.timer;
 		self.state = CustomerStates.ReadingMenu;
-		int rand = UnityEngine.Random.Range(0, 10);
-		if(rand > 0) {
-			self.StopCoroutine("ReadMenu");
-			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[10]);
-			Behav goss = (Behav)Activator.CreateInstance(type);
-			goss.self = self;
-			self.gameObject.GetComponent<CustomerGossiper>().pastBehav = self.currBehav;
-			self.currBehav = goss;
-			Debug.Log(self.currBehav.ToString());
-			goss.Act();
-			goss = null;
+		if(RestaurantManager.Instance.TableList[self.tableNum].GetComponent<Table>().tableType != Table.TableType.FlyThru) {
+			int rand = UnityEngine.Random.Range(0, 10);
+			if(rand > 0) {
+				self.StopCoroutine("ReadMenu");
+				var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[10]);
+				Behav goss = (Behav)Activator.CreateInstance(type);
+				goss.self = self;
+				self.gameObject.GetComponent<CustomerGossiper>().pastBehav = self.currBehav;
+				self.currBehav = goss;
+				Debug.Log(self.currBehav.ToString());
+				goss.Act();
+				goss = null;
+			}
 		}
 	}
 }

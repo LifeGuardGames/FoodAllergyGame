@@ -431,7 +431,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				priceMultiplier = food.Reward;
 			}
 			RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().OrderObtained(Order);
-			attentionSpan =  KitchenManager.Instance.cookTimer + (10.0f * timer);
+			attentionSpan =  KitchenManager.Instance.cookTimer + (20.0f * timer);
 
 			UpdateSatisfaction(1);
 
@@ -457,7 +457,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				if(Order.GetComponent<Order>().allergy.Contains(allergy[i]) && !allergy.Contains(Allergies.None)) {
 					Medic.Instance.BillRestaurant(-100);
 					ParticleUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(tableNum).gameObject.transform.position, -100);
-
+					RestaurantManager.Instance.GetFlyThruTable().FlyThruLeave();
 					AudioManager.Instance.PlayClip("CustomerDead");
 					if(Order.gameObject != null) {
 						Destroy(Order.gameObject);
