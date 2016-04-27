@@ -10,7 +10,7 @@
 		DaysPlayed = 0;
 		ChallengesPlayed = 0;
 		//pro toggle
-		IsMoreCrates = true;
+		IsMoreCrates = false;
 		HasCollectedAge = false;
 	}
 }
