@@ -3,6 +3,7 @@
 public class ProductPageUIController : MonoBehaviour {
 	public TweenToggleDemux demux;
 	public GameObject redeemButton;
+	public CanvasGroup canvasGroup;
 
 	void Start() {
 		redeemButton.SetActive(false);
@@ -10,7 +11,8 @@ public class ProductPageUIController : MonoBehaviour {
 
 	public void ShowPanel() {
 		demux.Show();
-	}
+		canvasGroup.blocksRaycasts = true;
+    }
 
 	public void OnShowComplete() {
 #if UNITY_IOS
@@ -20,6 +22,7 @@ public class ProductPageUIController : MonoBehaviour {
 
 	public void HidePanel() {
 		demux.Hide();
+		canvasGroup.blocksRaycasts = false;
 	}
 
 	public void OnExitButton() {
