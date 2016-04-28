@@ -84,7 +84,7 @@ public class TableVIP : Table {
 		}
 
         uiCanvas.sortingOrder = _baseSortingOrder + 3;
-		statusCanvas.sortingOrder = _baseSortingOrder + 4;
+		statusCanvas.sortingOrder = _baseSortingOrder + 100;
         tableHighlight.sortingOrder = _baseSortingOrder + 5;
 	}
 }
