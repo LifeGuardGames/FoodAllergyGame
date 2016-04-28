@@ -28,6 +28,9 @@ public class RewardUIController : MonoBehaviour {
 	public GameObject rightArrow;
 	public Text textTitle;
 	public Text textDescription;
+	public Image allergyImage1;
+	public Image allergyImage2;
+	public Image allergyImage3;
 
 	private NotificationQueueDataReward caller;
 	private Dictionary<AssetTypes, List<string>> currentTierUnlocks;
@@ -63,7 +66,11 @@ public class RewardUIController : MonoBehaviour {
 		}
 
 		UIDemux.Show();
-    }
+
+		allergyImage1.enabled = false;
+		allergyImage2.enabled = false;
+		allergyImage3.enabled = false;
+	}
 
 	private void PopulateRewardItemInList(AssetTypes assetType, string itemID) {
 		// Spawn the actual object
@@ -178,6 +185,42 @@ public class RewardUIController : MonoBehaviour {
 		if(textDescription.text == "None") {
 			textDescription.text = "";
         }
+		allergyImage1.enabled = false;
+		allergyImage2.enabled = false;
+		allergyImage3.enabled = false;
+	}
+
+	// Info pumped through the rewardItem, show none if null
+	public void ShowInfo(string titleKey, int numberOfAllergies, Allergies allergy1, Allergies allergy2, Allergies allergy3) {
+		textTitle.text = !string.IsNullOrEmpty(titleKey) ? LocalizationText.GetText(titleKey) : "";
+		textDescription.text = "";
+		if(numberOfAllergies == 1) {
+			allergyImage1.enabled = true;
+			allergyImage1.rectTransform.anchoredPosition = new Vector2(0, 20);
+			allergyImage1.sprite = SpriteCacheManager.GetAllergySpriteData(allergy1);
+			allergyImage2.enabled = false;
+			allergyImage3.enabled = false;
+        }
+		else if(numberOfAllergies == 2) {
+			allergyImage1.rectTransform.anchoredPosition = new Vector2(-60, 20);
+			allergyImage1.enabled = true;
+			allergyImage1.sprite = SpriteCacheManager.GetAllergySpriteData(allergy1);
+			allergyImage2.rectTransform.anchoredPosition = new Vector2(60, 20);
+			allergyImage2.enabled = true;
+			allergyImage2.sprite = SpriteCacheManager.GetAllergySpriteData(allergy2);
+			allergyImage3.enabled = false;
+		}
+		else if(numberOfAllergies == 3) {
+			allergyImage1.rectTransform.anchoredPosition = new Vector2(-100, 20);
+			allergyImage1.enabled = true;
+			allergyImage1.sprite = SpriteCacheManager.GetAllergySpriteData(allergy1);
+			allergyImage2.rectTransform.anchoredPosition = new Vector2(0, 20);
+			allergyImage2.enabled = true;
+			allergyImage2.sprite = SpriteCacheManager.GetAllergySpriteData(allergy2);
+			allergyImage3.rectTransform.anchoredPosition = new Vector2(100, 20);
+			allergyImage3.enabled = true;
+			allergyImage3.sprite = SpriteCacheManager.GetAllergySpriteData(allergy3);
+		}
 	}
 
 	// Used to define which object is currently in focus

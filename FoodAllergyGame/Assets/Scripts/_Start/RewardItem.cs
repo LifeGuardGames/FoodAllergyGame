@@ -15,6 +15,7 @@ public class RewardItem : MonoBehaviour {
 	private string titleKey = null;
 	private string descriptionKey = null;
 	private RewardUIController rewardUIController;
+	private ImmutableDataFood foodDataAux;
 
 	private bool isOpened;
 	public bool IsOpened {
@@ -53,6 +54,7 @@ public class RewardItem : MonoBehaviour {
                 break;
 			case AssetTypes.Food:
 				ImmutableDataFood foodData = DataLoaderFood.GetData(itemID);
+				foodDataAux = foodData;
 				titleKey = foodData.FoodNameKey;
 				itemSprite.sprite = SpriteCacheManager.GetFoodSpriteData(foodData.SpriteName);
 				break;
@@ -83,7 +85,15 @@ public class RewardItem : MonoBehaviour {
 			rewardUIController.ShowInfo(null, null);
 		}
 		else {
-			rewardUIController.ShowInfo(titleKey, descriptionKey);
+			if(assetType == AssetTypes.Food) {
+				Allergies allergyAux1 = foodDataAux.AllergyList.Count >= 1 ? foodDataAux.AllergyList[0] : Allergies.None;
+				Allergies allergyAux2 = foodDataAux.AllergyList.Count >= 2 ? foodDataAux.AllergyList[1] : Allergies.None;
+				Allergies allergyAux3 = foodDataAux.AllergyList.Count >= 3 ? foodDataAux.AllergyList[2] : Allergies.None;
+				rewardUIController.ShowInfo(titleKey, foodDataAux.AllergyList.Count, allergyAux1, allergyAux2, allergyAux3);
+			}
+			else {
+				rewardUIController.ShowInfo(titleKey, descriptionKey);
+			}
 		}
     }
 
