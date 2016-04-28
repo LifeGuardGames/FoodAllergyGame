@@ -20,7 +20,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	public GameObject rightButton;
 	
 	public GameObject checkButton;
-	//public TweenToggle skipButtonTween;
+	public TweenToggle skipButtonTween;
 
 	private int pickSlotPage = 0;
 	private int pickSlotPageSize = 5;
@@ -31,7 +31,10 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	public GameObject tutFingerPressPrefab;
 	private int attempts = 0;
 	private int difficulty = 0;
-	private bool isAnimatingEnding = false;		// Used for skipping
+	private bool isAnimatingEnding = false;     // Used for skipping
+	private bool isSkippingAnimations = false;	// Used for skipping
+	private int latestMarkedIndex;				// Used for skipping
+
 	private string epipenSetPrefix;     // "A" or "B", 'TokenA1' format
 
 	void Start() {
@@ -226,12 +229,22 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	#region Check tokens animations
 	public void OnSkipAnimationButton() {
 		if(isAnimatingEnding) {
-			// TODO implement, think about architecture...
+			// Fast check everything, but skipping the animations
+			isSkippingAnimations = true;
+        }
+		else {
+			Debug.LogError("Invalid skip animation call");
 		}
+		skipButtonTween.Hide();
     }
 
 	public void AnimateEnding(int slotIndex = 0) {
 		isAnimatingEnding = true;
+
+		// Show the skip button on first call
+		if(slotIndex == 0) {
+			skipButtonTween.Show();
+		}
 
 		// Grab token info and hide the token itself to fake it tweening
 		EpiPenGameToken tokenInSlot = finalSlotList[slotIndex].GetToken();
@@ -243,8 +256,9 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		GameObject animationTokenAux = GameObjectUtils.AddChildGUI(animationTokenParent.gameObject, tokenPrefab);
 		animationTokenAux.GetComponent<EpiPenGameToken>().AuxInit();
 		animationTokenAux.transform.position = finalSlotList[slotIndex].GetComponent<RectTransform>().position;
-		LeanTween.move(animationTokenAux, animationTokenParent.position, 0.5f).setEase(LeanTweenType.easeInOutQuad);
-		LeanTween.scale(animationTokenAux, new Vector3(2f, 2f, 1f), 0.5f).setEase(LeanTweenType.easeInOutQuad)
+		float moveTime = isSkippingAnimations ? 0f : 0.5f;
+        LeanTween.move(animationTokenAux, animationTokenParent.position, moveTime).setEase(LeanTweenType.easeInOutQuad);
+		LeanTween.scale(animationTokenAux, new Vector3(2f, 2f, 1f), moveTime).setEase(LeanTweenType.easeInOutQuad)
 			.setOnComplete(delegate () { StartCoroutine(PlayAnimation(slotIndex, animationTokenAux)); });
 
 		UIManager.FadeToggle(true);
@@ -252,29 +266,33 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 
 	IEnumerator PlayAnimation(int slotIndex, GameObject animationTokenAux) {
 		animationTokenAux.GetComponent<EpiPenGameToken>().SetAnimateState(true);
-		yield return new WaitForSeconds(1.0f);
+		yield return new WaitForSeconds(isSkippingAnimations ? 0f : 1.0f);
 
 		// Show the symbol animation
 		bool isCorrect = IsTokenCorrect(slotIndex);
 		animationTokenAux.GetComponent<EpiPenGameToken>().SetMark(isCorrect, true);
 
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(isSkippingAnimations ? 0f : 0.5f);
 
 		// Check to see if it is correct and do the appropriate action
 		if(isCorrect) {
-			finalSlotList[slotIndex].GetToken().IsLocked = true;       // Lock the token
+			finalSlotList[slotIndex].GetToken().IsLocked = true;		// Lock the token
             if(allPickTokens.Remove(slotIndex)) {						// Soft remove from pick list
 				finalSlotList[slotIndex].GetComponent<Image>().sprite = lockedFinalSlotSprite;	// Change slot color
 			}
+			latestMarkedIndex = slotIndex;                              // Checkpoint for skipping
 
 			// Continue animation sequence
-			LeanTween.move(animationTokenAux, finalSlotList[slotIndex].transform.position, 0.5f).setEase(LeanTweenType.easeInOutQuad);
-			LeanTween.scale(animationTokenAux, Vector3.one, 0.5f).setEase(LeanTweenType.easeInOutQuad)
+			float moveTime = isSkippingAnimations ? 0f : 0.5f;
+			LeanTween.move(animationTokenAux, finalSlotList[slotIndex].transform.position, moveTime).setEase(LeanTweenType.easeInOutQuad);
+			LeanTween.scale(animationTokenAux, Vector3.one, moveTime).setEase(LeanTweenType.easeInOutQuad)
 				.setOnComplete(delegate () { OnTokenAnimationDone(slotIndex, animationTokenAux); });
 
 			UIManager.FadeToggle(false);
 		}
 		else {
+			skipButtonTween.Hide();
+			isSkippingAnimations = false;
 			UIManager.FadeToggle(false);
 			Destroy(animationTokenAux.gameObject);
 
@@ -309,6 +327,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 			AnimateEnding(slotIndex);
 		}
 		else {
+			isSkippingAnimations = false;
 			isAnimatingEnding = false;
             UIManager.ShowGameOver(attempts);
 			AnalyticsManager.Instance.EpiPenGameResultsAalytics(attempts, difficulty, UIManager.timerText.text);

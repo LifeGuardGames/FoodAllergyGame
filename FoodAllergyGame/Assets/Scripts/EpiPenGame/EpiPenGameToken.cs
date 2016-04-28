@@ -73,10 +73,12 @@ public class EpiPenGameToken : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	public void OnDrag(PointerEventData data) {
 		if(!isLocked && !EpiPenGameManager.Instance.isTutorial) {
 #if UNITY_EDITOR
-			itemBeingDragged.transform.position = Input.mousePosition;
+			Vector2 pointerPosition = Input.mousePosition;
 #else
-			itemBeingDragged.transform.position = Input.GetTouch(0).position;
+			Vector2 pointerPosition = Input.GetTouch(0).position
 #endif
+			itemBeingDragged.GetComponent<RectTransform>().anchoredPosition = 
+				Vector2.Scale(pointerPosition, CanvasScalerHelper.Instance.GetCanvasScreenScale());
 		}
 	}
 

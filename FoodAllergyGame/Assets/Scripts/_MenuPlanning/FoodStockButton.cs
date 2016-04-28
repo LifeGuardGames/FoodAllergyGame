@@ -134,14 +134,16 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	
 	#region IDragHandler implementation
 	public void OnDrag(PointerEventData eventData){
-		#if UNITY_EDITOR
-		itemBeingDragged.transform.position = Input.mousePosition;
-		#else
-		itemBeingDragged.transform.position = Input.GetTouch(0).position;
-		#endif
+#if UNITY_EDITOR
+		Vector2 pointerPosition = Input.mousePosition;
+#else
+		Vector2 pointerPosition = Input.GetTouch(0).position
+#endif
+		itemBeingDragged.GetComponent<RectTransform>().anchoredPosition =
+			Vector2.Scale(pointerPosition, CanvasScalerHelper.Instance.GetCanvasScreenScale());
 	}
 	#endregion
-	
+
 	#region IEndDragHandler implementation
 	// NOTE Make sure this is called after OnDrop() from the slot class
 	public void OnEndDrag(PointerEventData eventData){
