@@ -421,15 +421,15 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 			Order = GameObjectUtils.AddChildWithPositionAndScale(null, OrderPrefab);
 			Order.GetComponent<Order>().Init(food.ID, tableNum, food.AllergyList);
-			if(food == FoodManager.Instance.specialFood) {
+			/*if(food == FoodManager.Instance.specialFood) {
 				priceMultiplier = food.Reward * 2;
 			}
 			else if (food == FoodManager.Instance.bannedFood) {
 				priceMultiplier = 0;
-			}
-			else {
+			}*/
+			//else {
 				priceMultiplier = food.Reward;
-			}
+			//}
 			RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().OrderObtained(Order);
 			attentionSpan =  KitchenManager.Instance.cookTimer + (20.0f * timer);
 
