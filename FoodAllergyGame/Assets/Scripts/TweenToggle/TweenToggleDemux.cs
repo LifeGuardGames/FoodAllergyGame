@@ -1,4 +1,4 @@
-﻿//// Copyright (c) 2015 LifeGuard Games Inc.
+﻿//// Copyright (c) 2016 LifeGuard Games Inc.
 using UnityEngine;
 using System.Collections;
 
@@ -9,8 +9,6 @@ using System.Collections;
 public class TweenToggleDemux : MonoBehaviour{
 
 	public GameObject[] GoList;
-	public Vector2 testButtonPos;
-	public bool isDebug = false;
 	public bool startsHidden = false;
 	public GameObject lastFinishedShowObject;	// For lock
 	private TweenToggle lastFinishedShowObjectScript;
@@ -32,8 +30,10 @@ public class TweenToggleDemux : MonoBehaviour{
 	public bool IsMoving{ get { return isMoving; } }
 	
 	private bool pollingFirstFrameLock = false;	// Since we are polling & setting show/hide next frame, need to stop current frame check for callbacks
-	private bool pollingSecondFrameLock = false;	// Check for two frames, dumb implementation to enforce order (update gets called before show)
-	
+	private bool pollingSecondFrameLock = false;    // Check for two frames, dumb implementation to enforce order (update gets called before show)
+
+	public CanvasGroup UIRayCastBlock;			// If this is assigned, it will attempt to block (ONLY) UI Raycasts when shown
+
 	void Awake(){
 		if(startsHidden){
 			isShown = false;
@@ -68,6 +68,9 @@ public class TweenToggleDemux : MonoBehaviour{
 	}
 	
 	public void LgReset(){
+		if(UIRayCastBlock != null) {
+			UIRayCastBlock.blocksRaycasts = startsHidden ? false : true;
+		}
 		foreach(GameObject go in GoList){
 			TweenToggle toggle = go.GetComponent<TweenToggle>();
 			toggle.startsHidden = startsHidden;
@@ -115,9 +118,14 @@ public class TweenToggleDemux : MonoBehaviour{
 		if(!isShown && !isMoving){
 			isShown = true;
 			isMoving = true;
-			
+
 			pollingFirstFrameLock = true;
 			pollingSecondFrameLock = true;
+
+			if(UIRayCastBlock != null) {
+				UIRayCastBlock.blocksRaycasts = true;
+			}
+
 			StartCoroutine(SetNextFrameShow());
 		}
 		else{
@@ -133,6 +141,11 @@ public class TweenToggleDemux : MonoBehaviour{
 			
 			pollingFirstFrameLock = true;
 			pollingSecondFrameLock = true;
+
+			if(UIRayCastBlock != null) {
+				UIRayCastBlock.blocksRaycasts = false;
+			}
+
 			StartCoroutine(SetNextFrameHide());
 		}
 		else{

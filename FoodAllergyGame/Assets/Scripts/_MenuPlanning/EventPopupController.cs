@@ -4,7 +4,7 @@ using System.Collections;
 
 public class EventPopupController : MonoBehaviour {
 
-	public TweenToggle eventPanelTween;
+	public TweenToggleDemux tweenDemux;
 	public Text eventTitle;
 	public Text eventDescription;
 
@@ -12,11 +12,17 @@ public class EventPopupController : MonoBehaviour {
 		if(!string.IsNullOrEmpty(eventData.EventDescription)){
 			eventTitle.text = LocalizationText.GetText(eventData.EventTitle);
 			eventDescription.text = LocalizationText.GetText(eventData.EventDescription);
-			eventPanelTween.Show();
+			StartCoroutine(ShowAfterFrame());
 		}
 	}
+
+	// Just making sure everything is initialized before tween call
+	private IEnumerator ShowAfterFrame() {
+		yield return 0;
+		tweenDemux.Show();
+    }
 	
 	public void OnOkayButton(){
-		eventPanelTween.Hide();
+		tweenDemux.Hide();
 	}
 }

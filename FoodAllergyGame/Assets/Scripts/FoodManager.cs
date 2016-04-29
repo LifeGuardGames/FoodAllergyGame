@@ -136,5 +136,4 @@ public class FoodManager : Singleton<FoodManager>{
 		}
 		bannedFood = foodStockList[rand];
 	}
-
 }
