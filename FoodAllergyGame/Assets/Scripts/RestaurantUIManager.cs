@@ -3,7 +3,7 @@
 public class RestaurantUIManager : MonoBehaviour{
 	public DoorController doorController;
 	public DayOverUIController dayOverUIController;
-	public ChallengeOverUi challengeOverUiController;
+	public ChallengeOverUIController challengeOverUIController;
 	private bool isClockFinished;
 
 	public void StartDay(){
@@ -32,15 +32,15 @@ public class RestaurantUIManager : MonoBehaviour{
 
 	public void DayComplete(int customersMissed, int tips, int medicCost, int earningsNet){
 		dayOverUIController.Populate(customersMissed, tips, medicCost, earningsNet);
-		dayOverUIController.gameObject.SetActive(true);
+		dayOverUIController.ShowPanel();
 		AudioManager.Instance.FadeOutPlayNewBackground(null);
 		AudioManager.Instance.PlayClip("EndOfDay");
 	}
 
 	public void ChallengeComplete(int score, int cashEarned, int negativeCash) {
-		challengeOverUiController.Populate(negativeCash, cashEarned, score);
-		challengeOverUiController.gameObject.SetActive(true);
-		challengeOverUiController.StartBar();
+		challengeOverUIController.Populate(negativeCash, cashEarned, score);
+		challengeOverUIController.ShowPanel();
+		challengeOverUIController.StartBar();
 		AudioManager.Instance.FadeOutPlayNewBackground(null);
 		AudioManager.Instance.PlayClip("EndOfDay");
 	}

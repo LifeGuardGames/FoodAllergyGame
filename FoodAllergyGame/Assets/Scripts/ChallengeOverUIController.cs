@@ -1,14 +1,26 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
+using System.Collections;
 
-public class ChallengeOverUi : MonoBehaviour {
+public class ChallengeOverUIController : MonoBehaviour {
+	public TweenToggleDemux tweenDemux;
 	public Text textScore;
 	public Text textPointsEarned;
 	public Text textPointsLost;
 	public Image trophyImage;
 	public ChallengeProgressBarController progressBarController;
 	public int deltaCoinsAux;
+	public CanvasGroup canvasGroup;
+
+	public void ShowPanel() {
+		tweenDemux.Show();
+		canvasGroup.blocksRaycasts = true;
+    }
+
+	public void HidePanel() {
+		tweenDemux.Hide();
+		canvasGroup.blocksRaycasts = false;
+	}
 
 	public void Populate(int negativeCash, int cashEarned, int score) {
 		textPointsEarned.text = cashEarned.ToString();

@@ -64,7 +64,7 @@ public class ChallengeProgressBarController : MonoBehaviour{
 
 	private void OnBronzeBarComplete(){
 		if(bronzeBarFillAux == 1.0f){
-			transform.parent.GetComponent<ChallengeOverUi>().UpdateTrophy(ChallengeReward.Bronze);
+			transform.parent.GetComponent<ChallengeOverUIController>().UpdateTrophy(ChallengeReward.Bronze);
 			MoveBar();
 		}
 	}
@@ -76,7 +76,7 @@ public class ChallengeProgressBarController : MonoBehaviour{
 
 	private void OnSilverBarComplete(){
 		if(silverBarFillAux == 1.0f){
-			transform.parent.GetComponent<ChallengeOverUi>().UpdateTrophy(ChallengeReward.Silver);
+			transform.parent.GetComponent<ChallengeOverUIController>().UpdateTrophy(ChallengeReward.Silver);
 			MoveBar();
 		}
 	}
@@ -88,7 +88,7 @@ public class ChallengeProgressBarController : MonoBehaviour{
 
 	private void OnGoldBarComplete(){
 		if(goldBarFillAux == 1.0f){
-			transform.parent.GetComponent<ChallengeOverUi>().UpdateTrophy(ChallengeReward.Gold);
+			transform.parent.GetComponent<ChallengeOverUIController>().UpdateTrophy(ChallengeReward.Gold);
 		}
 	}
 }
