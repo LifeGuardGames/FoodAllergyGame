@@ -164,12 +164,12 @@ public class RestaurantManagerArcade : RestaurantManager {
 					DataManager.Instance.GameData.DayTracker.AvgDifficulty = ((DataManager.Instance.GameData.DayTracker.AvgDifficulty + satisfactionAI.DifficultyLevel) / 2);
 				// Save data here
 					int dayNetCash;
-				if(checkBonus()) {
-					dayNetCash = dayEarnedCash + Medic.Instance.MedicCost + 100;
-				}
-				else {
+				//if(checkBonus()) {
+				//	dayNetCash = dayEarnedCash + Medic.Instance.MedicCost + 100;
+				//}
+				//else {
 					dayNetCash = dayEarnedCash + Medic.Instance.MedicCost;
-				}
+				//}
                     CashManager.Instance.RestaurantEndCashUpdate(dayNetCash, dayCashRevenue);
 				if(TierManager.Instance.CurrentTier == 0) {
 					DataManager.Instance.GameData.Cash.TotalCash = 850;
