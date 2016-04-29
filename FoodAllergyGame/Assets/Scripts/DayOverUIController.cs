@@ -7,9 +7,11 @@ public class DayOverUIController : MonoBehaviour {
 	public Text textTips;
 	public Text textMenuCost;
 	public Text textEarningsNet;
+	public ParticleSystem dayOverParticle;
 
 	public void ShowPanel() {
 		tweenDemux.Show();
+		dayOverParticle.Play();
 	}
 
 	public void HidePanel() {

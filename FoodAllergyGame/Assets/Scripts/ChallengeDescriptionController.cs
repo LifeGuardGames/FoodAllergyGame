@@ -7,8 +7,7 @@ public class ChallengeDescriptionController : MonoBehaviour {
 	public Text bronzeBrake;
 	public Text silverBrake;
 	public Text goldBrake;
-	public Button accept;
-	public TweenToggle tween;
+	public TweenToggleDemux demux;
 
 	private string currentChallengeID;
 
@@ -20,12 +19,12 @@ public class ChallengeDescriptionController : MonoBehaviour {
 		bronzeBrake.text = challengeData.BronzeBreakPoint.ToString();
 		silverBrake.text = challengeData.SilverBreakPoint.ToString();
 		goldBrake.text = challengeData.GoldBreakPoint.ToString();
-		tween.Show();
+		demux.Show();
 	}
 
 	public void OnCancelButton(){
 		AudioManager.Instance.PlayClip("ChallengeDecline");
-		tween.Hide();
+		demux.Hide();
 	}
 
 	public void OnPlayButton(){

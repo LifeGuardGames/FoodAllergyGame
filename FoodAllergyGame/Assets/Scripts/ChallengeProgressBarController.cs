@@ -65,6 +65,7 @@ public class ChallengeProgressBarController : MonoBehaviour{
 	private void OnBronzeBarComplete(){
 		if(bronzeBarFillAux == 1.0f){
 			transform.parent.GetComponent<ChallengeOverUIController>().UpdateTrophy(ChallengeReward.Bronze);
+			AudioManager.Instance.PlayClip("TrophyBronze");
 			MoveBar();
 		}
 	}
@@ -77,6 +78,7 @@ public class ChallengeProgressBarController : MonoBehaviour{
 	private void OnSilverBarComplete(){
 		if(silverBarFillAux == 1.0f){
 			transform.parent.GetComponent<ChallengeOverUIController>().UpdateTrophy(ChallengeReward.Silver);
+			AudioManager.Instance.PlayClip("TrophySilver");
 			MoveBar();
 		}
 	}
@@ -89,6 +91,7 @@ public class ChallengeProgressBarController : MonoBehaviour{
 	private void OnGoldBarComplete(){
 		if(goldBarFillAux == 1.0f){
 			transform.parent.GetComponent<ChallengeOverUIController>().UpdateTrophy(ChallengeReward.Gold);
+			AudioManager.Instance.PlayClip("TrophyGold");
 		}
 	}
 }

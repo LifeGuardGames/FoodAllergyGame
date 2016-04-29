@@ -25,6 +25,11 @@
   <Sound ID="ChallengeAccept"></Sound>
   <Sound ID="ChallengeDecline"></Sound>
   <Sound ID="ChallengeShipEnter"></Sound>
+
+  <!-- Trophy sounds -->
+  <Sound ID="TrophyBronze"></Sound>
+  <Sound ID="TrophySilver"></Sound>
+  <Sound ID="TrophyGold"></Sound>
   
   <!-- Epipen scene -->
   <Sound ID="EpipenWrong"></Sound>

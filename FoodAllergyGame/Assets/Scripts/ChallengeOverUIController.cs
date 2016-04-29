@@ -10,9 +10,11 @@ public class ChallengeOverUIController : MonoBehaviour {
 	public Image trophyImage;
 	public ChallengeProgressBarController progressBarController;
 	public int deltaCoinsAux;
+	public ParticleSystem dayOverParticle;
 
 	public void ShowPanel() {
 		tweenDemux.Show();
+		dayOverParticle.Play();
     }
 
 	public void HidePanel() {

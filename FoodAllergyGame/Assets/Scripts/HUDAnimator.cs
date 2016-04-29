@@ -149,6 +149,7 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 		}
 		else {
 			Debug.LogWarning("Reached max tiers");  //TODO check max tiers
+			tierCaller.Finish();
 		}
 	}
 

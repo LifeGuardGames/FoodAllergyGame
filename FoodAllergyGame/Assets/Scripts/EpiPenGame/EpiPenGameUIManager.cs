@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 
 public class EpiPenGameUIManager : MonoBehaviour{
-	public TweenToggle gameOverTween;
+	public TweenToggleDemux gameOverTween;
 	public Image imgRank;
 	public GameTimer timer;
 	public Text timerText;
