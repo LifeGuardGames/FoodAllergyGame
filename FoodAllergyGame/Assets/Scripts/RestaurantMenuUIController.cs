@@ -19,8 +19,7 @@ public class RestaurantMenuUIController : MonoBehaviour {
 	public Animation inspectAnimation;
 	public GameObject allergyButtonParent;
 	public Animator allergyButtonAnimator;
-
-	public GameObject allergyInfo;
+	
 	public Image customerAllergy1;
 	public Image customerAllergy2;
 	public Image customerAllergy3;
@@ -92,7 +91,6 @@ public class RestaurantMenuUIController : MonoBehaviour {
 				break;
 		}
 		
-		allergyInfo.SetActive(true);
 		allergyButtonParent.SetActive(true);
 		allergyButtonAnimator.Play("Normal");
 		allergyText.text = "\"" + allergyString + "\"";

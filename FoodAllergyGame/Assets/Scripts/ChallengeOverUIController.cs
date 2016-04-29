@@ -10,16 +10,13 @@ public class ChallengeOverUIController : MonoBehaviour {
 	public Image trophyImage;
 	public ChallengeProgressBarController progressBarController;
 	public int deltaCoinsAux;
-	public CanvasGroup canvasGroup;
 
 	public void ShowPanel() {
 		tweenDemux.Show();
-		canvasGroup.blocksRaycasts = true;
     }
 
 	public void HidePanel() {
 		tweenDemux.Hide();
-		canvasGroup.blocksRaycasts = false;
 	}
 
 	public void Populate(int negativeCash, int cashEarned, int score) {

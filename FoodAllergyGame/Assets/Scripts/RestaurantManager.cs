@@ -46,7 +46,6 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 	}
 
 	public bool firstSickCustomer = false;
-	public GameObject medicButton;
 	public GameObject medicTutorial;
 	public GameObject trashCanTutorial;
 	public GameObject blackoutImg;

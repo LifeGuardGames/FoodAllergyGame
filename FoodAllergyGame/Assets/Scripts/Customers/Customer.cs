@@ -474,29 +474,17 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		yield return new WaitForSeconds(eatTimer);
 		currBehav.Reason();
 		customerAnim.SetWaitingForCheck();
-//		int rand = Random.Range(0,10);
-//		if(rand > 7){	// TODO taking out bathroom completely here
-//			UseBathroom();
-//			Debug.Log ("Table " + tableNum.ToString() +" has gone to the bathroom");
-//		}
-//		else{
-			
-			if(RestaurantManager.Instance.isTutorial){
-				this.GetComponent<CustomerTutorial>().NextTableFinger();
-			}
-//		}
+		if(RestaurantManager.Instance.isTutorial){
+			this.GetComponent<CustomerTutorial>().NextTableFinger();
+		}
 	}
-
-
+	
 	// when it runs out the customer is taken to the hospital and the player is slamed with the bill
 	IEnumerator AllergyTimer(){
 		yield return new WaitForSeconds(10.0f);
-		//		RestaurantManager.Instance.medicButton.GetComponent<Animator>().SetBool("TutMedic", false);
-		//		RestaurantManager.Instance.tutText.SetActive(false);
 		currBehav.Reason();
 	}
-
-
+	
 	// Checks the current state and runs the appropriate function called by table when waiter approaches
 	public virtual void CheckState(){
 		switch(state){
@@ -616,9 +604,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			DataManager.Instance.GameData.Tutorial.IsTrashCanTutDone = true;
 			KitchenManager.Instance.IsTrachcanTut = false;
         }
-		Debug.Log("Redorder");
+	//	Debug.Log("Redorder");
 		DestroyOrder();
-		Debug.Log("Order Destroyed");
+	//	Debug.Log("Order Destroyed");
 		Waiter.Instance.RemoveMeal(tableNum);
 		customerUI.ToggleWait(false);
 		KitchenManager.Instance.spinnerHighlight.gameObject.SetActive(false);
