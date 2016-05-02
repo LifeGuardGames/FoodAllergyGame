@@ -7,6 +7,10 @@ public class StarAnimHelper : MonoBehaviour {
 		starsUIController.OnNewStarSpriteEvent();
 	}
 
+	public void StarRewardSound() {
+		AudioManager.Instance.PlayClip("TierUp");
+	}
+
 	public void FinishAnimation() {
 		starsUIController.OnRewardFinish();
     }

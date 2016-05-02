@@ -23,7 +23,8 @@ public class RewardAnimationMeta : MonoBehaviour {
 	public void ImpactAnimationEvent() {
 		Camera.main.GetComponent<Animation>().Play();
 		smokeTrail.Play();
-    }
+		AudioManager.Instance.PlayClip("SupplyDropCrash");
+	}
 
 	void OnMouseUpAsButton() {
 		StartManager.Instance.RewardUIController.Init(caller);
