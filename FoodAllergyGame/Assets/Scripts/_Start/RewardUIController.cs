@@ -87,11 +87,13 @@ public class RewardUIController : MonoBehaviour {
 
 	public void OnUITweenComplete() {
 		dropPodAnimator.Play("DropPodAppearUI");
+		AudioManager.Instance.PlayClip("SupplyDropAppear");
 	}
 
 	// Open the drop pod and pop out the RewardItems
 	public void OnDropPodClicked() {
 		dropPodAnimator.Play("DropPodOpenUI");
+		AudioManager.Instance.PlayClip("SupplyDropOpen");
 	}
 
 	public void OnDropPodOpenAnimationDone() {

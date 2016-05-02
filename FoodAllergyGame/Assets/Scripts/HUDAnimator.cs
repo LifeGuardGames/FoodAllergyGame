@@ -117,6 +117,8 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 
 	public IEnumerator StartStarChunkTweenSpawningHelper(int chunkCount){
 		for(int i = 0; i <= chunkCount; i++){
+			AudioManager.Instance.PlayClip("StarChunkAppear");
+
 			GameObject go = GameObjectUtils.AddChildGUI(starChunkParent.gameObject, starChunkPrefab);
 			Vector3 reference = StartManager.Instance.DinerEntranceUIController.transform.position + new Vector3(0, 100f, 0);
 			go.transform.position = new Vector3(reference.x, reference.y, 0);
@@ -146,7 +148,7 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 			tierBarPopAnim.Play();
 			StartTierAnimation(this.tierCaller, this.oldTotalCash, this.newTotalCash);
 		}
-		Debug.Log("Coin arrived, play sound");
+		AudioManager.Instance.PlayClip("StarChunkArrive");
 	}
 
 	private void StartTierAnimation(NotificationQueueDataTierProgress tierCaller, int oldTotalCash, int newTotalCash) {
@@ -187,7 +189,6 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 			tierBar.rectTransform.sizeDelta = new Vector2(0f, fullSizeBar.y);
 
 			// Do any animation effects here
-			AudioManager.Instance.PlayClip("TierUp");
 			fireworksController.StartFireworks();
 
 			// Pass that total cash into the animate function again

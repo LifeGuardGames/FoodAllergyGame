@@ -68,11 +68,13 @@ public class RewardItem : MonoBehaviour {
 	}
 
 	public void AnimationAppear() {
+		AudioManager.Instance.PlayClip("CapsuleAppearSound");
 		rewardItemAnimator.Play("CapsuleAppear");
 	}
 
 	public void OnCapsuleClicked() {
 		if(!IsOpened && rewardUIController.IsCapsuleClickable(this)) {
+			AudioManager.Instance.PlayClip("CapsuleOpenSound");
 			rewardItemAnimator.Play("CapsuleOpen");
 			IsOpened = true;
 			rewardUIController.DoneButtonToggleCheck();

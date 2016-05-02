@@ -44,6 +44,7 @@ public static class ParticleAndFloatyUtils{
 	}
 
 	static public void PlayDecoChangePoof(Vector3 pos){
+		AudioManager.Instance.PlayClip("DecoPoofSound");
 		GameObject go = Resources.Load("DecoPoof") as GameObject;
 		GameObject.Instantiate(go, pos, go.transform.rotation);
 	}

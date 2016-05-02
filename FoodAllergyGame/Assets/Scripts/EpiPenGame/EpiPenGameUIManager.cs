@@ -58,5 +58,6 @@ public class EpiPenGameUIManager : MonoBehaviour{
 		}
 		timerText.text = timer.Report();
 		gameOverTween.Show();
-    }
+		AudioManager.Instance.PlayClip("EndOfDay");
+	}
 }
