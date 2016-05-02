@@ -29,6 +29,7 @@ public class CustomerSpecialGossiper : MonoBehaviour {
 				break;
 		}
 		customerAnim.SetWaitingInLine();
+		transform.position = new Vector3(-475, 656, 0);
 		startPosition = transform.position;
 		Gossip();
 	}
