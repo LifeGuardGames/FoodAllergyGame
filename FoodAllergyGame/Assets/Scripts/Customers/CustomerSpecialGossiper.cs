@@ -60,6 +60,7 @@ public class CustomerSpecialGossiper : MonoBehaviour {
 	}
 	public void GoAway() {
 		transform.position = startPosition;
+		SetBaseSortingOrder(190);
 		StartCoroutine(WaitAFew());
 		StopCoroutine("Annoy");
 	}

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class CustomerAnimationControllerImpaitent : CustomerAnimController {
 
@@ -11,9 +10,9 @@ public class CustomerAnimationControllerImpaitent : CustomerAnimController {
 			int randomIndex = Random.Range(1, 3);   // Get random int between 1 and 2
 			if(randomIndex == 1) {
 				skeletonAnim.state.SetAnimation(0, "AllergyAttack" + randomIndex.ToString(), false);
+				puke.Play();
 			}
 			else {
-				puke.Play();
 				skeletonAnim.state.SetAnimation(0, "AllergyAttack" + randomIndex.ToString(), false);
 			}
 		}
