@@ -25,8 +25,10 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 	}
 
 	public void InitializePurchasing() {
+		Debug.Log("====INITIALIZING");
 		// If we have already connected to Purchasing ...
 		if(IsInitialized()) {
+			Debug.Log("====ALREADY INITIALIZED");
 			// ... we are done here.
 			return;
 		}
@@ -50,10 +52,12 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 	}
 	
 	void BuyProductID(string productId) {
+		Debug.Log("====BUYING PRODUCT PREPARE");
 		// If the stores throw an unexpected exception, use try..catch to protect my logic here.
 		try {
 			// If Purchasing has been initialized ...
 			if(IsInitialized()) {
+				Debug.Log("====BUYING PRODUCT");
 				// ... look up the Product reference with the general product identifier and the Purchasing system's products collection.
 				Product product = m_StoreController.products.WithID(productId);
 
@@ -83,6 +87,7 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 	
 	// Restore purchases previously made by this customer. Some platforms automatically restore purchases. Apple currently requires explicit purchase restoration for IAP.
 	public void RestorePurchases() {
+		Debug.Log("====RESTORING PURCHASE");
 		// If Purchasing has not yet been set up ...
 		if(!IsInitialized()) {
 			// ... report the situation and stop restoring. Consider either waiting longer, or retrying initialization.
@@ -115,6 +120,7 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 	// --- IStoreListener
 	//
 	public void OnInitialized(IStoreController controller, IExtensionProvider extensions) {
+		Debug.Log("====INITIALIZED");
 		// Purchasing has succeeded initializing. Collect our Purchasing references.
 		Debug.Log("OnInitialized: PASS");
 
@@ -134,12 +140,14 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 	
 	// NOTE: Android calls this on game start automatically if you have a purchase to redeem
 	public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args) {
+		Debug.Log("====PROCESSING PURCHASE");
 		// Or ... a non-consumable product has been purchased by this user.
 		if(String.Equals(args.purchasedProduct.definition.id, kProductIDPro, StringComparison.Ordinal)) {
 			Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
 
 			UnlockMoreCrates();
 			productPageUIController.HidePanel();
+			Debug.Log("====SHOWING STATUS TRUE");
 			statusPageUIController.ShowPanel(true);
 		}
 		// Or ... an unknown product has been purchased by this user. Fill in additional products here.
@@ -147,8 +155,10 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 			Debug.Log(string.Format("ProcessPurchase: FAIL. Unrecognized product: '{0}'", args.purchasedProduct.definition.id));
 
 			productPageUIController.HidePanel();
+			Debug.Log("====SHOWING STATUS FALSE");
 			statusPageUIController.ShowPanel(false);
 		}
+		Debug.Log("====DONE PROCESSING PURCHASE");
 
 		// Return a flag indicating wither this product has completely been received, 
 		// or if the application needs to be reminded of this purchase at next app launch.
@@ -183,6 +193,7 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 
 	// Called on success or restore
 	private void UnlockMoreCrates() {
+		Debug.Log("====UNLOCKING MORE CRATES");
 		DataManager.Instance.GameData.DayTracker.IsMoreCrates = true;
 
 		// Do other things here, remove UI - if it is the correct scene

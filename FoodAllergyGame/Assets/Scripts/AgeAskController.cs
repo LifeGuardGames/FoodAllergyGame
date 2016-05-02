@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class AgeAskController : MonoBehaviour {
 
-	public TweenToggle panelTween;
+	public TweenToggleDemux panelTween;
 	public InputField inputText;
 	public Animation inputPulse;
 	public GameObject button;
