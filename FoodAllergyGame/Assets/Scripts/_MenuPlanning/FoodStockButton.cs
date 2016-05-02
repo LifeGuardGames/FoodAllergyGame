@@ -26,6 +26,7 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	public Animator foodButtonAnimator;
 
 	private Transform dragAux;
+	private float dragZValue;
 	private Vector3 startPosition;
 	private Transform startParent;
 
@@ -134,13 +135,14 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	
 	#region IDragHandler implementation
 	public void OnDrag(PointerEventData eventData){
+		// Screen space overlay dragging - http://forum.unity3d.com/threads/mouse-position-for-screen-space-camera.294458/
 #if UNITY_EDITOR
-		Vector2 pointerPosition = Input.mousePosition;
+		Vector3 pointerPosition = Input.mousePosition;
 #else
-		Vector2 pointerPosition = Input.GetTouch(0).position;
+		Vector3 pointerPosition = Input.GetTouch(0).position;
 #endif
-		itemBeingDragged.GetComponent<RectTransform>().anchoredPosition =
-			Vector2.Scale(pointerPosition, CanvasScalerHelper.Instance.GetCanvasScreenScale());
+		pointerPosition.z = MenuManager.Instance.GetCanvasDistanceOffset();
+		itemBeingDragged.transform.position = Camera.main.ScreenToWorldPoint(pointerPosition);
 	}
 	#endregion
 

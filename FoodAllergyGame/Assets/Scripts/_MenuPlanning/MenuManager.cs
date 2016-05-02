@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class MenuManager : Singleton<MenuManager>{
 
 	private int menuSize;
+	public Canvas mainCanvas;
 	public GameObject foodStockButtonPrefab;
 
 	public Transform selectedGrid;
@@ -217,5 +218,9 @@ public class MenuManager : Singleton<MenuManager>{
 		else{
 			Debug.LogWarning("Menu not complete!");
 		}
+	}
+
+	public float GetCanvasDistanceOffset(){
+		return mainCanvas.planeDistance;
 	}
 }

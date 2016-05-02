@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	public int totalSteps = 8;
+	public Canvas mainCanvas;
 	public EpiPenGameUIManager UIManager;
 	
 	public List<EpiPenGameSlot> finalSlotList;
@@ -407,4 +408,8 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		UIManager.StartGame();
     }
 	#endregion
+
+	public float GetCanvasDistanceOffset(){
+		return mainCanvas.planeDistance;
+	}
 }
