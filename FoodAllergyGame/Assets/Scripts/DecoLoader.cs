@@ -59,7 +59,7 @@ public abstract class DecoLoader : MonoBehaviour {
 		}
 
 		if(isPlayPoof){
-			ParticleUtils.PlayDecoChangePoof(transform.position);
+			ParticleAndFloatyUtils.PlayDecoChangePoof(transform.position);
 		}
 
 		// Load decos if there is any

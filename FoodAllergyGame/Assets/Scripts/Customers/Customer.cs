@@ -456,7 +456,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			for(int i = 0; i < allergy.Count; i++) { 
 				if(Order.GetComponent<Order>().allergy.Contains(allergy[i]) && !allergy.Contains(Allergies.None)) {
 					Medic.Instance.BillRestaurant(-100);
-					ParticleUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(tableNum).gameObject.transform.position, -100);
+					ParticleAndFloatyUtils.PlayMoneyFloaty(RestaurantManager.Instance.GetTable(tableNum).gameObject.transform.position, -100);
 					RestaurantManager.Instance.GetFlyThruTable().FlyThruLeave();
 					AudioManager.Instance.PlayClip("CustomerDead");
 					if(Order.gameObject != null) {
@@ -490,7 +490,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		switch(state){
 		case CustomerStates.WaitForOrder:
 			if(Waiter.Instance.Hand1 != WaiterHands.None && Waiter.Instance.Hand2 != WaiterHands.None){
-				ParticleUtils.PlayHandsFullFloaty(Waiter.Instance.transform.position);
+				ParticleAndFloatyUtils.PlayHandsFullFloaty(Waiter.Instance.transform.position);
 				Waiter.Instance.Finished();
 			}
 			else{
