@@ -137,7 +137,7 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 #if UNITY_EDITOR
 		Vector2 pointerPosition = Input.mousePosition;
 #else
-		Vector2 pointerPosition = Input.GetTouch(0).position
+		Vector2 pointerPosition = Input.GetTouch(0).position;
 #endif
 		itemBeingDragged.GetComponent<RectTransform>().anchoredPosition =
 			Vector2.Scale(pointerPosition, CanvasScalerHelper.Instance.GetCanvasScreenScale());

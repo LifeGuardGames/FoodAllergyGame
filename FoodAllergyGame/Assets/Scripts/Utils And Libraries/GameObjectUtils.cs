@@ -139,4 +139,9 @@ public static class GameObjectUtils{
 		float yComponent = radius * Mathf.Cos(randomDegree);
 		return new Vector3(center.x + xComponent, center.y + yComponent, center.z);
 	}
+
+	static public Vector2 GetRandomPointOnCircumference(Vector2 center, float radius){
+		Vector3 position = GetRandomPointOnCircumference(new Vector3(center.x, center.y, 0f), radius);
+		return new Vector2(position.x, position.y);
+	}
 }
