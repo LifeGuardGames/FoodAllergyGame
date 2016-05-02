@@ -6,6 +6,7 @@ public static class ParticleAndFloatyUtils{
 	static public void PlayMoneyFloaty(Vector3 pos, int amount){
 		GameObject go = Resources.Load("CoinFloaty") as GameObject;
 		GameObject instance = GameObjectUtils.AddChildGUI(GameObject.Find("Canvas"), go);
+		pos.z = 0f;
 		instance.transform.position = pos;
 
 		Text textScript = instance.GetComponentInChildren<Text>();
