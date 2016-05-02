@@ -110,7 +110,7 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 		this.newTotalCash = newTotalCash;
 
 		firstStarChunkAux = true;
-		int chunkCount = (newTotalCash - oldTotalCash) / 10;        // Change this for different chunk numbers
+		int chunkCount = (newTotalCash - oldTotalCash) / 30;        // Change this for different chunk numbers
 		Debug.Log("Chunks to tween " + chunkCount + " " + (newTotalCash - oldTotalCash));
 		StartCoroutine(StartStarChunkTweenSpawningHelper(chunkCount));	// NOTE: Must show atleast one tween
 	}
