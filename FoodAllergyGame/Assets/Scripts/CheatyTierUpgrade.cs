@@ -135,20 +135,28 @@ public class CheatyTierUpgrade : MonoBehaviour {
 	}
 
 	public void SkipEverthing() {
+		DataManager.
 		DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "";
 		DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
 		DataManager.Instance.GameData.Cash.LastSeenTotalCash = 45200;
 		DataManager.Instance.GameData.Cash.TotalCash = 45700;
+		Debug.Log(CashManager.Instance.TotalCash + " " + CashManager.Instance.LastSeenTotalCash);
 		DataManager.Instance.GameData.Tutorial.IsSpeDecoTutDone =true;
 		DataManager.Instance.GameData.Challenge.IsFirstTimeChallengeEntrance = false;
         DataManager.Instance.GameData.Tutorial.IsMenuPlanningFingerTutDone = true;
 		DataManager.Instance.GameData.Tutorial.IsDecoFingerTutDone = true;
 		DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance = false;
 		DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
-		TierManager.Instance.RecalculateTier();
-		DataManager.Instance.GameData.Decoration.BoughtDeco.Add("VIPBasic","");
-		DataManager.Instance.GameData.Decoration.BoughtDeco.Add("PlayArea00", "");
-		DataManager.Instance.GameData.Decoration.BoughtDeco.Add("FlyThru00", "");
+
+		if(!DataManager.Instance.GameData.Decoration.BoughtDeco.ContainsKey("VIPBasic")){
+			DataManager.Instance.GameData.Decoration.BoughtDeco.Add("VIPBasic","");
+		}
+		if(!DataManager.Instance.GameData.Decoration.BoughtDeco.ContainsKey("PlayArea00")){
+			DataManager.Instance.GameData.Decoration.BoughtDeco.Add("PlayArea00", "");
+		}
+		if(!DataManager.Instance.GameData.Decoration.BoughtDeco.ContainsKey("FlyThru00")){
+			DataManager.Instance.GameData.Decoration.BoughtDeco.Add("FlyThru00", "");
+		}
 		SceneManager.LoadScene(SceneUtils.START);
 	}
 

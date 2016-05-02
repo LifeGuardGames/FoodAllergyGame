@@ -11,6 +11,8 @@ public class ChallengeOverUIController : MonoBehaviour {
 	public ChallengeProgressBarController progressBarController;
 	public int deltaCoinsAux;
 	public ParticleSystem dayOverParticle;
+	public Animation getTrophyAnim;
+	public ParticleSystem getTrophyParticle;
 
 	public void ShowPanel() {
 		tweenDemux.Show();
@@ -34,6 +36,8 @@ public class ChallengeOverUIController : MonoBehaviour {
 
 	public void UpdateTrophy(ChallengeReward reward) {
 		trophyImage.sprite = SpriteCacheManager.GetTrophySpriteData(reward);
+		getTrophyAnim.Play();
+		getTrophyParticle.Play();
 	}
 
 	private IEnumerator ChangePoints() {
