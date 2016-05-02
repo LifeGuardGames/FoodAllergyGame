@@ -80,6 +80,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 	} 
 
 	public void Canceled(){
+		KitchenManager.Instance.StopCooking();
 		StopCoroutine("Cooking");
 		Destroy(this.gameObject);
 	}

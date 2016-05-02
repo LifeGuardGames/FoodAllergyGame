@@ -47,6 +47,8 @@ public class CustomerSpecialGossiper : MonoBehaviour {
 				transform.localPosition = Vector3.zero;
 				RestaurantManager.Instance.GetTable(rand).isGossiped = true;
 				tableNum = rand;
+				CustomerAnimationControllerGossiper ani = customerAnim as CustomerAnimationControllerGossiper;
+				ani.Gossip();
 				if(mod != GossiperMode.None) {
 					StartCoroutine("Annoy");
 				}

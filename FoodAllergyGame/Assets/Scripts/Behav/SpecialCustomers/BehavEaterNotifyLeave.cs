@@ -45,6 +45,9 @@ public class BehavEaterNotifyLeave : Behav {
 						}
 					}
 					if(self.satisfaction == 0) {
+						if(self.Order != null) {
+							self.Order.GetComponent<Order>().Canceled();
+						}
 						CustomerAnimControllerEater eat = self.customerAnim as CustomerAnimControllerEater;
 						eat.EatCustomerFail();
 						self.GetComponent<CustomerEater>().StartCoroutine("Leaving");

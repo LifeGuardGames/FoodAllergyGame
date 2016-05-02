@@ -90,6 +90,10 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 		}
 	}
 
+	public void StopCooking() {
+		AnimSetCooking(-1, isFinishedCooking: false);
+	}
+
 	// Used for animator
 	private void AnimSetCooking(int cookingCountDelta, bool isFinishedCooking = true){
 		ordersCooking += cookingCountDelta;

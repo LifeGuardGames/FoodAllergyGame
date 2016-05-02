@@ -19,7 +19,9 @@ public class BehavNotifyLeave : Behav {
 			if(self.satisfaction > 3) {
 				self.satisfaction = 3;
 			}
-
+			if(self.Order != null) {
+				self.Order.GetComponent<Order>().Canceled();
+			}
 			if(self.state != CustomerStates.InLine && self.state != CustomerStates.Saved) {
 				RestaurantManager.Instance.GetTable(self.tableNum).CustomerLeaving();
 				if(RestaurantManager.Instance.GetTable(self.tableNum).tableType == Table.TableType.FlyThru) {
