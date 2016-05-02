@@ -118,7 +118,7 @@
   </Behav>
  <Behav ID="BehavFlow23">
     <Name>VipTutorial</Name>
-    <BehavList>BehavWaitingInLine,BehavVIPTutReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEating,BehavWaitForCheck,BehavVipTutNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital</BehavList>
+    <BehavList>BehavWaitingInLine,BehavVIPTutReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEating,BehavWaitForCheck,BehavVipTutNotifyLeave,BehavAllergyAttack,BehavVipTutSaved,BehavVipTutHospital</BehavList>
   </Behav>  
  <Behav ID="BehavFlow24">
     <Name>PlayAreaTutorial</Name>
