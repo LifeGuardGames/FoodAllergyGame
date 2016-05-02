@@ -19,6 +19,7 @@ public class BehavPlayAreaTutReadingMenu : Behav {
     }
 
 	public override void Act() {
+		self.customerAnim.SetReadingMenu();
 		self.StartCoroutine("ReadMenu");
 		self.gameObject.GetComponent<CustomerPlayAreaTut>().tutFingers.transform.GetChild(7).gameObject.SetActive(false);
 		//get food choices 
