@@ -162,7 +162,7 @@ public class Waiter: Singleton<Waiter>{
 		}
 		else{
 			// Hands are full
-			ParticleUtils.PlayHandsFullFloaty(this.transform.position);
+			ParticleAndFloatyUtils.PlayHandsFullFloaty(this.transform.position);
 		}
 	}
 
@@ -246,7 +246,7 @@ public class Waiter: Singleton<Waiter>{
 			return true;
 		}
 		else{
-			ParticleUtils.PlayHandsFullFloaty(this.transform.position);
+			ParticleAndFloatyUtils.PlayHandsFullFloaty(this.transform.position);
 			return false;
 		}
 	}

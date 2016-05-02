@@ -23,7 +23,7 @@ public class TableLoader : DecoLoader {
 			Table tableScript = loadedObject.GetComponent<Table>();
 
 			if(isPlayPoof){
-				ParticleUtils.PlayDecoChangePoof(tableParentList[i].transform.position);
+				ParticleAndFloatyUtils.PlayDecoChangePoof(tableParentList[i].transform.position);
 			}
 			
 			// HACK Delete colliders while not in deco scene

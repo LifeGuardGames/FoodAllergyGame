@@ -18,6 +18,7 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 
 	public Image tierBar;
 	public Text tierText;
+	public Animation tierBarPopAnim;
 	private int oldTotalCash;
 	private int newTotalCash;
 	private bool firstStarChunkAux;		// Toggle for first chunk finish tweening
@@ -60,7 +61,7 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 		// after we start a corutine that will end when the first coin reaches the Hud
 		StartCoroutine("ChangeMoney");
 		StartCoroutine("MakeMoney");
-		ParticleUtils.PlayMoneyFloaty(floatyPos, deltaCoins);
+		ParticleAndFloatyUtils.PlayMoneyFloaty(floatyPos, deltaCoins);
 		// then we will keep spawning coins as the hud changes
 		// the last coin should reach about the same time as the hud reaches it's target
 	}
@@ -109,8 +110,8 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 		this.newTotalCash = newTotalCash;
 
 		firstStarChunkAux = true;
-		int chunkCount = (newTotalCash - oldTotalCash) / 10;		// Change this for different chunk numbers
-
+		int chunkCount = (newTotalCash - oldTotalCash) / 10;        // Change this for different chunk numbers
+		Debug.Log("Chunks to tween " + chunkCount + " " + (newTotalCash - oldTotalCash));
 		StartCoroutine(StartStarChunkTweenSpawningHelper(chunkCount));	// NOTE: Must show atleast one tween
 	}
 
@@ -142,6 +143,7 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 	private void OnStarChunkArrived(){
 		if(firstStarChunkAux){	// Do things when first chunk has arrived
 			firstStarChunkAux = false;
+			tierBarPopAnim.Play();
 			StartTierAnimation(this.tierCaller, this.oldTotalCash, this.newTotalCash);
 		}
 		Debug.Log("Coin arrived, play sound");

@@ -147,7 +147,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		RestaurantManager.Instance.actTables--;
 		RestaurantManager.Instance.CheckTablesForGameOver();
 		RestaurantManager.Instance.MenuUIController.CancelOrder(tableNumber);
-		ParticleUtils.PlayTableSmashedParticle(transform.position);
+		ParticleAndFloatyUtils.PlayTableSmashedParticle(transform.position);
 		Invoke("TableSmashedCleanup", 4f);
 		// TODO balance this
 	}

@@ -8,6 +8,7 @@ public class EpiPenGameUIManager : MonoBehaviour{
 	public Text timerText;
 	public TweenToggle checkButtonTween;
 	public TweenToggle fadePanel;
+	public ParticleSystem confettiParticle;
 
 	public void CheckButtonToggle(bool isShown) {
 		if(isShown) {
@@ -42,12 +43,15 @@ public class EpiPenGameUIManager : MonoBehaviour{
 	public void ShowGameOver(int attempts) {
 		if(attempts == 1) {
 			imgRank.sprite = SpriteCacheManager.GetTrophySpriteData(ChallengeReward.Gold);
+			confettiParticle.Play();
 		}
 		else if(attempts == 2) {
 			imgRank.sprite = SpriteCacheManager.GetTrophySpriteData(ChallengeReward.Silver);
+			confettiParticle.Play();
 		}
 		else if(attempts == 3) {
 			imgRank.sprite = SpriteCacheManager.GetTrophySpriteData(ChallengeReward.Bronze);
+			confettiParticle.Play();
 		}
 		else if(attempts > 3) {
 			imgRank.sprite = SpriteCacheManager.GetTrophySpriteData(ChallengeReward.Stone);

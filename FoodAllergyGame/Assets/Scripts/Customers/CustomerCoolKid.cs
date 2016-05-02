@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class CustomerCoolKid : Customer {
 	public GameObject thoughtBubble;
@@ -11,12 +10,12 @@ public class CustomerCoolKid : Customer {
 
 	public override void GoToPlayArea(Vector3 playAreaSpot, int spotIndex, int deltaSatisfaction){
 		satisfaction--;
-		thoughtBubble.SetActive(true);
-		Invoke("DisableThoughtBubble", 3f);
+		//thoughtBubble.SetActive(true);
+		//Invoke("DisableThoughtBubble", 3f);
         base.GoToPlayArea(playAreaSpot, spotIndex, deltaSatisfaction);
 	}
 
-	public void DisableThoughtBubble() {
-		thoughtBubble.SetActive(false);
-	}
+	//public void DisableThoughtBubble() {
+	//	thoughtBubble.SetActive(false);
+	//}
 }

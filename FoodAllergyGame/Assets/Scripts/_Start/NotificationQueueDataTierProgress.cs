@@ -19,7 +19,6 @@ public class NotificationQueueDataTierProgress : NotificationQueueData {
 
 		// Check one last time just to make sure
 		if(oldTotalCash != newTotalCash) {
-			Debug.Log(CashManager.Instance.TotalCash + " " + CashManager.Instance.LastSeenTotalCash);
 			HUDAnimator.Instance.StartStarChunkTweenSpawning(this, oldTotalCash, newTotalCash);	// This spawns the whole tier up process
 		}
 		else{

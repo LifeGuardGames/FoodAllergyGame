@@ -179,7 +179,7 @@ public class MenuManager : Singleton<MenuManager>{
 			}
 			return true;
 		}
-		ParticleUtils.PlaySlotsFullFloaty(floatyParent);
+		ParticleAndFloatyUtils.PlaySlotsFullFloaty(floatyParent);
 		slotBarFullAnim.Play();
         return false;
 	}

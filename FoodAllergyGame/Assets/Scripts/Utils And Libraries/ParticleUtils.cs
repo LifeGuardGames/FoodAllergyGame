@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public static class ParticleUtils{
+public static class ParticleAndFloatyUtils{
 
 	static public void PlayMoneyFloaty(Vector3 pos, int amount){
 		GameObject go = Resources.Load("CoinFloaty") as GameObject;
