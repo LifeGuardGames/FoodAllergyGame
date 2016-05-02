@@ -135,7 +135,7 @@ public class CheatyTierUpgrade : MonoBehaviour {
 	}
 
 	public void SkipEverthing() {
-		DataManager.
+		DataManager.Instance.GameData.DayTracker.IsMoreCrates = true;
 		DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "";
 		DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
 		DataManager.Instance.GameData.Cash.LastSeenTotalCash = 45200;

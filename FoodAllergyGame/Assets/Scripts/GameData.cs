@@ -6,7 +6,6 @@ public class GameData {
 	public MutableDataDayTracker DayTracker {get; set;}
 	public MutableDataTutorial Tutorial {get; set;}
 	public MutableDataDecoration Decoration {get; set;}
-	public MutableDataStartObject StartObject{get; set;}
 	public MutableDataSessionCount Session { get; set;}
 	public MutableDataChallenge Challenge { get; set; }
 	public MutableDataEpiPenGame Epi { get; set; }
@@ -21,7 +20,6 @@ public class GameData {
 		DayTracker = new MutableDataDayTracker();
 		Tutorial = new MutableDataTutorial();
 		Decoration = new MutableDataDecoration();
-		StartObject = new MutableDataStartObject();
 		Session = new MutableDataSessionCount();
 		Challenge = new MutableDataChallenge();
 		Epi = new MutableDataEpiPenGame();

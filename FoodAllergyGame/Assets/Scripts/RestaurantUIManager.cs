@@ -50,10 +50,10 @@ public class RestaurantUIManager : MonoBehaviour{
 		
 		// Play different sounds depending on how much money you get
 		if(billAmount > 0) {
-			if(billAmount < 5) {
+			if(billAmount < 15) {
 				AudioManager.Instance.PlayClip("CoinGet1");
 			}
-			else if(billAmount < 10) {
+			else if(billAmount < 35) {
 				AudioManager.Instance.PlayClip("CoinGet2");
 			}
 			else {

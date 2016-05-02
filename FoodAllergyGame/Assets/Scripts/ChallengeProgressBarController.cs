@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class ChallengeProgressBarController : MonoBehaviour{
+	public ChallengeOverUIController challengeOverUIController;
 	public RectTransform barParent;
 	public RectTransform bronzeBar;
 	public RectTransform silverBar;
@@ -64,8 +65,8 @@ public class ChallengeProgressBarController : MonoBehaviour{
 
 	private void OnBronzeBarComplete(){
 		if(bronzeBarFillAux == 1.0f){
-			transform.parent.GetComponent<ChallengeOverUIController>().UpdateTrophy(ChallengeReward.Bronze);
-			AudioManager.Instance.PlayClip("TrophyBronze");
+			challengeOverUIController.UpdateTrophy(ChallengeReward.Bronze);
+			AudioManager.Instance.PlayClip("TrophyBronzeGet");
 			MoveBar();
 		}
 	}
@@ -77,8 +78,8 @@ public class ChallengeProgressBarController : MonoBehaviour{
 
 	private void OnSilverBarComplete(){
 		if(silverBarFillAux == 1.0f){
-			transform.parent.GetComponent<ChallengeOverUIController>().UpdateTrophy(ChallengeReward.Silver);
-			AudioManager.Instance.PlayClip("TrophySilver");
+			challengeOverUIController.UpdateTrophy(ChallengeReward.Silver);
+			AudioManager.Instance.PlayClip("TrophySilverGet");
 			MoveBar();
 		}
 	}
@@ -90,8 +91,8 @@ public class ChallengeProgressBarController : MonoBehaviour{
 
 	private void OnGoldBarComplete(){
 		if(goldBarFillAux == 1.0f){
-			transform.parent.GetComponent<ChallengeOverUIController>().UpdateTrophy(ChallengeReward.Gold);
-			AudioManager.Instance.PlayClip("TrophyGold");
+			challengeOverUIController.UpdateTrophy(ChallengeReward.Gold);
+			AudioManager.Instance.PlayClip("TrophyGoldGet");
 		}
 	}
 }

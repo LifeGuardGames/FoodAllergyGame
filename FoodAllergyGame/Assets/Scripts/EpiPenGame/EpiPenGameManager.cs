@@ -33,7 +33,6 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	private int difficulty = 0;
 	private bool isAnimatingEnding = false;     // Used for skipping
 	private bool isSkippingAnimations = false;	// Used for skipping
-	private int latestMarkedIndex;				// Used for skipping
 
 	private string epipenSetPrefix;     // "A" or "B", 'TokenA1' format
 
@@ -280,7 +279,6 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
             if(allPickTokens.Remove(slotIndex)) {						// Soft remove from pick list
 				finalSlotList[slotIndex].GetComponent<Image>().sprite = lockedFinalSlotSprite;	// Change slot color
 			}
-			latestMarkedIndex = slotIndex;                              // Checkpoint for skipping
 
 			// Continue animation sequence
 			float moveTime = isSkippingAnimations ? 0f : 0.5f;

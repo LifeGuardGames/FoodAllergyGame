@@ -1,75 +1,75 @@
 <Sounds>
-<!--	<Sound ID="decoPlaceFurniture" Volume="1"> </Sound> -->
+	<!-- <Sound ID="decoPlaceFurniture" Volume="1"> </Sound> -->
 	<!-- UI Sounds -->
 	<Sound ID="Button1Down"></Sound>
 	<Sound ID="Button1Up"></Sound>
-  <Sound ID="PickUp" Volume="0.3"></Sound>
-  <Sound ID="Drop" Volume="0.8"></Sound>
+	<Sound ID="PickUp" Volume="0.3"></Sound>
+	<Sound ID="Drop" Volume="0.8"></Sound>
 
-  <!-- Comic sounds -->
-  <Sound ID="ComicPage2SFX"></Sound>
-  <Sound ID="ComicPage3SFX"></Sound>
+	<!-- Comic sounds -->
+	<Sound ID="ComicPage2SFX"></Sound>
+	<Sound ID="ComicPage3SFX"></Sound>
   
-  <!-- Start scene -->
-  <Sound ID="Firework1"></Sound>
-  <Sound ID="Firework2"></Sound>
-  <Sound ID="Firework3"></Sound>
-  <Sound ID="TierUp"></Sound>
+	<!-- Start scene -->
+	<Sound ID="Firework1"></Sound>
+	<Sound ID="Firework2"></Sound>
+	<Sound ID="Firework3"></Sound>
+	<Sound ID="TierUp"></Sound>
 
-  <!-- Restaurant scene -->
-  <Sound ID="EndOfDay"></Sound>
-  <Sound ID="MedicEnter"></Sound>
+	<!-- Restaurant scene -->
+	<Sound ID="EndOfDay"></Sound>
+	<Sound ID="MedicEnter"></Sound>
 
-  <!-- ChallengeMenu scene -->
-  <Sound ID="ChallengePick"></Sound>
-  <Sound ID="ChallengeAccept"></Sound>
-  <Sound ID="ChallengeDecline"></Sound>
-  <Sound ID="ChallengeShipEnter"></Sound>
+	<!-- ChallengeMenu scene -->
+	<Sound ID="ChallengePick"></Sound>
+	<Sound ID="ChallengeAccept"></Sound>
+	<Sound ID="ChallengeDecline"></Sound>
+	<Sound ID="ChallengeShipEnter"></Sound>
 
-  <!-- Trophy sounds -->
-  <Sound ID="TrophyBronze"></Sound>
-  <Sound ID="TrophySilver"></Sound>
-  <Sound ID="TrophyGold"></Sound>
+	<!-- Trophy sounds -->
+	<Sound ID="TrophyBronzeGet"></Sound>
+	<Sound ID="TrophySilverGet"></Sound>
+	<Sound ID="TrophyGoldGet"></Sound>
   
-  <!-- Epipen scene -->
-  <Sound ID="EpipenWrong"></Sound>
-  <Sound ID="EpipenRight"></Sound>
-  <Sound ID="EpipenCheck"></Sound>
+	<!-- Epipen scene -->
+	<Sound ID="EpipenWrong"></Sound>
+	<Sound ID="EpipenRight"></Sound>
+	<Sound ID="EpipenCheck"></Sound>
 
-  <!-- Customer sounds -->
-  <Sound ID="CustomerEnter"></Sound>
-  <Sound ID="CustomerAllergyAttackAudio"></Sound>
-  <Sound ID="CustomerEating"></Sound>
-  <Sound ID="CustomerSaved"></Sound>
-  <Sound ID="CustomerSeated"></Sound>
-  <Sound ID="CustomerLeave"></Sound>
-  <Sound ID="CustomerSelected"></Sound>
-  <Sound ID="CustomerReadyForCheck"></Sound>
-  <Sound ID="CustomerDead"></Sound>
+	<!-- Customer sounds -->
+	<Sound ID="CustomerEnter"></Sound>
+	<Sound ID="CustomerAllergyAttackAudio"></Sound>
+	<Sound ID="CustomerEating"></Sound>
+	<Sound ID="CustomerSaved"></Sound>
+	<Sound ID="CustomerSeated"></Sound>
+	<Sound ID="CustomerLeave"></Sound>
+	<Sound ID="CustomerSelected"></Sound>
+	<Sound ID="CustomerReadyForCheck"></Sound>
+	<Sound ID="CustomerDead"></Sound>
 
-  <!-- Restaurant sounds -->
-  <Sound ID="RestaurantDoorClose"></Sound>
-  <Sound ID="Cooking1" Volume="1"></Sound>
-  <Sound ID="Cooking2" Volume="1"></Sound>
-  <Sound ID="Cooking3" Volume="1"></Sound>
-  <Sound ID="MenuOpen"></Sound>
-  <Sound ID="HandsFull" Volume="1"></Sound>
-  <Sound ID="GiveOrder"></Sound>
-  <Sound ID="OrderPickUp"></Sound>
-  <Sound ID="OrderReady"></Sound>
-  <Sound ID="WriteDownOrder"></Sound>
-  <Sound ID="CoinGet1"></Sound>
-  <Sound ID="CoinGet2"></Sound>
-  <Sound ID="CoinGet3"></Sound>
-  <Sound ID="CoinLose"></Sound>
-  <Sound ID="TrashCanPut"></Sound>
+	<!-- Restaurant sounds -->
+	<Sound ID="RestaurantDoorClose"></Sound>
+	<Sound ID="Cooking1" Volume="1"></Sound>
+	<Sound ID="Cooking2" Volume="1"></Sound>
+	<Sound ID="Cooking3" Volume="1"></Sound>
+	<Sound ID="MenuOpen"></Sound>
+	<Sound ID="HandsFull" Volume="1"></Sound>
+	<Sound ID="GiveOrder"></Sound>
+	<Sound ID="OrderPickUp"></Sound>
+	<Sound ID="OrderReady"></Sound>
+	<Sound ID="WriteDownOrder"></Sound>
+	<Sound ID="CoinGet1" Volume="0.8"></Sound>
+	<Sound ID="CoinGet2" Volume="0.8"></Sound>
+	<Sound ID="CoinGet3" Volume="0.8"></Sound>
+	<Sound ID="CoinLose"></Sound>
+	<Sound ID="TrashCanPut"></Sound>
 
-  <!-- Special deco sounds -->
-  <Sound ID="ArcadePlay"></Sound>
-  <Sound ID="ArcadeOver"></Sound>
-  <Sound ID="FlyThruEnter"></Sound>
-  <Sound ID="FlyThruLeave"></Sound>
-  <Sound ID="VIPEnter"></Sound>
+	<!-- Special deco sounds -->
+	<Sound ID="ArcadePlay"></Sound>
+	<Sound ID="ArcadeOver"></Sound>
+	<Sound ID="FlyThruEnter"></Sound>
+	<Sound ID="FlyThruLeave"></Sound>
+	<Sound ID="VIPEnter"></Sound>
 
-  <!-- Unused extras -->
+	<!-- Unused extras -->
 </Sounds>
