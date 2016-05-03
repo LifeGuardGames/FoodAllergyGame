@@ -45,6 +45,9 @@ public class StartManager : Singleton<StartManager>{
 		// Refresh tier calculation, always do this first
 		TierManager.Instance.RecalculateTier();
 
+		// Explicit call for HUD only for StartScene
+		HUDAnimator.Instance.Initialize(CashManager.Instance.LastSeenTotalCash);
+
 		// First restaurant tutorial
 		if(DataManager.Instance.GameData.Tutorial.IsTutorial1Done == false){
 			shopEntranceUIController.Hide();
