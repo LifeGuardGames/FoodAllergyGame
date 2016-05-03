@@ -240,4 +240,38 @@ public class StartManager : Singleton<StartManager>{
 	public void OnDebugEpipenGameButton(){
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.EPIPEN);
 	}
+
+	#region IAP UI
+	// !!!!NOTE!!!! IAP UI is here because PurchaseManager freaks out for some reason and loses all references
+	public ProductPageUIController productPageUIController;     // Window to purchase ads
+	public IAPStatusPageUIController statusPageUIController;    // Status window of purchase
+
+	// Called from beacon gameobject
+	public void ShowProductPage() {
+		ChallengeMenuEntranceUIController.ToggleClickable(false);
+		DinerEntranceUIController.ToggleClickable(false);
+		ShopEntranceUIController.ToggleClickable(false);
+		productPageUIController.ShowPanel();
+	}
+
+	// Called on success or restore
+	public void UnlockMoreCratesAndShowUI() {
+		DataManager.Instance.GameData.DayTracker.IsMoreCrates = true;
+
+		// Do other things here, remove UI - if it is the correct scene
+		if(LoadLevelManager.Instance.GetCurrentSceneName() == SceneUtils.START) {
+			foreach(Transform child in beaconNode.transform) {
+				child.gameObject.SetActive(false);
+			}
+		}
+
+		productPageUIController.HidePanel();
+		statusPageUIController.ShowPanel(true);
+    }
+
+	public void PurchaseFailed() {
+		productPageUIController.HidePanel();
+		statusPageUIController.ShowPanel(false);
+	}
+	#endregion
 }
