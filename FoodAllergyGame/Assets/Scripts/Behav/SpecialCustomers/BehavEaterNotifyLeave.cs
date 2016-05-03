@@ -40,14 +40,30 @@ public class BehavEaterNotifyLeave : Behav {
 							//targetCustomer.GetComponent<Customer>().DestroySelf(0);
 							CustomerAnimControllerEater eat = self.customerAnim as CustomerAnimControllerEater;
 							eat.EatCustomer();
-							self.currBehav = self.GetComponent<CustomerEater>().pastBehav;
+							if(self.Order == null) {
+								var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[2]);
+								Behav leave = (Behav)Activator.CreateInstance(type);
+								leave.self = self;
+								//leave.Act();
+								leave = null;
+								self.currBehav = leave;
+                            }
+							else {
+								var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[3]);
+								Behav leave = (Behav)Activator.CreateInstance(type);
+								leave.self = self;
+								//leave.Act();
+								leave = null;
+								self.currBehav = leave;
+							}
 							break;
 						}
 					}
-					if(self.satisfaction == 0) {
+					else if(self.satisfaction == 0) {
 						if(self.Order != null) {
 							self.Order.GetComponent<Order>().Canceled();
 						}
+						Debug.Log("drfhigbdusfbg");
 						CustomerAnimControllerEater eat = self.customerAnim as CustomerAnimControllerEater;
 						eat.EatCustomerFail();
 						self.GetComponent<CustomerEater>().StartCoroutine("Leaving");
