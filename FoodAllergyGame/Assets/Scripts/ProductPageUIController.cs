@@ -22,7 +22,7 @@ public class ProductPageUIController : MonoBehaviour {
 
 	public void HidePanel() {
 		demux.Hide();
-		canvasGroup.blocksRaycasts = false;
+		//canvasGroup.blocksRaycasts = false;
 	}
 
 	public void OnExitButton() {
