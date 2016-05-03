@@ -28,6 +28,9 @@ public class ProductPageUIController : MonoBehaviour {
 	}
 
 	public void OnExitButton() {
+		StartManager.Instance.ChallengeMenuEntranceUIController.ToggleClickable(true);
+		StartManager.Instance.DinerEntranceUIController.ToggleClickable(true);
+		StartManager.Instance.ShopEntranceUIController.ToggleClickable(true);
 		HidePanel();
 	}
 
@@ -39,7 +42,7 @@ public class ProductPageUIController : MonoBehaviour {
 	// Should only be called on iOS
 	public void OnRedeemButton() {
 #if UNITY_IOS
-		PurchasingManager.Instance.RestorePurchases
+		PurchasingManager.Instance.RestorePurchases();
 		redeemButton.SetActive(false);
 #else
 		Debug.LogError("Button should not be active");

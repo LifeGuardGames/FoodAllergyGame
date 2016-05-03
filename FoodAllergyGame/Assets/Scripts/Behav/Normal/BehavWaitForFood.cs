@@ -70,7 +70,7 @@ public class BehavWaitForFood : Behav {
 			RestaurantManager.Instance.trashCanTutorial.SetActive(true);
             string foodSpriteName = DataLoaderFood.GetData(self.Order.GetComponent<Order>().foodID).SpriteName;
 			RestaurantManager.Instance.trashCanTutorial.GetComponent<SickTutorialController>().Show(self.allergy[0], foodSpriteName);
-			self.StopCoroutine("SatisfactionTimer");
+			self.StartCoroutine("SatisfactionTimer");
 			KitchenManager.Instance.spinnerHighlight.gameObject.SetActive(false); ;
 		}
 	}
