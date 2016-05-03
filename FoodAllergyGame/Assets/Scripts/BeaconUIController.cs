@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class BeaconUIController : MonoBehaviour {
 	public Animator beaconAnimator;
@@ -9,6 +8,6 @@ public class BeaconUIController : MonoBehaviour {
     }
 
 	void OnMouseUpAsButton() {
-        PurchasingManager.Instance.ShowProductPage();
+        StartManager.Instance.ShowProductPage();
     }
 }

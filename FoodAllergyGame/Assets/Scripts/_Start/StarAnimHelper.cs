@@ -2,6 +2,7 @@
 
 public class StarAnimHelper : MonoBehaviour {
 	public StarsUIController starsUIController;
+	public ParticleSystem shineParticle;
 
 	public void ChangeNextStarSprite() {
 		starsUIController.OnNewStarSpriteEvent();
@@ -19,4 +20,8 @@ public class StarAnimHelper : MonoBehaviour {
 	public void CoreRewardBaseSprite() {
 		starsUIController.OnCoreRewardStart();
 	}
+
+	public void ShineParticle() {
+		shineParticle.Play();
+    }
 }

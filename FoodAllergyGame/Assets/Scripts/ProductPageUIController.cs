@@ -1,15 +1,20 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class ProductPageUIController : MonoBehaviour {
 	public TweenToggleDemux demux;
 	public GameObject redeemButton;
+	public GameObject buyButton;
+	public Text buttonText;
 
 	void Start() {
 		redeemButton.SetActive(false);
 	}
 
 	public void ShowPanel() {
-		demux.Show();
+		buttonText.text = "Get MORE\n" + DataManager.Instance.PriceStringAux;
+        buyButton.SetActive(true);
+        demux.Show();
     }
 
 	public void OnShowComplete() {
@@ -20,10 +25,6 @@ public class ProductPageUIController : MonoBehaviour {
 
 	public void HidePanel() {
 		demux.Hide();
-<<<<<<< Updated upstream
-		//canvasGroup.blocksRaycasts = false;
-=======
->>>>>>> Stashed changes
 	}
 
 	public void OnExitButton() {
@@ -31,13 +32,15 @@ public class ProductPageUIController : MonoBehaviour {
 	}
 
 	public void OnBuyButton() {
+		buyButton.SetActive(false);
 		PurchasingManager.Instance.BuyPro();
 	}
 
 	// Should only be called on iOS
 	public void OnRedeemButton() {
 #if UNITY_IOS
-		PurchasingManager.Instance.RestorePurchases();
+		PurchasingManager.Instance.RestorePurchases
+		redeemButton.SetActive(false);
 #else
 		Debug.LogError("Button should not be active");
 #endif

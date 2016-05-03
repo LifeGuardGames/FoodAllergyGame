@@ -17,33 +17,27 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 	private Vector3 spawnPos;
 
 	public Image tierBar;
-	public Text tierText;
 	public Animation tierBarPopAnim;
-	private int oldTotalCash;
+	private int oldTotalCash;			// Used for beginning and for tweening, kind of hacky
 	private int newTotalCash;
 	private bool firstStarChunkAux;		// Toggle for first chunk finish tweening
 	private Vector2 fullSizeBar;
 	private NotificationQueueDataTierProgress tierCaller;
 
 	public FireworksController fireworksController;
-
+	
 	void Start() {
-		coin.GetComponentInChildren<Text>().text = CashManager.Instance.CurrentCash.ToString();
-
-		// Change the appearance of the tier bar depending on which scene it is in
-		fullSizeBar = tierBar.rectTransform.sizeDelta;
-		float percentage;
-		int tierNumber;
+		// StartScene will do its own explicit call from StartManager
 		if(SceneManager.GetActiveScene().name != SceneUtils.START) {
-			percentage = DataLoaderTiers.GetPercentProgressInTier(CashManager.Instance.TotalCash);
-			tierNumber = DataLoaderTiers.GetTierFromCash(CashManager.Instance.TotalCash);
+			Initialize(CashManager.Instance.TotalCash);
 		}
-		else {
-			percentage = DataLoaderTiers.GetPercentProgressInTier(CashManager.Instance.LastSeenTotalCash);
-			tierNumber = DataLoaderTiers.GetTierFromCash(CashManager.Instance.LastSeenTotalCash);
-		}
+	}
+
+	public void Initialize(int cashProgress) {
+		coin.GetComponentInChildren<Text>().text = CashManager.Instance.CurrentCash.ToString();
+		fullSizeBar = tierBar.rectTransform.sizeDelta;
+		float percentage = DataLoaderTiers.GetPercentProgressInTier(cashProgress);
 		tierBar.rectTransform.sizeDelta = new Vector2(fullSizeBar.x * percentage, fullSizeBar.y);
-		tierText.text = tierNumber.ToString();
 	}
 
 	#region Coin Animation
@@ -185,7 +179,6 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 			oldTotalCash = DataLoaderTiers.GetData("Tier" + StringUtils.FormatIntToDoubleDigitString(currentOldTier + 1)).CashCutoffFloor;
 
 			// Reset the UI
-			tierText.text = DataLoaderTiers.GetTierFromCash(oldTotalCash).ToString();
 			tierBar.rectTransform.sizeDelta = new Vector2(0f, fullSizeBar.y);
 
 			// Do any animation effects here
