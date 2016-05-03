@@ -39,7 +39,7 @@ public class ProductPageUIController : MonoBehaviour {
 	// Should only be called on iOS
 	public void OnRedeemButton() {
 #if UNITY_IOS
-		PurchasingManager.Instance.RestorePurchases
+		PurchasingManager.Instance.RestorePurchases();
 		redeemButton.SetActive(false);
 #else
 		Debug.LogError("Button should not be active");
