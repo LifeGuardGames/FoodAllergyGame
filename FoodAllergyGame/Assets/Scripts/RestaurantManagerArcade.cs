@@ -211,6 +211,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 
 	private IEnumerator LightsOut() {
 		yield return new WaitForSeconds(5.0f);
+		Debug.Log(customerHash.Count);
 		blackoutImg.SetActive(false);
 		if(GetCurrentCustomers().Count > 1) {
 			List<GameObject> currCustomers = new List<GameObject>(GetCurrentCustomers());
@@ -219,9 +220,9 @@ public class RestaurantManagerArcade : RestaurantManager {
 					currCustomers[i].GetComponent<Customer>().customerUI.gameObject.SetActive(true);
 				}
 			}
-			CheckForGameOver();
 			StartCoroutine(SpawnCustomer());
 		}
+		CheckForGameOver();
 	}
 
 

@@ -303,10 +303,12 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	private IEnumerator LightsOut() {
 		yield return new WaitForSeconds(5.0f);
 		blackoutImg.SetActive(false);
-		List<GameObject> currCustomers = new List<GameObject>(GetCurrentCustomers());
-		for(int i = 0; i < currCustomers.Count; i++) {
-			if(currCustomers[i] != null) {
-				currCustomers[i].GetComponent<Customer>().customerUI.gameObject.SetActive(true);
+		if(GetCurrentCustomers().Count > 1) {
+			List<GameObject> currCustomers = new List<GameObject>(GetCurrentCustomers());
+			for(int i = 0; i < currCustomers.Count; i++) {
+				if(currCustomers[i] != null) {
+					currCustomers[i].GetComponent<Customer>().customerUI.gameObject.SetActive(true);
+				}
 			}
 		}
 		CheckForGameOver();
