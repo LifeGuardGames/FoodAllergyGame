@@ -72,8 +72,8 @@ public class DataManager : Singleton<DataManager> {
 			PostLoadLogic();
 		}
 		GameData.Session.start = System.DateTime.Now;
-		Mixpanel.Token = "9b68a5560f74b183728b7c30cb4a54fc";
-		Mixpanel.SuperProperties.Add("Days Played", GameData.DayTracker.DaysPlayed);
+		Mixpanel.Token = "4afadc10e61a77c363308040d38be801";
+        Mixpanel.SuperProperties.Add("Days Played", GameData.DayTracker.DaysPlayed);
 		Mixpanel.SuperProperties.Add("Session", DaysInSession);
 	}
 
