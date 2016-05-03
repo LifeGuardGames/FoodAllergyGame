@@ -23,7 +23,6 @@ public class StarsUIController : MonoBehaviour {
 			starBase.sprite = SpriteCacheManager.GetStarFillHelper(oldTier % 6, 6);
 		}
 		nextStarSpriteAux = SpriteCacheManager.GetStarFillHelper(newTier % 6, 6);
-		Debug.Log(nextStarSpriteAux.name);
 
 		internalNotifData = notifData;
         starsDemux.Show();

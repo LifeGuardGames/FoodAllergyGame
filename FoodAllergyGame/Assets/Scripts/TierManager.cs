@@ -106,7 +106,7 @@ public class TierManager : Singleton<TierManager> {
 		}
 
 		// Print out tier
-		Debug.Log("New tier:" + currentTier + "  ||  total cash:" + CashManager.Instance.TotalCash + "  ||  new unlocks? " + IsNewUnlocksAvailable);
+//		Debug.Log("New tier:" + currentTier + "  ||  total cash:" + CashManager.Instance.TotalCash + "  ||  new unlocks? " + IsNewUnlocksAvailable);
 	}
 
 	public int GetMenuSlots(){
