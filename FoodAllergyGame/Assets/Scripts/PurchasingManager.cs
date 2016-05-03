@@ -130,7 +130,7 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 		m_StoreExtensionProvider = extensions;
 
 		// Save the localized price to DataManager
-		DataManager.Instance.PriceStringAux = m_StoreController.products.WithID(kProductIDPro).metadata.localizedPriceString;
+		// =========== DataManager.Instance.PriceStringAux = m_StoreController.products.WithID(kProductIDPro).metadata.localizedPriceString;
 	}
 	
 	public void OnInitializeFailed(InitializationFailureReason error) {
@@ -198,9 +198,17 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 
 		// Do other things here, remove UI - if it is the correct scene
 		if(LoadLevelManager.Instance.GetCurrentSceneName() == SceneUtils.START) {
-			// Destroy this for now
-			Destroy(StartManager.Instance.beaconNode.transform.GetChild(0).gameObject);
+			foreach(Transform child in StartManager.Instance.beaconNode.transform){
+				Destroy(child.gameObject);
+			}
 		}
+	}
+
+	public void DebugTest(){
+		UnlockMoreCrates();
+		productPageUIController.HidePanel();
+		Debug.Log("====SHOWING STATUS TRUE");
+		statusPageUIController.ShowPanel(true);
 	}
 }
 
