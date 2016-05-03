@@ -14,6 +14,7 @@ public class BehavBlackoutNotifyLeave : Behav {
 	public override void Act() {
 		if(self.satisfaction == 0 || self.isAnnoyed) {
 			self.DestroyOrder();
+			RestaurantManager.Instance.GetTable(self.tableNum).inUse = false;
 			CustomerAnimationCotrollerBlackOut animBlackout = self.customerAnim as CustomerAnimationCotrollerBlackOut;
 			animBlackout.BlackOut();
 		}

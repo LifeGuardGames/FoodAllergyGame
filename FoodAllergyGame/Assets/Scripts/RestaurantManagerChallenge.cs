@@ -305,8 +305,11 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		blackoutImg.SetActive(false);
 		List<GameObject> currCustomers = new List<GameObject>(GetCurrentCustomers());
 		for(int i = 0; i < currCustomers.Count; i++) {
-			currCustomers[i].GetComponent<Customer>().customerUI.gameObject.SetActive(true);
+			if(currCustomers[i] != null) {
+				currCustomers[i].GetComponent<Customer>().customerUI.gameObject.SetActive(true);
+			}
 		}
+		CheckForGameOver();
 		StartCoroutine("SpawnCustomer");
 	}
 
