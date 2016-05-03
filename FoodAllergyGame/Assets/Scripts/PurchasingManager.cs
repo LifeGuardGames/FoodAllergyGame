@@ -126,7 +126,6 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 
 		// Save the localized price to DataManager
 		DataManager.Instance.PriceStringAux = m_StoreController.products.WithID(kProductIDPro).metadata.localizedPriceString;
-		Debug.Log(DataManager.Instance.PriceStringAux);
 	}
 	
 	public void OnInitializeFailed(InitializationFailureReason error) {

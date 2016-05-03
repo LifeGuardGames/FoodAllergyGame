@@ -78,7 +78,6 @@ public class StartManager : Singleton<StartManager>{
 			DinerEntranceUIController.ToggleClickable(false);
 			ChallengeMenuEntranceUIController.ToggleClickable(false);
 			replayTutButton.SetActive(false);
-			Debug.Log(CashManager.Instance.TotalCash + " " + CashManager.Instance.LastSeenTotalCash);
 			int oldTotalCash = CashManager.Instance.LastSeenTotalCash;
 			int newTotalCash = CashManager.Instance.TotalCash;
 			NotificationQueueDataTierProgress tierNotif =
