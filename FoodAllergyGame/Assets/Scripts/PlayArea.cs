@@ -32,7 +32,7 @@ public class PlayArea : Singleton<PlayArea>, IWaiterSelection {
 			highLightSpot1.SetActive(true);
 		}
 		if(spotAvailabilityList.Count > 1) {
-			if(spotAvailabilityList[1] == true) {
+			if(spotAvailabilityList[1] == true && highLightSpot2 != null) {
 				highLightSpot2.SetActive(true);
 			}
 		}
@@ -40,7 +40,9 @@ public class PlayArea : Singleton<PlayArea>, IWaiterSelection {
 
 	public void TurnOffHighLights(){
 		highLightSpot1.SetActive(false);
-		highLightSpot2.SetActive(false);
+		if(highLightSpot2 != null) {
+			highLightSpot2.SetActive(false);
+		}
 	}
 
 	public void OnClicked(){
