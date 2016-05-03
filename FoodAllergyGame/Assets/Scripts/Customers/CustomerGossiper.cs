@@ -14,10 +14,11 @@ public class CustomerGossiper : Customer{
 		transform.localPosition = Vector3.zero;
 		if(currBehav.ToString() == "BehavGossipEating") {
 			StartCoroutine("EatingTimer");
+			customerAnim.SetEating();
 		}
 		currBehav = pastBehav; 
 		if(currBehav.ToString() == "BehavGossipReadMenu") {
-			currBehav.Reason();
+			currBehav.Act();
 		}
 	}
 }

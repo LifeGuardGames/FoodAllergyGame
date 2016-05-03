@@ -20,6 +20,7 @@ public class BehavGossipReadMenu : Behav {
 
 	public override void Act() {
 		self.StartCoroutine("ReadMenu");
+		self.customerAnim.SetReadingMenu();
 		//get food choices 
 		self.choices = FoodManager.Instance.GetTwoMenuFoodChoices(self.desiredFood, self.allergy);
 		//stop the satisfaction timer, change the timer and then restart it
@@ -27,7 +28,7 @@ public class BehavGossipReadMenu : Behav {
 		self.state = CustomerStates.ReadingMenu;
 		if(RestaurantManager.Instance.TableList[self.tableNum].GetComponent<Table>().tableType != Table.TableType.FlyThru) {
 			int rand = UnityEngine.Random.Range(0, 10);
-			if(rand > 0) {
+			if(rand > 6) {
 				self.StopCoroutine("ReadMenu");
 				var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[10]);
 				Behav goss = (Behav)Activator.CreateInstance(type);
