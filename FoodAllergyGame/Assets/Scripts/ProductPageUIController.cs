@@ -28,6 +28,9 @@ public class ProductPageUIController : MonoBehaviour {
 	}
 
 	public void OnExitButton() {
+		StartManager.Instance.ChallengeMenuEntranceUIController.ToggleClickable(true);
+		StartManager.Instance.DinerEntranceUIController.ToggleClickable(true);
+		StartManager.Instance.ShopEntranceUIController.ToggleClickable(true);
 		HidePanel();
 	}
 
