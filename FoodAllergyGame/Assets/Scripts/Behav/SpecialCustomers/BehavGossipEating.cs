@@ -29,7 +29,7 @@ public class BehavGossipEating : Behav {
 		self.state = CustomerStates.Eating;
 		if(RestaurantManager.Instance.TableList[self.tableNum].GetComponent<Table>().tableType != Table.TableType.FlyThru) { 
 		int rand = UnityEngine.Random.Range(0, 10);
-			if(rand > 0) {
+			if(rand > 6) {
 				self.StopCoroutine("EatingTimer");
 				var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[10]);
 				Behav goss = (Behav)Activator.CreateInstance(type);

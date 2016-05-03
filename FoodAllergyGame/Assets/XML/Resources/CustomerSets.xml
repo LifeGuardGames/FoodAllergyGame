@@ -103,5 +103,8 @@
   <CustomerSet ID="ChallengeSet14">
     <CustomerList>CustomerHungryEater,CustomerRegularWrongOrder,CustomerRegularWrongOrder,CustomerHungryEater,CustomerHungryEater,CustomerRegularWrongOrder,CustomerRegularWrongOrder,CustomerHungryEater,CustomerHungryEater,CustomerRegularWrongOrder,CustomerRegularWrongOrder,CustomerHungryEater</CustomerList>
   </CustomerSet>
-  
+
+  <CustomerSet ID="ChallengeSet15">
+    <CustomerList>CustomerEater,CustomerRegular,CustomerImpatient,CustomerCoolKid,CustomerBlackOut,CustomerTableSmasher,CustomerGossiper,CustomerHospitalRunner,CustomerPlayful,CustomerEater</CustomerList>
+  </CustomerSet>
 </CustomerSets>

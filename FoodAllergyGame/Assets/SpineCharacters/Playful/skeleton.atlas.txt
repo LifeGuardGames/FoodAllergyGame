@@ -1,186 +1,180 @@
 
 skeleton.png
-size: 512,512
+size: 1024,512
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 AntennaL
   rotate: false
-  xy: 436, 43
+  xy: 408, 132
   size: 72, 77
   orig: 72, 77
   offset: 0, 0
   index: -1
 AntennaR
   rotate: false
-  xy: 168, 32
+  xy: 482, 136
   size: 64, 75
   orig: 64, 75
   offset: 0, 0
   index: -1
 Arm
-  rotate: false
-  xy: 314, 95
+  rotate: true
+  xy: 714, 401
   size: 20, 59
   orig: 20, 59
   offset: 0, 0
   index: -1
+Ball
+  rotate: false
+  xy: 562, 364
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
 Body
   rotate: false
-  xy: 2, 2
+  xy: 407, 295
   size: 115, 111
   orig: 115, 111
   offset: 0, 0
   index: -1
 EyeL
-  rotate: true
-  xy: 2, 115
+  rotate: false
+  xy: 2, 96
   size: 146, 164
   orig: 146, 164
   offset: 0, 0
   index: -1
 EyeR
-  rotate: true
-  xy: 2, 115
+  rotate: false
+  xy: 2, 96
   size: 146, 164
   orig: 146, 164
   offset: 0, 0
   index: -1
 Head
   rotate: false
-  xy: 2, 263
+  xy: 2, 262
   size: 403, 247
   orig: 403, 247
   offset: 0, 0
   index: -1
 LegL
   rotate: true
-  xy: 436, 8
+  xy: 562, 329
   size: 33, 64
   orig: 33, 64
   offset: 0, 0
   index: -1
 LidBottomL
-  rotate: true
-  xy: 239, 4
+  rotate: false
+  xy: 559, 436
   size: 150, 73
   orig: 150, 73
   offset: 0, 0
   index: -1
 LidLowerR
-  rotate: true
-  xy: 168, 109
+  rotate: false
+  xy: 711, 440
   size: 152, 69
   orig: 152, 69
   offset: 0, 0
   index: -1
 LidTopL
-  rotate: true
-  xy: 407, 209
+  rotate: false
+  xy: 150, 159
   size: 149, 101
   orig: 149, 101
   offset: 0, 0
   index: -1
 LidTopR
-  rotate: true
-  xy: 407, 360
+  rotate: false
+  xy: 407, 408
   size: 150, 101
   orig: 150, 101
   offset: 0, 0
   index: -1
 Menu copy
-  rotate: false
-  xy: 239, 156
+  rotate: true
+  xy: 301, 160
   size: 100, 105
   orig: 100, 105
   offset: 0, 0
   index: -1
 Mouth_Chewing
-  rotate: true
-  xy: 341, 114
+  rotate: false
+  xy: 150, 105
   size: 147, 52
   orig: 147, 52
   offset: 0, 0
   index: -1
+Mouth_HappyOpen
+  rotate: false
+  xy: 634, 389
+  size: 78, 45
+  orig: 78, 45
+  offset: 0, 0
+  index: -1
 Mouth_Open
   rotate: true
-  xy: 119, 32
+  xy: 962, 428
   size: 81, 47
   orig: 81, 47
   offset: 0, 0
   index: -1
+Mouth_SadOpen
+  rotate: true
+  xy: 102, 2
+  size: 92, 42
+  orig: 92, 42
+  offset: 0, 0
+  index: -1
 Mouth_Smile
   rotate: false
-  xy: 119, 4
+  xy: 634, 361
   size: 74, 26
   orig: 74, 26
   offset: 0, 0
   index: -1
 Mouth_Straight
-  rotate: true
-  xy: 314, 20
+  rotate: false
+  xy: 714, 423
   size: 73, 15
   orig: 73, 15
   offset: 0, 0
   index: -1
+Nose
+  rotate: true
+  xy: 524, 324
+  size: 82, 36
+  orig: 82, 36
+  offset: 0, 0
+  index: -1
 PupilL
   rotate: true
-  xy: 336, 25
+  xy: 2, 7
   size: 87, 98
   orig: 87, 98
   offset: 0, 0
   index: -1
 PupilR
   rotate: true
-  xy: 395, 122
+  xy: 865, 424
   size: 85, 95
   orig: 85, 95
   offset: 0, 0
   index: -1
-
-skeleton2.png
-size: 256,256
-format: RGBA8888
-filter: Linear,Linear
-repeat: none
-Ball
-  rotate: false
-  xy: 2, 85
-  size: 70, 70
-  orig: 70, 70
-  offset: 0, 0
-  index: -1
-Mouth_HappyOpen
-  rotate: true
-  xy: 2, 5
-  size: 78, 45
-  orig: 78, 45
-  offset: 0, 0
-  index: -1
-Mouth_SadOpen
-  rotate: false
-  xy: 147, 197
-  size: 92, 42
-  orig: 92, 42
-  offset: 0, 0
-  index: -1
-Nose
-  rotate: false
-  xy: 147, 159
-  size: 82, 36
-  orig: 82, 36
-  offset: 0, 0
-  index: -1
 ThighL
   rotate: false
-  xy: 2, 157
+  xy: 408, 211
   size: 70, 82
   orig: 70, 82
   offset: 0, 0
   index: -1
 ThighR
   rotate: false
-  xy: 74, 159
+  xy: 480, 213
   size: 71, 80
   orig: 71, 80
   offset: 0, 0

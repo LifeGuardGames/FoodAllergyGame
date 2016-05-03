@@ -12,21 +12,19 @@ public class BehavHospitalRunnerAllergyAttack : Behav {
 	}
 
 	public override void Act() {
-		// -20 because the player should have been more careful
-		self.SetSatisfaction(-20);
-
-		//Also delete their food
+		Waiter.Instance.Finished();
 		if(self.Order.gameObject != null) {
 			self.DestroyOrder();
 		}
 
 		// Removes customer and bills the restaurant
-		RestaurantManager.Instance.CustomerLeftFlatCharge(self, Medic.HospitalPrice, true);
+		
 		if(RestaurantManager.Instance.GetTable(self.tableNum).tableType == Table.TableType.VIP) {
 			RestaurantManager.Instance.GetTable(self.tableNum).CustomerLeaving();
         }
 		RestaurantManager.Instance.sickCustomers.Remove(self.gameObject);
 		DataManager.Instance.GameData.Tutorial.MissedMedic++;
+		RestaurantManager.Instance.CustomerLeftFlatCharge(self, Medic.HospitalPrice, true);
 		if(DataManager.Instance.GameData.Tutorial.MissedMedic >= 3) {
 			DataManager.Instance.GameData.Tutorial.IsMedicTut2Done = false;
 			DataManager.Instance.GameData.Tutorial.MissedMedic = 0;
