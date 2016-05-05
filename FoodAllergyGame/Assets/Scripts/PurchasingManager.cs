@@ -11,7 +11,7 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 	// for use with and outside of Unity Purchasing. Define store-specific identifiers also on each platform's publisher dashboard (iTunes Connect, Google Play Developer Console, etc.)
 	private static string kProductIDPro = "com.lifeguardgames.foodallergy.iap.pro";				// General handle for the non-consumable product.
 	private static string kProductNameApplePro = "com.LifeGuardGames.FoodAllergy.IAP.Pro";		// Apple App Store identifier for the non-consumable product.
-	private static string kProductNameGooglePlayPro = "com.lifeguardgames.foodallergy.iap.pro";	// Google Play Store identifier for the non-consumable product.
+	private static string kProductNameGooglePlayPro = "com.lifeguardgames.foodallergyandroid.iap.pro";	// Google Play Store identifier for the non-consumable product.
 
 	void Start() {
 		// If we haven't set up the Unity Purchasing reference
