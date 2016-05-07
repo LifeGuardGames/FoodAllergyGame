@@ -37,6 +37,7 @@ public class StartManager : Singleton<StartManager>{
 	public GameObject beaconNode;
 
 	public AgeAskController ageAskController;
+	public ParentalGateQuestionController parentalGate;
 	private NotificationQueueDataAge ageNotification;
 
 	public bool isShopAppearHideDinerOverride = false;
@@ -274,6 +275,10 @@ public class StartManager : Singleton<StartManager>{
 	public void PurchaseFailed() {
 		productPageUIController.HidePanel();
 		statusPageUIController.ShowPanel(false);
+	}
+
+	public void ShowParentalgate() {
+		parentalGate.ShowPanel();
 	}
 	#endregion
 }

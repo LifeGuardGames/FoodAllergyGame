@@ -8,6 +8,9 @@ public class BeaconUIController : MonoBehaviour {
     }
 
 	void OnMouseUpAsButton() {
-        StartManager.Instance.ShowProductPage();
+		StartManager.Instance.ShopEntranceUIController.ToggleClickable(false);
+		StartManager.Instance.DinerEntranceUIController.ToggleClickable(false);
+		StartManager.Instance.ChallengeMenuEntranceUIController.ToggleClickable(false);
+		StartManager.Instance.ShowParentalgate();
     }
 }
