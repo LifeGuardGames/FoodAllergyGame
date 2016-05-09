@@ -15,13 +15,11 @@ public class ProductPageUIController : MonoBehaviour {
 		buttonText.text = "Get MORE\n" + DataManager.Instance.PriceStringAux;
         buyButton.SetActive(true);
         demux.Show();
-    }
 
-	public void OnShowComplete() {
 #if UNITY_IOS
 		redeemButton.SetActive(true);
 #endif
-	}
+    }
 
 	public void HidePanel() {
 		demux.Hide();
