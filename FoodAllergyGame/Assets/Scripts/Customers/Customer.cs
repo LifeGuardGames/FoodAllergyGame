@@ -63,7 +63,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		// customer starts inline
 		state = CustomerStates.InLine;
 		// star the timer which is used to measure the customer's hearts
-		StartCoroutine("SatisfactionTimer");
+	
 		//init list
 		choices = new List<ImmutableDataFood>();
 		//allergy = new List<Allergies>();
@@ -77,6 +77,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		attentionSpan = 15f * timer;
 		menuTimer *= RandomFactor();
 		eatTimer *= RandomFactor();
+		StartCoroutine("SatisfactionTimer");
 
 		// customers refuse to line up out the door
 		if(!RestaurantManager.Instance.LineController.HasEmptySpot()){
@@ -87,29 +88,36 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			TableFlyThru flyThruTable = RestaurantManager.Instance.GetFlyThruTable();
 			if((flyThruTable != null) && UnityEngine.Random.Range(0,10) > 3 && !flyThruTable.inUse ){
 				flyThruTable.inUse = true;
-				this.transform.SetParent(flyThruTable.seat);
+				transform.SetParent(flyThruTable.seat);
+				transform.localPosition = Vector3.zero;
 				tableNum = flyThruTable.TableNumber;
-				state = CustomerStates.ReadingMenu;
-				StartCoroutine("ReadMenu");
-				StopCoroutine("SatisfactionTimer");
+				//state = CustomerStates.ReadingMenu;
+				//StartCoroutine("ReadMenu");
+				//StopCoroutine("SatisfactionTimer");
 				customerAnim.SetReadingMenu();
 				GetComponentInParent<Table>().currentCustomerID = customerID;
 				this.GetComponent<BoxCollider>().enabled = false;
 				flyThruTable.FlyThruDropDown();
+				var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[1]);
+				Behav read = (Behav)Activator.CreateInstance(type);
+				read.self = this;
+				currBehav = read;
+				read.Act();
+				//BehavReadingMenu read = new BehavReadingMenu(self);
+				read = null;
 			}
 			else{
 				RestaurantManager.Instance.restaurantUI.OpenAndCloseDoor();
 				RestaurantManager.Instance.LineController.PlaceCustomerInEmptySpot(this);   // Set customer line spot and update base sorting order
 				RestaurantManager.Instance.lineCount++;
+				var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[0]);
+				Behav wait = (Behav)Activator.CreateInstance(type);
+				wait.self = this;
+				currBehav = wait;
+				wait.Act();
+				wait = null;
 			}
-			this.transform.position = transform.parent.position;
-
-			var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[0]);
-			Behav wait = (Behav)Activator.CreateInstance(type);
-			wait.self = this;
-			currBehav = wait;
-			wait.Act();
-			wait = null;
+			this.transform.position = transform.parent.position;	
 		}
 
 		// choose allergy based on the event
@@ -166,28 +174,36 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			TableFlyThru flyThruTable = RestaurantManager.Instance.GetFlyThruTable();
 			if((flyThruTable != null) && UnityEngine.Random.Range(0, 10) > 3 && !flyThruTable.inUse || mode.ID == "TutDecoFlyThru") {
 				flyThruTable.inUse = true;
-				this.transform.SetParent(flyThruTable.seat);
+				transform.SetParent(flyThruTable.seat);
+				transform.localPosition = Vector3.zero;
 				tableNum = flyThruTable.TableNumber;
 				state = CustomerStates.ReadingMenu;
-				StartCoroutine("ReadMenu");
-				StopCoroutine("SatisfactionTimer");
+				//StartCoroutine("ReadMenu");
+				//StopCoroutine("SatisfactionTimer");
 				customerAnim.SetReadingMenu();
 				GetComponentInParent<Table>().currentCustomerID = customerID;
 				this.GetComponent<BoxCollider>().enabled = false;
 				flyThruTable.FlyThruDropDown();
+				var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[1]);
+				Behav read = (Behav)Activator.CreateInstance(type);
+				read.self = this;
+				currBehav = read;
+				read.Act();
+				//BehavReadingMenu read = new BehavReadingMenu(self);
+				read = null;
 			}
 			else {
 				RestaurantManager.Instance.restaurantUI.OpenAndCloseDoor();
 				RestaurantManager.Instance.LineController.PlaceCustomerInEmptySpot(this);   // Set customer line spot and update base sorting order
 				RestaurantManager.Instance.lineCount++;
-			}
-			this.transform.position = transform.parent.position;
-			var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[0]);
-			Behav wait = (Behav)Activator.CreateInstance(type);
-			currBehav = wait;
-			wait.self = this;
-			wait.Act();
-			wait = null;
+				this.transform.position = transform.parent.position;
+				var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[0]);
+				Behav wait = (Behav)Activator.CreateInstance(type);
+				currBehav = wait;
+				wait.self = this;
+				wait.Act();
+				wait = null;
+			}	
 		}
 
 		// choose allergy based on the event
@@ -593,7 +609,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 
 	public void DestroyOrder() {
-		if(Order.gameObject != null) {
+		if(Order != null) {
 			Destroy(Order.gameObject);
 		}
 	}

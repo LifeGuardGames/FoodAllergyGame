@@ -25,7 +25,9 @@ public class PlayArea : Singleton<PlayArea>, IWaiterSelection {
 		for(int i = 0; i < maxSpots; i++){
 			spotAvailabilityList.Add(true);
 		}
-	}
+
+		TurnOffHighLights();
+    }
 
 	public void HighLightSpots(){
 		if(spotAvailabilityList[0] == true){
