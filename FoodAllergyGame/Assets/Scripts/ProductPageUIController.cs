@@ -34,6 +34,7 @@ public class ProductPageUIController : MonoBehaviour {
 
 	public void OnBuyButton() {
 		buyButton.SetActive(false);
+		redeemButton.SetActive(false);
 		PurchasingManager.Instance.BuyPro();
 	}
 
@@ -42,6 +43,7 @@ public class ProductPageUIController : MonoBehaviour {
 #if UNITY_IOS
 		PurchasingManager.Instance.RestorePurchases();
 		redeemButton.SetActive(false);
+		buyButton.SetActive(false);
 #else
 		Debug.LogError("Button should not be active");
 #endif
