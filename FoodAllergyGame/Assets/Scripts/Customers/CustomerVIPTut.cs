@@ -20,10 +20,7 @@ public class CustomerVIPTut : Customer {
 		transform.GetChild(3).gameObject.SetActive(false);
 	}
 
-
-
-	public override void OnClicked ()
-	{
+	public override void OnClicked () {
 		base.OnClicked ();
 		hideCustomerFinger();
 		tutFingers.transform.GetChild(tutNumber).gameObject.SetActive(true);
