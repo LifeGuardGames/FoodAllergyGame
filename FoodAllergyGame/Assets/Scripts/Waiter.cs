@@ -287,7 +287,8 @@ public class Waiter: Singleton<Waiter>{
 				}
 			}
 			else{
-				Debug.LogError("No Object in Hand");
+				// changed to handle cases that happen where an order is destroyed outside this fuction
+				hand1 = WaiterHands.None;
 			}
 		}
 	}
