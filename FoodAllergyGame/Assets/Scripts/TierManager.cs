@@ -49,7 +49,8 @@ public class TierManager : Singleton<TierManager> {
 
 		// If there is a change in tier, run logic
 		// INVARIABLE: Tiers are maximum one above, never multiple tiers at once
-		if(oldTier < newTier) {
+		if(oldTier < newTier || DataManager.Instance.GameData.DayTracker.notifQueue.Count > 0) {
+			StartManager.Instance.TurnOffEntrances();
 			isTierUp = true;
 
 			if(newTier - oldTier > 1) {
@@ -90,15 +91,12 @@ public class TierManager : Singleton<TierManager> {
 				// Add any tutorial overrides to be loaded next
 				List<string> unlockedSpecialDecos = currentTierUnlocks[AssetTypes.DecoSpecial];
 				if(unlockedSpecialDecos.Contains("VIPBasic")) {
-					DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoVIP";
 					DataManager.Instance.GameData.Decoration.BoughtDeco.Add("VIPBasic","");
 				}
 				else if(unlockedSpecialDecos.Contains("PlayArea00")) {
-					DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoPlayArea";
 					DataManager.Instance.GameData.Decoration.BoughtDeco.Add("PlayArea00", "");
 				}
 				else if(unlockedSpecialDecos.Contains("FlyThru00")) {
-					DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoFlyThru";
 					DataManager.Instance.GameData.Decoration.BoughtDeco.Add("FlyThru00", "");
 				}
 			}
