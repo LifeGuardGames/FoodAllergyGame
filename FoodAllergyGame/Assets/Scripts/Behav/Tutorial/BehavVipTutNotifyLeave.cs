@@ -19,6 +19,7 @@ public class BehavVipTutNotifyLeave : Behav {
 			if(self.satisfaction > 3) {
 				self.satisfaction = 3;
 			}
+			AnalyticsManager.Instance.TutorialFunnel("VIP area Tut Completed");
 			DataManager.Instance.GameData.Tutorial.IsSpeDecoTutDone = true;
 
 			if(self.state != CustomerStates.InLine && self.state != CustomerStates.Saved) {

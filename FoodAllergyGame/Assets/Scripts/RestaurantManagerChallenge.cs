@@ -235,9 +235,11 @@ public class RestaurantManagerChallenge : RestaurantManager{
 						DataManager.Instance.GameData.Cash.TotalCash = 850;
 					}
 					if(chall.ID == "TutDecoPlayArea") {
+						AnalyticsManager.Instance.TutorialFunnel("Play area Tut Completed");
 						DataManager.Instance.GameData.Tutorial.IsPlayAreaTutDone = true;
 					}
 					if(chall.ID == "TutDecoFlyThru") {
+						AnalyticsManager.Instance.TutorialFunnel("Fly thru Tut Completed");
 						DataManager.Instance.GameData.Tutorial.IsFlyThruTutDone = true;
 					}
                     DataManager.Instance.GameData.DayTracker.ChallengesPlayed++;
