@@ -15,13 +15,11 @@ public class ProductPageUIController : MonoBehaviour {
 		buttonText.text = "Get MORE\n" + DataManager.Instance.PriceStringAux;
         buyButton.SetActive(true);
         demux.Show();
-    }
 
-	public void OnShowComplete() {
 #if UNITY_IOS
 		redeemButton.SetActive(true);
 #endif
-	}
+    }
 
 	public void HidePanel() {
 		demux.Hide();
@@ -36,6 +34,7 @@ public class ProductPageUIController : MonoBehaviour {
 
 	public void OnBuyButton() {
 		buyButton.SetActive(false);
+		redeemButton.SetActive(false);
 		PurchasingManager.Instance.BuyPro();
 	}
 
@@ -44,6 +43,7 @@ public class ProductPageUIController : MonoBehaviour {
 #if UNITY_IOS
 		PurchasingManager.Instance.RestorePurchases();
 		redeemButton.SetActive(false);
+		buyButton.SetActive(false);
 #else
 		Debug.LogError("Button should not be active");
 #endif

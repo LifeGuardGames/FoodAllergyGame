@@ -2,10 +2,10 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class StartManager : Singleton<StartManager>{
+public class StartManager : Singleton<StartManager> {
 	public GameObject sceneObjectParent;
-	public GameObject SceneObjectParent{
-		get{ return sceneObjectParent; }
+	public GameObject SceneObjectParent {
+		get { return sceneObjectParent; }
 	}
 
 	public DinerEntranceUIController dinerEntranceUIController;
@@ -24,8 +24,8 @@ public class StartManager : Singleton<StartManager>{
 	}
 
 	public RewardUIController rewardUIController;
-	public RewardUIController RewardUIController{
-		get{ return rewardUIController; }
+	public RewardUIController RewardUIController {
+		get { return rewardUIController; }
 	}
 
 	public StarsUIController starsUIController;
@@ -37,11 +37,12 @@ public class StartManager : Singleton<StartManager>{
 	public GameObject beaconNode;
 
 	public AgeAskController ageAskController;
+	public ParentalGateQuestionController parentalGate;
 	private NotificationQueueDataAge ageNotification;
 
 	public bool isShopAppearHideDinerOverride = false;
 
-	void Start(){
+	void Start() {
 		// Refresh tier calculation, always do this first
 		TierManager.Instance.RecalculateTier();
 
@@ -49,7 +50,7 @@ public class StartManager : Singleton<StartManager>{
 		HUDAnimator.Instance.Initialize(CashManager.Instance.LastSeenTotalCash);
 
 		// First restaurant tutorial
-		if(DataManager.Instance.GameData.Tutorial.IsTutorial1Done == false){
+		if(DataManager.Instance.GameData.Tutorial.IsTutorial1Done == false) {
 			shopEntranceUIController.Hide();
 			replayTutButton.SetActive(false);
 			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut1";
@@ -59,7 +60,7 @@ public class StartManager : Singleton<StartManager>{
 			// Default case
 			// TODO Refactor this logic
 			// Show the deco entrance
-		
+
 			if(DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent) {
 				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = TierManager.Instance.GetNewEvent();
 				// Lock the generate event bool until day is completed
@@ -97,16 +98,16 @@ public class StartManager : Singleton<StartManager>{
 			NotificationQueueDataStarCoreReward starCoreNotif =
 				new NotificationQueueDataStarCoreReward(SceneUtils.START);
 			NotificationManager.Instance.AddNotification(starCoreNotif);
-        }
+		}
 
 		// Then check for reward crate
-		if(TierManager.Instance.IsNewUnlocksAvailable){
-			if(!string.IsNullOrEmpty(DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge)){
-				ShopEntranceUIController.ToggleClickable(false);
-				DinerEntranceUIController.ToggleClickable(false);
-				ChallengeMenuEntranceUIController.ToggleClickable(false);
-				replayTutButton.SetActive(false);
+		if(TierManager.Instance.IsNewUnlocksAvailable) {
+			if(!string.IsNullOrEmpty(DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge)) {
 			}
+			ShopEntranceUIController.ToggleClickable(false);
+			DinerEntranceUIController.ToggleClickable(false);
+			ChallengeMenuEntranceUIController.ToggleClickable(false);
+			replayTutButton.SetActive(false);
 			if(TierManager.Instance.CurrentTier == 2 && !DataManager.Instance.GameData.DayTracker.HasCollectedAge) {
 				//instantiate notification and then add it to queue when called it will show the panel
 				ageNotification = new NotificationQueueDataAge();
@@ -115,16 +116,24 @@ public class StartManager : Singleton<StartManager>{
 			// Spawn the unlock drop pod here
 			NotificationQueueDataReward rewardNotif = new NotificationQueueDataReward(SceneUtils.START);
 			NotificationManager.Instance.AddNotification(rewardNotif);
-        }
-
+		}
+		else if(TierManager.Instance.CurrentTier == 2 && !DataManager.Instance.GameData.DayTracker.HasCollectedAge) {
+			//instantiate notification and then add it to queue when called it will show the panel
+			TurnOffEntrances();
+			ageNotification = new NotificationQueueDataAge();
+			NotificationManager.Instance.AddNotification(ageNotification);
+		}
 		// Make sure recalculate tier doesnt get called again
 		CashManager.Instance.SyncLastSeenTotalCash();
-		if(TierManager.Instance.CurrentTier == 4 && !DataManager.Instance.GameData.Tutorial.IsPlayAreaTutDone) {
+		if(TierManager.Instance.CurrentTier == 2 && !DataManager.Instance.GameData.Tutorial.IsSpeDecoTutDone) {
+			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoVIP";
+		}
+		if(TierManager.Instance.CurrentTier == 4 && !DataManager.Instance.GameData.Tutorial.IsPlayAreaTutDone && DataManager.Instance.GameData.Tutorial.IsSpeDecoTutDone) {
 			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoPlayArea";
 		}
-		else if(TierManager.Instance.CurrentTier == 6 && !DataManager.Instance.GameData.Tutorial.IsFlyThruTutDone) {
+		else if(TierManager.Instance.CurrentTier == 6 && !DataManager.Instance.GameData.Tutorial.IsFlyThruTutDone && DataManager.Instance.GameData.Tutorial.IsPlayAreaTutDone) {
 			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoFlyThru";
-        }
+		}
 
 		if(TierManager.Instance.CurrentTier == 6 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates && !TierManager.instance.IsNewUnlocksAvailable) {
 			if(beaconNode.transform.childCount == 0) {
@@ -133,8 +142,10 @@ public class StartManager : Singleton<StartManager>{
 				GameObjectUtils.AddChild(beaconNode, beacon);
 			}
 		}
-		// Save game data again, lock down on the event
-		DataManager.Instance.SaveGameData();
+		NotificationManager.Instance.TryNextNotification();
+    //    TurnOnEntrances();
+	// Save game data again, lock down on the event
+	DataManager.Instance.SaveGameData();
 		GenerateCustomerList();
 		GenerateUnlockedFoodStock();
 	}
@@ -145,7 +156,7 @@ public class StartManager : Singleton<StartManager>{
 		List<ImmutableDataCustomer> customersPool = new List<ImmutableDataCustomer>();
 		customersPool = DataLoaderCustomer.GetDataList();
 		ImmutableDataCustomerSet currSet = DataLoaderCustomerSet.GetData(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()).CustomerSet);
-		foreach (string customerID in currSet.CustomerSet) {
+		foreach(string customerID in currSet.CustomerSet) {
 			if(customerID != "") {
 				customersPool.Remove(DataLoaderCustomer.GetData(customerID));
 			}
@@ -162,18 +173,18 @@ public class StartManager : Singleton<StartManager>{
 			customersPool.Remove(cusData);
 		}
 
-		foreach (ImmutableDataCustomer cus in customersPool) {
+		foreach(ImmutableDataCustomer cus in customersPool) {
 			DataManager.Instance.GameData.RestaurantEvent.CustomerList.Add(cus.ID);
 		}
 	}
 
 	// Given the event, generate a few set of food stocks, capped by event menussets and tier
-	public void GenerateUnlockedFoodStock(){
+	public void GenerateUnlockedFoodStock() {
 		List<ImmutableDataFood> unlockedFoodStock = DataLoaderFood.GetDataListWithinTier(TierManager.Instance.CurrentTier);
 
 		// First remove all the foods that are not used for event
 		ImmutableDataRemoveMenuSet currSet = DataLoaderRemoveMenuSet.GetData(DataLoaderEvents.GetData(DataManager.Instance.GetEvent()).RemoveMenuSet);
-		foreach(string foodID in currSet.RemoveMenuSet){
+		foreach(string foodID in currSet.RemoveMenuSet) {
 			if(foodID != "") {
 				unlockedFoodStock.Remove(DataLoaderFood.GetData(foodID));
 			}
@@ -183,39 +194,39 @@ public class StartManager : Singleton<StartManager>{
 		FoodManager.Instance.FoodStockList = unlockedFoodStock;
 	}
 
-	public void OnPlayButtonClicked(){
+	public void OnPlayButtonClicked() {
 		// Check if special tutorial is set, load it as a challenge directly
-		if(!string.IsNullOrEmpty(DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge)){
+		if(!string.IsNullOrEmpty(DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge)) {
 			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, showFoodTip: true);
 		}
-		else{
+		else {
 			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.MENUPLANNING, "LoadingKeyMenu", "LoadingImageMenu");
-        }
+		}
 	}
 
-	public void DecoButtonClicked(){
+	public void DecoButtonClicked() {
 		DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance = false;
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.DECO, "LoadingKeyDecoration");
 	}
 
-	public void ChallengeMenuButtonClicked(){
+	public void ChallengeMenuButtonClicked() {
 		DataManager.Instance.GameData.Challenge.IsFirstTimeChallengeEntrance = false;
-		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.CHALLENGEMENU, showFoodTip:true);
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.CHALLENGEMENU, showFoodTip: true);
 	}
-	
+
 	public void CheatyScene() {
 		NotificationManager.Instance.DebugClearNotification();
-        LoadLevelManager.Instance.StartLoadTransition(SceneUtils.CHEATY);
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.CHEATY);
 	}
 
 	public Vector3 GetEntrancePosition(StartMenuEntrances entrance) {
 		switch(entrance) {
-		case StartMenuEntrances.DinerEntrance:
-			return DinerEntranceUIController.transform.position;
-		case StartMenuEntrances.DecoEntrance:
-			return ShopEntranceUIController.transform.position;
-		case StartMenuEntrances.ChallengeEntrance:
-			return ChallengeMenuEntranceUIController.transform.position;
+			case StartMenuEntrances.DinerEntrance:
+				return DinerEntranceUIController.transform.position;
+			case StartMenuEntrances.DecoEntrance:
+				return ShopEntranceUIController.transform.position;
+			case StartMenuEntrances.ChallengeEntrance:
+				return ChallengeMenuEntranceUIController.transform.position;
 		}
 		Debug.LogError("Invalid entrance detected");
 		return Vector3.zero;
@@ -223,8 +234,8 @@ public class StartManager : Singleton<StartManager>{
 
 	public void OnLaunchTutorialButton() {
 		DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut1";
-		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, "LoadingKeyTutorial" ,showFoodTip: false);
-    }
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, "LoadingKeyTutorial", showFoodTip: false);
+	}
 
 	// Called from AgeAskController
 	public void CollectAge(string age) {
@@ -234,12 +245,12 @@ public class StartManager : Singleton<StartManager>{
 		ageNotification.Finish();
 	}
 
-	private  IEnumerator WaitOneFram() {
+	private IEnumerator WaitOneFram() {
 		yield return 0;
 		ageAskController.ShowPanel();
 	}
 
-	public void OnDebugEpipenGameButton(){
+	public void OnDebugEpipenGameButton() {
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.EPIPEN);
 	}
 
@@ -269,11 +280,27 @@ public class StartManager : Singleton<StartManager>{
 
 		productPageUIController.HidePanel();
 		statusPageUIController.ShowPanel(true);
-    }
+	}
 
 	public void PurchaseFailed() {
 		productPageUIController.HidePanel();
 		statusPageUIController.ShowPanel(false);
 	}
+
+	public void ShowParentalgate() {
+		parentalGate.ShowPanel();
+	}
 	#endregion
+
+	public void TurnOffEntrances() {
+		ShopEntranceUIController.ToggleClickable(false);
+		DinerEntranceUIController.ToggleClickable(false);
+		ChallengeMenuEntranceUIController.ToggleClickable(false);
+	}
+
+	public void TurnOnEntrances() {
+		ShopEntranceUIController.ToggleClickable(true);
+		DinerEntranceUIController.ToggleClickable(true);
+		ChallengeMenuEntranceUIController.ToggleClickable(true);
+	}
 }

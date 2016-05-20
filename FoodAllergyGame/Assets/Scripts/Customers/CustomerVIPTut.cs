@@ -13,17 +13,14 @@ public class CustomerVIPTut : Customer {
 	}
 
 	public void showCustomerFinger(){
-		transform.GetChild(2).gameObject.SetActive(true);
+		transform.GetChild(3).gameObject.SetActive(true);
 	}
 
 	public void hideCustomerFinger(){
-		transform.GetChild(2).gameObject.SetActive(false);
+		transform.GetChild(3).gameObject.SetActive(false);
 	}
 
-
-
-	public override void OnClicked ()
-	{
+	public override void OnClicked () {
 		base.OnClicked ();
 		hideCustomerFinger();
 		tutFingers.transform.GetChild(tutNumber).gameObject.SetActive(true);

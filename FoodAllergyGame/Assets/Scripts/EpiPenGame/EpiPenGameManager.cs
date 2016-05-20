@@ -242,7 +242,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		isAnimatingEnding = true;
 
 		// Show the skip button on first call
-		if(slotIndex == 0) {
+		if(slotIndex == 0 && DataManager.Instance.GameData.Epi.hasSeenEnding) {
 			skipButtonTween.Show();
 		}
 
@@ -326,6 +326,9 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 			AnimateEnding(slotIndex);
 		}
 		else {
+			if(!DataManager.Instance.GameData.Epi.hasSeenEnding) {
+				DataManager.Instance.GameData.Epi.hasSeenEnding = true;
+            }
 			isSkippingAnimations = false;
 			isAnimatingEnding = false;
             UIManager.ShowGameOver(attempts);

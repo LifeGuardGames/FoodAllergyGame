@@ -88,7 +88,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			TableFlyThru flyThruTable = RestaurantManager.Instance.GetFlyThruTable();
 			if((flyThruTable != null) && UnityEngine.Random.Range(0,10) > 3 && !flyThruTable.inUse ){
 				flyThruTable.inUse = true;
-				this.transform.SetParent(flyThruTable.seat);
+				transform.SetParent(flyThruTable.seat);
+				transform.localPosition = Vector3.zero;
 				tableNum = flyThruTable.TableNumber;
 				//state = CustomerStates.ReadingMenu;
 				//StartCoroutine("ReadMenu");
@@ -173,7 +174,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			TableFlyThru flyThruTable = RestaurantManager.Instance.GetFlyThruTable();
 			if((flyThruTable != null) && UnityEngine.Random.Range(0, 10) > 3 && !flyThruTable.inUse || mode.ID == "TutDecoFlyThru") {
 				flyThruTable.inUse = true;
-				this.transform.SetParent(flyThruTable.seat);
+				transform.SetParent(flyThruTable.seat);
+				transform.localPosition = Vector3.zero;
 				tableNum = flyThruTable.TableNumber;
 				state = CustomerStates.ReadingMenu;
 				//StartCoroutine("ReadMenu");

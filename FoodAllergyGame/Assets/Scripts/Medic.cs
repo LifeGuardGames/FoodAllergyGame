@@ -33,9 +33,10 @@ public class Medic : Singleton<Medic> {
 	
 		// Otherwise, move to the location and wait for callback
 		else{
-			LeanTween.cancel(gameObject);
-			LeanTween.move(gameObject, customer, 1.2f).setEase(LeanTweenType.easeInOutQuad).setOnComplete(SaveCustomer);
-			medicAnimator.Play("MedicFrontFlip");
+			if(!LeanTween.isTweening(this.gameObject)) {
+				LeanTween.move(gameObject, customer, 1.2f).setEase(LeanTweenType.easeInOutQuad).setOnComplete(SaveCustomer);
+				medicAnimator.Play("MedicFrontFlip");
+			}
 		}
 	}
 

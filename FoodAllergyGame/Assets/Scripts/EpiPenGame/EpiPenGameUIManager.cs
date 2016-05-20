@@ -43,14 +43,23 @@ public class EpiPenGameUIManager : MonoBehaviour{
 	public void ShowGameOver(int attempts) {
 		if(attempts == 1) {
 			imgRank.sprite = SpriteCacheManager.GetTrophySpriteData(ChallengeReward.Gold);
+			if(DataManager.Instance.GameData.Challenge.ChallengeProgress["Challenge00"] != ChallengeReward.Gold) {
+				DataManager.Instance.GameData.Challenge.ChallengeProgress["Challenge00"] = ChallengeReward.Gold;
+            }
 			confettiParticle.Play();
 		}
 		else if(attempts == 2) {
 			imgRank.sprite = SpriteCacheManager.GetTrophySpriteData(ChallengeReward.Silver);
+			if(DataManager.Instance.GameData.Challenge.ChallengeProgress["Challenge00"] != ChallengeReward.Silver || DataManager.Instance.GameData.Challenge.ChallengeProgress["Challenge00"] != ChallengeReward.Gold) {
+				DataManager.Instance.GameData.Challenge.ChallengeProgress["Challenge00"] = ChallengeReward.Silver;
+			}
 			confettiParticle.Play();
 		}
 		else if(attempts == 3) {
 			imgRank.sprite = SpriteCacheManager.GetTrophySpriteData(ChallengeReward.Bronze);
+			if(DataManager.Instance.GameData.Challenge.ChallengeProgress["Challenge00"] != ChallengeReward.Silver || DataManager.Instance.GameData.Challenge.ChallengeProgress["Challenge00"] != ChallengeReward.Gold) {
+				DataManager.Instance.GameData.Challenge.ChallengeProgress["Challenge00"] = ChallengeReward.Bronze;
+			}
 			confettiParticle.Play();
 		}
 		else if(attempts > 3) {
