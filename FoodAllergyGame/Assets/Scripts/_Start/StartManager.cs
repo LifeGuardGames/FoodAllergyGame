@@ -123,10 +123,10 @@ public class StartManager : Singleton<StartManager> {
 		if(TierManager.Instance.CurrentTier == 2 && !DataManager.Instance.GameData.Tutorial.IsSpeDecoTutDone) {
 			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoVIP";
 		}
-		if(TierManager.Instance.CurrentTier == 4 && !DataManager.Instance.GameData.Tutorial.IsPlayAreaTutDone) {
+		if(TierManager.Instance.CurrentTier == 4 && !DataManager.Instance.GameData.Tutorial.IsPlayAreaTutDone && DataManager.Instance.GameData.Tutorial.IsSpeDecoTutDone) {
 			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoPlayArea";
 		}
-		else if(TierManager.Instance.CurrentTier == 6 && !DataManager.Instance.GameData.Tutorial.IsFlyThruTutDone) {
+		else if(TierManager.Instance.CurrentTier == 6 && !DataManager.Instance.GameData.Tutorial.IsFlyThruTutDone && DataManager.Instance.GameData.Tutorial.IsPlayAreaTutDone) {
 			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoFlyThru";
 		}
 
