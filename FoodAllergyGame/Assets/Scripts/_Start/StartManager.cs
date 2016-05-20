@@ -103,11 +103,11 @@ public class StartManager : Singleton<StartManager> {
 		// Then check for reward crate
 		if(TierManager.Instance.IsNewUnlocksAvailable) {
 			if(!string.IsNullOrEmpty(DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge)) {
-				ShopEntranceUIController.ToggleClickable(false);
-				DinerEntranceUIController.ToggleClickable(false);
-				ChallengeMenuEntranceUIController.ToggleClickable(false);
-				replayTutButton.SetActive(false);
 			}
+			ShopEntranceUIController.ToggleClickable(false);
+			DinerEntranceUIController.ToggleClickable(false);
+			ChallengeMenuEntranceUIController.ToggleClickable(false);
+			replayTutButton.SetActive(false);
 			if(TierManager.Instance.CurrentTier == 2 && !DataManager.Instance.GameData.DayTracker.HasCollectedAge) {
 				//instantiate notification and then add it to queue when called it will show the panel
 				ageNotification = new NotificationQueueDataAge();
@@ -117,7 +117,12 @@ public class StartManager : Singleton<StartManager> {
 			NotificationQueueDataReward rewardNotif = new NotificationQueueDataReward(SceneUtils.START);
 			NotificationManager.Instance.AddNotification(rewardNotif);
 		}
-
+		else if(TierManager.Instance.CurrentTier == 2 && !DataManager.Instance.GameData.DayTracker.HasCollectedAge) {
+			//instantiate notification and then add it to queue when called it will show the panel
+			TurnOffEntrances();
+			ageNotification = new NotificationQueueDataAge();
+			NotificationManager.Instance.AddNotification(ageNotification);
+		}
 		// Make sure recalculate tier doesnt get called again
 		CashManager.Instance.SyncLastSeenTotalCash();
 		if(TierManager.Instance.CurrentTier == 2 && !DataManager.Instance.GameData.Tutorial.IsSpeDecoTutDone) {
@@ -138,8 +143,9 @@ public class StartManager : Singleton<StartManager> {
 			}
 		}
 		NotificationManager.Instance.TryNextNotification();
-		// Save game data again, lock down on the event
-		DataManager.Instance.SaveGameData();
+    //    TurnOnEntrances();
+	// Save game data again, lock down on the event
+	DataManager.Instance.SaveGameData();
 		GenerateCustomerList();
 		GenerateUnlockedFoodStock();
 	}

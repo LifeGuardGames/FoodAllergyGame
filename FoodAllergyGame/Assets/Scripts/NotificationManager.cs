@@ -33,13 +33,13 @@ public class NotificationManager : Singleton<NotificationManager> {
 	}
 
 	public void AddNotification(NotificationQueueData notification){
-		AddToDatamanager(notification);
+		//AddToDatamanager(notification);
         notificationQueue.Enqueue(notification);
 		TryNextNotification();
 	}
 
 	public void TryNextNotification(){
-		if(!isNotificationActive){
+		if(!isNotificationActive && SceneManager.GetActiveScene().name == SceneUtils.START) {
 			StartCoroutine(TryNextNotificationHelper());
 		}
 	}
@@ -59,8 +59,11 @@ public class NotificationManager : Singleton<NotificationManager> {
 				yield return new WaitForSeconds(delayBetweenNotifications);
 			}
 			NotificationQueueData pop = notificationQueue.Dequeue();
+			/*if(pop.GetType().ToString() == "NotificationQueueDataReward") {
+				notificationQueue.Clear();
+			}*/
 			pop.Start();
-			RemoveFromDatamanager(pop);
+			//RemoveFromDatamanager(pop);
         }
 		else{ 												// Everything completely done
 			isNotificationActive = false;
@@ -100,18 +103,26 @@ public class NotificationManager : Singleton<NotificationManager> {
 	}
 
 	private void AddToDatamanager(NotificationQueueData que) {
-		switch(que.GetType().ToString()){
-			case "NotificationQueueDataAge":
-				DataManager.Instance.GameData.DayTracker.notifQueue.Add("age");
-				break;
-			case "NotificationQueueDataReward":
-				DataManager.Instance.GameData.DayTracker.notifQueue.Add("reward");
+        switch(que.GetType().ToString()){
+			case "NotificationQueueDataStarPieceReward":
+				if(!DataManager.Instance.GameData.DayTracker.notifQueue.Contains("Piece")){
+					DataManager.Instance.GameData.DayTracker.notifQueue.Add("Piece");
+				}
 				break;
 			case "NotificationQueueDataStarCoreReward":
-				DataManager.Instance.GameData.DayTracker.notifQueue.Add("core");
+				if(!DataManager.Instance.GameData.DayTracker.notifQueue.Contains("core")) {
+					DataManager.Instance.GameData.DayTracker.notifQueue.Add("core");
+				}
 				break;
-			case "NotificationQueueDataStarPieceReward":
-				DataManager.Instance.GameData.DayTracker.notifQueue.Add("Piece");
+			case "NotificationQueueDataAge":
+				if(!DataManager.Instance.GameData.DayTracker.notifQueue.Contains("age")) {
+					DataManager.Instance.GameData.DayTracker.notifQueue.Add("age");
+				}
+				break;
+			case "NotificationQueueDataReward":
+				if(!DataManager.Instance.GameData.DayTracker.notifQueue.Contains("reward")) {
+					DataManager.Instance.GameData.DayTracker.notifQueue.Add("reward");
+				}
 				break;
 		}
 	}
@@ -139,6 +150,16 @@ public class NotificationManager : Singleton<NotificationManager> {
 		for (int i = 0; i < count; i ++) {
 			Debug.Log(DataManager.Instance.GameData.DayTracker.notifQueue[i]);
 			switch(DataManager.Instance.GameData.DayTracker.notifQueue[i]) {
+               case "core":
+					NotificationQueueDataStarCoreReward core = new NotificationQueueDataStarCoreReward(SceneUtils.START);
+					Debug.Log("core");
+					AddNotification(core);
+					break;
+				case "Piece":
+					Debug.Log("Piece");
+					NotificationQueueDataStarPieceReward piece = new NotificationQueueDataStarPieceReward(SceneUtils.START, TierManager.Instance.OldTier, TierManager.Instance.CurrentTier);
+					AddNotification(piece);
+					break;
 				case "age":
 					NotificationQueueDataAge age = new NotificationQueueDataAge();
 					Debug.Log("age");
@@ -149,25 +170,13 @@ public class NotificationManager : Singleton<NotificationManager> {
 					Debug.Log("reward");
 					AddNotification(reward);
 					break;
-				case "core":
-					NotificationQueueDataStarCoreReward core = new NotificationQueueDataStarCoreReward(SceneUtils.START);
-					Debug.Log("core");
-					AddNotification(core);
-					break;
-				case "piece":
-					Debug.Log("piece");
-					NotificationQueueDataStarPieceReward piece = new NotificationQueueDataStarPieceReward(SceneUtils.START, TierManager.Instance.OldTier, TierManager.Instance.CurrentTier);
-					AddNotification(piece);
-					break;
+				
 			}
 		}
-		for(int i = 0; i < count; i++) {
-			DataManager.Instance.GameData.DayTracker.notifQueue.RemoveAt(i);
-        }
 	}
-	void OnLevelWasLoaded(int level) {
-		if(level == 2) {
-			RebuildQueue();
-		}
-	}
+	//void OnLevelWasLoaded(int level) {
+	//	if(level == 2) {
+			//RebuildQueue();
+	//	}
+//	}
 }
