@@ -120,6 +120,9 @@ public class StartManager : Singleton<StartManager> {
 
 		// Make sure recalculate tier doesnt get called again
 		CashManager.Instance.SyncLastSeenTotalCash();
+		if(TierManager.Instance.CurrentTier == 2 && !DataManager.Instance.GameData.Tutorial.IsSpeDecoTutDone) {
+			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoVIP";
+		}
 		if(TierManager.Instance.CurrentTier == 4 && !DataManager.Instance.GameData.Tutorial.IsPlayAreaTutDone) {
 			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoPlayArea";
 		}
