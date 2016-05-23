@@ -21,15 +21,16 @@ public class RestaurantManagerLoader : MonoBehaviour {
 		Time.timeScale = 1.0f;  // Remember to reset timescale!
 		if(RestArcade.activeSelf) {
 			int rand = Random.Range(0, 10);
-			Debug.Log("Rand: " + rand);
-			Debug.Log("Chance: " + DataManager.Instance.GameData.Epi.ChanceOfEpiGame);
 			if(rand < DataManager.Instance.GameData.Epi.ChanceOfEpiGame) {
 				DataManager.Instance.GameData.Epi.HasPlayedEpiPenGameThisTier = true;
 				DataManager.Instance.GameData.Epi.ChanceOfEpiGame = 0;
 				LoadLevelManager.Instance.StartLoadTransition(SceneUtils.EPIPEN, additionalTextKey: "LoadingKeyEpipen", additionalImageKey: "LoadingImageEpipen");
 			}
 			else {
-				if(!DataManager.Instance.GameData.Epi.HasPlayedEpiPenGameThisTier) {
+				if(!DataManager.Instance.GameData.Epi.hasSeenEnding) {
+					DataManager.Instance.GameData.Epi.ChanceOfEpiGame += 10;
+				}
+				else if(!DataManager.Instance.GameData.Epi.HasPlayedEpiPenGameThisTier ) {
 					DataManager.Instance.GameData.Epi.ChanceOfEpiGame += 1;
 				}
 				LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
