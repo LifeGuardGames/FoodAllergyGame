@@ -8,6 +8,11 @@ public class CustomerCoolKid : Customer {
 		type = CustomerTypes.CoolKid;
 	}
 
+	public override void Init(int num, ImmutableDataChallenge mode) {
+		base.Init(num, mode);
+		type = CustomerTypes.CoolKid;
+	}
+
 	public override void GoToPlayArea(Vector3 playAreaSpot, int spotIndex, int deltaSatisfaction){
 		satisfaction--;
 		//thoughtBubble.SetActive(true);

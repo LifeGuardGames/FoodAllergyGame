@@ -13,6 +13,10 @@ public class CustomerEater : Customer {
 		type = CustomerTypes.Eater;
 	}
 
+	public override void Init(int num, ImmutableDataChallenge mode) {
+		base.Init(num, mode);
+		type = CustomerTypes.Eater;
+	}
 
 	IEnumerator Leaving() {
 		yield return new WaitForSeconds(6.0f);

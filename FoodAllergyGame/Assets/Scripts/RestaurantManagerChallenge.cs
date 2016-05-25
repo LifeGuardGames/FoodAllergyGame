@@ -12,12 +12,14 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	public ChallengeScoreController scoreBoard;
 	public GameObject skipButton;
 	public ImmutableDataChallenge chall;
+	public Dictionary<string, object> customerList;
 	int interval = 0;
 
 	public override void Init() {
 		sickCustomers = new List<GameObject>();
 		customerHash = new Dictionary<string, GameObject>();
 		challengeAI = new ChallengeAI();
+		customerList = new Dictionary<string, object>();
 	}
 	
 	private void RunSetUp() {
@@ -113,7 +115,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 				customerData = DataLoaderCustomer.GetData(currCusSet[interval]);
 
 				// Track in analytics
-				AnalyticsManager.Instance.TrackCustomerSpawned(customerData.ID);
+				
 				GameObject customerPrefab = Resources.Load(customerData.Script) as GameObject;
 				GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 				customerNumber++;
@@ -123,6 +125,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 
 				cus.GetComponent<Customer>().UpdateSatisfaction(chall.StartingHearts - 3);
 				customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
+				AddCustomer(cus.GetComponent<Customer>());
 				challengeAI.AddCustomer();
 				interval++;
 				customerNumber++;
@@ -154,11 +157,10 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			
 			// Track analytics based on happy or angry leaving
 			if(satisfaction > 0) { 
-				AnalyticsManager.Instance.CustomerLeaveHappyChallenge(satisfaction, chall.ID);
+				AnalyticsManager.Instance.CustomerLeaveHappy(customerData.type ,satisfaction);
 				priceMultiplier = customerData.priceMultiplier * VIPMultiplier;
 			}
 			else {
-				AnalyticsManager.Instance.CustomerLeaveAngryChallenge(customerData.type, customerData.state, chall.ID);
 				priceMultiplier = 1;
 			}
 
@@ -181,7 +183,6 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	public override void CustomerLeftFlatCharge(Customer customerData, int deltaCoins, bool isModifiesDifficulty) {
 		if(customerHash.ContainsKey(customerData.customerID)) {
 			// Track analytics leaving state though not really angry	
-			AnalyticsManager.Instance.CustomerLeaveAngryChallenge(customerData.type, customerData.state, chall.ID);
 			if(deltaCoins == 0) {
 				UpdateCash(challengeAI.CalculateBill(0, 1), customerData.transform.position);
 			}
@@ -251,6 +252,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 					}
                     DataManager.Instance.GameData.DayTracker.ChallengesPlayed++;
 					DataManager.Instance.ChallengesInSession++;
+					AnalyticsManager.Instance.TrackCustomerSpawned(customerList);
 					Mixpanel.SuperProperties.Remove("Challenge");
 					AnalyticsManager.Instance.EndChallengeReport(challengeAI.ScoreIt(), DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge, challengeAI.MissingCustomers, challengeAI.AvgSatisfaction(), savedCustomers, attempted, inspectionButtonClicked);
 					AnalyticsManager.Instance.EndGameUsageReport(playAreaUses, vipUses, microwaveUses);
@@ -459,5 +461,16 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		AnalyticsManager.Instance.TrackGameDayInRestaurantChallenge(dayTimeLeft, TierManager.Instance.CurrentTier, DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge,
 				 challengeAI.MissingCustomers, challengeAI.AvgSatisfaction(),
 				DayEarnedCash, Medic.Instance.MedicCost);
+	}
+
+	public void AddCustomer(Customer cus) {
+		if(customerList.ContainsKey(cus.type.ToString())) {
+			int temp = (int)customerList[cus.type.ToString()];
+			temp++;
+			customerList[cus.type.ToString()] = temp;
+		}
+		else {
+			customerList.Add(cus.type.ToString(), 1);
+		}
 	}
 }

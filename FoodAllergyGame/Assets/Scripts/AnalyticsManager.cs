@@ -6,29 +6,18 @@ using System.Collections.Generic;
 public class AnalyticsManager : Singleton<AnalyticsManager> {
 
 	// When customer are leaving happy, what is their satisfaction?
-	public void CustomerLeaveHappy(int satisfaction) {
+	public void CustomerLeaveHappy(CustomerTypes type, int satisfaction) {
 		Mixpanel.SendEvent("Customer Leave Happy", new Dictionary<string, object>{
+			{ "Customer Type: " , type.ToString() },
 			{ "Customer Satisfaction: " , satisfaction.ToString()}});
 	}
 
-	public void CustomerLeaveHappyChallenge(int satisfaction, string Challenge) {
-		Mixpanel.SendEvent("Customer Leave Happy", new Dictionary<string, object>{
-			{ "Customer Satisfaction: " , satisfaction.ToString()},
-			{"Challenge ID: ",  Challenge}});
-	}
 
 	// When customers are not leaving happy, what is their state and type?
 	public void CustomerLeaveAngry(CustomerTypes type, CustomerStates state) {
 		Mixpanel.SendEvent("Customer Leave Angry", new Dictionary<string, object> {
 			{ "Customer Type: " , type.ToString() },
 			{"Customer State: " , state.ToString()}});
-	}
-
-	public void CustomerLeaveAngryChallenge(CustomerTypes type, CustomerStates state, string challenge) {
-		Mixpanel.SendEvent("Customer Leave Angry", new Dictionary<string, object> {
-			{ "Customer Type: " , type.ToString() },
-			{"Customer State: " , state.ToString()},
-			{"Challenge ID: ", challenge}});
 	}
 
 	public void EndGameDayReport(string currentEvent, int missingCustomers, float avgSatisfaction, int cashEarned,
@@ -105,9 +94,8 @@ public class AnalyticsManager : Singleton<AnalyticsManager> {
 	}
 
 	// What customers are being spawned each day (discounts tutorial)?
-	public void TrackCustomerSpawned(string customerID) {
-		Mixpanel.SendEvent("Customer Spawn", new Dictionary<string, object> {
-			{ "Customer: " , customerID } });
+	public void TrackCustomerSpawned(Dictionary<string, object> customerID) {
+		Mixpanel.SendEvent("Customer Spawn", customerID);
 	}
 
 	// How often does users enter deco over time played?

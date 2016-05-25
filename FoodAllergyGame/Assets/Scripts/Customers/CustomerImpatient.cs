@@ -11,4 +11,9 @@ public class CustomerImpatient :Customer {
 		timer = mode.CustomerTimerMod/1.5f;
 
 	}
+
+	public override void Init(int num, ImmutableDataChallenge mode) {
+		base.Init(num, mode);
+		type = CustomerTypes.Impatient;
+	}
 }
