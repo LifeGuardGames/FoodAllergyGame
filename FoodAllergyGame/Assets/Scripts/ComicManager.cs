@@ -17,6 +17,7 @@ public class ComicManager : MonoBehaviour {
 			SceneManager.LoadScene(SceneUtils.START);
 		}
 		else {
+			AnalyticsManager.Instance.TutorialFunnel("Started Coimic");
 			ComicStep(1);
 		}
 	}
@@ -51,6 +52,7 @@ public class ComicManager : MonoBehaviour {
 				AudioManager.Instance.PlayClip("ComicPage3SFX");
 			break;
 		case 4:
+			AnalyticsManager.Instance.TutorialFunnel("Finished Coimic");
 			DataManager.Instance.GameData.Tutorial.IsComicViewed = true;
 			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
 			break;

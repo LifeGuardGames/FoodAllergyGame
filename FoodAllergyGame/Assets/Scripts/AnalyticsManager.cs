@@ -65,7 +65,7 @@ public class AnalyticsManager : Singleton<AnalyticsManager> {
 	}
 
 	// Why do people quit the restaurant day incomplete?
-	public void TrackGameDayInRestaurant(float dayTimeLeft, int tier, string currentEvent, float difficultyLevel,
+	public void TrackGameDayInRestaurantArcade(float dayTimeLeft, int tier, string currentEvent, float difficultyLevel,
 		int missingCustomers, float averageSatisfication, int dayEarnedCash, int medicCost) {
 		Mixpanel.SendEvent("Quit Restaurant Incomplete", new Dictionary<string, object> {
 			{ "Time Left: ", dayTimeLeft },
@@ -78,10 +78,30 @@ public class AnalyticsManager : Singleton<AnalyticsManager> {
             { "Cash Lost: ", medicCost*1.0f }});
 	}
 
+	// Why do people quit the restaurant day incomplete?
+	public void TrackGameDayInRestaurantChallenge(float dayTimeLeft, int tier, string currentChallenge,
+		int missingCustomers, float averageSatisfication, int dayEarnedCash, int medicCost) {
+		Mixpanel.SendEvent("Quit Restaurant Incomplete", new Dictionary<string, object> {
+			{ "Time Left: ", dayTimeLeft },
+			{ "Tier: ", tier*1.0f },
+			{ "Challenge: " , currentChallenge },
+			{ "Missed Customers: ", missingCustomers*1.0f },
+			{ "Avg. Satisfaction: ", averageSatisfication },
+			{ "Cash Earned: ", dayEarnedCash },
+			{ "Cash Lost: ", medicCost*1.0f }});
+	}
+
 	// Tutorial funnel
 	public void TutorialFunnel(string funnelString) {
-		Mixpanel.SendEvent("Tutorial Flow", new Dictionary<string, object>{
-			{ "Step: ", funnelString} });
+		Mixpanel.SendEvent("Tutorial Flow" +funnelString);
+	}
+
+	public void NotificationFunnel() {
+		Mixpanel.SendEvent("Notification Flow");
+    }
+
+	public void DayOneFunnel(string funnelStep) {
+		Mixpanel.SendEvent("DayOne Flow " + funnelStep);
 	}
 
 	// What customers are being spawned each day (discounts tutorial)?

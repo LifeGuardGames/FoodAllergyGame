@@ -195,6 +195,9 @@ public class StartManager : Singleton<StartManager> {
 	}
 
 	public void OnPlayButtonClicked() {
+		if(DataManager.Instance.GameData.Tutorial.IsTutorial1Done) {
+			AnalyticsManager.Instance.TutorialFunnel("Clicked Diner First Time");
+		}
 		// Check if special tutorial is set, load it as a challenge directly
 		if(!string.IsNullOrEmpty(DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge)) {
 			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, showFoodTip: true);
