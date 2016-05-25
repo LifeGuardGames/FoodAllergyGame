@@ -40,16 +40,13 @@ public class ComicManager : MonoBehaviour {
 	private void ComicStep(int step){
 		switch(step){
 		case 1:
-				comicAnimator.Play("ComicPage1");
+			comicAnimator.Play("ComicPage1");
             break;
 		case 2:
-				comicAnimator.Play("ComicPage2");
-				AudioManager.Instance.LowerBackgroundVolume(0.5f);
-				AudioManager.Instance.PlayClip("ComicPage2SFX");
+			comicAnimator.Play("ComicPage2");
 			break;
 		case 3:
-				comicAnimator.Play("ComicPage3");
-				AudioManager.Instance.PlayClip("ComicPage3SFX");
+			comicAnimator.Play("ComicPage3");
 			break;
 		case 4:
 			AnalyticsManager.Instance.TutorialFunnel("Finished Coimic");

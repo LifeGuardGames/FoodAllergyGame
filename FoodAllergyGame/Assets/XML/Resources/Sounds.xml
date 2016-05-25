@@ -5,24 +5,20 @@
 	<Sound ID="Button1Up"></Sound>
 	<Sound ID="PickUp" Volume="0.3"></Sound>
 	<Sound ID="Drop" Volume="0.8"></Sound>
-  <Sound ID="DecoPoofSound" Volume="1"></Sound>
+	<Sound ID="DecoPoofSound" Volume="1"></Sound>
 
-	<!-- Comic sounds -->
-	<Sound ID="ComicPage2SFX"></Sound>
-	<Sound ID="ComicPage3SFX"></Sound>
-  
 	<!-- Start scene -->
 	<Sound ID="Firework1"></Sound>
 	<Sound ID="Firework2"></Sound>
 	<Sound ID="Firework3"></Sound>
 	<Sound ID="TierUp"></Sound>
-  <Sound ID="SupplyDropCrash"></Sound>
-  <Sound ID="SupplyDropAppear"></Sound>
-  <Sound ID="SupplyDropOpen"></Sound>
-  <Sound ID="CapsuleOpenSound" Volume="0.8"></Sound>
-  <Sound ID="CapsuleAppearSound"></Sound>
-  <Sound ID="StarChunkAppear"></Sound>
-  <Sound ID="StarChunkArrive"></Sound>
+	<Sound ID="SupplyDropCrash"></Sound>
+	<Sound ID="SupplyDropAppear"></Sound>
+	<Sound ID="SupplyDropOpen"></Sound>
+	<Sound ID="CapsuleOpenSound" Volume="0.8"></Sound>
+	<Sound ID="CapsuleAppearSound"></Sound>
+	<Sound ID="StarChunkAppear"></Sound>
+	<Sound ID="StarChunkArrive"></Sound>
 
 	<!-- Restaurant scene -->
 	<Sound ID="EndOfDay"></Sound>
@@ -38,7 +34,7 @@
 	<Sound ID="TrophyBronzeGet"></Sound>
 	<Sound ID="TrophySilverGet"></Sound>
 	<Sound ID="TrophyGoldGet"></Sound>
-  
+
 	<!-- Epipen scene -->
 	<Sound ID="EpipenWrong"></Sound>
 	<Sound ID="EpipenRight"></Sound>
@@ -78,6 +74,4 @@
 	<Sound ID="FlyThruEnter"></Sound>
 	<Sound ID="FlyThruLeave"></Sound>
 	<Sound ID="VIPEnter"></Sound>
-
-	<!-- Unused extras -->
 </Sounds>
