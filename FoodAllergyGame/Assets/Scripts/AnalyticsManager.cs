@@ -145,7 +145,7 @@ public class AnalyticsManager : Singleton<AnalyticsManager> {
 		Mixpanel.SendEvent("Epi Pen Game Results", new Dictionary<string, object> {
 			{"Attempts: " , attempts},
 			{"Difficulty: " , difficulty},
-			{"Time Taken: " , time },});
+			{"Time Taken: " , time }});
 	}
 
 	public void MissedPiece(int wrongPiece) {
