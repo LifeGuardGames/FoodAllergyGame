@@ -14,6 +14,8 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	public ImmutableDataChallenge chall;
 	public Dictionary<string, object> customerList;
 	int interval = 0;
+	public bool isVip;
+	public bool isPlayarea;
 
 	public override void Init() {
 		sickCustomers = new List<GameObject>();
@@ -30,9 +32,11 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		}
 		if(chall.PlayArea != "0") {
 			play.LoadDeco(DataLoaderDecoItem.GetData(chall.PlayArea));
+			isPlayarea = true;
 		}
 		if(chall.VipTable != "0") {
 			vip.LoadDeco(DataLoaderDecoItem.GetData(chall.VipTable));
+			isVip= true;
 		}
 		if(chall.FlyThru != "0") {
 			fly.LoadDeco(DataLoaderDecoItem.GetData(chall.FlyThru));
@@ -220,7 +224,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 					DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
 				}
 
-			    if(isTutorial) {
+				if(isTutorial) {
 					if(!DataManager.Instance.GameData.Tutorial.IsTutorial1Done) {
 						AnalyticsManager.Instance.TutorialFunnel("Finished tut day, 2 guided customers");
 					}
@@ -250,13 +254,17 @@ public class RestaurantManagerChallenge : RestaurantManager{
 						AnalyticsManager.Instance.TutorialFunnel("Fly thru Tut Completed");
 						DataManager.Instance.GameData.Tutorial.IsFlyThruTutDone = true;
 					}
-                    DataManager.Instance.GameData.DayTracker.ChallengesPlayed++;
+					DataManager.Instance.GameData.DayTracker.ChallengesPlayed++;
 					DataManager.Instance.ChallengesInSession++;
 					//AnalyticsManager.Instance.TrackCustomerSpawned(customerList);
 					Mixpanel.SuperProperties.Remove("Challenge");
 					AnalyticsManager.Instance.EndChallengeReport(challengeAI.ScoreIt(), DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge, challengeAI.MissingCustomers, challengeAI.AvgSatisfaction(), savedCustomers, attempted, inspectionButtonClicked);
-
-
+					if(isPlayarea) { 
+						AnalyticsManager.Instance.PlayAreaUsage(PlayAreaUses);
+					}
+					if(isVip) {
+						AnalyticsManager.Instance.VIPUsage(VIPUses);
+					}
 					// Show day complete UI
 					if(chall.ChallengeType == ChallengeTypes.Tutorial) {
 						restaurantUI.DayComplete(challengeAI.MissingCustomers, dayEarnedCash, 0, dayCashRevenue);

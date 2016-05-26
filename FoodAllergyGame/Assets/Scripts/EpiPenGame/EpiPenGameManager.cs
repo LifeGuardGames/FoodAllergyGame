@@ -303,13 +303,15 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 			// Return all tokens that is not locked, this and after
 			for(int i = slotIndex; i < totalSteps; i++) {
 				EpiPenGameSlot finalSlot = finalSlotList[i];
-				AnalyticsManager.Instance.MissedPiece(finalSlotList[i].GetToken().tokenNumber);
 				if(!finalSlot.GetToken().IsLocked) {
+					if(!isTutorial) {
+						AnalyticsManager.Instance.MissedPiece(finalSlotList[i].GetToken().tokenNumber);
+					}
 					finalSlot.ClearToken();
 					finalSlot.GetComponent<Image>().sprite = emptyFinalSlotSprite;
 				}
 			}
-
+			isTutorial = false;
 			// Continue the timer since incorrect
 			UIManager.ContinueTimer();
 
@@ -402,7 +404,6 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		GameObject go = GameObjectUtils.AddChildGUI(checkButton, tutFingerPressPrefab);
 		Destroy(go, 1.2f);
 		yield return new WaitForSeconds(1.0f);
-		isTutorial = false;
 		DataManager.Instance.GameData.Tutorial.IsEpiPenGameTutorialDone = true;
 		CheckAnswerButtonClicked();
 		attempts = 0;
