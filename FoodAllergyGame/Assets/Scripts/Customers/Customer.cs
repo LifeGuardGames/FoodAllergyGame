@@ -16,9 +16,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public CustomerTypes type = CustomerTypes.Normal;
 	public string customerID;			// The customer's id used for identification in the 
 	public CustomerStates state;		// The current state of the customer
-	public List<Allergies> allergy;			// The allergy of the customer
-	public float menuTimer = 4.0f;	// Time spent looking at the menu
-	public float attentionSpan = 15.0f;// The attention timer
+	public List<Allergies> allergy;		// The allergy of the customer
+	public float menuTimer = 4.0f;		// Time spent looking at the menu
+	public float attentionSpan = 15.0f;	// The attention timer
 	public float eatTimer = 6.0f;
 	public Behav currBehav;
 	public int satisfaction;			// The satisfaction the customer has, everytime the attention span 
