@@ -11,7 +11,7 @@ using UnityEngine.Analytics;
 /// </summary>
 public class Customer : MonoBehaviour, IWaiterSelection{
 
-	public int tableNum;
+	public int tableNum = -1;
 	public float timer = 1.0f;
 	public CustomerTypes type = CustomerTypes.Normal;
 	public string customerID;			// The customer's id used for identification in the 

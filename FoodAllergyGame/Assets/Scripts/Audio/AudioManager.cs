@@ -87,6 +87,7 @@ public class AudioManager : LgAudioManager<AudioManager>{
 	}
 
 	void OnLevelWasLoaded() {
+		isMusicOn = true;
 		string currentScene = SceneManager.GetActiveScene().name;
 		if(currentScene == SceneUtils.RESTAURANT || currentScene == SceneUtils.EPIPEN) {
 			int rand = UnityEngine.Random.Range(1, 4);

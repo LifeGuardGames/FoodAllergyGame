@@ -146,14 +146,19 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 	}
 
 	public virtual Table GetTable(int tableNum){
-		foreach(GameObject table in tableList){
-			Table tableScript = table.GetComponent<Table>();
-			if(tableScript.TableNumber == tableNum){
-				return tableScript;
+		if(tableNum != -1) {
+			foreach(GameObject table in tableList) {
+				Table tableScript = table.GetComponent<Table>();
+				if(tableScript.TableNumber == tableNum) {
+					return tableScript;
+				}
 			}
+			Debug.LogWarning("Can not find table " + tableNum);
+			return null;
 		}
-		Debug.LogWarning("Can not find table " + tableNum);
-		return null;
+		else {
+			return null;
+		}
 	}
 
 	// Script is ran and cached for the first time
