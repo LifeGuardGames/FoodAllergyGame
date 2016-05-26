@@ -144,6 +144,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	
 	public override void StartDay() {
 		dayOver = false;
+		Mixpanel.SuperProperties.Remove("Challenge");
 		Mixpanel.SuperProperties.Add("Challenge" ,DataManager.Instance.GetChallenge());
 		RunSetUp();
 		restaurantUI.StartDay();

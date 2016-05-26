@@ -108,7 +108,7 @@ public class AnalyticsManager : Singleton<AnalyticsManager> {
 	// What customers are being spawned each day (discounts tutorial)?
 	public void TrackCustomerSpawned(string customerType) {
 		Mixpanel.SendEvent("Customer Spawned", new Dictionary<string, object> {
-			{"Customer: ", customerType }});
+			{"Customer: " , customerType }});
 	}
 
 	// How often does users enter deco over time played?
@@ -161,6 +161,6 @@ public class AnalyticsManager : Singleton<AnalyticsManager> {
 
 	public void SendAge(string _age) {
 		Mixpanel.SendEvent("Age", new Dictionary<string, object> {
-			{"Age: ", _age}});
+			{"Age: " , _age}});
 	}
 }
