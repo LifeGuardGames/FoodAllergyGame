@@ -24,6 +24,7 @@ public class BehavHospitalRunnerAllergyAttack : Behav {
         }
 		RestaurantManager.Instance.sickCustomers.Remove(self.gameObject);
 		DataManager.Instance.GameData.Tutorial.MissedMedic++;
+		RestaurantManager.Instance.GetTable(self.tableNum).inUse = false;
 		RestaurantManager.Instance.CustomerLeftFlatCharge(self, Medic.HospitalPrice, true);
 		if(DataManager.Instance.GameData.Tutorial.MissedMedic >= 3) {
 			DataManager.Instance.GameData.Tutorial.IsMedicTut2Done = false;
