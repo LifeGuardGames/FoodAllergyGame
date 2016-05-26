@@ -33,6 +33,7 @@ public class ChallengeMenuEntranceUIController : MonoBehaviour {
 	}
 
 	void OnMouseUpAsButton() {
+		AnalyticsManager.Instance.TrackSceneEntered(SceneUtils.CHALLENGEMENU);
 		StartManager.Instance.ChallengeMenuButtonClicked();
 	}
 

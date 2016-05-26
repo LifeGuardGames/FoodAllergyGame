@@ -46,6 +46,18 @@ public class AnalyticsManager : Singleton<AnalyticsManager> {
 	});
 	}
 
+	public void VIPUsage(int vipUse) {
+		Mixpanel.SendEvent("VIP Usage", new Dictionary<string, object>() {
+			{"Vip Usage" , vipUse }
+		});
+	}
+
+	public void PlayAreaUsage(int playAreaUse) {
+		Mixpanel.SendEvent("Play Area Usage", new Dictionary<string, object>() {
+			{"PlayArea Usage" , playAreaUse }
+		});
+	}
+
 	public void EndGameUsageReport(int playAreaUses, int vipUses, int microwaveUses) {
 		Mixpanel.SendEvent("End of Day Report", new Dictionary<string, object> {
 		{ "Play Area Uses: ", playAreaUses * 1.0f },
@@ -94,8 +106,9 @@ public class AnalyticsManager : Singleton<AnalyticsManager> {
 	}
 
 	// What customers are being spawned each day (discounts tutorial)?
-	public void TrackCustomerSpawned(Dictionary<string, object> customerID) {
-		Mixpanel.SendEvent("Customer Spawn", customerID);
+	public void TrackCustomerSpawned(string customerType) {
+		Mixpanel.SendEvent("Customer Spawned", new Dictionary<string, object> {
+			{"Customer: ", customerType } });
 	}
 
 	// How often does users enter deco over time played?

@@ -252,10 +252,10 @@ public class RestaurantManagerChallenge : RestaurantManager{
 					}
                     DataManager.Instance.GameData.DayTracker.ChallengesPlayed++;
 					DataManager.Instance.ChallengesInSession++;
-					AnalyticsManager.Instance.TrackCustomerSpawned(customerList);
+					//AnalyticsManager.Instance.TrackCustomerSpawned(customerList);
 					Mixpanel.SuperProperties.Remove("Challenge");
 					AnalyticsManager.Instance.EndChallengeReport(challengeAI.ScoreIt(), DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge, challengeAI.MissingCustomers, challengeAI.AvgSatisfaction(), savedCustomers, attempted, inspectionButtonClicked);
-					AnalyticsManager.Instance.EndGameUsageReport(playAreaUses, vipUses, microwaveUses);
+
 
 					// Show day complete UI
 					if(chall.ChallengeType == ChallengeTypes.Tutorial) {

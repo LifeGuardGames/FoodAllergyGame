@@ -78,6 +78,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 			customerNumber++;
 			cus.GetComponent<Customer>().behavFlow = customerData.BehavFlow;
 			cus.GetComponent<Customer>().Init(customerNumber, eventData);
+			AnalyticsManager.Instance.TrackCustomerSpawned(cus.GetComponent<Customer>().type.ToString());
 			AddCustomer(cus.GetComponent<Customer>());
 			customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
 			satisfactionAI.AddCustomer();
@@ -184,14 +185,18 @@ public class RestaurantManagerArcade : RestaurantManager {
 				//						AnalyticsManager.Instance.TutorialFunnel("Menu tut day complete");
 				//						CashManager.Instance.TutorialOverrideTotalCash(850);
 				//					}
-				AnalyticsManager.Instance.TrackCustomerSpawned(customerList);
+				//AnalyticsManager.Instance.TrackCustomerSpawned(DataManager.Instance.GetEvent(),customerList);
 				Mixpanel.SuperProperties.Remove("Event");
 			
 					AnalyticsManager.Instance.EndGameDayReport(
 						DataManager.Instance.GameData.RestaurantEvent.CurrentEvent, satisfactionAI.MissingCustomers, satisfactionAI.AvgSatisfaction(),
 						DayEarnedCash, Medic.Instance.MedicCost, savedCustomers, attempted, inspectionButtonClicked);
-
-					AnalyticsManager.Instance.EndGameUsageReport(playAreaUses, vipUses, microwaveUses);
+				if(TierManager.Instance.CurrentTier > 2) {
+					AnalyticsManager.Instance.VIPUsage(vipUses);
+				}
+				if(TierManager.Instance.CurrentTier > 4) {
+					AnalyticsManager.Instance.PlayAreaUsage(playAreaUses);
+				}
 
 					// Show day complete UI
 					restaurantUI.DayComplete(satisfactionAI.MissingCustomers, dayEarnedCash, Medic.Instance.MedicCost, dayNetCash);
