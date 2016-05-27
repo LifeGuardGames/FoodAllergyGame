@@ -105,11 +105,6 @@ public class AnalyticsManager : Singleton<AnalyticsManager> {
 		Mixpanel.SendEvent("DayOne Flow " + funnelStep);
 	}
 
-	// What customers are being spawned each day (discounts tutorial)?
-	public void TrackCustomerSpawned(string customerType) {
-		Mixpanel.SendEvent("Customer Spawned", new Dictionary<string, object> {
-			{"Customer: " , customerType }});
-	}
 
 	// How often does users enter deco over time played?
 	public void TrackSceneEntered(string sceneEntered) {

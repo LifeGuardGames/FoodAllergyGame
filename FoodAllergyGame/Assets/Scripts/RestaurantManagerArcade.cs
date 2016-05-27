@@ -78,7 +78,6 @@ public class RestaurantManagerArcade : RestaurantManager {
 			customerNumber++;
 			cus.GetComponent<Customer>().behavFlow = customerData.BehavFlow;
 			cus.GetComponent<Customer>().Init(customerNumber, eventData);
-			AnalyticsManager.Instance.TrackCustomerSpawned(cus.GetComponent<Customer>().type.ToString());
 			AddCustomer(cus.GetComponent<Customer>());
 			customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
 			satisfactionAI.AddCustomer();
