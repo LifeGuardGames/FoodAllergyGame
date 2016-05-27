@@ -74,10 +74,10 @@ public class DataManager : Singleton<DataManager> {
 		GameData.Session.start = System.DateTime.Now;
 		GameData.Session.sessionCount++; ;
 		//Live token
-		//Mixpanel.Token = "4afadc10e61a77c363308040d38be801";
+		Mixpanel.Token = "4afadc10e61a77c363308040d38be801";
 
 		//Dev Token
-		Mixpanel.Token = "9b68a5560f74b183728b7c30cb4a54fc";
+		//Mixpanel.Token = "9b68a5560f74b183728b7c30cb4a54fc";
         Mixpanel.SuperProperties.Add("Days Played", GameData.DayTracker.DaysPlayed);
 		Mixpanel.SuperProperties.Add("Session", DaysInSession);
 		Mixpanel.SuperProperties.Add("Tier", TierManager.Instance.CurrentTier);
