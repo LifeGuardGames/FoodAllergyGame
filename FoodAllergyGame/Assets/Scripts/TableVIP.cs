@@ -16,7 +16,7 @@ public class TableVIP : Table {
 		base.Init();
 		if(SceneManager.GetActiveScene().name == SceneUtils.RESTAURANT) {
 			node = Pathfinding.Instance.NodeVIP;
-			CustomerUIController customerUI = this.GetComponent<CustomerUIController>();
+			CustomerUIController customerUI = this.GetComponentInChildren<CustomerUIController>();
 			customerUI.ToggleWait(false);
 			customerUI.ToggleStar(false);
 			customerUI.ToggleAllergyAttack(false);

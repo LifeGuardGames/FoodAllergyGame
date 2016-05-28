@@ -19,7 +19,7 @@ public class BehavWaitingInLine : Behav {
 		self.transform.localPosition = Vector3.zero;
 		if(selfTable.tableType == Table.TableType.VIP) {
 			RestaurantManager.Instance.VIPUses++;
-			self.customerUI = self.gameObject.transform.GetComponentInParent<CustomerUIController>();
+			self.customerUI = RestaurantManager.Instance.GetTable(self.tableNum).GetComponentInChildren<CustomerUIController>();
 			self.timer /= selfTable.VIPMultiplier;
 			self.SetSatisfaction(4);
 			TableVIP vipTable = (TableVIP)selfTable;
