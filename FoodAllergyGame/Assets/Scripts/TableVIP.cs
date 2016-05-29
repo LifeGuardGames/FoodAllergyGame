@@ -7,6 +7,7 @@ public class TableVIP : Table {
 	public SpriteRenderer baseSprite;
 	public Canvas statusCanvas;
 	public ParticleSystem activeParticle;
+	public CustomerUIController customerUI;
 
 	void Start () {
 		Init();
@@ -16,7 +17,6 @@ public class TableVIP : Table {
 		base.Init();
 		if(SceneManager.GetActiveScene().name == SceneUtils.RESTAURANT) {
 			node = Pathfinding.Instance.NodeVIP;
-			CustomerUIController customerUI = this.GetComponentInChildren<CustomerUIController>();
 			customerUI.ToggleWait(false);
 			customerUI.ToggleStar(false);
 			customerUI.ToggleAllergyAttack(false);
@@ -28,7 +28,6 @@ public class TableVIP : Table {
 
 	public override void CustomerLeaving() {
 		base.CustomerLeaving();
-		CustomerUIController customerUI = this.GetComponent<CustomerUIController>();
 		customerUI.satisfaction1.gameObject.SetActive(false);
 		customerUI.satisfaction2.gameObject.SetActive(false);
 		customerUI.satisfaction3.gameObject.SetActive(false);
@@ -42,7 +41,7 @@ public class TableVIP : Table {
 
 	public override void TableSmashed() {
 		base.TableSmashed();
-		CustomerUIController customerUI = this.GetComponent<CustomerUIController>();
+		CustomerUIController customerUI = this.GetComponentInChildren<CustomerUIController>();
 		customerUI.satisfaction1.gameObject.SetActive(false);
 		customerUI.satisfaction2.gameObject.SetActive(false);
 		customerUI.satisfaction3.gameObject.SetActive(false);
