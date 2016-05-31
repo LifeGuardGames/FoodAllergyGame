@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// NotificationManager is a class that handles a queue of Notifications
@@ -73,6 +74,12 @@ public class NotificationManager : Singleton<NotificationManager> {
 				StartManager.Instance.ChallengeMenuEntranceUIController.ToggleClickable(true);
 				StartManager.Instance.challengeMenuEntranceUIController.ToggleClickable(true);
 				StartManager.Instance.replayTutButton.SetActive(true);
+				StartManager.Instance.musicButton.GetComponent<PositionTweenToggle>().Show();
+				StartManager.Instance.soundButton.GetComponent<PositionTweenToggle>().Show();
+				StartManager.Instance.musicButton.GetComponent<Toggle>().isOn = AudioManager.Instance.isMusicOn;
+				StartManager.Instance.soundButton.GetComponent<Toggle>().isOn = AudioManager.Instance.isSoundEffectsOn;
+				StartManager.Instance.musicButton.GetComponent<Toggle>().onValueChanged.AddListener((value) => AudioManager.Instance.ToggleMusic(value));
+				StartManager.Instance.soundButton.GetComponent<Toggle>().onValueChanged.AddListener((value) => AudioManager.Instance.ToggleSound(value));
 				if(TierManager.Instance.CurrentTier == 1) {
 					AnalyticsManager.Instance.NotificationFunnel();
 				}

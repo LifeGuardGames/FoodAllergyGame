@@ -34,6 +34,8 @@ public class StartManager : Singleton<StartManager> {
 	}
 
 	public GameObject replayTutButton;
+	public GameObject soundButton;
+	public GameObject musicButton;
 	public GameObject beaconNode;
 
 	public AgeAskController ageAskController;
