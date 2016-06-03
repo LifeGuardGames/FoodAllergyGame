@@ -3,6 +3,16 @@
 public class CustomerGossiper : Customer{
 	public Behav pastBehav;
 
+	public override void Init(int num, ImmutableDataChallenge mode) {
+		base.Init(num, mode);
+		type = CustomerTypes.Gossiper;
+	}
+
+	public override void Init(int num, ImmutableDataEvents mode) {
+		base.Init(num, mode);
+		type = CustomerTypes.Gossiper;
+	}
+
 	public void GoAway(){
 		Debug.Log("Behav!!!!"+ currBehav.ToString());
 		Debug.Log("PastBehav!!!!" + pastBehav.ToString());

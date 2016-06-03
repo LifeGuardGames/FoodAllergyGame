@@ -11,6 +11,7 @@ public class BehavSaved : Behav {
 	}
 
 	public override void Act() {
+		self.StopCoroutine("AllergyTimer");
 		if(RestaurantManager.Instance.GetTable(self.tableNum).tableType == Table.TableType.VIP) {
 			RestaurantManager.Instance.GetTable(self.tableNum).CustomerLeaving();
 		}
@@ -21,7 +22,7 @@ public class BehavSaved : Behav {
 		self.UpdateSatisfaction(1);
 		self.customerUI.ToggleAllergyAttack(false);
 		self.state = CustomerStates.Saved;
-		self.StopCoroutine("AllergyTimer");
+		
 		RestaurantManager.Instance.GetTable(self.tableNum).inUse = false;
 	
 

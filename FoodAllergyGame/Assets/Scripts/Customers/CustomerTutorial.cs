@@ -15,6 +15,7 @@ public class CustomerTutorial : Customer{
 		StartCoroutine("ShowTableFinger");
 		base.Init(num, mode);
 		if(!isAllergy) {
+			AnalyticsManager.Instance.DayOneFunnel("2 Customer Start");
 			allergy[0] = Allergies.None;
 			RestaurantManager.Instance.TableList[0].GetComponent<Table>().inUse = true;
 			RestaurantManager.Instance.TableList[2].GetComponent<Table>().inUse = true;

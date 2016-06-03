@@ -11,14 +11,14 @@ using UnityEngine.Analytics;
 /// </summary>
 public class Customer : MonoBehaviour, IWaiterSelection{
 
-	public int tableNum;
+	public int tableNum = -1;
 	public float timer = 1.0f;
 	public CustomerTypes type = CustomerTypes.Normal;
 	public string customerID;			// The customer's id used for identification in the 
 	public CustomerStates state;		// The current state of the customer
-	public List<Allergies> allergy;			// The allergy of the customer
-	public float menuTimer = 4.0f;	// Time spent looking at the menu
-	public float attentionSpan = 15.0f;// The attention timer
+	public List<Allergies> allergy;		// The allergy of the customer
+	public float menuTimer = 4.0f;		// Time spent looking at the menu
+	public float attentionSpan = 15.0f;	// The attention timer
 	public float eatTimer = 6.0f;
 	public Behav currBehav;
 	public int satisfaction;			// The satisfaction the customer has, everytime the attention span 
@@ -437,15 +437,15 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 			Order = GameObjectUtils.AddChildWithPositionAndScale(null, OrderPrefab);
 			Order.GetComponent<Order>().Init(food.ID, tableNum, food.AllergyList);
-			/*if(food == FoodManager.Instance.specialFood) {
+			if(food == FoodManager.Instance.specialFood) {
 				priceMultiplier = food.Reward * 2;
 			}
-			else if (food == FoodManager.Instance.bannedFood) {
+			else if(food == FoodManager.Instance.bannedFood) {
 				priceMultiplier = 0;
-			}*/
-			//else {
+			}
+			else {
 				priceMultiplier = food.Reward;
-			//}
+			}
 			RestaurantManager.Instance.GetTable(tableNum).GetComponent<Table>().OrderObtained(Order);
 			attentionSpan =  KitchenManager.Instance.cookTimer + (20.0f * timer);
 

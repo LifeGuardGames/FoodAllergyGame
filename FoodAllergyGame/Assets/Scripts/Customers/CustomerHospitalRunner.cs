@@ -7,7 +7,11 @@ public class CustomerHospitalRunner : Customer{
 		type = CustomerTypes.HospitalRunner;
 	}
 
+	public override void Init(int num, ImmutableDataChallenge mode) {
+		base.Init(num, mode);
+		type = CustomerTypes.HospitalRunner;
+	}
 	// this customer will always auto goto the hospital if they have an allergy attack
 	// simply override allergy attack and do the result of the allergy timer running out
-	
+
 }

@@ -33,6 +33,7 @@ public class ChallengeAI  {
 	public int CalculateBill(int customerSatisfaction, int priceMultiplier) {
 		if(customerSatisfaction <= 0) {
 			missingCustomers++;
+			AddNegativeCash(-50);
 		}
 			if(customerSatisfaction < 0) {
 				customerSatisfaction = 0;
@@ -54,7 +55,7 @@ public class ChallengeAI  {
 	}
 
 	public int ScoreIt() {
-		score = RestaurantManagerChallenge.Instance.DayEarnedCash -(( 50 * missingCustomers)+ negativeCash);
+		score = RestaurantManagerChallenge.Instance.DayEarnedCash + negativeCash;
 		return score;
 	}
 

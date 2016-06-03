@@ -7,10 +7,12 @@ public class RestaurantManagerArcade : RestaurantManager {
 
 	public int flowMod;
 	public List<string> flowList;
+	public Dictionary<string, object> customerList;
 
 	// our satisfaction ai
 	private SatisfactionAI satisfactionAI;
 	public override void Init() {
+		customerList = new Dictionary<string, object>();
 		eventData = DataLoaderEvents.GetData(DataManager.instance.GetEvent());
 		sickCustomers = new List<GameObject>();
 		customerHash = new Dictionary<string, GameObject>();
@@ -23,6 +25,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 	}
 
 	public override void StartDay() {
+		Mixpanel.SuperProperties.Add("Event", DataManager.Instance.GetEvent());
 		this.eventData = DataLoaderEvents.GetData(DataManager.instance.GetEvent());
 		customerTimerDiffMod = DataManager.Instance.GameData.DayTracker.AvgDifficulty;
 		string currSet = eventData.CustomerSet;
@@ -70,14 +73,12 @@ public class RestaurantManagerArcade : RestaurantManager {
 			rand = UnityEngine.Random.Range(0, DataManager.Instance.GameData.RestaurantEvent.CustomerList.Count);
 			customerData = DataLoaderCustomer.GetData(DataManager.Instance.GameData.RestaurantEvent.CustomerList[rand]);
 
-			// Track in analytics
-			AnalyticsManager.Instance.TrackCustomerSpawned(customerData.ID);
-
 			GameObject customerPrefab = Resources.Load(customerData.Script) as GameObject;
 			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 			customerNumber++;
 			cus.GetComponent<Customer>().behavFlow = customerData.BehavFlow;
 			cus.GetComponent<Customer>().Init(customerNumber, eventData);
+			AddCustomer(cus.GetComponent<Customer>());
 			customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
 			satisfactionAI.AddCustomer();
 			StartCoroutine(SpawnCustomer());
@@ -101,7 +102,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 
 			// Track analytics based on happy or angry leaving
 			if(satisfaction > 0 && customerData.state != CustomerStates.Eaten) {
-				AnalyticsManager.Instance.CustomerLeaveHappy(satisfaction);
+				AnalyticsManager.Instance.CustomerLeaveHappy(customerData.type,satisfaction);
 				priceMultiplier = customerData.priceMultiplier * VIPMultiplier;
 				time = Time.time - customerData.spawnTime;
             }
@@ -164,12 +165,12 @@ public class RestaurantManagerArcade : RestaurantManager {
 					DataManager.Instance.GameData.DayTracker.AvgDifficulty = ((DataManager.Instance.GameData.DayTracker.AvgDifficulty + satisfactionAI.DifficultyLevel) / 2);
 				// Save data here
 					int dayNetCash;
-				//if(checkBonus()) {
-				//	dayNetCash = dayEarnedCash + Medic.Instance.MedicCost + 100;
-				//}
-				//else {
+				if(checkBonus()) {
+					dayNetCash = dayEarnedCash + Medic.Instance.MedicCost + 100;
+				}
+				else {
 					dayNetCash = dayEarnedCash + Medic.Instance.MedicCost;
-				//}
+				}
                     CashManager.Instance.RestaurantEndCashUpdate(dayNetCash, dayCashRevenue);
 				if(TierManager.Instance.CurrentTier == 0) {
 					DataManager.Instance.GameData.Cash.TotalCash = 850;
@@ -177,18 +178,24 @@ public class RestaurantManagerArcade : RestaurantManager {
 				// Unlock new event generation for StartManager
 				DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = true;
 
-					
-//					else if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT3") {
-//						DataManager.Instance.GameData.Tutorial.IsTutorial3Done = true;
-//						AnalyticsManager.Instance.TutorialFunnel("Menu tut day complete");
-//						CashManager.Instance.TutorialOverrideTotalCash(850);
-//					}
 
+				//					else if(DataManager.Instance.GameData.RestaurantEvent.CurrentEvent == "EventT3") {
+				//						DataManager.Instance.GameData.Tutorial.IsTutorial3Done = true;
+				//						AnalyticsManager.Instance.TutorialFunnel("Menu tut day complete");
+				//						CashManager.Instance.TutorialOverrideTotalCash(850);
+				//					}
+				//AnalyticsManager.Instance.TrackCustomerSpawned(DataManager.Instance.GetEvent(),customerList);
+				Mixpanel.SuperProperties.Remove("Event");
+			
 					AnalyticsManager.Instance.EndGameDayReport(
 						DataManager.Instance.GameData.RestaurantEvent.CurrentEvent, satisfactionAI.MissingCustomers, satisfactionAI.AvgSatisfaction(),
 						DayEarnedCash, Medic.Instance.MedicCost, savedCustomers, attempted, inspectionButtonClicked);
-
-					AnalyticsManager.Instance.EndGameUsageReport(playAreaUses, vipUses, microwaveUses);
+				if(TierManager.Instance.CurrentTier > 2) {
+					AnalyticsManager.Instance.VIPUsage(vipUses);
+				}
+				if(TierManager.Instance.CurrentTier > 4) {
+					AnalyticsManager.Instance.PlayAreaUsage(playAreaUses);
+				}
 
 					// Show day complete UI
 					restaurantUI.DayComplete(satisfactionAI.MissingCustomers, dayEarnedCash, Medic.Instance.MedicCost, dayNetCash);
@@ -240,7 +247,8 @@ public class RestaurantManagerArcade : RestaurantManager {
 
 	// Used in OnApplicationPaused in Restaurant and quit button
 	public override void IncompleteQuitAnalytics() {
-		AnalyticsManager.Instance.TrackGameDayInRestaurant(dayTimeLeft, TierManager.Instance.CurrentTier, DataManager.Instance.GameData.RestaurantEvent.CurrentEvent,
+		Mixpanel.SuperProperties.Remove("Event");
+		AnalyticsManager.Instance.TrackGameDayInRestaurantArcade(dayTimeLeft, TierManager.Instance.CurrentTier, DataManager.Instance.GameData.RestaurantEvent.CurrentEvent,
 				satisfactionAI.DifficultyLevel, satisfactionAI.MissingCustomers, satisfactionAI.AvgSatisfaction(),
 				DayEarnedCash, Medic.Instance.MedicCost);
 	}
@@ -298,6 +306,17 @@ public class RestaurantManagerArcade : RestaurantManager {
 		flowList.RemoveAt(0);
 		if(!dayOver) { 
 		StartCoroutine("NextWave");
+		}
+	}
+
+	public void AddCustomer(Customer cus) {
+		if(customerList.ContainsKey(cus.type.ToString())) {
+			int temp = (int)customerList[cus.type.ToString()];
+            temp++;
+			customerList[cus.type.ToString()] = temp;
+        }
+		else {
+			customerList.Add(cus.type.ToString(), 1);
 		}
 	}
 }

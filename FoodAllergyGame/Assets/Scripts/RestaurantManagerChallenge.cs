@@ -12,12 +12,16 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	public ChallengeScoreController scoreBoard;
 	public GameObject skipButton;
 	public ImmutableDataChallenge chall;
+	public Dictionary<string, object> customerList;
 	int interval = 0;
+	public bool isVip;
+	public bool isPlayarea;
 
 	public override void Init() {
 		sickCustomers = new List<GameObject>();
 		customerHash = new Dictionary<string, GameObject>();
 		challengeAI = new ChallengeAI();
+		customerList = new Dictionary<string, object>();
 	}
 	
 	private void RunSetUp() {
@@ -28,9 +32,11 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		}
 		if(chall.PlayArea != "0") {
 			play.LoadDeco(DataLoaderDecoItem.GetData(chall.PlayArea));
+			isPlayarea = true;
 		}
 		if(chall.VipTable != "0") {
 			vip.LoadDeco(DataLoaderDecoItem.GetData(chall.VipTable));
+			isVip= true;
 		}
 		if(chall.FlyThru != "0") {
 			fly.LoadDeco(DataLoaderDecoItem.GetData(chall.FlyThru));
@@ -86,6 +92,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		yield return new WaitForSeconds(customerSpawnTimer);
 			if(!dayOver && lineCount < 8 && interval < currCusSet.Count) {
 			if(isTutorial) {
+				AnalyticsManager.Instance.DayOneFunnel("Spawning Customer" + customerNumber);
 				skipButton.SetActive(true);
 				ImmutableDataCustomer test;
 				test = DataLoaderCustomer.GetData("CustomerTutorial");
@@ -112,15 +119,17 @@ public class RestaurantManagerChallenge : RestaurantManager{
 				customerData = DataLoaderCustomer.GetData(currCusSet[interval]);
 
 				// Track in analytics
-				AnalyticsManager.Instance.TrackCustomerSpawned(customerData.ID);
+				
 				GameObject customerPrefab = Resources.Load(customerData.Script) as GameObject;
 				GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 				customerNumber++;
+				AnalyticsManager.Instance.DayOneFunnel("Customer Spawned "+ customerNumber);
 				cus.GetComponent<Customer>().behavFlow = customerData.BehavFlow;
 				cus.GetComponent<Customer>().Init(customerNumber, chall);
 
 				cus.GetComponent<Customer>().UpdateSatisfaction(chall.StartingHearts - 3);
 				customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
+				AddCustomer(cus.GetComponent<Customer>());
 				challengeAI.AddCustomer();
 				interval++;
 				customerNumber++;
@@ -135,6 +144,8 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	
 	public override void StartDay() {
 		dayOver = false;
+		Mixpanel.SuperProperties.Remove("Challenge");
+		Mixpanel.SuperProperties.Add("Challenge" ,DataManager.Instance.GetChallenge());
 		RunSetUp();
 		restaurantUI.StartDay();
 	}
@@ -151,11 +162,10 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			
 			// Track analytics based on happy or angry leaving
 			if(satisfaction > 0) { 
-				AnalyticsManager.Instance.CustomerLeaveHappyChallenge(satisfaction, chall.ID);
+				AnalyticsManager.Instance.CustomerLeaveHappy(customerData.type ,satisfaction);
 				priceMultiplier = customerData.priceMultiplier * VIPMultiplier;
 			}
 			else {
-				AnalyticsManager.Instance.CustomerLeaveAngryChallenge(customerData.type, customerData.state, chall.ID);
 				priceMultiplier = 1;
 			}
 
@@ -178,7 +188,6 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	public override void CustomerLeftFlatCharge(Customer customerData, int deltaCoins, bool isModifiesDifficulty) {
 		if(customerHash.ContainsKey(customerData.customerID)) {
 			// Track analytics leaving state though not really angry	
-			AnalyticsManager.Instance.CustomerLeaveAngryChallenge(customerData.type, customerData.state, chall.ID);
 			if(deltaCoins == 0) {
 				UpdateCash(challengeAI.CalculateBill(0, 1), customerData.transform.position);
 			}
@@ -210,14 +219,18 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		if(dayOver) {
 			if(customerHash.Count == 0) {
 				pauseUI.isActive = false;
-				if(DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge == "ChallengeTut2") {
+				if(DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge == "ChallengeTut2" &&!DataManager.Instance.GameData.Tutorial.IsTutorial1Done) {
 					AnalyticsManager.Instance.TutorialFunnel("Finished tut day, 4 customers");
+					AnalyticsManager.Instance.DayOneFunnel("Finished tut day, 4 customers");
+					DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
 				}
 
-			    if(isTutorial) {
-					AnalyticsManager.Instance.TutorialFunnel("Finished tut day, 2 guided customers");
-					DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
+				if(isTutorial) {
+					if(!DataManager.Instance.GameData.Tutorial.IsTutorial1Done) {
+						AnalyticsManager.Instance.TutorialFunnel("Finished tut day, 2 guided customers");
+					}
 					DataManager.Instance.SaveGameData();
+					AnalyticsManager.Instance.DayOneFunnel("4 customer start");
 					DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut2";
 					isTutorial = false;
 					DataManager.Instance.GameData.RestaurantEvent.CustomerList.Add("CustomerRegular");
@@ -242,12 +255,17 @@ public class RestaurantManagerChallenge : RestaurantManager{
 						AnalyticsManager.Instance.TutorialFunnel("Fly thru Tut Completed");
 						DataManager.Instance.GameData.Tutorial.IsFlyThruTutDone = true;
 					}
-                    DataManager.Instance.GameData.DayTracker.ChallengesPlayed++;
+					DataManager.Instance.GameData.DayTracker.ChallengesPlayed++;
 					DataManager.Instance.ChallengesInSession++;
-
+					//AnalyticsManager.Instance.TrackCustomerSpawned(customerList);
+					Mixpanel.SuperProperties.Remove("Challenge");
 					AnalyticsManager.Instance.EndChallengeReport(challengeAI.ScoreIt(), DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge, challengeAI.MissingCustomers, challengeAI.AvgSatisfaction(), savedCustomers, attempted, inspectionButtonClicked);
-					AnalyticsManager.Instance.EndGameUsageReport(playAreaUses, vipUses, microwaveUses);
-
+					if(isPlayarea) { 
+						AnalyticsManager.Instance.PlayAreaUsage(PlayAreaUses);
+					}
+					if(isVip) {
+						AnalyticsManager.Instance.VIPUsage(VIPUses);
+					}
 					// Show day complete UI
 					if(chall.ChallengeType == ChallengeTypes.Tutorial) {
 						restaurantUI.DayComplete(challengeAI.MissingCustomers, dayEarnedCash, 0, dayCashRevenue);
@@ -402,8 +420,8 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		cus.GetComponent<Customer>().behavFlow = test.BehavFlow;
 		cus.GetComponent<Customer>().Init(customerNumber,chall);
 		customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
-
 		customerNumber++;
+		AnalyticsManager.Instance.DayOneFunnel("Customer Spawned " + customerNumber);
 		challengeAI.AddCustomer();
 	}
 
@@ -446,5 +464,22 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	public int GetScore() {
 		return challengeAI.Score;
 	}
-	
+
+	public override void IncompleteQuitAnalytics() {
+		Mixpanel.SuperProperties.Remove("Challenge");
+		AnalyticsManager.Instance.TrackGameDayInRestaurantChallenge(dayTimeLeft, TierManager.Instance.CurrentTier, DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge,
+				 challengeAI.MissingCustomers, challengeAI.AvgSatisfaction(),
+				DayEarnedCash, Medic.Instance.MedicCost);
+	}
+
+	public void AddCustomer(Customer cus) {
+		if(customerList.ContainsKey(cus.type.ToString())) {
+			int temp = (int)customerList[cus.type.ToString()];
+			temp++;
+			customerList[cus.type.ToString()] = temp;
+		}
+		else {
+			customerList.Add(cus.type.ToString(), 1);
+		}
+	}
 }

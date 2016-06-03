@@ -73,10 +73,11 @@ public enum CustomerTypes{
 	Impatient,
 	Eater,
 	TableSmasher,
-	AllergyAttack,
+	Playful,
 	HospitalRunner,
 	Gossiper,
-	CoolKid,	// TODO Add more here
+	CoolKid,
+	BlackOut,
 }
 
 public enum PowerUpTypes{

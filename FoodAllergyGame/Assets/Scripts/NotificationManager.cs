@@ -73,6 +73,9 @@ public class NotificationManager : Singleton<NotificationManager> {
 				StartManager.Instance.ChallengeMenuEntranceUIController.ToggleClickable(true);
 				StartManager.Instance.challengeMenuEntranceUIController.ToggleClickable(true);
 				StartManager.Instance.replayTutButton.SetActive(true);
+				if(TierManager.Instance.CurrentTier == 1) {
+					AnalyticsManager.Instance.NotificationFunnel();
+				}
 				// Keep diner unclickable ONLY when first time deco entrance and challenge
 				if(StartManager.Instance.isShopAppearHideDinerOverride) {
 					StartManager.Instance.DinerEntranceUIController.ToggleClickable(false);

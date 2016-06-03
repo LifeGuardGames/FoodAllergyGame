@@ -39,31 +39,22 @@ public class ComicManager : MonoBehaviour {
 	private void ComicStep(int step){
 		switch(step){
 		case 1:
-				comicAnimator.Play("ComicPage1");
-            break;
+			comicAnimator.Play("ComicPage1");
+			AnalyticsManager.Instance.TutorialFunnel("Comic Page 1");
+			break;
 		case 2:
-				comicAnimator.Play("ComicPage2");
-				AudioManager.Instance.LowerBackgroundVolume(0.5f);
-				AudioManager.Instance.PlayClip("ComicPage2SFX");
+			comicAnimator.Play("ComicPage2");
+			AnalyticsManager.Instance.TutorialFunnel("Comic Page 2");
 			break;
 		case 3:
-				comicAnimator.Play("ComicPage3");
-				AudioManager.Instance.PlayClip("ComicPage3SFX");
+			comicAnimator.Play("ComicPage3");
+			AnalyticsManager.Instance.TutorialFunnel("Comic Page 3");
 			break;
 		case 4:
+			AnalyticsManager.Instance.TutorialFunnel("Finished Comic");
 			DataManager.Instance.GameData.Tutorial.IsComicViewed = true;
 			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
 			break;
 		}
-	}
-
-	private void OnPageStart(TimeSpan tim) {
-		start = tim.Seconds;
-	}
-
-	private void OnPageEnd(TimeSpan tim, int pageNum) {
-		end = tim.Seconds;
-		final = end - start;
-		AnalyticsManager.Instance.TimeSpentOnComicPage(final, pageNum);
 	}
 }
