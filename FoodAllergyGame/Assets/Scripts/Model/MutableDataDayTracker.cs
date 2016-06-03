@@ -12,8 +12,8 @@ public class MutableDataDayTracker {
 		AvgDifficulty = 15.0f;
 		DaysPlayed = 0;
 		ChallengesPlayed = 0;
-		//pro toggle
-		IsMoreCrates = false;
+		
+		IsMoreCrates = true;    //pro toggle
 		HasCollectedAge = false;
 		notifQueue = new List<string>();
 	}
