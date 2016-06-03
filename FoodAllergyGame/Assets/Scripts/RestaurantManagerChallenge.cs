@@ -195,6 +195,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 				challengeAI.CalculateBill(0, 1);
 				challengeAI.AddNegativeCash(deltaCoins);
 			}
+			scoreBoard.UpDateScore(challengeAI.ScoreIt());
 			customerHash.Remove(customerData.customerID);
 			CheckForGameOver();
 		}
