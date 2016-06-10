@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
+using System.Collections;
 
 public class ParentalGateQuestionController : MonoBehaviour {
-
 	public TweenToggleDemux panelTween;
 	public InputField inputText;
 	public Animation inputPulse;

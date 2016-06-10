@@ -142,6 +142,7 @@ public class StartManager : Singleton<StartManager> {
 				Debug.Log("LOADING BEACON");
 				GameObject beacon = Resources.Load("Beacon") as GameObject;
 				GameObjectUtils.AddChild(beaconNode, beacon);
+				HUDManager.Instance.ToggleBeaconLock(true);
 			}
 		}
 		NotificationManager.Instance.TryNextNotification();
@@ -285,6 +286,7 @@ public class StartManager : Singleton<StartManager> {
 			foreach(Transform child in beaconNode.transform) {
 				child.gameObject.SetActive(false);
 			}
+			HUDManager.Instance.ToggleBeaconLock(false);
 		}
 
 		productPageUIController.HidePanel();

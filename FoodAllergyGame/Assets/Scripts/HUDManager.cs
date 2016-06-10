@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
-public class HUDManager : MonoBehaviour {
+public class HUDManager : Singleton<HUDManager> {
 	public TweenToggle coinTween;
 	public TweenToggle tierTween;
+	public GameObject beaconLock;
 
 	void Start(){
 		ShowHUD();
@@ -60,4 +61,9 @@ public class HUDManager : MonoBehaviour {
 			tierTween.Hide();
 		}
 	}
+
+	// Disable to lightning particle and lock sprite
+	public void ToggleBeaconLock(bool isOn) {
+		beaconLock.SetActive(isOn);
+    }
 }
