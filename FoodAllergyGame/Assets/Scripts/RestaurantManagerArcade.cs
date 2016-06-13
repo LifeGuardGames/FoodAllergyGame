@@ -25,7 +25,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 	}
 
 	public override void StartDay() {
-		Mixpanel.SuperProperties.Add("Event", DataManager.Instance.GetEvent());
+		AnalyticsManager.Instance.SuperProperties.Add("Event", DataManager.Instance.GetEvent());
 		this.eventData = DataLoaderEvents.GetData(DataManager.instance.GetEvent());
 		customerTimerDiffMod = DataManager.Instance.GameData.DayTracker.AvgDifficulty;
 		string currSet = eventData.CustomerSet;
@@ -185,7 +185,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 				//						CashManager.Instance.TutorialOverrideTotalCash(850);
 				//					}
 				//AnalyticsManager.Instance.TrackCustomerSpawned(DataManager.Instance.GetEvent(),customerList);
-				Mixpanel.SuperProperties.Remove("Event");
+				AnalyticsManager.Instance.SuperProperties.Remove("Event");
 			
 					AnalyticsManager.Instance.EndGameDayReport(
 						DataManager.Instance.GameData.RestaurantEvent.CurrentEvent, satisfactionAI.MissingCustomers, satisfactionAI.AvgSatisfaction(),
@@ -247,7 +247,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 
 	// Used in OnApplicationPaused in Restaurant and quit button
 	public override void IncompleteQuitAnalytics() {
-		Mixpanel.SuperProperties.Remove("Event");
+		AnalyticsManager.Instance.SuperProperties.Remove("Event");
 		AnalyticsManager.Instance.TrackGameDayInRestaurantArcade(dayTimeLeft, TierManager.Instance.CurrentTier, DataManager.Instance.GameData.RestaurantEvent.CurrentEvent,
 				satisfactionAI.DifficultyLevel, satisfactionAI.MissingCustomers, satisfactionAI.AvgSatisfaction(),
 				DayEarnedCash, Medic.Instance.MedicCost);

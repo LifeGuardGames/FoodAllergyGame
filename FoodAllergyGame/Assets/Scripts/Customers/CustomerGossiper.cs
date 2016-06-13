@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class CustomerGossiper : Customer{
 	public Behav pastBehav;
@@ -14,6 +15,7 @@ public class CustomerGossiper : Customer{
 	}
 
 	public void GoAway(){
+		StopCoroutine("Annoy");
 		Debug.Log("Behav!!!!"+ currBehav.ToString());
 		Debug.Log("PastBehav!!!!" + pastBehav.ToString());
 		customerAnim.skeletonAnim.state.SetAnimation(0, "WaitingPassive", false);
@@ -29,6 +31,15 @@ public class CustomerGossiper : Customer{
 		currBehav = pastBehav; 
 		if(currBehav.ToString() == "BehavGossipReadMenu") {
 			currBehav.Act();
+		}
+	}
+
+	IEnumerator Annoy() {
+		yield return new WaitForSeconds(5.0f);
+		if(RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<Customer>() != null) {
+			Debug.Log("Annoy");
+			RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<Customer>().Annoyed();
+			GoAway();
 		}
 	}
 }

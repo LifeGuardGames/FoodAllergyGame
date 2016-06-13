@@ -76,11 +76,16 @@ public class DataManager : Singleton<DataManager> {
 		//Live token
 		Mixpanel.Token = "4afadc10e61a77c363308040d38be801";
 
+
+		//Amplitude amplitude = Amplitude.Instance;
+		//amplitude.logging = false;
+		//amplitude.init("9196f4d945c306a45a54b9fb8577c017");
+
 		//Dev Token
 		//Mixpanel.Token = "9b68a5560f74b183728b7c30cb4a54fc";
-        Mixpanel.SuperProperties.Add("Days Played", GameData.DayTracker.DaysPlayed);
-		Mixpanel.SuperProperties.Add("Session", DaysInSession);
-		Mixpanel.SuperProperties.Add("Tier", TierManager.Instance.CurrentTier);
+		AnalyticsManager.Instance.SuperProperties.Add("Days Played", GameData.DayTracker.DaysPlayed);
+		AnalyticsManager.Instance.SuperProperties.Add("Session", DaysInSession);
+		AnalyticsManager.Instance.SuperProperties.Add("Tier", TierManager.Instance.CurrentTier);
 	}
 
 	/// <summary>

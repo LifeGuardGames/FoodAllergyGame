@@ -144,8 +144,8 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	
 	public override void StartDay() {
 		dayOver = false;
-		Mixpanel.SuperProperties.Remove("Challenge");
-		Mixpanel.SuperProperties.Add("Challenge" ,DataManager.Instance.GetChallenge());
+		AnalyticsManager.Instance.SuperProperties.Remove("Challenge");
+		AnalyticsManager.Instance.SuperProperties.Add("Challenge" ,DataManager.Instance.GetChallenge());
 		RunSetUp();
 		restaurantUI.StartDay();
 	}
@@ -259,7 +259,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 					DataManager.Instance.GameData.DayTracker.ChallengesPlayed++;
 					DataManager.Instance.ChallengesInSession++;
 					//AnalyticsManager.Instance.TrackCustomerSpawned(customerList);
-					Mixpanel.SuperProperties.Remove("Challenge");
+					AnalyticsManager.Instance.SuperProperties.Remove("Challenge");
 					AnalyticsManager.Instance.EndChallengeReport(challengeAI.ScoreIt(), DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge, challengeAI.MissingCustomers, challengeAI.AvgSatisfaction(), savedCustomers, attempted, inspectionButtonClicked);
 					if(isPlayarea) { 
 						AnalyticsManager.Instance.PlayAreaUsage(PlayAreaUses);
@@ -467,7 +467,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	}
 
 	public override void IncompleteQuitAnalytics() {
-		Mixpanel.SuperProperties.Remove("Challenge");
+		AnalyticsManager.Instance.SuperProperties.Remove("Challenge");
 		AnalyticsManager.Instance.TrackGameDayInRestaurantChallenge(dayTimeLeft, TierManager.Instance.CurrentTier, DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge,
 				 challengeAI.MissingCustomers, challengeAI.AvgSatisfaction(),
 				DayEarnedCash, Medic.Instance.MedicCost);

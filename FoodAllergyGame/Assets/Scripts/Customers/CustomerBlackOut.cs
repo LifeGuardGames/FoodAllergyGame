@@ -13,4 +13,11 @@ public class CustomerBlackOut : Customer {
 		type = CustomerTypes.BlackOut;
 	}
 
+	public override void UpdateSatisfaction(int delta) {
+		base.UpdateSatisfaction(delta);
+		if(delta < 0 && satisfaction != 0) {
+			CustomerAnimationCotrollerBlackOut animBlackout = customerAnim as CustomerAnimationCotrollerBlackOut;
+			animBlackout.BlackOut();
+		}
+	}
 }

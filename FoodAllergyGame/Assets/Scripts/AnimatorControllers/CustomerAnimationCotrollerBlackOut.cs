@@ -12,6 +12,12 @@ public class CustomerAnimationCotrollerBlackOut : CustomerAnimController{
 				blackie.DestroySelf(0.0f);
 			};
 	}
+	public void BlackOutButDontLeave() {
+		skeletonAnim.state.SetAnimation(0, "AllHeartsLost", false).Complete +=
+			delegate {
+				RestaurantManager.Instance.Blackout();
+			};
+	}
 
 	public override void SetRandomAllergyAttack() {
 		if(isLimitAllergyAttackAnim) {
