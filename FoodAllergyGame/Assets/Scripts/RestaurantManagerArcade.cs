@@ -22,6 +22,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 		if(DataManager.Instance.IsDebug && FoodManager.Instance.MenuList == null) {
 			FoodManager.Instance.GenerateMenu(DataLoaderRemoveMenuSet.GetData("RemoveMenuSetT1").RemoveMenuSet.ToList());
 		}
+		MiddlePhase();
 	}
 
 	public override void StartDay() {

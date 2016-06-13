@@ -23,6 +23,7 @@ public class BehavPlayfulReadingMenu : Behav {
 		self.state = CustomerStates.ReadingMenu;
 		if(!self.gameObject.GetComponent<CustomerPlayful>().played && RestaurantManager.Instance.GetTable(self.tableNum).tableType != Table.TableType.FlyThru) {
 			self.UpdateSatisfaction(-1);
+			self.attentionSpan /= 2;
 		}
 		self.customerAnim.SetReadingMenu();
 		self.StartCoroutine("ReadMenu");

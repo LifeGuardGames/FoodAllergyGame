@@ -13,6 +13,7 @@ public class TableLoader : DecoLoader {
 
 	// Overrided parent function, special case
 	public override void LoadDeco(ImmutableDataDecoItem decoData, bool isPlayPoof = false){
+		RestaurantManager.Instance.ClearTableList();
 		for(int i = 0; i < tableParentList.Count; i++){
 			// Delete any objects attached to each parent
 			foreach(Transform child in tableParentList[i].transform){
@@ -34,7 +35,8 @@ public class TableLoader : DecoLoader {
 			}
 
 			tableScript.TableNumber = i;									// Set index of the table number to index
-			tableScript.SetBaseSortingOrder(tableBaseSortingOrders[i]);		// Set base sorting order for regular tables
+			tableScript.SetBaseSortingOrder(tableBaseSortingOrders[i]);     // Set base sorting order for regular tables
+			tableScript.Init();
         }
 	}
 }

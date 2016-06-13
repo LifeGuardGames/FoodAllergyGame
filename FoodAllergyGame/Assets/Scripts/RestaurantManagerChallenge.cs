@@ -9,6 +9,9 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	public PlayAreaLoader play;
 	public VIPLoader vip;
 	public FlyThruLoader fly;
+	public TableLoader tab;
+	public KitchenLoader kit;
+	public DecoTextureLoader floor;
 	public ChallengeScoreController scoreBoard;
 	public GameObject skipButton;
 	public ImmutableDataChallenge chall;
@@ -17,11 +20,13 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	public bool isVip;
 	public bool isPlayarea;
 
+
 	public override void Init() {
 		sickCustomers = new List<GameObject>();
 		customerHash = new Dictionary<string, GameObject>();
 		challengeAI = new ChallengeAI();
 		customerList = new Dictionary<string, object>();
+		MiddlePhase();
 	}
 	
 	private void RunSetUp() {
@@ -41,6 +46,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		if(chall.FlyThru != "0") {
 			fly.LoadDeco(DataLoaderDecoItem.GetData(chall.FlyThru));
 		}
+		
 		currCusSet = new List<string>();
 		actTables = chall.NumOfTables;
 		AvailableTables(chall.NumOfTables);
@@ -82,6 +88,18 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		temp = DataLoaderCustomerSet.GetData(chall.CustomerSet).CustomerSet;
 		for(int i = 0; i < temp.Length; i++) {
 			currCusSet.Add(temp[i]);
+		}
+		
+		if(chall.ChallengeType != ChallengeTypes.Tutorial) {
+			List<ImmutableDataDecoItem> floors = DataLoaderDecoItem.GetDecoDataByType(DecoTypes.Floor);
+			int rand = UnityEngine.Random.Range(0, floors.Count);
+			floor.LoadDeco(floors[rand]);
+			List<ImmutableDataDecoItem> tables = DataLoaderDecoItem.GetDecoDataByType(DecoTypes.Table);
+			rand = UnityEngine.Random.Range(0, tables.Count);
+			tab.LoadDeco(tables[rand]);
+			List<ImmutableDataDecoItem> kitchens = DataLoaderDecoItem.GetDecoDataByType(DecoTypes.Kitchen);
+			rand = UnityEngine.Random.Range(0, kitchens.Count);
+			kit.LoadDeco(kitchens[rand]);
 		}
 		StartCoroutine("SpawnCustomer");
 	}
@@ -147,6 +165,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		AnalyticsManager.Instance.SuperProperties.Remove("Challenge");
 		AnalyticsManager.Instance.SuperProperties.Add("Challenge" ,DataManager.Instance.GetChallenge());
 		RunSetUp();
+		
 		restaurantUI.StartDay();
 	}
 

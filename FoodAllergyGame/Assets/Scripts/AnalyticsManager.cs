@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class AnalyticsManager : Singleton<AnalyticsManager> {
 
-	public Dictionary<string, object> SuperProperties;
+	public Dictionary<string, object> SuperProperties = new Dictionary<string, object>();
 
 	// When customer are leaving happy, what is their satisfaction?
 	public void CustomerLeaveHappy(CustomerTypes type, int satisfaction) {

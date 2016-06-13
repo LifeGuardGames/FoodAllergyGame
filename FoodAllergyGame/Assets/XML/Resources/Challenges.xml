@@ -32,7 +32,7 @@
     <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
     <Tier>3</Tier>
     <KitchenTimer>5</KitchenTimer>
-    <CustomerSet>ChallengeSet01</CustomerSet>
+    <CustomerSet>ChallengeSet15</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
     <DayLength>30</DayLength>
     <Allergy>cc</Allergy>
