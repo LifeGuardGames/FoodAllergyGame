@@ -19,6 +19,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	int interval = 0;
 	public bool isVip;
 	public bool isPlayarea;
+	public bool hasAskedTutorial = false;
 
 
 	public override void Init() {
@@ -31,77 +32,83 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	
 	private void RunSetUp() {
 		chall = DataLoaderChallenge.GetData(DataManager.Instance.GetChallenge());
-		if(chall.ChallengeType != ChallengeTypes.Tutorial) {
-			scoreBoard.gameObject.SetActive(true);
-			scoreBoard.UpDateScore(0);
-		}
-		if(chall.PlayArea != "0") {
-			play.LoadDeco(DataLoaderDecoItem.GetData(chall.PlayArea));
-			isPlayarea = true;
-		}
-		if(chall.VipTable != "0") {
-			vip.LoadDeco(DataLoaderDecoItem.GetData(chall.VipTable));
-			isVip= true;
-		}
-		if(chall.FlyThru != "0") {
-			fly.LoadDeco(DataLoaderDecoItem.GetData(chall.FlyThru));
-		}
-		
-		currCusSet = new List<string>();
-		actTables = chall.NumOfTables;
-		AvailableTables(chall.NumOfTables);
-		if(chall.restMode == 1.0f) {
-			FullRestaurant();
+		if(chall.ID == "ChallengeTut1" && !hasAskedTutorial) {
+
 		}
 
-		else if(chall.restMode == 2.0f) {
-			BlackoutDay();
-		}
-		else if(chall.RestMode == 4.0f) {
-			ImmutableDataCustomer test;
-			test = DataLoaderCustomer.GetData("CustomerSpecialGossiper");
-			Debug.Log(test.Script);
-			GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
-			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
-			cus.GetComponent<CustomerSpecialGossiper>().init(chall.GossiperMode);
-		}
+		else {
+			if(chall.ChallengeType != ChallengeTypes.Tutorial) {
+				scoreBoard.gameObject.SetActive(true);
+				scoreBoard.UpDateScore(0);
+			}
+			if(chall.PlayArea != "0") {
+				play.LoadDeco(DataLoaderDecoItem.GetData(chall.PlayArea));
+				isPlayarea = true;
+			}
+			if(chall.VipTable != "0") {
+				vip.LoadDeco(DataLoaderDecoItem.GetData(chall.VipTable));
+				isVip = true;
+			}
+			if(chall.FlyThru != "0") {
+				fly.LoadDeco(DataLoaderDecoItem.GetData(chall.FlyThru));
+			}
 
-		if(chall.SpecialDecoMode == 1) {
-			PlayArea.Instance.cantLeave = true;
-		}
+			currCusSet = new List<string>();
+			actTables = chall.NumOfTables;
+			AvailableTables(chall.NumOfTables);
+			if(chall.restMode == 1.0f) {
+				FullRestaurant();
+			}
 
-		KitchenManager.Instance.Init(chall.KitchenTimerMod);
-		string[] temp = DataLoaderChallengeMenuSet.GetData(chall.ChallengeMenuSet).ChallengeMenuSet;
-		List<string> menuList = new List<string>();
+			else if(chall.restMode == 2.0f) {
+				BlackoutDay();
+			}
+			else if(chall.RestMode == 4.0f) {
+				ImmutableDataCustomer test;
+				test = DataLoaderCustomer.GetData("CustomerSpecialGossiper");
+				Debug.Log(test.Script);
+				GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
+				GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
+				cus.GetComponent<CustomerSpecialGossiper>().init(chall.GossiperMode);
+			}
 
-		for(int i = 0; i< temp.Length; i++) {
-			menuList.Add(temp[i]);
-		}
+			if(chall.SpecialDecoMode == 1) {
+				PlayArea.Instance.cantLeave = true;
+			}
+
+			KitchenManager.Instance.Init(chall.KitchenTimerMod);
+			string[] temp = DataLoaderChallengeMenuSet.GetData(chall.ChallengeMenuSet).ChallengeMenuSet;
+			List<string> menuList = new List<string>();
+
+			for(int i = 0; i < temp.Length; i++) {
+				menuList.Add(temp[i]);
+			}
 
 
-        FoodManager.Instance.GenerateMenu(menuList);
-		customerTimerDiffMod = chall.CustomerTimerMod;
-		dayEarnedCash = 0;
-		dayCashRevenue = 0;
-		dayTime = chall.DayLengthMod;
-		dayTimeLeft = dayTime;
-		temp = DataLoaderCustomerSet.GetData(chall.CustomerSet).CustomerSet;
-		for(int i = 0; i < temp.Length; i++) {
-			currCusSet.Add(temp[i]);
+			FoodManager.Instance.GenerateMenu(menuList);
+			customerTimerDiffMod = chall.CustomerTimerMod;
+			dayEarnedCash = 0;
+			dayCashRevenue = 0;
+			dayTime = chall.DayLengthMod;
+			dayTimeLeft = dayTime;
+			temp = DataLoaderCustomerSet.GetData(chall.CustomerSet).CustomerSet;
+			for(int i = 0; i < temp.Length; i++) {
+				currCusSet.Add(temp[i]);
+			}
+
+			if(chall.ChallengeType != ChallengeTypes.Tutorial) {
+				List<ImmutableDataDecoItem> floors = DataLoaderDecoItem.GetDecoDataByType(DecoTypes.Floor);
+				int rand = UnityEngine.Random.Range(0, floors.Count);
+				floor.LoadDeco(floors[rand]);
+				List<ImmutableDataDecoItem> tables = DataLoaderDecoItem.GetDecoDataByType(DecoTypes.Table);
+				rand = UnityEngine.Random.Range(0, tables.Count);
+				tab.LoadDeco(tables[rand]);
+				List<ImmutableDataDecoItem> kitchens = DataLoaderDecoItem.GetDecoDataByType(DecoTypes.Kitchen);
+				rand = UnityEngine.Random.Range(0, kitchens.Count);
+				kit.LoadDeco(kitchens[rand]);
+			}
+			StartCoroutine("SpawnCustomer");
 		}
-		
-		if(chall.ChallengeType != ChallengeTypes.Tutorial) {
-			List<ImmutableDataDecoItem> floors = DataLoaderDecoItem.GetDecoDataByType(DecoTypes.Floor);
-			int rand = UnityEngine.Random.Range(0, floors.Count);
-			floor.LoadDeco(floors[rand]);
-			List<ImmutableDataDecoItem> tables = DataLoaderDecoItem.GetDecoDataByType(DecoTypes.Table);
-			rand = UnityEngine.Random.Range(0, tables.Count);
-			tab.LoadDeco(tables[rand]);
-			List<ImmutableDataDecoItem> kitchens = DataLoaderDecoItem.GetDecoDataByType(DecoTypes.Kitchen);
-			rand = UnityEngine.Random.Range(0, kitchens.Count);
-			kit.LoadDeco(kitchens[rand]);
-		}
-		StartCoroutine("SpawnCustomer");
 	}
 
 	// Spawns a customer after a given amount of timer then it restarts the coroutine
@@ -501,5 +508,17 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		else {
 			customerList.Add(cus.type.ToString(), 1);
 		}
+	}
+
+	public void AskToSkip() {
+
+	}
+
+	public void DoWeSkip(bool answer) {
+		hasAskedTutorial = true;
+		if(answer == true) {
+			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut2";
+        }
+		RunSetUp();
 	}
 }

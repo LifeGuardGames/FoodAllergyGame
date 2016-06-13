@@ -39,6 +39,7 @@ public class DecoManager : Singleton<DecoManager>{
 	private Transform currentTabTransform;
 	private Dictionary<string, Transform> tabGroupInactiveSearchTable;
 	public bool isTutorial;
+	public List<GameObject> tabNewTags;
 
 	#region Generic functions
 	public static bool IsDecoBought(string decoID){
@@ -96,6 +97,28 @@ public class DecoManager : Singleton<DecoManager>{
 		foreach(Transform child in tabGroupInactive){
 			if(child.gameObject.activeSelf){
 				tabGroupInactiveSearchTable.Add(child.name, child);
+			}
+		}
+		foreach (string data in DataManager.Instance.GameData.Decoration.NewDeco) {
+			switch(DataLoaderDecoItem.GetData(data).Type) {
+				case DecoTypes.Table:
+					tabNewTags[0].SetActive(true);
+					break;
+				case DecoTypes.Floor:
+					tabNewTags[1].SetActive(true);
+					break;
+				case DecoTypes.Kitchen:
+					tabNewTags[2].SetActive(true);
+					break;
+				case DecoTypes.VIP:
+					tabNewTags[3].SetActive(true);
+					break;
+				case DecoTypes.PlayArea:
+					tabNewTags[4].SetActive(true);
+					break;
+				case DecoTypes.FlyThru:
+					tabNewTags[5].SetActive(true);
+					break;
 			}
 		}
 	}
