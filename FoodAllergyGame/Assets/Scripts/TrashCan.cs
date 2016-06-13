@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class TrashCan : MonoBehaviour, IWaiterSelection {
 	public GameObject trashCanNode;
 	public Animation putTrashAnimation;
+	public Animator animator;       // Used for clicking
 
 	#region IWaiterSelection implementation
 	public void OnWaiterArrived() {
@@ -24,6 +24,10 @@ public class TrashCan : MonoBehaviour, IWaiterSelection {
 
 	public bool IsQueueable() {
 		return true;
+	}
+
+	public virtual void OnPressAnim() {
+		animator.SetTrigger("ClickPulse");
 	}
 	#endregion
 }

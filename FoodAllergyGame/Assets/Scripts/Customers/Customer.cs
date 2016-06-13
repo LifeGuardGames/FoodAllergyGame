@@ -579,6 +579,10 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			}
 		}
 	}
+
+	public virtual void OnPressAnim() {
+		// Do nothing
+	}
 	#endregion
 
 	public virtual void GoToPlayArea(Vector3 playAreaSpot, int spotIndex, int deltaSatisfaction){
