@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class MedicArea : MonoBehaviour, IWaiterSelection{
-	public Animation pulseAnim;
+	public Animator animator;       // Used for clicking
 	private GameObject node;
 
 	void Start(){
@@ -11,7 +10,6 @@ public class MedicArea : MonoBehaviour, IWaiterSelection{
 
 	#region IWaiterSelection implementation
 	public void OnWaiterArrived(){
-		pulseAnim.Play();
         RestaurantManager.Instance.DeployMedic();
 		Waiter.Instance.Finished();
 	}
@@ -28,6 +26,10 @@ public class MedicArea : MonoBehaviour, IWaiterSelection{
 	public void OnClicked(){
 		TouchManager.Instance.UnpauseQueue();
 		Waiter.Instance.FindRoute(node, this);
+	}
+
+	public virtual void OnPressAnim() {
+		animator.SetTrigger("ClickPulse");
 	}
 	#endregion
 }
