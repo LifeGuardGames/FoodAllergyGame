@@ -27,21 +27,25 @@ public class RewardItem : MonoBehaviour {
 		assetType = _assetType;
 		itemID = _itemID;
 		rewardUIController = _rewardUIController;
-		IsOpened = false;
 
 		// Do self initialization here
+		// Note: Some assets should have capsule while foods should not
 		switch(assetType) {
 			case AssetTypes.Challenge:
 				ImmutableDataChallenge challengeData = DataLoaderChallenge.GetData(itemID);
                 titleKey = "ChallengeItemTitle";
                 descriptionKey = challengeData.Title;
 				itemSprite.sprite = SpriteCacheManager.GetChallengeItemSpriteData();
+
+				isOpened = true;
 				break;
 			case AssetTypes.Customer:
 				ImmutableDataCustomer customerData = DataLoaderCustomer.GetData(itemID);
 				titleKey = customerData.CustomerNameKey;
 				descriptionKey = customerData.CustomerDescription;
 				itemSprite.sprite = SpriteCacheManager.GetCustomerSpriteData(customerData.SpriteName);
+
+				isOpened = false;
 				break;
 			case AssetTypes.DecoBasic:
 			case AssetTypes.DecoSpecial:
@@ -51,25 +55,39 @@ public class RewardItem : MonoBehaviour {
 					descriptionKey = decoData.DescriptionKey;
 				}
 				itemSprite.sprite = SpriteCacheManager.GetDecoSpriteData(decoData.SpriteName);
-                break;
+
+				isOpened = false;
+				break;
 			case AssetTypes.Food:
 				ImmutableDataFood foodData = DataLoaderFood.GetData(itemID);
 				foodDataAux = foodData;
 				titleKey = foodData.FoodNameKey;
 				itemSprite.sprite = SpriteCacheManager.GetFoodSpriteData(foodData.SpriteName);
+
+				isOpened = true;
 				break;
 			case AssetTypes.Slot:
 				titleKey = "NewFoodSlotItem";
 				itemSprite.sprite = SpriteCacheManager.GetSlotItemSpriteData();
-                break;
+
+				isOpened = true;
+				break;
 		}
 
+		// Hide capsule in the beginning
 		rewardItemAnimator.Play("CapsuleHide");
 	}
 
 	public void AnimationAppear() {
 		AudioManager.Instance.PlayClip("CapsuleAppearSound");
-		rewardItemAnimator.Play("CapsuleAppear");
+		
+		// Check if already open when appearing
+		if(isOpened) {
+			rewardItemAnimator.Play("CapsuleDirectlyShowFood");
+		}
+		else {
+			rewardItemAnimator.Play("CapsuleAppear");
+		}
 	}
 
 	public void OnCapsuleClicked() {
