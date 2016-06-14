@@ -174,4 +174,10 @@ public class AnalyticsManager : Singleton<AnalyticsManager> {
 			{"Age: " , _age},
 			{"SuperProperties", SuperProperties}});
 	}
+
+	public void SkipComic(int page) {
+		Amplitude.Instance.logEvent("Skipped Comic", new Dictionary<string, object> {
+			{"Skipped Page: " ,page }
+		});
+	}
 }

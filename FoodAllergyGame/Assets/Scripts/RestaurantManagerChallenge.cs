@@ -170,6 +170,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	
 	public override void StartDay() {
 		dayOver = false;
+		restaurantUI.ResetDoor();
 		AnalyticsManager.Instance.SuperProperties.Remove("Challenge");
 		AnalyticsManager.Instance.SuperProperties.Add("Challenge" ,DataManager.Instance.GetChallenge());
 		RunSetUp();
@@ -518,6 +519,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	public void DoWeSkip(bool answer) {
 		hasAskedTutorial = true;
 		if(answer == false) {
+			AnalyticsManager.Instance.TutorialFunnel("Finished tut day, 2 guided customers");
 			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut2";
         }
 		SkipText.SetActive(false);
