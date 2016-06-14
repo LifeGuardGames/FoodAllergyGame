@@ -20,6 +20,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	public bool isVip;
 	public bool isPlayarea;
 	public bool hasAskedTutorial = false;
+	public GameObject SkipText;
 
 
 	public override void Init() {
@@ -33,7 +34,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	private void RunSetUp() {
 		chall = DataLoaderChallenge.GetData(DataManager.Instance.GetChallenge());
 		if(chall.ID == "ChallengeTut1" && !hasAskedTutorial) {
-
+			AskToSkip();
 		}
 
 		else {
@@ -511,14 +512,15 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	}
 
 	public void AskToSkip() {
-
+		SkipText.SetActive(true);
 	}
 
 	public void DoWeSkip(bool answer) {
 		hasAskedTutorial = true;
-		if(answer == true) {
+		if(answer == false) {
 			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut2";
         }
-		RunSetUp();
+		SkipText.SetActive(false);
+		StartDay();
 	}
 }

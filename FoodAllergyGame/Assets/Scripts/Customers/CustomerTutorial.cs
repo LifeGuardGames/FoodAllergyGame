@@ -17,9 +17,9 @@ public class CustomerTutorial : Customer{
 		if(!isAllergy) {
 			AnalyticsManager.Instance.DayOneFunnel("2 Customer Start");
 			allergy[0] = Allergies.None;
-			RestaurantManager.Instance.TableList[0].GetComponent<Table>().inUse = true;
-			RestaurantManager.Instance.TableList[2].GetComponent<Table>().inUse = true;
-			RestaurantManager.Instance.TableList[1].GetComponent<Table>().inUse = true;
+			RestaurantManager.Instance.GetTable(1).inUse = true;
+			RestaurantManager.Instance.GetTable(2).inUse = true;
+			RestaurantManager.Instance.GetTable(3).inUse = true;
 		}
 		else {
 			allergy[0] = Allergies.Peanut;
