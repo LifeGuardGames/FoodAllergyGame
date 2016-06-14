@@ -8,21 +8,21 @@ public class CustomerVIPTut : Customer {
 	// Use this for initialization
 	public override void Init (int num, ImmutableDataChallenge mode){
 		tutFingers = GameObject.Find("TutFingers");
-		showCustomerFinger();
+		ShowCustomerFinger();
 		base.Init(num, mode);
 	}
 
-	public void showCustomerFinger(){
+	public void ShowCustomerFinger(){
 		transform.GetChild(3).gameObject.SetActive(true);
 	}
 
-	public void hideCustomerFinger(){
+	public void HideCustomerFinger(){
 		transform.GetChild(3).gameObject.SetActive(false);
 	}
 
 	public override void OnClicked () {
 		base.OnClicked ();
-		hideCustomerFinger();
+		HideCustomerFinger();
 		tutFingers.transform.GetChild(tutNumber).gameObject.SetActive(true);
 	}
 
@@ -30,7 +30,7 @@ public class CustomerVIPTut : Customer {
 		tutFingers.transform.GetChild(tutNumber).gameObject.SetActive(false);
 	}
 	public override void Deselect() {
-		showCustomerFinger();
+		ShowCustomerFinger();
 		tutFingers.transform.GetChild(tutNumber).gameObject.SetActive(false);
 		base.Deselect();
 	}
