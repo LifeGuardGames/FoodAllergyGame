@@ -52,6 +52,7 @@
 	<Sound ID="CustomerDead"></Sound>
 
 	<!-- Restaurant sounds -->
+	<Sound ID="RestaurantDayStart"></Sound>
 	<Sound ID="RestaurantDoorClose"></Sound>
 	<Sound ID="Cooking1" Volume="1"></Sound>
 	<Sound ID="Cooking2" Volume="1"></Sound>

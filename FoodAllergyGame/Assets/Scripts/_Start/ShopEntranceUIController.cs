@@ -61,4 +61,8 @@ public class ShopEntranceUIController : MonoBehaviour {
 		GetComponent<BoxCollider2D>().enabled = isClickable;
 		decoEntranceAnimator.SetBool("IsClickable", isClickable);
 	}
+
+	public void ToggleShowNewItems(bool newItemsExists) {
+		StartManager.Instance.shopEntranceUIController.newSprite.SetActive(newItemsExists);
+	}
 }
