@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: afa58a90d6803bf4e8ac0668befc949c
-timeCreated: 1465586126
+timeCreated: 1465854516
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -98,23 +98,23 @@ TextureImporter:
     - name: Beacon_1
       rect:
         serializedVersion: 2
-        x: 409
-        y: 14
+        x: 412
+        y: 12
         width: 80
         height: 166
       alignment: 9
       pivot: {x: 0.999025, y: 0.48612526}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -53.921997, y: 85.30321}
-        - {x: -56.921997, y: 82.30321}
-        - {x: -79.922, y: 40.303207}
-        - {x: -79.922, y: -46.696793}
-        - {x: -69.922, y: -80.69679}
-        - {x: -19.921997, y: -80.69679}
-        - {x: 0.07800293, y: -57.696793}
-        - {x: 0.07800293, y: 41.303207}
-        - {x: -18.921997, y: 85.30321}
+      - - {x: -52.921997, y: 85.30321}
+        - {x: -79.922, y: 35.303207}
+        - {x: -79.922, y: -14.696793}
+        - {x: -55.921997, y: -80.69679}
+        - {x: -37.921997, y: -80.69679}
+        - {x: -25.921997, y: -73.69679}
+        - {x: -0.9219971, y: -22.696793}
+        - {x: -0.9219971, y: 44.303207}
+        - {x: -30.921997, y: 85.30321}
     outline: []
   spritePackingTag: 
   userData: 
