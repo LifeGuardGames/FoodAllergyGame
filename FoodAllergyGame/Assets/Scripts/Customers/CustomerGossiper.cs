@@ -3,6 +3,7 @@ using System.Collections;
 
 public class CustomerGossiper : Customer{
 	public Behav pastBehav;
+	public int gossiperTable;
 
 	public override void Init(int num, ImmutableDataChallenge mode) {
 		base.Init(num, mode);
@@ -36,9 +37,10 @@ public class CustomerGossiper : Customer{
 
 	IEnumerator Annoy() {
 		yield return new WaitForSeconds(5.0f);
-		if(RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<Customer>() != null) {
+		Debug.Log(gossiperTable);
+		if(RestaurantManager.Instance.GetTable(gossiperTable).seat.GetChild(0).GetComponent<Customer>() != null) {
 			Debug.Log("Annoy");
-			RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<Customer>().Annoyed();
+			RestaurantManager.Instance.GetTable(gossiperTable).seat.GetChild(0).GetComponent<Customer>().Annoyed();
 			GoAway();
 		}
 	}
