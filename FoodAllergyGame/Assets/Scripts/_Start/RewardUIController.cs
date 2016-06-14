@@ -94,6 +94,7 @@ public class RewardUIController : MonoBehaviour {
 	public void OnDropPodClicked() {
 		dropPodAnimator.Play("DropPodOpenUI");
 		AudioManager.Instance.PlayClip("SupplyDropOpen");
+		StartManager.Instance.skipButton.SetActive(true);
 	}
 
 	public void OnDropPodOpenAnimationDone() {
