@@ -107,6 +107,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 				List<ImmutableDataDecoItem> kitchens = DataLoaderDecoItem.GetDecoDataByType(DecoTypes.Kitchen);
 				rand = UnityEngine.Random.Range(0, kitchens.Count);
 				kit.LoadDeco(kitchens[rand]);
+				KitchenManager.Instance.Init(chall.KitchenTimerMod);
 			}
 			StartCoroutine("SpawnCustomer");
 		}
@@ -266,8 +267,8 @@ public class RestaurantManagerChallenge : RestaurantManager{
 					StopCoroutine("SpawnCustomer");
 					interval = 0;
 					customerSpawnTimer = 0;
-					TableList[0].GetComponent<Table>().inUse = false;
-					TableList[1].GetComponent<Table>().inUse = false;
+					RestaurantManager.Instance.GetTable(2).inUse = false;
+					RestaurantManager.Instance.GetTable(3).inUse = false;
 					pauseUI.isActive = true;
 					restaurantUI.ResetDoor();
 					StartDay();
