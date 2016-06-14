@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 /// <summary>
 /// UI spawning new item controller, called by RewardAnimationMeta for rewarding visually
@@ -94,7 +95,6 @@ public class RewardUIController : MonoBehaviour {
 	public void OnDropPodClicked() {
 		dropPodAnimator.Play("DropPodOpenUI");
 		AudioManager.Instance.PlayClip("SupplyDropOpen");
-		StartManager.Instance.skipButton.SetActive(true);
 	}
 
 	public void OnDropPodOpenAnimationDone() {
