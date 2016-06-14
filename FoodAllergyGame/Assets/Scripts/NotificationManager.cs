@@ -188,11 +188,5 @@ public class NotificationManager : Singleton<NotificationManager> {
 	public void SkipNotifcation() {
 		notificationQueue.Clear();
 		TryNextNotification();
-		StartManager.Instance.skipButton.SetActive(false);
 	}
-	//void OnLevelWasLoaded(int level) {
-	//	if(level == 2) {
-			//RebuildQueue();
-	//	}
-//	}
 }

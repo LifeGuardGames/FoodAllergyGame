@@ -83,7 +83,7 @@ public class RewardItem : MonoBehaviour {
 		
 		// Check if already open when appearing
 		if(isOpened) {
-			rewardItemAnimator.Play("CapsuleDirectlyShowFood");
+			rewardItemAnimator.Play("CapsuleDirectlyShowImage");
 		}
 		else {
 			rewardItemAnimator.Play("CapsuleAppear");
