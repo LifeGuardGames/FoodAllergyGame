@@ -4,6 +4,7 @@ public class ShopEntranceUIController : MonoBehaviour {
 
 	public GameObject tutorialFinger;
 	public Animator decoEntranceAnimator;
+	public GameObject newSprite;
 
 	void Start() {
 		if(DataManager.Instance.GameData.Tutorial.IsSpeDecoTutDone || TierManager.Instance.CurrentTier >= 3) {

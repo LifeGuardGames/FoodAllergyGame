@@ -68,6 +68,10 @@ public class TierManager : Singleton<TierManager> {
 				DataManager.Instance.GameData.Decoration.NewDeco.Add(id);
 			}
 
+			if(DataManager.Instance.GameData.Decoration.NewDeco.Count > 0) {
+				StartManager.Instance.shopEntranceUIController.newSprite.SetActive(true);
+			}
+
 			DataManager.Instance.GameData.Epi.HasPlayedEpiPenGameThisTier = false;
 			DataManager.Instance.GameData.Epi.Difficulty++;
 			currentTierUnlocks = GetAllUnlocksAtTier(newTier);
