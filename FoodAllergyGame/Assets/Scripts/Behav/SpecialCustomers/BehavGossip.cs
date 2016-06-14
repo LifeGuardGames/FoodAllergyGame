@@ -14,6 +14,7 @@ public class BehavGossip : Behav {
 		int rand = UnityEngine.Random.Range(0, 4);
 		//Debug.Log ("Goissping " + rand.ToString());
 		if(!RestaurantManager.Instance.GetTable(rand).isGossiped && RestaurantManager.Instance.GetTable(rand).inUse && rand != self.tableNum) {
+			self.GetComponent<CustomerGossiper>().gossiperTable = rand;
 			self.StartCoroutine("Annoy");
 			self.transform.SetParent(RestaurantManager.Instance.GetTable(rand).Node.transform);
 			self.SetBaseSortingOrder(RestaurantManager.Instance.GetTable(rand).Node.GetComponent<Node>().BaseSortingOrder);

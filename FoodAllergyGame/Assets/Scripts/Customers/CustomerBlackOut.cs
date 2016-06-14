@@ -17,7 +17,7 @@ public class CustomerBlackOut : Customer {
 		base.UpdateSatisfaction(delta);
 		if(delta < 0 && satisfaction != 0) {
 			CustomerAnimationCotrollerBlackOut animBlackout = customerAnim as CustomerAnimationCotrollerBlackOut;
-			animBlackout.BlackOut();
+			animBlackout.BlackOutButDontLeave();
 		}
 	}
 }

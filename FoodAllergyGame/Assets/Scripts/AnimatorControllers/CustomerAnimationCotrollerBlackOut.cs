@@ -16,7 +16,8 @@ public class CustomerAnimationCotrollerBlackOut : CustomerAnimController{
 		skeletonAnim.state.SetAnimation(0, "AllHeartsLost", false).Complete +=
 			delegate {
 				RestaurantManager.Instance.Blackout();
-			};
+				skeletonAnim.state.SetAnimation(0, "WaitingPassive", true);
+            };
 	}
 
 	public override void SetRandomAllergyAttack() {
