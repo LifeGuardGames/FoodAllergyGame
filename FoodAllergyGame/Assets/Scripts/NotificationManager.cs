@@ -95,9 +95,9 @@ public class NotificationManager : Singleton<NotificationManager> {
 				// Check if you need to load beacon for more crates
 				if(TierManager.Instance.CurrentTier == 6 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates) {
 					if(StartManager.Instance.beaconNode.transform.childCount == 0) {
-						Debug.Log("LOADING BEACON");
 						GameObject beacon = Resources.Load("Beacon") as GameObject;
 						GameObjectUtils.AddChild(StartManager.Instance.beaconNode, beacon);
+						HUDManager.Instance.ToggleBeaconLock(true);
 					}
 				}
 			}
