@@ -22,6 +22,7 @@ public class RewardUIController : MonoBehaviour {
 	public Animator dropPodAnimator;
 	public AlphaTweenToggle fadeToggle;
 	public TweenToggle doneButtonTween;
+	public TweenToggle okButtonTween;
 	public GameObject rewardItemPrefab;
 	public GameObject rewardItemsParent;
 	public float distanceBetweenItems = 400f;
@@ -99,7 +100,8 @@ public class RewardUIController : MonoBehaviour {
 
 	public void OnDropPodOpenAnimationDone() {
 		StartCoroutine(StartItemsAppear(0));
-	}
+		okButtonTween.Show();
+    }
 
 	// Once all the objects have been initialized, start the showing process
 	private IEnumerator StartItemsAppear(int itemIndex) {
@@ -148,6 +150,12 @@ public class RewardUIController : MonoBehaviour {
 	public void OnDoneButtonClicked() {
 		UIDemux.Hide();
 		doneButtonTween.Hide();
+		okButtonTween.Hide();
+	}
+
+	// If the user wants to exit the notification prematurely
+	public void OnExitButtonClicked() {
+		OnDoneButtonClicked();
 	}
 
 	// Making sure to call finish

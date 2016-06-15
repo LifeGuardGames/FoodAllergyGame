@@ -41,7 +41,6 @@ public class StartManager : Singleton<StartManager> {
 	public AgeAskController ageAskController;
 	public ParentalGateQuestionController parentalGate;
 	private NotificationQueueDataAge ageNotification;
-	public GameObject skipButton;
 
 	public bool isShopAppearHideDinerOverride = false;
 
@@ -314,10 +313,5 @@ public class StartManager : Singleton<StartManager> {
 		ShopEntranceUIController.ToggleClickable(true);
 		DinerEntranceUIController.ToggleClickable(true);
 		ChallengeMenuEntranceUIController.ToggleClickable(true);
-	}
-
-	public void SkipNotifications() {
-		rewardUIController.OnDoneButtonClicked();
-		NotificationManager.Instance.SkipNotifcation();
 	}
 }

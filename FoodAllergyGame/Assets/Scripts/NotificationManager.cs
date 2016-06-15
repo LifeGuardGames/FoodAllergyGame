@@ -72,14 +72,16 @@ public class NotificationManager : Singleton<NotificationManager> {
 			if(SceneManager.GetActiveScene().name == SceneUtils.START) {
 				StartManager.Instance.ShopEntranceUIController.ToggleClickable(true);
 				StartManager.Instance.ChallengeMenuEntranceUIController.ToggleClickable(true);
-				StartManager.Instance.challengeMenuEntranceUIController.ToggleClickable(true);
+
+				// Enable buttons
 				StartManager.Instance.replayTutButton.SetActive(true);
 				StartManager.Instance.musicButton.GetComponent<PositionTweenToggle>().Show();
 				StartManager.Instance.soundButton.GetComponent<PositionTweenToggle>().Show();
-				StartManager.Instance.musicButton.GetComponent<Toggle>().isOn = AudioManager.Instance.isMusicOn;
-				StartManager.Instance.soundButton.GetComponent<Toggle>().isOn = AudioManager.Instance.isSoundEffectsOn;
-				StartManager.Instance.musicButton.GetComponent<Toggle>().onValueChanged.AddListener((value) => AudioManager.Instance.ToggleMusic(value));
-				StartManager.Instance.soundButton.GetComponent<Toggle>().onValueChanged.AddListener((value) => AudioManager.Instance.ToggleSound(value));
+				StartManager.Instance.musicButton.GetComponent<Toggle>().isOn = !AudioManager.Instance.isMusicOn;
+				StartManager.Instance.soundButton.GetComponent<Toggle>().isOn = !AudioManager.Instance.isSoundEffectsOn;
+				StartManager.Instance.musicButton.GetComponent<Toggle>().onValueChanged.AddListener((value) => AudioManager.Instance.ToggleMusic(!value));
+				StartManager.Instance.soundButton.GetComponent<Toggle>().onValueChanged.AddListener((value) => AudioManager.Instance.ToggleSound(!value));
+
 				if(TierManager.Instance.CurrentTier == 1) {
 					AnalyticsManager.Instance.NotificationFunnel();
 				}
