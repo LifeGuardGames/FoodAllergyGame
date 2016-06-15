@@ -31,6 +31,9 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 		if(SceneManager.GetActiveScene().name == SceneUtils.RESTAURANT){
 			// Connect scene variables
 			waiterNode = Pathfinding.Instance.NodeKitchen;
+			if(DataManager.Instance.GetChallenge() != "") {
+				Init(DataLoaderChallenge.GetData(DataManager.Instance.GetChallenge()).KitchenTimerMod);
+			}
 		}
 		else{
 			chefMeshRenderer.gameObject.SetActive(false);

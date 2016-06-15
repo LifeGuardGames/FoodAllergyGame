@@ -107,7 +107,6 @@ public class RestaurantManagerChallenge : RestaurantManager{
 				List<ImmutableDataDecoItem> kitchens = DataLoaderDecoItem.GetDecoDataByType(DecoTypes.Kitchen);
 				rand = UnityEngine.Random.Range(0, kitchens.Count);
 				kit.LoadDeco(kitchens[rand]);
-				KitchenManager.Instance.Init(chall.KitchenTimerMod);
 			}
 			StartCoroutine("SpawnCustomer");
 		}
@@ -175,7 +174,6 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		AnalyticsManager.Instance.SuperProperties.Remove("Challenge");
 		AnalyticsManager.Instance.SuperProperties.Add("Challenge" ,DataManager.Instance.GetChallenge());
 		RunSetUp();
-		
 		restaurantUI.StartDay();
 	}
 
