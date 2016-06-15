@@ -77,9 +77,9 @@ public class DataManager : Singleton<DataManager> {
 		Mixpanel.Token = "4afadc10e61a77c363308040d38be801";
 
 
-		//Amplitude amplitude = Amplitude.Instance;
-		//amplitude.logging = false;
-		//amplitude.init("9196f4d945c306a45a54b9fb8577c017");
+		Amplitude amplitude = Amplitude.Instance;
+		amplitude.logging = false;
+		amplitude.init("9196f4d945c306a45a54b9fb8577c017");
 
 		//Dev Token
 		//Mixpanel.Token = "9b68a5560f74b183728b7c30cb4a54fc";
