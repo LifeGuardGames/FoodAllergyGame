@@ -13,15 +13,13 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	public KitchenLoader kit;
 	public DecoTextureLoader floor;
 	public ChallengeScoreController scoreBoard;
-	public GameObject skipButton;
 	public ImmutableDataChallenge chall;
 	public Dictionary<string, object> customerList;
 	int interval = 0;
 	public bool isVip;
 	public bool isPlayarea;
 	public bool hasAskedTutorial = false;
-	public GameObject SkipText;
-
+	public SkipTutUIController skipTutController;
 
 	public override void Init() {
 		sickCustomers = new List<GameObject>();
@@ -34,7 +32,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	private void RunSetUp() {
 		chall = DataLoaderChallenge.GetData(DataManager.Instance.GetChallenge());
 		if(chall.ID == "ChallengeTut1" && !hasAskedTutorial) {
-			AskToSkip();
+			AskToPlayTutorial();
 		}
 
 		else {
@@ -119,7 +117,6 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			if(!dayOver && lineCount < 8 && interval < currCusSet.Count) {
 			if(isTutorial) {
 				AnalyticsManager.Instance.DayOneFunnel("Spawning Customer" + customerNumber);
-				skipButton.SetActive(true);
 				ImmutableDataCustomer test;
 				test = DataLoaderCustomer.GetData("CustomerTutorial");
 				GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
@@ -511,17 +508,17 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		}
 	}
 
-	public void AskToSkip() {
-		SkipText.SetActive(true);
-	}
+	public void AskToPlayTutorial() {
+		skipTutController.ShowPanel();
+    }
 
-	public void DoWeSkip(bool answer) {
+	public void DoWePlayTutorial(bool answer) {
 		hasAskedTutorial = true;
 		if(answer == false) {
 			AnalyticsManager.Instance.TutorialFunnel("Finished tut day, 2 guided customers");
 			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut2";
         }
-		SkipText.SetActive(false);
+		skipTutController.HidePanel();
 		StartDay();
 	}
 }

@@ -40,10 +40,4 @@ public class RestaurantManagerLoader : MonoBehaviour {
 			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
 		}
 	}
-
-	public void SkipTutorial() {
-		DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "";
-		DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
-		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
-	}
 }
