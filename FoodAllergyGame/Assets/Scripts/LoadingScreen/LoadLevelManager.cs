@@ -35,7 +35,7 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 	/// Call this to start the transition
 	/// </summary>
 	/// <param name="sceneName">Scene to be loaded</param>
-	public void StartLoadTransition(string sceneName, string additionalTextKey = null, string additionalImageKey = null, bool showFoodTip = false){
+	public void StartLoadTransition(string sceneName, string additionalTextKey = null, string additionalImageKey = null, bool showRandomTip = false){
 		isShowingFoodTip = false;
 		isShowingImageTip = false;
 
@@ -47,18 +47,44 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 			logo.SetActive(true);
 			loadText.text = LocalizationText.GetText(additionalTextKey);
 		}
-		if(additionalImageKey != null) {
+		else if(additionalImageKey != null) {
 			logo.SetActive(false);
 			loadImage.gameObject.SetActive(true);
 			loadImage.sprite = SpriteCacheManager.GetLoadingImageData(additionalImageKey);
 			isShowingImageTip = true;
         }
-		if(showFoodTip){
-			logo.SetActive(true);
-			isShowingFoodTip = true;
-			foodTipController.ShowFoodTip();
+		else if(showRandomTip) {
+			if(UnityEngine.Random.Range(0,2) == 0){		// Show food tip
+				logo.SetActive(true);
+				isShowingFoodTip = true;
+				foodTipController.ShowFoodTip();
+			}
+			else{										// Show generic image tip
+				int randomIndex = UnityEngine.Random.Range(0, 4);
+				Sprite loadingImage;
+				string loadingText;
+				switch(randomIndex){
+				case 0:
+					loadingImage = SpriteCacheManager.GetLoadingImageData("LoadingImage1");
+					loadingText = LocalizationText.GetText("Key1");
+					break;
+				case 1:
+					loadingImage = SpriteCacheManager.GetLoadingImageData("LoadingImage1");
+					loadingText = LocalizationText.GetText("Key1");
+					break;
+				case 2:
+					loadingImage = SpriteCacheManager.GetLoadingImageData("LoadingImage1");
+					loadingText = LocalizationText.GetText("Key1");
+					break;
+				case 3:
+					loadingImage = SpriteCacheManager.GetLoadingImageData("LoadingImage1");
+					loadingText = LocalizationText.GetText("Key1");
+					break;
+				}
+				loadText = loadingText;
+				loadImage.sprite = loadingImage;
+			}
 		}
-
 		sceneToLoad = sceneName;
 		loadDemux.Show();
 	}

@@ -39,12 +39,12 @@ public class ChallengeMenuManager : Singleton<ChallengeMenuManager> {
 		}
 		else {
 			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = challengeID;
-			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, showFoodTip: true);
+			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, showRandomTip: true);
 		}
 	}
 
 	public void OnBackButtonClicked() {
-		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START, showFoodTip: true);
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START, showRandomTip: true);
 	}
 
 
