@@ -17,8 +17,6 @@ public class CustomerGossiper : Customer{
 
 	public void GoAway(){
 		StopCoroutine("Annoy");
-		Debug.Log("Behav!!!!"+ currBehav.ToString());
-		Debug.Log("PastBehav!!!!" + pastBehav.ToString());
 		customerAnim.skeletonAnim.state.SetAnimation(0, "WaitingPassive", false);
 
 		Table originalTable = RestaurantManager.Instance.GetTable(tableNum);
