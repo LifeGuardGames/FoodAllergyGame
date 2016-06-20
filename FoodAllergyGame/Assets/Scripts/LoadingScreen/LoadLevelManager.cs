@@ -12,8 +12,7 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 	public FoodTipController foodTipController;
 	public GameObject logo;
 	public float foodTipWait = 1.3f;		// How long to wait if the food tip controller is showing
-	private bool isShowingFoodTip = false;
-	private bool isShowingImageTip = false;
+	private bool isLoadingTipWait = false;
 	private string sceneToLoad;
 
 	public string GetCurrentSceneName() {
@@ -36,8 +35,7 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 	/// </summary>
 	/// <param name="sceneName">Scene to be loaded</param>
 	public void StartLoadTransition(string sceneName, string additionalTextKey = null, string additionalImageKey = null, bool showRandomTip = false){
-		isShowingFoodTip = false;
-		isShowingImageTip = false;
+		isLoadingTipWait = false;
 
 		// Reset everything first
 		loadText.text = "";
@@ -51,37 +49,40 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 			logo.SetActive(false);
 			loadImage.gameObject.SetActive(true);
 			loadImage.sprite = SpriteCacheManager.GetLoadingImageData(additionalImageKey);
-			isShowingImageTip = true;
+			isLoadingTipWait = true;
         }
 		else if(showRandomTip) {
+			isLoadingTipWait = true;
 			if(UnityEngine.Random.Range(0,2) == 0){		// Show food tip
 				logo.SetActive(true);
-				isShowingFoodTip = true;
 				foodTipController.ShowFoodTip();
 			}
 			else{										// Show generic image tip
+				logo.SetActive(false);
+				loadImage.gameObject.SetActive(true);
+
 				int randomIndex = UnityEngine.Random.Range(0, 4);
-				Sprite loadingImage;
-				string loadingText;
+				Sprite loadingImage = null;
+				string loadingText = "";
 				switch(randomIndex){
 				case 0:
-					loadingImage = SpriteCacheManager.GetLoadingImageData("LoadingImage1");
-					loadingText = LocalizationText.GetText("Key1");
+					loadingImage = SpriteCacheManager.GetLoadingImageData("LoadingImageCrossContact");
+					loadingText = LocalizationText.GetText("LoadingKeyCrossContact");
 					break;
 				case 1:
-					loadingImage = SpriteCacheManager.GetLoadingImageData("LoadingImage1");
-					loadingText = LocalizationText.GetText("Key1");
+					loadingImage = SpriteCacheManager.GetLoadingImageData("LoadingImageReadLabels");
+					loadingText = LocalizationText.GetText("LoadingKeyReadLabels");
 					break;
 				case 2:
-					loadingImage = SpriteCacheManager.GetLoadingImageData("LoadingImage1");
-					loadingText = LocalizationText.GetText("Key1");
+					loadingImage = SpriteCacheManager.GetLoadingImageData("LoadingImageTellChef");
+					loadingText = LocalizationText.GetText("LoadingKeyTellChef");
 					break;
 				case 3:
-					loadingImage = SpriteCacheManager.GetLoadingImageData("LoadingImage1");
-					loadingText = LocalizationText.GetText("Key1");
+					loadingImage = SpriteCacheManager.GetLoadingImageData("LoadingImageWashHands");
+					loadingText = LocalizationText.GetText("LoadingKeyWashHands");
 					break;
 				}
-				loadText = loadingText;
+				loadText.text = loadingText;
 				loadImage.sprite = loadingImage;
 			}
 		}
@@ -94,7 +95,7 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 	/// </summary>
 	public void ShowFinishedCallback(){
 		if(sceneToLoad != null){
-			if(isShowingFoodTip || isShowingImageTip) {
+			if(isLoadingTipWait) {
 				Invoke("LoadLevel", foodTipWait);
 			}
 			else {
@@ -114,7 +115,7 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 	/// Hide the demux when the new level is loaded
 	void OnLevelWasLoaded(){
 		loadDemux.Hide();
-		if(isShowingFoodTip) {
+		if(isLoadingTipWait) {
 			foodTipController.HideFoodTip();
 		}
 	}

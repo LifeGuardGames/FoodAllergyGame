@@ -39,7 +39,7 @@ public class ComicManager : MonoBehaviour {
 	public void SkipComic(int page) {
 		AnalyticsManager.Instance.SkipComic(page);
 		DataManager.Instance.GameData.Tutorial.IsComicViewed = true;
-		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START, showRandomTip: true);
 	}
 
 	private void ComicStep(int step){
@@ -59,7 +59,7 @@ public class ComicManager : MonoBehaviour {
 		case 4:
 			AnalyticsManager.Instance.TutorialFunnel("Finished Comic");
 			DataManager.Instance.GameData.Tutorial.IsComicViewed = true;
-			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
+			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START, showRandomTip: true);
 			break;
 		}
 	}

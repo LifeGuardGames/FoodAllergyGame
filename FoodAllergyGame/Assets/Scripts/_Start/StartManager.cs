@@ -207,7 +207,7 @@ public class StartManager : Singleton<StartManager> {
 			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, showRandomTip: true);
 		}
 		else {
-			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.MENUPLANNING, "LoadingKeyMenu", "LoadingImageMenu");
+			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.MENUPLANNING, showRandomTip: true);
 		}
 	}
 
