@@ -2,6 +2,8 @@
 using System.Collections;
 using System;
 
+//note that the hospital runner has this script by default
+
 public class BehavSneakOutWaitForCheck : Behav {
 
 	public BehavSneakOutWaitForCheck() {

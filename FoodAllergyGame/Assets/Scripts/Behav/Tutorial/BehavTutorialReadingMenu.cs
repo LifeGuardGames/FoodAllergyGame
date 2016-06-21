@@ -30,7 +30,7 @@ public class BehavTutorialReadingMenu : Behav {
 			self.menuTimer *= 2;
 		}
 		else {
-			RestaurantManager.Instance.TableList[2].GetComponent<Table>().inUse = false;
+			RestaurantManager.Instance.GetTable(1).inUse = false;
 		}
 	}
 }

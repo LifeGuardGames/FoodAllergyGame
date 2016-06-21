@@ -16,6 +16,7 @@ public class PlayArea : Singleton<PlayArea>, IWaiterSelection {
 	public GameObject highLightSpot2;
 	public ParticleSystem doneParticle;
 	public bool cantLeave = false;
+	public Animator animator;       // Used for clicking
 
 	void Start(){
 		maxSpots = spotList.Count;
@@ -70,6 +71,10 @@ public class PlayArea : Singleton<PlayArea>, IWaiterSelection {
 	}
 
 	public void OnWaiterArrived(){
+	}
+
+	public virtual void OnPressAnim() {
+		animator.SetTrigger("ClickPulse");
 	}
 
 	// Called from Customer.PlayTime

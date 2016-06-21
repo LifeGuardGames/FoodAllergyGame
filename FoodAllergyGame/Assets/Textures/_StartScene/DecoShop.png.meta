@@ -1,9 +1,11 @@
 fileFormatVersion: 2
 guid: e9e089781307bca4fbc960a37f575fa5
-timeCreated: 1441304469
+timeCreated: 1465932712
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: DecoShop_0
+    21300002: DecoShop_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -38,7 +40,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -49,7 +51,63 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: DecoShop_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 171
+        width: 256
+        height: 341
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25176832}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 44, y: -22.852997}
+        - {x: 88, y: -79.853}
+        - {x: 113, y: -64.853}
+        - {x: 128, y: -30.852997}
+        - {x: 128, y: 39.147003}
+        - {x: 98, y: 101.147}
+        - {x: 128, y: 182.147}
+        - {x: 128, y: 204.147}
+        - {x: 115, y: 242.147}
+        - {x: -41, y: 255.147}
+        - {x: -107, y: 255.147}
+        - {x: -125, y: 192.147}
+        - {x: -128, y: 172.147}
+        - {x: -128, y: 98.147}
+        - {x: -90, y: 43.147003}
+        - {x: -110, y: 42.147003}
+        - {x: -128, y: 19.147003}
+        - {x: -128, y: -36.852997}
+        - {x: -127, y: -43.852997}
+        - {x: -116, y: -57.852997}
+        - {x: -92, y: -81.853}
+        - {x: -86, y: -78.853}
+        - {x: -31, y: -25.852997}
+        - {x: -44, y: -81.853}
+        - {x: -44, y: -85.853}
+        - {x: 14, y: -85.853}
+        - {x: 40, y: -83.853}
+        - {x: 51, y: -82.853}
+        - {x: 54, y: -80.853}
+    - name: DecoShop_1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 124
+        width: 96
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -48, y: 22.5}
+        - {x: -48, y: -22.5}
+        - {x: 44, y: -22.5}
+        - {x: 48, y: -2.5}
+        - {x: 48, y: 22.5}
     outline: []
   spritePackingTag: 
   userData: 

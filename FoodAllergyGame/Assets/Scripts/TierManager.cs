@@ -46,8 +46,8 @@ public class TierManager : Singleton<TierManager> {
 		oldTier = DataLoaderTiers.GetTierFromCash(CashManager.Instance.LastSeenTotalCash);
 		currentTier = oldTier; // TODO Triple check this line
 		int newTier = DataLoaderTiers.GetTierFromCash(CashManager.Instance.TotalCash);
-		Mixpanel.SuperProperties.Remove("Tier");
-		Mixpanel.SuperProperties.Add("Tier", TierManager.Instance.CurrentTier);
+		AnalyticsManager.Instance.SuperProperties.Remove("Tier");
+		AnalyticsManager.Instance.SuperProperties.Add("Tier", TierManager.Instance.CurrentTier);
 		// If there is a change in tier, run logic
 		// INVARIABLE: Tiers are maximum one above, never multiple tiers at once
 		if(oldTier < newTier || DataManager.Instance.GameData.DayTracker.notifQueue.Count > 0) {
@@ -67,6 +67,10 @@ public class TierManager : Singleton<TierManager> {
 			foreach(string id in temp) {
 				DataManager.Instance.GameData.Decoration.NewDeco.Add(id);
 			}
+
+			// Show stop new banner if theres any new items
+			StartManager.Instance.shopEntranceUIController.newSprite.SetActive(
+				DataManager.Instance.GameData.Decoration.NewDeco.Count > 0 ? true : false);
 
 			DataManager.Instance.GameData.Epi.HasPlayedEpiPenGameThisTier = false;
 			DataManager.Instance.GameData.Epi.Difficulty++;

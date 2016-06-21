@@ -42,6 +42,9 @@ public class Microwave :Singleton<Microwave>, IWaiterSelection{
 		Waiter.Instance.FindRoute(KitchenManager.Instance.WaiterNode, this);
 		//		}
 	}
+
+	public virtual void OnPressAnim() {
+	}
 	#endregion
 
 }

@@ -32,10 +32,10 @@
     <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
     <Tier>3</Tier>
     <KitchenTimer>5</KitchenTimer>
-    <CustomerSet>ChallengeSet01</CustomerSet>
+    <CustomerSet>ChallengeSet15</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
-    <DayLength>30</DayLength>
-    <Allergy>cc</Allergy>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
     <WaiterMove>0</WaiterMove>
     <RestMode>0</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
@@ -45,9 +45,9 @@
     <Silver>75</Silver>
     <Gold>100</Gold>
     <Tables>4</Tables>
-    <PlayArea>0</PlayArea>
-    <Vip>0</Vip>
-    <Flythru>0</Flythru>
+    <PlayArea>PlayArea00</PlayArea>
+    <Vip>VIPBasic</Vip>
+    <Flythru>FlyThru00</Flythru>
     <IsBossChallenge>false</IsBossChallenge>
   </Challenge>
 
