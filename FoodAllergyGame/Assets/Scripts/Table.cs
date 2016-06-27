@@ -49,6 +49,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	public bool isBroken;
 	public Text text;
 	public bool isGossiped;
+	public Animator animator;		// Used for clicking
 
 	public virtual void Init() {
 		if(SceneManager.GetActiveScene().name == SceneUtils.RESTAURANT) {
@@ -214,7 +215,11 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		}
 		else{
 			Waiter.Instance.FindRoute(node,this);
-		}
+        }
+	}
+
+	public virtual void OnPressAnim() {
+		animator.SetTrigger("ClickPulse");
 	}
 	#endregion
 

@@ -25,11 +25,15 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 		}
 	}
 	public bool IsTrachcanTut = false;
-	
+	public Animator animator;       // Used for clicking
+
 	void Start(){
 		if(SceneManager.GetActiveScene().name == SceneUtils.RESTAURANT){
 			// Connect scene variables
 			waiterNode = Pathfinding.Instance.NodeKitchen;
+			if(DataManager.Instance.GetChallenge() != "") {
+				Init(DataLoaderChallenge.GetData(DataManager.Instance.GetChallenge()).KitchenTimerMod);
+			}
 		}
 		else{
 			chefMeshRenderer.gameObject.SetActive(false);
@@ -125,6 +129,10 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 
 	public bool IsQueueable(){
 		return true;
+	}
+
+	public virtual void OnPressAnim() {
+		animator.SetTrigger("ClickPulse");
 	}
 
 	public void NotifySpinnerHighlight(){

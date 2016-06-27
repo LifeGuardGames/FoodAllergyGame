@@ -17,4 +17,9 @@ interface IWaiterSelection{
 	void OnClicked();
 
 	bool IsQueueable();
+
+	/// <summary>
+	/// When the object is pressed, play some sort of animation
+	/// </summary>
+	void OnPressAnim();
 }

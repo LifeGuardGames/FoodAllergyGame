@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class AudioManager : LgAudioManager<AudioManager>{
 	public bool isMusicOn = true;
+	public bool isSoundEffectsOn = true;
 	public string backgroundMusic;
 	public int numberOfBackgroundVariations = 1;
 	
@@ -19,6 +20,12 @@ public class AudioManager : LgAudioManager<AudioManager>{
 	protected override void Start(){
 		base.Start();
 		StartCoroutine(PlayBackground());
+	}
+
+	public override void PlayClip(string clipName, int variations = 1, Hashtable option = null) {
+		if(isSoundEffectsOn) {
+			base.PlayClip(clipName, variations, option);
+		}
 	}
 
 	private IEnumerator PlayBackground(){
@@ -86,9 +93,25 @@ public class AudioManager : LgAudioManager<AudioManager>{
 		}
 	}
 
+	public void ToggleMusic(bool val) {
+		isMusicOn = val;
+		if(val) {
+			StartCoroutine(PlayBackground());
+		}
+		else {
+			backgroundSource.Stop();
+		}
+	}
+
+	public void ToggleSound(bool val) {
+		isSoundEffectsOn = val;
+	}
+
 	void OnLevelWasLoaded() {
-		isMusicOn = true;
 		string currentScene = SceneManager.GetActiveScene().name;
+		if(currentScene == SceneUtils.LOADING) {
+			isMusicOn = true;
+		}
 		if(currentScene == SceneUtils.RESTAURANT || currentScene == SceneUtils.EPIPEN) {
 			int rand = UnityEngine.Random.Range(1, 4);
 			backgroundMusic = "BgRestaurant" + rand.ToString();

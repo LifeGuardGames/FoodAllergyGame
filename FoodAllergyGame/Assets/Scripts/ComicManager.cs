@@ -36,6 +36,12 @@ public class ComicManager : MonoBehaviour {
 		}
 	}
 
+	public void SkipComic(int page) {
+		AnalyticsManager.Instance.SkipComic(page);
+		DataManager.Instance.GameData.Tutorial.IsComicViewed = true;
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
+	}
+
 	private void ComicStep(int step){
 		switch(step){
 		case 1:

@@ -31,6 +31,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 	public SpriteRenderer orderImage;
 	public Canvas orderCanvas;
 	public GameObject textParent;
+	public Animator animator;	// Used for click pulse
 
 	// Initialize the order when it is first spawned
 	public void Init(string foodID, int tableNumber, List<Allergies> _allergy){
@@ -138,5 +139,9 @@ public class Order : MonoBehaviour, IWaiterSelection{
 	public void OnClicked(){
 		Waiter.Instance.FindRoute(KitchenManager.Instance.WaiterNode, this);
 	}
+
+	public virtual void OnPressAnim() {
+		animator.SetTrigger("ClickPulse");
+    }
 	#endregion
 }

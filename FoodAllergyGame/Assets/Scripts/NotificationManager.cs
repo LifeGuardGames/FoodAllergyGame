@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// NotificationManager is a class that handles a queue of Notifications
@@ -71,8 +72,16 @@ public class NotificationManager : Singleton<NotificationManager> {
 			if(SceneManager.GetActiveScene().name == SceneUtils.START) {
 				StartManager.Instance.ShopEntranceUIController.ToggleClickable(true);
 				StartManager.Instance.ChallengeMenuEntranceUIController.ToggleClickable(true);
-				StartManager.Instance.challengeMenuEntranceUIController.ToggleClickable(true);
+
+				// Enable buttons
 				StartManager.Instance.replayTutButton.SetActive(true);
+				StartManager.Instance.musicButton.GetComponent<PositionTweenToggle>().Show();
+				StartManager.Instance.soundButton.GetComponent<PositionTweenToggle>().Show();
+				StartManager.Instance.musicButton.GetComponent<Toggle>().isOn = !AudioManager.Instance.isMusicOn;
+				StartManager.Instance.soundButton.GetComponent<Toggle>().isOn = !AudioManager.Instance.isSoundEffectsOn;
+				StartManager.Instance.musicButton.GetComponent<Toggle>().onValueChanged.AddListener((value) => AudioManager.Instance.ToggleMusic(!value));
+				StartManager.Instance.soundButton.GetComponent<Toggle>().onValueChanged.AddListener((value) => AudioManager.Instance.ToggleSound(!value));
+
 				if(TierManager.Instance.CurrentTier == 1) {
 					AnalyticsManager.Instance.NotificationFunnel();
 				}
@@ -86,9 +95,9 @@ public class NotificationManager : Singleton<NotificationManager> {
 				// Check if you need to load beacon for more crates
 				if(TierManager.Instance.CurrentTier == 6 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates) {
 					if(StartManager.Instance.beaconNode.transform.childCount == 0) {
-						Debug.Log("LOADING BEACON");
 						GameObject beacon = Resources.Load("Beacon") as GameObject;
 						GameObjectUtils.AddChild(StartManager.Instance.beaconNode, beacon);
+						HUDManager.Instance.ToggleBeaconLock(true);
 					}
 				}
 			}
@@ -177,9 +186,9 @@ public class NotificationManager : Singleton<NotificationManager> {
 			}
 		}
 	}
-	//void OnLevelWasLoaded(int level) {
-	//	if(level == 2) {
-			//RebuildQueue();
-	//	}
-//	}
+
+	public void SkipNotifcation() {
+		notificationQueue.Clear();
+		TryNextNotification();
+	}
 }

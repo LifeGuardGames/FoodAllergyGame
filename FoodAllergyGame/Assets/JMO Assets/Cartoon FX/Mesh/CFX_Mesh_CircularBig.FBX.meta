@@ -15,7 +15,7 @@ ModelImporter:
     materialName: 1
     materialSearch: 0
   animations:
-    legacyGenerateAnimations: 4
+    legacyGenerateAnimations: 0
     bakeSimulation: 0
     animationCompression: 1
     animationRotationError: .5

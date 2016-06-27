@@ -14,7 +14,7 @@
   
   <Behav ID="BehavFlow02">
     <Name>BehavTableSmasher</Name>
-    <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEating,BehavWaitForCheck,BehavTableSmasherNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavNotifyLeave</BehavList>
+    <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEating,BehavWaitForCheck,BehavTableSmasherNotifyLeave,BehavAllergyAttack,BehavTableSmasherSaved,BehavTableSmasherHospital,BehavNotifyLeave</BehavList>
   </Behav>
   
   <Behav ID="BehavFlow03">
@@ -39,7 +39,7 @@
   
   <Behav ID="BehavFlow07">
     <Name>HospitalRunner</Name>
-    <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEating,BehavWaitForCheck,BehavNotifyLeave,BehavHospitalRunnerAllergyAttack,BehavSaved,BehavHospital</BehavList>
+    <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEating,BehavSneakOutWaitForCheck,BehavNotifyLeave,BehavHospitalRunnerAllergyAttack,BehavSaved,BehavHospital</BehavList>
   </Behav>
   
   <Behav ID="BehavFlow08">

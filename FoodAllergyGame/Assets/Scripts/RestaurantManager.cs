@@ -24,7 +24,7 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 	
 	public List<GameObject> sickCustomers;
 
-	protected List<GameObject> tableList = new List<GameObject>();
+	public List<GameObject> tableList = new List<GameObject>();
 	public List<GameObject> TableList{
 		get{ return tableList; }
 	}
@@ -86,7 +86,6 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 	public virtual void StartPhase() {
 		// inits the lists of resturantmanager
 		Init();
-		MiddlePhase();
 	}
 
 	public abstract void Init();
@@ -97,10 +96,10 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 		foreach(DecoLoader dec in deco) {
 			dec.ResturantInit();
 		}
-		Table[] tab = GameObject.FindObjectsOfType<Table>();
-		foreach(Table _tab in tab) {
-			_tab.Init();
-		}
+	//	Table[] tab = GameObject.FindObjectsOfType<Table>();
+	//	foreach(Table _tab in tab) {
+	//		_tab.Init();
+	//	}
 		EndPhase();
 	}
 	// end phase runs start day
@@ -246,4 +245,7 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 	public virtual void IncompleteQuitAnalytics() {
 	}
 	#endregion
+	public void ClearTableList() {
+		tableList.Clear();
+	}
 }

@@ -138,7 +138,7 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 		// Or ... a non-consumable product has been purchased by this user.
 		if(String.Equals(args.purchasedProduct.definition.id, kProductIDPro, StringComparison.Ordinal)) {
 			Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-
+			Amplitude.Instance.logRevenue(3.99);
 			StartManager.Instance.UnlockMoreCratesAndShowUI();
         }
 		// Or ... an unknown product has been purchased by this user. Fill in additional products here.

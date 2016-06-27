@@ -16,6 +16,6 @@
   <Constant Name="VIPID" Type="String" Value="VIPBlackHole" Debug="Deco"> </Constant>
   <Constant Name="PlayAreaOn" Type="Bool" Value="False" Debug="Deco"> </Constant>
   <Constant Name="PlayAreaID" Type="String" Value="PlayArea00" Debug="Deco"> </Constant>
-  <Constant Name="FlyThruOn" Type="Bool" Value="False" Debug="Deco"> </Constant>
+  <Constant Name="FlyThruOn" Type="Bool" Value="True" Debug="Deco"> </Constant>
   <Constant Name="FlyThruID" Type="String" Value="FlyThru00" Debug="Deco"> </Constant>
 </Constants>

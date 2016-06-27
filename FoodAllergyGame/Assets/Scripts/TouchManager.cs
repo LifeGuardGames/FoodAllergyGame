@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 public class TouchManager : Singleton<TouchManager> {
@@ -21,7 +20,8 @@ public class TouchManager : Singleton<TouchManager> {
 						// Tap objects NEED to have implemented IWaiterSelection
 						IWaiterSelection waiterSelection = hitObject.collider.gameObject.GetComponent<IWaiterSelection>();
 						if(waiterSelection != null){
-							if(!waiterSelection.IsQueueable()){
+							waiterSelection.OnPressAnim();	// Call press animations if exists
+                            if(!waiterSelection.IsQueueable()){
 								waiterSelection.OnClicked();
 							}
 							else{
@@ -34,17 +34,12 @@ public class TouchManager : Singleton<TouchManager> {
 								}
 							}
 						}
-
-						// Check for other clickable objects
-						IClickObject clickObject = hitObject.collider.gameObject.GetComponent<IClickObject>();
-						if(clickObject != null){
-							clickObject.OnClicked();
-						}
 					}
 				}
 			}
 		}
 	}
+
 	public void PauseQueue(){
 		isPaused = true;
 	}

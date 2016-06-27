@@ -4,6 +4,7 @@ public class ShopEntranceUIController : MonoBehaviour {
 
 	public GameObject tutorialFinger;
 	public Animator decoEntranceAnimator;
+	public GameObject newSprite;
 
 	void Start() {
 		if(DataManager.Instance.GameData.Tutorial.IsSpeDecoTutDone || TierManager.Instance.CurrentTier >= 3) {
@@ -59,5 +60,9 @@ public class ShopEntranceUIController : MonoBehaviour {
 	public void ToggleClickable(bool isClickable){
 		GetComponent<BoxCollider2D>().enabled = isClickable;
 		decoEntranceAnimator.SetBool("IsClickable", isClickable);
+	}
+
+	public void ToggleShowNewItems(bool newItemsExists) {
+		StartManager.Instance.shopEntranceUIController.newSprite.SetActive(newItemsExists);
 	}
 }
