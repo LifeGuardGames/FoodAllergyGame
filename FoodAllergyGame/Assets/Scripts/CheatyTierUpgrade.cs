@@ -140,7 +140,7 @@ public class CheatyTierUpgrade : MonoBehaviour {
 		DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
 		DataManager.Instance.GameData.Cash.LastSeenTotalCash = 45200;
 		DataManager.Instance.GameData.Cash.TotalCash = 45700;
-		Debug.Log(CashManager.Instance.TotalCash + " " + CashManager.Instance.LastSeenTotalCash);
+//		Debug.Log(CashManager.Instance.TotalCash + " " + CashManager.Instance.LastSeenTotalCash);
 		DataManager.Instance.GameData.Tutorial.IsSpeDecoTutDone =true;
 		DataManager.Instance.GameData.Challenge.IsFirstTimeChallengeEntrance = false;
         DataManager.Instance.GameData.Tutorial.IsMenuPlanningFingerTutDone = true;

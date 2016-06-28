@@ -148,7 +148,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	}
 
 	public void OnGameOverButtonClicked() {
-		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START, showFoodTip: true);
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START, showRandomTip: true);
 	}
 
 	private bool IsTokenCorrect(int finalSlotIndex) {
