@@ -74,10 +74,11 @@ public class DataManager : Singleton<DataManager> {
 		GameData.Session.start = System.DateTime.Now;
 		GameData.Session.sessionCount++;
 		Amplitude amplitude = Amplitude.Instance;
-
-		//Live Amplitude
 		amplitude.logging = true;
 		amplitude.init("e89e9e9238807713d8a0fccf640e6df5");
+
+		//amplitude.logging = true;
+		//amplitude.init("9196f4d945c306a45a54b9fb8577c017");
 
 		//Dev Amplitude
 		//amplitude.logging = true;

@@ -239,7 +239,7 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 		if(!dayOver) {
 			IncompleteQuitAnalytics();
 		}
-		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START, showRandomTip: true);
 	}
 
 	public virtual void IncompleteQuitAnalytics() {

@@ -204,10 +204,10 @@ public class StartManager : Singleton<StartManager> {
 		TurnOffEntrances();
 		// Check if special tutorial is set, load it as a challenge directly
 		if(!string.IsNullOrEmpty(DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge)) {
-			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, showFoodTip: true);
+			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, showRandomTip: true);
 		}
 		else {
-			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.MENUPLANNING, "LoadingKeyMenu", "LoadingImageMenu");
+			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.MENUPLANNING, showRandomTip: true);
 		}
 	}
 
@@ -220,7 +220,7 @@ public class StartManager : Singleton<StartManager> {
 	public void ChallengeMenuButtonClicked() {
 		DataManager.Instance.GameData.Challenge.IsFirstTimeChallengeEntrance = false;
 		TurnOffEntrances();
-		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.CHALLENGEMENU, showFoodTip: true);
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.CHALLENGEMENU, showRandomTip: true);
 	}
 
 	public void CheatyScene() {
@@ -244,7 +244,7 @@ public class StartManager : Singleton<StartManager> {
 	public void OnLaunchTutorialButton() {
 		DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut1";
 		TurnOffEntrances();
-        LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, "LoadingKeyTutorial", showFoodTip: false);
+        LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, "LoadingKeyTutorial", showRandomTip: false);
 	}
 
 	// Called from AgeAskController

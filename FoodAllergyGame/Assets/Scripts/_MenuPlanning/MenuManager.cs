@@ -213,7 +213,7 @@ public class MenuManager : Singleton<MenuManager>{
 			}
 
 			FoodManager.Instance.GenerateMenu(selectedMenuStringList);
-			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT);
+			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, showRandomTip:true);
 		}
 		else{
 			Debug.LogWarning("Menu not complete!");

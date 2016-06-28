@@ -514,6 +514,9 @@ public class RestaurantManagerChallenge : RestaurantManager{
 
 	public void DoWePlayTutorial(bool answer) {
 		hasAskedTutorial = true;
+		if(answer == false && DataManager.Instance.GameData.Tutorial.IsTutorial1Done) {
+			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
+		}
 		if(answer == false) {
 			AnalyticsManager.Instance.TutorialFunnel("Finished tut day, 2 guided customers");
 			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut2";
