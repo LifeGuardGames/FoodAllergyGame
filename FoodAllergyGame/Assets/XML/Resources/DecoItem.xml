@@ -32,7 +32,7 @@
 		<SpriteName>RestTableBasicRed</SpriteName>
 		<Tier>0</Tier>
 	</DecoItem>
-     <DecoItem ID = "TableSeaBlank">
+  <DecoItem ID = "TableSeaBlank">
     <Type>Table</Type>
     <Price>800</Price>
     <TitleKey>TableSeaBlank</TitleKey>
@@ -105,12 +105,12 @@
     <Tier>34</Tier>
   </DecoItem>
 
-  <DecoItem ID = "TableSeaStars">
+  <DecoItem ID = "TableSeaAlt">
     <Type>Table</Type>
     <Price>2400</Price>
-    <TitleKey>TableSeaStars</TitleKey>
-    <DescriptionKey>TableSeaStarsDesc</DescriptionKey>
-    <SpriteName>RestTableSeaStars</SpriteName>
+    <TitleKey>TableSeaAlt</TitleKey>
+    <DescriptionKey>TableSeaAltDesc</DescriptionKey>
+    <SpriteName>RestTableSeaAlt</SpriteName>
     <Tier>23</Tier>
   </DecoItem>
   
