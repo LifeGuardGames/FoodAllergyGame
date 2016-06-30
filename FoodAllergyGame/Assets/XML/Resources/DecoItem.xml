@@ -148,7 +148,7 @@
 		<SpriteName>RestFloorBasicRed</SpriteName>
 		<Tier>0</Tier>
 	</DecoItem>
-      <DecoItem ID = "FloorSeaRed">
+   <DecoItem ID = "FloorSea">
 		<Type>Floor</Type>
 		<Price>3000</Price>
 		<TitleKey>FloorSeaRed</TitleKey>

@@ -21,6 +21,18 @@ public class CustomerUIController : MonoBehaviour {
 		uiCanvas.sortingOrder = canvasSortingOrder;
 	}
 
+	public void LosingHeart(int satisfaction) {
+		if(satisfaction == 1) {
+			satisfaction1.gameObject.GetComponent<Animation>().Play("HeartFlash");
+		}
+		else if(satisfaction == 2) {
+			satisfaction2.gameObject.GetComponent<Animation>().Play("HeartFlash");
+		}
+		else if(satisfaction == 3) {
+			satisfaction3.gameObject.GetComponent<Animation>().Play("HeartFlash");
+		}
+	}
+
 	/// <summary>
 	/// Update absolute satisfaction
 	/// </summary>

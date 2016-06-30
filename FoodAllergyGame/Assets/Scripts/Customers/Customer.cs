@@ -385,11 +385,18 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// When completed removes one satisfaction from that customer
 	IEnumerator SatisfactionTimer(){
+		StartCoroutine(BlinkHeart());
 		yield return new WaitForSeconds(attentionSpan);
 		UpdateSatisfaction(-1);
 		
 		// if we still have satisfaction left we start the timer again
 		StartCoroutine("SatisfactionTimer");
+	}
+
+	IEnumerator BlinkHeart() {
+		yield return new WaitForSeconds(attentionSpan * 0.5f);
+		Debug.Log("good idea");
+		customerUI.LosingHeart(satisfaction);
 	}
 
 
