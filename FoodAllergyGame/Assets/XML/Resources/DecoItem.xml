@@ -14,27 +14,35 @@
 		<TitleKey>TableBasicGreen</TitleKey>
 		<DescriptionKey>TableBasicGreenDesc</DescriptionKey>
 		<SpriteName>RestTableBasicGreen</SpriteName>
-		<Tier>2</Tier>
+		<Tier>0</Tier>
 	</DecoItem>
 	<DecoItem ID = "TableBasicPurple">
 		<Type>Table</Type>
-		<Price>900</Price>
+		<Price>400</Price>
 		<TitleKey>TableBasicPurple</TitleKey>
 		<DescriptionKey>TableBasicPurpleDesc</DescriptionKey>
 		<SpriteName>RestTableBasicPurple</SpriteName>
-		<Tier>4</Tier>
+		<Tier>0</Tier>
 	</DecoItem>
 	<DecoItem ID = "TableBasicRed">
 		<Type>Table</Type>
-		<Price>1000</Price>
+		<Price>400</Price>
 		<TitleKey>TableBasicRed</TitleKey>
 		<DescriptionKey>TableBasicRedDesc</DescriptionKey>
 		<SpriteName>RestTableBasicRed</SpriteName>
-		<Tier>6</Tier>
+		<Tier>0</Tier>
 	</DecoItem>
+     <DecoItem ID = "TableSeaBlank">
+    <Type>Table</Type>
+    <Price>800</Price>
+    <TitleKey>TableSeaBlank</TitleKey>
+    <DescriptionKey>TableSeaBlankDesc</DescriptionKey>
+    <SpriteName>RestTableSeaBlank</SpriteName>
+    <Tier>2</Tier>
+  </DecoItem>
   <DecoItem ID = "TableWizdyPetsBlank">
     <Type>Table</Type>
-    <Price>1400</Price>
+    <Price>900</Price>
     <TitleKey>TableWizdyPetsBlank</TitleKey>
     <DescriptionKey>TableWizdyPetsBlankDesc</DescriptionKey>
     <SpriteName>RestTableWizdyPetsBlank</SpriteName>
@@ -96,6 +104,16 @@
     <SpriteName>RestTableFancyBanner</SpriteName>
     <Tier>34</Tier>
   </DecoItem>
+
+  <DecoItem ID = "TableSeaStars">
+    <Type>Table</Type>
+    <Price>2400</Price>
+    <TitleKey>TableSeaStars</TitleKey>
+    <DescriptionKey>TableSeaStarsDesc</DescriptionKey>
+    <SpriteName>RestTableSeaStars</SpriteName>
+    <Tier>23</Tier>
+  </DecoItem>
+  
 	
 	
 	<DecoItem ID = "FloorBasicAqua">
@@ -112,23 +130,31 @@
 		<TitleKey>FloorBasicGreen</TitleKey>
 		<DescriptionKey>FloorBasicGreenDesc</DescriptionKey>
 		<SpriteName>RestFloorBasicGreen</SpriteName>
-		<Tier>2</Tier>
+		<Tier>0</Tier>
 	</DecoItem>
 	<DecoItem ID = "FloorBasicPurple">
 		<Type>Floor</Type>
-		<Price>1500</Price>
+		<Price>800</Price>
 		<TitleKey>FloorBasicPurple</TitleKey>
 		<DescriptionKey>FloorBasicPurpleDesc</DescriptionKey>
 		<SpriteName>RestFloorBasicPurple</SpriteName>
-		<Tier>4</Tier>
+		<Tier>0</Tier>
 	</DecoItem>
 	<DecoItem ID = "FloorBasicRed">
 		<Type>Floor</Type>
-		<Price>2200</Price>
+		<Price>800</Price>
 		<TitleKey>FloorBasicRed</TitleKey>
 		<DescriptionKey>FloorBasicRedDesc</DescriptionKey>
 		<SpriteName>RestFloorBasicRed</SpriteName>
-		<Tier>6</Tier>
+		<Tier>0</Tier>
+	</DecoItem>
+      <DecoItem ID = "FloorSeaRed">
+		<Type>Floor</Type>
+		<Price>3000</Price>
+		<TitleKey>FloorSeaRed</TitleKey>
+		<DescriptionKey>FloorSeaRedDesc</DescriptionKey>
+		<SpriteName>RestFloorSeaRed</SpriteName>
+		<Tier>8</Tier>
 	</DecoItem>
   <DecoItem ID = "FloorWizdyPetsBlue">
 		<Type>Floor</Type>
@@ -145,6 +171,14 @@
 		<DescriptionKey>FloorWizdyPetsGreenDesc</DescriptionKey>
 		<SpriteName>RestFloorWizdyPetsGreen</SpriteName>
 		<Tier>14</Tier>
+	</DecoItem>
+    <DecoItem ID = "FloorSeaAlt">
+		<Type>Floor</Type>
+		<Price>3600</Price>
+		<TitleKey>FloorSeaAlt</TitleKey>
+		<DescriptionKey>FloorSeaAltDesc</DescriptionKey>
+		<SpriteName>RestFloorSeaAlt</SpriteName>
+		<Tier>19</Tier>
 	</DecoItem>
   <DecoItem ID = "FloorWizdyPetsRed">
 		<Type>Floor</Type>
@@ -211,24 +245,32 @@
 		<TitleKey>KitchenBasicGreen</TitleKey>
 		<DescriptionKey>KitchenBasicGreenDesc</DescriptionKey>
 		<SpriteName>RestKitchenBasicGreen</SpriteName>
-		<Tier>2</Tier>
+		<Tier>0</Tier>
 	</DecoItem>
 	<DecoItem ID = "KitchenBasicPurple">
 		<Type>Kitchen</Type>
-		<Price>700</Price>
+		<Price>300</Price>
 		<TitleKey>KitchenBasicPurple</TitleKey>
 		<DescriptionKey>KitchenBasicPurpleDesc</DescriptionKey>
 		<SpriteName>RestKitchenBasicPurple</SpriteName>
-		<Tier>4</Tier>
+		<Tier>0</Tier>
 	</DecoItem>
 	<DecoItem ID = "KitchenBasicRed">
 		<Type>Kitchen</Type>
-		<Price>900</Price>
+		<Price>300</Price>
 		<TitleKey>KitchenBasicRed</TitleKey>
 		<DescriptionKey>KitchenBasicRedDesc</DescriptionKey>
 		<SpriteName>RestKitchenBasicRed</SpriteName>
-		<Tier>6</Tier>
+		<Tier>0</Tier>
 	</DecoItem>
+  	<DecoItem ID = "KitchenSea">
+    <Type>Kitchen</Type>
+    <Price>600</Price>
+    <TitleKey>KitchenSea</TitleKey>
+    <DescriptionKey>KitchenSeaDesc</DescriptionKey>
+    <SpriteName>RestKitchenSea</SpriteName>
+    <Tier>2</Tier>
+  </DecoItem>
   <DecoItem ID = "KitchenWizdyPetsBlank">
     <Type>Kitchen</Type>
     <Price>1200</Price>
@@ -253,9 +295,17 @@
     <SpriteName>RestKitchenWizdyPetsNinja</SpriteName>
     <Tier>18</Tier>
   </DecoItem>
-  <DecoItem ID = "KitchenWizdyPetsFire">
+    <DecoItem ID = "KitchenSeaAlt">
     <Type>Kitchen</Type>
     <Price>2100</Price>
+    <TitleKey>KitchenSeaAlt</TitleKey>
+    <DescriptionKey>KitchenSeaAltDesc</DescriptionKey>
+    <SpriteName>RestKitchenSeaAlt</SpriteName>
+    <Tier>21</Tier>
+  </DecoItem>
+  <DecoItem ID = "KitchenWizdyPetsFire">
+    <Type>Kitchen</Type>
+    <Price>3100</Price>
     <TitleKey>KitchenWizdyPetsFire</TitleKey>
     <DescriptionKey>KitchenWizdyPetsFireDesc</DescriptionKey>
     <SpriteName>RestKitchenWizdyPetsFire</SpriteName>
@@ -293,7 +343,8 @@
     <SpriteName>RestKitchenFancyBanner</SpriteName>
     <Tier>35</Tier>
   </DecoItem>
-	
+
+
   
   <DecoItem ID = "VIPBasic">
 		<Type>VIP</Type>

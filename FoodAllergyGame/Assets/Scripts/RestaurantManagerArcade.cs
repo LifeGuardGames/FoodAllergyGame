@@ -163,7 +163,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 				DataManager.Instance.GameData.DayTracker.DaysPlayed++;
 				DataManager.Instance.DaysInSession++;
 				
-					DataManager.Instance.GameData.DayTracker.AvgDifficulty = ((DataManager.Instance.GameData.DayTracker.AvgDifficulty + satisfactionAI.DifficultyLevel) / 2);
+				DataManager.Instance.GameData.DayTracker.AvgDifficulty = ((DataManager.Instance.GameData.DayTracker.AvgDifficulty + satisfactionAI.DifficultyLevel) / 2);
 				// Save data here
 					int dayNetCash;
 				if(checkBonus()) {
