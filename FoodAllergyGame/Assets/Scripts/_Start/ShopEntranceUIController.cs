@@ -7,7 +7,7 @@ public class ShopEntranceUIController : MonoBehaviour {
 	public GameObject newSprite;
 
 	void Start() {
-		if(DataManager.Instance.GameData.Tutorial.IsSpeDecoTutDone || TierManager.Instance.CurrentTier >= 3) {
+		if(TierManager.Instance.CurrentTier >= 1) {
 			bool isFirstTimeShop = DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance;
 			StartManager.Instance.isShopAppearHideDinerOverride = isFirstTimeShop;
 			Show(isFirstTimeShop);

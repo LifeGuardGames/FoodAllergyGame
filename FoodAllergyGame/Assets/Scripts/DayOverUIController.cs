@@ -8,6 +8,7 @@ public class DayOverUIController : MonoBehaviour {
 	public Text textMenuCost;
 	public Text textEarningsNet;
 	public Text textBonus;
+	public Image imgBonus;
 	public ParticleSystem dayOverParticle;
 
 	public void ShowPanel() {
@@ -50,6 +51,9 @@ public class DayOverUIController : MonoBehaviour {
 			case "PlayArea":
 				textBonus.text = RestaurantManager.Instance.PlayAreaUses.ToString() + " / " + temp.Num.ToString();
 				break;
+		}
+		if(RestaurantManagerArcade.Instance.GetComponent<RestaurantManagerArcade>().checkBonus()) {
+
 		}
 	}
 }
