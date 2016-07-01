@@ -167,7 +167,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 				// Save data here
 					int dayNetCash;
 				if(checkBonus()) {
-					dayNetCash = dayEarnedCash + Medic.Instance.MedicCost + 100;
+					dayNetCash = dayEarnedCash + Medic.Instance.MedicCost + 200;
 				}
 				else {
 					dayNetCash = dayEarnedCash + Medic.Instance.MedicCost;
@@ -255,7 +255,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 	}
 
 	public bool checkBonus() {
-		ImmutableDataBonusObjective temp = DataLoaderBonusObjective.GetData(eventData.ObjectiveID);
+		ImmutableDataBonusObjective temp = DataLoaderBonusObjective.GetData(DataManager.Instance.GetBonus());
 		switch(temp.ObjType) {
 			case "Cash":
 				if(temp.Num < dayEarnedCash) {
@@ -263,12 +263,12 @@ public class RestaurantManagerArcade : RestaurantManager {
 				}
 				break;
 			case "AllergyAttack":
-				if(temp.Num <= savedCustomers) {
+				if(temp.Num >= savedCustomers) {
 					return true;
 				}
 				break;
 			case "Missed":
-				if(temp.Num > satisfactionAI.MissingCustomers) {
+				if(temp.Num < satisfactionAI.MissingCustomers) {
 					return true;
 				}
 				break;
@@ -284,6 +284,16 @@ public class RestaurantManagerArcade : RestaurantManager {
 				break;
 			case "peanut":
 				if(temp.Num < wheatServed) {
+					return true;
+				}
+				break;
+			case "VIP":
+				if(temp.Num < vipUses) {
+					return true;
+				}
+				break;
+			case "PlayArea":
+				if(temp.Num < playAreaUses) {
 					return true;
 				}
 				break;

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Lists>
+  <BList ID ="BonusList00">
+    <List>Objective00,Objective01,Objective02,Objective08,Objective10,Objective11,Objective15,Objective19</List>
+  </BList>
+  <BList ID ="BonusList01">
+    <List>Objective03,Objective04,Objective05,Objective08,Objective10,Objective11,Objective15,Objective19,Objective12,Objective16,Objective20,Objective23,Objective24</List>
+  </BList>
+  <BList ID ="BonusList02">
+    <List>Objective03,Objective04,Objective05,Objective06,Objective07,Objective08,Objective09,Objective10,Objective11,Objective15,Objective19,Objective12,Objective13,Objective14,Objective16,Objective17,Objective18,Objective20,Objective22,Objective21,Objective23,Objective24,Objective25,Objective26</List>
+  </BList>
+</Lists>

@@ -13,6 +13,7 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 	public bool dayOver = false;				// bool controlling customer spawning depending on the stage of the day
 	public int actTables;
 	public int medicUsed;
+	public int numOfAllergyAttacks;
 	protected int dayEarnedCash;				// The cash that is earned for the day
 	public int DayEarnedCash{
 		get{ return dayEarnedCash; }

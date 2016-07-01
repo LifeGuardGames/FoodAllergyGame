@@ -65,6 +65,7 @@ public class StartManager : Singleton<StartManager> {
 
 			if(DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent) {
 				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = TierManager.Instance.GetNewEvent();
+				DataManager.Instance.GameData.RestaurantEvent.CurrentBonus = TierManager.Instance.GetBonusUnlocked();
 				// Lock the generate event bool until day is completed
 				DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = false;
 			}
