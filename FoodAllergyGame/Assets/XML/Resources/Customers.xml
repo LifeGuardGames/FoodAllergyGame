@@ -267,4 +267,52 @@
     <Tier>-1</Tier>
     <Flow>BehavFlow22</Flow>
   </Customer>
+  <Customer ID="CustomerTutPlayful">
+    <CustomerNameKey>CustomerPlayful</CustomerNameKey>
+    <CustomerDesc>CustomerPlayfulDesc</CustomerDesc>
+    <SpriteName>ItemCustomerPlayful</SpriteName>
+    <Script>CustomerPlayful</Script>
+    <Tier>4</Tier>
+    <Flow>BehavFlow00</Flow>
+  </Customer>
+  <Customer ID="CustomerTutTableSmasher">
+    <CustomerNameKey>CustomerTableSmasher</CustomerNameKey>
+    <CustomerDesc>CustomerTableSmasherDesc</CustomerDesc>
+    <SpriteName>ItemCustomerTableSmasher</SpriteName>
+    <Script>CustomerTableSmasher</Script>
+    <Tier>6</Tier>
+    <Flow>BehavFlow00</Flow>
+  </Customer>
+  <Customer ID="CustomerHospitalRunner">
+    <CustomerNameKey>CustomerHospitalRunner</CustomerNameKey>
+    <CustomerDesc>CustomerHospitalRunnerDesc</CustomerDesc>
+    <SpriteName>ItemCustomerHospitalRunner</SpriteName>
+    <Script>CustomerHospitalRunner</Script>
+    <Tier>11</Tier>
+    <Flow>BehavFlow00</Flow>
+  </Customer>
+  <Customer ID="CustomerTutEater">
+    <CustomerNameKey>CustomerEater</CustomerNameKey>
+    <CustomerDesc>CustomerEaterDesc</CustomerDesc>
+    <SpriteName>ItemCustomerEater</SpriteName>
+    <Script>CustomerEater</Script>
+    <Tier>13</Tier>
+    <Flow>BehavFlow00</Flow>
+  </Customer>
+  <Customer ID="CustomerTutBlackOut">
+    <CustomerNameKey>CustomerBlackOut</CustomerNameKey>
+    <CustomerDesc>CustomerBlackOutDesc</CustomerDesc>
+    <SpriteName>ItemCustomerBlackOut</SpriteName>
+    <Script>CustomerBlackOut</Script>
+    <Tier>15</Tier>
+    <Flow>BehavFlow00</Flow>
+  </Customer>
+  <Customer ID="CustomerTutGossiper">
+    <CustomerNameKey>CustomerGossiper</CustomerNameKey>
+    <CustomerDesc>CustomerGossiperDesc</CustomerDesc>
+    <SpriteName>ItemCustomerGossiper</SpriteName>
+    <Script>CustomerGossiper</Script>
+    <Tier>17</Tier>
+    <Flow>BehavFlow00</Flow>
+  </Customer>
 </Customers>

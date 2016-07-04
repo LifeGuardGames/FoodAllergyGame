@@ -10,7 +10,7 @@ public class DinerEntranceUIController : MonoBehaviour {
 	void Start() {
 		// Populate star cores list from data
 		for(int i = 0; i < starCoreList.Count; i++) {
-			if(i < DataManager.Instance.GameData.Challenge.StarCoresEarned) {
+			if(i < DataManager.Instance.GameData.Challenge.StarCoresEarned || DataManager.Instance.GameData.Tutorial.IsComicViewed) {
 				starCoreList[i].enabled = true;
 			}
 			else {

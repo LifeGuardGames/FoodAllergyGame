@@ -594,9 +594,9 @@
     <CustomerStartingHearts>3</CustomerStartingHearts>
     <NextChallenge>TuT2</NextChallenge>
     <Tables>4</Tables>
-    <PlayArea>0</PlayArea>
-    <Vip>0</Vip>
-    <Flythru>0</Flythru>
+    <PlayArea>PlayArea00</PlayArea>
+    <Vip>VIPBasic</Vip>
+    <Flythru>FlyThru00</Flythru>
     <IsBossChallenge>false</IsBossChallenge>
   </Challenge>
 
@@ -607,19 +607,19 @@
     <Tier>0</Tier>
     <KitchenTimer>3</KitchenTimer>
     <CustomerSet>CustomerSetT2</CustomerSet>
-    <CustomerTimer>2</CustomerTimer>
-    <DayLength>30</DayLength>
+    <CustomerTimer>3</CustomerTimer>
+    <DayLength>72</DayLength>
     <Allergy>None</Allergy>
     <WaiterMove>0</WaiterMove>
     <RestMode>0</RestMode>
-    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <CustomerSpawnTimer>8</CustomerSpawnTimer>
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
     <NextChallenge>ChallengeTut3</NextChallenge>
     <Tables>4</Tables>
-    <PlayArea>0</PlayArea>
-    <Vip>0</Vip>
-    <Flythru>0</Flythru>
+    <PlayArea>PlayArea00</PlayArea>
+    <Vip>VIPBasic</Vip>
+    <Flythru>FlyThru00</Flythru>
     <IsBossChallenge>false</IsBossChallenge>
   </Challenge>
 
