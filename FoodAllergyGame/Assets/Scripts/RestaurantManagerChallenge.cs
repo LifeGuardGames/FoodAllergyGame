@@ -34,7 +34,6 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		if(chall.ID == "ChallengeTut1" && !hasAskedTutorial) {
 			AskToPlayTutorial();
 		}
-
 		else {
 			if(chall.ChallengeType != ChallengeTypes.Tutorial) {
 				scoreBoard.gameObject.SetActive(true);
@@ -43,6 +42,9 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			if(chall.PlayArea != "0" && PlayArea.Instance == null) {
 				play.LoadDeco(DataLoaderDecoItem.GetData(chall.PlayArea));
 				isPlayarea = true;
+			}
+			else if (PlayArea.Instance != null){
+					PlayArea.Instance.OpenUpSpots();
 			}
 			if(chall.VipTable != "0" && isVip == false) {
 				vip.LoadDeco(DataLoaderDecoItem.GetData(chall.VipTable));
@@ -266,14 +268,16 @@ public class RestaurantManagerChallenge : RestaurantManager{
 					customerSpawnTimer = 0;
 					RestaurantManager.Instance.GetTable(2).inUse = false;
 					RestaurantManager.Instance.GetTable(3).inUse = false;
+					RestaurantManager.Instance.GetTable(4).inUse = false;
 					pauseUI.isActive = true;
 					restaurantUI.ResetDoor();
 					StartDay();
 				}
 				else {
 					if(TierManager.Instance.CurrentTier == 0) {
-						DataManager.Instance.GameData.Cash.TotalCash = 850;
-					}
+						DataManager.Instance.GameData.Cash.TotalCash = 500;
+						DataManager.Instance.GameData.Cash.CurrentCash = 500;
+                    }
 					if(chall.ID == "TutDecoPlayArea") {
 						AnalyticsManager.Instance.TutorialFunnel("Play area Tut Completed");
 						DataManager.Instance.GameData.Tutorial.IsPlayAreaTutDone = true;
@@ -300,7 +304,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 					else {
 						restaurantUI.ChallengeComplete(challengeAI.Score, dayEarnedCash, challengeAI.NegativeCash);
 					}
-					DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "";
+					
 					// Save game data
 					DataManager.Instance.SaveGameData();
 				}

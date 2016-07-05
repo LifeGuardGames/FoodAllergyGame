@@ -98,4 +98,9 @@ public class PlayArea : Singleton<PlayArea>, IWaiterSelection {
 		yield return new WaitForSeconds(5.0f);
 		isBroken = false;
 	}
+
+	public void OpenUpSpots() {
+		spotAvailabilityList[0] = true;
+		spotAvailabilityList[1] = true;
+	}
 }

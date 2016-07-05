@@ -17,7 +17,7 @@ public class ComicManager : MonoBehaviour {
 			SceneManager.LoadScene(SceneUtils.START);
 		}
 		else {
-			ComicStep(1);
+			ComicStep(2);
 		}
 	}
 
