@@ -20,7 +20,13 @@ public class DinerEntranceUIController : MonoBehaviour {
 
 		// Populate star base list from tiers
 		for(int i = 0; i < starBaseList.Count; i++) {
-			Sprite loadedSprite = SpriteCacheManager.GetStarFillSpriteData(TierManager.Instance.CurrentTier, 6, i);
+			Sprite loadedSprite;
+            if(!DataManager.Instance.GameData.Tutorial.IsComicViewed) {
+				 loadedSprite = SpriteCacheManager.GetStarFillSpriteData(36, 6, i);
+            }
+			else {
+				 loadedSprite = SpriteCacheManager.GetStarFillSpriteData(TierManager.Instance.CurrentTier, 6, i);
+			}
 			if(loadedSprite != null) {
 				starBaseList[i].sprite = loadedSprite;
 			}

@@ -20,6 +20,7 @@ public class CustomerTutorial : Customer{
 			RestaurantManager.Instance.GetTable(1).inUse = true;
 			RestaurantManager.Instance.GetTable(2).inUse = true;
 			RestaurantManager.Instance.GetTable(3).inUse = true;
+			RestaurantManager.Instance.GetTable(4).inUse = true;
 		}
 		else {
 			allergy[0] = Allergies.Peanut;

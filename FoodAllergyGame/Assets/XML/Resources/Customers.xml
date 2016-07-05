@@ -283,7 +283,7 @@
     <Tier>6</Tier>
     <Flow>BehavFlow00</Flow>
   </Customer>
-  <Customer ID="CustomerHospitalRunner">
+  <Customer ID="CustomerTutHospitalRunner">
     <CustomerNameKey>CustomerHospitalRunner</CustomerNameKey>
     <CustomerDesc>CustomerHospitalRunnerDesc</CustomerDesc>
     <SpriteName>ItemCustomerHospitalRunner</SpriteName>

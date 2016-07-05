@@ -86,7 +86,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		else{
 			// Check for fly thru table
 			TableFlyThru flyThruTable = RestaurantManager.Instance.GetFlyThruTable();
-			if((flyThruTable != null) && UnityEngine.Random.Range(0,10) > 3 && !flyThruTable.inUse ){
+			if((flyThruTable != null) && UnityEngine.Random.Range(0,10) > 3 && !flyThruTable.inUse){
 				flyThruTable.inUse = true;
 				transform.SetParent(flyThruTable.seat);
 				transform.localPosition = Vector3.zero;
@@ -172,7 +172,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		else {
 			// Check for fly thru table
 			TableFlyThru flyThruTable = RestaurantManager.Instance.GetFlyThruTable();
-			if((flyThruTable != null) && UnityEngine.Random.Range(0, 10) > 3 && !flyThruTable.inUse || mode.ID == "TutDecoFlyThru") {
+			if((flyThruTable != null) && UnityEngine.Random.Range(0, 10) > 3 && !flyThruTable.inUse && !RestaurantManager.Instance.isTutorial || mode.ID == "TutDecoFlyThru") {
 				flyThruTable.inUse = true;
 				transform.SetParent(flyThruTable.seat);
 				transform.localPosition = Vector3.zero;
@@ -385,7 +385,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// When completed removes one satisfaction from that customer
 	IEnumerator SatisfactionTimer(){
-		StartCoroutine(BlinkHeart());
+		StopCoroutine("BlinkHeart");
+		StartCoroutine("BlinkHeart");
 		yield return new WaitForSeconds(attentionSpan);
 		UpdateSatisfaction(-1);
 		
@@ -394,8 +395,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	}
 
 	IEnumerator BlinkHeart() {
+		customerUI.StopLosingHeart(satisfaction);
 		yield return new WaitForSeconds(attentionSpan * 0.5f);
-		Debug.Log("good idea");
 		customerUI.LosingHeart(satisfaction);
 	}
 
