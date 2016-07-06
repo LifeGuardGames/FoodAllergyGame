@@ -50,6 +50,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 			}
 			else {
 				isTutorial = true;
+				checkButton.GetComponent<Button>().enabled = false;
 			}
 		}
 		StartGame();
@@ -409,6 +410,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		attempts = 0;
 		UIManager.timer.ResetTimer();
 		// Special case, circumvent new game here
+		checkButton.GetComponent<Button>().enabled = true;
 		UIManager.StartGame();
     }
 	#endregion

@@ -29,6 +29,8 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	private float dragZValue;
 	private Vector3 startPosition;
 	private Transform startParent;
+	public GameObject indemandParticle;
+	public GameObject bannedParticle;
 
 	private bool inFoodStockSlot = true;
 	public bool InFoodStockSlot{
@@ -59,6 +61,13 @@ public class FoodStockButton : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 			default:
 				// Dont do anything
 				break;
+		}
+		if(foodData == FoodManager.Instance.specialFood) {
+			indemandParticle.gameObject.SetActive(true);
+		}
+
+		else if(foodData == FoodManager.Instance.bannedFood) {
+			bannedParticle.gameObject.SetActive(true);
 		}
 
 		slotNode.sprite = SpriteCacheManager.GetSlotSpriteData(foodData.Reward);
