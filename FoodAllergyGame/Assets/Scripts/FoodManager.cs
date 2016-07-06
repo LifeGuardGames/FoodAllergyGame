@@ -129,11 +129,14 @@ public class FoodManager : Singleton<FoodManager>{
 	#endregion
 
 	public void ChooseSpecialFood() {
+		Debug.Log("called");
 		int rand = Random.Range(0, foodStockList.Count);
+		Debug.Log(foodStockList[rand].ID);
 		specialFood = foodStockList[rand];
 		while(foodStockList[rand] == specialFood) {
 			rand = Random.Range(0, foodStockList.Count);
 		}
+		Debug.Log(foodStockList[rand].ID);
 		bannedFood = foodStockList[rand];
 	}
 }

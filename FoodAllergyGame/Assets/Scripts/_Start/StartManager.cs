@@ -196,7 +196,8 @@ public class StartManager : Singleton<StartManager> {
 		unlockedFoodStock.Reverse();
 		// Populate in FoodManager for use in MenuPlanning
 		FoodManager.Instance.FoodStockList = unlockedFoodStock;
-	}
+		FoodManager.Instance.ChooseSpecialFood();
+    }
 
 	public void OnPlayButtonClicked() {
 		if(DataManager.Instance.GameData.Tutorial.IsTutorial1Done) {
