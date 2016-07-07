@@ -102,4 +102,8 @@ public class EpiPenGameToken : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 			EpiPenGameManager.Instance.TokenPlaced();
 		}
 	}
+
+	public Transform GetStartPosition() {
+		return startParent;
+	}
 }

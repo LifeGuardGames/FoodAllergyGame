@@ -6,11 +6,10 @@ public class JukeBox : Singleton<JukeBox>, IWaiterSelection {
 	public GameObject waiterNode;
 
 	public void OnWaiterArrived() {
-		AudioManager.Instance.JukeBox();
 	}
 
 	public void OnClicked() {
-		Waiter.Instance.FindRoute(waiterNode, this);
+		AudioManager.Instance.JukeBox();
 	}
 
 	public bool IsQueueable() {
