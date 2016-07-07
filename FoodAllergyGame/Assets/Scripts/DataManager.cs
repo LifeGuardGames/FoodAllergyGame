@@ -78,7 +78,6 @@ public class DataManager : Singleton<DataManager> {
 		//amplitude.logging = true;
 		//amplitude.init("e89e9e9238807713d8a0fccf640e6df5");
 		//Dev Amplitude
-
 		amplitude.logging = true;
 		amplitude.init("9196f4d945c306a45a54b9fb8577c017");
 

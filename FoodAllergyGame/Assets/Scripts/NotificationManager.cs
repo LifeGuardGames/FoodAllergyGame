@@ -85,6 +85,11 @@ public class NotificationManager : Singleton<NotificationManager> {
 				if(TierManager.Instance.CurrentTier == 1) {
 					AnalyticsManager.Instance.NotificationFunnel();
 				}
+				if(TierManager.Instance.CurrentTier >= 1) {
+					bool isFirstTimeShop = DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance;
+					StartManager.Instance.isShopAppearHideDinerOverride = isFirstTimeShop;
+					StartManager.Instance.ShopEntranceUIController.Show(isFirstTimeShop);
+				}
 				// Keep diner unclickable ONLY when first time deco entrance and challenge
 				if(StartManager.Instance.isShopAppearHideDinerOverride) {
 					StartManager.Instance.DinerEntranceUIController.ToggleClickable(false);

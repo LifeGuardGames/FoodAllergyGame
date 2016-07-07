@@ -304,6 +304,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	// Note: Not capped
 	//TODO Change character animation here???
 	public void SetSatisfaction(int _satisfaction){
+		StopCoroutine("BlinkHeart");
 		satisfaction = _satisfaction;
 		customerUI.UpdateSatisfaction(satisfaction);
 
@@ -320,6 +321,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Note: Not capped
 	public virtual void UpdateSatisfaction(int delta){
+		StopCoroutine("BlinkHeart");
 		// added check incase table 0 is destroyed 
 		if(!RestaurantManager.Instance.isTutorial) {
 			if(RestaurantManager.Instance.GetTable(tableNum) != null) {

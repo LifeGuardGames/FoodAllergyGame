@@ -497,6 +497,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	}
 
 	public override void IncompleteQuitAnalytics() {
+		DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "";
 		AnalyticsManager.Instance.SuperProperties.Remove("Challenge");
 		AnalyticsManager.Instance.TrackGameDayInRestaurantChallenge(dayTimeLeft, TierManager.Instance.CurrentTier, DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge,
 				 challengeAI.MissingCustomers, challengeAI.AvgSatisfaction(),
@@ -521,6 +522,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	public void DoWePlayTutorial(bool answer) {
 		hasAskedTutorial = true;
 		if(answer == false && DataManager.Instance.GameData.Tutorial.IsTutorial1Done) {
+			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "";
 			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
 		}
 		else if(answer == false && !DataManager.Instance.GameData.Tutorial.IsTutorial1Done) {

@@ -38,6 +38,7 @@ public class ComicManager : MonoBehaviour {
 
 	public void SkipComic(int page) {
 		AnalyticsManager.Instance.SkipComic(page);
+		AnalyticsManager.Instance.TutorialFunnel("Finished Comic");
 		DataManager.Instance.GameData.Tutorial.IsComicViewed = true;
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START, showRandomTip: true);
 	}
