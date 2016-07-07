@@ -26,32 +26,32 @@ public class DayOverUIController : MonoBehaviour {
 		textMenuCost.text = medicalExpenses.ToString();
 		textEarningsNet.text = earningsNet.ToString();
 		if(RestaurantManagerArcade.Instance.GetComponent<RestaurantManagerArcade>() != null) {
-			ImmutableDataBonusObjective temp = DataLoaderBonusObjective.GetData(DataManager.Instance.GetBonus());
+			ImmutableDataBonusObjective bonusData = DataLoaderBonusObjective.GetData(DataManager.Instance.GetBonus());
 			textBonus.enabled = true;
-			switch(temp.ObjType) {
+			switch(bonusData.ObjType) {
 				case "Cash":
-					textBonus.text = earningsNet.ToString() + " / " + temp.Num.ToString();
+					textBonus.text = earningsNet.ToString() + " / " + bonusData.Num.ToString();
 					break;
 				case "AllergyAttack":
-					textBonus.text = RestaurantManager.Instance.numOfAllergyAttacks.ToString() + " / " + temp.Num.ToString();
+					textBonus.text = RestaurantManager.Instance.numOfAllergyAttacks.ToString() + " / " + bonusData.Num.ToString();
 					break;
 				case "Missed":
-					textBonus.text = customersMissed.ToString() + " / " + temp.Num.ToString();
+					textBonus.text = customersMissed.ToString() + " / " + bonusData.Num.ToString();
 					break;
 				case "Wheat":
-					textBonus.text = RestaurantManager.Instance.wheatServed.ToString() + " / " + temp.Num.ToString();
+					textBonus.text = RestaurantManager.Instance.wheatServed.ToString() + " / " + bonusData.Num.ToString();
 					break;
 				case "Dairy":
-					textBonus.text = RestaurantManager.Instance.dairyServed.ToString() + " / " + temp.Num.ToString();
+					textBonus.text = RestaurantManager.Instance.dairyServed.ToString() + " / " + bonusData.Num.ToString();
 					break;
 				case "Peanut":
-					textBonus.text = RestaurantManager.Instance.peanutServed.ToString() + " / " + temp.Num.ToString();
+					textBonus.text = RestaurantManager.Instance.peanutServed.ToString() + " / " + bonusData.Num.ToString();
 					break;
 				case "VIP":
-					textBonus.text = RestaurantManager.Instance.VIPUses.ToString() + " / " + temp.Num.ToString();
+					textBonus.text = RestaurantManager.Instance.VIPUses.ToString() + " / " + bonusData.Num.ToString();
 					break;
 				case "PlayArea":
-					textBonus.text = RestaurantManager.Instance.PlayAreaUses.ToString() + " / " + temp.Num.ToString();
+					textBonus.text = RestaurantManager.Instance.PlayAreaUses.ToString() + " / " + bonusData.Num.ToString();
 					break;
 			}
 			if(RestaurantManagerArcade.Instance.GetComponent<RestaurantManagerArcade>().checkBonus()) {
