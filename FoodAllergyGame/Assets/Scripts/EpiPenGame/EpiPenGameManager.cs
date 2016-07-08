@@ -257,7 +257,8 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		GameObject animationTokenAux = GameObjectUtils.AddChildGUI(animationTokenParent.gameObject, tokenPrefab);
 		animationTokenAux.GetComponent<EpiPenGameToken>().AuxInit();
 		animationTokenAux.transform.position = finalSlotList[slotIndex].GetComponent<RectTransform>().position;
-		float moveTime = isSkippingAnimations ? 0f : 0.5f;
+		animationTokenAux.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        float moveTime = isSkippingAnimations ? 0f : 0.5f;
         LeanTween.move(animationTokenAux, animationTokenParent.position, moveTime).setEase(LeanTweenType.easeInOutQuad);
 		LeanTween.scale(animationTokenAux, new Vector3(2f, 2f, 1f), moveTime).setEase(LeanTweenType.easeInOutQuad)
 			.setOnComplete(delegate () { StartCoroutine(PlayAnimation(slotIndex, animationTokenAux)); });
