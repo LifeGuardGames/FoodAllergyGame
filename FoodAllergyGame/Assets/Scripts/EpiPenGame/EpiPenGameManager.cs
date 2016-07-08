@@ -241,7 +241,9 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 
 	public void AnimateEnding(int slotIndex = 0) {
 		isAnimatingEnding = true;
-
+		foreach (EpiPenGameSlot tok in finalSlotList) {
+			tok.GetToken().GetComponent<CanvasGroup>().blocksRaycasts = false;
+		}
 		// Show the skip button on first call
 		if(slotIndex == 0 && DataManager.Instance.GameData.Epi.hasSeenEnding) {
 			skipButtonTween.Show();
