@@ -22,7 +22,7 @@ public class ImmutableDataBonusObjective {
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 
 		this.id = id;
-		objType = XMLUtils.GetString(hashElements["ObjectiveType"] as IXMLNode);
+		objType = XMLUtils.GetString(hashElements["objType"] as IXMLNode);
 		num = XMLUtils.GetInt(hashElements["Amount"] as IXMLNode);
 	}
 }
