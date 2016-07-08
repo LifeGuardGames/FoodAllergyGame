@@ -67,7 +67,6 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			else if(chall.RestMode == 4.0f) {
 				ImmutableDataCustomer test;
 				test = DataLoaderCustomer.GetData("CustomerSpecialGossiper");
-				Debug.Log(test.Script);
 				GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
 				GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 				cus.GetComponent<CustomerSpecialGossiper>().init(chall.GossiperMode);

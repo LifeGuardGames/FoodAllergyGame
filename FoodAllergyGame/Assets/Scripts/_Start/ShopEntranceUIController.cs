@@ -56,7 +56,6 @@ public class ShopEntranceUIController : MonoBehaviour {
 	}
 
 	public void AppearAnimationDoneEvent(){
-		Debug.Log("CALL ME");
 		// Show the tutorial finger
 		tutorialFinger.SetActive(true);
 		ToggleClickable(true); // NOTE: Don't show diner

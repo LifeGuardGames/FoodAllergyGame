@@ -61,10 +61,10 @@ public class BehavGossipWaitForFood : Behav {
 				var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[10]);
 				Behav goss = (Behav)Activator.CreateInstance(type);
 				goss.self = self;
-				Debug.Log("Pre gossip: " + self.currBehav.ToString());
+				//Debug.Log("Pre gossip: " + self.currBehav.ToString());
 				self.gameObject.GetComponent<CustomerGossiper>().pastBehav = self.currBehav;
 				self.currBehav = goss;
-				Debug.Log(self.currBehav.ToString());
+				//Debug.Log(self.currBehav.ToString());
 				goss.Act();
 				goss = null;
 			}

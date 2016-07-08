@@ -140,7 +140,6 @@ public class StartManager : Singleton<StartManager> {
 
 		if(TierManager.Instance.CurrentTier == 6 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates && !TierManager.instance.IsNewUnlocksAvailable) {
 			if(beaconNode.transform.childCount == 0) {
-				Debug.Log("LOADING BEACON");
 				GameObject beacon = Resources.Load("Beacon") as GameObject;
 				GameObjectUtils.AddChild(beaconNode, beacon);
 				HUDManager.Instance.ToggleBeaconLock(true);
