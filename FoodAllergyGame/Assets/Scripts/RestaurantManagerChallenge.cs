@@ -159,7 +159,6 @@ public class RestaurantManagerChallenge : RestaurantManager{
 				AddCustomer(cus.GetComponent<Customer>());
 				challengeAI.AddCustomer();
 				interval++;
-				customerNumber++;
 				StartCoroutine("SpawnCustomer");
 			}
 		}
@@ -449,7 +448,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 		cus.GetComponent<CustomerTutorial>().isAllergy = true;
 		cus.GetComponent<Customer>().behavFlow = test.BehavFlow;
-		cus.GetComponent<Customer>().Init(customerNumber,chall);
+		cus.GetComponent<Customer>().Init(customerNumber, chall);
 		customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
 		customerNumber++;
 		AnalyticsManager.Instance.DayOneFunnel("Customer Spawned " + customerNumber);
