@@ -2,44 +2,44 @@
 <PropsGrowth>
 	<PropGrowth ID="PropGrowthTree00">
 		<PropKey>PropGrowthTree</PropKey>
-		<TierUnlock>0</TierUnlock>
+		<TierUnlock>1</TierUnlock>
 		<PrefabName>PropGrowthTree00</PrefabName>
 	</PropGrowth>
 	<PropGrowth ID="PropGrowthTree01">
 		<PropKey>PropGrowthTree</PropKey>
-		<TierUnlock>1</TierUnlock>
+		<TierUnlock>4</TierUnlock>
 		<PrefabName>PropGrowthTree01</PrefabName>
 	</PropGrowth>
 	<PropGrowth ID="PropGrowthTree02">
 		<PropKey>PropGrowthTree</PropKey>
-		<TierUnlock>2</TierUnlock>
+		<TierUnlock>11</TierUnlock>
 		<PrefabName>PropGrowthTree02</PrefabName>
 	</PropGrowth>
 
 	<PropGrowth ID="PropGrowthParking00">
 		<PropKey>PropGrowthParking</PropKey>
-		<TierUnlock>0</TierUnlock>
+		<TierUnlock>2</TierUnlock>
 		<PrefabName>PropGrowthParking00</PrefabName>
 	</PropGrowth>
 	<PropGrowth ID="PropGrowthParking01">
 		<PropKey>PropGrowthParking</PropKey>
-		<TierUnlock>1</TierUnlock>
+		<TierUnlock>5</TierUnlock>
 		<PrefabName>PropGrowthParking01</PrefabName>
 	</PropGrowth>
 	<PropGrowth ID="PropGrowthParking02">
 		<PropKey>PropGrowthParking</PropKey>
-		<TierUnlock>2</TierUnlock>
+		<TierUnlock>9</TierUnlock>
 		<PrefabName>PropGrowthParking02</PrefabName>
 	</PropGrowth>
 
 	<PropGrowth ID="PropGrowthLightBeam00">
 		<PropKey>PropGrowthLightBeam</PropKey>
-		<TierUnlock>0</TierUnlock>
+		<TierUnlock>3</TierUnlock>
 		<PrefabName>PropGrowthLightBeam00</PrefabName>
 	</PropGrowth>
 	<PropGrowth ID="PropGrowthLightBeam01">
 		<PropKey>PropGrowthLightBeam</PropKey>
-		<TierUnlock>1</TierUnlock>
+		<TierUnlock>7</TierUnlock>
 		<PrefabName>PropGrowthLightBeam01</PrefabName>
 	</PropGrowth>
 </PropsGrowth>
