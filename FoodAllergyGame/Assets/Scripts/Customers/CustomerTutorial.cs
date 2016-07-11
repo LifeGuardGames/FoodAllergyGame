@@ -9,7 +9,7 @@ public class CustomerTutorial : Customer{
 	public bool isAllergy = false;
 
 	public override void Init(int num, ImmutableDataChallenge mode){
-		RestaurantManagerChallenge.Instance.isTutorial = true;
+		
 		satisfaction = 100;
 		tutFingers = GameObject.Find("TutFingers");
 		StartCoroutine("ShowTableFinger");

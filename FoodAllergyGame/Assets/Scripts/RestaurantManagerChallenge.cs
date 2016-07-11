@@ -122,8 +122,8 @@ public class RestaurantManagerChallenge : RestaurantManager{
 				test = DataLoaderCustomer.GetData("CustomerTutorial");
 				GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
 				GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
-				cus.GetComponent<Customer>().Init(customerNumber, eventData);
 				cus.GetComponent<Customer>().behavFlow = test.BehavFlow;
+				cus.GetComponent<Customer>().Init(customerNumber, chall);
 				customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
 				customerNumber++;
 				challengeAI.AddCustomer();
@@ -420,7 +420,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		if(!isPaused && dayOver == false) {
 			dayTimeLeft -= Time.deltaTime;
 			restaurantUI.UpdateClock(dayTime, dayTimeLeft);
-			if(dayTimeLeft < 0) {
+			if(dayTimeLeft < 0 && !isTutorial) {
 				dayOver = true;
 				restaurantUI.FinishClock();
 			}
@@ -452,6 +452,8 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		customerNumber++;
 		AnalyticsManager.Instance.DayOneFunnel("Customer Spawned " + customerNumber);
 		challengeAI.AddCustomer();
+		dayOver = true;
+		restaurantUI.FinishClock();
 	}
 
 	public ChallengeReward RewardScore() {
@@ -527,6 +529,9 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			AnalyticsManager.Instance.TutorialFunnel("Finished tut day, 2 guided customers");
 			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut2";
         }
+		else {
+			isTutorial = true;
+		}
 		skipTutController.HidePanel();
 		StartDay();
 	}
