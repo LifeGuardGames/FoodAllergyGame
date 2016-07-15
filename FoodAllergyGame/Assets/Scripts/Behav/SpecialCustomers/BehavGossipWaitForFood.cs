@@ -17,7 +17,17 @@ public class BehavGossipWaitForFood : Behav {
 		self.Order.GetComponent<Order>().ToggleShowOrderNumber(false);
 		self.StopCoroutine("SatisfactionTimer");
 		for(int i = 0; i < self.allergy.Count; i++) {
+			if(self.Order.GetComponent<Order>().allergy[i] == Allergies.Dairy) {
+				RestaurantManager.Instance.dairyServed++;
+			}
+			else if(self.Order.GetComponent<Order>().allergy[i] == Allergies.Wheat) {
+				RestaurantManager.Instance.wheatServed++;
+			}
+			else if(self.Order.GetComponent<Order>().allergy[i] == Allergies.Peanut) {
+				RestaurantManager.Instance.peanutServed++;
+			}
 			if(self.Order.GetComponent<Order>().allergy.Contains(self.allergy[i]) && !self.allergy.Contains(Allergies.None)) {
+				RestaurantManager.Instance.numOfAllergyAttacks++;
 				self.state = CustomerStates.AllergyAttack;
 				var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[7]);
 				Behav aa = (Behav)Activator.CreateInstance(type);
@@ -51,10 +61,10 @@ public class BehavGossipWaitForFood : Behav {
 				var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[10]);
 				Behav goss = (Behav)Activator.CreateInstance(type);
 				goss.self = self;
-				Debug.Log("Pre gossip: " + self.currBehav.ToString());
+				//Debug.Log("Pre gossip: " + self.currBehav.ToString());
 				self.gameObject.GetComponent<CustomerGossiper>().pastBehav = self.currBehav;
 				self.currBehav = goss;
-				Debug.Log(self.currBehav.ToString());
+				//Debug.Log(self.currBehav.ToString());
 				goss.Act();
 				goss = null;
 			}

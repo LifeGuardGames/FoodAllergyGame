@@ -68,7 +68,7 @@ public class NotificationManager : Singleton<NotificationManager> {
         }
 		else{ 												// Everything completely done
 			isNotificationActive = false;
-			Debug.Log("ALL notifications finished");
+			//Debug.Log("ALL notifications finished");
 			if(SceneManager.GetActiveScene().name == SceneUtils.START) {
 				StartManager.Instance.ShopEntranceUIController.ToggleClickable(true);
 				StartManager.Instance.ChallengeMenuEntranceUIController.ToggleClickable(true);
@@ -84,6 +84,11 @@ public class NotificationManager : Singleton<NotificationManager> {
 
 				if(TierManager.Instance.CurrentTier == 1) {
 					AnalyticsManager.Instance.NotificationFunnel();
+				}
+				if(TierManager.Instance.CurrentTier >= 1) {
+					bool isFirstTimeShop = DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance;
+					StartManager.Instance.isShopAppearHideDinerOverride = isFirstTimeShop;
+					StartManager.Instance.ShopEntranceUIController.Show(isFirstTimeShop);
 				}
 				// Keep diner unclickable ONLY when first time deco entrance and challenge
 				if(StartManager.Instance.isShopAppearHideDinerOverride) {
@@ -160,26 +165,21 @@ public class NotificationManager : Singleton<NotificationManager> {
 	private void RebuildQueue() {
 		int count = DataManager.Instance.GameData.DayTracker.notifQueue.Count;
 		for (int i = 0; i < count; i ++) {
-			Debug.Log(DataManager.Instance.GameData.DayTracker.notifQueue[i]);
 			switch(DataManager.Instance.GameData.DayTracker.notifQueue[i]) {
                case "core":
 					NotificationQueueDataStarCoreReward core = new NotificationQueueDataStarCoreReward(SceneUtils.START);
-					Debug.Log("core");
 					AddNotification(core);
 					break;
 				case "Piece":
-					Debug.Log("Piece");
 					NotificationQueueDataStarPieceReward piece = new NotificationQueueDataStarPieceReward(SceneUtils.START, TierManager.Instance.OldTier, TierManager.Instance.CurrentTier);
 					AddNotification(piece);
 					break;
 				case "age":
 					NotificationQueueDataAge age = new NotificationQueueDataAge();
-					Debug.Log("age");
 					AddNotification(age);
 					break;
 				case "reward":
 					NotificationQueueDataReward reward = new NotificationQueueDataReward(SceneUtils.START);
-					Debug.Log("reward");
 					AddNotification(reward);
 					break;
 				

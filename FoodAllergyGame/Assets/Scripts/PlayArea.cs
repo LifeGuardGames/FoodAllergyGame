@@ -26,15 +26,18 @@ public class PlayArea : Singleton<PlayArea>, IWaiterSelection {
 		for(int i = 0; i < maxSpots; i++){
 			spotAvailabilityList.Add(true);
 		}
-
+		if(DataManager.Instance.GetChallenge() == "ChallengeTut1") {
+			spotAvailabilityList[0] = false;
+			spotAvailabilityList[1] = false;
+		}
 		TurnOffHighLights();
     }
 
 	public void HighLightSpots(){
-		if(spotAvailabilityList[0] == true){
+		if(spotAvailabilityList[0] == true && DataManager.Instance.GetChallenge() != "ChallengeTut1"){
 			highLightSpot1.SetActive(true);
 		}
-		if(spotAvailabilityList.Count > 1) {
+		if(spotAvailabilityList.Count > 1 && DataManager.Instance.GetChallenge() != "ChallengeTut1") {
 			if(spotAvailabilityList[1] == true && highLightSpot2 != null) {
 				highLightSpot2.SetActive(true);
 			}
@@ -94,5 +97,10 @@ public class PlayArea : Singleton<PlayArea>, IWaiterSelection {
 	IEnumerator RepairProtocal(){
 		yield return new WaitForSeconds(5.0f);
 		isBroken = false;
+	}
+
+	public void OpenUpSpots() {
+		spotAvailabilityList[0] = true;
+		spotAvailabilityList[1] = true;
 	}
 }

@@ -50,6 +50,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 			}
 			else {
 				isTutorial = true;
+				checkButton.GetComponent<Button>().enabled = false;
 			}
 		}
 		StartGame();
@@ -240,7 +241,9 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 
 	public void AnimateEnding(int slotIndex = 0) {
 		isAnimatingEnding = true;
-
+		foreach (EpiPenGameSlot tok in finalSlotList) {
+			tok.GetToken().GetComponent<CanvasGroup>().blocksRaycasts = false;
+		}
 		// Show the skip button on first call
 		if(slotIndex == 0 && DataManager.Instance.GameData.Epi.hasSeenEnding) {
 			skipButtonTween.Show();
@@ -256,7 +259,8 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		GameObject animationTokenAux = GameObjectUtils.AddChildGUI(animationTokenParent.gameObject, tokenPrefab);
 		animationTokenAux.GetComponent<EpiPenGameToken>().AuxInit();
 		animationTokenAux.transform.position = finalSlotList[slotIndex].GetComponent<RectTransform>().position;
-		float moveTime = isSkippingAnimations ? 0f : 0.5f;
+		animationTokenAux.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        float moveTime = isSkippingAnimations ? 0f : 0.5f;
         LeanTween.move(animationTokenAux, animationTokenParent.position, moveTime).setEase(LeanTweenType.easeInOutQuad);
 		LeanTween.scale(animationTokenAux, new Vector3(2f, 2f, 1f), moveTime).setEase(LeanTweenType.easeInOutQuad)
 			.setOnComplete(delegate () { StartCoroutine(PlayAnimation(slotIndex, animationTokenAux)); });
@@ -409,6 +413,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 		attempts = 0;
 		UIManager.timer.ResetTimer();
 		// Special case, circumvent new game here
+		checkButton.GetComponent<Button>().enabled = true;
 		UIManager.StartGame();
     }
 	#endregion

@@ -21,6 +21,39 @@ public class CustomerUIController : MonoBehaviour {
 		uiCanvas.sortingOrder = canvasSortingOrder;
 	}
 
+	public void LosingHeart(int satisfaction) {
+		if(satisfaction == 1) {
+			satisfaction1.gameObject.GetComponent<Animation>().Play("HeartFlash");
+		}
+		else if(satisfaction == 2) {
+			satisfaction2.gameObject.GetComponent<Animation>().Play("HeartFlash");
+		}
+		else if(satisfaction == 3) {
+			satisfaction3.gameObject.GetComponent<Animation>().Play("HeartFlash");
+		}
+	}
+
+	public void StopLosingHeart(int satisfaction) {
+		if(satisfaction == 1) {
+			satisfaction1.gameObject.GetComponent<Animation>().Stop("HeartFlash");
+			satisfaction2.gameObject.GetComponent<Animation>().Stop("HeartFlash");
+			satisfaction3.gameObject.GetComponent<Animation>().Stop("HeartFlash");
+			satisfaction1.gameObject.GetComponent<Image>().enabled = true;
+		}
+		else if(satisfaction == 2) {
+			satisfaction1.gameObject.GetComponent<Animation>().Stop("HeartFlash");
+			satisfaction2.gameObject.GetComponent<Animation>().Stop("HeartFlash");
+			satisfaction3.gameObject.GetComponent<Animation>().Stop("HeartFlash");
+			satisfaction2.gameObject.GetComponent<Image>().enabled = true;
+		}
+		else if(satisfaction == 3) {
+			satisfaction1.gameObject.GetComponent<Animation>().Stop("HeartFlash");
+			satisfaction2.gameObject.GetComponent<Animation>().Stop("HeartFlash");
+			satisfaction3.gameObject.GetComponent<Animation>().Stop("HeartFlash");
+			satisfaction3.gameObject.GetComponent<Image>().enabled = true;
+		}
+	}
+
 	/// <summary>
 	/// Update absolute satisfaction
 	/// </summary>

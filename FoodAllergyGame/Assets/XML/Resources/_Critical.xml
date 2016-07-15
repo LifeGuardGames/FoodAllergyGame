@@ -9,9 +9,9 @@
   <Constant Name="IsTut3Done" Type="Bool" Value="True" Debug="Tutorial"> </Constant>
   <Constant Name="IsDecoFingerTutDone" Type="Bool" Value="True" Debug="Tutorial"> </Constant>
   <Constant Name="IsEpiPenTutorialDone" Type="Bool" Value="True" Debug="Tutorial"> </Constant>
-  <Constant Name="TableID" Type="String" Value="TableBasicRed" Debug="Deco"> </Constant>
-  <Constant Name="KitchenID" Type="String" Value="KitchenBasicRed" Debug="Deco"> </Constant>
-  <Constant Name="FloorID" Type="String" Value="FloorFancyPurple" Debug="Deco"> </Constant>
+  <Constant Name="TableID" Type="String" Value="TableCandyBlue" Debug="Deco"> </Constant>
+  <Constant Name="KitchenID" Type="String" Value="KitchenCandySprinkles" Debug="Deco"> </Constant>
+  <Constant Name="FloorID" Type="String" Value="FloorCandyLime" Debug="Deco"> </Constant>
   <Constant Name="VIPOn" Type="Bool" Value="True" Debug="Deco"> </Constant>
   <Constant Name="VIPID" Type="String" Value="VIPBlackHole" Debug="Deco"> </Constant>
   <Constant Name="PlayAreaOn" Type="Bool" Value="False" Debug="Deco"> </Constant>

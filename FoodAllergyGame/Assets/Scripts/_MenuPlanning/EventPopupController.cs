@@ -7,8 +7,12 @@ public class EventPopupController : MonoBehaviour {
 	public TweenToggleDemux tweenDemux;
 	public Text eventTitle;
 	public Text eventDescription;
+	public Text bonusDescription;
 
 	public void Init(ImmutableDataEvents eventData){
+		if(!string.IsNullOrEmpty(DataManager.Instance.GetBonus())) {
+			bonusDescription.text = LocalizationText.GetText(DataManager.Instance.GetBonus());
+		}
 		if(!string.IsNullOrEmpty(eventData.EventDescription)){
 			eventTitle.text = LocalizationText.GetText(eventData.EventTitle);
 			eventDescription.text = LocalizationText.GetText(eventData.EventDescription);

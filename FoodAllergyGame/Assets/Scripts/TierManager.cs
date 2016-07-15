@@ -129,7 +129,26 @@ public class TierManager : Singleton<TierManager> {
 		}
 		return eventsUnlocked;
 	}
-		
+
+	// Loops through all previous events for a compiled list
+	public string GetBonusUnlocked() {
+		List<string> bonusUnlocked = new List<string>();
+		string[] _bonusUnlocked;
+        if(currentTier <= 1) {
+			 _bonusUnlocked = DataLoaderBonusList.GetData("BonusList00").Objs;
+        }
+		else if (currentTier >= 4) {
+			_bonusUnlocked = DataLoaderBonusList.GetData("BonusList02").Objs;
+		}
+		else {
+			_bonusUnlocked = DataLoaderBonusList.GetData("BonusList01").Objs;
+		}
+		foreach(string list in _bonusUnlocked) {
+			bonusUnlocked.Add(list);
+		}
+		int rand = Random.Range(0, bonusUnlocked.Count);
+		return bonusUnlocked[rand];
+	}
 	public List<string> GetDecorationsUnlocked(){
 		List<string> deocrationsUnlocked = null;
 		if(currentTier >= 0){

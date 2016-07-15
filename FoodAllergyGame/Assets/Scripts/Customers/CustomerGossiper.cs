@@ -35,9 +35,7 @@ public class CustomerGossiper : Customer{
 
 	IEnumerator Annoy() {
 		yield return new WaitForSeconds(5.0f);
-		Debug.Log(gossiperTable);
 		if(RestaurantManager.Instance.GetTable(gossiperTable).seat.GetChild(0).GetComponent<Customer>() != null) {
-			Debug.Log("Annoy");
 			RestaurantManager.Instance.GetTable(gossiperTable).seat.GetChild(0).GetComponent<Customer>().Annoyed();
 			GoAway();
 		}

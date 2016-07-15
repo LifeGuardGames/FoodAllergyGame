@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class MutableDataRestaurantEvent{
 
 	public string CurrentEvent {get; set;}
+	public string CurrentBonus { get; set; }
 	public string CurrentChallenge { get; set; }
 	public bool ShouldGenerateNewEvent {get; set;}
 	public List<string> CustomerList { get; set; }
@@ -11,6 +12,7 @@ public class MutableDataRestaurantEvent{
 
 	public MutableDataRestaurantEvent(){
 		CurrentEvent = "EventT3";
+		CurrentBonus = "Objective00";
 		ShouldGenerateNewEvent = true;
 		CustomerList = new List<string>();
 

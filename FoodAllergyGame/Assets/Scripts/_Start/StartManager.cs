@@ -65,6 +65,7 @@ public class StartManager : Singleton<StartManager> {
 
 			if(DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent) {
 				DataManager.Instance.GameData.RestaurantEvent.CurrentEvent = TierManager.Instance.GetNewEvent();
+				DataManager.Instance.GameData.RestaurantEvent.CurrentBonus = TierManager.Instance.GetBonusUnlocked();
 				// Lock the generate event bool until day is completed
 				DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = false;
 			}
@@ -139,7 +140,6 @@ public class StartManager : Singleton<StartManager> {
 
 		if(TierManager.Instance.CurrentTier == 6 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates && !TierManager.instance.IsNewUnlocksAvailable) {
 			if(beaconNode.transform.childCount == 0) {
-				Debug.Log("LOADING BEACON");
 				GameObject beacon = Resources.Load("Beacon") as GameObject;
 				GameObjectUtils.AddChild(beaconNode, beacon);
 				HUDManager.Instance.ToggleBeaconLock(true);
@@ -195,7 +195,8 @@ public class StartManager : Singleton<StartManager> {
 		unlockedFoodStock.Reverse();
 		// Populate in FoodManager for use in MenuPlanning
 		FoodManager.Instance.FoodStockList = unlockedFoodStock;
-	}
+		FoodManager.Instance.ChooseSpecialFood();
+    }
 
 	public void OnPlayButtonClicked() {
 		if(DataManager.Instance.GameData.Tutorial.IsTutorial1Done) {

@@ -7,10 +7,15 @@ public class ShopEntranceUIController : MonoBehaviour {
 	public GameObject newSprite;
 
 	void Start() {
-		if(DataManager.Instance.GameData.Tutorial.IsSpeDecoTutDone || TierManager.Instance.CurrentTier >= 3) {
+		
+		if(TierManager.Instance.CurrentTier >= 1) {
 			bool isFirstTimeShop = DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance;
-			StartManager.Instance.isShopAppearHideDinerOverride = isFirstTimeShop;
-			Show(isFirstTimeShop);
+			if(isFirstTimeShop == false) {
+				Show(isFirstTimeShop);
+			}
+			else {
+				Hide();
+			}
 		}
 		else {
 			Hide();
@@ -51,7 +56,6 @@ public class ShopEntranceUIController : MonoBehaviour {
 	}
 
 	public void AppearAnimationDoneEvent(){
-		Debug.Log("CALL ME");
 		// Show the tutorial finger
 		tutorialFinger.SetActive(true);
 		ToggleClickable(true); // NOTE: Don't show diner
