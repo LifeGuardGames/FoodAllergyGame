@@ -60,7 +60,7 @@ public class DataManager : Singleton<DataManager> {
 
 		// Clear data if development build
 		#if DEVELOPMENT_BUILD
-		PlayerPrefs.DeleteAll();
+		//PlayerPrefs.DeleteAll();
 		#endif
 
 		// Debug for an independent scene. Will initialize all data before other classes call DataManager
@@ -74,13 +74,19 @@ public class DataManager : Singleton<DataManager> {
 		GameData.Session.start = System.DateTime.Now;
 		GameData.Session.sessionCount++;
 		Amplitude amplitude = Amplitude.Instance;
-		//Live Amplitude
-		amplitude.logging = true;
-		amplitude.init("e89e9e9238807713d8a0fccf640e6df5");
-		//Dev Amplitude
 
-		//amplitude.logging = true;
-		//amplitude.init("9196f4d945c306a45a54b9fb8577c017");
+		if(Debug.isDebugBuild) {
+			Debug.Log("DEVELOPMENT BUILD ANALYTICS");
+			//Dev Amplitude
+			amplitude.logging = true;
+			amplitude.init("9196f4d945c306a45a54b9fb8577c017");
+		}
+		else {
+			//Live Amplitude
+			amplitude.logging = false;
+			amplitude.init("e89e9e9238807713d8a0fccf640e6df5");
+		}
+		
 
 		AnalyticsManager.Instance.SuperProperties.Add("Days Played", GameData.DayTracker.DaysPlayed);
 		AnalyticsManager.Instance.SuperProperties.Add("Session", DaysInSession);
@@ -135,6 +141,10 @@ public class DataManager : Singleton<DataManager> {
 
 	public string GetEvent(){
 		return gameData.RestaurantEvent.CurrentEvent;
+	}
+
+	public string GetBonus() {
+		return gameData.RestaurantEvent.CurrentBonus;
 	}
 
 	public string GetChallenge(){

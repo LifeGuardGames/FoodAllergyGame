@@ -14,7 +14,7 @@
 		<CustomerList>CustomerTutorial</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSetT2">
-		<CustomerList>CustomerRegular,CustomerRegular,CustomerRegular,CustomerRegular</CustomerList>
+		<CustomerList>CustomerRegular,CustomerImpatient,CustomerCoolKid,CustomerTutBlackOut,CustomerTutTableSmasher,CustomerTutGossiper,CustomerHospitalRunner,CustomerTutPlayful,CustomerTutEater</CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSetTP">
 		<CustomerList>CustomerPlayAreaTut,CustomerRegular</CustomerList>

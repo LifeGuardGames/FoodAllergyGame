@@ -36,8 +36,13 @@ public class RestaurantManagerLoader : MonoBehaviour {
 				LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START, showRandomTip: true);
 			}
 		}
-		else {
+		else if (DataManager.Instance.GetChallenge() != "ChallengeTut2"){
+			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "";
 			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START, showRandomTip: true);
+		}
+		else {
+			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "";
+			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.COMICSCENE);
 		}
 	}
 }

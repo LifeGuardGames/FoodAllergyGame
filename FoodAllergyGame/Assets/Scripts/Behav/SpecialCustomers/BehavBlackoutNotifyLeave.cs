@@ -15,7 +15,7 @@ public class BehavBlackoutNotifyLeave : Behav {
 		if(self.satisfaction == 0 || self.isAnnoyed) {
 			RestaurantManager.Instance.customerHash.Remove(self.customerID);
 			self.DestroyOrder();
-			if(self.tableNum != -1) {
+			if(self.state != CustomerStates.InLine) {
 				RestaurantManager.Instance.GetTable(self.tableNum).inUse = false;
 			}
 			CustomerAnimationCotrollerBlackOut animBlackout = self.customerAnim as CustomerAnimationCotrollerBlackOut;

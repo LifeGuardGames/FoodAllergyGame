@@ -114,7 +114,6 @@ public class Table : MonoBehaviour, IWaiterSelection{
 		Customer customerToEat = GetComponentInChildren<Customer>();
 		customerToEat.state = CustomerStates.Eaten;
 		RestaurantManager.Instance.CustomerLeftSatisfaction(customerToEat, false);
-		Debug.Log("gettingcalled");
 		StartCoroutine(Eaten(eater));
 		//CustomerLeaving();
 		inUse = false;

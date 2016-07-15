@@ -86,7 +86,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		else{
 			// Check for fly thru table
 			TableFlyThru flyThruTable = RestaurantManager.Instance.GetFlyThruTable();
-			if((flyThruTable != null) && UnityEngine.Random.Range(0,10) > 3 && !flyThruTable.inUse ){
+			if((flyThruTable != null) && UnityEngine.Random.Range(0,10) > 3 && !flyThruTable.inUse){
 				flyThruTable.inUse = true;
 				transform.SetParent(flyThruTable.seat);
 				transform.localPosition = Vector3.zero;
@@ -172,7 +172,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		else {
 			// Check for fly thru table
 			TableFlyThru flyThruTable = RestaurantManager.Instance.GetFlyThruTable();
-			if((flyThruTable != null) && UnityEngine.Random.Range(0, 10) > 3 && !flyThruTable.inUse || mode.ID == "TutDecoFlyThru") {
+			if((flyThruTable != null) && UnityEngine.Random.Range(0, 10) > 3 && !flyThruTable.inUse && !RestaurantManager.Instance.isTutorial || mode.ID == "TutDecoFlyThru") {
 				flyThruTable.inUse = true;
 				transform.SetParent(flyThruTable.seat);
 				transform.localPosition = Vector3.zero;
@@ -320,6 +320,10 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// Note: Not capped
 	public virtual void UpdateSatisfaction(int delta){
+		StopCoroutine("BlinkHeart");
+		if(tableNum != 4) {
+			customerUI.StopLosingHeart(satisfaction);
+		}
 		// added check incase table 0 is destroyed 
 		if(!RestaurantManager.Instance.isTutorial) {
 			if(RestaurantManager.Instance.GetTable(tableNum) != null) {
@@ -385,11 +389,23 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	// When completed removes one satisfaction from that customer
 	IEnumerator SatisfactionTimer(){
+		StopCoroutine("BlinkHeart");
+		StartCoroutine("BlinkHeart");
 		yield return new WaitForSeconds(attentionSpan);
 		UpdateSatisfaction(-1);
 		
 		// if we still have satisfaction left we start the timer again
 		StartCoroutine("SatisfactionTimer");
+	}
+
+	IEnumerator BlinkHeart() {
+		if(tableNum != 4) {
+			customerUI.StopLosingHeart(satisfaction);
+		}
+		yield return new WaitForSeconds(attentionSpan * 0.5f);
+		if(tableNum != 4) {
+			customerUI.LosingHeart(satisfaction);
+		}
 	}
 
 

@@ -107,6 +107,12 @@ public class AudioManager : LgAudioManager<AudioManager>{
 		isSoundEffectsOn = val;
 	}
 
+	public void JukeBox() {
+		int rand = UnityEngine.Random.Range(1, 4);
+		backgroundMusic = "BgRestaurant" + rand.ToString();
+		FadeOutPlayNewBackground(backgroundMusic);
+	}
+
 	void OnLevelWasLoaded() {
 		string currentScene = SceneManager.GetActiveScene().name;
 		if(currentScene == SceneUtils.LOADING) {

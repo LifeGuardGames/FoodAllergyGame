@@ -16,6 +16,7 @@ public class BehavWaitForFood : Behav {
 		self.Order.GetComponent<BoxCollider>().enabled = false;
 		self.Order.GetComponent<Order>().ToggleShowOrderNumber(false);
 		self.StopCoroutine("SatisfactionTimer");
+
 		for(int i = 0; i < self.allergy.Count; i++) {
 			if(self.Order.GetComponent<Order>().allergy[i] == Allergies.Dairy) {
 				RestaurantManager.Instance.dairyServed++;
@@ -27,6 +28,7 @@ public class BehavWaitForFood : Behav {
 				RestaurantManager.Instance.peanutServed++;
 			}
 			if(self.Order.GetComponent<Order>().allergy.Contains(self.allergy[i]) && !self.allergy.Contains(Allergies.None)) {
+				RestaurantManager.Instance.numOfAllergyAttacks++;
 				self.state = CustomerStates.AllergyAttack;
 				var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[7]);
 				Behav aa = (Behav)Activator.CreateInstance(type);

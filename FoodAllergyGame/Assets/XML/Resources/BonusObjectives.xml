@@ -2,6 +2,110 @@
 <BonusObjectives>
   <Objective ID ="Objective00">
     <objType>Cash</objType>
-     <Amount>100</Amount>
+     <Amount>200</Amount>
+  </Objective>
+  <Objective ID ="Objective01">
+    <objType>Cash</objType>
+    <Amount>250</Amount>
+  </Objective>
+  <Objective ID ="Objective02">
+    <objType>Cash</objType>
+    <Amount>300</Amount>
+  </Objective>
+  <Objective ID ="Objective03">
+    <objType>Cash</objType>
+    <Amount>450</Amount>
+  </Objective>
+  <Objective ID ="Objective04">
+    <objType>Cash</objType>
+    <Amount>500</Amount>
+  </Objective>
+  <Objective ID ="Objective05">
+    <objType>Cash</objType>
+    <Amount>650</Amount>
+  </Objective>
+  <Objective ID ="Objective06">
+    <objType>Cash</objType>
+    <Amount>800</Amount>
+  </Objective>
+  <Objective ID ="Objective07">
+    <objType>AllergyAttack</objType>
+    <Amount>1</Amount>
+  </Objective>
+  <Objective ID ="Objective08">
+    <objType>AllergyAttack</objType>
+    <Amount>2</Amount>
+  </Objective>
+  <Objective ID ="Objective09">
+    <objType>Missed</objType>
+    <Amount>1</Amount>
+  </Objective>
+  <Objective ID ="Objective10">
+    <objType>Missed</objType>
+    <Amount>2</Amount>
+  </Objective>
+  <Objective ID ="Objective11">
+    <objType>Wheat</objType>
+    <Amount>4</Amount>
+  </Objective>
+  <Objective ID ="Objective12">
+    <objType>Wheat</objType>
+    <Amount>5</Amount>
+  </Objective>
+  <Objective ID ="Objective13">
+    <objType>Wheat</objType>
+    <Amount>6</Amount>
+  </Objective>
+  <Objective ID ="Objective14">
+    <objType>Wheat</objType>
+    <Amount>7</Amount>
+  </Objective>
+  <Objective ID ="Objective15">
+    <objType>Dairy</objType>
+    <Amount>4</Amount>
+  </Objective>
+  <Objective ID ="Objective16">
+    <objType>Dairy</objType>
+    <Amount>5</Amount>
+  </Objective>
+  <Objective ID ="Objective17">
+    <objType>Dairy</objType>
+    <Amount>6</Amount>
+  </Objective>
+  <Objective ID ="Objective18">
+    <objType>Dairy</objType>
+    <Amount>7</Amount>
+  </Objective>
+  <Objective ID ="Objective19">
+    <objType>Peanut</objType>
+    <Amount>4</Amount>
+  </Objective>
+  <Objective ID ="Objective20">
+    <objType>Peanut</objType>
+    <Amount>5</Amount>
+  </Objective>
+  <Objective ID ="Objective21">
+    <objType>Peanut</objType>
+    <Amount>6</Amount>
+  </Objective>
+  <Objective ID ="Objective22">
+    <objType>Peanut</objType>
+    <Amount>7</Amount>
+  </Objective>
+  <Objective ID ="Objective23">
+    <objType>VIP</objType>
+    <Amount>2</Amount>
+  </Objective>
+  <Objective ID ="Objective24">
+    <objType>VIP</objType>
+    <Amount>4</Amount>
+  </Objective>
+    <Objective ID ="Objective25">
+    <objType>PlayArea</objType>
+    <Amount>2</Amount>
+  </Objective>
+  <Objective ID ="Objective26">
+    <objType>PlayArea</objType>
+    <Amount>4</Amount>
   </Objective>
 </BonusObjectives>

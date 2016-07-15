@@ -62,7 +62,6 @@ namespace UnityEngine.UI{
 				yield return null;
 			}
 			
-			Debug.Log("PRESSED");
 			DoStateTransition(currentSelectionState, false);
 		}
 	}

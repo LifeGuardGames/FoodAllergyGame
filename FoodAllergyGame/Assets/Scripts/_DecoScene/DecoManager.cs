@@ -124,7 +124,7 @@ public class DecoManager : Singleton<DecoManager>{
 	}
 
 	void Start(){
-		if (!DataManager.Instance.GameData.Tutorial.IsDecoFingerTutDone){
+		if (!DataManager.Instance.GameData.Tutorial.IsDecoFingerTutDone && TierManager.Instance.CurrentTier == 2){
 			isTutorial = true;
 			tutObj1.SetActive(true);
 		}

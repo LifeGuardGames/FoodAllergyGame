@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
-using System.Collections;
 
+/// <summary>
+/// Initialize props in this class.
+/// Props are objects that fill the StartScene space with no real function.
+/// Their function is to give the world a sense of randomness or growth depending on the prop type.
+/// </summary>
 public class PropManager : Singleton<PropManager> {
 	public int minimumSpawnTier = 0;
 	public GameObject propRandomOrbit;  // Random props are space props that orbit (rotation) the planetoid
-	public GameObject propGrowthParent;
+	public GameObject propGrowthParent;	// Growth props get more busy with each tier up
 
 	public void InitProps() {
 		if(TierManager.Instance.CurrentTier >= minimumSpawnTier) {

@@ -36,7 +36,7 @@ public class BehavGossipEating : Behav {
 				goss.self = self;
 				self.gameObject.GetComponent<CustomerGossiper>().pastBehav = self.currBehav;
 				self.currBehav = goss;
-				Debug.Log(self.currBehav.ToString());
+				//Debug.Log(self.currBehav.ToString());
 				goss.Act();
 				goss = null;
 			}

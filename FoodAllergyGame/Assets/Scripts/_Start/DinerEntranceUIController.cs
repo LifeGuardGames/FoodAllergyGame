@@ -10,7 +10,7 @@ public class DinerEntranceUIController : MonoBehaviour {
 	void Start() {
 		// Populate star cores list from data
 		for(int i = 0; i < starCoreList.Count; i++) {
-			if(i < DataManager.Instance.GameData.Challenge.StarCoresEarned) {
+			if(i < DataManager.Instance.GameData.Challenge.StarCoresEarned || !DataManager.Instance.GameData.Tutorial.IsComicViewed) {
 				starCoreList[i].enabled = true;
 			}
 			else {
@@ -20,7 +20,13 @@ public class DinerEntranceUIController : MonoBehaviour {
 
 		// Populate star base list from tiers
 		for(int i = 0; i < starBaseList.Count; i++) {
-			Sprite loadedSprite = SpriteCacheManager.GetStarFillSpriteData(TierManager.Instance.CurrentTier, 6, i);
+			Sprite loadedSprite;
+            if(!DataManager.Instance.GameData.Tutorial.IsComicViewed) {
+				 loadedSprite = SpriteCacheManager.GetStarFillSpriteData(36, 6, i);
+            }
+			else {
+				 loadedSprite = SpriteCacheManager.GetStarFillSpriteData(TierManager.Instance.CurrentTier, 6, i);
+			}
 			if(loadedSprite != null) {
 				starBaseList[i].sprite = loadedSprite;
 			}
