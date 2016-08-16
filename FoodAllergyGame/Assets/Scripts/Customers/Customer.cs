@@ -477,6 +477,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		}
 		else{
 			Debug.LogError("Order already exists: " + Order.name);
+			Waiter.Instance.Finished();
 		}
 	}
 

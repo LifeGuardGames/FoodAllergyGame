@@ -161,6 +161,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 			if(customerHash.Count == 0) {
 				pauseUI.isActive = false;
 				DataManager.Instance.GameData.DayTracker.DaysPlayed++;
+				DataManager.Instance.GameData.DayTracker.goalTimeLimit--;
 				DataManager.Instance.DaysInSession++;
 				
 				DataManager.Instance.GameData.DayTracker.AvgDifficulty = ((DataManager.Instance.GameData.DayTracker.AvgDifficulty + satisfactionAI.DifficultyLevel) / 2);
