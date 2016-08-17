@@ -75,4 +75,9 @@
 	<Sound ID="FlyThruEnter"></Sound>
 	<Sound ID="FlyThruLeave"></Sound>
 	<Sound ID="VIPEnter"></Sound>
+
+	<!-- Prop sounds -->
+	<Sound ID="PropCowMoo1" Volume="1"></Sound>
+	<Sound ID="PropCowMoo2" Volume="1"></Sound>
+	<Sound ID="PropCowMoo3" Volume="1"></Sound>
 </Sounds>

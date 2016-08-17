@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 /// <summary>
 /// Attach this to a prop prefab with a collider and to make it clickable
@@ -7,15 +6,23 @@ using System.Collections;
 /// </summary>
 [RequireComponent(typeof(BoxCollider2D))]
 public class PropClickAnimation : MonoBehaviour {
-	public Animation animation;
+	[Header("Optional Animations")]
+	public Animation anim;
 	public Animator animator;
 
+	[Header("Optional Audio")]
+	public string audioClipToPlay;
+	public int audioVariations = 1;
+
 	public void OnMouseDown() {
-		if(animation != null) {
-			animation.Play();
+		if(anim != null) {
+			anim.Play();
 		}
 		if(animator != null) {
 			animator.SetTrigger("Clicked");
+		}
+		if(audioClipToPlay != null) {
+			AudioManager.Instance.PlayClip(audioClipToPlay, variations: audioVariations);
 		}
 	}
 }
