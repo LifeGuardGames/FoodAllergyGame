@@ -41,4 +41,14 @@ public class TempoLogicController : MonoBehaviour {
 		}
 	}
 
+	public int GetPercentageInTotal() {
+		if(!CheckProgress()) {
+			int tCash = CashManager.Instance.TotalCash;
+			return ((tCash / DataLoaderGoals.GetData(DataManager.Instance.GameData.DayTracker.currentGoal).GoalPoint)*100);
+		}
+		else {
+			return 0;
+		}
+	}
+
 }
