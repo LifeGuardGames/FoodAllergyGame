@@ -71,13 +71,14 @@ public class Waiter: Singleton<Waiter>{
 	void FixedUpdate(){
 		if(moving == true){
 			// Already at the target node
-			if(pathList.Count == 0){
+			if(pathList.Count == 0 || pathList.Count < pathIndex){
 				moving = false;
 				if(currentCaller != null) {
 					currentCaller.OnWaiterArrived();
 				}
 			}
 			// Arrived at the next node
+			//argument out of range exception
 			else if(transform.position == pathList[pathIndex].transform.position){
 				currentNode = pathList[pathIndex];
 
