@@ -22,7 +22,13 @@ public class MapUIController : MonoBehaviour {
 	private float segmentHeight;					// Y component from one node to the other
 	private int numberNodesBetweenStartEnd = 3;
 	private List<Vector2> nodePositionList;         // Positions of the nodes, some random, some static
-	private List<Transform> auxNodesList;			// Keep track of all nodes spawned, used for line
+	private List<Transform> auxNodesList;           // Keep track of all nodes spawned, used for line
+	private List<MapTrailSegment> segmentList;
+
+	private float percentPerSegment;
+	public float PercentPerSegment {
+		get { return percentPerSegment; }
+	}
 
 	void Start() {
 		InitializeAndShow();
@@ -32,6 +38,7 @@ public class MapUIController : MonoBehaviour {
 		// Initialize variables
 		nodePositionList = new List<Vector2>();
 		auxNodesList = new List<Transform>();
+		segmentList = new List<MapTrailSegment>();
 		segmentHeight = canvasScaler.referenceResolution.y / (numberNodesBetweenStartEnd + 1);
 
 		// Initialize all the node positions
@@ -67,20 +74,30 @@ public class MapUIController : MonoBehaviour {
 		GameObject nodeBaseEnd = GameObjectUtils.AddChildGUI(mapParent, nodeBasePrefab);
 		nodeBaseEnd.GetComponent<MapNodeBase>().Init(endTier, false, canvasScaler);
 		auxNodesList.Add(nodeBaseEnd.transform);
-		
+
 		// Connect all the nodes using TrailSegments
-		for(int i = 0; i < auxNodesList.Count - 1; i++) {
+		percentPerSegment = 1f / (numberNodesBetweenStartEnd + 1);
+        for(int i = 0; i < auxNodesList.Count - 1; i++) {
 			GameObject segment = GameObjectUtils.AddChildGUI(mapParent, trailSegmentPrefab);
-			segment.GetComponent<MapTrailSegment>().Init(auxNodesList[i], auxNodesList[i + 1]);
-		}
+			MapTrailSegment segmentScript = segment.GetComponent<MapTrailSegment>();
+			segmentScript.Init(auxNodesList[i], auxNodesList[i + 1], i + 1, this);
+			segmentList.Add(segmentScript);
+        }
 
-		// Update the progress based on trails
-
+		//Calculate current percentage and update trails
+		float tierProgressPercentage = 0.74f;
+		UpdateTrailPercentage(tierProgressPercentage);
 
 		// Place the comet and initialize all the rewards
 
 
 		demux.Show();
+	}
+
+	public void UpdateTrailPercentage(float trailPercentage) {
+		foreach(MapTrailSegment segment in segmentList) {
+			segment.UpdateSegmentPercentage(trailPercentage);
+		}
 	}
 
 	private void HidePanel() {
