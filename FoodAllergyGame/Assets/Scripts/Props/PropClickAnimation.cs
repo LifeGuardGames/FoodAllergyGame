@@ -14,6 +14,9 @@ public class PropClickAnimation : MonoBehaviour {
 	public string audioClipToPlay;
 	public int audioVariations = 1;
 
+	[Header("Optional Particle")]
+	public ParticleSystem particle;
+
 	public void OnMouseDown() {
 		if(anim != null) {
 			anim.Play();
@@ -21,8 +24,11 @@ public class PropClickAnimation : MonoBehaviour {
 		if(animator != null) {
 			animator.SetTrigger("Clicked");
 		}
-		if(audioClipToPlay != null) {
+		if(string.IsNullOrEmpty(audioClipToPlay)) {
 			AudioManager.Instance.PlayClip(audioClipToPlay, variations: audioVariations);
 		}
+		if(particle != null) {
+			particle.Play();
+        }
 	}
 }
