@@ -24,7 +24,7 @@ public class PropClickAnimation : MonoBehaviour {
 		if(animator != null) {
 			animator.SetTrigger("Clicked");
 		}
-		if(string.IsNullOrEmpty(audioClipToPlay)) {
+		if(!string.IsNullOrEmpty(audioClipToPlay)) {
 			AudioManager.Instance.PlayClip(audioClipToPlay, variations: audioVariations);
 		}
 		if(particle != null) {
