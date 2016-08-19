@@ -128,3 +128,10 @@ public enum Objectives {
 	AllergyAttack,
 }
 
+public enum DifficultyLevels {
+	None,
+	Easy,
+	Medium,
+	Hard,
+}
+
