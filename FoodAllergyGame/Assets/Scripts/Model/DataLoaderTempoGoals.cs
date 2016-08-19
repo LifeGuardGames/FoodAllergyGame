@@ -2,20 +2,20 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class DataLoaderGoals : XMLLoaderGeneric<DataLoaderGoals> {
+public class DataLoaderTempoGoals : XMLLoaderGeneric<DataLoaderTempoGoals> {
 
-	public static ImmutableDataGoals GetData(string id) {
+	public static ImmutableDataTempoGoal GetData(string id) {
 		instance.InitXMLLoader();
-		return instance.GetData<ImmutableDataGoals>(id);
+		return instance.GetData<ImmutableDataTempoGoal>(id);
 	}
 
-	public static List<ImmutableDataGoals> GetDataList() {
+	public static List<ImmutableDataTempoGoal> GetDataList() {
 		instance.InitXMLLoader();
-		return instance.GetDataList<ImmutableDataGoals>();
+		return instance.GetDataList<ImmutableDataTempoGoal>();
 	}
 
 	protected override void XMLNodeHandler(string id, IXMLNode xmlNode, Hashtable hashData, string errorMessage) {
-		ImmutableDataGoals data = new ImmutableDataGoals(id, xmlNode, errorMessage);
+		ImmutableDataTempoGoal data = new ImmutableDataTempoGoal(id, xmlNode, errorMessage);
 		// Store the data
 		if(hashData.ContainsKey(id))
 			Debug.LogError(errorMessage + "Duplicate keys!");

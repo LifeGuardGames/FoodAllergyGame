@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ImmutableDataGoals {
+public class ImmutableDataTempoGoal {
 
 	private string id;
 	public string ID {
@@ -23,7 +23,7 @@ public class ImmutableDataGoals {
 		get { return reward; }
 	}
 
-	public ImmutableDataGoals(string id, IXMLNode xmlNode, string error) {
+	public ImmutableDataTempoGoal(string id, IXMLNode xmlNode, string error) {
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 		this.id = id;
 

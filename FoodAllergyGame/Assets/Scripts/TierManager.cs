@@ -50,7 +50,7 @@ public class TierManager : Singleton<TierManager> {
 		AnalyticsManager.Instance.SuperProperties.Add("Tier", TierManager.Instance.CurrentTier);
 		// If there is a change in tier, run logic
 		// INVARIABLE: Tiers are maximum one above, never multiple tiers at once
-		if(oldTier < newTier || DataManager.Instance.GameData.DayTracker.notifQueue.Count > 0) {
+		if(oldTier < newTier || DataManager.Instance.GameData.DayTracker.NotifQueue.Count > 0) {
 			StartManager.Instance.TurnOffEntrances();
 			isTierUp = true;
 
