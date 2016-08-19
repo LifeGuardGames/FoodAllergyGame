@@ -57,6 +57,7 @@ public class ImmutableDataEvents{
 
 	private int restMode;
 	public int RestMode {
+		set { restMode = value; }
 		get { return restMode; }
 	}
 
@@ -65,16 +66,26 @@ public class ImmutableDataEvents{
 		get { return flowList; }
 	}
 
+	private int numOfTables;
+	public int NumOfTables {
+		get { return numOfTables; }
+	}
 
-//	public string eventPropLeft;
-//	public string EventPropLeft {
-//		get { return eventPropLeft; }
-//	}
+	private int specialDecoMode;
+	public int SpecialDecoMode {
+		set { restMode = value; }
+		get { return specialDecoMode; }
+	}
 
-//	public string eventPropRight;
-//	public string EventPropRight {
-//		get { return eventPropRight; }
-//	}
+	//	public string eventPropLeft;
+	//	public string EventPropLeft {
+	//		get { return eventPropLeft; }
+	//	}
+
+	//	public string eventPropRight;
+	//	public string EventPropRight {
+	//		get { return eventPropRight; }
+	//	}
 
 	public ImmutableDataEvents(string id, IXMLNode xmlNode, string error){
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
