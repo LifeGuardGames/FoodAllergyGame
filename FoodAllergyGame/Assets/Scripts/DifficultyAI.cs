@@ -6,7 +6,10 @@ using System.Collections;
 /// This class is the decision maker to make the restaurant random
 /// </summary>
 public class DifficultyAI {
+
 	public DifficultyLevels diff;
+
+// Decides how to set up the restaurant then returns to RunSetUp in Arcade Manager
 	public void Init (float difficultyValue, ImmutableDataEvents eventData) {
 		if(difficultyValue < 26) {
 			diff = DifficultyLevels.Hard;
@@ -22,6 +25,7 @@ public class DifficultyAI {
 		eventData.RestMode = RestModeChooser();
     }
 
+	//Determines what tables to remove on higher difficulties
 	private int RemoveTables() {
 		if(diff == DifficultyLevels.Easy) {
 			return 4;
@@ -36,6 +40,7 @@ public class DifficultyAI {
 		}
 	}
 
+	// Choose Retaurant mode
 	private int RestModeChooser() {
 			int rand = Random.Range(0, 5);
 			return rand;

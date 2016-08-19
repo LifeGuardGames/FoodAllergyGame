@@ -211,7 +211,10 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 
 	public bool IsTableAvailable(){
 		for(int i = 0; i < actTables; i++){
-			if(!GetTable(i).inUse){
+			if(GetTable(i)== null) {
+				return false;
+			}
+			else if(!GetTable(i).inUse){
 				return true;
 			}
 		}
