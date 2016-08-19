@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class TempoLogicController : MonoBehaviour {
-
-
+	
 	public ImmutableDataGoals GetCurrentGoal() {
 		return DataLoaderGoals.GetData(DataManager.Instance.GameData.DayTracker.currentGoal);
 	}
 
+	// Call on new tier
 	public void GetNewGoal() {
 		int tier = TierManager.Instance.CurrentTier;
 		// TODO talk about mid goals or randomized goals
@@ -16,6 +15,7 @@ public class TempoLogicController : MonoBehaviour {
 		DataManager.Instance.GameData.DayTracker.goalTimeLimit = gol.TimeLimit;
 	}
 
+	// Completed or not
 	public bool CheckProgress() {
 		int tCash = CashManager.Instance.TotalCash;
 		if(tCash < DataLoaderGoals.GetData(DataManager.Instance.GameData.DayTracker.currentGoal).GoalPoint) {
@@ -31,6 +31,7 @@ public class TempoLogicController : MonoBehaviour {
 		}
 	}
 
+	// How much more totalCash needed to get goal
 	public int GetDifferenceInGoal() {
 		if(!CheckProgress()) {
 			int tCash = CashManager.Instance.TotalCash;
@@ -41,6 +42,7 @@ public class TempoLogicController : MonoBehaviour {
 		}
 	}
 
+	// Percentage at current tier bracket where it is located
 	public int GetPercentageInTotal() {
 		if(!CheckProgress()) {
 			int tCash = CashManager.Instance.TotalCash;
@@ -50,5 +52,4 @@ public class TempoLogicController : MonoBehaviour {
 			return 0;
 		}
 	}
-
 }

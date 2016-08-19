@@ -85,13 +85,22 @@ public class MapUIController : MonoBehaviour {
         }
 
 		//Calculate current percentage and update trails
-		float tierProgressPercentage = 0.74f;
+		float tierProgressPercentage;
+		if(endTier != null) {
+			int totalCashNeededForTier = endTier.CashCutoffFloor - startTier.CashCutoffFloor;
+			tierProgressPercentage = (float)(CashManager.Instance.LastSeenTotalCash - startTier.CashCutoffFloor) / totalCashNeededForTier;
+			Debug.Log("tier progress percentage start " + tierProgressPercentage);
+		}
+		else {  // Reached last tier
+			tierProgressPercentage = 1f;
+			Debug.Log("tier progress percentage full");
+        }
 		UpdateTrailPercentage(tierProgressPercentage);
 
 		// Place the comet and initialize all the rewards
 
 
-		demux.Show();
+        demux.Show();
 	}
 
 	public void UpdateTrailPercentage(float trailPercentage) {

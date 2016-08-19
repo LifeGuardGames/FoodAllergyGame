@@ -149,6 +149,7 @@ public class TierManager : Singleton<TierManager> {
 		int rand = Random.Range(0, bonusUnlocked.Count);
 		return bonusUnlocked[rand];
 	}
+
 	public List<string> GetDecorationsUnlocked(){
 		List<string> deocrationsUnlocked = null;
 		if(currentTier >= 0){
