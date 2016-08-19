@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Goals>
-	<Goal ID="Goal_1">
+<TempoGoals>
+	<TempoGoal ID="TempoGoal_1">
 		<Amount>250</Amount>
 		<TimeLimit>1</TimeLimit>
 		<Reward>200</Reward>
-	</Goal>
-</Goals>
+	</TempoGoal>
+</TempoGoals>

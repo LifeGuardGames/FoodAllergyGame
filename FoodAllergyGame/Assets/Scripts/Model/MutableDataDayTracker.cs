@@ -6,9 +6,9 @@ public class MutableDataDayTracker {
 	public int ChallengesPlayed {get;set;}
 	public bool IsMoreCrates { get; set; }
 	public bool HasCollectedAge { get; set; }
-	public List<string> notifQueue { get; set; }
-	public string currentGoal { get; set; }
-	public int goalTimeLimit { get; set; }
+	public List<string> NotifQueue { get; set; }
+	public string CurrentTempoGoal { get; set; }
+	public int GoalTimeLimit { get; set; }
 
 	public MutableDataDayTracker(){
 		AvgDifficulty = 15.0f;
@@ -17,7 +17,7 @@ public class MutableDataDayTracker {
 		//pro toggle
 		IsMoreCrates = false;
 		HasCollectedAge = false;
-		notifQueue = new List<string>();
-		currentGoal = "";
+		NotifQueue = new List<string>();
+		CurrentTempoGoal = "";
 	}
 }

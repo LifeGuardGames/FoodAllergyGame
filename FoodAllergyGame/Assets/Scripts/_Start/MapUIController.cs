@@ -18,6 +18,7 @@ public class MapUIController : MonoBehaviour {
 	public GameObject nodeMidPrefab;
 	public GameObject nodeBasePrefab;
 	public GameObject trailSegmentPrefab;
+	public GameObject cometPrefab;
 
 	private float segmentHeight;					// Y component from one node to the other
 	private int numberNodesBetweenStartEnd = 3;
@@ -98,7 +99,9 @@ public class MapUIController : MonoBehaviour {
 		UpdateTrailPercentage(tierProgressPercentage);
 
 		// Place the comet and initialize all the rewards
-
+		if(!TempoGoalManager.Instance.IsGoalCompleted()) {
+			PlaceComet(TempoGoalManager.Instance.GetPercentageInTotal());
+		}
 
         demux.Show();
 	}
@@ -118,5 +121,17 @@ public class MapUIController : MonoBehaviour {
 		//StartManager.Instance.DinerEntranceUIController.ToggleClickable(true);
 		//StartManager.Instance.ShopEntranceUIController.ToggleClickable(true);
 		HidePanel();
+	}
+
+	public void PlaceComet(float percentage) {
+		// Determine which segment this goes into
+		foreach(MapTrailSegment segment in segmentList) {
+			Vector3? cometPosition = segment.GetPositionOfSegmentPercentage(percentage);
+            if(cometPosition != null) {
+				GameObject comet = GameObjectUtils.AddChildGUI(mapParent, cometPrefab);
+				comet.transform.localPosition = cometPosition.GetValueOrDefault();
+				break;
+			}
+		}
 	}
 }
