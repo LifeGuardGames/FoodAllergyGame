@@ -388,28 +388,30 @@ public class RestaurantManagerArcade : RestaurantManager {
 			satisfactionAI.AddCustomer();
 
 			//sitting down
-			cus.transform.SetParent(GetTable(customerScript.tableNum).Seat);
-			customerScript.SetBaseSortingOrder(GetTable(customerScript.tableNum).BaseSortingOrder);
-			cus.transform.localPosition = Vector3.zero;
+			if(GetTable(customerScript.tableNum) != null) {
+				cus.transform.SetParent(GetTable(customerScript.tableNum).Seat);
+				customerScript.SetBaseSortingOrder(GetTable(customerScript.tableNum).BaseSortingOrder);
+				cus.transform.localPosition = Vector3.zero;
 
-			// begin reading menu
-			customerScript.customerAnim.SetReadingMenu();
+				// begin reading menu
+				customerScript.customerAnim.SetReadingMenu();
 
-			// TODO-SOUND Reading menu here
-			customerScript.StopCoroutine("SatisactionTimer");
+				// TODO-SOUND Reading menu here
+				customerScript.StopCoroutine("SatisactionTimer");
 
-			// Table connection setup
-			cus.gameObject.GetComponentInParent<Table>().currentCustomerID = customerScript.customerID;
-			cus.GetComponent<BoxCollider>().enabled = false;
-			lineController.FillInLine();
-			var type = Type.GetType(DataLoaderBehav.GetData(customerScript.behavFlow).Behav[1]);
-			Behav read = (Behav)Activator.CreateInstance(type);
-			read.self = customerScript;
-			read.Act();
-			//BehavReadingMenu read = new BehavReadingMenu(self);
-			customerScript.currBehav = read;
-			read = null;
-			GetTable(i).inUse = true;
+				// Table connection setup
+				cus.gameObject.GetComponentInParent<Table>().currentCustomerID = customerScript.customerID;
+				cus.GetComponent<BoxCollider>().enabled = false;
+				lineController.FillInLine();
+				var type = Type.GetType(DataLoaderBehav.GetData(customerScript.behavFlow).Behav[1]);
+				Behav read = (Behav)Activator.CreateInstance(type);
+				read.self = customerScript;
+				read.Act();
+				//BehavReadingMenu read = new BehavReadingMenu(self);
+				customerScript.currBehav = read;
+				read = null;
+				GetTable(i).inUse = true;
+			}
 		}
 	}
 
