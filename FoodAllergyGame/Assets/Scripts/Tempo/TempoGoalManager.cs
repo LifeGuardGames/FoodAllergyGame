@@ -10,6 +10,7 @@ public class TempoGoalManager : Singleton<TempoGoalManager> {
 	public void GetNewGoal() {
 		int tier = TierManager.Instance.CurrentTier;
 		if(tier >= 1) {
+			Debug.Log("New Goal Set");
 			// TODO talk about mid goals or randomized goals
 			ImmutableDataTempoGoal tempoGoalData = DataLoaderTempoGoals.GetData("TempoGoal_" + tier);
 			DataManager.Instance.GameData.DayTracker.CurrentTempoGoal = tempoGoalData.ID;
@@ -18,13 +19,16 @@ public class TempoGoalManager : Singleton<TempoGoalManager> {
 	}
 
 	// Completed or not, calculated on the fly based on goalpost instead of saved status
-	public bool IsGoalCompleted() {
+	public bool IsGoalActive() {
 		int tCash = CashManager.Instance.TotalCash;
 		string currentGoal = DataManager.Instance.GameData.DayTracker.CurrentTempoGoal;
 		if(string.IsNullOrEmpty(currentGoal)) {		// Goal not set yet
 			return true;
 		}
-		if(GetPercentageOfTier(tCash) < DataLoaderTempoGoals.GetData(currentGoal).GoalPoint) {
+		// TODO calculate percentage of tier here...
+
+
+        if(GetPercentageOfTier(tCash) < DataLoaderTempoGoals.GetData(currentGoal).GoalPointTierPercentage) {
 			if(DataManager.Instance.GameData.DayTracker.GoalTimeLimit == 0) {
 				//goalfailed
 				DataManager.Instance.GameData.DayTracker.CurrentTempoGoal = "";
@@ -37,11 +41,15 @@ public class TempoGoalManager : Singleton<TempoGoalManager> {
 		}
 	}
 
+	public void RewardGoalComplete() {
+
+	}
+
 	// How much more totalCash needed to get goal
 	public int GetDifferenceInGoal() {
-		if(!IsGoalCompleted()) {
+		if(!IsGoalActive()) {
 			int tCash = CashManager.Instance.TotalCash;
-			return DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).GoalPoint - tCash;
+			return DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).GoalPointTierPercentage - tCash;
 		}
 		else {
 			return 0;
@@ -51,10 +59,10 @@ public class TempoGoalManager : Singleton<TempoGoalManager> {
 	// Percentage at current tier bracket where it is located
 	public float GetPercentageInCurrentTier() {
 		string currentGoal = DataManager.Instance.GameData.DayTracker.CurrentTempoGoal;
-        if(!IsGoalCompleted() && !string.IsNullOrEmpty(currentGoal)) {
+        if(!IsGoalActive() && !string.IsNullOrEmpty(currentGoal)) {
 			int tCash = CashManager.Instance.TotalCash;
-			Debug.Log("DFD" + (float)tCash / DataLoaderTempoGoals.GetData(currentGoal).GoalPoint);
-			return (float)tCash / DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).GoalPoint;
+			Debug.Log("DFD" + (float)tCash / DataLoaderTempoGoals.GetData(currentGoal).GoalPointTierPercentage);
+			return (float)tCash / DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).GoalPointTierPercentage;
 		}
 		else {
 			Debug.Log("COMPLETED or null");

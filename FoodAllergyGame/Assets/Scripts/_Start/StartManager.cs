@@ -33,6 +33,11 @@ public class StartManager : Singleton<StartManager> {
 		get { return starsUIController; }
 	}
 
+	public MapUIController mapUIController;
+	public MapUIController MapUIController {
+		get { return mapUIController; }
+	}
+
 	public GameObject replayTutButton;
 	public GameObject soundButton;
 	public GameObject musicButton;
@@ -82,6 +87,13 @@ public class StartManager : Singleton<StartManager> {
 			DinerEntranceUIController.ToggleClickable(false);
 			ChallengeMenuEntranceUIController.ToggleClickable(false);
 			replayTutButton.SetActive(false);
+
+
+			// TODO Not sure if this is best place to put it
+			NotificationQueueDataMapReward mapNotif = new NotificationQueueDataMapReward(SceneUtils.START);
+			//NotificationManager.Instance.AddNotification(mapNotif);
+
+
 			int oldTotalCash = CashManager.Instance.LastSeenTotalCash;
 			int newTotalCash = CashManager.Instance.TotalCash;
 			NotificationQueueDataTierProgress tierNotif =

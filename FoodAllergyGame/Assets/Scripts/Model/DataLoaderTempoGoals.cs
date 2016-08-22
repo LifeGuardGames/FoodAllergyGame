@@ -24,6 +24,6 @@ public class DataLoaderTempoGoals : XMLLoaderGeneric<DataLoaderTempoGoals> {
 	}
 
 	protected override void InitXMLLoader() {
-		xmlFileFolderPath = "Goals";
+		xmlFileFolderPath = "TempoGoals";
 	}
 }

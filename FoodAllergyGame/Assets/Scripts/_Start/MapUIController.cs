@@ -31,10 +31,6 @@ public class MapUIController : MonoBehaviour {
 		get { return percentPerSegment; }
 	}
 
-	void Start() {
-		InitializeAndShow();
-	}
-
 	public void InitializeAndShow() {
 		// Initialize variables
 		nodePositionList = new List<Vector2>();
@@ -100,9 +96,9 @@ public class MapUIController : MonoBehaviour {
 		UpdateTrailPercentage(tierProgressPercentage);
 
 		// Place the comet and initialize all the rewards
-	//	if(!TempoGoalManager.Instance.IsGoalCompleted()) {
+		if(!TempoGoalManager.Instance.IsGoalActive()) {
 			PlaceComet(TempoGoalManager.Instance.GetPercentageInCurrentTier());
-	//	}
+		}
 
         demux.Show();
 	}
