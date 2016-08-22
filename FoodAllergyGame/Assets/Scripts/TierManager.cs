@@ -106,6 +106,9 @@ public class TierManager : Singleton<TierManager> {
 				}
 			}
 			currentTier = newTier;
+
+			// Calculate new tempo goal
+			TempoGoalManager.Instance.GetNewGoal();
 		}
 
 		// Print out tier
