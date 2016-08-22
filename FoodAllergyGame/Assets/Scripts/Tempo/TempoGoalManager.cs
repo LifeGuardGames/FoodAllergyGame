@@ -16,7 +16,7 @@
 	// Completed or not
 	public bool IsGoalCompleted() {
 		int tCash = CashManager.Instance.TotalCash;
-		if(tCash < DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).GoalPoint) {
+		if(GetPercentageOfTier(tCash) < DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).GoalPoint) {
 			if(DataManager.Instance.GameData.DayTracker.GoalTimeLimit == 0) {
 				//goalfailed
 				DataManager.Instance.GameData.DayTracker.CurrentTempoGoal = "";
@@ -49,5 +49,9 @@
 		else {
 			return 0;
 		}
+	}
+
+	public float GetPercentageOfTier(int tcash) {
+		return ((float)tcash /DataLoaderTiers.GetDataFromTier(TierManager.Instance.CurrentTier).CashCutoffFloor) *100;
 	}
 }
