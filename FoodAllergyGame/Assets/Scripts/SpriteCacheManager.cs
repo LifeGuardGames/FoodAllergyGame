@@ -29,18 +29,28 @@ public class SpriteCacheManager : Singleton<SpriteCacheManager> {
 		Sprite sprite = Resources.Load<Sprite>(spriteName);
 		return sprite;
 	}
+	////////////////////////
+	public static Sprite GetFoodSpriteByID(string foodID) {
+		ImmutableDataFood foodData = DataLoaderFood.GetData(foodID);
+		return GetFoodSpriteData(foodData.SpriteName);
+	}
 
 	public static Sprite GetFoodSpriteData(string spriteName){
 		Sprite sprite = Resources.Load<Sprite>(spriteName);
 		return sprite;
+	}
+	////////////////////////
+	public static Sprite GetCustomerSpriteByID(string customerID) {
+		ImmutableDataCustomer customerData = DataLoaderCustomer.GetData(customerID);
+		return GetCustomerSpriteData(customerData.SpriteName);
 	}
 
 	public static Sprite GetCustomerSpriteData(string spriteName){
 		Sprite sprite = Resources.Load<Sprite>(spriteName);
 		return sprite;
 	}
-
-	public static Sprite GetDecoSpriteDataByID(string decoID){
+	////////////////////////
+	public static Sprite GetDecoSpriteByID(string decoID){
 		ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
 		return GetDecoSpriteData(decoData.SpriteName);
 	}
@@ -49,7 +59,7 @@ public class SpriteCacheManager : Singleton<SpriteCacheManager> {
 		Sprite sprite = Resources.Load<Sprite>(spriteName);
 		return sprite;
 	}
-
+	////////////////////////
 	public static Sprite GetAllergySpriteData(Allergies allergyEnum){
 		Sprite sprite = Resources.Load<Sprite>("Allergy" + allergyEnum.ToString());
 		return sprite;
@@ -120,5 +130,23 @@ public class SpriteCacheManager : Singleton<SpriteCacheManager> {
 		}
 		Sprite sprite = Resources.Load<Sprite>(loadingString);
 		return sprite;
+	}
+
+	public static Sprite SpriteGetRewardSpriteByType(AssetTypes assetType, string assetID) {
+		switch(assetType) {
+			case AssetTypes.Customer:
+				return GetCustomerSpriteByID(assetID);
+			case AssetTypes.DecoSpecial:
+			case AssetTypes.DecoBasic:
+				return GetDecoSpriteByID(assetID);
+			case AssetTypes.Food:
+				return GetFoodSpriteByID(assetID);
+			case AssetTypes.Challenge:
+				return GetChallengeItemSpriteData();
+			case AssetTypes.Slot:
+				return GetSlotItemSpriteData();
+			default:
+				return null;
+        }
 	}
 }

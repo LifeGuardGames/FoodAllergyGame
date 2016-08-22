@@ -41,7 +41,7 @@
 	}
 
 	// Percentage at current tier bracket where it is located
-	public float GetPercentageInTotal() {
+	public float GetPercentageInCurrentTier() {
 		if(!IsGoalCompleted()) {
 			int tCash = CashManager.Instance.TotalCash;
 			return (float)tCash / DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).GoalPoint;

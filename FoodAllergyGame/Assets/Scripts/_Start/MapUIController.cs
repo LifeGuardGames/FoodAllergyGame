@@ -80,6 +80,7 @@ public class MapUIController : MonoBehaviour {
 		percentPerSegment = 1f / (numberNodesBetweenStartEnd + 1);
         for(int i = 0; i < auxNodesList.Count - 1; i++) {
 			GameObject segment = GameObjectUtils.AddChildGUI(mapParent, trailSegmentPrefab);
+			segment.transform.SetSiblingIndex(0);
 			MapTrailSegment segmentScript = segment.GetComponent<MapTrailSegment>();
 			segmentScript.Init(auxNodesList[i], auxNodesList[i + 1], i + 1, this);
 			segmentList.Add(segmentScript);
@@ -99,9 +100,9 @@ public class MapUIController : MonoBehaviour {
 		UpdateTrailPercentage(tierProgressPercentage);
 
 		// Place the comet and initialize all the rewards
-		if(!TempoGoalManager.Instance.IsGoalCompleted()) {
-			PlaceComet(TempoGoalManager.Instance.GetPercentageInTotal());
-		}
+	//	if(!TempoGoalManager.Instance.IsGoalCompleted()) {
+	//		PlaceComet(TempoGoalManager.Instance.GetPercentageInCurrentTier());
+	//	}
 
         demux.Show();
 	}
