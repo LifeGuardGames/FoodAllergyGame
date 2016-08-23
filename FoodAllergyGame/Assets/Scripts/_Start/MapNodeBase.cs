@@ -2,10 +2,13 @@
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class MapNodeBase : MonoBehaviour {
+public class MapNodeBase : MapNode {
 	public GameObject rewardParent;
 	public Text starNumberText;
 	public List<Image> rewardList;
+	public Animation reachedAnim;
+	public Color activeColor;
+	public Image nodeImage;
 
 	private Dictionary<AssetTypes, List<string>> unlocksHash;
 	private int currentRewardIndex = 0;
@@ -52,4 +55,9 @@ public class MapNodeBase : MonoBehaviour {
 			rewardList[i].enabled = false;
 		}
 	}
+
+	public override void ToggleReached() {
+		nodeImage.color = activeColor;
+        reachedAnim.Play();
+    }
 }

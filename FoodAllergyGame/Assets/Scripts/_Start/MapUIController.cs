@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Collections;
 
 /// <summary>
 /// Terminology:
@@ -31,12 +32,22 @@ public class MapUIController : MonoBehaviour {
 		get { return percentPerSegment; }
 	}
 
-	public void InitializeAndShow() {
+	private NotificationQueueData notif;				// Used for tracking end notification
+	private int oldTotalCash;
+	private int newTotalCash;
+	private ImmutableDataTiers startTier;
+	private ImmutableDataTiers endTier;
+	private float tierProgressPercentage;
+
+	public void InitializeAndShow(int _oldTotalCash, int _newTotalCash, NotificationQueueData _notif) {
 		// Initialize variables
 		nodePositionList = new List<Vector2>();
 		auxNodesList = new List<Transform>();
 		segmentList = new List<MapTrailSegment>();
 		segmentHeight = canvasScaler.referenceResolution.y / (numberNodesBetweenStartEnd + 1);
+		notif = _notif;
+		oldTotalCash = _oldTotalCash;
+		newTotalCash = _newTotalCash;
 
 		// Initialize all the node positions
 		Random.seed = 42;                           // Repeatable random numbers
@@ -55,8 +66,7 @@ public class MapUIController : MonoBehaviour {
                 nodePositionList.Add(new Vector2(xDisplacement, segmentHeight * modulo));
 			}
 		}
-
-		ImmutableDataTiers startTier = DataLoaderTiers.GetDataFromTier(DataLoaderTiers.GetTierFromCash(CashManager.Instance.TotalCash));
+		startTier = DataLoaderTiers.GetDataFromTier(DataLoaderTiers.GetTierFromCash(_oldTotalCash));
         GameObject nodeBaseStart = GameObjectUtils.AddChildGUI(mapParent, nodeBasePrefab);
 		nodeBaseStart.GetComponent<MapNodeBase>().Init(startTier, true, canvasScaler);
 		auxNodesList.Add(nodeBaseStart.transform);
@@ -67,7 +77,7 @@ public class MapUIController : MonoBehaviour {
 			auxNodesList.Add(nodeMid.transform);
 		}
 
-		ImmutableDataTiers endTier = DataLoaderTiers.GetNextTier(startTier);
+		endTier = DataLoaderTiers.GetNextTier(startTier);
 		GameObject nodeBaseEnd = GameObjectUtils.AddChildGUI(mapParent, nodeBasePrefab);
 		nodeBaseEnd.GetComponent<MapNodeBase>().Init(endTier, false, canvasScaler);
 		auxNodesList.Add(nodeBaseEnd.transform);
@@ -83,24 +93,24 @@ public class MapUIController : MonoBehaviour {
         }
 
 		//Calculate current percentage and update trails
-		float tierProgressPercentage;
 		if(endTier != null) {
-			int totalCashNeededForTier = endTier.CashCutoffFloor - startTier.CashCutoffFloor;
-			tierProgressPercentage = (float)(CashManager.Instance.LastSeenTotalCash - startTier.CashCutoffFloor) / totalCashNeededForTier;
-			Debug.Log("tier progress percentage start " + tierProgressPercentage);
+			tierProgressPercentage = GetPercentageAtTierRange(startTier, endTier, _oldTotalCash);
 		}
 		else {  // Reached last tier
 			tierProgressPercentage = 1f;
-			Debug.Log("tier progress percentage full");
         }
 		UpdateTrailPercentage(tierProgressPercentage);
 
 		// Place the comet and initialize all the rewards
-		if(!TempoGoalManager.Instance.IsGoalActive()) {
-			PlaceComet(TempoGoalManager.Instance.GetPercentageInCurrentTier());
-		}
+	//	if(!TempoGoalManager.Instance.IsGoalActive()) {
+	//		PlaceComet(TempoGoalManager.Instance.GetPercentageInCurrentTier());
+	//	}
 
         demux.Show();
+    }
+
+	public void OnShowComplete() {
+		StartAnimation();
 	}
 
 	public void UpdateTrailPercentage(float trailPercentage) {
@@ -109,15 +119,13 @@ public class MapUIController : MonoBehaviour {
 		}
 	}
 
-	private void HidePanel() {
-		demux.Hide();
-	}
-
-	public void OnExitButton() {
-		//StartManager.Instance.ChallengeMenuEntranceUIController.ToggleClickable(true);
-		//StartManager.Instance.DinerEntranceUIController.ToggleClickable(true);
-		//StartManager.Instance.ShopEntranceUIController.ToggleClickable(true);
-		HidePanel();
+	/// <summary>
+	/// Given start and end tiers, and a cash value in between, what percentage am I at?
+	/// </summary>
+	private float GetPercentageAtTierRange(ImmutableDataTiers _startTier, ImmutableDataTiers _endTier, int totalCash) {
+		int totalCashNeededForTier = _endTier.CashCutoffFloor - _startTier.CashCutoffFloor;
+		float aux = (float)(totalCash - _startTier.CashCutoffFloor) / totalCashNeededForTier;
+		return aux;
 	}
 
 	public void PlaceComet(float percentage) {
@@ -131,4 +139,43 @@ public class MapUIController : MonoBehaviour {
 			}
 		}
 	}
+
+	#region Animation functions
+	public void StartAnimation() {
+		Debug.Log("Starting animation");
+		float finishPercentage;
+
+		// First check if we are passed into a new tier
+		int currentTierNum = DataLoaderTiers.GetTierFromCash(newTotalCash);
+        if(currentTierNum == startTier.TierNumber) {		// Same tier, do regular tweening
+			finishPercentage = GetPercentageAtTierRange(startTier, endTier, newTotalCash);
+		}
+		else {                                              // Tiered up, just show progress 100%
+			finishPercentage = 1f;
+		}
+		//	Debug.Log("finishpercentage " + tierProgressPercentage + " " + finishPercentage);
+		LeanTween.value(gameObject, TweenValuePercentage, tierProgressPercentage, finishPercentage, 2f)
+			.setEase(LeanTweenType.easeInOutQuad)
+			.setDelay(1f)
+			.setOnComplete(TweenCompleted);
+	}
+
+	private void TweenValuePercentage(float val) {
+		// The trails themselves will update the node animations
+		UpdateTrailPercentage(val);
+    }
+
+	private void TweenCompleted() {
+		StartCoroutine(WaitAndClose());
+	}
+
+	private IEnumerator WaitAndClose() {
+		yield return new WaitForSeconds(2f);
+		//StartManager.Instance.ChallengeMenuEntranceUIController.ToggleClickable(true);
+		//StartManager.Instance.DinerEntranceUIController.ToggleClickable(true);
+		//StartManager.Instance.ShopEntranceUIController.ToggleClickable(true);
+		demux.Hide();
+		notif.Finish();
+    }
+	#endregion
 }

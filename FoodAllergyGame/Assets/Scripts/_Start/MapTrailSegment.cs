@@ -11,11 +11,14 @@ public class MapTrailSegment : MonoBehaviour {
 	private float percentPerSegment;
 	private Vector3 startPosition;
 	private Vector3 endPosition;
+	private Transform endNode;
+	private bool isFilled;						// Use for toggling end nodes and optimization
 
 	public void Init(Transform startBase, Transform endBase, int _segmentIndex, MapUIController _mapScript) {
 		mapScript = _mapScript;
 		segmentIndex = _segmentIndex;
 		percentPerSegment = _mapScript.PercentPerSegment;
+		endNode = endBase;
 
 		transform.localPosition = startBase.localPosition;
 		startPosition = startBase.localPosition;
@@ -30,17 +33,26 @@ public class MapTrailSegment : MonoBehaviour {
 
 	public void UpdateSegmentPercentage(float tierProgressPercentage) {
 		if(isInitialized) {
-			if(tierProgressPercentage >= (segmentIndex) * percentPerSegment) {  // Fill 100%
-				fillImage.rectTransform.sizeDelta = new Vector2(totalFillWidth, 10f);
-			}
-			else {                                                              // Partial fill
-				float difference = ((segmentIndex * percentPerSegment) - tierProgressPercentage);
-				if(difference >= percentPerSegment) {
-					fillImage.rectTransform.sizeDelta = new Vector2(0f, 10f);   // Blank
-				}
-				else {
-					float fillPercentage = 1f - (((segmentIndex * percentPerSegment) - tierProgressPercentage) / percentPerSegment);
-					fillImage.rectTransform.sizeDelta = new Vector2(totalFillWidth * fillPercentage, 10f);
+			if(!isFilled) {				// Shortcut to see if need processing at all
+				if(tierProgressPercentage >= (segmentIndex) * percentPerSegment) {  // Fill 100%
+					fillImage.rectTransform.sizeDelta = new Vector2(totalFillWidth, 10f);
+
+					// Toggle shortcut skip
+					isFilled = true;
+
+					// Ping its end node to animate
+					MapNode mapNode = endNode.GetComponent<MapNode>();
+					mapNode.ToggleReached();
+                }
+				else {                                                              // Partial fill
+					float difference = ((segmentIndex * percentPerSegment) - tierProgressPercentage);
+					if(difference >= percentPerSegment) {
+						fillImage.rectTransform.sizeDelta = new Vector2(0f, 10f);   // Blank
+					}
+					else {
+						float fillPercentage = 1f - (((segmentIndex * percentPerSegment) - tierProgressPercentage) / percentPerSegment);
+						fillImage.rectTransform.sizeDelta = new Vector2(totalFillWidth * fillPercentage, 10f);
+					}
 				}
 			}
 		}
