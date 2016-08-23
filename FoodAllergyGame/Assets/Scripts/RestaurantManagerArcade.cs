@@ -102,7 +102,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 			GameObject customerPrefab = Resources.Load(customerData.Script) as GameObject;
 			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 			customerNumber++;
-			cus.GetComponent<Customer>().behavFlow = customerData.BehavFlow;
+			cus.GetComponent<Customer>().behavFlow = DataLoaderBehav.GetRandomBehavByType(cus.GetComponent<Customer>().type.ToString()).ID;
 			cus.GetComponent<Customer>().Init(customerNumber, eventData);
 			AddCustomer(cus.GetComponent<Customer>());
 			customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
