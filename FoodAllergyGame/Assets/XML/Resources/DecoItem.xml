@@ -363,7 +363,7 @@
 
 	<DecoItem ID = "PlayArea00">
 		<Type>PlayArea</Type>
-		<Price>1</Price>
+		<Price>0</Price>
 		<TitleKey>PlayAreaClawMachine</TitleKey>
 		<DescriptionKey>PlayAreaClawMachineDesc</DescriptionKey>
 		<SpriteName>RestPlayAreaClawMachine</SpriteName>
