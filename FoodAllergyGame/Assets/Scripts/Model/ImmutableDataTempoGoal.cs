@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 
 public class ImmutableDataTempoGoal {
 
@@ -8,9 +7,9 @@ public class ImmutableDataTempoGoal {
 		get { return id; }
 	}
 
-	private int goalPoint;
-	public int GoalPoint {
-		get { return goalPoint; }
+	private int goalPointTierPercentage;
+	public int GoalPointTierPercentage {
+		get { return goalPointTierPercentage; }
 	}
 
 	private int timeLimit;
@@ -27,7 +26,7 @@ public class ImmutableDataTempoGoal {
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 		this.id = id;
 
-		goalPoint = XMLUtils.GetInt(hashElements["Amount"] as IXMLNode);
+		goalPointTierPercentage = XMLUtils.GetInt(hashElements["Percentage"] as IXMLNode);
 		timeLimit = XMLUtils.GetInt(hashElements["TimeLimit"] as IXMLNode);
 		reward = XMLUtils.GetInt(hashElements["Reward"] as IXMLNode);
 	}

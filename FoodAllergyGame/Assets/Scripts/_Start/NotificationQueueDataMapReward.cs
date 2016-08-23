@@ -2,24 +2,24 @@
 
 /// <summary>
 /// Implementation of a NotificationQueueData
-/// Launches the reward animation for getting a star core
+/// Launches the reward animation for map progress
 /// </summary>
-public class NotificationQueueDataStarCoreReward : NotificationQueueData {
+public class NotificationQueueDataMapReward : NotificationQueueData {
 
-	public NotificationQueueDataStarCoreReward(string allowedScene){
+	public NotificationQueueDataMapReward(string allowedScene) {
 		this.allowedScene = allowedScene;
 	}
 
 	public override void Start() {
 		if(allowedScene == SceneManager.GetActiveScene().name) {
-			StartManager.Instance.StarsUIController.RewardStarCore(this);
+			StartManager.Instance.MapUIController.InitializeAndShow();
 		}
 		else {
 			Finish();
 		}
 	}
 
-	public override void Finish(){
+	public override void Finish() {
 		base.Finish();
 	}
 }
