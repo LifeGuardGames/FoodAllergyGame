@@ -46,6 +46,11 @@ public class DataLoaderTiers: XMLLoaderGeneric<DataLoaderTiers>{
 		return tierSoFar;
 	}
 
+	public static int GetCashInTier(ImmutableDataTiers tier) {
+		ImmutableDataTiers nextTier = GetNextTier(tier);
+		return nextTier.CashCutoffFloor - tier.CashCutoffFloor;
+    }
+
 	public static float GetPercentProgressInTier(int totalCash){
 		int tier = GetTierFromCash(totalCash);
 		ImmutableDataTiers tierData = GetDataFromTier(tier);

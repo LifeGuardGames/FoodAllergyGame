@@ -1,177 +1,212 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TempoGoals>
-	<TempoGoal ID="TempoGoal_1">
-		<Percentage>50</Percentage>
+	<TempoGoal ID="TempoGoal01">
+		<Tier>1</Tier>
+		<Percentage>0.5</Percentage>
 		<TimeLimit>1</TimeLimit>
 		<Reward>200</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_2">
-		<Percentage>20</Percentage>
+	<TempoGoal ID="TempoGoal02">
+		<Tier>2</Tier>
+		<Percentage>0.2</Percentage>
 		<TimeLimit>1</TimeLimit>
 		<Reward>200</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_3">
-		<Percentage>70</Percentage>
+	<TempoGoal ID="TempoGoal03">
+		<Tier>3</Tier>
+		<Percentage>0.7</Percentage>
 		<TimeLimit>3</TimeLimit>
 		<Reward>200</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_4">
-		<Percentage>50</Percentage>
+	<TempoGoal ID="TempoGoal04">
+		<Tier>4</Tier>
+		<Percentage>0.5</Percentage>
 		<TimeLimit>2</TimeLimit>
 		<Reward>200</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_5">
-		<Percentage>20</Percentage>
+	<TempoGoal ID="TempoGoal05">
+		<Tier>5</Tier>
+		<Percentage>0.2</Percentage>
 		<TimeLimit>1</TimeLimit>
 		<Reward>200</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_6">
-		<Percentage>70</Percentage>
+	<TempoGoal ID="TempoGoal06">
+		<Tier>6</Tier>
+		<Percentage>0.7</Percentage>
 		<TimeLimit>3</TimeLimit>
 		<Reward>400</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_7">
-		<Percentage>50</Percentage>
+	<TempoGoal ID="TempoGoal07">
+		<Tier>7</Tier>
+		<Percentage>0.5</Percentage>
 		<TimeLimit>2</TimeLimit>
 		<Reward>400</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_8">
-		<Percentage>20</Percentage>
+	<TempoGoal ID="TempoGoal08">
+		<Tier>8</Tier>
+		<Percentage>0.2</Percentage>
 		<TimeLimit>1</TimeLimit>
 		<Reward>400</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_9">
-		<Percentage>70</Percentage>
+	<TempoGoal ID="TempoGoal09">
+		<Tier>9</Tier>
+		<Percentage>0.7</Percentage>
 		<TimeLimit>3</TimeLimit>
 		<Reward>400</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_10">
-		<Percentage>50</Percentage>
+	<TempoGoal ID="TempoGoal10">
+		<Tier>10</Tier>
+		<Percentage>0.5</Percentage>
 		<TimeLimit>1</TimeLimit>
 		<Reward>200</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_11">
-		<Percentage>20</Percentage>
+	<TempoGoal ID="TempoGoal11">
+		<Tier>11</Tier>
+		<Percentage>0.2</Percentage>
 		<TimeLimit>1</TimeLimit>
 		<Reward>200</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_12">
-		<Percentage>70</Percentage>
+	<TempoGoal ID="TempoGoal12">
+		<Tier>12</Tier>
+		<Percentage>0.7</Percentage>
 		<TimeLimit>3</TimeLimit>
 		<Reward>200</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_13">
-		<Percentage>50</Percentage>
+	<TempoGoal ID="TempoGoal13">
+		<Tier>13</Tier>
+		<Percentage>0.5</Percentage>
 		<TimeLimit>2</TimeLimit>
 		<Reward>200</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_14">
-		<Percentage>20</Percentage>
+	<TempoGoal ID="TempoGoal14">
+		<Tier>14</Tier>
+		<Percentage>0.2</Percentage>
 		<TimeLimit>1</TimeLimit>
 		<Reward>200</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_15">
-		<Percentage>70</Percentage>
+	<TempoGoal ID="TempoGoal15">
+		<Tier>15</Tier>
+		<Percentage>0.7</Percentage>
 		<TimeLimit>3</TimeLimit>
 		<Reward>400</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_16">
-		<Percentage>50</Percentage>
+	<TempoGoal ID="TempoGoal16">
+		<Tier>16</Tier>
+		<Percentage>0.5</Percentage>
 		<TimeLimit>2</TimeLimit>
 		<Reward>400</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_17">
-		<Percentage>20</Percentage>
+	<TempoGoal ID="TempoGoal17">
+		<Tier>17</Tier>
+		<Percentage>0.2</Percentage>
 		<TimeLimit>1</TimeLimit>
 		<Reward>400</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_18">
-		<Percentage>70</Percentage>
+	<TempoGoal ID="TempoGoal18">
+		<Tier>18</Tier>
+		<Percentage>0.7</Percentage>
 		<TimeLimit>3</TimeLimit>
 		<Reward>400</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_19">
-		<Percentage>50</Percentage>
+	<TempoGoal ID="TempoGoal19">
+		<Tier>19</Tier>
+		<Percentage>0.5</Percentage>
 		<TimeLimit>1</TimeLimit>
 		<Reward>200</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_20">
-		<Percentage>20</Percentage>
+	<TempoGoal ID="TempoGoal20">
+		<Tier>20</Tier>
+		<Percentage>0.2</Percentage>
 		<TimeLimit>1</TimeLimit>
 		<Reward>200</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_21">
-		<Percentage>70</Percentage>
+	<TempoGoal ID="TempoGoal21">
+		<Tier>21</Tier>
+		<Percentage>0.7</Percentage>
 		<TimeLimit>3</TimeLimit>
 		<Reward>200</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_22">
-		<Percentage>50</Percentage>
+	<TempoGoal ID="TempoGoal22">
+		<Tier>22</Tier>
+		<Percentage>0.5</Percentage>
 		<TimeLimit>2</TimeLimit>
 		<Reward>200</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_23">
-		<Percentage>20</Percentage>
+	<TempoGoal ID="TempoGoal23">
+		<Tier>23</Tier>
+		<Percentage>0.2</Percentage>
 		<TimeLimit>1</TimeLimit>
 		<Reward>200</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_24">
-		<Percentage>70</Percentage>
+	<TempoGoal ID="TempoGoal24">
+		<Tier>24</Tier>
+		<Percentage>0.7</Percentage>
 		<TimeLimit>3</TimeLimit>
 		<Reward>400</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_25">
-		<Percentage>50</Percentage>
+	<TempoGoal ID="TempoGoal25">
+		<Tier>25</Tier>
+		<Percentage>0.5</Percentage>
 		<TimeLimit>2</TimeLimit>
 		<Reward>400</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_26">
-		<Percentage>20</Percentage>
+	<TempoGoal ID="TempoGoal26">
+		<Tier>26</Tier>
+		<Percentage>0.2</Percentage>
 		<TimeLimit>1</TimeLimit>
 		<Reward>400</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_27">
-		<Percentage>70</Percentage>
+	<TempoGoal ID="TempoGoal27">
+		<Tier>27</Tier>
+		<Percentage>0.7</Percentage>
 		<TimeLimit>3</TimeLimit>
 		<Reward>400</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_28">
-		<Percentage>50</Percentage>
+	<TempoGoal ID="TempoGoal28">
+		<Tier>28</Tier>
+		<Percentage>0.5</Percentage>
 		<TimeLimit>1</TimeLimit>
 		<Reward>200</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_29">
-		<Percentage>20</Percentage>
+	<TempoGoal ID="TempoGoal29">
+		<Tier>29</Tier>
+		<Percentage>0.2</Percentage>
 		<TimeLimit>1</TimeLimit>
 		<Reward>200</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_30">
-		<Percentage>70</Percentage>
+	<TempoGoal ID="TempoGoal30">
+		<Tier>30</Tier>
+		<Percentage>0.7</Percentage>
 		<TimeLimit>3</TimeLimit>
 		<Reward>200</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_31">
-		<Percentage>50</Percentage>
+	<TempoGoal ID="TempoGoal31">
+		<Tier>31</Tier>
+		<Percentage>0.5</Percentage>
 		<TimeLimit>2</TimeLimit>
 		<Reward>200</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_32">
-		<Percentage>20</Percentage>
+	<TempoGoal ID="TempoGoal32">
+		<Tier>32</Tier>
+		<Percentage>0.2</Percentage>
 		<TimeLimit>1</TimeLimit>
 		<Reward>200</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_33">
-		<Percentage>70</Percentage>
+	<TempoGoal ID="TempoGoal33">
+		<Tier>33</Tier>
+		<Percentage>0.7</Percentage>
 		<TimeLimit>3</TimeLimit>
 		<Reward>400</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_34">
-		<Percentage>50</Percentage>
+	<TempoGoal ID="TempoGoal34">
+		<Tier>34</Tier>
+		<Percentage>0.5</Percentage>
 		<TimeLimit>2</TimeLimit>
 		<Reward>400</Reward>
 	</TempoGoal>
-	<TempoGoal ID="TempoGoal_35">
-		<Percentage>20</Percentage>
+	<TempoGoal ID="TempoGoal35">
+		<Tier>35</Tier>
+		<Percentage>0.2</Percentage>
 		<TimeLimit>1</TimeLimit>
 		<Reward>400</Reward>
 	</TempoGoal>

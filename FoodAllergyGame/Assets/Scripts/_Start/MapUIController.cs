@@ -103,7 +103,7 @@ public class MapUIController : MonoBehaviour {
 
 		// Place the comet and initialize all the rewards
 	//	if(!TempoGoalManager.Instance.IsGoalActive()) {
-	//		PlaceComet(TempoGoalManager.Instance.GetPercentageInCurrentTier());
+			PlaceComet(TempoGoalManager.Instance.GetPercentageInCurrentTier());
 	//	}
 
         demux.Show();

@@ -7,8 +7,13 @@ public class ImmutableDataTempoGoal {
 		get { return id; }
 	}
 
-	private int goalPointTierPercentage;
-	public int GoalPointTierPercentage {
+	private int tier;
+	public int Tier {
+		get { return tier; }
+	}
+
+	private float goalPointTierPercentage;
+	public float GoalPointTierPercentage {
 		get { return goalPointTierPercentage; }
 	}
 
@@ -21,12 +26,12 @@ public class ImmutableDataTempoGoal {
 	public int Reward {
 		get { return reward; }
 	}
-
+	
 	public ImmutableDataTempoGoal(string id, IXMLNode xmlNode, string error) {
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 		this.id = id;
-
-		goalPointTierPercentage = XMLUtils.GetInt(hashElements["Percentage"] as IXMLNode);
+		tier = XMLUtils.GetInt(hashElements["Tier"] as IXMLNode);
+		goalPointTierPercentage = XMLUtils.GetFloat(hashElements["Percentage"] as IXMLNode);
 		timeLimit = XMLUtils.GetInt(hashElements["TimeLimit"] as IXMLNode);
 		reward = XMLUtils.GetInt(hashElements["Reward"] as IXMLNode);
 	}

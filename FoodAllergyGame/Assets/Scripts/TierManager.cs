@@ -34,20 +34,24 @@ public class TierManager : Singleton<TierManager> {
 		get{ return currentTierUnlocks; }
 	}
 
+	private int oldTotalCash;   // Reloads every scene, refreshed on RecaulculateTier
+	public int OldTotalCash;
+
 	// Recalculate the tier given a certain algorithm
 	// NOTE: does NOT support multiple tiers!
 	public void RecalculateTier() {
 		isNewUnlocksAvailable = false;
 		isTierUp = false;
+		oldTotalCash = CashManager.Instance.LastSeenTotalCash;
 
-        if(CashManager.Instance.TotalCash > 5800 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates) {
+		if(CashManager.Instance.TotalCash > 5800 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates) {
 			CashManager.Instance.OverrideTotalCash(5800);
         }
 		oldTier = DataLoaderTiers.GetTierFromCash(CashManager.Instance.LastSeenTotalCash);
 		currentTier = oldTier; // TODO Triple check this line
 		int newTier = DataLoaderTiers.GetTierFromCash(CashManager.Instance.TotalCash);
 		AnalyticsManager.Instance.SuperProperties.Remove("Tier");
-		AnalyticsManager.Instance.SuperProperties.Add("Tier", TierManager.Instance.CurrentTier);
+		AnalyticsManager.Instance.SuperProperties.Add("Tier", currentTier);
 		// If there is a change in tier, run logic
 		// INVARIABLE: Tiers are maximum one above, never multiple tiers at once
 		if(oldTier < newTier || DataManager.Instance.GameData.DayTracker.NotifQueue.Count > 0) {
