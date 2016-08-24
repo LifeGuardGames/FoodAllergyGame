@@ -37,7 +37,7 @@ public class BehavNotifyLeave : Behav {
 				RestaurantManager.Instance.lineCount--;
 				RestaurantManager.Instance.lineController.FillInLine();
 			}
-			if(self.tableNum != -1) {
+			if(self.state != CustomerStates.InLine) {
 				if(RestaurantManager.Instance.GetTable(self.tableNum).tableType == Table.TableType.VIP) {
 					RestaurantManager.Instance.CustomerLeftSatisfaction(self, true, VIPMultiplier: RestaurantManager.Instance.GetTable(self.tableNum).VIPMultiplier);
 				}
