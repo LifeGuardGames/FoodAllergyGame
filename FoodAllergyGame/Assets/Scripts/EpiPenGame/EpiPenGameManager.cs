@@ -7,6 +7,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 	public int totalSteps = 8;
 	public Canvas mainCanvas;
 	public EpiPenGameUIManager UIManager;
+	public Text title;
 	
 	public List<EpiPenGameSlot> finalSlotList;
 	private List<int> allPickTokens;
@@ -39,7 +40,9 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 
 	void Start() {
 		int randomIndex = UnityEngine.Random.Range(0, 2);
-		epipenSetPrefix = randomIndex == 0 ? "A" : "A";		// TODO make different version
+		epipenSetPrefix = randomIndex == 0 ? "A" : "B";
+
+		title.text = LocalizationText.GetText(epipenSetPrefix == "A" ? "EpipenTitleA" : "EpipenTitleB");
 
 		if(DataManager.Instance.IsDebug) {
 			isTutorial = !Constants.GetConstant<bool>("IsEpiPenTutorialDone");
