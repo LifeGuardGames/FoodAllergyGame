@@ -20,6 +20,8 @@ public class MapUIController : MonoBehaviour {
 	public GameObject nodeBasePrefab;
 	public GameObject trailSegmentPrefab;
 	public GameObject cometPrefab;
+	private GameObject comet;
+	public GameObject cometParticle;
 
 	private float segmentHeight;					// Y component from one node to the other
 	private int numberNodesBetweenStartEnd = 3;
@@ -103,7 +105,7 @@ public class MapUIController : MonoBehaviour {
 
 		// Place the comet and initialize all the rewards
 	//	if(!TempoGoalManager.Instance.IsGoalActive()) {
-			PlaceComet(TempoGoalManager.Instance.GetPercentageInCurrentTier());
+			PlaceComet(TempoGoalManager.Instance.GetPercentageOfTier(TierManager.Instance.CurrentTier));
 	//	}
 
         demux.Show();
@@ -133,8 +135,9 @@ public class MapUIController : MonoBehaviour {
 		foreach(MapTrailSegment segment in segmentList) {
 			Vector3? cometPosition = segment.GetPositionOfSegmentPercentage(percentage);
             if(cometPosition != null) {
-				GameObject comet = GameObjectUtils.AddChildGUI(mapParent, cometPrefab);
+				comet = GameObjectUtils.AddChildGUI(mapParent, cometPrefab);
 				comet.transform.localPosition = cometPosition.GetValueOrDefault();
+				cometParticle.transform.position = comet.transform.position;
 				break;
 			}
 		}
@@ -162,8 +165,27 @@ public class MapUIController : MonoBehaviour {
 
 	private void TweenValuePercentage(float val) {
 		// The trails themselves will update the node animations
-		UpdateTrailPercentage(val);
+		if(val >= TempoGoalManager.Instance.GetPercentageOfTier(TierManager.Instance.CurrentTier)&& !DataManager.Instance.GameData.DayTracker.HasCompletedGoalThisTier) {
+			SmashComet();
+		}
+		else {
+			UpdateTrailPercentage(val);
+		}
     }
+
+	private void SmashComet() {
+		LeanTween.pause(gameObject);
+		cometParticle.SetActive(true);
+		DataManager.Instance.GameData.DayTracker.HasCompletedGoalThisTier = true;
+		StartCoroutine("PlayCometParticle");
+    }
+
+	private IEnumerator PlayCometParticle() {
+		yield return new WaitForSeconds(2.0f);
+		Destroy(comet.gameObject);
+		cometParticle.SetActive(false);
+		LeanTween.resume(gameObject);
+	}
 
 	private void TweenCompleted() {
 		StartCoroutine(WaitAndClose());

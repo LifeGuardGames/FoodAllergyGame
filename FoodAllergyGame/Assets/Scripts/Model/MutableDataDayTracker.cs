@@ -9,6 +9,7 @@ public class MutableDataDayTracker {
 	public List<string> NotifQueue { get; set; }
 	public string CurrentTempoGoal { get; set; }
 	public int GoalTimeLimit { get; set; }
+	public bool HasCompletedGoalThisTier { get; set; }
 
 	public MutableDataDayTracker(){
 		AvgDifficulty = 15.0f;
@@ -19,5 +20,6 @@ public class MutableDataDayTracker {
 		HasCollectedAge = false;
 		NotifQueue = new List<string>();
 		CurrentTempoGoal = "";
+		HasCompletedGoalThisTier = false;
 	}
 }
