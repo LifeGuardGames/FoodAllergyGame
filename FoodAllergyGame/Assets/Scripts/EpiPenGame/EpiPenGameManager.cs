@@ -39,7 +39,7 @@ public class EpiPenGameManager : Singleton<EpiPenGameManager>{
 
 	void Start() {
 		int randomIndex = UnityEngine.Random.Range(0, 2);
-		epipenSetPrefix = randomIndex == 0 ? "A" : "A";		// TODO make different version
+		epipenSetPrefix = randomIndex == 0 ? "A" : "B";
 
 		if(DataManager.Instance.IsDebug) {
 			isTutorial = !Constants.GetConstant<bool>("IsEpiPenTutorialDone");
