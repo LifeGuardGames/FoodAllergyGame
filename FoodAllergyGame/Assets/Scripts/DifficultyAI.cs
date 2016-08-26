@@ -43,6 +43,6 @@ public class DifficultyAI {
 	// Choose Retaurant mode
 	private int RestModeChooser() {
 			int rand = Random.Range(0, 5);
-			return rand;
+			return 4;
 	}
 }

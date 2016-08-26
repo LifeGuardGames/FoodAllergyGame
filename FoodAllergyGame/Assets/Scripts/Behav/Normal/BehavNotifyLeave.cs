@@ -37,7 +37,7 @@ public class BehavNotifyLeave : Behav {
 				RestaurantManager.Instance.lineCount--;
 				RestaurantManager.Instance.lineController.FillInLine();
 			}
-			if(self.state != CustomerStates.InLine) {
+			if(self.state != CustomerStates.InLine &&  !self.isAnnoyed) {
 				if(RestaurantManager.Instance.GetTable(self.tableNum).tableType == Table.TableType.VIP) {
 					RestaurantManager.Instance.CustomerLeftSatisfaction(self, true, VIPMultiplier: RestaurantManager.Instance.GetTable(self.tableNum).VIPMultiplier);
 				}
@@ -46,7 +46,7 @@ public class BehavNotifyLeave : Behav {
 				}
 			}
 			else {
-				RestaurantManager.Instance.CustomerLeftSatisfaction(self, true);
+				RestaurantManager.Instance.CustomerLeftFlatCharge(self, 0, true);
 			}
 			if(self.hasPowerUp) {
 				//Waiter.Instance.GivePowerUp();

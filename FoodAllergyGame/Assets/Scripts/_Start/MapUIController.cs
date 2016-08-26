@@ -165,7 +165,7 @@ public class MapUIController : MonoBehaviour {
 
 	private void TweenValuePercentage(float val) {
 		// The trails themselves will update the node animations
-		if(val >= TempoGoalManager.Instance.GetPercentageOfTier(TierManager.Instance.CurrentTier)&& !DataManager.Instance.GameData.DayTracker.HasCompletedGoalThisTier) {
+		if(val >= TempoGoalManager.Instance.GetPercentageOfTier(TierManager.Instance.CurrentTier)&& !DataManager.Instance.GameData.DayTracker.HasCompletedGoalThisTier && TierManager.Instance.CurrentTier != 0) {
 			SmashComet();
 		}
 		else {
