@@ -178,7 +178,15 @@ public class MapUIController : MonoBehaviour {
 		cometParticle.SetActive(true);
 		DataManager.Instance.GameData.DayTracker.HasCompletedGoalThisTier = true;
 		StartCoroutine("PlayCometParticle");
-    }
+		if(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal != "") {
+			ParticleAndFloatyUtils.PlayMoneyFloaty(comet.transform.position, DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).Reward);
+			CashManager.Instance.RestaurantEndCashUpdate(DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).Reward, DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).Reward);
+		}
+		else {
+			ParticleAndFloatyUtils.PlayMoneyFloaty(comet.transform.position, 100);
+			CashManager.Instance.RestaurantEndCashUpdate(100, 100);
+        }
+	}
 
 	private IEnumerator PlayCometParticle() {
 		yield return new WaitForSeconds(2.0f);
