@@ -22,6 +22,8 @@
 
 	<!-- Restaurant scene -->
 	<Sound ID="EndOfDay"></Sound>
+	<Sound ID="RocketLaunch"></Sound>
+	<Sound ID="RocketLaunchFart"></Sound>
 	<Sound ID="MedicEnter"></Sound>
 
 	<!-- ChallengeMenu scene -->

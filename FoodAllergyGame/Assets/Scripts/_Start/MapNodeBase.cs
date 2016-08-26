@@ -22,8 +22,9 @@ public class MapNodeBase : MapNode {
 		else {
 			transform.localPosition = new Vector3(0f, canvasScaler.referenceResolution.y, 0f);
 			starNumberText.enabled = true;
-			starNumberText.text = "Planet " + tier.TierNumber.ToString();
 			if(tier != null) {
+				starNumberText.text = "Planet " + tier.TierNumber.ToString();
+
 				// Fill the rewards in a certain order by type
 				unlocksHash = TierManager.Instance.GetAllUnlocksAtTier(tier.TierNumber);
 				PopulateRewardListType(AssetTypes.Customer);
@@ -35,6 +36,7 @@ public class MapNodeBase : MapNode {
 				PopulateRewardListBlank();
 			}
 			else {
+				starNumberText.text = "Coming Soon!";
 				rewardParent.SetActive(false);
 			}
 		}

@@ -26,6 +26,7 @@ public class DayOverUIController : MonoBehaviour {
 		textTips.text = tips.ToString();
 		textMenuCost.text = medicalExpenses.ToString();
 		textEarningsNet.text = earningsNet.ToString();
+		rocketController.Init(earningsNet);
 		if(RestaurantManagerArcade.Instance.GetComponent<RestaurantManagerArcade>() != null) {
 			
 			ImmutableDataBonusObjective bonusData = DataLoaderBonusObjective.GetData(DataManager.Instance.GetBonus());
