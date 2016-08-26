@@ -1,52 +1,74 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
+using System.Collections.Generic;
 
 public class DayOverMoneyRocketController : MonoBehaviour {
 	public Image fillImage;
-	public TweenToggleDemux demux;
+	public Animator rocketAnimator;
+	public List<ParticleSystem> particleList;
 
 	private float fillHeight;	// Height of the sprite
 	private int fillMax = 800;
-	private int fillInterval = 100;
-	private float fillIntervalPercentage;
 	private int fillCashTarget;
-	private int currentInterval;
+	private int fillIndexAux;
 	private float fillPitchIncrease;
 	private float fillPitch;
+	private float endPercentage;
 
 	public void ShowRocket(){
 		fillImage.fillAmount = 0;
-		demux.Show();
+		fillIndexAux = 0;
 	}
 
 	public void OnShowComplete(){
 		// Reset everything
-		currentInterval = 0;
 		fillHeight = fillImage.rectTransform.sizeDelta.y;
-		fillIntervalPercentage = (float)fillInterval / fillMax;
-
-		FillOneInterval();
+		StartFill();
 	}
 
-	private void FillOneInterval(){
+	private void StartFill(){
 		if(fillCashTarget > fillMax){
 			fillCashTarget = fillMax;
 		}
-		if(currentInterval * fillInterval > fillCashTarget){
-			return;
-		}
+		float endPercentage = 0f;
 
-		float startPercentage = (currentInterval * fillInterval) / (float)fillMax;
-		float endPercentage = Mathf.Min(((currentInterval+1) * fillInterval), fillCashTarget) / (float)fillMax;
-		LeanTween.value(gameObject, TweenHelper, startPercentage, endPercentage, 0.5f)
+		LeanTween.value(gameObject, TweenHelper, 0f, endPercentage, 1.5f)
 			.setEase(LeanTweenType.easeInOutQuad)
-			.setDelay(0.2f);
-		
-		currentInterval++;
+			.setOnComplete(FillComplete);
 	}
 
 	private void TweenHelper(float percentage){
 		fillImage.fillAmount = percentage;
+		int interval = GetPercentageInterval(percentage);
+		if(fillIndexAux != interval) {
+			fillIndexAux = interval;
+			rocketAnimator.SetTrigger("Pulse");
+        }
+    }
+
+	private void FillComplete() {
+		rocketAnimator.SetInteger("RocketPower", fillIndexAux);
+    }
+
+	public void PlayBooster() {
+		particleList[fillIndexAux].gameObject.SetActive(true);
+    }
+
+	private int GetPercentageInterval(float percentage) {
+		if(percentage < 0.2f) {
+			return 0;
+		}
+		else if(percentage < 0.4f) {
+			return 1;
+		}
+		else if(percentage < 0.6f) {
+			return 2;
+		}
+		else if(percentage < 0.8f) {
+			return 3;
+		}
+		else {
+			return 4;
+		}
 	}
 }
