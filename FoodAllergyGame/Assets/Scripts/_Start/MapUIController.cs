@@ -21,6 +21,7 @@ public class MapUIController : MonoBehaviour {
 	public GameObject trailSegmentPrefab;
 	public GameObject cometPrefab;
 	private GameObject comet;
+	private bool move;
 
 	private float segmentHeight;					// Y component from one node to the other
 	private int numberNodesBetweenStartEnd = 3;
@@ -164,7 +165,7 @@ public class MapUIController : MonoBehaviour {
 
 	private void TweenValuePercentage(float val) {
 		// The trails themselves will update the node animations
-		if(val >= TempoGoalManager.Instance.GetPercentageComet()&& !DataManager.Instance.GameData.DayTracker.HasCompletedGoalThisTier && startTier.TierNumber != 0) {
+		if(val >= TempoGoalManager.Instance.GetPercentageComet()&& !DataManager.Instance.GameData.DayTracker.HasCompletedGoalThisTier && startTier.TierNumber != 0 && !move) {
 			SmashComet();
 		}
 		else {
@@ -188,6 +189,7 @@ public class MapUIController : MonoBehaviour {
 			}
 		}
 		else {
+			move = true;
 			LeanTween.resume(gameObject);
 		}
 	}
@@ -199,6 +201,7 @@ public class MapUIController : MonoBehaviour {
 	}
 
 	private void TweenCompleted() {
+		move = false;
 		StartCoroutine(WaitAndClose());
 	}
 
