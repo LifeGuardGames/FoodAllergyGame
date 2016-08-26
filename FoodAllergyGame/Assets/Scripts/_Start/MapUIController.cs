@@ -133,10 +133,10 @@ public class MapUIController : MonoBehaviour {
 	public void PlaceComet(float percentage) {
 		// Determine which segment this goes into
 		foreach(MapTrailSegment segment in segmentList) {
-			Vector3? cometPosition = segment.GetPositionOfSegmentPercentage(percentage);
-            if(cometPosition != null) {
-				comet = GameObjectUtils.AddChildGUI(mapParent, cometPrefab);
-				comet.transform.localPosition = cometPosition.GetValueOrDefault();
+			float? cometSegmentXPosition = segment.GetXPositionOfSegmentPercentage(percentage);
+            if(cometSegmentXPosition != null) {
+				comet = GameObjectUtils.AddChildGUI(segment.gameObject, cometPrefab);
+				comet.transform.localPosition = new Vector2(cometSegmentXPosition.GetValueOrDefault(), 0f);
 				cometParticle.transform.position = comet.transform.position;
 				break;
 			}

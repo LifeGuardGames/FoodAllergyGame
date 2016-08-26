@@ -62,11 +62,11 @@ public class MapTrailSegment : MonoBehaviour {
     }
 
 	// Used to get the comet position
-	public Vector3? GetPositionOfSegmentPercentage(float totalPercentage) {
+	public float? GetXPositionOfSegmentPercentage(float totalPercentage) {
 		if(isInitialized) {
 			if(totalPercentage > (segmentIndex - 1) * percentPerSegment && totalPercentage <= segmentIndex * percentPerSegment) {
 				float segmentPercentage = (totalPercentage - (segmentIndex - 1) * percentPerSegment) / percentPerSegment;
-				return (endPosition - startPosition) * segmentPercentage;
+				return totalFillWidth * segmentPercentage;
 			}
 		}
 		else {
