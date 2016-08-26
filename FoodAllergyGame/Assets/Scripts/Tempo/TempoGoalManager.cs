@@ -6,6 +6,7 @@
 
 	// Call on new tier
 	public void GetNewGoal() {
+		DataManager.Instance.GameData.DayTracker.HasCompletedGoalThisTier = false;
 		int tier = TierManager.Instance.CurrentTier;
 		// TODO talk about mid goals or randomized goals
 		ImmutableDataTempoGoal tempoGoalData = DataLoaderTempoGoals.GetData("TempoGoal_" + tier);
@@ -49,6 +50,9 @@
 		else {
 			return 0;
 		}
+	}
+	public float GetPercentageComet() {
+		return ((float)DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).GoalPointTierPercentage);
 	}
 
 	public float GetPercentageOfTier(int tcash) {

@@ -21,7 +21,6 @@ public class MapUIController : MonoBehaviour {
 	public GameObject trailSegmentPrefab;
 	public GameObject cometPrefab;
 	private GameObject comet;
-	public GameObject cometParticle;
 
 	private float segmentHeight;					// Y component from one node to the other
 	private int numberNodesBetweenStartEnd = 3;
@@ -104,8 +103,8 @@ public class MapUIController : MonoBehaviour {
 		UpdateTrailPercentage(tierProgressPercentage);
 
 		// Place the comet and initialize all the rewards
-	//	if(!TempoGoalManager.Instance.IsGoalActive()) {
-			PlaceComet(TempoGoalManager.Instance.GetPercentageOfTier(TierManager.Instance.CurrentTier));
+		//	if(!TempoGoalManager.Instance.IsGoalActive()) {
+		PlaceComet(TempoGoalManager.Instance.GetPercentageComet());
 	//	}
 
         demux.Show();
@@ -131,13 +130,13 @@ public class MapUIController : MonoBehaviour {
 	}
 
 	public void PlaceComet(float percentage) {
+		Debug.Log(percentage);
 		// Determine which segment this goes into
 		foreach(MapTrailSegment segment in segmentList) {
 			float? cometSegmentXPosition = segment.GetXPositionOfSegmentPercentage(percentage);
             if(cometSegmentXPosition != null) {
 				comet = GameObjectUtils.AddChildGUI(segment.gameObject, cometPrefab);
 				comet.transform.localPosition = new Vector2(cometSegmentXPosition.GetValueOrDefault(), 0f);
-				cometParticle.transform.position = comet.transform.position;
 				break;
 			}
 		}
@@ -165,7 +164,7 @@ public class MapUIController : MonoBehaviour {
 
 	private void TweenValuePercentage(float val) {
 		// The trails themselves will update the node animations
-		if(val >= TempoGoalManager.Instance.GetPercentageOfTier(TierManager.Instance.CurrentTier)&& !DataManager.Instance.GameData.DayTracker.HasCompletedGoalThisTier && TierManager.Instance.CurrentTier != 0) {
+		if(val >= TempoGoalManager.Instance.GetPercentageComet()&& !DataManager.Instance.GameData.DayTracker.HasCompletedGoalThisTier && TierManager.Instance.CurrentTier != 0) {
 			SmashComet();
 		}
 		else {
@@ -175,7 +174,6 @@ public class MapUIController : MonoBehaviour {
 
 	private void SmashComet() {
 		LeanTween.pause(gameObject);
-		cometParticle.SetActive(true);
 		DataManager.Instance.GameData.DayTracker.HasCompletedGoalThisTier = true;
 		StartCoroutine("PlayCometParticle");
 		if(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal != "") {
@@ -191,7 +189,6 @@ public class MapUIController : MonoBehaviour {
 	private IEnumerator PlayCometParticle() {
 		yield return new WaitForSeconds(2.0f);
 		Destroy(comet.gameObject);
-		cometParticle.SetActive(false);
 		LeanTween.resume(gameObject);
 	}
 

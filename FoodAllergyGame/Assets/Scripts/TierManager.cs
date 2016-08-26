@@ -57,7 +57,7 @@ public class TierManager : Singleton<TierManager> {
 		if(oldTier < newTier || DataManager.Instance.GameData.DayTracker.NotifQueue.Count > 0) {
 			StartManager.Instance.TurnOffEntrances();
 			isTierUp = true;
-			DataManager.Instance.GameData.DayTracker.HasCompletedGoalThisTier = false;
+			
             if(newTier - oldTier > 1) {
 				Debug.LogError("Multiple tiers progressed, messes with unlock progression");
 			}
