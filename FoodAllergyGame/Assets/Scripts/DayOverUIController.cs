@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 
 public class DayOverUIController : MonoBehaviour {
+	public DayOverMoneyRocketController rocketController;
 	public TweenToggleDemux tweenDemux;
 	public Text textCustomersMissed;
 	public Text textTips;
