@@ -103,9 +103,9 @@ public class MapUIController : MonoBehaviour {
 		UpdateTrailPercentage(tierProgressPercentage);
 
 		// Place the comet and initialize all the rewards
-		//	if(!TempoGoalManager.Instance.IsGoalActive()) {
+	if(startTier.TierNumber == DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).Tier) {
 		PlaceComet(TempoGoalManager.Instance.GetPercentageComet());
-	//	}
+		}
 
         demux.Show();
     }
@@ -164,7 +164,7 @@ public class MapUIController : MonoBehaviour {
 
 	private void TweenValuePercentage(float val) {
 		// The trails themselves will update the node animations
-		if(val >= TempoGoalManager.Instance.GetPercentageComet()&& !DataManager.Instance.GameData.DayTracker.HasCompletedGoalThisTier && TierManager.Instance.CurrentTier != 0) {
+		if(val >= TempoGoalManager.Instance.GetPercentageComet()&& !DataManager.Instance.GameData.DayTracker.HasCompletedGoalThisTier && startTier.TierNumber != 0) {
 			SmashComet();
 		}
 		else {
@@ -173,17 +173,23 @@ public class MapUIController : MonoBehaviour {
     }
 
 	private void SmashComet() {
-		LeanTween.pause(gameObject);
-		DataManager.Instance.GameData.DayTracker.HasCompletedGoalThisTier = true;
-		StartCoroutine("PlayCometParticle");
-		if(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal != "") {
-			ParticleAndFloatyUtils.PlayMoneyFloaty(comet.transform.position, DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).Reward);
-			CashManager.Instance.RestaurantEndCashUpdate(DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).Reward, DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).Reward);
+		Debug.Log(DataManager.Instance.GameData.DayTracker.HasCompletedGoalThisTier);
+		if(startTier.TierNumber == TierManager.Instance.CurrentTier) {
+			LeanTween.pause(gameObject);
+			DataManager.Instance.GameData.DayTracker.HasCompletedGoalThisTier = true;
+			StartCoroutine("PlayCometParticle");
+			if(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal != "") {
+				ParticleAndFloatyUtils.PlayMoneyFloaty(comet.transform.position, DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).Reward);
+				CashManager.Instance.RestaurantEndCashUpdate(DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).Reward, DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).Reward);
+			}
+			else {
+				ParticleAndFloatyUtils.PlayMoneyFloaty(comet.transform.position, 100);
+				CashManager.Instance.RestaurantEndCashUpdate(100, 100);
+			}
 		}
 		else {
-			ParticleAndFloatyUtils.PlayMoneyFloaty(comet.transform.position, 100);
-			CashManager.Instance.RestaurantEndCashUpdate(100, 100);
-        }
+			LeanTween.resume(gameObject);
+		}
 	}
 
 	private IEnumerator PlayCometParticle() {

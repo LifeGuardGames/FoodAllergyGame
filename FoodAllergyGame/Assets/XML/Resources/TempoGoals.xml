@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TempoGoals>
-  <TempoGoal ID="TempoGoal_0">
-    <Tier>0</Tier>
-    <Percentage>0.5</Percentage>
-    <TimeLimit>1</TimeLimit>
-    <Reward>200</Reward>
-  </TempoGoal>
 	<TempoGoal ID="TempoGoal_1">
 		<Tier>1</Tier>
-		<Percentage>0.7</Percentage>
+		<Percentage>0.8</Percentage>
 		<TimeLimit>1</TimeLimit>
 		<Reward>200</Reward>
 	</TempoGoal>

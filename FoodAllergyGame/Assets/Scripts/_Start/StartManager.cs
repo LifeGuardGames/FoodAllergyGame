@@ -119,6 +119,7 @@ public class StartManager : Singleton<StartManager> {
 		if(TierManager.Instance.IsNewUnlocksAvailable) {
 			if(!string.IsNullOrEmpty(DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge)) {
 			}
+			
 			ShopEntranceUIController.ToggleClickable(false);
 			DinerEntranceUIController.ToggleClickable(false);
 			ChallengeMenuEntranceUIController.ToggleClickable(false);
