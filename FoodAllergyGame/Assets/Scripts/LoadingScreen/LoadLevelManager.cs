@@ -14,6 +14,7 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 	public float foodTipWait = 1.3f;		// How long to wait if the food tip controller is showing
 	private bool isLoadingTipWait = false;
 	private string sceneToLoad;
+	private GameObject eventSystemObject;
 
 	public string GetCurrentSceneName() {
 		 return SceneManager.GetActiveScene().name;
@@ -28,6 +29,12 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 		}
 		DontDestroyOnLoad(gameObject);
 		isCreated = true;
+
+		FindEventSystem();
+    }
+
+	private void FindEventSystem() {
+		eventSystemObject = GameObject.Find("EventSystem");
 	}
 
 	/// <summary>
@@ -89,6 +96,10 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 		sceneToLoad = sceneName;
 		loadDemux.Show();
 		AudioManager.Instance.PlayClip("LoadingOpen");
+
+		if(eventSystemObject != null) {
+			eventSystemObject.SetActive(false);
+		}
 	}
 
 	/// <summary>
@@ -120,5 +131,6 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 		if(isLoadingTipWait) {
 			foodTipController.HideFoodTip();
 		}
+		FindEventSystem();
 	}
 }
