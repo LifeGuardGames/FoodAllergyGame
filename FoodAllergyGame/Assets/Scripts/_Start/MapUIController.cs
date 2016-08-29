@@ -133,7 +133,6 @@ public class MapUIController : MonoBehaviour {
 	}
 
 	public void PlaceComet(float percentage) {
-		Debug.Log(percentage);
 		// Determine which segment this goes into
 		foreach(MapTrailSegment segment in segmentList) {
 			float? cometSegmentXPosition = segment.GetXPositionOfSegmentPercentage(percentage);
@@ -148,7 +147,6 @@ public class MapUIController : MonoBehaviour {
 
 	#region Animation functions
 	public void StartAnimation() {
-		Debug.Log("Starting animation");
 		float finishPercentage;
 
 		// First check if we are passed into a new tier
@@ -187,7 +185,7 @@ public class MapUIController : MonoBehaviour {
 	}
 
 	private void SmashComet() {
-		Debug.Log(DataManager.Instance.GameData.DayTracker.HasCompletedGoalThisTier);
+	//	Debug.Log(DataManager.Instance.GameData.DayTracker.HasCompletedGoalThisTier);
 		if(startTier.TierNumber == TierManager.Instance.CurrentTier) {
 			LeanTween.pause(gameObject);
 			DataManager.Instance.GameData.DayTracker.HasCompletedGoalThisTier = true;

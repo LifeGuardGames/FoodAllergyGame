@@ -48,7 +48,9 @@ public class ChallengeMenuEntranceUIController : MonoBehaviour {
 	}
 
 	public void ToggleClickable(bool isClickable) {
-		GetComponent<BoxCollider2D>().enabled = isClickable;
-		challengeMenuEntranceAnimator.SetBool("IsClickable", isClickable);
+		if(gameObject.activeSelf) {
+			GetComponent<BoxCollider2D>().enabled = isClickable;
+			challengeMenuEntranceAnimator.SetBool("IsClickable", isClickable);
+		}
     }
 }

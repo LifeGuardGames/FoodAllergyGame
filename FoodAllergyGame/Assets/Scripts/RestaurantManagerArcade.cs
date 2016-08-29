@@ -223,12 +223,11 @@ public class RestaurantManagerArcade : RestaurantManager {
 				if(TierManager.Instance.CurrentTier > 4) {
 					AnalyticsManager.Instance.PlayAreaUsage(playAreaUses);
 				}
-				Debug.Log(DataManager.Instance.GameData.DayTracker.AvgDifficulty);
-					// Show day complete UI
-					restaurantUI.DayComplete(satisfactionAI.MissingCustomers, dayEarnedCash, Medic.Instance.MedicCost, dayNetCash);
+				// Show day complete UI
+				restaurantUI.DayComplete(satisfactionAI.MissingCustomers, dayEarnedCash, Medic.Instance.MedicCost, dayNetCash);
 
-					// Save game data
-					DataManager.Instance.SaveGameData();
+				// Save game data
+				DataManager.Instance.SaveGameData();
 			}
 		}
 	}
