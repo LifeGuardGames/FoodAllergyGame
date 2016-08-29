@@ -100,7 +100,7 @@
 
   <Behav ID="BehavFlow16">
     <Name>BlackOutReorder</Name>
-    <Type>Normal</Type>
+    <Type>BlackOut</Type>
     <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFoodReorder,BehavEating,BehavWaitForCheck,BehavBlackoutNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavNotifyLeave</BehavList>
   </Behav>
 
