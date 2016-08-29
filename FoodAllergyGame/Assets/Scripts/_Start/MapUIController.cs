@@ -102,12 +102,12 @@ public class MapUIController : MonoBehaviour {
 			tierProgressPercentage = 1f;
         }
 		UpdateTrailPercentage(tierProgressPercentage);
-
-		// Place the comet and initialize all the rewards
-	if(startTier.TierNumber == DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).Tier) {
-		PlaceComet(TempoGoalManager.Instance.GetPercentageComet());
+		if(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal != "") {
+			// Place the comet and initialize all the rewards
+			if(startTier.TierNumber == DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).Tier) {
+				PlaceComet(TempoGoalManager.Instance.GetPercentageComet());
+			}
 		}
-
         demux.Show();
     }
 
@@ -165,13 +165,18 @@ public class MapUIController : MonoBehaviour {
 
 	private void TweenValuePercentage(float val) {
 		// The trails themselves will update the node animations
-		if(val >= TempoGoalManager.Instance.GetPercentageComet()&& !DataManager.Instance.GameData.DayTracker.HasCompletedGoalThisTier && startTier.TierNumber != 0 && !move) {
-			SmashComet();
+		if(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal != "") {
+			if(val >= TempoGoalManager.Instance.GetPercentageComet() && !DataManager.Instance.GameData.DayTracker.HasCompletedGoalThisTier && startTier.TierNumber != 0 && !move) {
+				SmashComet();
+			}
+			else {
+				UpdateTrailPercentage(val);
+			}
 		}
 		else {
 			UpdateTrailPercentage(val);
 		}
-    }
+	}
 
 	private void SmashComet() {
 		Debug.Log(DataManager.Instance.GameData.DayTracker.HasCompletedGoalThisTier);
