@@ -157,7 +157,7 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 				}
 			}
 		}
-		Debug.LogWarning("Can not find table " + tableNum);
+		Debug.LogWarning("Can not find table " + tableNum + " if this does not precede an error please ignore");
 		return null;
 	}
 
