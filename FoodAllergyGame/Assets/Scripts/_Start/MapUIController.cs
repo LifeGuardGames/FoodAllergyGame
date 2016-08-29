@@ -41,6 +41,8 @@ public class MapUIController : MonoBehaviour {
 	private ImmutableDataTiers endTier;
 	private float tierProgressPercentage;
 
+	private MapCometController cometController;
+
 	public void InitializeAndShow(int _oldTotalCash, int _newTotalCash, NotificationQueueData _notif) {
 		// Initialize variables
 		nodePositionList = new List<Vector2>();
@@ -137,7 +139,8 @@ public class MapUIController : MonoBehaviour {
 			float? cometSegmentXPosition = segment.GetXPositionOfSegmentPercentage(percentage);
             if(cometSegmentXPosition != null) {
 				comet = GameObjectUtils.AddChildGUI(segment.gameObject, cometPrefab);
-				comet.transform.localPosition = new Vector2(cometSegmentXPosition.GetValueOrDefault(), 0f);
+				cometController = comet.GetComponent<MapCometController>();
+                comet.transform.localPosition = new Vector2(cometSegmentXPosition.GetValueOrDefault(), 0f);
 				break;
 			}
 		}
@@ -166,7 +169,11 @@ public class MapUIController : MonoBehaviour {
 	private void TweenValuePercentage(float val) {
 		// The trails themselves will update the node animations
 		if(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal != "") {
-			if(val >= TempoGoalManager.Instance.GetPercentageComet() && !DataManager.Instance.GameData.DayTracker.HasCompletedGoalThisTier && startTier.TierNumber != 0 && !move) {
+			if(val >= TempoGoalManager.Instance.GetPercentageComet() &&
+				!DataManager.Instance.GameData.DayTracker.HasCompletedGoalThisTier &&
+				startTier.TierNumber != 0 &&
+				!move) {
+
 				SmashComet();
 			}
 			else {
@@ -200,8 +207,8 @@ public class MapUIController : MonoBehaviour {
 	}
 
 	private IEnumerator PlayCometParticle() {
+		cometController.SmashComet();
 		yield return new WaitForSeconds(2.0f);
-		Destroy(comet.gameObject);
 		LeanTween.resume(gameObject);
 	}
 

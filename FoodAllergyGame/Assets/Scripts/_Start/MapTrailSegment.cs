@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class MapTrailSegment : MonoBehaviour {
 	public Image fillImage;
+	public Image spaceShipImage;
 
 	private bool isInitialized = false;
 	private MapUIController mapScript;
@@ -19,6 +20,7 @@ public class MapTrailSegment : MonoBehaviour {
 		segmentIndex = _segmentIndex;
 		percentPerSegment = _mapScript.PercentPerSegment;
 		endNode = endBase;
+		spaceShipImage.gameObject.SetActive(false);
 
 		transform.localPosition = startBase.localPosition;
 		startPosition = startBase.localPosition;
@@ -39,6 +41,7 @@ public class MapTrailSegment : MonoBehaviour {
 
 					// Toggle shortcut skip
 					isFilled = true;
+					spaceShipImage.gameObject.SetActive(false);
 
 					// Ping its end node to animate
 					MapNode mapNode = endNode.GetComponent<MapNode>();
@@ -48,10 +51,12 @@ public class MapTrailSegment : MonoBehaviour {
 					float difference = ((segmentIndex * percentPerSegment) - tierProgressPercentage);
 					if(difference >= percentPerSegment) {
 						fillImage.rectTransform.sizeDelta = new Vector2(0f, 10f);   // Blank
+						spaceShipImage.gameObject.SetActive(false);
 					}
 					else {
 						float fillPercentage = 1f - (((segmentIndex * percentPerSegment) - tierProgressPercentage) / percentPerSegment);
 						fillImage.rectTransform.sizeDelta = new Vector2(totalFillWidth * fillPercentage, 10f);
+						spaceShipImage.gameObject.SetActive(true);
 					}
 				}
 			}

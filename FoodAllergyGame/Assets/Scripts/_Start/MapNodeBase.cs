@@ -18,6 +18,7 @@ public class MapNodeBase : MapNode {
 			transform.localPosition = new Vector3(0f, 0f, 0f);
 			rewardParent.SetActive(false);
 			starNumberText.enabled = false;
+			nodeImage.color = activeColor;
         }
 		else {
 			transform.localPosition = new Vector3(0f, canvasScaler.referenceResolution.y, 0f);
