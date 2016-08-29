@@ -103,7 +103,7 @@ public class MapUIController : MonoBehaviour {
 		else {  // Reached last tier
 			tierProgressPercentage = 1f;
         }
-		UpdateTrailPercentage(tierProgressPercentage);
+		UpdateTrailPercentage(tierProgressPercentage, true);
 		if(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal != "") {
 			// Place the comet and initialize all the rewards
 			if(startTier.TierNumber == DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).Tier) {
@@ -117,9 +117,9 @@ public class MapUIController : MonoBehaviour {
 		StartAnimation();
 	}
 
-	public void UpdateTrailPercentage(float trailPercentage) {
+	public void UpdateTrailPercentage(float trailPercentage, bool isSetup) {
 		foreach(MapTrailSegment segment in segmentList) {
-			segment.UpdateSegmentPercentage(trailPercentage);
+			segment.UpdateSegmentPercentage(trailPercentage, isSetup);
 		}
 	}
 
@@ -160,6 +160,7 @@ public class MapUIController : MonoBehaviour {
 			finishPercentage = 1f;
 		}
 		//	Debug.Log("finishpercentage " + tierProgressPercentage + " " + finishPercentage);
+		AudioManager.Instance.PlayClip("MapShipTravel");
 		LeanTween.value(gameObject, TweenValuePercentage, tierProgressPercentage, finishPercentage, 2f)
 			.setEase(LeanTweenType.easeInOutQuad)
 			.setDelay(1f)
@@ -177,11 +178,11 @@ public class MapUIController : MonoBehaviour {
 				SmashComet();
 			}
 			else {
-				UpdateTrailPercentage(val);
+				UpdateTrailPercentage(val, false);
 			}
 		}
 		else {
-			UpdateTrailPercentage(val);
+			UpdateTrailPercentage(val, false);
 		}
 	}
 

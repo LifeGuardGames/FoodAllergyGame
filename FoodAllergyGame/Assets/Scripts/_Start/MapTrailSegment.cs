@@ -33,7 +33,7 @@ public class MapTrailSegment : MonoBehaviour {
 		isInitialized = true;
     }
 
-	public void UpdateSegmentPercentage(float tierProgressPercentage) {
+	public void UpdateSegmentPercentage(float tierProgressPercentage, bool isSetup) {
 		if(isInitialized) {
 			if(!isFilled) {				// Shortcut to see if need processing at all
 				if(tierProgressPercentage >= (segmentIndex) * percentPerSegment) {  // Fill 100%
@@ -45,7 +45,7 @@ public class MapTrailSegment : MonoBehaviour {
 
 					// Ping its end node to animate
 					MapNode mapNode = endNode.GetComponent<MapNode>();
-					mapNode.ToggleReached();
+					mapNode.ToggleReached(isSetup);
                 }
 				else {                                                              // Partial fill
 					float difference = ((segmentIndex * percentPerSegment) - tierProgressPercentage);

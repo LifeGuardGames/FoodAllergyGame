@@ -23,4 +23,8 @@ public class MapCometController : MonoBehaviour {
 	public void PlaySmashParticle() {
 		smashParticle.Play();
 	}
+
+	public void PlaySmashSound() {
+		AudioManager.Instance.PlayClip("MapCometSmash");
+	}
 }
