@@ -88,6 +88,7 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 		}
 		sceneToLoad = sceneName;
 		loadDemux.Show();
+		AudioManager.Instance.PlayClip("LoadingOpen");
 	}
 
 	/// <summary>
@@ -115,6 +116,7 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 	/// Hide the demux when the new level is loaded
 	void OnLevelWasLoaded(){
 		loadDemux.Hide();
+		AudioManager.Instance.PlayClip("LoadingClose");
 		if(isLoadingTipWait) {
 			foodTipController.HideFoodTip();
 		}

@@ -12,9 +12,11 @@ public class MapNodeBase : MapNode {
 
 	private Dictionary<AssetTypes, List<string>> unlocksHash;
 	private int currentRewardIndex = 0;
+	private bool isStartTier;
 
-	public void Init(ImmutableDataTiers tier, bool isStartTier, CanvasScaler canvasScaler) {
-		if(isStartTier) {
+	public void Init(ImmutableDataTiers tier, bool _isStartTier, CanvasScaler canvasScaler) {
+		isStartTier = _isStartTier;
+		if(_isStartTier) {
 			transform.localPosition = new Vector3(0f, 0f, 0f);
 			rewardParent.SetActive(false);
 			starNumberText.enabled = false;
@@ -59,8 +61,14 @@ public class MapNodeBase : MapNode {
 		}
 	}
 
-	public override void ToggleReached() {
+	public override void ToggleReached(bool isSetup) {
+		if(!isStartTier) {
+			AudioManager.Instance.PlayClip("MapEndReach");
+		}
+		if(!isSetup) {
+			AudioManager.Instance.PlayClip("MapNodeReach");
+			reachedAnim.Play();
+		}
 		nodeImage.color = activeColor;
-        reachedAnim.Play();
     }
 }

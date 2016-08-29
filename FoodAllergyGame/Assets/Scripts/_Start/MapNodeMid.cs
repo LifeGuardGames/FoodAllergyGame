@@ -11,8 +11,11 @@ public class MapNodeMid : MapNode{
 		transform.localPosition = new Vector3(positionList[index].x, positionList[index].y);
 	}
 
-	public override void ToggleReached() {
+	public override void ToggleReached(bool isSetup) {
+		if(!isSetup) {
+			AudioManager.Instance.PlayClip("MapNodeReach");
+			reachedAnim.Play();
+		}
 		nodeImage.color = activeColor;
-        reachedAnim.Play();
     }
 }
