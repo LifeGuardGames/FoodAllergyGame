@@ -7,8 +7,8 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 	public GameObject coin;
 	public GameObject tier;
 	public GameObject coinFlyPrefab;
-	public GameObject starChunkPrefab;
-	public RectTransform starChunkParent;
+	//public GameObject starChunkPrefab;
+	//public RectTransform starChunkParent;
 	public float coinTravelTime;
 	public Text coinText;
 	public int currentCoinsAux;
@@ -99,51 +99,56 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 
 	#region Tier Animation Sequences
 	public void StartStarChunkTweenSpawning(NotificationQueueDataTierProgress tierCaller, int oldTotalCash, int newTotalCash){
-		this.tierCaller = tierCaller;
-		this.oldTotalCash = oldTotalCash;
-		this.newTotalCash = newTotalCash;
+		// Just start the bar tweening instead of chunk flying
+		StartTierAnimation(tierCaller, oldTotalCash, newTotalCash);
 
-		firstStarChunkAux = true;
-		int chunkCount = (newTotalCash - oldTotalCash) / 30;        // Change this for different chunk numbers
-		//Debug.Log("Chunks to tween " + chunkCount + " " + (newTotalCash - oldTotalCash));
-		StartCoroutine(StartStarChunkTweenSpawningHelper(chunkCount));	// NOTE: Must show atleast one tween
+		//////////////////////////////////////////
+	
+		//this.tierCaller = tierCaller;
+		//this.oldTotalCash = oldTotalCash;
+		//this.newTotalCash = newTotalCash;
+
+		//firstStarChunkAux = true;
+		//int chunkCount = (newTotalCash - oldTotalCash) / 30;        // Change this for different chunk numbers
+		////Debug.Log("Chunks to tween " + chunkCount + " " + (newTotalCash - oldTotalCash));
+		//StartCoroutine(StartStarChunkTweenSpawningHelper(chunkCount));	// NOTE: Must show atleast one tween
 	}
 
-	public IEnumerator StartStarChunkTweenSpawningHelper(int chunkCount){
-		for(int i = 0; i <= chunkCount; i++){
-			AudioManager.Instance.PlayClip("StarChunkAppear");
+	//public IEnumerator StartStarChunkTweenSpawningHelper(int chunkCount){
+	//	for(int i = 0; i <= chunkCount; i++){
+	//		AudioManager.Instance.PlayClip("StarChunkAppear");
 
-			GameObject go = GameObjectUtils.AddChildGUI(starChunkParent.gameObject, starChunkPrefab);
-			Vector3 reference = StartManager.Instance.DinerEntranceUIController.transform.position + new Vector3(0, 100f, 0);
-			go.transform.position = new Vector3(reference.x, reference.y, 0);
-			go.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+	//		GameObject go = GameObjectUtils.AddChildGUI(starChunkParent.gameObject, starChunkPrefab);
+	//		Vector3 reference = StartManager.Instance.DinerEntranceUIController.transform.position + new Vector3(0, 100f, 0);
+	//		go.transform.position = new Vector3(reference.x, reference.y, 0);
+	//		go.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
 
-			// Sanitize out z component
-			Vector3 destination = new Vector3(tier.transform.position.x, tier.transform.position.y, 0);
+	//		// Sanitize out z component
+	//		Vector3 destination = new Vector3(tier.transform.position.x, tier.transform.position.y, 0);
 
-			// Addition tweening behavior
-			Vector3[] path = new Vector3[4];
-			path[0] = go.transform.position;
-			Vector3 randomPoint = GameObjectUtils.GetRandomPointOnCircumference(go.transform.position, 300f);
-			path[1] = randomPoint;
-			path[2] = path[1];
-			path[3] = destination;
+	//		// Addition tweening behavior
+	//		Vector3[] path = new Vector3[4];
+	//		path[0] = go.transform.position;
+	//		Vector3 randomPoint = GameObjectUtils.GetRandomPointOnCircumference(go.transform.position, 300f);
+	//		path[1] = randomPoint;
+	//		path[2] = path[1];
+	//		path[3] = destination;
 
-			LeanTween.moveLocal(go, path, 1f).setEase(LeanTweenType.easeInQuad).setOnComplete(OnStarChunkArrived).setDestroyOnComplete(true);
-			LeanTween.rotate(go.GetComponent<RectTransform>(), UnityEngine.Random.Range(-360, 360), 1f);
-			LeanTween.scale(go, new Vector3(1, 1, 1), 1f).setEase(LeanTweenType.easeOutBack);
-			yield return new WaitForSeconds(0.1f);
-		}
-	}
+	//		LeanTween.moveLocal(go, path, 1f).setEase(LeanTweenType.easeInQuad).setOnComplete(OnStarChunkArrived).setDestroyOnComplete(true);
+	//		LeanTween.rotate(go.GetComponent<RectTransform>(), UnityEngine.Random.Range(-360, 360), 1f);
+	//		LeanTween.scale(go, new Vector3(1, 1, 1), 1f).setEase(LeanTweenType.easeOutBack);
+	//		yield return new WaitForSeconds(0.1f);
+	//	}
+	//}
 
-	private void OnStarChunkArrived(){
-		if(firstStarChunkAux){	// Do things when first chunk has arrived
-			firstStarChunkAux = false;
-			tierBarPopAnim.Play();
-			StartTierAnimation(this.tierCaller, this.oldTotalCash, this.newTotalCash);
-		}
-		AudioManager.Instance.PlayClip("StarChunkArrive");
-	}
+	//private void OnStarChunkArrived(){
+	//	if(firstStarChunkAux){	// Do things when first chunk has arrived
+	//		firstStarChunkAux = false;
+	//		tierBarPopAnim.Play();
+	//		StartTierAnimation(tierCaller, oldTotalCash, newTotalCash);
+	//	}
+	//	AudioManager.Instance.PlayClip("StarChunkArrive");
+	//}
 
 	private void StartTierAnimation(NotificationQueueDataTierProgress tierCaller, int oldTotalCash, int newTotalCash) {
 		float startPercentage = DataLoaderTiers.GetPercentProgressInTier(oldTotalCash);

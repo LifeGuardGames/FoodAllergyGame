@@ -6,25 +6,19 @@ public class MapTrailSegment : MonoBehaviour {
 	public Image spaceShipImage;
 
 	private bool isInitialized = false;
-	private MapUIController mapScript;
 	private float totalFillWidth;
 	private int segmentIndex;					// Start index at 1 instead of 0
 	private float percentPerSegment;
-	private Vector3 startPosition;
-	private Vector3 endPosition;
 	private Transform endNode;
 	private bool isFilled;						// Use for toggling end nodes and optimization
 
 	public void Init(Transform startBase, Transform endBase, int _segmentIndex, MapUIController _mapScript) {
-		mapScript = _mapScript;
 		segmentIndex = _segmentIndex;
 		percentPerSegment = _mapScript.PercentPerSegment;
 		endNode = endBase;
 		spaceShipImage.gameObject.SetActive(false);
 
 		transform.localPosition = startBase.localPosition;
-		startPosition = startBase.localPosition;
-		endPosition = endBase.localPosition;
 		totalFillWidth = Vector3.Distance(startBase.localPosition, endBase.localPosition);
 		GetComponent<RectTransform>().sizeDelta = new Vector2(totalFillWidth, 2f);
 

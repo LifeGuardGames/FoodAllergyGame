@@ -16,8 +16,9 @@ public class MapUIController : MonoBehaviour {
 	public TweenToggleDemux demux;
 	public GameObject mapParent;
 	public CanvasScaler canvasScaler;
+	public GameObject nodeStartPrefab;
 	public GameObject nodeMidPrefab;
-	public GameObject nodeBasePrefab;
+	public GameObject nodeEndPrefab;
 	public GameObject trailSegmentPrefab;
 	public GameObject cometPrefab;
 	private GameObject comet;
@@ -35,22 +36,21 @@ public class MapUIController : MonoBehaviour {
 	}
 
 	private NotificationQueueData notif;				// Used for tracking end notification
-	private int oldTotalCash;
 	private int newTotalCash;
 	private ImmutableDataTiers startTier;
 	private ImmutableDataTiers endTier;
 	private float tierProgressPercentage;
 
 	private MapCometController cometController;
+	private Dictionary<AssetTypes, List<string>> unlocksHash;
 
 	public void InitializeAndShow(int _oldTotalCash, int _newTotalCash, NotificationQueueData _notif) {
 		// Initialize variables
 		nodePositionList = new List<Vector2>();
 		auxNodesList = new List<Transform>();
 		segmentList = new List<MapTrailSegment>();
-		segmentHeight = canvasScaler.referenceResolution.y / (numberNodesBetweenStartEnd + 1);
+		segmentHeight = (canvasScaler.referenceResolution.y - 100) / (numberNodesBetweenStartEnd + 1);
 		notif = _notif;
-		oldTotalCash = _oldTotalCash;
 		newTotalCash = _newTotalCash;
 
 		// Initialize all the node positions
@@ -71,18 +71,34 @@ public class MapUIController : MonoBehaviour {
 			}
 		}
 		startTier = DataLoaderTiers.GetDataFromTier(DataLoaderTiers.GetTierFromCash(_oldTotalCash));
-        GameObject nodeBaseStart = GameObjectUtils.AddChildGUI(mapParent, nodeBasePrefab);
+        GameObject nodeBaseStart = GameObjectUtils.AddChildGUI(mapParent, nodeStartPrefab);
 		nodeBaseStart.GetComponent<MapNodeBase>().Init(startTier, true, canvasScaler);
 		auxNodesList.Add(nodeBaseStart.transform);
 
+		// See how many capsules we will collect this tier
+		unlocksHash = TierManager.Instance.GetAllUnlocksAtTier(startTier.TierNumber);
+		int rewardCount = 0;
+		rewardCount += unlocksHash[AssetTypes.Challenge].Count;
+		rewardCount += unlocksHash[AssetTypes.Customer].Count;
+		rewardCount += unlocksHash[AssetTypes.DecoBasic].Count;
+		rewardCount += unlocksHash[AssetTypes.DecoSpecial].Count;
+		rewardCount += unlocksHash[AssetTypes.Food].Count;
+		rewardCount += unlocksHash[AssetTypes.Slot][0] == "0" ? 0 : 1;
+		int moduloReward = rewardCount % numberNodesBetweenStartEnd;	// Used for adding extra capsule if needed
+
 		for(int i = 1; i <= numberNodesBetweenStartEnd; i++) {
-			GameObject nodeMid = GameObjectUtils.AddChildGUI(mapParent, nodeMidPrefab);
-			nodeMid.GetComponent<MapNodeMid>().Init(startTier, i, nodePositionList);
+			int nodeRewardCount = (rewardCount / numberNodesBetweenStartEnd);
+			if(moduloReward > 0) {
+				nodeRewardCount++;
+				moduloReward--;
+			}
+            GameObject nodeMid = GameObjectUtils.AddChildGUI(mapParent, nodeMidPrefab);
+			nodeMid.GetComponent<MapNodeMid>().Init(startTier, i, nodePositionList, nodeRewardCount);
 			auxNodesList.Add(nodeMid.transform);
 		}
 
 		endTier = DataLoaderTiers.GetNextTier(startTier);
-		GameObject nodeBaseEnd = GameObjectUtils.AddChildGUI(mapParent, nodeBasePrefab);
+		GameObject nodeBaseEnd = GameObjectUtils.AddChildGUI(mapParent, nodeEndPrefab);
 		nodeBaseEnd.GetComponent<MapNodeBase>().Init(endTier, false, canvasScaler);
 		auxNodesList.Add(nodeBaseEnd.transform);
 

@@ -15,6 +15,7 @@
 	}
 
 	// Completed or not
+	/*
 	public bool IsGoalCompleted() {
 		int tCash = CashManager.Instance.TotalCash;
 		if(GetPercentageOfTier(tCash) < DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).GoalPointTierPercentage) {
@@ -28,20 +29,10 @@
 		else {
 			return true;
 		}
-	}
-
-	// How much more totalCash needed to get goal
-	public int GetDifferenceInGoal() {
-		if(!IsGoalCompleted()) {
-			int tCash = CashManager.Instance.TotalCash;
-			return 0; //TODO Fix me! DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).GoalPointTierPercentage - tCash;
-		}
-		else {
-			return 0;
-		}
-	}
+	}*/
 
 	// Percentage at current tier bracket where it is located
+	/*
 	public float GetPercentageInTotal() {
 		if(!IsGoalCompleted()) {
 			int tCash = CashManager.Instance.TotalCash;
@@ -50,7 +41,8 @@
 		else {
 			return 0;
 		}
-	}
+	}*/
+
 	public float GetPercentageComet() {
 		return ((float)DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).GoalPointTierPercentage);
 	}

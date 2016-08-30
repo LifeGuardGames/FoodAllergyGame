@@ -149,4 +149,9 @@ public class SpriteCacheManager : Singleton<SpriteCacheManager> {
 				return null;
         }
 	}
+
+	public static Sprite GetMapStarSpriteByIndex(int starIndex) {
+		Sprite sprite = Resources.Load<Sprite>("MapStar" + starIndex.ToString());
+		return sprite;
+	}
 }

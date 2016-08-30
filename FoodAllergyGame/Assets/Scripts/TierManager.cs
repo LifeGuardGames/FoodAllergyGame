@@ -34,15 +34,11 @@ public class TierManager : Singleton<TierManager> {
 		get{ return currentTierUnlocks; }
 	}
 
-	private int oldTotalCash;   // Reloads every scene, refreshed on RecaulculateTier
-	public int OldTotalCash;
-
 	// Recalculate the tier given a certain algorithm
 	// NOTE: does NOT support multiple tiers!
 	public void RecalculateTier() {
 		isNewUnlocksAvailable = false;
 		isTierUp = false;
-		oldTotalCash = CashManager.Instance.LastSeenTotalCash;
 
 		if(CashManager.Instance.TotalCash > 5800 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates) {
 			CashManager.Instance.OverrideTotalCash(5800);

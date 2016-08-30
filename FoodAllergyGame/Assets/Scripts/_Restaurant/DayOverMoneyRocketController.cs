@@ -9,7 +9,6 @@ public class DayOverMoneyRocketController : MonoBehaviour {
 	public List<ParticleSystem> particleList;
 	public ParticleSystem particleSparkle;
 
-	private float fillHeight;	// Height of the sprite
 	private int fillMax = 800;
 	private int fillCashTarget;
 	private int fillIndexAux;
@@ -24,7 +23,6 @@ public class DayOverMoneyRocketController : MonoBehaviour {
 
 	public void OnShowComplete(){
 		// Reset everything
-		fillHeight = fillImage.rectTransform.sizeDelta.y;
 		StartFill();
 	}
 
