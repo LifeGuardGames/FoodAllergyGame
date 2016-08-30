@@ -89,6 +89,7 @@ public class StartManager : Singleton<StartManager> {
 			replayTutButton.SetActive(false);
 
 			int oldTotalCash = CashManager.Instance.LastSeenTotalCash;
+			Debug.Log("last scene total: " + oldTotalCash);
 			int newTotalCash = CashManager.Instance.TotalCash;
 
 			// TODO Not sure if this is best place to put it

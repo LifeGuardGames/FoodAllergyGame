@@ -130,7 +130,18 @@ public class MapUIController : MonoBehaviour {
     }
 
 	public void OnShowComplete() {
-		StartAnimation();
+		if(endTier != null) {
+			StartAnimation();
+		}
+		else {	// Max tier, just close after a while
+			StartCoroutine(MaxTierClose());
+		}
+	}
+
+	private IEnumerator MaxTierClose() {
+		yield return new WaitForSeconds(1f);
+		demux.Hide();
+		notif.Finish();
 	}
 
 	public void UpdateTrailPercentage(float trailPercentage, bool isSetup) {

@@ -103,10 +103,9 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 		StartTierAnimation(tierCaller, oldTotalCash, newTotalCash);
 
 		//////////////////////////////////////////
-	
-		//this.tierCaller = tierCaller;
-		//this.oldTotalCash = oldTotalCash;
-		//this.newTotalCash = newTotalCash;
+		this.tierCaller = tierCaller;
+		this.oldTotalCash = oldTotalCash;
+		this.newTotalCash = newTotalCash;
 
 		//firstStarChunkAux = true;
 		//int chunkCount = (newTotalCash - oldTotalCash) / 30;        // Change this for different chunk numbers

@@ -9,9 +9,11 @@
 		DataManager.Instance.GameData.DayTracker.HasCompletedGoalThisTier = false;
 		int tier = TierManager.Instance.CurrentTier;
 		// TODO talk about mid goals or randomized goals
-		ImmutableDataTempoGoal tempoGoalData = DataLoaderTempoGoals.GetData("TempoGoal_" + tier);
-        DataManager.Instance.GameData.DayTracker.CurrentTempoGoal = tempoGoalData.ID;
-		DataManager.Instance.GameData.DayTracker.GoalTimeLimit = tempoGoalData.TimeLimit;
+		if(tier < 36) {
+			ImmutableDataTempoGoal tempoGoalData = DataLoaderTempoGoals.GetData("TempoGoal_" + tier);
+			DataManager.Instance.GameData.DayTracker.CurrentTempoGoal = tempoGoalData.ID;
+			DataManager.Instance.GameData.DayTracker.GoalTimeLimit = tempoGoalData.TimeLimit;
+		}
 	}
 
 	// Completed or not
