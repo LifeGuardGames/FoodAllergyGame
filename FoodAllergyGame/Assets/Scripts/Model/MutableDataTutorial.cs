@@ -13,6 +13,8 @@ public class MutableDataTutorial{
 	public bool IsTrashCanTutDone { get; set; }
 	public bool IsPlayAreaTutDone { get; set; }
 	public bool IsFlyThruTutDone { get; set; }
+	public bool IsBlackOutTutDone { get; set; }
+	public bool IsGossiperTutDone { get; set; }
 
 	public MutableDataTutorial(){
 		IsComicViewed = false;
@@ -26,5 +28,7 @@ public class MutableDataTutorial{
 		IsTrashCanTutDone = false;
 		IsPlayAreaTutDone = false;
 		IsFlyThruTutDone = false;
+		IsBlackOutTutDone = false;
+		IsGossiperTutDone = false;
     }
 }

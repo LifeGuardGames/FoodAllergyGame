@@ -9,6 +9,8 @@ public class RestaurantManagerArcade : RestaurantManager {
 	public int flowMod;
 	public List<string> flowList;
 	public Dictionary<string, object> customerList;
+	public PositionTweenToggle BlackoutTut;
+	public PositionTweenToggle GossiperTut;
 
 	// our satisfaction ai
 	private SatisfactionAI satisfactionAI;
@@ -43,10 +45,6 @@ public class RestaurantManagerArcade : RestaurantManager {
 				GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 				cus.GetComponent<CustomerSpecialGossiper>().init(4);
 			}
-
-			if(eventData.SpecialDecoMode == 1) {
-				PlayArea.Instance.cantLeave = true;
-		}
 	}
 
 	public override void StartDay() {
@@ -69,8 +67,16 @@ public class RestaurantManagerArcade : RestaurantManager {
 			flowList.Add(temp[i]);
 		}
 		RunSetUp();
-		StartCoroutine("NextWave");
-        StartCoroutine(SpawnCustomer());
+		if(eventData.RestMode == 2.0f && !DataManager.Instance.GameData.Tutorial.IsBlackOutTutDone) {
+			BlackoutTut.Show();
+		}
+		else if(eventData.RestMode == 4.0f && !DataManager.Instance.GameData.Tutorial.IsGossiperTutDone) {
+			GossiperTut.Show();
+		}
+		else {
+			StartCoroutine("NextWave");
+			StartCoroutine(SpawnCustomer());
+		}
 	}
 
 	// Spawns a customer after a given amount of timer then it restarts the coroutine
@@ -442,4 +448,19 @@ public class RestaurantManagerArcade : RestaurantManager {
 		}
 		StartCoroutine(LightsOn());
 	}
+
+	public void BlackoutMoveAlong() {
+		DataManager.Instance.GameData.Tutorial.IsBlackOutTutDone = true;
+		BlackoutTut.Hide();
+		StartCoroutine("NextWave");
+		StartCoroutine(SpawnCustomer());
+	}
+
+	public void GossipMoveAlong() {
+		DataManager.Instance.GameData.Tutorial.IsBlackOutTutDone = true;
+		GossiperTut.Hide();
+		StartCoroutine("NextWave");
+		StartCoroutine(SpawnCustomer());
+	}
+
 }
