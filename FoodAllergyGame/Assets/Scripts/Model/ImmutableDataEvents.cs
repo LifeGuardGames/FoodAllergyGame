@@ -66,16 +66,6 @@ public class ImmutableDataEvents{
 		get { return flowList; }
 	}
 
-	private int numOfTables;
-	public int NumOfTables {
-		get { return numOfTables; }
-	}
-
-	private int specialDecoMode;
-	public int SpecialDecoMode {
-		set { restMode = value; }
-		get { return specialDecoMode; }
-	}
 
 	//	public string eventPropLeft;
 	//	public string EventPropLeft {
