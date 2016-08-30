@@ -54,8 +54,9 @@ public class MapUIController : MonoBehaviour {
 		newTotalCash = _newTotalCash;
 
 		// Initialize all the node positions
-		Random.seed = 42;                           // Repeatable random numbers
-		for(int i = 0; i < DataLoaderTiers.GetTotalTierCount(); i++) {
+		//TODO Fix seed here
+		//Random.seed = 42;                           // Repeatable random numbers
+		for(int i = 0; i < (DataLoaderTiers.GetTotalTierCount() * (numberNodesBetweenStartEnd + 1)) + 1; i++) {
 			// Determine if we are dealing with MapNodeMid or MapNodeBase
 			int modulo = i % (numberNodesBetweenStartEnd + 1);
 			if(modulo == 0) {						// MapNodeBase
@@ -70,6 +71,7 @@ public class MapUIController : MonoBehaviour {
                 nodePositionList.Add(new Vector2(xDisplacement, segmentHeight * modulo));
 			}
 		}
+		
 		startTier = DataLoaderTiers.GetDataFromTier(DataLoaderTiers.GetTierFromCash(_oldTotalCash));
         GameObject nodeBaseStart = GameObjectUtils.AddChildGUI(mapParent, nodeStartPrefab);
 		nodeBaseStart.GetComponent<MapNodeBase>().Init(startTier, true, canvasScaler);
