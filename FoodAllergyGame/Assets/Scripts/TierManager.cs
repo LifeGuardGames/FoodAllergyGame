@@ -100,7 +100,9 @@ public class TierManager : Singleton<TierManager> {
 				// Add any tutorial overrides to be loaded next
 				List<string> unlockedSpecialDecos = currentTierUnlocks[AssetTypes.DecoSpecial];
 				if(unlockedSpecialDecos.Contains("VIPBasic")) {
-					DataManager.Instance.GameData.Decoration.BoughtDeco.Add("VIPBasic","");
+					if(!DataManager.Instance.GameData.Decoration.BoughtDeco.ContainsKey("VIPBasic")){
+						DataManager.Instance.GameData.Decoration.BoughtDeco.Add("VIPBasic", "");
+					}
 				}
 				else if(unlockedSpecialDecos.Contains("PlayArea00")) {
 					DataManager.Instance.GameData.Decoration.BoughtDeco.Add("PlayArea00", "");
