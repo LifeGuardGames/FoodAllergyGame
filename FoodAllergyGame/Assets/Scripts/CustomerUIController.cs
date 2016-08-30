@@ -152,7 +152,7 @@ public class CustomerUIController : MonoBehaviour {
 
 	private IEnumerator ReorderHelper() {
 		thoughtReorder.gameObject.SetActive(true);
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(2f);
 		thoughtReorder.gameObject.SetActive(false);
     }
 }
