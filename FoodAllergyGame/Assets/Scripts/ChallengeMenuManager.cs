@@ -24,7 +24,6 @@ public class ChallengeMenuManager : Singleton<ChallengeMenuManager> {
 				}
             }
 		}
-
 		// Adjust the grid height based on the height of the cell and spacing
 		float gridHeight = regularChallengeCount * (challengeGrid.cellSize.y + challengeGrid.spacing.y);
         challengeGrid.GetComponent<RectTransform>().sizeDelta = new Vector2(challengeGrid.cellSize.x, gridHeight);
@@ -47,9 +46,7 @@ public class ChallengeMenuManager : Singleton<ChallengeMenuManager> {
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START, showRandomTip: true);
 	}
 
-
 	public void ShowPrompt(string challengeID) {
 		challengeDescription.Populate(challengeID);
 	}
-
 }
