@@ -147,7 +147,9 @@ public class CustomerUIController : MonoBehaviour {
 	}
 
 	public void TriggerReorderThought() {
-		StartCoroutine(ReorderHelper());
+		if(uiCanvas.enabled) {
+			StartCoroutine(ReorderHelper());
+		}
 	}
 
 	private IEnumerator ReorderHelper() {
