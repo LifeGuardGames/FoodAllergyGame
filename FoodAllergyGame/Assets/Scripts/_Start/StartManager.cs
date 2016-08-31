@@ -50,6 +50,7 @@ public class StartManager : Singleton<StartManager> {
 	public bool isShopAppearHideDinerOverride = false;
 
 	void Start() {
+		DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "";
 		// Refresh tier calculation, always do this first
 		TierManager.Instance.RecalculateTier();
 
