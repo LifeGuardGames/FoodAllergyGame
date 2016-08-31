@@ -57,6 +57,7 @@ public class ImmutableDataEvents{
 
 	private int restMode;
 	public int RestMode {
+		set { restMode = value; }
 		get { return restMode; }
 	}
 
@@ -66,15 +67,15 @@ public class ImmutableDataEvents{
 	}
 
 
-//	public string eventPropLeft;
-//	public string EventPropLeft {
-//		get { return eventPropLeft; }
-//	}
+	//	public string eventPropLeft;
+	//	public string EventPropLeft {
+	//		get { return eventPropLeft; }
+	//	}
 
-//	public string eventPropRight;
-//	public string EventPropRight {
-//		get { return eventPropRight; }
-//	}
+	//	public string eventPropRight;
+	//	public string EventPropRight {
+	//		get { return eventPropRight; }
+	//	}
 
 	public ImmutableDataEvents(string id, IXMLNode xmlNode, string error){
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);

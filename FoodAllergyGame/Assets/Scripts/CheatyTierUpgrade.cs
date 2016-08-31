@@ -165,6 +165,11 @@ public class CheatyTierUpgrade : MonoBehaviour {
 		SceneManager.LoadScene(SceneUtils.START);
 	}
 
+	public void GetTotalCash() {
+		CashManager.Instance.RestaurantEndCashUpdate(300,300);
+		SceneManager.LoadScene(SceneUtils.START);
+	}
+
 	public void OnLoadEpipenButton() {
 		SceneManager.LoadScene(SceneUtils.EPIPEN);
 	}

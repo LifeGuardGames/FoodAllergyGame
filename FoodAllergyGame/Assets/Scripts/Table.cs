@@ -200,12 +200,14 @@ public class Table : MonoBehaviour, IWaiterSelection{
 			}
 			else if(isGossiped){
 				isGossiped = false;
-				if(node.transform.GetChild(0).GetComponent<CustomerGossiper>() != null) {
-					node.transform.GetChild(0).GetComponent<CustomerGossiper>().GoAway();
+				if(node.transform.childCount > 0) {
+					if(node.transform.GetChild(0).GetComponent<CustomerGossiper>() != null) {
+						node.transform.GetChild(0).GetComponent<CustomerGossiper>().GoAway();
+					}
+					else if(node.transform.GetChild(0).GetComponent<CustomerSpecialGossiper>() != null) {
+						node.transform.GetChild(0).GetComponent<CustomerSpecialGossiper>().GoAway();
+					}
 				}
-				else if(node.transform.GetChild(0).GetComponent<CustomerSpecialGossiper>()!= null) {
-					node.transform.GetChild(0).GetComponent<CustomerSpecialGossiper>().GoAway();
-                }
 			}
 			// Move the waiter to the table to do what it does
 			else{

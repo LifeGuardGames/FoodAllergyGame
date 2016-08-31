@@ -172,13 +172,6 @@ public class DataManager : Singleton<DataManager> {
 	void OnApplicationPause(bool pauseStatus){
 		if(pauseStatus == true){
 			AnalyticsManager.Instance.TrackGameQuitScene();
-
-			// Restaurant day incomplete track
-			if(SceneManager.GetActiveScene().name == SceneUtils.RESTAURANT) {
-				if(RestaurantManager.Instance != null) {
-					RestaurantManager.Instance.IncompleteQuitAnalytics();
-				}
-			}
 		}
     }
 

@@ -1,13 +1,11 @@
 ﻿using UnityEngine;
 
 public class ShopEntranceUIController : MonoBehaviour {
-
 	public GameObject tutorialFinger;
 	public Animator decoEntranceAnimator;
 	public GameObject newSprite;
 
 	void Start() {
-		
 		if(TierManager.Instance.CurrentTier >= 1) {
 			bool isFirstTimeShop = DataManager.Instance.GameData.Decoration.IsFirstTimeEntrance;
 			if(isFirstTimeShop == false) {
@@ -62,8 +60,10 @@ public class ShopEntranceUIController : MonoBehaviour {
 	}
 
 	public void ToggleClickable(bool isClickable){
-		GetComponent<BoxCollider2D>().enabled = isClickable;
-		decoEntranceAnimator.SetBool("IsClickable", isClickable);
+		if(gameObject.activeSelf) {
+			GetComponent<BoxCollider2D>().enabled = isClickable;
+			decoEntranceAnimator.SetBool("IsClickable", isClickable);
+		}
 	}
 
 	public void ToggleShowNewItems(bool newItemsExists) {

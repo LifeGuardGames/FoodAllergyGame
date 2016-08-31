@@ -40,21 +40,21 @@ public class TierManager : Singleton<TierManager> {
 		isNewUnlocksAvailable = false;
 		isTierUp = false;
 
-        if(CashManager.Instance.TotalCash > 5800 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates) {
+		if(CashManager.Instance.TotalCash > 5800 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates) {
 			CashManager.Instance.OverrideTotalCash(5800);
         }
 		oldTier = DataLoaderTiers.GetTierFromCash(CashManager.Instance.LastSeenTotalCash);
 		currentTier = oldTier; // TODO Triple check this line
 		int newTier = DataLoaderTiers.GetTierFromCash(CashManager.Instance.TotalCash);
 		AnalyticsManager.Instance.SuperProperties.Remove("Tier");
-		AnalyticsManager.Instance.SuperProperties.Add("Tier", TierManager.Instance.CurrentTier);
+		AnalyticsManager.Instance.SuperProperties.Add("Tier", currentTier);
 		// If there is a change in tier, run logic
 		// INVARIABLE: Tiers are maximum one above, never multiple tiers at once
-		if(oldTier < newTier || DataManager.Instance.GameData.DayTracker.notifQueue.Count > 0) {
+		if(oldTier < newTier || DataManager.Instance.GameData.DayTracker.NotifQueue.Count > 0) {
 			StartManager.Instance.TurnOffEntrances();
 			isTierUp = true;
-
-			if(newTier - oldTier > 1) {
+			
+            if(newTier - oldTier > 1) {
 				Debug.LogError("Multiple tiers progressed, messes with unlock progression");
 			}
 			
@@ -96,7 +96,9 @@ public class TierManager : Singleton<TierManager> {
 				// Add any tutorial overrides to be loaded next
 				List<string> unlockedSpecialDecos = currentTierUnlocks[AssetTypes.DecoSpecial];
 				if(unlockedSpecialDecos.Contains("VIPBasic")) {
-					DataManager.Instance.GameData.Decoration.BoughtDeco.Add("VIPBasic","");
+					if(!DataManager.Instance.GameData.Decoration.BoughtDeco.ContainsKey("VIPBasic")){
+						DataManager.Instance.GameData.Decoration.BoughtDeco.Add("VIPBasic", "");
+					}
 				}
 				else if(unlockedSpecialDecos.Contains("PlayArea00")) {
 					DataManager.Instance.GameData.Decoration.BoughtDeco.Add("PlayArea00", "");
@@ -106,6 +108,9 @@ public class TierManager : Singleton<TierManager> {
 				}
 			}
 			currentTier = newTier;
+
+			// Calculate new tempo goal
+			TempoGoalManager.Instance.GetNewGoal();
 		}
 
 		// Print out tier
@@ -149,6 +154,7 @@ public class TierManager : Singleton<TierManager> {
 		int rand = Random.Range(0, bonusUnlocked.Count);
 		return bonusUnlocked[rand];
 	}
+
 	public List<string> GetDecorationsUnlocked(){
 		List<string> deocrationsUnlocked = null;
 		if(currentTier >= 0){

@@ -4,13 +4,13 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class RestaurantMenuUIController : MonoBehaviour {
-	public GameObject button1;
+	public Button button1;
 	public Image button1Image;
 	public List<RestMenuButtonAllergyNode> button1AllergyNodeList;
 	private int button1AllergyNodeCount;
 	public Image button1Coins;
 
-	public GameObject button2;
+	public Button button2;
 	public Image button2Image;
 	public List<RestMenuButtonAllergyNode> button2AllergyNodeList;
 	private int button2AllergyNodeCount;
@@ -41,6 +41,11 @@ public class RestaurantMenuUIController : MonoBehaviour {
 		allergy = customerAllergyList[0];
 
 		string allergyString = "";
+
+		// Set interactable by default
+		button1.interactable = true;
+		button2.interactable = true;
+
 		switch(customerAllergyList.Count) {
 			case 1:
 				if(allergy == Allergies.None) {
@@ -96,8 +101,8 @@ public class RestaurantMenuUIController : MonoBehaviour {
 		allergyText.text = "\"" + allergyString + "\"";
 
 		if(RestaurantManager.Instance.isTutorial && RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().isAllergy){
-			button1.GetComponent<Button>().interactable = false;
-			button2.GetComponent<Button>().interactable = false;
+			button1.interactable = false;
+			button2.interactable = false;
 			RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().step = 2;
 			RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
 
@@ -172,8 +177,8 @@ public class RestaurantMenuUIController : MonoBehaviour {
 
 	public void InspectButtonClicked(){
 		if(RestaurantManager.Instance.isTutorial){
-			button1.GetComponent<Button>().interactable = true;
-			button2.GetComponent<Button>().interactable = true;
+			button1.interactable = true;
+			button2.interactable = true;
 			RestaurantManager.Instance.GetTable(Waiter.Instance.CurrentTable).Seat.GetComponentInChildren<CustomerTutorial>().hideFinger();
 		}
 		RestaurantManager.Instance.inspectionButtonClicked++;
@@ -194,11 +199,15 @@ public class RestaurantMenuUIController : MonoBehaviour {
 	public void CancelOrder(int table){
 		if(table == tableNum){
 			menuTweenToggle.Hide();
+			button1.interactable = false;
+			button2.interactable = false;
 		}
 	}
 
 	public void ProduceOrder(int choice){
 		menuTweenToggle.Hide();
+		button1.interactable = false;
+		button2.interactable = false;
 		foreach(RestMenuButtonAllergyNode node in button1AllergyNodeList) {
 			node.Hide();
 		}

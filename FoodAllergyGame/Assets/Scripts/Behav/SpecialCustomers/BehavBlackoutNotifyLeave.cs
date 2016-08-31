@@ -13,7 +13,6 @@ public class BehavBlackoutNotifyLeave : Behav {
 
 	public override void Act() {
 		if(self.satisfaction == 0 || self.isAnnoyed) {
-			RestaurantManager.Instance.customerHash.Remove(self.customerID);
 			self.DestroyOrder();
 			if(self.state != CustomerStates.InLine) {
 				RestaurantManager.Instance.GetTable(self.tableNum).inUse = false;

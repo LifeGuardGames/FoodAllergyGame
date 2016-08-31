@@ -33,6 +33,11 @@ public class StartManager : Singleton<StartManager> {
 		get { return starsUIController; }
 	}
 
+	public MapUIController mapUIController;
+	public MapUIController MapUIController {
+		get { return mapUIController; }
+	}
+
 	public GameObject replayTutButton;
 	public GameObject soundButton;
 	public GameObject musicButton;
@@ -45,6 +50,7 @@ public class StartManager : Singleton<StartManager> {
 	public bool isShopAppearHideDinerOverride = false;
 
 	void Start() {
+		DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "";
 		// Refresh tier calculation, always do this first
 		TierManager.Instance.RecalculateTier();
 
@@ -82,8 +88,16 @@ public class StartManager : Singleton<StartManager> {
 			DinerEntranceUIController.ToggleClickable(false);
 			ChallengeMenuEntranceUIController.ToggleClickable(false);
 			replayTutButton.SetActive(false);
+
 			int oldTotalCash = CashManager.Instance.LastSeenTotalCash;
+			Debug.Log("last scene total: " + oldTotalCash);
 			int newTotalCash = CashManager.Instance.TotalCash;
+
+			// TODO Not sure if this is best place to put it
+			NotificationQueueDataMapReward mapNotif = new NotificationQueueDataMapReward(
+				SceneUtils.START, oldTotalCash, newTotalCash);
+			NotificationManager.Instance.AddNotification(mapNotif);
+
 			NotificationQueueDataTierProgress tierNotif =
 				new NotificationQueueDataTierProgress(SceneUtils.START, oldTotalCash, newTotalCash);
 			NotificationManager.Instance.AddNotification(tierNotif);
@@ -107,6 +121,7 @@ public class StartManager : Singleton<StartManager> {
 		if(TierManager.Instance.IsNewUnlocksAvailable) {
 			if(!string.IsNullOrEmpty(DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge)) {
 			}
+			
 			ShopEntranceUIController.ToggleClickable(false);
 			DinerEntranceUIController.ToggleClickable(false);
 			ChallengeMenuEntranceUIController.ToggleClickable(false);

@@ -15,7 +15,6 @@ public class AnalyticsManager : Singleton<AnalyticsManager> {
 			{"SuperProperties", SuperProperties}});
 	}
 
-
 	// When customers are not leaving happy, what is their state and type?
 	public void CustomerLeaveAngry(CustomerTypes type, CustomerStates state) {
 		Amplitude.Instance.logEvent("Customer Leave Angry", new Dictionary<string, object> {

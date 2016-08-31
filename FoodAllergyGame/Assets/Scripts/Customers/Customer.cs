@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
-using UnityEngine.Analytics;
 
 /// <summary>
 /// Customer AI is now handled through a series of classes known as behav which are childrens of the customer component generic class
@@ -477,6 +476,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		}
 		else{
 			Debug.LogError("Order already exists: " + Order.name);
+			Waiter.Instance.Finished();
 		}
 	}
 
@@ -640,11 +640,10 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			DataManager.Instance.GameData.Tutorial.IsTrashCanTutDone = true;
 			KitchenManager.Instance.IsTrachcanTut = false;
         }
-	//	Debug.Log("Redorder");
 		DestroyOrder();
-	//	Debug.Log("Order Destroyed");
 		Waiter.Instance.RemoveMeal(tableNum);
 		customerUI.ToggleWait(false);
+		customerUI.TriggerReorderThought();
 		KitchenManager.Instance.spinnerHighlight.gameObject.SetActive(false);
 		RestaurantManager.Instance.GetTable(tableNum).ToggleTableNum(false);
 		var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[1]);
