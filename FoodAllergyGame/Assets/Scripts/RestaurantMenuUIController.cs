@@ -16,6 +16,9 @@ public class RestaurantMenuUIController : MonoBehaviour {
 	private int button2AllergyNodeCount;
 	public Image button2Coins;
 
+	private bool button1AuxSet = false;	// Used for button locking for tween
+	private bool button2AuxSet = false;
+
 	public Animation inspectAnimation;
 	public GameObject allergyButtonParent;
 	public Animator allergyButtonAnimator;
@@ -42,9 +45,11 @@ public class RestaurantMenuUIController : MonoBehaviour {
 
 		string allergyString = "";
 
-		// Set interactable by default
-		button1.interactable = true;
-		button2.interactable = true;
+		// Set not interactable by default, but set to true on complete tween
+		button1.interactable = false;
+		button2.interactable = false;
+		button1AuxSet = true;
+		button2AuxSet = true;
 
 		switch(customerAllergyList.Count) {
 			case 1:
@@ -101,8 +106,8 @@ public class RestaurantMenuUIController : MonoBehaviour {
 		allergyText.text = "\"" + allergyString + "\"";
 
 		if(RestaurantManager.Instance.isTutorial && RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().isAllergy){
-			button1.interactable = false;
-			button2.interactable = false;
+			button1AuxSet = false;
+			button2AuxSet = false;
 			RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().step = 2;
 			RestaurantManager.Instance.GetTable(customerTableNum).Seat.GetComponentInChildren<CustomerTutorial>().nextHint();
 
@@ -134,6 +139,11 @@ public class RestaurantMenuUIController : MonoBehaviour {
 		}
 
 		AudioManager.Instance.PlayClip("MenuOpen");
+	}
+
+	public void OnShowComplete(){
+		button1.interactable = button1AuxSet;
+		button2.interactable = button2AuxSet;
 	}
 
 	private void InitButton(int buttonIndex, ImmutableDataFood foodData) {
