@@ -35,9 +35,11 @@ public class CustomerGossiper : Customer{
 
 	IEnumerator Annoy() {
 		yield return new WaitForSeconds(5.0f);
-		if(RestaurantManager.Instance.GetTable(gossiperTable).seat.GetChild(0).GetComponent<Customer>() != null) {
-			RestaurantManager.Instance.GetTable(gossiperTable).seat.GetChild(0).GetComponent<Customer>().Annoyed();
-			GoAway();
+		if(RestaurantManager.Instance.GetTable(gossiperTable).seat.childCount > 0) {
+			if(RestaurantManager.Instance.GetTable(gossiperTable).seat.GetChild(0).GetComponent<Customer>() != null) {
+				RestaurantManager.Instance.GetTable(gossiperTable).seat.GetChild(0).GetComponent<Customer>().Annoyed();
+			}
 		}
+		GoAway();
 	}
 }
