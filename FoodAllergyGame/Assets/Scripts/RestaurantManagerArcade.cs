@@ -60,6 +60,10 @@ public class RestaurantManagerArcade : RestaurantManager {
 		//Debug.Log("Starting Day - Event:" +  eventData.ID + ", Customer Set:" + currSet);
 		actTables = 4;
 		dayTime = eventData.DayLengthMod;
+		//Sanity Check to ensure restauranrt doesn't start closed
+		if(dayTime < 10.0f) {
+			dayTime = 72.0f;
+		}
 		dayTimeLeft = dayTime;
 		flowList = new List<string>();
 		string [] temp = DataLoaderCustomerFlow.GetData(eventData.FlowList).FlowList;
