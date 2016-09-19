@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System;
+using UnityEngine;
 
 public class RestaurantManagerChallenge : RestaurantManager{
 	// our satisfaction ai 
@@ -482,7 +482,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			return ChallengeReward.Silver;
 		}
 		else if (challengeAI.Score >= chall.BronzeBreakPoint) {
-			if(DataManager.Instance.GameData.Challenge.ChallengeProgress[chall.ID] != ChallengeReward.Gold || DataManager.instance.GameData.Challenge.ChallengeProgress[chall.ID] != ChallengeReward.Silver) {
+			if(DataManager.Instance.GameData.Challenge.ChallengeProgress[chall.ID] != ChallengeReward.Gold || DataManager.Instance.GameData.Challenge.ChallengeProgress[chall.ID] != ChallengeReward.Silver) {
 				DataManager.Instance.GameData.Challenge.ChallengeProgress[chall.ID] = ChallengeReward.Bronze;
 			}
 			CashManager.Instance.RestaurantEndCashUpdate(5, 5);

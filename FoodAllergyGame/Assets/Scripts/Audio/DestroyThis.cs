@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-
 ///////////////////////////////////////////
 // DestroyThis
 // Simple script for destroying things on
@@ -8,11 +6,8 @@ using System.Collections;
 // everything so that pausing can be an
 // easy and universal task.
 ///////////////////////////////////////////
-/// 
-
 
 //NEEDS refactoring.. WTF is all these underscores and hungarian syntax doing
-
 public class DestroyThis : MonoBehaviour{
 
 	public GameObject optionalParent;
@@ -52,10 +47,6 @@ public class DestroyThis : MonoBehaviour{
 	}
 	
 	void Update(){
-		// if combat isn't playing, we don't want to do any updating
-		//if ( CombatManager.Exists() && CombatManager.instance.GetCombatState() != CombatStates.PLAYING ) 
-		//	return;	
-	
 		// if life has been set, let the countdown begin
 		if(IsSet()){
 			float fDelta = Time.deltaTime;

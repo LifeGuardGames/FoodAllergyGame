@@ -153,7 +153,7 @@ public class StartManager : Singleton<StartManager> {
 			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoFlyThru";
 		}
 
-		if(TierManager.Instance.CurrentTier == 6 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates && !TierManager.instance.IsNewUnlocksAvailable) {
+		if(TierManager.Instance.CurrentTier == 6 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates && !TierManager.Instance.IsNewUnlocksAvailable) {
 			if(beaconNode.transform.childCount == 0) {
 				GameObject beacon = Resources.Load("Beacon") as GameObject;
 				GameObjectUtils.AddChild(beaconNode, beacon);

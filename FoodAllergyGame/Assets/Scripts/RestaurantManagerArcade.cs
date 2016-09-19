@@ -1,6 +1,6 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
 using System;
 
@@ -16,7 +16,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 	private SatisfactionAI satisfactionAI;
 	public override void Init() {
 		customerList = new Dictionary<string, object>();
-		eventData = DataLoaderEvents.GetData(DataManager.instance.GetEvent());
+		eventData = DataLoaderEvents.GetData(DataManager.Instance.GetEvent());
 		sickCustomers = new List<GameObject>();
 		customerHash = new Dictionary<string, GameObject>();
 		satisfactionAI = new SatisfactionAI();
@@ -49,7 +49,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 
 	public override void StartDay() {
 		AnalyticsManager.Instance.SuperProperties.Add("Event", DataManager.Instance.GetEvent());
-		this.eventData = DataLoaderEvents.GetData(DataManager.instance.GetEvent());
+		this.eventData = DataLoaderEvents.GetData(DataManager.Instance.GetEvent());
 		customerTimerDiffMod = DataManager.Instance.GameData.DayTracker.AvgDifficulty;
 		string currSet = eventData.CustomerSet;
 		currCusSet = new List<string>(DataLoaderCustomerSet.GetData(currSet).CustomerSet);
@@ -60,10 +60,12 @@ public class RestaurantManagerArcade : RestaurantManager {
 		//Debug.Log("Starting Day - Event:" +  eventData.ID + ", Customer Set:" + currSet);
 		actTables = 4;
 		dayTime = eventData.DayLengthMod;
-		//Sanity Check to ensure restauranrt doesn't start closed
+
+		//Sanity Check to ensure restaurant doesn't start closed
 		if(dayTime < 10.0f) {
 			dayTime = 72.0f;
 		}
+
 		dayTimeLeft = dayTime;
 		flowList = new List<string>();
 		string [] temp = DataLoaderCustomerFlow.GetData(eventData.FlowList).FlowList;
