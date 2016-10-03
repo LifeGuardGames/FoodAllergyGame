@@ -11,6 +11,7 @@ public class CustomerUIController : MonoBehaviour {
 	
 	public Image waiting;
 	public Image star;
+	public Image thoughtReorder;
 
 	public ParticleSystem angryParticle;
 
@@ -144,5 +145,19 @@ public class CustomerUIController : MonoBehaviour {
 	public void ToggleAllergyAttack(bool isAllergyAttack){
 		// Do nothing here
 	}
+
+	public void TriggerReorderThought() {
+		if(uiCanvas.enabled) {
+			StartCoroutine(ReorderHelper());
+		}
+	}
+
+	private IEnumerator ReorderHelper() {
+		if(thoughtReorder != null) {
+			thoughtReorder.gameObject.SetActive(true);
+			yield return new WaitForSeconds(2f);
+			thoughtReorder.gameObject.SetActive(false);
+		}
+    }
 }
 

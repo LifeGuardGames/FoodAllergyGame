@@ -42,4 +42,9 @@
 		<TierUnlock>7</TierUnlock>
 		<PrefabName>PropGrowthLightBeam01</PrefabName>
 	</PropGrowth>
+	<PropGrowth ID="PropGrowthCarpet00">
+		<PropKey>PropGrowthCarpet</PropKey>
+		<TierUnlock>6</TierUnlock>
+		<PrefabName>PropGrowthCarpet00</PrefabName>
+	</PropGrowth>
 </PropsGrowth>

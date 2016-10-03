@@ -122,23 +122,23 @@ public class NotificationManager : Singleton<NotificationManager> {
 	private void AddToDatamanager(NotificationQueueData que) {
         switch(que.GetType().ToString()){
 			case "NotificationQueueDataStarPieceReward":
-				if(!DataManager.Instance.GameData.DayTracker.notifQueue.Contains("Piece")){
-					DataManager.Instance.GameData.DayTracker.notifQueue.Add("Piece");
+				if(!DataManager.Instance.GameData.DayTracker.NotifQueue.Contains("Piece")){
+					DataManager.Instance.GameData.DayTracker.NotifQueue.Add("Piece");
 				}
 				break;
 			case "NotificationQueueDataStarCoreReward":
-				if(!DataManager.Instance.GameData.DayTracker.notifQueue.Contains("core")) {
-					DataManager.Instance.GameData.DayTracker.notifQueue.Add("core");
+				if(!DataManager.Instance.GameData.DayTracker.NotifQueue.Contains("core")) {
+					DataManager.Instance.GameData.DayTracker.NotifQueue.Add("core");
 				}
 				break;
 			case "NotificationQueueDataAge":
-				if(!DataManager.Instance.GameData.DayTracker.notifQueue.Contains("age")) {
-					DataManager.Instance.GameData.DayTracker.notifQueue.Add("age");
+				if(!DataManager.Instance.GameData.DayTracker.NotifQueue.Contains("age")) {
+					DataManager.Instance.GameData.DayTracker.NotifQueue.Add("age");
 				}
 				break;
 			case "NotificationQueueDataReward":
-				if(!DataManager.Instance.GameData.DayTracker.notifQueue.Contains("reward")) {
-					DataManager.Instance.GameData.DayTracker.notifQueue.Add("reward");
+				if(!DataManager.Instance.GameData.DayTracker.NotifQueue.Contains("reward")) {
+					DataManager.Instance.GameData.DayTracker.NotifQueue.Add("reward");
 				}
 				break;
 		}
@@ -147,25 +147,25 @@ public class NotificationManager : Singleton<NotificationManager> {
 		switch(que.GetType().ToString()) {
 
 			case "NotificationQueueDataStarCoreReward":
-				DataManager.Instance.GameData.DayTracker.notifQueue.Remove("core");
+				DataManager.Instance.GameData.DayTracker.NotifQueue.Remove("core");
 				break;
 			case "NotificationQueueDataStarPieceReward":
-				DataManager.Instance.GameData.DayTracker.notifQueue.Remove("Piece");
+				DataManager.Instance.GameData.DayTracker.NotifQueue.Remove("Piece");
 				break;
 			case "NotificationQueueDataAge":
-				DataManager.Instance.GameData.DayTracker.notifQueue.Remove("age");
+				DataManager.Instance.GameData.DayTracker.NotifQueue.Remove("age");
 				break;
 			case "NotificationQueueDataReward":
-				DataManager.Instance.GameData.DayTracker.notifQueue.Remove("reward");
+				DataManager.Instance.GameData.DayTracker.NotifQueue.Remove("reward");
 				break;
 			
 		}
 	}
 
 	private void RebuildQueue() {
-		int count = DataManager.Instance.GameData.DayTracker.notifQueue.Count;
+		int count = DataManager.Instance.GameData.DayTracker.NotifQueue.Count;
 		for (int i = 0; i < count; i ++) {
-			switch(DataManager.Instance.GameData.DayTracker.notifQueue[i]) {
+			switch(DataManager.Instance.GameData.DayTracker.NotifQueue[i]) {
                case "core":
 					NotificationQueueDataStarCoreReward core = new NotificationQueueDataStarCoreReward(SceneUtils.START);
 					AddNotification(core);

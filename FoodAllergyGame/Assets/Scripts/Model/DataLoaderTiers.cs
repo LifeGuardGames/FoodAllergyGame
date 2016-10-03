@@ -18,9 +18,22 @@ public class DataLoaderTiers: XMLLoaderGeneric<DataLoaderTiers>{
 		return instance.GetDataList<ImmutableDataTiers>();
 	}
 
+	public static int GetTotalTierCount() {
+		return GetDataList().Count - 1;	// Disregard tutorial tier
+	}
+
 	public static ImmutableDataTiers GetDataFromTier(int tier) {
 		return GetData("Tier" + StringUtils.FormatIntToDoubleDigitString(tier));
 	}
+
+	public static ImmutableDataTiers GetNextTier(ImmutableDataTiers tierData) {
+		if(!tierData.IsLastTier) {
+			return GetDataFromTier(tierData.TierNumber + 1);
+		}
+		else {
+			return null;
+		}
+    }
 
 	public static int GetTierFromCash(int totalCash){
 		List<ImmutableDataTiers> tierList = GetDataList();
@@ -32,6 +45,11 @@ public class DataLoaderTiers: XMLLoaderGeneric<DataLoaderTiers>{
 		}
 		return tierSoFar;
 	}
+
+	public static int GetCashInTier(ImmutableDataTiers tier) {
+		ImmutableDataTiers nextTier = GetNextTier(tier);
+		return nextTier.CashCutoffFloor - tier.CashCutoffFloor;
+    }
 
 	public static float GetPercentProgressInTier(int totalCash){
 		int tier = GetTierFromCash(totalCash);

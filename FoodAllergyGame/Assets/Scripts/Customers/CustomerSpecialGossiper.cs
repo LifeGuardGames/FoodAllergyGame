@@ -72,34 +72,36 @@ public class CustomerSpecialGossiper : MonoBehaviour {
 
 	IEnumerator Annoy() {
 		yield return new WaitForSeconds(5.0f);
-		if(mod == GossiperMode.TableSmasher) {
-			if(RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerTableSmasher>() != null) {
-				RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerTableSmasher>().Annoyed();
-				GoAway();
-            }
-        }
-		else if(mod == GossiperMode.Eater) {
-			if(RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerEater>() != null) {
-				RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerEater>().pastBehav = RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<Customer>().currBehav;
-                RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerEater>().Annoyed();
-				GoAway();
-            }
+		if(RestaurantManager.Instance.GetTable(tableNum).seat.childCount > 0) {
+			if(mod == GossiperMode.TableSmasher) {
+				if(RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerTableSmasher>() != null) {
+					RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerTableSmasher>().Annoyed();
+				}
+			}
+			else if(mod == GossiperMode.Eater) {
+				if(RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerEater>() != null) {
+					RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerEater>().pastBehav = RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<Customer>().currBehav;
+					RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerEater>().Annoyed();
+
+				}
+			}
+			else if(mod == GossiperMode.Blackout) {
+				if(RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerBlackOut>() != null) {
+					RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerBlackOut>().Annoyed();
+
+				}
+			}
+			else if(mod == GossiperMode.All) {
+				if(RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<Customer>() != null) {
+					Debug.Log("Annoy");
+					RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<Customer>().Annoyed();
+				}
+			}
 		}
-		else if(mod == GossiperMode.Blackout) {
-			if(RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerBlackOut>() != null) {
-				RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<CustomerBlackOut>().Annoyed();
-				GoAway();
-            }
-		}
-		else if (mod == GossiperMode.All) {
-			if(RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<Customer>() != null) {
-				Debug.Log("Annoy");
-				RestaurantManager.Instance.GetTable(tableNum).seat.GetChild(0).GetComponent<Customer>().Annoyed();
-				GoAway();
-            }
-		}
+		GoAway();
+
 	}
-	
+
 	/// <summary>
 	/// Base sorting order from the node placed itself
 	/// If customer mesh order is B, customer UI canvas is set to B+5, table will be set in the middle B+1 and B+2

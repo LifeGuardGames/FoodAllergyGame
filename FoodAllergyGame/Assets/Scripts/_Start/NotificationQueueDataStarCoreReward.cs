@@ -1,7 +1,7 @@
 ﻿using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Template of a NotificationQueueData
+/// Implementation of a NotificationQueueData
 /// Launches the reward animation for getting a star core
 /// </summary>
 public class NotificationQueueDataStarCoreReward : NotificationQueueData {

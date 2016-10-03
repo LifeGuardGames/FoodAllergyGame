@@ -1,19 +1,22 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using System;
 
 public class RestaurantManagerArcade : RestaurantManager {
 
 	public int flowMod;
 	public List<string> flowList;
 	public Dictionary<string, object> customerList;
+	public PositionTweenToggle BlackoutTut;
+	public PositionTweenToggle GossiperTut;
 
 	// our satisfaction ai
 	private SatisfactionAI satisfactionAI;
 	public override void Init() {
 		customerList = new Dictionary<string, object>();
-		eventData = DataLoaderEvents.GetData(DataManager.instance.GetEvent());
+		eventData = DataLoaderEvents.GetData(DataManager.Instance.GetEvent());
 		sickCustomers = new List<GameObject>();
 		customerHash = new Dictionary<string, GameObject>();
 		satisfactionAI = new SatisfactionAI();
@@ -25,9 +28,28 @@ public class RestaurantManagerArcade : RestaurantManager {
 		MiddlePhase();
 	}
 
+	private void RunSetUp() {
+		DifficultyAI diffAi = new DifficultyAI();
+		diffAi.Init(DataManager.Instance.GameData.DayTracker.AvgDifficulty, eventData);
+			if(eventData.RestMode == 1.0f) {
+				FullRestaurant();
+			}
+
+			else if(eventData.RestMode == 2.0f) {
+				BlackoutDay();
+			}
+			else if(eventData.RestMode == 4.0f) {
+				ImmutableDataCustomer test;
+				test = DataLoaderCustomer.GetData("CustomerSpecialGossiper");
+				GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
+				GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
+				cus.GetComponent<CustomerSpecialGossiper>().init(4);
+			}
+	}
+
 	public override void StartDay() {
 		AnalyticsManager.Instance.SuperProperties.Add("Event", DataManager.Instance.GetEvent());
-		this.eventData = DataLoaderEvents.GetData(DataManager.instance.GetEvent());
+		this.eventData = DataLoaderEvents.GetData(DataManager.Instance.GetEvent());
 		customerTimerDiffMod = DataManager.Instance.GameData.DayTracker.AvgDifficulty;
 		string currSet = eventData.CustomerSet;
 		currCusSet = new List<string>(DataLoaderCustomerSet.GetData(currSet).CustomerSet);
@@ -38,14 +60,29 @@ public class RestaurantManagerArcade : RestaurantManager {
 		//Debug.Log("Starting Day - Event:" +  eventData.ID + ", Customer Set:" + currSet);
 		actTables = 4;
 		dayTime = eventData.DayLengthMod;
+
+		//Sanity Check to ensure restaurant doesn't start closed
+		if(dayTime < 10.0f) {
+			dayTime = 72.0f;
+		}
+
 		dayTimeLeft = dayTime;
 		flowList = new List<string>();
 		string [] temp = DataLoaderCustomerFlow.GetData(eventData.FlowList).FlowList;
 		for(int i = 0; i < temp.Length; i++) {
 			flowList.Add(temp[i]);
 		}
-		StartCoroutine("NextWave");
-        StartCoroutine(SpawnCustomer());
+		RunSetUp();
+		if(eventData.RestMode == 2.0f && !DataManager.Instance.GameData.Tutorial.IsBlackOutTutDone) {
+			BlackoutTut.Show();
+		}
+		else if(eventData.RestMode == 4.0f && !DataManager.Instance.GameData.Tutorial.IsGossiperTutDone) {
+			GossiperTut.Show();
+		}
+		else {
+			StartCoroutine("NextWave");
+			StartCoroutine(SpawnCustomer());
+		}
 	}
 
 	// Spawns a customer after a given amount of timer then it restarts the coroutine
@@ -77,7 +114,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 			GameObject customerPrefab = Resources.Load(customerData.Script) as GameObject;
 			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 			customerNumber++;
-			cus.GetComponent<Customer>().behavFlow = customerData.BehavFlow;
+			cus.GetComponent<Customer>().behavFlow = DataLoaderBehav.GetRandomBehavByType(cus.GetComponent<Customer>().type.ToString()).ID;
 			cus.GetComponent<Customer>().Init(customerNumber, eventData);
 			AddCustomer(cus.GetComponent<Customer>());
 			customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
@@ -161,6 +198,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 			if(customerHash.Count == 0) {
 				pauseUI.isActive = false;
 				DataManager.Instance.GameData.DayTracker.DaysPlayed++;
+				DataManager.Instance.GameData.DayTracker.GoalTimeLimit--;
 				DataManager.Instance.DaysInSession++;
 				
 				DataManager.Instance.GameData.DayTracker.AvgDifficulty = ((DataManager.Instance.GameData.DayTracker.AvgDifficulty + satisfactionAI.DifficultyLevel) / 2);
@@ -197,12 +235,11 @@ public class RestaurantManagerArcade : RestaurantManager {
 				if(TierManager.Instance.CurrentTier > 4) {
 					AnalyticsManager.Instance.PlayAreaUsage(playAreaUses);
 				}
+				// Show day complete UI
+				restaurantUI.DayComplete(satisfactionAI.MissingCustomers, dayEarnedCash, Medic.Instance.MedicCost, dayNetCash);
 
-					// Show day complete UI
-					restaurantUI.DayComplete(satisfactionAI.MissingCustomers, dayEarnedCash, Medic.Instance.MedicCost, dayNetCash);
-
-					// Save game data
-					DataManager.Instance.SaveGameData();
+				// Save game data
+				DataManager.Instance.SaveGameData();
 			}
 		}
 	}
@@ -250,7 +287,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 		AnalyticsManager.Instance.SuperProperties.Remove("Event");
 		AnalyticsManager.Instance.TrackGameDayInRestaurantArcade(dayTimeLeft, TierManager.Instance.CurrentTier, DataManager.Instance.GameData.RestaurantEvent.CurrentEvent,
 				satisfactionAI.DifficultyLevel, satisfactionAI.MissingCustomers, satisfactionAI.AvgSatisfaction(),
-				DayEarnedCash, Medic.Instance.MedicCost);
+				DayEarnedCash, Medic.Instance.MedicCost, eventData.RestMode);
 	}
 
 	public bool checkBonus() {
@@ -329,4 +366,107 @@ public class RestaurantManagerArcade : RestaurantManager {
 			customerList.Add(cus.type.ToString(), 1);
 		}
 	}
+
+	public void AvailableTables(int tabs) {
+		actTables = tabs;
+		while(tableList.Count > tabs) {
+			Destroy(tableList[0]);
+			tableList.RemoveAt(0);
+		}
+	}
+
+	private void FullRestaurant() {
+		StartCoroutine("WaitASec");
+		//cus.GetComponent<Customer>().JumpToTable(i);
+	}
+
+	IEnumerator WaitASec() {
+		yield return (0);
+		for(int i = 0; i < 4; i++) {
+			ImmutableDataCustomer test;
+			
+			test = DataLoaderCustomer.GetData("CustomerRegular");
+		
+			GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
+			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
+			Customer customerScript = cus.GetComponent<Customer>();
+
+			customerScript.behavFlow = test.BehavFlow;
+			customerScript.tableNum = i;
+			customerScript.Init(customerNumber, eventData);
+			customerHash.Add(customerScript.customerID, cus);
+			customerNumber++;
+			satisfactionAI.AddCustomer();
+
+			//sitting down
+			if(GetTable(customerScript.tableNum) != null) {
+				cus.transform.SetParent(GetTable(customerScript.tableNum).Seat);
+				customerScript.SetBaseSortingOrder(GetTable(customerScript.tableNum).BaseSortingOrder);
+				cus.transform.localPosition = Vector3.zero;
+
+				// begin reading menu
+				customerScript.customerAnim.SetReadingMenu();
+
+				// TODO-SOUND Reading menu here
+				customerScript.StopCoroutine("SatisactionTimer");
+
+				// Table connection setup
+				cus.gameObject.GetComponentInParent<Table>().currentCustomerID = customerScript.customerID;
+				cus.GetComponent<BoxCollider>().enabled = false;
+				lineController.FillInLine();
+				var type = Type.GetType(DataLoaderBehav.GetData(customerScript.behavFlow).Behav[1]);
+				Behav read = (Behav)Activator.CreateInstance(type);
+				read.self = customerScript;
+				read.Act();
+				//BehavReadingMenu read = new BehavReadingMenu(self);
+				customerScript.currBehav = read;
+				read = null;
+				GetTable(i).inUse = true;
+			}
+		}
+	}
+
+	public void BlackoutDay() {
+		blackoutImg.SetActive(true);
+		List<GameObject> currCustomers = new List<GameObject>(GetCurrentCustomers());
+		for(int i = 0; i < currCustomers.Count; i++) {
+			currCustomers[i].GetComponent<Customer>().customerUI.gameObject.SetActive(false);
+		}
+		StartCoroutine(LightsOn());
+	}
+
+	private IEnumerator LightsOn() {
+		yield return new WaitForSeconds(5.0f);
+		blackoutImg.SetActive(false);
+		List<GameObject> currCustomers = new List<GameObject>(GetCurrentCustomers());
+		for(int i = 0; i < currCustomers.Count; i++) {
+			currCustomers[i].GetComponent<Customer>().customerUI.gameObject.SetActive(true);
+		}
+		StartCoroutine(BlackoutAgain());
+	}
+
+	private IEnumerator BlackoutAgain() {
+		yield return new WaitForSeconds(10.0f);
+		blackoutImg.SetActive(true);
+		List<GameObject> currCustomers = new List<GameObject>(GetCurrentCustomers());
+		for(int i = 0; i < currCustomers.Count; i++) {
+			currCustomers[i].GetComponent<Customer>().customerUI.gameObject.SetActive(false);
+		}
+		StartCoroutine(LightsOn());
+	}
+
+	public void BlackoutMoveAlong() {
+		DataManager.Instance.GameData.Tutorial.IsBlackOutTutDone = true;
+		BlackoutTut.Hide();
+		StartCoroutine("NextWave");
+		StartCoroutine(SpawnCustomer());
+	}
+
+	public void GossipMoveAlong() {
+		DataManager.Instance.GameData.Tutorial.IsBlackOutTutDone = true;
+		GossiperTut.Hide();
+		StartCoroutine("NextWave");
+		StartCoroutine(SpawnCustomer());
+	}
+
 }

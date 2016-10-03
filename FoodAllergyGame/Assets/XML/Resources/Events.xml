@@ -8,7 +8,7 @@
 		<DayLength>33</DayLength>
 		<Allergy>None</Allergy>
 		<Title>TitleT2</Title>
-    <ObjectiveID>Objective00</ObjectiveID>
+		<ObjectiveID>Objective00</ObjectiveID>
 	</Event>
 	<Event ID="EventTPlayArea">
 		<RemoveMenuSet>RemoveMenuSet00</RemoveMenuSet>
@@ -18,7 +18,7 @@
 		<DayLength>1</DayLength>
 		<Allergy>None</Allergy>
 		<EventDescription>EventDesc00</EventDescription>
-    <ObjectiveID>Objective00</ObjectiveID>
+		<ObjectiveID>Objective00</ObjectiveID>
 		<Title>Title00</Title>
     <ObjectiveID>Objective00</ObjectiveID>
 	</Event>
@@ -31,7 +31,7 @@
 		<Allergy>None</Allergy>
 		<EventDescription>EventDesc00</EventDescription>
 		<Title>Title00</Title>
-    <ObjectiveID>Objective00</ObjectiveID>
+		<ObjectiveID>Objective00</ObjectiveID>
 	</Event>
 	<Event ID="EventTVIP">
 		<RemoveMenuSet>RemoveMenuSet00</RemoveMenuSet>
@@ -42,7 +42,7 @@
 		<Allergy>None</Allergy>
 		<EventDescription>EventDesc00</EventDescription>
 		<Title>Title00</Title>
-    <ObjectiveID>Objective00</ObjectiveID>
+		<ObjectiveID>Objective00</ObjectiveID>
 	</Event>
 	<Event ID="Event00">      <!-- An ordinary day -->
 		<RemoveMenuSet>RemoveMenuSet01</RemoveMenuSet>
@@ -53,8 +53,8 @@
 		<Allergy>Peanut</Allergy>
 		<EventDescription>EventDesc00</EventDescription>
 		<Title>Event00</Title>
-    <ObjectiveID>Objective00</ObjectiveID>
-    <FlowList>Flow00</FlowList>
+		<ObjectiveID>Objective00</ObjectiveID>
+		<FlowList>Flow00</FlowList>
 	</Event>
 	<Event ID="Event01">     <!-- Fast Food -->
 		<RemoveMenuSet>RemoveMenuSet01</RemoveMenuSet>
@@ -65,8 +65,8 @@
 		<Allergy>Peanut</Allergy>
 		<EventDescription>EventDesc01</EventDescription>
 		<Title>Event01</Title>
-    <ObjectiveID>Objective00</ObjectiveID>
-    <FlowList>Flow00</FlowList>
+		<ObjectiveID>Objective00</ObjectiveID>
+		<FlowList>Flow00</FlowList>
 	</Event>
 	<Event ID="Event02">     <!-- A Busy day -->
 		<RemoveMenuSet>RemoveMenuSet01</RemoveMenuSet>
@@ -77,8 +77,8 @@
 		<Allergy>Wheat</Allergy>
 		<EventDescription>EventDesc02</EventDescription>
 		<Title>Event02</Title>
-    <ObjectiveID>Objective00</ObjectiveID>
-    <FlowList>Flow00</FlowList>
+		<ObjectiveID>Objective00</ObjectiveID>
+		<FlowList>Flow00</FlowList>
 	</Event>
 	<Event ID="Event03">     <!-- Chef's Bad Day -->
 		<RemoveMenuSet>RemoveMenuSet01</RemoveMenuSet>
@@ -89,8 +89,8 @@
 		<Allergy>None</Allergy>
 		<EventDescription>EventDesc03</EventDescription>
 		<Title>Event03</Title>
-    <ObjectiveID>Objective00</ObjectiveID>
-    <FlowList>Flow00</FlowList>
+		<ObjectiveID>Objective00</ObjectiveID>
+		<FlowList>Flow00</FlowList>
 	</Event>
 	<Event ID="Event04">      <!-- Rush Hour -->
 		<RemoveMenuSet>RemoveMenuSet01</RemoveMenuSet>
@@ -101,10 +101,9 @@
 		<Allergy>None</Allergy>
 		<EventDescription>EventDesc04</EventDescription>
 		<Title>Event04</Title>
-    <ObjectiveID>Objective00</ObjectiveID>
-    <FlowList>Flow00</FlowList>
+		<ObjectiveID>Objective00</ObjectiveID>
+		<FlowList>Flow00</FlowList>
 	</Event>
-
 	<Event ID="Event05">
 		<RemoveMenuSet>RemoveMenuSet02</RemoveMenuSet>
 		<KitchenTimer>3</KitchenTimer>
@@ -114,8 +113,8 @@
 		<Allergy>Peanut</Allergy>
 		<EventDescription>EventDesc00</EventDescription>
 		<Title>Event00</Title>
-    <ObjectiveID>Objective00</ObjectiveID>
-    <FlowList>Flow00</FlowList>
+		<ObjectiveID>Objective00</ObjectiveID>
+		<FlowList>Flow00</FlowList>
 	</Event>
 	<Event ID="Event06">
 		<RemoveMenuSet>RemoveMenuSet02</RemoveMenuSet>
@@ -126,8 +125,8 @@
 		<Allergy>Wheat</Allergy>
 		<EventDescription>EventDesc01</EventDescription>
 		<Title>Event01</Title>
-    <ObjectiveID>Objective00</ObjectiveID>
-    <FlowList>Flow00</FlowList>
+		<ObjectiveID>Objective00</ObjectiveID>
+		<FlowList>Flow00</FlowList>
 	</Event>
 	<Event ID="Event07">
 		<RemoveMenuSet>RemoveMenuSet02</RemoveMenuSet>
@@ -138,8 +137,8 @@
 		<Allergy>Dairy</Allergy>
 		<EventDescription>EventDesc02</EventDescription>
 		<Title>Event02</Title>
-    <ObjectiveID>Objective00</ObjectiveID>
-    <FlowList>Flow00</FlowList>
+		<ObjectiveID>Objective00</ObjectiveID>
+		<FlowList>Flow00</FlowList>
 	</Event>
 	<Event ID="Event08">
 		<RemoveMenuSet>RemoveMenuSet02</RemoveMenuSet>
@@ -150,8 +149,8 @@
 		<Allergy>None</Allergy>
 		<EventDescription>EventDesc03</EventDescription>
 		<Title>Event03</Title>
-    <ObjectiveID>Objective00</ObjectiveID>
-    <FlowList>Flow00</FlowList>
+		<ObjectiveID>Objective00</ObjectiveID>
+		<FlowList>Flow00</FlowList>
 	</Event>
 	<Event ID="Event09">
 		<RemoveMenuSet>RemoveMenuSet02</RemoveMenuSet>
@@ -162,10 +161,9 @@
 		<Allergy>None</Allergy>
 		<EventDescription>EventDesc04</EventDescription>
 		<Title>Event04</Title>
-    <ObjectiveID>Objective00</ObjectiveID>
-    <FlowList>Flow00</FlowList>
+		<ObjectiveID>Objective00</ObjectiveID>
+		<FlowList>Flow00</FlowList>
 	</Event>
-
 	<Event ID="Event10">
 		<RemoveMenuSet>RemoveMenuSet03</RemoveMenuSet>
 		<KitchenTimer>6.5</KitchenTimer>
@@ -175,8 +173,8 @@
 		<Allergy>Wheat</Allergy>
 		<EventDescription>EventDesc01</EventDescription>
 		<Title>Event01</Title>
-    <ObjectiveID>Objective00</ObjectiveID>
-    <FlowList>Flow00</FlowList>
+		<ObjectiveID>Objective00</ObjectiveID>
+		<FlowList>Flow00</FlowList>
 	</Event>
 	<Event ID="Event11">
 		<RemoveMenuSet>RemoveMenuSet03</RemoveMenuSet>
@@ -187,8 +185,8 @@
 		<Allergy>Dairy</Allergy>
 		<EventDescription>EventDesc02</EventDescription>
 		<Title>Event02</Title>
-    <ObjectiveID>Objective00</ObjectiveID>
-    <FlowList>Flow00</FlowList>
+		<ObjectiveID>Objective00</ObjectiveID>
+		<FlowList>Flow00</FlowList>
 	</Event>
 	<Event ID="Event12">
 		<RemoveMenuSet>RemoveMenuSet03</RemoveMenuSet>
@@ -199,8 +197,8 @@
 		<Allergy>None</Allergy>
 		<EventDescription>EventDesc03</EventDescription>
 		<Title>Event03</Title>
-    <ObjectiveID>Objective00</ObjectiveID>
-    <FlowList>Flow00</FlowList>
+		<ObjectiveID>Objective00</ObjectiveID>
+		<FlowList>Flow00</FlowList>
 	</Event>
 	<Event ID="Event13">
 		<RemoveMenuSet>RemoveMenuSet03</RemoveMenuSet>
@@ -211,8 +209,8 @@
 		<Allergy>None</Allergy>
 		<EventDescription>EventDesc04</EventDescription>
 		<Title>Event04</Title>
-    <ObjectiveID>Objective00</ObjectiveID>
-    <FlowList>Flow00</FlowList>
+		<ObjectiveID>Objective00</ObjectiveID>
+		<FlowList>Flow00</FlowList>
 	</Event>
 	<Event ID="Event14"> <!-- A Victory For Good Taste-->
 		<RemoveMenuSet>RemoveMenuSet03</RemoveMenuSet>
@@ -223,34 +221,32 @@
 		<Allergy>None</Allergy>
 		<EventDescription>EventDesc14</EventDescription>
 		<Title>Event14</Title>
-    <ObjectiveID>Objective00</ObjectiveID>
-    <FlowList>Flow00</FlowList>
+		<ObjectiveID>Objective00</ObjectiveID>
+		<FlowList>Flow00</FlowList>
 	</Event>
-  <Event ID="Event15">
-    <!-- An ordinary day -->
-    <RemoveMenuSet>RemoveMenuSet01</RemoveMenuSet>
-    <KitchenTimer>3</KitchenTimer>
-    <CustomerSet>CustomerSet01</CustomerSet>
-    <CustomerTimer>2</CustomerTimer>
-    <DayLength>72</DayLength>
-    <Allergy>cc</Allergy>
-    <EventDescription>EventDesc00</EventDescription>
-    <Title>Event00</Title>
-    <ObjectiveID>Objective00</ObjectiveID>
-    <FlowList>Flow00</FlowList>
-  </Event>
-  <Event ID="Event16">
-    <!-- Fast Forward -->
-    <RemoveMenuSet>RemoveMenuSet01</RemoveMenuSet>
-    <KitchenTimer>0</KitchenTimer>
-    <CustomerSet>CustomerSet01</CustomerSet>
-    <CustomerTimer>1</CustomerTimer>
-    <DayLength>72</DayLength>
-    <Allergy>cc</Allergy>
-    <EventDescription>EventDesc00</EventDescription>
-    <Title>Event00</Title>
-    <ObjectiveID>Objective00</ObjectiveID>
-    <FlowList>Flow00</FlowList>
-  </Event>
+	<Event ID="Event15"> <!-- An ordinary day -->
+		<RemoveMenuSet>RemoveMenuSet01</RemoveMenuSet>
+		<KitchenTimer>3</KitchenTimer>
+		<CustomerSet>CustomerSet01</CustomerSet>
+		<CustomerTimer>2</CustomerTimer>
+		<DayLength>72</DayLength>
+		<Allergy>cc</Allergy>
+		<EventDescription>EventDesc00</EventDescription>
+		<Title>Event00</Title>
+		<ObjectiveID>Objective00</ObjectiveID>
+		<FlowList>Flow00</FlowList>
+	</Event>
+	<Event ID="Event16"> <!-- Fast Forward -->
+		<RemoveMenuSet>RemoveMenuSet01</RemoveMenuSet>
+		<KitchenTimer>0</KitchenTimer>
+		<CustomerSet>CustomerSet01</CustomerSet>
+		<CustomerTimer>1</CustomerTimer>
+		<DayLength>72</DayLength>
+		<Allergy>cc</Allergy>
+		<EventDescription>EventDesc00</EventDescription>
+		<Title>Event00</Title>
+		<ObjectiveID>Objective00</ObjectiveID>
+		<FlowList>Flow00</FlowList>
+	</Event>
 </Events>
 

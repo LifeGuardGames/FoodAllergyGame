@@ -14,6 +14,18 @@ public class DataLoaderBehav : XMLLoaderGeneric<DataLoaderBehav> {
 		return instance.GetDataList<ImmutableDataBehav>();
 	}
 
+	public static ImmutableDataBehav GetRandomBehavByType(string type) {
+		List<ImmutableDataBehav> behavList = GetDataList();
+		List<ImmutableDataBehav> finalList = new List<ImmutableDataBehav>();
+		foreach(ImmutableDataBehav behav in behavList) {
+			if(behav.CustomerType == type) {
+				finalList.Add(behav);
+			}
+		}
+		int rand = Random.Range(0, finalList.Count);
+		return finalList[rand];
+	}
+
 	protected override void XMLNodeHandler(string id, IXMLNode xmlNode, Hashtable hashData, string errorMessage) {
 		ImmutableDataBehav data = new ImmutableDataBehav(id, xmlNode, errorMessage);
 		// Store the data

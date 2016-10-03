@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 /// <summary>
 /// Cash manager.
@@ -24,6 +23,10 @@ public class CashManager : Singleton<CashManager> {
 
 	public void OverrideTotalCash(int newCash) {
 		cashData.TotalCash = newCash;
+	}
+
+	public void OverrideCurrentCash(int cash) {
+		cashData.CurrentCash += cash;
 	}
 
 	#region DecoScene calls

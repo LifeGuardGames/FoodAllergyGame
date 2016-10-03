@@ -37,6 +37,10 @@ public class RestaurantUIManager : MonoBehaviour{
 		AudioManager.Instance.PlayClip("EndOfDay");
 	}
 
+	public void DayCompleteTest() {
+		DayComplete(0, 500, 10, 900);
+	}
+
 	public void ChallengeComplete(int score, int cashEarned, int negativeCash) {
 		challengeOverUIController.Populate(negativeCash, cashEarned, score);
 		challengeOverUIController.ShowPanel();

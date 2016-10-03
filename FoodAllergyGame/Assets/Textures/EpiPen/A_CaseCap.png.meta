@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 97e541d9eaa020847aa03cbe73f8a082
-timeCreated: 1458082350
+guid: 3d33e262995ab424887732bb1d8275d5
+timeCreated: 1461957959
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -29,7 +29,7 @@ TextureImporter:
   textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
-    filterMode: -1
+    filterMode: 1
     aniso: -1
     mipBias: -1
     wrapMode: 1
@@ -49,6 +49,7 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
+    serializedVersion: 2
     sprites: []
     outline: []
   spritePackingTag: Epipen

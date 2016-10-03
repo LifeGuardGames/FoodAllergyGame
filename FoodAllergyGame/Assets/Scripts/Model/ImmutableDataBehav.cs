@@ -20,11 +20,17 @@ public class ImmutableDataBehav  {
 		get { return name; }
 	}
 
+	private string customerType;
+	public string CustomerType {
+		get { return customerType; }
+	}
+
 	public ImmutableDataBehav(string id, IXMLNode xmlNode, string error) {
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 
 		this.id = id;
 		name = XMLUtils.GetString(hashElements["Name"] as IXMLNode);
+		customerType = XMLUtils.GetString(hashElements["Type"] as IXMLNode);
 		behav = XMLUtils.GetStringList(hashElements["BehavList"]as IXMLNode);
 	}
 }

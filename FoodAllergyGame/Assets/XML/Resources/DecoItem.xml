@@ -219,12 +219,12 @@
 		<SpriteName>RestFloorCandyBlue</SpriteName>
 		<Tier>8</Tier>
 	</DecoItem>
-	<DecoItem ID = "FloorCandyLime">
+	<DecoItem ID = "FloorCandyRed">
 		<Type>Floor</Type>
 		<Price>3600</Price>
-		<TitleKey>FloorCandyLime</TitleKey>
-		<DescriptionKey>FloorCandyLimeDesc</DescriptionKey>
-		<SpriteName>RestFloorCandyLime</SpriteName>
+		<TitleKey>FloorCandyRed</TitleKey>
+		<DescriptionKey>FloorCandyRedDesc</DescriptionKey>
+		<SpriteName>RestFloorCandyRed</SpriteName>
 		<Tier>19</Tier>
 	</DecoItem>
 
@@ -363,7 +363,7 @@
 
 	<DecoItem ID = "PlayArea00">
 		<Type>PlayArea</Type>
-		<Price>1</Price>
+		<Price>0</Price>
 		<TitleKey>PlayAreaClawMachine</TitleKey>
 		<DescriptionKey>PlayAreaClawMachineDesc</DescriptionKey>
 		<SpriteName>RestPlayAreaClawMachine</SpriteName>

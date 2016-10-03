@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 
 public class DayOverUIController : MonoBehaviour {
+	public DayOverMoneyRocketController rocketController;
 	public TweenToggleDemux tweenDemux;
 	public Text textCustomersMissed;
 	public Text textTips;
@@ -25,6 +26,7 @@ public class DayOverUIController : MonoBehaviour {
 		textTips.text = tips.ToString();
 		textMenuCost.text = medicalExpenses.ToString();
 		textEarningsNet.text = earningsNet.ToString();
+		rocketController.Init(earningsNet);
 		if(RestaurantManagerArcade.Instance.GetComponent<RestaurantManagerArcade>() != null) {
 			
 			ImmutableDataBonusObjective bonusData = DataLoaderBonusObjective.GetData(DataManager.Instance.GetBonus());
