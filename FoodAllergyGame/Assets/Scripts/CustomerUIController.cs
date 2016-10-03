@@ -147,13 +147,17 @@ public class CustomerUIController : MonoBehaviour {
 	}
 
 	public void TriggerReorderThought() {
-		StartCoroutine(ReorderHelper());
+		if(uiCanvas.enabled) {
+			StartCoroutine(ReorderHelper());
+		}
 	}
 
 	private IEnumerator ReorderHelper() {
-		thoughtReorder.gameObject.SetActive(true);
-		yield return new WaitForSeconds(2f);
-		thoughtReorder.gameObject.SetActive(false);
+		if(thoughtReorder != null) {
+			thoughtReorder.gameObject.SetActive(true);
+			yield return new WaitForSeconds(2f);
+			thoughtReorder.gameObject.SetActive(false);
+		}
     }
 }
 
