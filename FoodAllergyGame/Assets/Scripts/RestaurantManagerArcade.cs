@@ -287,7 +287,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 		AnalyticsManager.Instance.SuperProperties.Remove("Event");
 		AnalyticsManager.Instance.TrackGameDayInRestaurantArcade(dayTimeLeft, TierManager.Instance.CurrentTier, DataManager.Instance.GameData.RestaurantEvent.CurrentEvent,
 				satisfactionAI.DifficultyLevel, satisfactionAI.MissingCustomers, satisfactionAI.AvgSatisfaction(),
-				DayEarnedCash, Medic.Instance.MedicCost);
+				DayEarnedCash, Medic.Instance.MedicCost, eventData.RestMode);
 	}
 
 	public bool checkBonus() {

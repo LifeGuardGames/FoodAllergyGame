@@ -72,7 +72,7 @@ public class AnalyticsManager : Singleton<AnalyticsManager> {
 
 	// Why do people quit the restaurant day incomplete?
 	public void TrackGameDayInRestaurantArcade(float dayTimeLeft, int tier, string currentEvent, float difficultyLevel,
-		int missingCustomers, float averageSatisfication, int dayEarnedCash, int medicCost) {
+		int missingCustomers, float averageSatisfication, int dayEarnedCash, int medicCost, int restMode) {
 		Amplitude.Instance.logEvent("Quit Restaurant Incomplete", new Dictionary<string, object> {
 			{"Time Left: " , dayTimeLeft},
 			{"Tier: " , tier*1.0f},
@@ -81,8 +81,9 @@ public class AnalyticsManager : Singleton<AnalyticsManager> {
 			{"Missed Customers: " , missingCustomers*1.0f},
 			{"Avg. Satisfaction: " , averageSatisfication},
 			{"Cash Earned: " , dayEarnedCash},
-            {"Cash Lost: " , medicCost*1.0f },
-			{"SuperProperties", SuperProperties}});
+			{"Cash Lost: " , medicCost*1.0f },
+			{"SuperProperties", SuperProperties},
+			{"Rest Mode:", restMode }});
 	}
 
 	// Why do people quit the restaurant day incomplete?
