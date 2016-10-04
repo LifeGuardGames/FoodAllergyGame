@@ -248,7 +248,13 @@ public abstract class RestaurantManager : Singleton<RestaurantManager>{
 		if(!dayOver) {
 			IncompleteQuitAnalytics();
 		}
-		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START, showRandomTip: true);
+		if(!DataManager.Instance.GameData.Tutorial.IsComicViewed) {
+			DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
+			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.COMICSCENE, showRandomTip: true);
+		}
+		else {
+			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START, showRandomTip: true);
+		}
 	}
 
 	public virtual void IncompleteQuitAnalytics() {
