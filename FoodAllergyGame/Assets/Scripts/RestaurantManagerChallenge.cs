@@ -526,6 +526,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START);
 		}
 		else if(answer == false && !DataManager.Instance.GameData.Tutorial.IsTutorial1Done) {
+			DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
 			AnalyticsManager.Instance.TutorialFunnel("Finished tut day, 2 guided customers");
 			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut2";
         }
