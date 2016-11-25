@@ -135,3 +135,12 @@ public enum DifficultyLevels {
 	Hard,
 }
 
+public enum MissionType {
+	Customer,
+	Food,
+	Days,
+	Walk,
+	Allergy,
+}
+
+

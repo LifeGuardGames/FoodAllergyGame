@@ -52,6 +52,11 @@ public class Waiter: Singleton<Waiter>{
 	}
 
 	public void FindRoute(GameObject _targetNode, MonoBehaviour caller){
+		foreach(Mission mis in DataManager.Instance.GameData.Daily.DailyMissions) {
+			if( mis.misType == MissionType.Walk) {
+				mis.amount++;
+			}
+		}
 		CanMove = false;
 		currentCaller = (IWaiterSelection)caller;
 		pathList.Clear();
@@ -219,7 +224,12 @@ public class Waiter: Singleton<Waiter>{
 			GameObject tempFood = hand1Object;
 			tempFood.transform.SetParent(RestaurantManager.Instance.GetTable(tableNum).foodSpot);
 			tempFood.GetComponent<Order>().SetBaseSortingOrder(RestaurantManager.Instance.GetTable(tableNum).BaseSortingOrder);
-            tempFood.transform.localPosition = new Vector3(0, 0, 0);
+			foreach(Mission mis in DataManager.Instance.GameData.Daily.DailyMissions) {
+				if(mis.misType == MissionType.Food && tempFood.GetComponent<Order>().foodID == mis.missionKey) {
+					mis.progress++;
+				}
+			}
+			tempFood.transform.localPosition = new Vector3(0, 0, 0);
 			hand1Object = null;
 			hand1 = WaiterHands.None;
 			waiterAnimController.RefreshHand();

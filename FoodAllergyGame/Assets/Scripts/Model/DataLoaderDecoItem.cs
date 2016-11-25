@@ -26,6 +26,16 @@ public class DataLoaderDecoItem: XMLLoaderGeneric<DataLoaderDecoItem> {
 		return decoList;
 	}
 
+	public static List<string> GetUnlockedDecoList(int tier) {
+		List<string> decoList = new List<string>();
+		foreach(ImmutableDataDecoItem decoData in GetDataList()) {
+			if(decoData.Tier <= tier) {
+				decoList.Add(decoData.ID);
+			}
+		}
+		return decoList;
+	}
+
 	public static List<string> GetSpecialDecoIDUnlockedAtTier(int tier){
 		List<string> decoList = new List<string>();
 		foreach(ImmutableDataDecoItem decoData in GetDataList()){

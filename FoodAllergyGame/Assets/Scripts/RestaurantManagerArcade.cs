@@ -225,8 +225,15 @@ public class RestaurantManagerArcade : RestaurantManager {
 				//					}
 				//AnalyticsManager.Instance.TrackCustomerSpawned(DataManager.Instance.GetEvent(),customerList);
 				AnalyticsManager.Instance.SuperProperties.Remove("Event");
-			
-					AnalyticsManager.Instance.EndGameDayReport(
+				foreach(Mission mis in DataManager.Instance.GameData.Daily.DailyMissions) {
+					if(mis.misType == MissionType.Allergy && Medic.Instance.MedicCost == 0) {
+						mis.progress++;
+					}
+					else if(mis.misType == MissionType.Days) {
+						mis.progress++;
+					}
+				}
+				AnalyticsManager.Instance.EndGameDayReport(
 						DataManager.Instance.GameData.RestaurantEvent.CurrentEvent, satisfactionAI.MissingCustomers, satisfactionAI.AvgSatisfaction(),
 						DayEarnedCash, Medic.Instance.MedicCost, savedCustomers, attempted, inspectionButtonClicked);
 				if(TierManager.Instance.CurrentTier > 2) {

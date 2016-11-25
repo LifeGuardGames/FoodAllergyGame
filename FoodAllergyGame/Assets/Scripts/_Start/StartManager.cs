@@ -166,6 +166,7 @@ public class StartManager : Singleton<StartManager> {
 	DataManager.Instance.SaveGameData();
 		GenerateCustomerList();
 		GenerateUnlockedFoodStock();
+		DailyBehaviorManager.Instance.Init();
 	}
 
 	//creates a list of acceptable spawning customers
