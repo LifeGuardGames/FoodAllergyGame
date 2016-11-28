@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -14,9 +15,10 @@ public class MissionUI : MonoBehaviour {
 	public void Init(Mission mis) {
 		titleText.text = mis.misType.ToString();
 		missionDescription.GetComponent<Localize>().key = mis.missionKey;
-		missionDescription.GetComponent<Localize>().LocalizeText();
-		missionProgress.text = mis.progress.ToString();
-		missionAmount.text = mis.amount.ToString();
+		missionDescription.GetComponent<Localize>().LocalizeText(mis.amount);
+        missionProgress.text = mis.progress.ToString();
+		missionDescription.GetComponent<Localize>().key = "";
+        missionAmount.text = mis.amount.ToString();
 		reward.text = mis.reward.ToString();
 		mission = mis;
 	}

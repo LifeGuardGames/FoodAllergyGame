@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -8,7 +9,7 @@ public class MissionUiController : Singleton<MissionUiController> {
 	public GameObject missionUIPrefab;
 
 	public void Init() {
-		for(int i = 0; i < DataManager.Instance.GameData.Daily.DailyMissions.Count; i++){
+		for(int i = 0; i < DataManager.Instance.GameData.Daily.DailyMissions.Count; i++ ){
 			GameObject go = GameObjectUtils.AddChildGUI(missionSlots[i], missionUIPrefab);
 			go.GetComponent<MissionUI>().Init(DataManager.Instance.GameData.Daily.DailyMissions[i]);
 		}

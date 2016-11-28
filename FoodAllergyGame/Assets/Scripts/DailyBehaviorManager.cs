@@ -6,30 +6,38 @@ using System.Linq;
 public class DailyBehaviorManager : Singleton<DailyBehaviorManager> {
 
 	public void Init() {
-		if(DataManager.Instance.GameData.Daily.DailyMissions.Count < 3) {
-			GetNewMission();
+		if(DateTime.Today.Day != DataManager.Instance.GameData.Daily.CurrDay) {
+			if(DataManager.Instance.GameData.Daily.DailyMissions.Count < 3) {
+				GetNewMission();
+				DataManager.Instance.GameData.Daily.CurrDay = DateTime.Today.Day;
+            }
+			else {
+				DataManager.Instance.GameData.Daily.DailyMissions.RemoveAt(0);
+				GetNewMission();
+			}
 		}
-		else {
-			DataManager.Instance.GameData.Daily.DailyMissions.RemoveAt(0);
-			GetNewMission();
-        }
 		MissionUiController.Instance.Init();
 	}
 
 	public void GetNewMission() {
 		List<MissionType> possibleTypes = new List<MissionType>();
 		possibleTypes = Enum.GetValues(typeof(MissionType)).Cast<MissionType>().ToList<MissionType>();
-		int rand = UnityEngine.Random.Range(0, possibleTypes.Count);
+		int rand;
+		do {
+			rand = UnityEngine.Random.Range(0, possibleTypes.Count);
+			Debug.Log(rand);
+		}while(DataManager.Instance.GameData.Daily.GetMissionByKey(possibleTypes[rand].ToString()) != null);
 		Mission newMission = new Mission();
 		newMission.misType = possibleTypes[rand];
 		newMission.missionKey = GetMissionKey(newMission.misType);
 		newMission.amount = GetMissionAmount(newMission.misType);
 		DataManager.Instance.GameData.Daily.DailyMissions.Add(newMission);
+		
     }
 
 	public string GetMissionKey(MissionType misType) {
 		if(misType != MissionType.Customer &&  misType != MissionType.Food) {
-			return "";
+			return misType.ToString();
 		}
 		else if (misType == MissionType.Customer) {
 			int rand = UnityEngine.Random.Range(0, DataManager.Instance.GameData.RestaurantEvent.CustomerList.Count);
