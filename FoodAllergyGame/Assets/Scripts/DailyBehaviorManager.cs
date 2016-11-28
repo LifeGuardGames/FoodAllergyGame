@@ -15,6 +15,7 @@ public class DailyBehaviorManager : Singleton<DailyBehaviorManager> {
 				DataManager.Instance.GameData.Daily.DailyMissions.RemoveAt(0);
 				GetNewMission();
 			}
+			ObtainRandomDecos();
 		}
 		MissionUiController.Instance.Init();
 	}
@@ -73,7 +74,10 @@ public class DailyBehaviorManager : Singleton<DailyBehaviorManager> {
 
 	public void ObtainRandomDecos() {
 		List<string> decoList = DataLoaderDecoItem.GetUnlockedDecoList(TierManager.Instance.CurrentTier);
-	}
+		GetRandomTablesForStore(decoList);
+		GetRandomFloorsForStore(decoList);
+		GetRandomKitchensForStore(decoList);
+    }
 
 	public void GetRandomTablesForStore(List<string> decList) {
 		while(DataManager.Instance.GameData.Daily.RotTables.Count < 3) {

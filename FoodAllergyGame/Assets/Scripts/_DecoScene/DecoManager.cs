@@ -141,7 +141,31 @@ public class DecoManager : Singleton<DecoManager>{
 			Destroy(child.gameObject);
 		}
 		//creates a list of deco based on a type, to do this the dataloader first creates the list of all the items then sorts it by cost before returning it
-		decoList = DataLoaderDecoItem.GetDecoDataByType(currentTabType);
+		switch(currentTabType) {
+			case DecoTypes.Table:
+				decoList = new List<ImmutableDataDecoItem>();
+				foreach(string deco in DataManager.Instance.GameData.Daily.RotTables) {
+					decoList.Add(DataLoaderDecoItem.GetData(deco));
+				}
+				break;
+			case DecoTypes.Kitchen:
+				decoList = new List<ImmutableDataDecoItem>();
+				foreach(string deco in DataManager.Instance.GameData.Daily.RotKitchen) {
+					decoList.Add(DataLoaderDecoItem.GetData(deco));
+				}
+				break;
+			case DecoTypes.Floor:
+				decoList = new List<ImmutableDataDecoItem>();
+				foreach(string deco in DataManager.Instance.GameData.Daily.RotFloors) {
+					decoList.Add(DataLoaderDecoItem.GetData(deco));
+				}
+				break;
+			default:
+				decoList = DataLoaderDecoItem.GetDecoDataByType(currentTabType);
+				break;
+		}
+		
+	
 		ImmutableDataDecoItem firstUnboughtDeco = null;
 
 		for(int i = 0; i < decoPageSize; i++){
