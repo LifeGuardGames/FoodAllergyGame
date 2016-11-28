@@ -112,7 +112,14 @@
 		<SpriteName>RestTableCandyBlue</SpriteName>
 		<Tier>23</Tier>
 	</DecoItem>
-
+	<DecoItem ID = "TableWinter">
+		<Type>Table</Type>
+		<Price>2400</Price>
+		<TitleKey>TableWinter</TitleKey>
+		<DescriptionKey>TableWinterDesc</DescriptionKey>
+		<SpriteName>RestTableWinter</SpriteName>
+		<Tier>23</Tier>
+	</DecoItem>
 
 
 	<DecoItem ID = "FloorBasicAqua">
@@ -227,6 +234,14 @@
 		<SpriteName>RestFloorCandyRed</SpriteName>
 		<Tier>19</Tier>
 	</DecoItem>
+	<DecoItem ID = "FloorWinter">
+		<Type>Floor</Type>
+		<Price>3600</Price>
+		<TitleKey>FloorWinter</TitleKey>
+		<DescriptionKey>FloorWinterDesc</DescriptionKey>
+		<SpriteName>RestFloorWinter</SpriteName>
+		<Tier>19</Tier>
+	</DecoItem>
 
 
 	<DecoItem ID = "KitchenBasicAqua">
@@ -339,6 +354,14 @@
 		<TitleKey>KitchenCandySprinkles</TitleKey>
 		<DescriptionKey>KitchenCandySprinklesDesc</DescriptionKey>
 		<SpriteName>RestKitchenCandySprinkles</SpriteName>
+		<Tier>21</Tier>
+	</DecoItem>
+	<DecoItem ID = "KitchenWinter">
+		<Type>Kitchen</Type>
+		<Price>2100</Price>
+		<TitleKey>KitchenWinter</TitleKey>
+		<DescriptionKey>KitchenWinterDesc</DescriptionKey>
+		<SpriteName>RestKitchenWinter</SpriteName>
 		<Tier>21</Tier>
 	</DecoItem>
 
