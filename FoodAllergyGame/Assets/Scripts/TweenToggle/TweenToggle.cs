@@ -90,18 +90,23 @@ public class TweenToggle : MonoBehaviour{
 		// Implement in child
 	}
 
-//	void OnGUI(){
-//		if(isDebug){
-//			if(GUI.Button(new Rect(testButtonPos.x, testButtonPos.y, 100, 100), "show")){
-//				Show();
-//			}
-//			if(GUI.Button(new Rect(testButtonPos.x + 110, testButtonPos.y, 100, 100), "hide")){
-//				Hide();
-//			}
-//		}
-//	}
+	protected void ResetFinish() {
+		gameObject.SetActive(!startsHidden);
+	}
+
+	//	void OnGUI(){
+	//		if(isDebug){
+	//			if(GUI.Button(new Rect(testButtonPos.x, testButtonPos.y, 100, 100), "show")){
+	//				Show();
+	//			}
+	//			if(GUI.Button(new Rect(testButtonPos.x + 110, testButtonPos.y, 100, 100), "hide")){
+	//				Hide();
+	//			}
+	//		}
+	//	}
 
 	public void Show(){
+		gameObject.SetActive(true);
 		Show(showDuration);
 	}
 	
@@ -151,6 +156,8 @@ public class TweenToggle : MonoBehaviour{
 	protected void HideSendCallback(){
 		isMoving = false;
 		if(string.IsNullOrEmpty(HideFunctionName)){
+			// Toggle object off
+			gameObject.SetActive(false);
 			return;
 		}
 		if(HideTarget == null){
@@ -166,5 +173,8 @@ public class TweenToggle : MonoBehaviour{
 		else{
 			HideTarget.SendMessage(HideFunctionName, gameObject, SendMessageOptions.DontRequireReceiver);
 		}
+
+		// Toggle object off
+		gameObject.SetActive(false);
 	}
 }
