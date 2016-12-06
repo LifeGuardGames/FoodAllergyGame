@@ -76,6 +76,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		attentionSpan = 15f * timer;
 		menuTimer *= RandomFactor();
 		eatTimer *= RandomFactor();
+		behavFlow = DataLoaderBehav.GetRandomBehavByType(type.ToString()).ID;
 		StartCoroutine("SatisfactionTimer");
 
 		// customers refuse to line up out the door
@@ -97,8 +98,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				GetComponentInParent<Table>().currentCustomerID = customerID;
 				this.GetComponent<BoxCollider>().enabled = false;
 				flyThruTable.FlyThruDropDown();
-				var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[1]);
-				Behav read = (Behav)Activator.CreateInstance(type);
+				var _type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[1]);
+				Behav read = (Behav)Activator.CreateInstance(_type);
 				read.self = this;
 				currBehav = read;
 				read.Act();
@@ -109,8 +110,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				RestaurantManager.Instance.restaurantUI.OpenAndCloseDoor();
 				RestaurantManager.Instance.LineController.PlaceCustomerInEmptySpot(this);   // Set customer line spot and update base sorting order
 				RestaurantManager.Instance.lineCount++;
-				var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[0]);
-				Behav wait = (Behav)Activator.CreateInstance(type);
+				var _type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[0]);
+				Behav wait = (Behav)Activator.CreateInstance(_type);
 				wait.self = this;
 				currBehav = wait;
 				wait.Act();
@@ -671,6 +672,15 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	public void Annoyed() {
 		isAnnoyed = true;
+		var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[6]);
+		Behav leave = (Behav)Activator.CreateInstance(type);
+		leave.self = this;
+		currBehav = leave;
+		leave.Act();
+		leave = null;
+	}
+
+	public void NotifyLeave() {
 		var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[6]);
 		Behav leave = (Behav)Activator.CreateInstance(type);
 		leave.self = this;

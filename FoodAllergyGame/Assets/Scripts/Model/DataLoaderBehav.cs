@@ -22,6 +22,15 @@ public class DataLoaderBehav : XMLLoaderGeneric<DataLoaderBehav> {
 				finalList.Add(behav);
 			}
 		}
+		if(finalList.Count == 0) {
+			Debug.Log(type + " no Behavs");
+			type = "Normal";
+			foreach(ImmutableDataBehav behav in behavList) {
+				if(behav.CustomerType == type) {
+					finalList.Add(behav);
+				}
+			}
+		}
 		int rand = Random.Range(0, finalList.Count);
 		return finalList[rand];
 	}

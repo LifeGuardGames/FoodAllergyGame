@@ -77,6 +77,7 @@ public class DailyBehaviorManager : Singleton<DailyBehaviorManager> {
 		GetRandomTablesForStore(decoList);
 		GetRandomFloorsForStore(decoList);
 		GetRandomKitchensForStore(decoList);
+		GetRandomSpecialItem(decoList);
     }
 
 	public void GetRandomTablesForStore(List<string> decList) {
@@ -104,6 +105,16 @@ public class DailyBehaviorManager : Singleton<DailyBehaviorManager> {
 			int rand = UnityEngine.Random.Range(0, decList.Count);
 			if(DataLoaderDecoItem.GetData(decList[rand]).Type == DecoTypes.Kitchen) {
 				DataManager.Instance.GameData.Daily.RotKitchen.Add(decList[rand]);
+			}
+		}
+
+	}
+
+	public void GetRandomSpecialItem(List<string> decList) {
+		while(DataManager.Instance.GameData.Daily.SpeciDeco == "") {
+			int rand = UnityEngine.Random.Range(0, decList.Count);
+			if(!DataManager.Instance.GameData.Decoration.BoughtDeco.ContainsKey(decList[rand])) {
+				DataManager.Instance.GameData.Daily.SpeciDeco = decList[rand];
 			}
 		}
 

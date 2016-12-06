@@ -114,11 +114,11 @@
 	</DecoItem>
 	<DecoItem ID = "TableWinter">
 		<Type>Table</Type>
-		<Price>2400</Price>
+		<Price>800</Price>
 		<TitleKey>TableWinter</TitleKey>
 		<DescriptionKey>TableWinterDesc</DescriptionKey>
 		<SpriteName>RestTableWinter</SpriteName>
-		<Tier>23</Tier>
+		<Tier>2</Tier>
 	</DecoItem>
 
 
@@ -236,11 +236,11 @@
 	</DecoItem>
 	<DecoItem ID = "FloorWinter">
 		<Type>Floor</Type>
-		<Price>3600</Price>
+		<Price>1200</Price>
 		<TitleKey>FloorWinter</TitleKey>
 		<DescriptionKey>FloorWinterDesc</DescriptionKey>
 		<SpriteName>RestFloorWinter</SpriteName>
-		<Tier>19</Tier>
+		<Tier>4</Tier>
 	</DecoItem>
 
 
@@ -358,11 +358,11 @@
 	</DecoItem>
 	<DecoItem ID = "KitchenWinter">
 		<Type>Kitchen</Type>
-		<Price>2100</Price>
+		<Price>1200</Price>
 		<TitleKey>KitchenWinter</TitleKey>
 		<DescriptionKey>KitchenWinterDesc</DescriptionKey>
 		<SpriteName>RestKitchenWinter</SpriteName>
-		<Tier>21</Tier>
+		<Tier>4</Tier>
 	</DecoItem>
 
 
@@ -420,5 +420,41 @@
 		<SpriteName>RestFlyThruBasicSample</SpriteName>
 		<Tier>6</Tier>
 	</DecoItem>
+
+  <DecoItem ID = "CustomerGossiper">
+    <Type>Special</Type>
+    <Price>0</Price>
+    <TitleKey>CustomerGossiper</TitleKey>
+    <DescriptionKey>CustomerGossiperDesc</DescriptionKey>
+    <SpriteName>ItemCustomerGossiper</SpriteName>
+    <Tier>1</Tier>
+  </DecoItem>  
+  
+  <DecoItem ID = "CustomerEater">
+    <Type>Special</Type>
+    <Price>0</Price>
+    <TitleKey>CustomerEater</TitleKey>
+    <DescriptionKey>CustomerEaterDesc</DescriptionKey>
+    <SpriteName>ItemCustomerEater</SpriteName>
+    <Tier>1</Tier>
+  </DecoItem>
+  
+  <DecoItem ID = "CustomerHospitalRunner">
+    <Type>Special</Type>
+    <Price>0</Price>
+    <TitleKey>CustomerHospitalRunner</TitleKey>
+    <DescriptionKey>CustomerHospitalRunnerDesc</DescriptionKey>
+    <SpriteName>ItemCustomerHospitalRunner</SpriteName>
+    <Tier>1</Tier>
+  </DecoItem>
+
+  <DecoItem ID = "CustomerBlackOut">
+    <Type>Special</Type>
+    <Price>0</Price>
+    <TitleKey>CustomerBlackOut</TitleKey>
+    <DescriptionKey>CustomerBlackOutDesc</DescriptionKey>
+    <SpriteName>ItemCustomerBlackOut</SpriteName>
+    <Tier>1</Tier>
+  </DecoItem>
 
 </DecoItem>

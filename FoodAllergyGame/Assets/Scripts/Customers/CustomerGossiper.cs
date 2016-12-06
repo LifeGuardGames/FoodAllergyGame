@@ -6,13 +6,13 @@ public class CustomerGossiper : Customer{
 	public int gossiperTable;
 
 	public override void Init(int num, ImmutableDataChallenge mode) {
-		base.Init(num, mode);
 		type = CustomerTypes.Gossiper;
+		base.Init(num, mode);
 	}
 
 	public override void Init(int num, ImmutableDataEvents mode) {
-		base.Init(num, mode);
 		type = CustomerTypes.Gossiper;
+		base.Init(num, mode);
 	}
 
 	public void GoAway(){

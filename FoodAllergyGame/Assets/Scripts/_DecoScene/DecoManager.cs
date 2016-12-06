@@ -160,6 +160,10 @@ public class DecoManager : Singleton<DecoManager>{
 					decoList.Add(DataLoaderDecoItem.GetData(deco));
 				}
 				break;
+			case DecoTypes.Special:
+				decoList = new List<ImmutableDataDecoItem>();
+				decoList.Add(DataLoaderDecoItem.GetData(DataManager.Instance.GameData.Daily.SpeciDeco));
+				break;
 			default:
 				decoList = DataLoaderDecoItem.GetDecoDataByType(currentTabType);
 				break;

@@ -9,6 +9,7 @@ public class MutableDataDailyBehavior{
 	public List<string> RotFloors;
 	public List<string> RotKitchen;
 	public int CurrDay;
+	public string SpeciDeco;
 
 	public MutableDataDailyBehavior() {
 		DailyMissions = new List<Mission>();
@@ -16,6 +17,7 @@ public class MutableDataDailyBehavior{
 		RotKitchen = new List<string>();
 		RotFloors = new List<string>();
 		CurrDay = 0;
+		SpeciDeco = "";
 	}
 	public Mission GetMissionByKey(string key) {
 		foreach(Mission mis in DailyMissions) {

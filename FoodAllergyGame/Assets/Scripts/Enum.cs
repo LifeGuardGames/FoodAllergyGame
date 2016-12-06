@@ -93,6 +93,7 @@ public enum DecoTypes{
 	VIP,
 	FlyThru,
 	Microwave,
+	Special,
 }
 
 public enum  PropNodeType{
