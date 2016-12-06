@@ -39,7 +39,7 @@ public class BehavTableSmasherNotifyLeave : Behav {
 		else if (self.state == CustomerStates.InLine) {
 			GameObject Line = GameObject.Find("Line");
 			if(Line.GetComponent<LineController>().lineList.Count > 2) {
-				if(Line.GetComponent<LineController>().lineList[0].GetChild(0) != self.gameObject) {
+				if(Line.GetComponent<LineController>().lineList[0].GetChild(0) != self.gameObject && Line.GetComponent<LineController>().lineList[0].GetChild(0).GetComponent<Customer>().type != CustomerTypes.TableSmasher) {
 					// Downcast and play animation
 					CustomerAnimControllerTableSmasher animTableSmasher = self.customerAnim as CustomerAnimControllerTableSmasher;
 					animTableSmasher.SmashTable();

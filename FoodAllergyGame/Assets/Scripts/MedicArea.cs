@@ -17,15 +17,11 @@ public class MedicArea : MonoBehaviour, IWaiterSelection{
 	}
 	
 	public bool IsQueueable(){
-		if(Waiter.Instance.CurrentLineCustomer != null){
 			return false;
-		}
-		else{
-			return true;
-		}
 	}
 	
 	public void OnClicked(){
+		TouchManager.Instance.EmptyQueue();
 		TouchManager.Instance.UnpauseQueue();
 		Waiter.Instance.FindRoute(node, this);
 	}
