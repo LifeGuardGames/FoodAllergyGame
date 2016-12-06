@@ -55,6 +55,7 @@ public class TouchManager : Singleton<TouchManager> {
 
 	public void EmptyQueue(){
 		inputQueue = new Queue<GameObject>();
+		RefreshQueueUI();
 	}
 
 	// During dequeue, refresh update the status of all the current elements in the UI
