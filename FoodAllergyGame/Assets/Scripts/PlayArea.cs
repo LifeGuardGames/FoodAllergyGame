@@ -80,12 +80,21 @@ public class PlayArea : Singleton<PlayArea>, IWaiterSelection {
 		animator.SetTrigger("ClickPulse");
 	}
 
+	public void AddQueueUI() {
+	}
+
+	public void UpdateQueueUI(int order) {
+	}
+
+	public void DestroyQueueUI() {
+	}
+
 	// Called from Customer.PlayTime
 	// Play time ended, reset the availability
 	public void EndPlayTime(int spotIndex){
 		spotAvailabilityList[spotIndex] = true;
 		if(breakdownChance > 0){
-			if(Random.Range(0,10) < breakdownChance){
+			if(UnityEngine.Random.Range(0,10) < breakdownChance){
 				isBroken = true;
 				StartCoroutine("RepairProtocal");
 			}

@@ -600,6 +600,18 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public virtual void OnPressAnim() {
 		// Do nothing
 	}
+
+	public void AddQueueUI() {
+		// Do nothing
+	}
+
+	public void UpdateQueueUI(int order) {
+		// Do nothing
+	}
+
+	public void DestroyQueueUI() {
+		// Do nothing
+	}
 	#endregion
 
 	public virtual void GoToPlayArea(Vector3 playAreaSpot, int spotIndex, int deltaSatisfaction){

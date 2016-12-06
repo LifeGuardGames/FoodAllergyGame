@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class JukeBox : Singleton<JukeBox>, IWaiterSelection {
 
 	public GameObject waiterNode;
+	public GameObject queueParent;
 
 	public void OnWaiterArrived() {
+		DestroyQueueUI();
 	}
 
 	public void OnClicked() {
@@ -18,5 +19,17 @@ public class JukeBox : Singleton<JukeBox>, IWaiterSelection {
 
 	public virtual void OnPressAnim() {
 		//animator.SetTrigger("ClickPulse");
+	}
+
+	public void AddQueueUI() {
+		GameObject check = Resources.Load("QueueUICheckMark") as GameObject;
+		GameObjectUtils.AddChildGUI(queueParent, check);
+	}
+
+	public void UpdateQueueUI(int order) {
+	}
+
+	public void DestroyQueueUI() {
+		Destroy(GameObjectUtils.GetLastChild(queueParent).gameObject);
 	}
 }

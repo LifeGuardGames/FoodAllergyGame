@@ -144,4 +144,8 @@ public static class GameObjectUtils{
 		Vector3 position = GetRandomPointOnCircumference(new Vector3(center.x, center.y, 0f), radius);
 		return new Vector2(position.x, position.y);
 	}
+
+	static public Transform GetLastChild(GameObject go) {
+		return go.transform.GetChild(go.transform.childCount - 1);
+	}
 }

@@ -41,6 +41,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 
 	public SpriteRenderer tableSprite;
 	public Canvas uiCanvas;
+	public Text tableNumberText;
 	public SpriteRenderer tableHighlight;
 
 	public Transform foodSpot;
@@ -49,7 +50,8 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	public bool isBroken;
 	public Text text;
 	public bool isGossiped;
-	public Animator animator;		// Used for clicking
+	public Animator animator;       // Used for clicking
+	public GameObject queueParent;  // Parent for waiter movement queue UI
 
 	public virtual void Init() {
 		if(SceneManager.GetActiveScene().name == SceneUtils.RESTAURANT) {
@@ -170,10 +172,10 @@ public class Table : MonoBehaviour, IWaiterSelection{
 
 	#region IWaiterSelection implementation
 	public virtual void OnWaiterArrived(){
-		if(!isBroken && seat.childCount > 0){
+		DestroyQueueUI();
+        if(!isBroken && seat.childCount > 0){
 			Waiter.Instance.CurrentTable = tableNumber;
 			TalkToConsumer();
-
 		}
 		else{
 			Waiter.Instance.Finished();
@@ -222,14 +224,26 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	public virtual void OnPressAnim() {
 		animator.SetTrigger("ClickPulse");
 	}
+
+	public void AddQueueUI() {
+		GameObject check = Resources.Load("QueueUICheckMark") as GameObject;
+		GameObjectUtils.AddChildGUI(queueParent, check);
+	}
+
+	public void UpdateQueueUI(int order) {
+	}
+
+	public void DestroyQueueUI() {
+		Destroy(GameObjectUtils.GetLastChild(queueParent).gameObject);
+	}
 	#endregion
 
 	public void ToggleTableNum(bool onOrOff) {
 		if(DataManager.Instance.GetChallenge() != "Challenge03") {
-			uiCanvas.gameObject.SetActive(onOrOff);
+			tableNumberText.gameObject.SetActive(onOrOff);
 		}
 		else {
-			uiCanvas.gameObject.SetActive(false);
+			tableNumberText.gameObject.SetActive(false);
 		}
 	}
 

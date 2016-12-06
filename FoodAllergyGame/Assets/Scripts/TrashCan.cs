@@ -4,9 +4,11 @@ public class TrashCan : MonoBehaviour, IWaiterSelection {
 	public GameObject trashCanNode;
 	public Animation putTrashAnimation;
 	public Animator animator;       // Used for clicking
+	public GameObject queueParent;
 
 	#region IWaiterSelection implementation
 	public void OnWaiterArrived() {
+		DestroyQueueUI();
 		if(!RestaurantManager.Instance.isTutorial) {
 			Waiter.Instance.TrashOrder();
 			Waiter.Instance.Finished();
@@ -28,6 +30,18 @@ public class TrashCan : MonoBehaviour, IWaiterSelection {
 
 	public virtual void OnPressAnim() {
 		animator.SetTrigger("ClickPulse");
+	}
+
+	public void AddQueueUI() {
+		GameObject check = Resources.Load("QueueUICheckMark") as GameObject;
+		GameObjectUtils.AddChildGUI(queueParent, check);
+	}
+
+	public void UpdateQueueUI(int order) {
+	}
+
+	public void DestroyQueueUI() {
+		Destroy(GameObjectUtils.GetLastChild(queueParent).gameObject);
 	}
 	#endregion
 }
