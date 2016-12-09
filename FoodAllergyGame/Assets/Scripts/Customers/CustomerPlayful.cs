@@ -17,6 +17,7 @@ public class CustomerPlayful: Customer{
 
 	public override void GoToPlayArea(Vector3 playAreaSpot, int spotIndex, int deltaSatisfaction){
 		played = true;
+		completedMission = true;
 		base.GoToPlayArea(playAreaSpot, spotIndex, deltaSatisfaction);
 	}
 }

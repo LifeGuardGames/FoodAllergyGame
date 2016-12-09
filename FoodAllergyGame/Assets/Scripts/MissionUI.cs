@@ -14,7 +14,7 @@ public class MissionUI : MonoBehaviour {
 
 	public void Init(Mission mis) {
 		titleText.text = mis.misType.ToString();
-		missionDescription.GetComponent<Localize>().key = mis.missionKey;
+		missionDescription.GetComponent<Localize>().key = mis.missionKey + "mdesc";
 		missionDescription.GetComponent<Localize>().LocalizeText(mis.amount);
         missionProgress.text = mis.progress.ToString();
 		missionDescription.GetComponent<Localize>().key = "";

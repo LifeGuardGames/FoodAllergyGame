@@ -13,6 +13,7 @@ public class BehavEaterNotifyLeave : Behav {
 	}
 
 	public override void Act() {
+		self.failedMission = true;
 		if(self.tableNum == 5) {
 			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[10]);
 			Behav leave = (Behav)Activator.CreateInstance(type);
@@ -41,13 +42,22 @@ public class BehavEaterNotifyLeave : Behav {
 								//targetCustomer.GetComponent<Customer>().DestroySelf(0);
 								CustomerAnimControllerEater eat = self.customerAnim as CustomerAnimControllerEater;
 								eat.EatCustomer();
-								if(self.Order == null) {
+								if(self.Order == null && self.state != CustomerStates.InLine) {
 									var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[2]);
 									Behav leave = (Behav)Activator.CreateInstance(type);
 									leave.self = self;
 									//leave.Act();
 									leave = null;
 									self.currBehav = leave;
+								}
+								else if (self.state == CustomerStates.InLine) {
+									self.StopCoroutine("SatisfactionTimer");
+									var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[0]);
+									Behav leave = (Behav)Activator.CreateInstance(type);
+									leave.self = self;
+									leave.Act();
+									self.currBehav = leave;
+									leave = null;
 								}
 								else {
 									var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[3]);

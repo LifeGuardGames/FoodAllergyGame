@@ -17,19 +17,19 @@
   <Behav ID="BehavFlow02">
     <Name>BehavTableSmasher</Name>
     <Type>TableSmasher</Type>
-    <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEating,BehavWaitForCheck,BehavTableSmasherNotifyLeave,BehavAllergyAttack,BehavTableSmasherSaved,BehavTableSmasherHospital,BehavNotifyLeave</BehavList>
+    <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEating,BehavTableSmasherWaitForCheck,BehavTableSmasherNotifyLeave,BehavAllergyAttack,BehavTableSmasherSaved,BehavTableSmasherHospital,BehavNotifyLeave</BehavList>
   </Behav>
   
   <Behav ID="BehavFlow03">
     <Name>BehavTableSmasherMakeMind</Name>
     <Type>TableSmasher</Type>
-    <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavMakeYourMindWaitForOrder,BehavWaitForFood,BehavEating,BehavWaitForCheck,BehavTableSmasherNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavNotifyLeave</BehavList>
+    <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavMakeYourMindWaitForOrder,BehavWaitForFood,BehavEating,BehavTableSmasherWaitForCheck,BehavTableSmasherNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavNotifyLeave</BehavList>
   </Behav>
   
   <Behav ID="BehavFlow04">
     <Name>EaterMakeMind</Name>
     <Type>Eater</Type>
-    <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavMakeYourMindWaitForOrder,BehavWaitForFood,BehavEating,BehavWaitForCheck,BehavEaterNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavNotifyLeave</BehavList>
+    <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavMakeYourMindWaitForOrder,BehavWaitForFood,BehavEating,BehavEaterWaitForCheck,BehavEaterNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavNotifyLeave</BehavList>
   </Behav>
   
   <Behav ID="BehavFlow05">
@@ -65,7 +65,7 @@
   <Behav ID="BehavFlow10">
     <Name>GossiperMakeMind</Name>
     <Type>Gossiper</Type>
-    <BehavList>BehavWaitingInLine,BehavGossipReadingMenu,BehavMakeYourMindWaitForOrder,BehavGossipWaitForFood,BehavGossipEating,BehavWaitForCheck,BehavNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavGossip</BehavList>
+    <BehavList>BehavWaitingInLine,BehavGossipReadMenu,BehavMakeYourMindWaitForOrder,BehavGossipWaitForFood,BehavGossipEating,BehavWaitForCheck,BehavNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavGossip</BehavList>
   </Behav>
   
   <Behav ID="BehavFlow11">
@@ -89,13 +89,13 @@
   <Behav ID="BehavFlow14">
     <Name>BehavTableSmasherReorder</Name>
     <Type>TableSmasher</Type>
-    <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFoodReorder,BehavEating,BehavWaitForCheck,BehavTableSmasherNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavNotifyLeave</BehavList>
+    <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFoodReorder,BehavEating,BehavTableSmasherWaitForCheck,BehavTableSmasherNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavNotifyLeave</BehavList>
   </Behav>
 
   <Behav ID="BehavFlow15">
     <Name>EaterReorder</Name>
     <Type>Eater</Type>
-    <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFoodReorder,BehavEating,BehavWaitForCheck,BehavEaterNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavNotifyLeave</BehavList>
+    <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFoodReorder,BehavEating,BehavEaterWaitForCheck,BehavEaterNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavNotifyLeave</BehavList>
   </Behav>
 
   <Behav ID="BehavFlow16">
@@ -131,13 +131,13 @@
   <Behav ID="BehavFlow21">
     <Name>Eater</Name>
     <Type>Eater</Type>
-    <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEating,BehavWaitForCheck,BehavEaterNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavNotifyLeave</BehavList>
+    <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEating,BehavEaterWaitForCheck,BehavEaterNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavNotifyLeave</BehavList>
   </Behav>
 
   <Behav ID="BehavFlow22">
     <Name>Hungry Eater</Name>
     <Type>Eater</Type>
-    <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEaterEating,BehavWaitForCheck,BehavEaterNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavNotifyLeave</BehavList>
+    <BehavList>BehavWaitingInLine,BehavReadingMenu,BehavWaitForOrder,BehavWaitForFood,BehavEaterEating,BehavEaterWaitForCheck,BehavEaterNotifyLeave,BehavAllergyAttack,BehavSaved,BehavHospital,BehavNotifyLeave</BehavList>
   </Behav>
  <Behav ID="BehavFlow23">
     <Name>VipTutorial</Name>
