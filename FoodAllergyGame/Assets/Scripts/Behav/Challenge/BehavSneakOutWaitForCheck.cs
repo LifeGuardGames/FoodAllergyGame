@@ -12,6 +12,7 @@ public class BehavSneakOutWaitForCheck : Behav {
 
 	public override void Reason() {
 		if(self.sneakOut) {
+			self.failedMission = true;
 			RestaurantManager.Instance.CustomerLeftFlatCharge(self, 0, false);
 			if(self.satisfaction > 3) {
 				self.satisfaction = 3;

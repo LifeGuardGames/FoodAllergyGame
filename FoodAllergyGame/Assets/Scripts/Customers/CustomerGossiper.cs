@@ -37,6 +37,7 @@ public class CustomerGossiper : Customer{
 		yield return new WaitForSeconds(5.0f);
 		if(RestaurantManager.Instance.GetTable(gossiperTable).seat.childCount > 0) {
 			if(RestaurantManager.Instance.GetTable(gossiperTable).seat.GetChild(0).GetComponent<Customer>() != null) {
+				failedMission = true;
 				RestaurantManager.Instance.GetTable(gossiperTable).seat.GetChild(0).GetComponent<Customer>().Annoyed();
 			}
 		}

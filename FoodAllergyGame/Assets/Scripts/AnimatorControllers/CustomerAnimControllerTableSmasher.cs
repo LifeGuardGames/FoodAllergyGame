@@ -3,7 +3,10 @@ using System.Collections;
 
 public class CustomerAnimControllerTableSmasher : CustomerAnimController {
 	public void SmashTable() {
-		skeletonAnim.state.SetAnimation(0, "TableSmash", false);
+		skeletonAnim.state.SetAnimation(0, "TableSmash", false).Complete +=
+			delegate {
+				skeletonAnim.state.SetAnimation(0, "WaitingPassive", true);
+			};
 		ParticleAndFloatyUtils.PlayTableSmashedParticle(transform.position);
 	}
 

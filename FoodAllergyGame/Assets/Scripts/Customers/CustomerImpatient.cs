@@ -18,5 +18,6 @@ public class CustomerImpatient :Customer {
 	public override void UpdateSatisfaction(int delta) {
 		base.UpdateSatisfaction(delta);
 		timer *= 0.75f;
+		failedMission = true;
 	}
 }

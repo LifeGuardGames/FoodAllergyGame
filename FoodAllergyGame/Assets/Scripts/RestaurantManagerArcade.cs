@@ -396,7 +396,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 			GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
 			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 			Customer customerScript = cus.GetComponent<Customer>();
-
+			customerScript.customerIDMissionKey = test.ID;
 			customerScript.behavFlow = test.BehavFlow;
 			customerScript.tableNum = i;
 			customerScript.Init(customerNumber, eventData);

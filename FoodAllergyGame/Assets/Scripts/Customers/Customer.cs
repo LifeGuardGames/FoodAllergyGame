@@ -13,16 +13,19 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public int tableNum = -1;
 	public float timer = 1.0f;
 	public CustomerTypes type = CustomerTypes.Normal;
-	public string customerID;			// The customer's id used for identification in the 
+	public string customerID;           // The customer's id used for identification in the 
+	public string customerIDMissionKey;
 	public CustomerStates state;		// The current state of the customer
 	public List<Allergies> allergy;		// The allergy of the customer
 	public float menuTimer = 4.0f;		// Time spent looking at the menu
 	public float attentionSpan = 15.0f;	// The attention timer
 	public float eatTimer = 6.0f;
 	public Behav currBehav;
-	public int satisfaction;			// The satisfaction the customer has, everytime the attention span 
+	public int satisfaction;            // The satisfaction the customer has, everytime the attention span 
 										//	ticks down to 0 the customer will lose satisfaction
 
+	public bool failedMission;
+	public bool completedMission;
 	public FoodKeywords desiredFood;    // The keyword to help foodmanager find what the customer wants
 
 	private GameObject order;           //the order created by the customer used to have easy access to the
@@ -544,6 +547,11 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			Waiter.Instance.Finished();
 			break;
 		default:	// All other states, nothing to do
+				if(type == CustomerTypes.CoolKid) {
+					//cool kid doesn't like to be disturbed
+					UpdateSatisfaction(-1);
+					failedMission = true;
+				}
 			Waiter.Instance.Finished();
 			break;
 		}

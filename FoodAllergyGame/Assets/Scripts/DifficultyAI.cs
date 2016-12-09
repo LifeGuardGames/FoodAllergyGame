@@ -35,7 +35,7 @@ public class DifficultyAI {
 			return rand;
 		}
 		else {
-			int rand = Random.Range(2, 4);
+			int rand = Random.Range(3, 4);
 			return rand;
 		}
 	}
