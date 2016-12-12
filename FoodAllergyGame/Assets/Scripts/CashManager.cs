@@ -25,9 +25,13 @@ public class CashManager : Singleton<CashManager> {
 		cashData.TotalCash = newCash;
 	}
 
-	public void OverrideCurrentCash(int cash) {
+	public void OverrideCurrentCash(int cash, Vector3 loc) {
 		cashData.CurrentCash += cash;
+		if(HUDAnimator.Instance != null) {
+			HUDAnimator.Instance.CashAnimationStart(cash, loc);
+		}
 	}
+
 
 	#region DecoScene calls
 	// Wrap this in another layer for extra control

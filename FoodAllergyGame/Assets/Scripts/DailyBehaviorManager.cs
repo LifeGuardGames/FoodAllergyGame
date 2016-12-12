@@ -32,6 +32,7 @@ public class DailyBehaviorManager : Singleton<DailyBehaviorManager> {
 		newMission.misType = possibleTypes[rand];
 		newMission.missionKey = GetMissionKey(newMission.misType);
 		newMission.amount = GetMissionAmount(newMission.misType);
+		newMission.reward = GenerateReward(newMission.amount);
 		DataManager.Instance.GameData.Daily.DailyMissions.Add(newMission);
 		
     }
@@ -69,6 +70,15 @@ public class DailyBehaviorManager : Singleton<DailyBehaviorManager> {
 
 			default:
 				return UnityEngine.Random.Range(2, 6);
+		}
+	}
+
+	public int GenerateReward(int amount) {
+		if (amount < 10) {
+			return amount * 70;
+		}
+		else {
+			return amount * 10;
 		}
 	}
 

@@ -21,7 +21,7 @@ public class DifficultyAI {
 			diff = DifficultyLevels.Medium;
 		}
 		RestaurantManagerArcade rest = RestaurantManagerArcade.Instance.GetComponent<RestaurantManagerArcade>();
-		rest.AvailableTables(RemoveTables());
+		//rest.AvailableTables(RemoveTables());
 		eventData.RestMode = RestModeChooser();
     }
 

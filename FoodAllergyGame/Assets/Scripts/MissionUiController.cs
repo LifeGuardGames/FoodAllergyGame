@@ -23,21 +23,27 @@ public class MissionUiController : Singleton<MissionUiController> {
 	}
 
 	public void OnComplete(Mission mis) {
-		CashManager.Instance.OverrideCurrentCash(mis.reward);
+		
 		//play animation or something
 		foreach(GameObject missionUi in missionSlots) {
-			if(missionUi.GetComponent<MissionUI>().mission.missionKey == mis.missionKey) {
-				Destroy(missionUi);
+			if(missionUi.transform.childCount > 0) {
+				Debug.Log(missionUi.GetComponentInChildren<MissionUI>().mission);
+				if(missionUi.GetComponentInChildren<MissionUI>().mission.missionKey == mis.missionKey) {
+					CashManager.Instance.OverrideCurrentCash(mis.reward, missionUi.transform.position);
+					Destroy(missionUi.transform.GetChild(0).gameObject);
+				}
+				DataManager.Instance.GameData.Daily.DailyMissions.Remove(mis);
 			}
-			DataManager.Instance.GameData.Daily.DailyMissions.Remove(mis);
 		}
 	}
 
 	public void OnShowButton() {
+		StartManager.Instance.TurnOffEntrances();
 		this.GetComponent<PositionTweenToggle>().Show();
 	}
 
 	public void OnCloseButton() {
 		this.GetComponent<PositionTweenToggle>().Hide();
+		StartManager.Instance.TurnOnEntrances();
 	}
 }

@@ -11,6 +11,7 @@ public class MissionUI : MonoBehaviour {
 	public Text missionAmount;
 	public Text reward;
 	public Mission mission;
+	public Button butComp;
 
 	public void Init(Mission mis) {
 		titleText.text = mis.misType.ToString();
@@ -21,5 +22,7 @@ public class MissionUI : MonoBehaviour {
         missionAmount.text = mis.amount.ToString();
 		reward.text = mis.reward.ToString();
 		mission = mis;
+		butComp.onClick.AddListener(() => MissionUiController.Instance.CheckMissionComplete(mis.missionKey));
 	}
+
 }
