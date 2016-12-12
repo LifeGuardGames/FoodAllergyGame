@@ -1,16 +1,26 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class DropPodAnimatorHelper : MonoBehaviour {
-	public RewardUIController rewardUIController;
-
 	public ParticleSystem slamParticle;
+	public Button dropPodButton;
 	public Animator capsuleAnimator;
 
 	public void PlaySlamParticle() {
-		slamParticle.Play();
+		if(slamParticle != null) {
+			slamParticle.Play();
+		}
+	}
+
+	public void SetButtonInteractive() {
+		dropPodButton.interactable = true;
 	}
 
 	public void SpawnRewardCapsule() {
 		capsuleAnimator.Play("CapsulePop");
-    }
+	}
+
+	public void TurnButtonOff() {
+		dropPodButton.gameObject.SetActive(false);
+	}
 }

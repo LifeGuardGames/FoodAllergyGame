@@ -11,9 +11,7 @@ public class RewardInfoController : MonoBehaviour {
 	public Image allergyImage1;
 	public Image allergyImage2;
 	public Image allergyImage3;
-
-	public RotateAroundCenter sunRaysRotate;
-	public Animator rewardItemAnimator;
+	public TweenToggleDemux rewardInfoTween;
 	
 	private RewardUIController rewardUIController;
 
@@ -78,5 +76,11 @@ public class RewardInfoController : MonoBehaviour {
 
 		textTitle.text = !string.IsNullOrEmpty(titleKey) ? LocalizationText.GetText(titleKey) : "";
 		textDescription.text = "";
+
+		rewardInfoTween.Show();
+	}
+
+	public void HideInfo() {
+		rewardInfoTween.Hide();
 	}
 }

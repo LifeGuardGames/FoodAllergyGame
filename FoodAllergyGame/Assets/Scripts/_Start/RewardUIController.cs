@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 using System.Collections.Generic;
+using System.Collections;
 
 /// <summary>
 /// UI spawning new item controller, called by RewardAnimationMeta for rewarding visually
@@ -18,7 +18,9 @@ public class RewardUIController : MonoBehaviour {
 	}
 
 	public TweenToggleDemux UIDemux;
+	public Button dropPodButton;
 	public Animator dropPodAnimator;
+	public Animator capsuleAnimator;
 	public TweenToggle doneButtonTween;
 
 	public RewardInfoController rewardInfoController;
@@ -52,16 +54,26 @@ public class RewardUIController : MonoBehaviour {
 		}
 
 		UIDemux.Show();
+		dropPodButton.gameObject.SetActive(false);
 	}
 
 	public void OnUITweenComplete() {
+		dropPodButton.gameObject.SetActive(true);
+		StartCoroutine(ShowDropPod());
+	}
+
+	private IEnumerator ShowDropPod() {
+		yield return 0;
 		dropPodAnimator.Play("DropPodAppearUI");
 	}
 
+	// Spawn another capsule
 	public void OnDropPodClicked() {
-		
-    }
+		rewardInfoController.HideInfo();
+		dropPodAnimator.SetTrigger("Open");
+	}
 
+	// When the capsule finishes tweening, play this
 	public void ShowNextItemInfo() {
 		rewardInfoController.ShowInfo(rewardItemList[showingItemIndex].Item1, rewardItemList[showingItemIndex].Item2);
 		showingItemIndex++;
@@ -71,6 +83,7 @@ public class RewardUIController : MonoBehaviour {
 	// Does a check to see if it needs to show the done button
 	public void DoneButtonToggleCheck() {
 		if(showingItemIndex == rewardItemList.Count) {
+			dropPodButton.interactable = false;
 			dropPodAnimator.Play("DropPodHide");
 			doneButtonTween.Show();
         }
@@ -83,6 +96,7 @@ public class RewardUIController : MonoBehaviour {
 	public void OnDoneButtonClicked() {
 		UIDemux.Hide();
 		doneButtonTween.Hide();
+		rewardInfoController.HideInfo();
 	}
 	
 	public void OnExitTweeningComplete() {
