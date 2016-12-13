@@ -54,7 +54,7 @@ public class Waiter : Singleton<Waiter> {
 	public void FindRoute(GameObject _targetNode, MonoBehaviour caller) {
 		foreach(Mission mis in DataManager.Instance.GameData.Daily.DailyMissions) {
 			if(mis.misType == MissionType.Walk) {
-				mis.amount++;
+				mis.progress++;
 			}
 		}
 		CanMove = false;
@@ -357,9 +357,6 @@ public class Waiter : Singleton<Waiter> {
 				GameObject dequeuedObject = TouchManager.Instance.inputQueue.Dequeue();
 				if(dequeuedObject != null) {
 					dequeuedObject.GetComponent<IWaiterSelection>().OnClicked();
-					if(DataManager.Instance.GameData.Daily.GetMissionByKey("Walkmdesc") != null) {
-						DataManager.Instance.GameData.Daily.GetMissionByKey("Walkmdesc").progress++;
-                    }
 				}
 			}
 			//}
