@@ -184,8 +184,11 @@ public class DecoManager : Singleton<DecoManager>{
 			decoButton.GetComponent<DecoButton>().Init(decoData);
 			RefreshButtonShowStatus();
 
-			if(firstUnboughtDeco == null && !IsDecoBought(decoData.ID)){
+			if(firstUnboughtDeco == null && !IsDecoBought(decoData.ID) && currentTabType != DecoTypes.Special){
 				firstUnboughtDeco = decoData;
+			}
+			else {
+				firstUnboughtDeco = DataLoaderDecoItem.GetData(DataManager.Instance.GameData.Daily.SpeciDeco);
 			}
 		}
 		return firstUnboughtDeco;

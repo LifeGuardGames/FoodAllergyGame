@@ -427,7 +427,7 @@
     <TitleKey>CustomerGossiper</TitleKey>
     <DescriptionKey>CustomerGossiperDesc</DescriptionKey>
     <SpriteName>ItemCustomerGossiper</SpriteName>
-    <Tier>1</Tier>
+    <Tier>0</Tier>
   </DecoItem>  
   
   <DecoItem ID = "CustomerEater">
@@ -436,7 +436,7 @@
     <TitleKey>CustomerEater</TitleKey>
     <DescriptionKey>CustomerEaterDesc</DescriptionKey>
     <SpriteName>ItemCustomerEater</SpriteName>
-    <Tier>1</Tier>
+    <Tier>0</Tier>
   </DecoItem>
   
   <DecoItem ID = "CustomerHospitalRunner">
@@ -445,7 +445,7 @@
     <TitleKey>CustomerHospitalRunner</TitleKey>
     <DescriptionKey>CustomerHospitalRunnerDesc</DescriptionKey>
     <SpriteName>ItemCustomerHospitalRunner</SpriteName>
-    <Tier>1</Tier>
+    <Tier>0</Tier>
   </DecoItem>
 
   <DecoItem ID = "CustomerBlackOut">
@@ -454,7 +454,7 @@
     <TitleKey>CustomerBlackOut</TitleKey>
     <DescriptionKey>CustomerBlackOutDesc</DescriptionKey>
     <SpriteName>ItemCustomerBlackOut</SpriteName>
-    <Tier>1</Tier>
+    <Tier>0</Tier>
   </DecoItem>
 
 </DecoItem>
