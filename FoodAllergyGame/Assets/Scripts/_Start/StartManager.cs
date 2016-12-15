@@ -39,6 +39,7 @@ public class StartManager : Singleton<StartManager> {
 	}
 
 	public GameObject replayTutButton;
+	public GameObject showMissionsButton;
 	public GameObject soundButton;
 	public GameObject musicButton;
 	public GameObject beaconNode;
@@ -61,10 +62,12 @@ public class StartManager : Singleton<StartManager> {
 		if(DataManager.Instance.GameData.Tutorial.IsTutorial1Done == false) {
 			shopEntranceUIController.Hide();
 			replayTutButton.SetActive(false);
+			showMissionsButton.SetActive(false);
 			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut1";
 		}
 		else {
 			replayTutButton.SetActive(true);
+			showMissionsButton.SetActive(true);
 			// Default case
 			// TODO Refactor this logic
 			// Show the deco entrance
@@ -88,6 +91,7 @@ public class StartManager : Singleton<StartManager> {
 			DinerEntranceUIController.ToggleClickable(false);
 			ChallengeMenuEntranceUIController.ToggleClickable(false);
 			replayTutButton.SetActive(false);
+			showMissionsButton.SetActive(false);
 
 			int oldTotalCash = CashManager.Instance.LastSeenTotalCash;
 			Debug.Log("last scene total: " + oldTotalCash);
@@ -126,6 +130,7 @@ public class StartManager : Singleton<StartManager> {
 			DinerEntranceUIController.ToggleClickable(false);
 			ChallengeMenuEntranceUIController.ToggleClickable(false);
 			replayTutButton.SetActive(false);
+			showMissionsButton.SetActive(false);
 			if(TierManager.Instance.CurrentTier == 2 && !DataManager.Instance.GameData.DayTracker.HasCollectedAge) {
 				//instantiate notification and then add it to queue when called it will show the panel
 				ageNotification = new NotificationQueueDataAge();
@@ -162,8 +167,8 @@ public class StartManager : Singleton<StartManager> {
 		}
 		NotificationManager.Instance.TryNextNotification();
     //    TurnOnEntrances();
-	// Save game data again, lock down on the event
-	DataManager.Instance.SaveGameData();
+		// Save game data again, lock down on the event
+		DataManager.Instance.SaveGameData();
 		GenerateCustomerList();
 		GenerateUnlockedFoodStock();
 		DailyBehaviorManager.Instance.Init();
