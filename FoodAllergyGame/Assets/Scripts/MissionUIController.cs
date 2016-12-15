@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 public class MissionUIController : Singleton<MissionUIController> {
-
+	public TweenToggleDemux demux;
 	public List<GameObject> missionSlots;
 	public GameObject missionUIPrefab;
 
@@ -37,11 +37,11 @@ public class MissionUIController : Singleton<MissionUIController> {
 
 	public void OnShowButton() {
 		StartManager.Instance.TurnOffEntrances();
-		this.GetComponent<PositionTweenToggle>().Show();
+		demux.Show();
 	}
 
 	public void OnCloseButton() {
-		this.GetComponent<PositionTweenToggle>().Hide();
+		demux.Hide();
 		StartManager.Instance.TurnOnEntrances();
 	}
 }
