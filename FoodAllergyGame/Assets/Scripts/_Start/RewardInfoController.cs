@@ -18,6 +18,9 @@ public class RewardInfoController : MonoBehaviour {
 	public void ShowInfo(AssetTypes assetType, string itemID) {
         string titleKey = "";
         string descriptionKey = "";
+		allergyImage1.enabled = false;
+		allergyImage2.enabled = false;
+		allergyImage3.enabled = false;
 		switch(assetType) {
 			case AssetTypes.Challenge:
 				ImmutableDataChallenge challengeData = DataLoaderChallenge.GetData(itemID);
@@ -71,6 +74,10 @@ public class RewardInfoController : MonoBehaviour {
 			case AssetTypes.Slot:
 				titleKey = "NewFoodSlotItem";
 				itemSprite.sprite = SpriteCacheManager.GetSlotItemSpriteData();
+				break;
+			case AssetTypes.StarPiece:
+				titleKey = "StarPiece";
+				itemSprite.sprite = SpriteCacheManager.GetStarPieceItemSpriteData();
 				break;
 		}
 

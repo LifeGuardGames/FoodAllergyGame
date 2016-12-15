@@ -107,13 +107,6 @@ public class StartManager : Singleton<StartManager> {
 			NotificationManager.Instance.AddNotification(tierNotif);
 		}
 
-		// Then check if any star pieces needs to be rewarded
-		if(TierManager.Instance.IsTierUp) {
-			NotificationQueueDataStarPieceReward starPieceNotif =
-				new NotificationQueueDataStarPieceReward(SceneUtils.START, TierManager.Instance.OldTier, TierManager.Instance.CurrentTier);
-			NotificationManager.Instance.AddNotification(starPieceNotif);
-		}
-
 		// Then check if any star cores needs to be rewarded
 		if(TierManager.Instance.HasNewCoreAndSync()) {
 			NotificationQueueDataStarCoreReward starCoreNotif =

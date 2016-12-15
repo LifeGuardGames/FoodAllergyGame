@@ -75,6 +75,11 @@ public class SpriteCacheManager : Singleton<SpriteCacheManager> {
 		return sprite;
 	}
 
+	public static Sprite GetStarPieceItemSpriteData() {
+		Sprite sprite = Resources.Load<Sprite>("StarPiece");
+		return sprite;
+	}
+
 	public static Sprite GetEpiPenTokenSpriteData(int tokenNumber) {
 		Sprite sprite = Resources.Load<Sprite>("EpiPenToken" + tokenNumber.ToString());
 		return sprite;

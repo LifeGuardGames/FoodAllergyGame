@@ -52,6 +52,9 @@ public class RewardUIController : MonoBehaviour {
 				}
 			}
 		}
+		
+		// Add the starpiece custom to the reward crate
+		rewardItemList.Add(new LgTuple<AssetTypes, string>(AssetTypes.StarPiece, "StarPiece"));
 
 		UIDemux.Show();
 		dropPodButton.gameObject.SetActive(false);

@@ -17,7 +17,8 @@ public enum AssetTypes{
 	DecoBasic,
 	Food,
 	Slot,
-	Challenge
+	Challenge,
+	StarPiece
 }
 
 public enum ChallengeTypes {
