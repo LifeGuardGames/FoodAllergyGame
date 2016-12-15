@@ -5,8 +5,6 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class DecoManager : Singleton<DecoManager>{
-	public List<SpriteRenderer> tableList;
-	public List<SpriteRenderer> kitchenList;
 	public Dictionary <DecoTypes, GameObject> sceneObjects;
 	private int decoPageSize = 4;
 	private int currentDecoPage = 0;
@@ -40,6 +38,7 @@ public class DecoManager : Singleton<DecoManager>{
 	private Dictionary<string, Transform> tabGroupInactiveSearchTable;
 	public bool isTutorial;
 	public List<GameObject> tabNewTags;
+	public GameObject dailySpecialTag;
 
 	#region Generic functions
 	public static bool IsDecoBought(string decoID){
@@ -140,6 +139,8 @@ public class DecoManager : Singleton<DecoManager>{
 		foreach(Transform child in grid){
 			Destroy(child.gameObject);
 		}
+		dailySpecialTag.SetActive(false);
+
 		//creates a list of deco based on a type, to do this the dataloader first creates the list of all the items then sorts it by cost before returning it
 		switch(currentTabType) {
 			case DecoTypes.Table:
@@ -163,6 +164,7 @@ public class DecoManager : Singleton<DecoManager>{
 			case DecoTypes.Special:
 				decoList = new List<ImmutableDataDecoItem>();
 				decoList.Add(DataLoaderDecoItem.GetData(DataManager.Instance.GameData.Daily.SpeciDeco));
+				dailySpecialTag.SetActive(true);
 				break;
 			default:
 				decoList = DataLoaderDecoItem.GetDecoDataByType(currentTabType);

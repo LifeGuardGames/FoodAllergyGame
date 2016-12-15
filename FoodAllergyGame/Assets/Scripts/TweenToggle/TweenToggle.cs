@@ -41,9 +41,10 @@ public class TweenToggle : MonoBehaviour{
 	}
 
 	protected bool positionSet;
-	
+	public bool ignoreDisable = false;  // Do not disable when object is hidden
+
 	//////////////////////////////////////////////////////
-	
+
 	// Finish tween callback operations
 	public GameObject ShowTarget;
 	public string ShowFunctionName;
@@ -58,10 +59,6 @@ public class TweenToggle : MonoBehaviour{
 	// we might want these to get fancier at some point (i.e. start the sound when the object tweens in, or when it finishes, etc)
 	public string strSoundShow;
 	public string strSoundHide;
-	
-	// Testing purposes, isDebug true will show OnGUI buttons
-	public bool isDebug = false;
-	public Vector2 testButtonPos; 	// Set base positions of test buttons
 
 	protected bool isGUI;				// Check if Unity GUI, will be set on awake
 	protected RectTransform GUIRectTransform;	// Local cache of rect transform if GUI
@@ -91,7 +88,9 @@ public class TweenToggle : MonoBehaviour{
 	}
 
 	protected void ResetFinish() {
-		gameObject.SetActive(!startsHidden);
+		if(!ignoreDisable) {
+			gameObject.SetActive(!startsHidden);
+		}
 	}
 
 	//	void OnGUI(){
@@ -157,7 +156,9 @@ public class TweenToggle : MonoBehaviour{
 		isMoving = false;
 		if(string.IsNullOrEmpty(HideFunctionName)){
 			// Toggle object off
-			gameObject.SetActive(false);
+			if(!ignoreDisable) {
+				gameObject.SetActive(!startsHidden);
+			}
 			return;
 		}
 		if(HideTarget == null){
@@ -175,6 +176,8 @@ public class TweenToggle : MonoBehaviour{
 		}
 
 		// Toggle object off
-		gameObject.SetActive(false);
+		if(!ignoreDisable) {
+			gameObject.SetActive(!startsHidden);
+		}
 	}
 }

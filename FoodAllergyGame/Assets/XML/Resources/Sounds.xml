@@ -21,6 +21,8 @@
 	<Sound ID="CapsuleAppearSound"></Sound>
 	<Sound ID="StarChunkAppear"></Sound>
 	<Sound ID="StarChunkArrive"></Sound>
+  <Sound ID="RewardItem" Volume="1"></Sound>
+  <Sound ID="RewardStarPiece" Volume="1"></Sound>
 	<Sound ID="MapShipTravel" Volume="1"></Sound>
 	<Sound ID="MapNodeReach" Volume="1"></Sound>
 	<Sound ID="MapEndReach" Volume="1"></Sound>

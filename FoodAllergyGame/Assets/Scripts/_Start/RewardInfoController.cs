@@ -81,6 +81,8 @@ public class RewardInfoController : MonoBehaviour {
 				break;
 		}
 
+		AudioManager.Instance.PlayClip(assetType == AssetTypes.StarPiece ? "RewardStarPiece" : "RewardItem");
+
 		textTitle.text = !string.IsNullOrEmpty(titleKey) ? LocalizationText.GetText(titleKey) : "";
 		textDescription.text = "";
 
