@@ -75,6 +75,11 @@ public class Waiter : Singleton<Waiter> {
 
 	void FixedUpdate() {
 		if(moving == true) {
+			Debug.Log(pathIndex);
+			//argument out of range exception
+			if(pathList.Count < pathIndex) {
+				pathIndex = pathList.Count - 1;
+			}
 			// Already at the target node
 			if(pathList.Count == 0 || pathList.Count < pathIndex) {
 				moving = false;
@@ -84,7 +89,7 @@ public class Waiter : Singleton<Waiter> {
 				}
 			}
 			// Arrived at the next node
-			//argument out of range exception
+			
 			else if(transform.position == pathList[pathIndex].transform.position) {
 				currentNode = pathList[pathIndex];
 
