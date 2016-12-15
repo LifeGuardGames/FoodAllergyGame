@@ -22,7 +22,7 @@ public class MissionUI : MonoBehaviour {
         missionAmount.text = mis.amount.ToString();
 		reward.text = mis.reward.ToString();
 		mission = mis;
-		butComp.onClick.AddListener(() => MissionUi_Controller.Instance.CheckMissionComplete(mis.missionKey));
+		butComp.onClick.AddListener(() => MissionUIController.Instance.CheckMissionComplete(mis.missionKey));
 	}
 
 }

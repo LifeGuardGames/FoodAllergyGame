@@ -17,7 +17,7 @@ public class DailyBehaviorManager : Singleton<DailyBehaviorManager> {
 			}
 			ObtainRandomDecos();
 		}
-		MissionUi_Controller.Instance.Init();
+		MissionUIController.Instance.Init();
 	}
 
 	public void GetNewMission() {

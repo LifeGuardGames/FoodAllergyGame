@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class MissionUi_Controller : Singleton<MissionUi_Controller> {
+public class MissionUIController : Singleton<MissionUIController> {
 
 	public List<GameObject> missionSlots;
 	public GameObject missionUIPrefab;
