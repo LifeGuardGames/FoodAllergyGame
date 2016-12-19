@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System;
 using System.Linq;
-public class DailyBehaviorManager : Singleton<DailyBehaviorManager> {
 
+public class DailyBehaviorManager : Singleton<DailyBehaviorManager> {
 	public void Init() {
 		if(DateTime.Today.Day != DataManager.Instance.GameData.Daily.CurrDay) {
 			if(DataManager.Instance.GameData.Daily.DailyMissions.Count < 3) {
 				GetNewMission();
 				DataManager.Instance.GameData.Daily.CurrDay = DateTime.Today.Day;
-            }
+			}
 			else {
 				DataManager.Instance.GameData.Daily.DailyMissions.RemoveAt(0);
 				GetNewMission();
@@ -26,32 +25,32 @@ public class DailyBehaviorManager : Singleton<DailyBehaviorManager> {
 		int rand;
 		do {
 			rand = UnityEngine.Random.Range(0, possibleTypes.Count);
-			Debug.Log(rand);
-		}while(DataManager.Instance.GameData.Daily.GetMissionByKey(possibleTypes[rand].ToString()) != null);
+		}
+		while(DataManager.Instance.GameData.Daily.GetMissionByKey(possibleTypes[rand].ToString()) != null);
 		Mission newMission = new Mission();
 		newMission.misType = possibleTypes[rand];
 		newMission.missionKey = GetMissionKey(newMission.misType);
 		newMission.amount = GetMissionAmount(newMission.misType);
 		newMission.reward = GenerateReward(newMission.amount);
 		DataManager.Instance.GameData.Daily.DailyMissions.Add(newMission);
-		
-    }
+
+	}
 
 	public string GetMissionKey(MissionType misType) {
-		if(misType != MissionType.Customer &&  misType != MissionType.Food) {
+		if(misType != MissionType.Customer && misType != MissionType.Food) {
 			return misType.ToString();
 		}
-		else if (misType == MissionType.Customer) {
+		else if(misType == MissionType.Customer) {
 			int rand = UnityEngine.Random.Range(0, DataManager.Instance.GameData.RestaurantEvent.CustomerList.Count);
 			return DataManager.Instance.GameData.RestaurantEvent.CustomerList[rand];
-        }
+		}
 		else {
 			int rand = UnityEngine.Random.Range(0, FoodManager.Instance.FoodStockList.Count);
 			return FoodManager.Instance.FoodStockList[rand].ID;
-        }
+		}
 	}
 
-	public int GetMissionAmount (MissionType misType) {
+	public int GetMissionAmount(MissionType misType) {
 		switch(misType) {
 			case MissionType.Allergy:
 				return UnityEngine.Random.Range(2, 5);
@@ -74,7 +73,7 @@ public class DailyBehaviorManager : Singleton<DailyBehaviorManager> {
 	}
 
 	public int GenerateReward(int amount) {
-		if (amount < 10) {
+		if(amount < 10) {
 			return amount * 70;
 		}
 		else {
@@ -88,7 +87,7 @@ public class DailyBehaviorManager : Singleton<DailyBehaviorManager> {
 		GetRandomFloorsForStore(decoList);
 		GetRandomKitchensForStore(decoList);
 		GetRandomSpecialItem(decoList);
-    }
+	}
 
 	public void GetRandomTablesForStore(List<string> decList) {
 		while(DataManager.Instance.GameData.Daily.RotTables.Count < 3) {
