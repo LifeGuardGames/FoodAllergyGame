@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class MedicArea : MonoBehaviour, IWaiterSelection{
+public class MedicArea : Singleton<MedicArea>, IWaiterSelection{
 	public Animator animator;       // Used for clicking
 	public GameObject queueParent;
 	private GameObject node;
@@ -20,12 +20,21 @@ public class MedicArea : MonoBehaviour, IWaiterSelection{
 	public bool IsQueueable(){
 			return false;
 	}
-	
+
+	public void ReadyForCall() {
+		Waiter.Instance.FindRoute(node, this);
+    }
+
+
 	public void OnClicked(){
-		TouchManager.Instance.PauseQueue();
 		//TouchManager.Instance.EmptyQueue();
 		//TouchManager.Instance.UnpauseQueue();
-		Waiter.Instance.BreakAndFindRoute(node, this);
+		if(!Waiter.Instance.moving) {
+			ReadyForCall();
+		}
+		else {
+			Waiter.Instance.BreakAndFindRoute();
+		}
 	}
 
 	public virtual void OnPressAnim() {

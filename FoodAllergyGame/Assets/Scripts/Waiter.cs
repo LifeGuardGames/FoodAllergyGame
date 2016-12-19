@@ -39,22 +39,21 @@ public class Waiter : Singleton<Waiter> {
 	public WaiterAnimController waiterAnimController;
 	public bool isMedicTut;
 	public GameObject currentNode;
-	private bool moving;
+	public bool moving;
 	private int pathIndex = 0;
 	private List<GameObject> pathList;
 	private GameObject targetNode;
 	private IWaiterSelection currentCaller;
 	private int baseSortingOrder;
+	private bool isMedicCalled = false;
 
 	void Start() {
 		ResetHands();
 		pathList = new List<GameObject>();
 	}
 
-	public void BreakAndFindRoute(GameObject _targetNode, MonoBehaviour caller) {
-		canMove = false;
-		pathList.Clear();
-		FindRoute(_targetNode, caller);
+	public void BreakAndFindRoute() {
+		isMedicCalled = true;
 	}
 
 	public void FindRoute(GameObject _targetNode, MonoBehaviour caller) {
@@ -341,7 +340,11 @@ public class Waiter : Singleton<Waiter> {
 
 	public void Finished() {
 		CanMove = true;
-		if(TouchManager.Instance.inputQueue.Count > 0) {
+		if(isMedicCalled) {
+			MedicArea.Instance.ReadyForCall();
+			isMedicCalled = false;
+		}
+		else if(TouchManager.Instance.inputQueue.Count > 0) {
 			if(TouchManager.Instance.inputQueue.Peek().GetComponent<MedicArea>() == null && isMedicTut) {
 				TouchManager.Instance.inputQueue.Dequeue();
 				Finished();
