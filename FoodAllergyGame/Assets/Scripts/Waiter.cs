@@ -75,7 +75,6 @@ public class Waiter : Singleton<Waiter> {
 
 	void FixedUpdate() {
 		if(moving == true) {
-			Debug.Log(pathIndex);
 			//argument out of range exception
 			if(pathList.Count < pathIndex) {
 				pathIndex = pathList.Count - 1;
