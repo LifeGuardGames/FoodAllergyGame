@@ -184,10 +184,10 @@ public class DecoManager : Singleton<DecoManager>{
 			decoButton.GetComponent<DecoButton>().Init(decoData);
 			RefreshButtonShowStatus();
 
-			if(firstUnboughtDeco == null && !IsDecoBought(decoData.ID) && currentTabType != DecoTypes.Special){
+			if(firstUnboughtDeco == null && !IsDecoBought(decoData.ID)){
 				firstUnboughtDeco = decoData;
 			}
-			else {
+			if (currentTabType == DecoTypes.Special) {
 				firstUnboughtDeco = DataLoaderDecoItem.GetData(DataManager.Instance.GameData.Daily.SpeciDeco);
 			}
 		}
@@ -293,9 +293,12 @@ public class DecoManager : Singleton<DecoManager>{
 
 	private bool BuyItem(string decoID){
 		ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
-
+		
 		// Check if you have enough money, change cash if so, takes care of anim as well
 		if(CashManager.Instance.DecoBuyCash(decoData.Cost)){
+			if(decoData.Type == DecoTypes.Special) {
+				DataManager.Instance.GameData.Decoration.CustomersBought.Add(decoData.ID);
+			}
 			DataManager.Instance.GameData.Decoration.BoughtDeco.Add(decoID, "");
 			SetDeco(decoID, decoData.Type);
 			AnalyticsManager.Instance.TrackDecoBought(decoID);
