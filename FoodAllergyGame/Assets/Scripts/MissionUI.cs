@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
-using System;
-using System.Collections;
 using UnityEngine.UI;
 
 public class MissionUI : MonoBehaviour {
-
 	public Text titleText;
 	public Text missionDescription;
 	public Text missionProgress;
