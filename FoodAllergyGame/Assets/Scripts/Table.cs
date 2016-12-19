@@ -42,6 +42,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	public SpriteRenderer tableSprite;
 	public Canvas uiCanvas;
 	public Text tableNumberText;
+	public Image tableNumberTextBase;
 	public SpriteRenderer tableHighlight;
 
 	public Transform foodSpot;
@@ -239,11 +240,17 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	#endregion
 
 	public void ToggleTableNum(bool onOrOff) {
-		if(DataManager.Instance.GetChallenge() != "Challenge03") {
-			tableNumberText.gameObject.SetActive(onOrOff);
+		if(DataManager.Instance.GetChallenge() == "Challenge03") {
+			tableNumberText.gameObject.SetActive(false);
+			if(tableNumberTextBase != null) {
+				tableNumberTextBase.gameObject.SetActive(false);
+			}
 		}
 		else {
-			tableNumberText.gameObject.SetActive(false);
+			tableNumberText.gameObject.SetActive(onOrOff);
+			if(tableNumberTextBase != null) {
+				tableNumberTextBase.gameObject.SetActive(onOrOff);
+			}
 		}
 	}
 
