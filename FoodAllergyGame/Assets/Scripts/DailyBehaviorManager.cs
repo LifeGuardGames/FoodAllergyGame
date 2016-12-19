@@ -93,7 +93,7 @@ public class DailyBehaviorManager : Singleton<DailyBehaviorManager> {
 	public void GetRandomTablesForStore(List<string> decList) {
 		while(DataManager.Instance.GameData.Daily.RotTables.Count < 3) {
 			int rand = UnityEngine.Random.Range(0, decList.Count);
-			if(DataLoaderDecoItem.GetData(decList[rand]).Type == DecoTypes.Table) {
+			if(DataLoaderDecoItem.GetData(decList[rand]).Type == DecoTypes.Table && !DataManager.Instance.GameData.Daily.RotTables.Contains(decList[rand])) {
 				DataManager.Instance.GameData.Daily.RotTables.Add(decList[rand]);
 			}
 		}
@@ -103,7 +103,7 @@ public class DailyBehaviorManager : Singleton<DailyBehaviorManager> {
 	public void GetRandomFloorsForStore(List<string> decList) {
 		while(DataManager.Instance.GameData.Daily.RotFloors.Count < 3) {
 			int rand = UnityEngine.Random.Range(0, decList.Count);
-			if(DataLoaderDecoItem.GetData(decList[rand]).Type == DecoTypes.Floor) {
+			if(DataLoaderDecoItem.GetData(decList[rand]).Type == DecoTypes.Floor && !DataManager.Instance.GameData.Daily.RotFloors.Contains(decList[rand])) {
 				DataManager.Instance.GameData.Daily.RotFloors.Add(decList[rand]);
 			}
 		}
@@ -113,7 +113,7 @@ public class DailyBehaviorManager : Singleton<DailyBehaviorManager> {
 	public void GetRandomKitchensForStore(List<string> decList) {
 		while(DataManager.Instance.GameData.Daily.RotKitchen.Count < 3) {
 			int rand = UnityEngine.Random.Range(0, decList.Count);
-			if(DataLoaderDecoItem.GetData(decList[rand]).Type == DecoTypes.Kitchen) {
+			if(DataLoaderDecoItem.GetData(decList[rand]).Type == DecoTypes.Kitchen && !DataManager.Instance.GameData.Daily.RotKitchen.Contains(decList[rand])) {
 				DataManager.Instance.GameData.Daily.RotKitchen.Add(decList[rand]);
 			}
 		}

@@ -190,6 +190,10 @@ public class StartManager : Singleton<StartManager> {
 			customersPool.Remove(cusData);
 		}
 
+		foreach (string boughtCus in DataManager.Instance.GameData.Decoration.CustomersBought) {
+			customersPool.Add(DataLoaderCustomer.GetData(boughtCus));
+		}
+
 		foreach(ImmutableDataCustomer cus in customersPool) {
 			DataManager.Instance.GameData.RestaurantEvent.CustomerList.Add(cus.ID);
 		}
