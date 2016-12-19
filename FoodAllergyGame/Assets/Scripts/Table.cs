@@ -184,7 +184,7 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	}
 
 	public virtual bool IsQueueable(){
-		if(!inUse && Waiter.Instance.CurrentLineCustomer != null){
+		if(!inUse && Waiter.Instance.CurrentLineCustomer != null || isGossiped){
 			return false;
 		}
 		else{
