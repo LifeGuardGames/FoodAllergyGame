@@ -32,16 +32,14 @@ public class MissionUIController : Singleton<MissionUIController> {
 		}
 	}
 
-	void OnGUI() {
-		if(GUI.Button(new Rect(100, 100, 100, 100), "Finish Missions")) {
-			foreach(Mission mission in DataManager.Instance.GameData.Daily.DailyMissions) {
-				mission.progress = mission.amount;
-			}
-			Init();
-		}
-
-		
-    }
+	//void OnGUI() {
+	//	if(GUI.Button(new Rect(100, 100, 100, 100), "Finish Missions")) {
+	//		foreach(Mission mission in DataManager.Instance.GameData.Daily.DailyMissions) {
+	//			mission.progress = mission.amount;
+	//		}
+	//		Init();
+	//	}
+ //   }
 
 	public void OnComplete(Mission mis) {
 		//play animation or something
