@@ -26,6 +26,18 @@ public class DataLoaderDecoItem: XMLLoaderGeneric<DataLoaderDecoItem> {
 		return decoList;
 	}
 
+	// Get all the decos unlocked, filtered by DecoType
+	public static List<string> GetUnlockedDecoList(int tier, DecoTypes decoType) {
+		List<string> decoList = new List<string>();
+		foreach(ImmutableDataDecoItem decoData in GetDataList()) {
+			if(decoData.Tier <= tier && decoData.Type == decoType) {
+				decoList.Add(decoData.ID);
+			}
+		}
+		return decoList;
+	}
+
+	// Get all the decos unlocked
 	public static List<string> GetUnlockedDecoList(int tier) {
 		List<string> decoList = new List<string>();
 		foreach(ImmutableDataDecoItem decoData in GetDataList()) {
