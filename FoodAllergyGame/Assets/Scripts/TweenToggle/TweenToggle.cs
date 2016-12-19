@@ -104,8 +104,10 @@ public class TweenToggle : MonoBehaviour{
 	//		}
 	//	}
 
-	public void Show(){
-		gameObject.SetActive(true);
+	public void Show() {
+		if(!ignoreDisable) {
+			gameObject.SetActive(true);
+		}
 		Show(showDuration);
 	}
 	
