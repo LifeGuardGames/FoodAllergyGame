@@ -51,6 +51,12 @@ public class Waiter : Singleton<Waiter> {
 		pathList = new List<GameObject>();
 	}
 
+	public void BreakAndFindRoute(GameObject _targetNode, MonoBehaviour caller) {
+		canMove = false;
+		pathList.Clear();
+		FindRoute(_targetNode, caller);
+	}
+
 	public void FindRoute(GameObject _targetNode, MonoBehaviour caller) {
 		foreach(Mission mis in DataManager.Instance.GameData.Daily.DailyMissions) {
 			if(mis.misType == MissionType.Walk) {

@@ -11,6 +11,7 @@ public class MedicArea : MonoBehaviour, IWaiterSelection{
 
 	#region IWaiterSelection implementation
 	public void OnWaiterArrived(){
+		TouchManager.Instance.UnpauseQueue();
 		DestroyQueueUI();
         RestaurantManager.Instance.DeployMedic();
 		Waiter.Instance.Finished();
@@ -21,9 +22,10 @@ public class MedicArea : MonoBehaviour, IWaiterSelection{
 	}
 	
 	public void OnClicked(){
+		TouchManager.Instance.PauseQueue();
 		//TouchManager.Instance.EmptyQueue();
-		TouchManager.Instance.UnpauseQueue();
-		Waiter.Instance.FindRoute(node, this);
+		//TouchManager.Instance.UnpauseQueue();
+		Waiter.Instance.BreakAndFindRoute(node, this);
 	}
 
 	public virtual void OnPressAnim() {
