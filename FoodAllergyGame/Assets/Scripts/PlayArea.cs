@@ -89,6 +89,10 @@ public class PlayArea : Singleton<PlayArea>, IWaiterSelection {
 	public void DestroyQueueUI() {
 	}
 
+	public void DestroyAllQueueUI() {
+
+	}
+
 	// Called from Customer.PlayTime
 	// Play time ended, reset the availability
 	public void EndPlayTime(int spotIndex){

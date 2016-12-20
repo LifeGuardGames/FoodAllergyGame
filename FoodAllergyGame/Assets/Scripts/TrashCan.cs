@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class TrashCan : MonoBehaviour, IWaiterSelection {
+public class TrashCan :Singleton<TrashCan>, IWaiterSelection {
 	public GameObject trashCanNode;
 	public Animation putTrashAnimation;
 	public Animator animator;       // Used for clicking
@@ -42,6 +42,14 @@ public class TrashCan : MonoBehaviour, IWaiterSelection {
 
 	public void DestroyQueueUI() {
 		Destroy(GameObjectUtils.GetLastChild(queueParent).gameObject);
+	}
+
+	public void DestroyAllQueueUI() {
+		if(queueParent.transform.childCount > 0) {
+			foreach(Transform go in queueParent.transform) {
+				Destroy(go.gameObject);
+			}
+		}
 	}
 	#endregion
 }

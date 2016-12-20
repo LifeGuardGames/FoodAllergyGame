@@ -620,6 +620,9 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public void DestroyQueueUI() {
 		// Do nothing
 	}
+	public void DestroyAllQueueUI() {
+
+	}
 	#endregion
 
 	public virtual void GoToPlayArea(Vector3 playAreaSpot, int spotIndex, int deltaSatisfaction){

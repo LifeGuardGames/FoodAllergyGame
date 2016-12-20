@@ -154,6 +154,13 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 	public void DestroyQueueUI() {
 		Destroy(GameObjectUtils.GetLastChild(queueParent).gameObject);
 	}
+	public void DestroyAllQueueUI() {
+		if(queueParent.transform.childCount > 0) {
+			for(int i = 0; i < queueParent.transform.childCount; i++) {
+				Destroy(GameObjectUtils.GetLastChild(queueParent).gameObject);
+			}
+		}
+	}
 	#endregion
 
 	public void SetBaseSortingOrder(int _baseSortingOrder) {

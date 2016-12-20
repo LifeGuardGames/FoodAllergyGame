@@ -235,7 +235,14 @@ public class Table : MonoBehaviour, IWaiterSelection{
 	}
 
 	public void DestroyQueueUI() {
-		Destroy(GameObjectUtils.GetLastChild(queueParent).gameObject);
+			Destroy(GameObjectUtils.GetLastChild(queueParent).gameObject);
+	}
+	public void DestroyAllQueueUI() {
+		if(queueParent.transform.childCount > 0) {
+			foreach(Transform go in queueParent.transform) {
+				Destroy(go.gameObject);
+			}
+		}
 	}
 	#endregion
 

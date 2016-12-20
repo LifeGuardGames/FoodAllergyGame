@@ -31,4 +31,6 @@ interface IWaiterSelection{
 	void UpdateQueueUI(int order);
 
 	void DestroyQueueUI();
+
+	void DestroyAllQueueUI();
 }
