@@ -8,6 +8,7 @@ public class MissionUIController : Singleton<MissionUIController> {
 	public GameObject missionUIPrefab;
 	public ParticleSystem coinParticle;
 	public Text nextDayMissionText;
+	public Animation missionCompleteSymbolAnimation;
 
 	public void Init() {
 		// First clear all existing missions
@@ -16,12 +17,16 @@ public class MissionUIController : Singleton<MissionUIController> {
 				Destroy(t.gameObject);
 			}
 		}
-
-		for(int i = 0; i < DataManager.Instance.GameData.Daily.DailyMissions.Count; i++ ){
+		missionCompleteSymbolAnimation.Stop();
+        for(int i = 0; i < DataManager.Instance.GameData.Daily.DailyMissions.Count; i++ ){
 			GameObject go = GameObjectUtils.AddChildGUI(missionSlots[i], missionUIPrefab);
+
+			// Check to see if any missions are complete and notify
+			if(DataManager.Instance.GameData.Daily.DailyMissions[i].progress >= DataManager.Instance.GameData.Daily.DailyMissions[i].amount) {
+				missionCompleteSymbolAnimation.Play();
+            }
 			go.GetComponent<MissionUI>().Init(DataManager.Instance.GameData.Daily.DailyMissions[i]);
 		}
-
 		nextDayMissionText.gameObject.SetActive(DataManager.Instance.GameData.Daily.DailyMissions.Count == 0);
 	}
 
@@ -39,7 +44,7 @@ public class MissionUIController : Singleton<MissionUIController> {
 	//		}
 	//		Init();
 	//	}
- //   }
+	//}
 
 	public void OnComplete(Mission mis) {
 		//play animation or something
@@ -57,8 +62,8 @@ public class MissionUIController : Singleton<MissionUIController> {
 				DataManager.Instance.GameData.Daily.DailyMissions.Remove(mis);
 			}
 		}
-
-		nextDayMissionText.gameObject.SetActive(DataManager.Instance.GameData.Daily.DailyMissions.Count == 0);
+		missionCompleteSymbolAnimation.Stop();
+        nextDayMissionText.gameObject.SetActive(DataManager.Instance.GameData.Daily.DailyMissions.Count == 0);
 	}
 
 	public void OnShowButton() {

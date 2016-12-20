@@ -9,8 +9,8 @@ public class TableFlyThru : Table {
 	}
 
 	public override void Init() {
-		if(SceneManager.GetActiveScene() != SceneManager.GetSceneByName(SceneUtils.DECO)) {
-			base.Init();
+		base.Init();
+		if(SceneManager.GetActiveScene().name == SceneUtils.RESTAURANT) {
 			if(DataManager.Instance.GetEvent() == "EventTFlyThru") {
 				GameObject.Find("TutFingers").transform.GetChild(9).gameObject.SetActive(true);
 			}
