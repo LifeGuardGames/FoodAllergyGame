@@ -75,6 +75,7 @@ public class NotificationManager : Singleton<NotificationManager> {
 
 				// Enable buttons
 				StartManager.Instance.replayTutButton.SetActive(true);
+				StartManager.Instance.showMissionsButton.SetActive(true);
 				StartManager.Instance.musicButton.GetComponent<PositionTweenToggle>().Show();
 				StartManager.Instance.soundButton.GetComponent<PositionTweenToggle>().Show();
 				StartManager.Instance.musicButton.GetComponent<Toggle>().isOn = !AudioManager.Instance.isMusicOn;
