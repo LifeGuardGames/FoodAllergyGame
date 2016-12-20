@@ -401,17 +401,6 @@
 		<Tier>15</Tier>
 	</DecoItem>
 
-
-	<!--<DecoItem ID = "Microwave00">
-		<Type>Microwave</Type>
-		<Price>0</Price>
-		<TitleKey>None</TitleKey>
-		<DescriptionKey>NoneDesc</DescriptionKey>
-		<SpriteName>None</SpriteName>
-		<Tier>-1</Tier>
-	</DecoItem>-->
-
-
 	<DecoItem ID = "FlyThru00">
 		<Type>FlyThru</Type>
 		<Price>0</Price>
