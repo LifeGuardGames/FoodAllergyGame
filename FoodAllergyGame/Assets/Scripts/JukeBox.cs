@@ -35,8 +35,8 @@ public class JukeBox : Singleton<JukeBox>, IWaiterSelection {
 
 	public void DestroyAllQueueUI() {
 		if(queueParent.transform.childCount > 0) {
-			for(int i = 0; i < queueParent.transform.childCount; i++) {
-				Destroy(GameObjectUtils.GetLastChild(queueParent).gameObject);
+			foreach(Transform go in queueParent.transform) {
+				Destroy(go.gameObject);
 			}
 		}
 	}
