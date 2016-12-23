@@ -33,7 +33,7 @@ public class DayOverUIController : MonoBehaviour {
 			textBonus.enabled = true;
 			switch(bonusData.ObjType) {
 				case "Cash":
-					textBonus.text = earningsNet.ToString() + " / " + bonusData.Num.ToString();
+					textBonus.text = tips.ToString() + " / " + bonusData.Num.ToString();
 					break;
 				case "AllergyAttack":
 					textBonus.text = RestaurantManager.Instance.numOfAllergyAttacks.ToString() + " / " + bonusData.Num.ToString();

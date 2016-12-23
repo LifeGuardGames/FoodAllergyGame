@@ -24,6 +24,11 @@ public class BehavPlayfulReadingMenu : Behav {
 		if(!self.gameObject.GetComponent<CustomerPlayful>().played && RestaurantManager.Instance.GetTable(self.tableNum).tableType != Table.TableType.FlyThru) {
 			self.UpdateSatisfaction(-1);
 			self.timer = 0.5f;
+			foreach(Mission mis in DataManager.Instance.GameData.Daily.DailyMissions) {
+				if(mis.misType == MissionType.Customer && mis.missionKey == "CustomerPlayFul") {
+					mis.progress++;
+				}
+			}
 		}
 		self.customerAnim.SetReadingMenu();
 		self.StartCoroutine("ReadMenu");

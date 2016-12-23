@@ -39,6 +39,7 @@ public class StartManager : Singleton<StartManager> {
 	}
 
 	public GameObject replayTutButton;
+	public GameObject showMissionsButton;
 	public GameObject soundButton;
 	public GameObject musicButton;
 	public GameObject beaconNode;
@@ -61,10 +62,12 @@ public class StartManager : Singleton<StartManager> {
 		if(DataManager.Instance.GameData.Tutorial.IsTutorial1Done == false) {
 			shopEntranceUIController.Hide();
 			replayTutButton.SetActive(false);
+			showMissionsButton.SetActive(false);
 			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut1";
 		}
 		else {
 			replayTutButton.SetActive(true);
+			showMissionsButton.SetActive(true);
 			// Default case
 			// TODO Refactor this logic
 			// Show the deco entrance
@@ -88,6 +91,7 @@ public class StartManager : Singleton<StartManager> {
 			DinerEntranceUIController.ToggleClickable(false);
 			ChallengeMenuEntranceUIController.ToggleClickable(false);
 			replayTutButton.SetActive(false);
+			showMissionsButton.SetActive(false);
 
 			int oldTotalCash = CashManager.Instance.LastSeenTotalCash;
 			Debug.Log("last scene total: " + oldTotalCash);
@@ -101,13 +105,6 @@ public class StartManager : Singleton<StartManager> {
 			NotificationQueueDataTierProgress tierNotif =
 				new NotificationQueueDataTierProgress(SceneUtils.START, oldTotalCash, newTotalCash);
 			NotificationManager.Instance.AddNotification(tierNotif);
-		}
-
-		// Then check if any star pieces needs to be rewarded
-		if(TierManager.Instance.IsTierUp) {
-			NotificationQueueDataStarPieceReward starPieceNotif =
-				new NotificationQueueDataStarPieceReward(SceneUtils.START, TierManager.Instance.OldTier, TierManager.Instance.CurrentTier);
-			NotificationManager.Instance.AddNotification(starPieceNotif);
 		}
 
 		// Then check if any star cores needs to be rewarded
@@ -126,6 +123,7 @@ public class StartManager : Singleton<StartManager> {
 			DinerEntranceUIController.ToggleClickable(false);
 			ChallengeMenuEntranceUIController.ToggleClickable(false);
 			replayTutButton.SetActive(false);
+			showMissionsButton.SetActive(false);
 			if(TierManager.Instance.CurrentTier == 2 && !DataManager.Instance.GameData.DayTracker.HasCollectedAge) {
 				//instantiate notification and then add it to queue when called it will show the panel
 				ageNotification = new NotificationQueueDataAge();
@@ -162,10 +160,11 @@ public class StartManager : Singleton<StartManager> {
 		}
 		NotificationManager.Instance.TryNextNotification();
     //    TurnOnEntrances();
-	// Save game data again, lock down on the event
-	DataManager.Instance.SaveGameData();
+		// Save game data again, lock down on the event
+		DataManager.Instance.SaveGameData();
 		GenerateCustomerList();
 		GenerateUnlockedFoodStock();
+		DailyBehaviorManager.Instance.Init();
 	}
 
 	//creates a list of acceptable spawning customers
@@ -189,6 +188,10 @@ public class StartManager : Singleton<StartManager> {
 
 		foreach(ImmutableDataCustomer cusData in cusToDelete) {
 			customersPool.Remove(cusData);
+		}
+
+		foreach (string boughtCus in DataManager.Instance.GameData.Decoration.CustomersBought) {
+			customersPool.Add(DataLoaderCustomer.GetData(boughtCus));
 		}
 
 		foreach(ImmutableDataCustomer cus in customersPool) {

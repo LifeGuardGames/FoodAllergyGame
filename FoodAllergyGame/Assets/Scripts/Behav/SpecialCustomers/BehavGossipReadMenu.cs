@@ -26,7 +26,7 @@ public class BehavGossipReadMenu : Behav {
 		//stop the satisfaction timer, change the timer and then restart it
 		self.attentionSpan = 21.0f * self.timer;
 		self.state = CustomerStates.ReadingMenu;
-		if(RestaurantManager.Instance.TableList[self.tableNum].GetComponent<Table>().tableType != Table.TableType.FlyThru) {
+		if(RestaurantManager.Instance.GetTable(self.tableNum).tableType != Table.TableType.FlyThru) {
 			int rand = UnityEngine.Random.Range(0, 10);
 			if(rand > 6) {
 				self.StopCoroutine("ReadMenu");

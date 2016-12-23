@@ -22,4 +22,15 @@ interface IWaiterSelection{
 	/// When the object is pressed, play some sort of animation
 	/// </summary>
 	void OnPressAnim();
+
+	void AddQueueUI();
+
+	/// <summary>
+	/// Update the queue check UI, called from TouchManager
+	/// </summary>
+	void UpdateQueueUI(int order);
+
+	void DestroyQueueUI();
+
+	void DestroyAllQueueUI();
 }

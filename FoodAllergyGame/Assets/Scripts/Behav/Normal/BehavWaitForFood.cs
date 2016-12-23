@@ -70,6 +70,7 @@ public class BehavWaitForFood : Behav {
 		if(self.Order.GetComponent<Order>().allergy.Contains(self.allergy[0]) && !RestaurantManager.Instance.isTutorial && !DataManager.Instance.GameData.Tutorial.IsTrashCanTutDone && self.allergy[0] != Allergies.None) {
 			KitchenManager.Instance.IsTrachcanTut = true;
 			RestaurantManager.Instance.trashCanTutorial.SetActive(true);
+			Waiter.Instance.CancelMove();
             string foodSpriteName = DataLoaderFood.GetData(self.Order.GetComponent<Order>().foodID).SpriteName;
 			RestaurantManager.Instance.trashCanTutorial.GetComponent<SickTutorialController>().Show(self.allergy[0], foodSpriteName);
 			self.StartCoroutine("SatisfactionTimer");

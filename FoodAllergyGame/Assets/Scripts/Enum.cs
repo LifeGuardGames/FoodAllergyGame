@@ -17,7 +17,8 @@ public enum AssetTypes{
 	DecoBasic,
 	Food,
 	Slot,
-	Challenge
+	Challenge,
+	StarPiece
 }
 
 public enum ChallengeTypes {
@@ -93,6 +94,7 @@ public enum DecoTypes{
 	VIP,
 	FlyThru,
 	Microwave,
+	Special,
 }
 
 public enum  PropNodeType{
@@ -134,4 +136,13 @@ public enum DifficultyLevels {
 	Medium,
 	Hard,
 }
+
+public enum MissionType {
+	Customer,
+	Food,
+	Days,
+	Walk,
+	Allergy,
+}
+
 

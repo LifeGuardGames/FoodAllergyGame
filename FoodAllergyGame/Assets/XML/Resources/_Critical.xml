@@ -9,13 +9,13 @@
   <Constant Name="IsTut3Done" Type="Bool" Value="True" Debug="Tutorial"> </Constant>
   <Constant Name="IsDecoFingerTutDone" Type="Bool" Value="True" Debug="Tutorial"> </Constant>
   <Constant Name="IsEpiPenTutorialDone" Type="Bool" Value="True" Debug="Tutorial"> </Constant>
-  <Constant Name="TableID" Type="String" Value="TableCandyBlue" Debug="Deco"> </Constant>
-  <Constant Name="KitchenID" Type="String" Value="KitchenCandySprinkles" Debug="Deco"> </Constant>
-  <Constant Name="FloorID" Type="String" Value="FloorCandyLime" Debug="Deco"> </Constant>
-  <Constant Name="VIPOn" Type="Bool" Value="True" Debug="Deco"> </Constant>
-  <Constant Name="VIPID" Type="String" Value="VIPBlackHole" Debug="Deco"> </Constant>
+  <Constant Name="TableID" Type="String" Value="TableBasicAqua" Debug="Deco"> </Constant>
+  <Constant Name="KitchenID" Type="String" Value="KitchenBasicAqua" Debug="Deco"> </Constant>
+  <Constant Name="FloorID" Type="String" Value="FloorBasicAqua" Debug="Deco"> </Constant>
+  <Constant Name="VIPOn" Type="Bool" Value="False" Debug="Deco"> </Constant>
+  <Constant Name="VIPID" Type="String" Value="VIP00" Debug="Deco"> </Constant>
   <Constant Name="PlayAreaOn" Type="Bool" Value="False" Debug="Deco"> </Constant>
   <Constant Name="PlayAreaID" Type="String" Value="PlayArea00" Debug="Deco"> </Constant>
-  <Constant Name="FlyThruOn" Type="Bool" Value="True" Debug="Deco"> </Constant>
+  <Constant Name="FlyThruOn" Type="Bool" Value="False" Debug="Deco"> </Constant>
   <Constant Name="FlyThruID" Type="String" Value="FlyThru00" Debug="Deco"> </Constant>
 </Constants>

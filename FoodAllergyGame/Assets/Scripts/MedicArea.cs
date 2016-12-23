@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 
-public class MedicArea : MonoBehaviour, IWaiterSelection{
+public class MedicArea : Singleton<MedicArea>, IWaiterSelection{
 	public Animator animator;       // Used for clicking
+	public GameObject queueParent;
 	private GameObject node;
 
 	void Start(){
@@ -10,26 +11,56 @@ public class MedicArea : MonoBehaviour, IWaiterSelection{
 
 	#region IWaiterSelection implementation
 	public void OnWaiterArrived(){
+		TouchManager.Instance.UnpauseQueue();
+		DestroyQueueUI();
         RestaurantManager.Instance.DeployMedic();
 		Waiter.Instance.Finished();
 	}
 	
 	public bool IsQueueable(){
-		if(Waiter.Instance.CurrentLineCustomer != null){
 			return false;
-		}
-		else{
-			return true;
-		}
 	}
-	
-	public void OnClicked(){
-		TouchManager.Instance.UnpauseQueue();
+
+	public void ReadyForCall() {
 		Waiter.Instance.FindRoute(node, this);
+    }
+
+
+	public void OnClicked(){
+		//TouchManager.Instance.EmptyQueue();
+		//TouchManager.Instance.UnpauseQueue();
+		if(!Waiter.Instance.moving) {
+			ReadyForCall();
+		}
+		else {
+			Waiter.Instance.BreakAndFindRoute();
+		}
 	}
 
 	public virtual void OnPressAnim() {
 		animator.SetTrigger("ClickPulse");
+	}
+
+	public void AddQueueUI() {
+		GameObject check = Resources.Load("QueueUICheckMark") as GameObject;
+		GameObjectUtils.AddChildGUI(queueParent, check);
+    }
+
+	public void UpdateQueueUI(int order) {
+	}
+
+	public void DestroyQueueUI() {
+		if(queueParent.transform.childCount != 0) {
+			Destroy(GameObjectUtils.GetLastChild(queueParent).gameObject);
+		}
+	}
+
+	public void DestroyAllQueueUI() {
+		if(queueParent.transform.childCount > 0) {
+			foreach(Transform go in queueParent.transform) {
+				Destroy(go.gameObject);
+			}
+		}
 	}
 	#endregion
 }

@@ -27,6 +27,11 @@ public class TouchManager : Singleton<TouchManager> {
 							else{
 								if(inputQueue.Count < queueLimit){
 									inputQueue.Enqueue(hitObject.collider.gameObject);
+
+									// Add queue mark
+									waiterSelection.AddQueueUI();
+									RefreshQueueUI();
+
 									// used to dequeue
 									if(Waiter.Instance.CanMove){
 										Waiter.Instance.Finished();
@@ -49,6 +54,36 @@ public class TouchManager : Singleton<TouchManager> {
 	}
 
 	public void EmptyQueue(){
+		CheckQueue();
+	}
+
+	// During dequeue, refresh update the status of all the current elements in the UI
+	public void RefreshQueueUI() {
+		int queueOrder = 0;
+		foreach(GameObject go in inputQueue) {
+			IWaiterSelection waiterSelection = go.GetComponent<IWaiterSelection>();
+			if(waiterSelection != null) {
+				waiterSelection.UpdateQueueUI(queueOrder);
+				queueOrder++;
+			}
+			else {
+				Debug.LogError("Waiter selection now found");
+			}
+		}
+	}
+
+	public void CheckQueue() {
+		List<GameObject> queuedObjects = new List<GameObject>();
+		foreach(GameObject tab in RestaurantManager.Instance.TableList) {
+			queuedObjects.Add(tab);
+		}
+		queuedObjects.Add(KitchenManager.Instance.gameObject);
+		queuedObjects.Add(MedicArea.Instance.gameObject);
+		queuedObjects.Add(TrashCan.Instance.gameObject);
+
+		foreach(GameObject iwait in queuedObjects) {
+			iwait.GetComponent<IWaiterSelection>().DestroyAllQueueUI();
+		}
 		inputQueue = new Queue<GameObject>();
 	}
 }

@@ -78,7 +78,7 @@ public class DataManager : Singleton<DataManager> {
 		if(Debug.isDebugBuild) {
 			Debug.Log("DEVELOPMENT BUILD ANALYTICS");
 			//Dev Amplitude
-			amplitude.logging = true;
+			amplitude.logging = false;
 			amplitude.init("9196f4d945c306a45a54b9fb8577c017");
 		}
 		else {
