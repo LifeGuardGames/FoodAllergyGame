@@ -32,6 +32,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 	public Canvas orderCanvas;
 	public GameObject textParent;
 	public Animator animator;	// Used for click pulse
+	public GameObject queueParent;	// Parent for waiter movement queue UI
 
 	// Initialize the order when it is first spawned
 	public void Init(string foodID, int tableNumber, List<Allergies> _allergy){
@@ -113,6 +114,7 @@ public class Order : MonoBehaviour, IWaiterSelection{
 
 	#region IWaiterSelection implementation
 	public void OnWaiterArrived(){
+		DestroyQueueUI();
 		if(!Waiter.Instance.HaveMeal(tableNumber)&& Waiter.Instance.CheckHands()){
 
 			// Wierd case where script is being called even though process of being destroyed
@@ -143,5 +145,25 @@ public class Order : MonoBehaviour, IWaiterSelection{
 	public virtual void OnPressAnim() {
 		animator.SetTrigger("ClickPulse");
     }
+
+	public void AddQueueUI() {
+		GameObject check = Resources.Load("QueueUICheckMark") as GameObject;
+		GameObjectUtils.AddChildGUI(queueParent, check);
+	}
+
+	public void UpdateQueueUI(int order) {
+	}
+
+	public void DestroyQueueUI() {
+		Destroy(GameObjectUtils.GetLastChild(queueParent).gameObject);
+	}
+
+	public void DestroyAllQueueUI() {
+		if(queueParent.transform.childCount > 0) {
+			foreach(Transform go in queueParent.transform) {
+				Destroy(go.gameObject);
+			}
+		}
+	}
 	#endregion
 }

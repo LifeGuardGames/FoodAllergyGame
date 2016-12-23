@@ -132,7 +132,7 @@ public class AudioManager : LgAudioManager<AudioManager>{
 		else if(currentScene == SceneUtils.COMICSCENE) {
 			isMusicOn = true;
 			backgroundMusic = "BgComic";
-			//FadeOutPlayNewBackground(backgroundMusic);
+			FadeOutPlayNewBackground(backgroundMusic);
 		}
 		else if (backgroundMusic != "BgStart") {
 			backgroundMusic = "BgStart";

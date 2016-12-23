@@ -6,13 +6,13 @@ public class CustomerGossiper : Customer{
 	public int gossiperTable;
 
 	public override void Init(int num, ImmutableDataChallenge mode) {
-		base.Init(num, mode);
 		type = CustomerTypes.Gossiper;
+		base.Init(num, mode);
 	}
 
 	public override void Init(int num, ImmutableDataEvents mode) {
-		base.Init(num, mode);
 		type = CustomerTypes.Gossiper;
+		base.Init(num, mode);
 	}
 
 	public void GoAway(){
@@ -37,6 +37,7 @@ public class CustomerGossiper : Customer{
 		yield return new WaitForSeconds(5.0f);
 		if(RestaurantManager.Instance.GetTable(gossiperTable).seat.childCount > 0) {
 			if(RestaurantManager.Instance.GetTable(gossiperTable).seat.GetChild(0).GetComponent<Customer>() != null) {
+				failedMission = true;
 				RestaurantManager.Instance.GetTable(gossiperTable).seat.GetChild(0).GetComponent<Customer>().Annoyed();
 			}
 		}

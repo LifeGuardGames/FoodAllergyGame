@@ -14,9 +14,10 @@ public class BehavTableSmasherNotifyLeave : Behav {
 	}
 
 	public override void Act() {
+		self.failedMission = true;
 		// check to make sure he isn't inline as there is no table to smash while inline
 		// and he needs to able to leave normally
-		if(self.state != CustomerStates.InLine && self.satisfaction <= 0 || self.isAnnoyed) {
+		if(self.state != CustomerStates.InLine || self.isAnnoyed) {
 
 			// General customer leaving things
 			Waiter.Instance.RemoveMeal(self.tableNum);
@@ -35,6 +36,25 @@ public class BehavTableSmasherNotifyLeave : Behav {
 
 
 			self.DestroySelf(6.5f);
+		}
+		else if (self.state == CustomerStates.InLine) {
+			GameObject Line = GameObject.Find("Line");
+			CustomerAnimControllerTableSmasher animTableSmasher = self.customerAnim as CustomerAnimControllerTableSmasher;
+			if(Line.GetComponent<LineController>().lineList.Count > 2) {
+				if(Line.GetComponent<LineController>().lineList[0].GetChild(0) != self.gameObject && Line.GetComponent<LineController>().lineList[0].GetChild(0).GetComponent<Customer>().type != CustomerTypes.TableSmasher) {
+					// Downcast and play animation
+					
+					animTableSmasher.SmashTable();
+					Line.GetComponent<LineController>().lineList[0].GetChild(0).GetComponent<Customer>().NotifyLeave();
+				}
+              }
+			//animTableSmasher.SetWaitingInLine();
+			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[0]);
+			Behav leave = (Behav)Activator.CreateInstance(type);
+			leave.self = self;
+			leave.Act();
+			self.currBehav = leave;
+			leave = null;
 		}
 		else {
 			// Otherwise leave normally

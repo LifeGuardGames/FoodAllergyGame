@@ -16,8 +16,8 @@ public class MutableDataDayTracker {
 		DaysPlayed = 0;
 		ChallengesPlayed = 0;
 		//pro toggle
-		IsMoreCrates = false;
-		HasCollectedAge = false;
+		IsMoreCrates = true;
+		HasCollectedAge = true;
 		NotifQueue = new List<string>();
 		CurrentTempoGoal = "";
 		HasCompletedGoalThisTier = false;

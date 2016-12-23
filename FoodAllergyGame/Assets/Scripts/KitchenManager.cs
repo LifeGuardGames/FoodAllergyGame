@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 	public List<Transform> orderSpotList;
@@ -26,6 +27,7 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 	}
 	public bool IsTrachcanTut = false;
 	public Animator animator;       // Used for clicking
+	public GameObject queueParent;  // Parent for waiter movement queue UI
 
 	void Start(){
 		if(SceneManager.GetActiveScene().name == SceneUtils.RESTAURANT){
@@ -120,6 +122,8 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 		if(!IsTrachcanTut) {
 			CookOrder(Waiter.Instance.OrderChef());
 		}
+
+		DestroyQueueUI();
 		Waiter.Instance.Finished();
 	}
 
@@ -137,6 +141,25 @@ public class KitchenManager : Singleton<KitchenManager>, IWaiterSelection{
 
 	public void NotifySpinnerHighlight(){
 		spinnerHighlight.gameObject.SetActive(true);
+	}
+
+	public void AddQueueUI() {
+		GameObject check = Resources.Load("QueueUICheckMark") as GameObject;
+		GameObjectUtils.AddChildGUI(queueParent, check);
+	}
+
+	public void UpdateQueueUI(int order) {
+	}
+
+	public void DestroyQueueUI() {
+		Destroy(GameObjectUtils.GetLastChild(queueParent).gameObject);
+	}
+	public void DestroyAllQueueUI() {
+		if(queueParent.transform.childCount > 0) {
+			foreach(Transform go in queueParent.transform) {
+				Destroy(go.gameObject);
+			}
+		}
 	}
 	#endregion
 

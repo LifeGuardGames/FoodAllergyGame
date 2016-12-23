@@ -13,6 +13,7 @@
 <CustomerSet ID="CustomerSetT1">
 		<CustomerList>CustomerTutorial</CustomerList>
 	</CustomerSet>
+ 
 	<CustomerSet ID="CustomerSetT2">
 		<CustomerList>CustomerRegular,CustomerImpatient,CustomerCoolKid,CustomerTutBlackOut,CustomerTutTableSmasher,CustomerTutGossiper,CustomerHospitalRunner,CustomerTutPlayful,CustomerTutEater</CustomerList>
 	</CustomerSet>
@@ -25,7 +26,10 @@
 	<CustomerSet ID="CustomerSetTF">
 		<CustomerList>CustomerRegular</CustomerList>
 	</CustomerSet>
-	<CustomerSet ID="CustomerSet00">
+  <CustomerSet ID="CustomerSetTrailer1">
+    <CustomerList>CustomerRegular,CustomerRegular</CustomerList>
+  </CustomerSet>
+  <CustomerSet ID="CustomerSet00">
 		<CustomerList></CustomerList>
 	</CustomerSet>
 	<CustomerSet ID="CustomerSet01">

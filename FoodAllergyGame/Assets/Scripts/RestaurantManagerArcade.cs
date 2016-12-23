@@ -114,7 +114,6 @@ public class RestaurantManagerArcade : RestaurantManager {
 			GameObject customerPrefab = Resources.Load(customerData.Script) as GameObject;
 			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 			customerNumber++;
-			cus.GetComponent<Customer>().behavFlow = DataLoaderBehav.GetRandomBehavByType(cus.GetComponent<Customer>().type.ToString()).ID;
 			cus.GetComponent<Customer>().Init(customerNumber, eventData);
 			AddCustomer(cus.GetComponent<Customer>());
 			customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
@@ -225,8 +224,15 @@ public class RestaurantManagerArcade : RestaurantManager {
 				//					}
 				//AnalyticsManager.Instance.TrackCustomerSpawned(DataManager.Instance.GetEvent(),customerList);
 				AnalyticsManager.Instance.SuperProperties.Remove("Event");
-			
-					AnalyticsManager.Instance.EndGameDayReport(
+				foreach(Mission mis in DataManager.Instance.GameData.Daily.DailyMissions) {
+					if(mis.misType == MissionType.Allergy && Medic.Instance.MedicCost == 0) {
+						mis.progress++;
+					}
+					else if(mis.misType == MissionType.Days) {
+						mis.progress++;
+					}
+				}
+				AnalyticsManager.Instance.EndGameDayReport(
 						DataManager.Instance.GameData.RestaurantEvent.CurrentEvent, satisfactionAI.MissingCustomers, satisfactionAI.AvgSatisfaction(),
 						DayEarnedCash, Medic.Instance.MedicCost, savedCustomers, attempted, inspectionButtonClicked);
 				if(TierManager.Instance.CurrentTier > 2) {
@@ -390,7 +396,7 @@ public class RestaurantManagerArcade : RestaurantManager {
 			GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
 			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 			Customer customerScript = cus.GetComponent<Customer>();
-
+			customerScript.customerIDMissionKey = test.ID;
 			customerScript.behavFlow = test.BehavFlow;
 			customerScript.tableNum = i;
 			customerScript.Init(customerNumber, eventData);

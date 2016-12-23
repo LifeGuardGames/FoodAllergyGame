@@ -27,7 +27,7 @@ public class BehavGossipEating : Behav {
 
 	public override void Act() {
 		self.state = CustomerStates.Eating;
-		if(RestaurantManager.Instance.TableList[self.tableNum].GetComponent<Table>().tableType != Table.TableType.FlyThru) { 
+		if(RestaurantManager.Instance.GetTable(self.tableNum).tableType != Table.TableType.FlyThru) { 
 		int rand = UnityEngine.Random.Range(0, 10);
 			if(rand > 6) {
 				self.StopCoroutine("EatingTimer");

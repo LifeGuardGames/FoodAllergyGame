@@ -1,7 +1,7 @@
 fileFormatVersion: 2
-guid: 25a30e3a1dd5b4843afd65bca4d74d92
-timeCreated: 1467930714
-licenseType: Free
+guid: f901b9cd05cdd724180f1ed56d4f5432
+timeCreated: 1482256700
+licenseType: Pro
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2
@@ -29,7 +29,7 @@ TextureImporter:
   textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
-    filterMode: 1
+    filterMode: -1
     aniso: 1
     mipBias: -1
     wrapMode: 1
@@ -49,6 +49,7 @@ TextureImporter:
   textureType: 2
   buildTargetSettings: []
   spriteSheet:
+    serializedVersion: 2
     sprites: []
     outline: []
   spritePackingTag: 

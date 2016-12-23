@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
 public class Microwave :Singleton<Microwave>, IWaiterSelection{
 
@@ -9,6 +7,7 @@ public class Microwave :Singleton<Microwave>, IWaiterSelection{
 	public bool isCooking;
 	public GameObject currentlyCooking;
 	public GameObject microwaveNode;
+	public GameObject queueParent;
 
 	public void CookOrder(GameObject order){
 		if( order != null){
@@ -24,6 +23,7 @@ public class Microwave :Singleton<Microwave>, IWaiterSelection{
 
 	#region IWaiterSelection implementation
 	public void OnWaiterArrived(){
+		DestroyQueueUI();
 		if(isCooking){
 			Waiter.Instance.SetHand(currentlyCooking);
 		}
@@ -44,6 +44,26 @@ public class Microwave :Singleton<Microwave>, IWaiterSelection{
 	}
 
 	public virtual void OnPressAnim() {
+	}
+
+	public void AddQueueUI() {
+		GameObject check = Resources.Load("QueueUICheckMark") as GameObject;
+		GameObjectUtils.AddChildGUI(queueParent, check);
+	}
+
+	public void UpdateQueueUI(int order) {
+	}
+
+	public void DestroyQueueUI() {
+		Destroy(GameObjectUtils.GetLastChild(queueParent).gameObject);
+	}
+
+	public void DestroyAllQueueUI() {
+		if(queueParent.transform.childCount > 0) {
+			foreach(Transform go in queueParent.transform) {
+				Destroy(go.gameObject);
+			}
+		}
 	}
 	#endregion
 

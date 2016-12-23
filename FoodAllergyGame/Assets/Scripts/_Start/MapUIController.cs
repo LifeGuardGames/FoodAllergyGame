@@ -221,11 +221,11 @@ public class MapUIController : MonoBehaviour {
 			StartCoroutine("PlayCometParticle");
 			if(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal != "") {
 				ParticleAndFloatyUtils.PlayMoneyFloaty(comet.transform.position, DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).Reward);
-				CashManager.Instance.OverrideCurrentCash(DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).Reward);
+				CashManager.Instance.OverrideCurrentCash(DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).Reward, comet.transform.position);
 			}
 			else {
 				ParticleAndFloatyUtils.PlayMoneyFloaty(comet.transform.position, 100);
-				CashManager.Instance.OverrideCurrentCash(100);
+				CashManager.Instance.OverrideCurrentCash(100, comet.transform.position);
 			}
 		}
 		else {

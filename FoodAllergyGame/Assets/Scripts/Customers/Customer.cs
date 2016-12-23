@@ -13,16 +13,19 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public int tableNum = -1;
 	public float timer = 1.0f;
 	public CustomerTypes type = CustomerTypes.Normal;
-	public string customerID;			// The customer's id used for identification in the 
+	public string customerID;           // The customer's id used for identification in the 
+	public string customerIDMissionKey;
 	public CustomerStates state;		// The current state of the customer
 	public List<Allergies> allergy;		// The allergy of the customer
 	public float menuTimer = 4.0f;		// Time spent looking at the menu
 	public float attentionSpan = 15.0f;	// The attention timer
 	public float eatTimer = 6.0f;
 	public Behav currBehav;
-	public int satisfaction;			// The satisfaction the customer has, everytime the attention span 
+	public int satisfaction;            // The satisfaction the customer has, everytime the attention span 
 										//	ticks down to 0 the customer will lose satisfaction
 
+	public bool failedMission;
+	public bool completedMission;
 	public FoodKeywords desiredFood;    // The keyword to help foodmanager find what the customer wants
 
 	private GameObject order;           //the order created by the customer used to have easy access to the
@@ -76,6 +79,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 		attentionSpan = 15f * timer;
 		menuTimer *= RandomFactor();
 		eatTimer *= RandomFactor();
+		behavFlow = DataLoaderBehav.GetRandomBehavByType(type.ToString()).ID;
 		StartCoroutine("SatisfactionTimer");
 
 		// customers refuse to line up out the door
@@ -97,8 +101,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				GetComponentInParent<Table>().currentCustomerID = customerID;
 				this.GetComponent<BoxCollider>().enabled = false;
 				flyThruTable.FlyThruDropDown();
-				var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[1]);
-				Behav read = (Behav)Activator.CreateInstance(type);
+				var _type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[1]);
+				Behav read = (Behav)Activator.CreateInstance(_type);
 				read.self = this;
 				currBehav = read;
 				read.Act();
@@ -109,8 +113,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 				RestaurantManager.Instance.restaurantUI.OpenAndCloseDoor();
 				RestaurantManager.Instance.LineController.PlaceCustomerInEmptySpot(this);   // Set customer line spot and update base sorting order
 				RestaurantManager.Instance.lineCount++;
-				var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[0]);
-				Behav wait = (Behav)Activator.CreateInstance(type);
+				var _type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[0]);
+				Behav wait = (Behav)Activator.CreateInstance(_type);
 				wait.self = this;
 				currBehav = wait;
 				wait.Act();
@@ -543,6 +547,11 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 			Waiter.Instance.Finished();
 			break;
 		default:	// All other states, nothing to do
+				if(type == CustomerTypes.CoolKid) {
+					//cool kid doesn't like to be disturbed
+					UpdateSatisfaction(-1);
+					failedMission = true;
+				}
 			Waiter.Instance.Finished();
 			break;
 		}
@@ -598,6 +607,21 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	public virtual void OnPressAnim() {
 		// Do nothing
+	}
+
+	public void AddQueueUI() {
+		// Do nothing
+	}
+
+	public void UpdateQueueUI(int order) {
+		// Do nothing
+	}
+
+	public void DestroyQueueUI() {
+		// Do nothing
+	}
+	public void DestroyAllQueueUI() {
+
 	}
 	#endregion
 
@@ -671,6 +695,15 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 
 	public void Annoyed() {
 		isAnnoyed = true;
+		var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[6]);
+		Behav leave = (Behav)Activator.CreateInstance(type);
+		leave.self = this;
+		currBehav = leave;
+		leave.Act();
+		leave = null;
+	}
+
+	public void NotifyLeave() {
 		var type = Type.GetType(DataLoaderBehav.GetData(behavFlow).Behav[6]);
 		Behav leave = (Behav)Activator.CreateInstance(type);
 		leave.self = this;
