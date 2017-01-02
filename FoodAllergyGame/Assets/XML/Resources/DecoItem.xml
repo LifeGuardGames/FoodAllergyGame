@@ -412,7 +412,7 @@
 
   <DecoItem ID = "CustomerGossiper">
     <Type>Special</Type>
-    <Price>0</Price>
+    <Price>6000</Price>
     <TitleKey>CustomerGossiper</TitleKey>
     <DescriptionKey>CustomerGossiperDesc</DescriptionKey>
     <SpriteName>ItemCustomerGossiper</SpriteName>
@@ -421,7 +421,7 @@
   
   <DecoItem ID = "CustomerEater">
     <Type>Special</Type>
-    <Price>0</Price>
+    <Price>6000</Price>
     <TitleKey>CustomerEater</TitleKey>
     <DescriptionKey>CustomerEaterDesc</DescriptionKey>
     <SpriteName>ItemCustomerEater</SpriteName>
@@ -430,7 +430,7 @@
   
   <DecoItem ID = "CustomerHospitalRunner">
     <Type>Special</Type>
-    <Price>0</Price>
+    <Price>6000</Price>
     <TitleKey>CustomerHospitalRunner</TitleKey>
     <DescriptionKey>CustomerHospitalRunnerDesc</DescriptionKey>
     <SpriteName>ItemCustomerHospitalRunner</SpriteName>
@@ -439,7 +439,7 @@
 
   <DecoItem ID = "CustomerBlackOut">
     <Type>Special</Type>
-    <Price>0</Price>
+    <Price>6000</Price>
     <TitleKey>CustomerBlackOut</TitleKey>
     <DescriptionKey>CustomerBlackOutDesc</DescriptionKey>
     <SpriteName>ItemCustomerBlackOut</SpriteName>
