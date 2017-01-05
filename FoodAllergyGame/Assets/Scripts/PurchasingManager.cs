@@ -11,7 +11,19 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 	// for use with and outside of Unity Purchasing. Define store-specific identifiers also on each platform's publisher dashboard (iTunes Connect, Google Play Developer Console, etc.)
 	private static string kProductIDPro = "com.lifeguardgames.foodallergy.iap.pro";				// General handle for the non-consumable product.
 	private static string kProductNameApplePro = "com.LifeGuardGames.FoodAllergy.IAP.Pro";		// Apple App Store identifier for the non-consumable product.
-	private static string kProductNameGooglePlayPro = "com.lifeguardgames.foodallergyandroid.iap.pro";	// Google Play Store identifier for the non-consumable product.
+	private static string kProductNameGooglePlayPro = "com.lifeguardgames.foodallergyandroid.iap.pro";  // Google Play Store identifier for the non-consumable product.
+
+	private static string kProductIDStardustOne = "com.lifeguardgames.foodallergy.iap.stardust.one";
+	private static string kProductIDAppleStardustOne = "com.LifeGuardGames.FoodAllergy.IAP.Stardust.One";
+	private static string kProductIDGooglePlayStardustOne = "com.lifeguardgames.foodallergyandroid.iap.stardust.one";
+
+	private static string kProductIDStardustTwo = "com.lifeguardgames.foodallergy.iap.stardust.two";
+	private static string kProductIDAppleStardustTwo = "com.LifeGuardGames.FoodAllergy.IAP.Stardust.Two";
+	private static string kProductIDGooglePlayStardustTwo = "com.lifeguardgames.foodallergyandroid.iap.stardust.two";
+
+	private static string kProductIDStardustThree = "com.lifeguardgames.foodallergy.iap.stardust.three";
+	private static string kProductIDGooglePlayStardustThree= "com.lifeguardgames.foodallergyandroid.iap.stardust.three";
+	private static string kProductIDAppleStardustThree = "com.LifeGuardGames.FoodAllergy.IAP.Stardust.Three";
 
 	void Start() {
 		// If we haven't set up the Unity Purchasing reference
@@ -33,6 +45,9 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 
 		// Add a product to sell / restore by way of its identifier, associating the general identifier with its store-specific identifiers.
 		builder.AddProduct(kProductIDPro, ProductType.NonConsumable, new IDs() { { kProductNameApplePro, AppleAppStore.Name }, { kProductNameGooglePlayPro, GooglePlay.Name }, });// And finish adding the subscription product.
+		builder.AddProduct(kProductIDStardustOne, ProductType.Consumable, new IDs() { { kProductIDAppleStardustOne, AppleAppStore.Name }, { kProductIDGooglePlayStardustOne, GooglePlay.Name }, });
+		builder.AddProduct(kProductIDStardustTwo, ProductType.Consumable, new IDs() { { kProductIDAppleStardustTwo, AppleAppStore.Name }, { kProductIDGooglePlayStardustTwo, GooglePlay.Name }, });
+		builder.AddProduct(kProductIDStardustThree, ProductType.Consumable, new IDs() { { kProductIDAppleStardustThree, AppleAppStore.Name }, { kProductIDGooglePlayStardustThree, GooglePlay.Name }, });
 		UnityPurchasing.Initialize(this, builder);
 	}
 	
@@ -44,6 +59,20 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 	public void BuyNonConsumable() {
 		// Buy the non-consumable product using its general identifier. Expect a response either through ProcessPurchase or OnPurchaseFailed asynchronously.
 		BuyProductID(kProductIDPro);
+	}
+
+	public void BuyConsumable(int amount) {
+		switch(amount) {
+			case 1:
+				BuyProductID(kProductIDStardustOne);
+				break;
+			case 2:
+				BuyProductID(kProductIDStardustTwo);
+				break;
+			case 3:
+				BuyProductID(kProductIDStardustThree);
+				break;
+	}
 	}
 	
 	void BuyProductID(string productId) {
@@ -141,6 +170,21 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 			Amplitude.Instance.logRevenue(Double.Parse(DataManager.Instance.PriceStringAux));
 			StartManager.Instance.UnlockMoreCratesAndShowUI();
         }
+		else if(String.Equals(args.purchasedProduct.definition.id, kProductIDStardustOne, StringComparison.Ordinal)) {
+				Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
+				//Amplitude.Instance.logRevenue(Double.Parse(DataManager.Instance.PriceStringAux));
+				DataManager.Instance.GameData.DayTracker.IAPCurrency++;
+			}
+		else if(String.Equals(args.purchasedProduct.definition.id, kProductIDStardustTwo, StringComparison.Ordinal)) {
+			Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
+			//Amplitude.Instance.logRevenue(Double.Parse(DataManager.Instance.PriceStringAux));
+			DataManager.Instance.GameData.DayTracker.IAPCurrency+=2;
+		}
+		else if(String.Equals(args.purchasedProduct.definition.id, kProductIDStardustThree, StringComparison.Ordinal)) {
+			Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
+			//Amplitude.Instance.logRevenue(Double.Parse(DataManager.Instance.PriceStringAux));
+			DataManager.Instance.GameData.DayTracker.IAPCurrency += 3;
+		}
 		// Or ... an unknown product has been purchased by this user. Fill in additional products here.
 		else {
 			Debug.Log(string.Format("ProcessPurchase: FAIL. Unrecognized product: '{0}'", args.purchasedProduct.definition.id));

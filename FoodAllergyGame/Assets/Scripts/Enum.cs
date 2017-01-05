@@ -95,6 +95,7 @@ public enum DecoTypes{
 	FlyThru,
 	Microwave,
 	Special,
+	IAP,
 }
 
 public enum  PropNodeType{

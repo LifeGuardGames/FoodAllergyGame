@@ -40,6 +40,13 @@ public class ImmutableDataDecoItem {
 		get{return tier;}
 	}
 
+
+
+	private int iapPrice;
+	public int IapPrice {
+		get { return iapPrice; }
+	}
+
 	public ImmutableDataDecoItem(string id, IXMLNode xmlNode, string error){
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 
@@ -54,5 +61,12 @@ public class ImmutableDataDecoItem {
 		}
 
 		tier = XMLUtils.GetInt(hashElements["Tier"] as IXMLNode);
+
+		if(hashElements.Contains("IapPrice")) {
+			iapPrice = XMLUtils.GetInt(hashElements["IapPrice"] as IXMLNode);
+		}
+		else {
+			iapPrice = 0;
+		}
 	}
 }

@@ -39,6 +39,7 @@ public class DecoManager : Singleton<DecoManager>{
 	public bool isTutorial;
 	public List<GameObject> tabNewTags;
 	public GameObject dailySpecialTag;
+	public PositionTweenToggle iapMenu;
 
 	#region Generic functions
 	public static bool IsDecoBought(string decoID){
@@ -166,6 +167,9 @@ public class DecoManager : Singleton<DecoManager>{
 				decoList.Add(DataLoaderDecoItem.GetData(DataManager.Instance.GameData.Daily.SpeciDeco));
 				dailySpecialTag.SetActive(true);
 				break;
+			case DecoTypes.IAP:
+				decoList = DataLoaderDecoItem.GetDecoDataByType(DecoTypes.IAP);
+                break;
 			default:
 				decoList = DataLoaderDecoItem.GetDecoDataByType(currentTabType);
 				break;
@@ -295,7 +299,7 @@ public class DecoManager : Singleton<DecoManager>{
 		ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
 		
 		// Check if you have enough money, change cash if so, takes care of anim as well
-		if(CashManager.Instance.DecoBuyCash(decoData.Cost)){
+		if(CashManager.Instance.DecoBuyCash(decoData.Cost) && decoData.Type != DecoTypes.IAP){
 			if(decoData.Type == DecoTypes.Special) {
 				DataManager.Instance.GameData.Decoration.CustomersBought.Add(decoData.ID);
 			}
@@ -303,6 +307,18 @@ public class DecoManager : Singleton<DecoManager>{
 			SetDeco(decoID, decoData.Type);
 			AnalyticsManager.Instance.TrackDecoBought(decoID);
             return true;
+		}
+		else if (decoData.Type == DecoTypes.IAP) {
+			if(DataManager.Instance.GameData.DayTracker.IAPCurrency >= decoData.IapPrice) {
+				DataManager.Instance.GameData.Decoration.BoughtDeco.Add(decoID, "");
+				SetDeco(decoID, decoData.Type);
+				AnalyticsManager.Instance.TrackDecoBought(decoID);
+				return true;
+			}
+			else {
+				OpenIapMenu();
+			}
+			return false;
 		}
 		else{
 			return false;
@@ -385,5 +401,9 @@ public class DecoManager : Singleton<DecoManager>{
 
 	public void OnExitButtonClicked(){
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START, showRandomTip: true);
+	}
+
+	public void OpenIapMenu() {
+		iapMenu.Show();
 	}
 }

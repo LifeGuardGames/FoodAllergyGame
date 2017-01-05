@@ -438,12 +438,13 @@
   </DecoItem>
 
   <DecoItem ID = "CustomerBlackOut">
-    <Type>Special</Type>
+    <Type>IAP</Type>
     <Price>6000</Price>
     <TitleKey>CustomerBlackOut</TitleKey>
     <DescriptionKey>CustomerBlackOutDesc</DescriptionKey>
     <SpriteName>ItemCustomerBlackOut</SpriteName>
     <Tier>0</Tier>
+    <IapPrice>1</IapPrice>
   </DecoItem>
 
 </DecoItem>
