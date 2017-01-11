@@ -273,7 +273,7 @@ public class DecoManager : Singleton<DecoManager>{
 			}
 		}
 		else {
-			if(DataLoaderDecoItem.GetData(decoID).Type != decoType) {
+			if(DataLoaderDecoItem.GetData(decoID).Type != decoType && DataLoaderDecoItem.GetData(decoID).Type != DecoTypes.IAP) {
 				Debug.LogError("Deco mismatch with type:" + decoID + " " + decoType.ToString());
 				return false;
 			}
@@ -310,8 +310,9 @@ public class DecoManager : Singleton<DecoManager>{
 		}
 		else if (decoData.Type == DecoTypes.IAP) {
 			if(DataManager.Instance.GameData.DayTracker.IAPCurrency >= decoData.IapPrice) {
-				DataManager.Instance.GameData.Decoration.BoughtDeco.Add(decoID, "");
-				SetDeco(decoID, decoData.Type);
+				DataManager.Instance.GameData.DayTracker.IAPCurrency -= decoData.IapPrice;
+                DataManager.Instance.GameData.Decoration.BoughtDeco.Add(decoID, "");
+				SetDeco(decoID, decoData.IapType);
 				AnalyticsManager.Instance.TrackDecoBought(decoID);
 				return true;
 			}

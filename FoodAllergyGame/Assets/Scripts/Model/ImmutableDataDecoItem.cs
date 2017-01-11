@@ -47,6 +47,11 @@ public class ImmutableDataDecoItem {
 		get { return iapPrice; }
 	}
 
+	private DecoTypes iapType;
+	public DecoTypes IapType {
+		get { return iapType; }
+	}
+
 	public ImmutableDataDecoItem(string id, IXMLNode xmlNode, string error){
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 
@@ -67,6 +72,9 @@ public class ImmutableDataDecoItem {
 		}
 		else {
 			iapPrice = 0;
+		}
+		if(hashElements.Contains("IapType")) {
+			iapType = (DecoTypes)Enum.Parse(typeof(DecoTypes), XMLUtils.GetString(hashElements["IapType"] as IXMLNode));
 		}
 	}
 }

@@ -90,15 +90,30 @@ public class ShowcaseController : MonoBehaviour {
 	}
 
 	public void OnBuyButtonClicked(){
-		DecoManager.Instance.SetDeco(currentDeco.ID, currentDeco.Type);
+		if(currentDeco.Type != DecoTypes.IAP) {
+			DecoManager.Instance.SetDeco(currentDeco.ID, currentDeco.Type);
+		}
+		else {
+			DecoManager.Instance.SetDeco(currentDeco.ID, currentDeco.IapType);
+		}
 	}
 
 	public void OnEquipButtonClicked(){
-		DecoManager.Instance.SetDeco(currentDeco.ID, currentDeco.Type);
+		if(currentDeco.Type != DecoTypes.IAP) {
+			DecoManager.Instance.SetDeco(currentDeco.ID, currentDeco.Type);
+		}
+		else {
+			DecoManager.Instance.SetDeco(currentDeco.ID, currentDeco.IapType);
+		}
 	}
 
 	public void OnRemoveButtonClicked(){
-		DecoManager.Instance.SetDeco(null, currentDeco.Type);
+		if(currentDeco.Type != DecoTypes.IAP) {
+			DecoManager.Instance.SetDeco(currentDeco.ID, currentDeco.Type);
+		}
+		else {
+			DecoManager.Instance.SetDeco(currentDeco.ID, currentDeco.IapType);
+		}
 	}
 
 	// Hide everything but dont touch UI state

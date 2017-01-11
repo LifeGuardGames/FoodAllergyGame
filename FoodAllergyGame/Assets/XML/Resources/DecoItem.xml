@@ -438,7 +438,7 @@
   </DecoItem>
 
   <DecoItem ID = "CustomerBlackOut">
-    <Type>IAP</Type>
+    <Type>Special</Type>
     <Price>6000</Price>
     <TitleKey>CustomerBlackOut</TitleKey>
     <DescriptionKey>CustomerBlackOutDesc</DescriptionKey>
@@ -446,5 +446,64 @@
     <Tier>0</Tier>
     <IapPrice>1</IapPrice>
   </DecoItem>
-
+  <DecoItem ID ="TablePlushie">
+    <Type>IAP</Type>
+    <Price>0</Price>
+    <TitleKey>TablePlushie</TitleKey>
+    <DescriptionKey>TablePlushieDesc</DescriptionKey>
+    <SpriteName>RestTablePlushie</SpriteName>
+    <Tier>0</Tier>
+    <IapPrice>1</IapPrice>
+    <IapType>Table</IapType>
+  </DecoItem>
+ <DecoItem ID ="FloorPlushie">
+    <Type>IAP</Type>
+    <Price>0</Price>
+    <TitleKey>FloorPlushie</TitleKey>
+    <DescriptionKey>FloorPlushieDesc</DescriptionKey>
+    <SpriteName>RestFloorPlushie</SpriteName>
+    <Tier>0</Tier>
+    <IapPrice>1</IapPrice>
+    <IapType>Floor</IapType>>
+  </DecoItem>
+ <DecoItem ID ="KitchenPlushie">
+    <Type>IAP</Type>
+    <Price>0</Price>
+    <TitleKey>KitchenPlushie</TitleKey>
+    <DescriptionKey>KitchenPlushieDesc</DescriptionKey>
+    <SpriteName>RestKitchenPlushie</SpriteName>
+    <Tier>0</Tier>
+    <IapPrice>1</IapPrice>
+   <IapType>Kitchen</IapType>
+  </DecoItem>
+  <DecoItem ID ="TableSloppy">
+    <Type>IAP</Type>
+    <Price>0</Price>
+    <TitleKey>TableSloppy</TitleKey>
+    <DescriptionKey>TableSloppyDesc</DescriptionKey>
+    <SpriteName>RestTableSloppy</SpriteName>
+    <Tier>0</Tier>
+    <IapPrice>1</IapPrice>
+    <IapType>Table</IapType>
+  </DecoItem>
+ <DecoItem ID ="FloorSloppy">
+    <Type>IAP</Type>
+    <Price>0</Price>
+    <TitleKey>FloorSloppy</TitleKey>
+    <DescriptionKey>FloorSloppyDesc</DescriptionKey>
+    <SpriteName>RestFloorSloppy</SpriteName>
+    <Tier>0</Tier>
+    <IapPrice>1</IapPrice>
+    <IapType>Floor</IapType>>
+  </DecoItem>
+ <DecoItem ID ="KitchenSloppy">
+    <Type>IAP</Type>
+    <Price>0</Price>
+    <TitleKey>KitchenSloppy</TitleKey>
+    <DescriptionKey>KitchenSloppyDesc</DescriptionKey>
+    <SpriteName>RestKitchenSloppy</SpriteName>
+    <Tier>0</Tier>
+    <IapPrice>1</IapPrice>
+   <IapType>Kitchen</IapType>
+  </DecoItem>
 </DecoItem>
