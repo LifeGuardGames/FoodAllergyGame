@@ -15,6 +15,7 @@ public class ShowcaseController : MonoBehaviour {
 	public Text descriptionText;
 	public Text costText;
 	public Image decoImage;
+	public Image costImage;
 
 	private ImmutableDataDecoItem currentDeco = null;
 	private string auxCallbackString = "CallbackHelper";	// Toggles the callback on showcaseDemux if present
@@ -54,7 +55,14 @@ public class ShowcaseController : MonoBehaviour {
 			descriptionText.text = "";
 		}
 
-		costText.text = decoData.Cost.ToString();
+		if(decoData.Type != DecoTypes.IAP) {
+			costText.text = decoData.Cost.ToString();
+			costImage.sprite = Resources.Load<Sprite>("Coin");
+		}
+		else {
+			costText.text = decoData.IapPrice.ToString();
+			costImage.sprite = Resources.Load<Sprite>("IAPStardust1");
+		}
 		
 		// Show the corrosponding buttons based on item state
 		if(!DecoManager.Instance.IsDecoUnlocked(decoData.ID)) {		// Locked

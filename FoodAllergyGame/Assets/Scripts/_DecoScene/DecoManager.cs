@@ -15,6 +15,7 @@ public class DecoManager : Singleton<DecoManager>{
 	public GameObject rightButton;
 	private List<ImmutableDataDecoItem> decoList;
 
+
 	// Reference of all the deco loaders, dynamically assigned on start
 	private Dictionary<DecoTypes, DecoLoader> decoLoaderHash = new Dictionary<DecoTypes, DecoLoader>();
 	public Dictionary<DecoTypes, DecoLoader> DecoLoaderHash{
@@ -40,6 +41,7 @@ public class DecoManager : Singleton<DecoManager>{
 	public List<GameObject> tabNewTags;
 	public GameObject dailySpecialTag;
 	public PositionTweenToggle iapMenu;
+	public PositionTweenToggle starDustHud;
 
 	#region Generic functions
 	public static bool IsDecoBought(string decoID){
@@ -312,6 +314,7 @@ public class DecoManager : Singleton<DecoManager>{
 			if(DataManager.Instance.GameData.DayTracker.IAPCurrency >= decoData.IapPrice) {
 				DataManager.Instance.GameData.DayTracker.IAPCurrency -= decoData.IapPrice;
                 DataManager.Instance.GameData.Decoration.BoughtDeco.Add(decoID, "");
+				starDustHud.gameObject.GetComponentInChildren<Text>().text = DataManager.Instance.GameData.DayTracker.IAPCurrency.ToString();
 				SetDeco(decoID, decoData.IapType);
 				AnalyticsManager.Instance.TrackDecoBought(decoID);
 				return true;
@@ -328,6 +331,13 @@ public class DecoManager : Singleton<DecoManager>{
 
 	public void ChangeTab(string tabName){
 		currentDecoPage = 0;
+		if(tabName == "IAP") {
+			starDustHud.Show();
+			starDustHud.gameObject.GetComponentInChildren<Text>().text = DataManager.Instance.GameData.DayTracker.IAPCurrency.ToString();
+		}
+		else {
+			starDustHud.Hide();
+		}
 		//if(isTutroial && tabName == "PlayArea" && tutObj1.activeSelf == true){
 		if(isTutorial && tabName == "VIP" && tutObj1.activeSelf == true){
 			tutObj1.SetActive(false);

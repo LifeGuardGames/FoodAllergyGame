@@ -178,12 +178,12 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 		else if(String.Equals(args.purchasedProduct.definition.id, kProductIDStardustTwo, StringComparison.Ordinal)) {
 			Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
 			//Amplitude.Instance.logRevenue(Double.Parse(DataManager.Instance.PriceStringAux));
-			DataManager.Instance.GameData.DayTracker.IAPCurrency+=2;
+			DataManager.Instance.GameData.DayTracker.IAPCurrency+=5;
 		}
 		else if(String.Equals(args.purchasedProduct.definition.id, kProductIDStardustThree, StringComparison.Ordinal)) {
 			Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
 			//Amplitude.Instance.logRevenue(Double.Parse(DataManager.Instance.PriceStringAux));
-			DataManager.Instance.GameData.DayTracker.IAPCurrency += 3;
+			DataManager.Instance.GameData.DayTracker.IAPCurrency += 10;
 		}
 		// Or ... an unknown product has been purchased by this user. Fill in additional products here.
 		else {
