@@ -506,4 +506,64 @@
     <IapPrice>1</IapPrice>
    <IapType>Kitchen</IapType>
   </DecoItem>
+  <DecoItem ID ="TableSpooky">
+    <Type>IAP</Type>
+    <Price>0</Price>
+    <TitleKey>TableSpooky</TitleKey>
+    <DescriptionKey>TableSpookyDesc</DescriptionKey>
+    <SpriteName>RestTableSpooky</SpriteName>
+    <Tier>0</Tier>
+    <IapPrice>1</IapPrice>
+    <IapType>Table</IapType>
+  </DecoItem>
+ <DecoItem ID ="FloorSpooky">
+    <Type>IAP</Type>
+    <Price>0</Price>
+    <TitleKey>FloorSpooky</TitleKey>
+    <DescriptionKey>FloorSpookyDesc</DescriptionKey>
+    <SpriteName>RestFloorSpooky</SpriteName>
+    <Tier>0</Tier>
+    <IapPrice>1</IapPrice>
+    <IapType>Floor</IapType>>
+  </DecoItem>
+ <DecoItem ID ="KitchenSpooky">
+    <Type>IAP</Type>
+    <Price>0</Price>
+    <TitleKey>KitchenSpooky</TitleKey>
+    <DescriptionKey>KitchenSpookyDesc</DescriptionKey>
+    <SpriteName>RestKitchenSpooky</SpriteName>
+    <Tier>0</Tier>
+    <IapPrice>1</IapPrice>
+   <IapType>Kitchen</IapType>
+  </DecoItem>
+  <DecoItem ID ="TableSea">
+    <Type>IAP</Type>
+    <Price>0</Price>
+    <TitleKey>TableSea</TitleKey>
+    <DescriptionKey>TableSeaDesc</DescriptionKey>
+    <SpriteName>RestTableSea</SpriteName>
+    <Tier>0</Tier>
+    <IapPrice>1</IapPrice>
+    <IapType>Table</IapType>
+  </DecoItem>
+ <DecoItem ID ="FloorSea">
+    <Type>IAP</Type>
+    <Price>0</Price>
+    <TitleKey>FloorSea</TitleKey>
+    <DescriptionKey>FloorSeaDesc</DescriptionKey>
+    <SpriteName>RestFloorSea</SpriteName>
+    <Tier>0</Tier>
+    <IapPrice>1</IapPrice>
+    <IapType>Floor</IapType>>
+  </DecoItem>
+ <DecoItem ID ="KitchenSea">
+    <Type>IAP</Type>
+    <Price>0</Price>
+    <TitleKey>KitchenSea</TitleKey>
+    <DescriptionKey>KitchenSeaDesc</DescriptionKey>
+    <SpriteName>RestKitchenSea</SpriteName>
+    <Tier>0</Tier>
+    <IapPrice>1</IapPrice>
+   <IapType>Kitchen</IapType>
+  </DecoItem>
 </DecoItem>
