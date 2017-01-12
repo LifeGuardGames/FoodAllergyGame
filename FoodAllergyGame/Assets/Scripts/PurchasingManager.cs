@@ -67,10 +67,10 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 				BuyProductID(kProductIDStardustOne);
 				break;
 			case 2:
-				BuyProductID(kProductIDStardustTwo);
+				BuyProductID(kProductIDStardustThree);
 				break;
 			case 3:
-				BuyProductID(kProductIDStardustThree);
+				BuyProductID(kProductIDStardustTwo);
 				break;
 	}
 	}
@@ -178,12 +178,12 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 		else if(String.Equals(args.purchasedProduct.definition.id, kProductIDStardustTwo, StringComparison.Ordinal)) {
 			Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
 			//Amplitude.Instance.logRevenue(Double.Parse(DataManager.Instance.PriceStringAux));
-			DataManager.Instance.GameData.DayTracker.IAPCurrency+=5;
+			DataManager.Instance.GameData.DayTracker.IAPCurrency+=10;
 		}
 		else if(String.Equals(args.purchasedProduct.definition.id, kProductIDStardustThree, StringComparison.Ordinal)) {
 			Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
 			//Amplitude.Instance.logRevenue(Double.Parse(DataManager.Instance.PriceStringAux));
-			DataManager.Instance.GameData.DayTracker.IAPCurrency += 10;
+			DataManager.Instance.GameData.DayTracker.IAPCurrency += 5;
 		}
 		// Or ... an unknown product has been purchased by this user. Fill in additional products here.
 		else {
