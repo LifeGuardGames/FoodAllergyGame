@@ -6,7 +6,6 @@ public class MapNodeBase : MapNode {
 	public Animation reachedAnim;
 	public Image nodeImage;
 	
-	private int currentRewardIndex = 0;
 	private bool isStartTier;
 
 	public void Init(ImmutableDataTiers tier, bool _isStartTier, CanvasScaler canvasScaler) {

@@ -1,26 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 using UnityEngine;
 
 public class StardustVendor : MonoBehaviour {
 	public GameObject starDustHud;
+	public TweenToggleDemux tween;
 
-	public void BuyOneStardust() {
+	public void BuyStardustSetOne() {
 		PurchasingManager.Instance.BuyConsumable(1);
-		this.GetComponent<PositionTweenToggle>().Hide();
+		tween.Hide();
 		UpdateStarHud();
     }
 
-	public void BuyTwoStardust() {
+	public void BuyStardustSetTwo() {
 		PurchasingManager.Instance.BuyConsumable(2);
-		this.GetComponent<PositionTweenToggle>().Hide();
+		tween.Hide();
 		UpdateStarHud();
     }
 
-	public void BuyThreeStardust() {
+	public void BuyStardustSetThree() {
 		PurchasingManager.Instance.BuyConsumable(3);
-		this.GetComponent<PositionTweenToggle>().Hide();
+		tween.Hide();
 		UpdateStarHud();
     }
 
