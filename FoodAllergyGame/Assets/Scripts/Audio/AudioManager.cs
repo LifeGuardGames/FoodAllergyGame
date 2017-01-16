@@ -13,6 +13,7 @@ public class AudioManager : LgAudioManager<AudioManager>{
 	protected override void Awake(){
 		base.Awake();
 		backgroundSource = GetComponent<AudioSource>();
+		SceneManager.sceneLoaded += OnSceneLoaded;
 	}
 	
 	protected override void Start(){
@@ -111,7 +112,7 @@ public class AudioManager : LgAudioManager<AudioManager>{
 		FadeOutPlayNewBackground(backgroundMusic);
 	}
 
-	void OnLevelWasLoaded() {
+	public void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
 		string currentScene = SceneManager.GetActiveScene().name;
 		if(currentScene == SceneUtils.LOADING) {
 			isMusicOn = true;
