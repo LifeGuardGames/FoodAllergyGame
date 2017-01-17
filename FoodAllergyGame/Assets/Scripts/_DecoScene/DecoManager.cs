@@ -311,7 +311,7 @@ public class DecoManager : Singleton<DecoManager>{
             return true;
 		}
 		else if (decoData.Type == DecoTypes.IAP) {
-			if(DataManager.Instance.GameData.DayTracker.IAPCurrency >= decoData.IapPrice) {
+			if(DataManager.Instance.GameData.DayTracker.IAPCurrency >= decoData.IapPrice || DataManager.Instance.GameData.DayTracker.IsAmazonUnderground){
 				DataManager.Instance.GameData.DayTracker.IAPCurrency -= decoData.IapPrice;
                 DataManager.Instance.GameData.Decoration.BoughtDeco.Add(decoID, "");
 				starDustHud.gameObject.GetComponentInChildren<Text>().text = DataManager.Instance.GameData.DayTracker.IAPCurrency.ToString();
