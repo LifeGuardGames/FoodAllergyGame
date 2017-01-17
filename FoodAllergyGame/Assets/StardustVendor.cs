@@ -26,4 +26,8 @@ public class StardustVendor : MonoBehaviour {
 	public void UpdateStarHud() {
 		starDustHud.gameObject.GetComponentInChildren<Text>().text = DataManager.Instance.GameData.DayTracker.IAPCurrency.ToString();
 	}
+
+	public void OnExitButton() {
+		tween.Hide();
+	}
 }

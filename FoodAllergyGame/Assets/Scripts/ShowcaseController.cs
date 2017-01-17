@@ -61,7 +61,7 @@ public class ShowcaseController : MonoBehaviour {
 		}
 		else {
 			costText.text = decoData.IapPrice.ToString();
-			costImage.sprite = Resources.Load<Sprite>("IAPStardust1");
+			costImage.sprite = Resources.Load<Sprite>("StarDust");
 		}
 		
 		// Show the corrosponding buttons based on item state

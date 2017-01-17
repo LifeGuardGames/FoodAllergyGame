@@ -40,7 +40,7 @@ public class DecoManager : Singleton<DecoManager>{
 	public bool isTutorial;
 	public List<GameObject> tabNewTags;
 	public GameObject dailySpecialTag;
-	public PositionTweenToggle iapMenu;
+	public TweenToggleDemux IAPMenu;
 	public PositionTweenToggle starDustHud;
 
 	#region Generic functions
@@ -320,7 +320,7 @@ public class DecoManager : Singleton<DecoManager>{
 				return true;
 			}
 			else {
-				OpenIapMenu();
+				OpenIAPMenu();
 			}
 			return false;
 		}
@@ -414,8 +414,8 @@ public class DecoManager : Singleton<DecoManager>{
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.START, showRandomTip: true);
 	}
 
-	public void OpenIapMenu() {
-		iapMenu.Show();
+	public void OpenIAPMenu() {
+		IAPMenu.Show();
 	}
 
 	public void PurchaseFailed() {
