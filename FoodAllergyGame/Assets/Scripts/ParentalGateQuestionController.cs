@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class ParentalGateQuestionController : MonoBehaviour {
 	public TweenToggleDemux panelTween;
@@ -37,7 +36,8 @@ public class ParentalGateQuestionController : MonoBehaviour {
 		else if (string.Equals(GetAge(), "25")){
 			HidePanel();
 			inputText.text = "Answer";
-			StartManager.Instance.ShowProductPage();		
+			// TODO Uncomment this, feature removed from game
+			//StartManager.Instance.ShowProductPage();		
 		}
 		else {
 			inputText.text = "Answer";

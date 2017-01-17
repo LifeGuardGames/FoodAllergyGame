@@ -417,4 +417,8 @@ public class DecoManager : Singleton<DecoManager>{
 	public void OpenIapMenu() {
 		iapMenu.Show();
 	}
+
+	public void PurchaseFailed() {
+		IAPStatusUIManager.Instance.ShowPanel(false);
+	}
 }

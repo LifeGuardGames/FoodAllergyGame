@@ -35,7 +35,8 @@ public class ProductPageUIController : MonoBehaviour {
 	public void OnBuyButton() {
 		buyButton.SetActive(false);
 		redeemButton.SetActive(false);
-		PurchasingManager.Instance.BuyPro();
+		// TODO Commenting this out, old feature
+		//PurchasingManager.Instance.BuyPro();
 	}
 
 	// Should only be called on iOS

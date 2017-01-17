@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Purchasing;
+using UnityEngine.SceneManagement;
 
 public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 
@@ -55,14 +56,35 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 		// Only say we are initialized if both the Purchasing references are set.
 		return m_StoreController != null && m_StoreExtensionProvider != null;
 	}
-	
+
+	// --- IStoreListener
+	public void OnInitialized(IStoreController controller, IExtensionProvider extensions) {
+		// Purchasing has succeeded initializing. Collect our Purchasing references.
+		Debug.Log("OnInitialized: PASS");
+
+		// Overall Purchasing system, configured with products for this application.
+		m_StoreController = controller;
+		// Store specific subsystem, for accessing device-specific store features.
+		m_StoreExtensionProvider = extensions;
+
+		// Save the localized price to DataManager
+		DataManager.Instance.PriceStringAux = m_StoreController.products.WithID(kProductIDPro).metadata.localizedPriceString;
+	}
+
+	public void OnInitializeFailed(InitializationFailureReason error) {
+		// Purchasing set-up has not succeeded. Check error for reason. Consider sharing this reason with the user.
+		Debug.Log("OnInitializeFailed InitializationFailureReason:" + error);
+	}
+
+	/*
 	public void BuyNonConsumable() {
 		// Buy the non-consumable product using its general identifier. Expect a response either through ProcessPurchase or OnPurchaseFailed asynchronously.
 		BuyProductID(kProductIDPro);
 	}
+	*/
 
-	public void BuyConsumable(int amount) {
-		switch(amount) {
+	public void BuyStardustSet(int setNumber) {
+		switch(setNumber) {
 			case 1:
 				BuyProductID(kProductIDStardustOne);
 				break;
@@ -72,7 +94,7 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 			case 3:
 				BuyProductID(kProductIDStardustTwo);
 				break;
-	}
+		}
 	}
 	
 	void BuyProductID(string productId) {
@@ -92,14 +114,14 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 				else {
 					// ... report the product look-up failure situation  
 					Debug.Log("BuyProductID: FAIL. Not purchasing product, either is not found or is not available for purchase");
-					StartManager.Instance.PurchaseFailed();
+					PurchaseFailedUI();
 				}
 			}
 			// Otherwise ...
 			else {
 				// ... report the fact Purchasing has not succeeded initializing yet. Consider waiting longer or retrying initiailization.
 				Debug.Log("BuyProductID FAIL. Not initialized.");
-				StartManager.Instance.PurchaseFailed();
+				PurchaseFailedUI();
 			}
 		}
 		// Complete the unexpected exception handling ...
@@ -115,13 +137,12 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 		if(!IsInitialized()) {
 			// ... report the situation and stop restoring. Consider either waiting longer, or retrying initialization.
 			Debug.Log("RestorePurchases FAIL. Not initialized.");
-			StartManager.Instance.PurchaseFailed();
+			PurchaseFailedUI();
 			return;
 		}
 
 		// If we are running on an Apple device ... 
-		if(Application.platform == RuntimePlatform.IPhonePlayer ||
-			Application.platform == RuntimePlatform.OSXPlayer) {
+		if(Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.OSXPlayer) {
 			// ... begin restoring purchases
 			Debug.Log("RestorePurchases started ...");
 
@@ -137,59 +158,39 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 		else {
 			// We are not running on an Apple device. No work is necessary to restore purchases.
 			Debug.Log("RestorePurchases FAIL. Not supported on this platform. Current = " + Application.platform);
-			StartManager.Instance.PurchaseFailed();
+			PurchaseFailedUI();
 		}
-	}
-	
-	//  
-	// --- IStoreListener
-	//
-	public void OnInitialized(IStoreController controller, IExtensionProvider extensions) {
-		// Purchasing has succeeded initializing. Collect our Purchasing references.
-		Debug.Log("OnInitialized: PASS");
-
-		// Overall Purchasing system, configured with products for this application.
-		m_StoreController = controller;
-		// Store specific subsystem, for accessing device-specific store features.
-		m_StoreExtensionProvider = extensions;
-
-		// Save the localized price to DataManager
-		DataManager.Instance.PriceStringAux = m_StoreController.products.WithID(kProductIDPro).metadata.localizedPriceString;
-	}
-	
-	public void OnInitializeFailed(InitializationFailureReason error) {
-		// Purchasing set-up has not succeeded. Check error for reason. Consider sharing this reason with the user.
-		Debug.Log("OnInitializeFailed InitializationFailureReason:" + error);
 	}
 	
 	// NOTE: Android calls this on game start automatically if you have a purchase to redeem
 	public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args) {
 		// Or ... a non-consumable product has been purchased by this user.
-		if(String.Equals(args.purchasedProduct.definition.id, kProductIDPro, StringComparison.Ordinal)) {
+		// TODO Commenting this out, old feature
+		/*if(String.Equals(args.purchasedProduct.definition.id, kProductIDPro, StringComparison.Ordinal)) {
 			Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
 			Amplitude.Instance.logRevenue(Double.Parse(DataManager.Instance.PriceStringAux));
 			StartManager.Instance.UnlockMoreCratesAndShowUI();
         }
-		else if(String.Equals(args.purchasedProduct.definition.id, kProductIDStardustOne, StringComparison.Ordinal)) {
-				Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-				//Amplitude.Instance.logRevenue(Double.Parse(DataManager.Instance.PriceStringAux));
-				DataManager.Instance.GameData.DayTracker.IAPCurrency++;
-			}
-		else if(String.Equals(args.purchasedProduct.definition.id, kProductIDStardustTwo, StringComparison.Ordinal)) {
+		else*/
+		if(string.Equals(args.purchasedProduct.definition.id, kProductIDStardustOne, StringComparison.Ordinal)) {
 			Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-			//Amplitude.Instance.logRevenue(Double.Parse(DataManager.Instance.PriceStringAux));
-			DataManager.Instance.GameData.DayTracker.IAPCurrency+=10;
+			Amplitude.Instance.logRevenue(double.Parse(DataManager.Instance.PriceStringAux));
+			DataManager.Instance.GameData.DayTracker.IAPCurrency++;
 		}
-		else if(String.Equals(args.purchasedProduct.definition.id, kProductIDStardustThree, StringComparison.Ordinal)) {
+		else if(string.Equals(args.purchasedProduct.definition.id, kProductIDStardustTwo, StringComparison.Ordinal)) {
 			Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-			//Amplitude.Instance.logRevenue(Double.Parse(DataManager.Instance.PriceStringAux));
+			Amplitude.Instance.logRevenue(double.Parse(DataManager.Instance.PriceStringAux));
 			DataManager.Instance.GameData.DayTracker.IAPCurrency += 5;
+		}
+		else if(string.Equals(args.purchasedProduct.definition.id, kProductIDStardustThree, StringComparison.Ordinal)) {
+			Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
+			Amplitude.Instance.logRevenue(double.Parse(DataManager.Instance.PriceStringAux));
+			DataManager.Instance.GameData.DayTracker.IAPCurrency += 10;
 		}
 		// Or ... an unknown product has been purchased by this user. Fill in additional products here.
 		else {
 			Debug.Log(string.Format("ProcessPurchase: FAIL. Unrecognized product: '{0}'", args.purchasedProduct.definition.id));
-			
-			StartManager.Instance.PurchaseFailed();
+			PurchaseFailedUI();
 		}
 
 		// Return a flag indicating wither this product has completely been received, 
@@ -201,10 +202,21 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 	public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason) {
 		// A product purchase attempt did not succeed. Check failureReason for more detail. Consider sharing this reason with the user.
 		Debug.Log(string.Format("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}", product.definition.storeSpecificId, failureReason));
-		StartManager.Instance.PurchaseFailed();
+		PurchaseFailedUI();
+    }
+
+	// Get the purchase failed UI depending on what scene it is
+	public void PurchaseFailedUI() {
+		if(SceneManager.GetActiveScene().name == SceneUtils.START) {
+			//StartManager.Instance.PurchaseFailed();
+		}
+		else if(SceneManager.GetActiveScene().name == SceneUtils.DECO) {
+			DecoManager.Instance.PurchaseFailed();
+		}
 	}
 
 	// Localized to native price, cached in datamanager
+	/*
 	public string GetPriceButtonText() {
 		return DataManager.Instance.PriceStringAux == "" ? "Buy" : DataManager.Instance.PriceStringAux;
     }
@@ -212,4 +224,5 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 	public void BuyPro() {
 		BuyProductID(kProductIDPro);
 	}
+	*/
 }

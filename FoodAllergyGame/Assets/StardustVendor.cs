@@ -6,19 +6,19 @@ public class StardustVendor : MonoBehaviour {
 	public TweenToggleDemux tween;
 
 	public void BuyStardustSetOne() {
-		PurchasingManager.Instance.BuyConsumable(1);
+		PurchasingManager.Instance.BuyStardustSet(1);
 		tween.Hide();
 		UpdateStarHud();
     }
 
 	public void BuyStardustSetTwo() {
-		PurchasingManager.Instance.BuyConsumable(2);
+		PurchasingManager.Instance.BuyStardustSet(2);
 		tween.Hide();
 		UpdateStarHud();
     }
 
 	public void BuyStardustSetThree() {
-		PurchasingManager.Instance.BuyConsumable(3);
+		PurchasingManager.Instance.BuyStardustSet(3);
 		tween.Hide();
 		UpdateStarHud();
     }

@@ -1,12 +1,11 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 
-public class IAPStatusPageUIController : MonoBehaviour {
+public class IAPStatusUIManager : Singleton<IAPStatusUIManager> {
 	public Text description;
 	public TweenToggleDemux panelTween;
 
 	public void ShowPanel(bool isSuccess) {
-		description.text = LocalizationText.GetText(isSuccess ? "IAPProSuccess" : "IAPProFailure");
+		description.text = LocalizationText.GetText(isSuccess ? "IAPSuccess" : "IAPFailure");
 		StartManager.Instance.ChallengeMenuEntranceUIController.ToggleClickable(false);
 		StartManager.Instance.DinerEntranceUIController.ToggleClickable(false);
 		StartManager.Instance.ShopEntranceUIController.ToggleClickable(false);
