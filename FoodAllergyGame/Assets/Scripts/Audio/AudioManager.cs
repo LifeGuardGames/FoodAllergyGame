@@ -21,6 +21,10 @@ public class AudioManager : LgAudioManager<AudioManager>{
 		StartCoroutine(PlayBackground());
 	}
 
+	protected override void OnDestroy() {
+		SceneManager.sceneLoaded -= OnSceneLoaded;
+	}
+
 	public override void PlayClip(string clipName, int variations = 1, Hashtable option = null) {
 		if(isSoundEffectsOn) {
 			base.PlayClip(clipName, variations, option);
