@@ -68,7 +68,10 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 		m_StoreExtensionProvider = extensions;
 
 		// Save the localized price to DataManager
-		DataManager.Instance.PriceStringAux = m_StoreController.products.WithID(kProductIDPro).metadata.localizedPriceString;
+		DataManager.Instance.PriceStringAuxDust1 = m_StoreController.products.WithID(kProductIDStardustOne).metadata.localizedPriceString;
+		DataManager.Instance.PriceStringAuxDust2 = m_StoreController.products.WithID(kProductIDStardustTwo).metadata.localizedPriceString;
+		DataManager.Instance.PriceStringAuxDust3 = m_StoreController.products.WithID(kProductIDStardustThree).metadata.localizedPriceString;
+
 	}
 
 	public void OnInitializeFailed(InitializationFailureReason error) {
@@ -174,17 +177,17 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 		else*/
 		if(string.Equals(args.purchasedProduct.definition.id, kProductIDStardustOne, StringComparison.Ordinal)) {
 			Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-			Amplitude.Instance.logRevenue(double.Parse(DataManager.Instance.PriceStringAux));
+			Amplitude.Instance.logRevenue(double.Parse(DataManager.Instance.PriceStringAuxDust1));
 			DataManager.Instance.GameData.DayTracker.IAPCurrency++;
 		}
 		else if(string.Equals(args.purchasedProduct.definition.id, kProductIDStardustTwo, StringComparison.Ordinal)) {
 			Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-			Amplitude.Instance.logRevenue(double.Parse(DataManager.Instance.PriceStringAux));
+			Amplitude.Instance.logRevenue(double.Parse(DataManager.Instance.PriceStringAuxDust2));
 			DataManager.Instance.GameData.DayTracker.IAPCurrency += 5;
 		}
 		else if(string.Equals(args.purchasedProduct.definition.id, kProductIDStardustThree, StringComparison.Ordinal)) {
 			Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-			Amplitude.Instance.logRevenue(double.Parse(DataManager.Instance.PriceStringAux));
+			Amplitude.Instance.logRevenue(double.Parse(DataManager.Instance.PriceStringAuxDust3));
 			DataManager.Instance.GameData.DayTracker.IAPCurrency += 10;
 		}
 		// Or ... an unknown product has been purchased by this user. Fill in additional products here.

@@ -13,6 +13,7 @@ public class BehavTableSmasherSaved : Behav {
 	}
 
 	public override void Act() {
+		self.isLeaveing = true;
 		self.StopCoroutine("AllergyTimer");
 		if(RestaurantManager.Instance.GetTable(self.tableNum).tableType == Table.TableType.VIP) {
 			RestaurantManager.Instance.GetTable(self.tableNum).CustomerLeaving();

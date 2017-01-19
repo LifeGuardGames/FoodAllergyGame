@@ -13,7 +13,7 @@ public class BehavNotifyLeave : Behav {
 	}
 
 	public override void Act() {
-		
+		self.isLeaveing = true;
 		if(RestaurantManager.Instance.actTables > 0) {
 			
 			//Debug.Log(self.state);

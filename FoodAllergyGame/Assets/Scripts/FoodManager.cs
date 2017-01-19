@@ -54,53 +54,55 @@ public class FoodManager : Singleton<FoodManager>{
 		int numOfDairyAllergen;
 		int numOfPeanutAllergen;
 		int numOfNoAllergen;
+		numOfWheatAllergen = 0;
+		numOfDairyAllergen = 0;
+		numOfPeanutAllergen = 0;
+		numOfNoAllergen = 0;
 
 		if(RestaurantManager.Instance.isTutorial) {
 			desiredFoodList.Add(DataLoaderFood.GetData("FoodFruitPlatter"));
 			desiredFoodList.Add(DataLoaderFood.GetData("FoodPeanuts"));
 			return desiredFoodList;
 		}
-		while(desiredFoodList.Count < 2){
-			 numOfWheatAllergen = 0;
-			 numOfDairyAllergen = 0;
-			 numOfPeanutAllergen = 0;
-			 numOfNoAllergen = 0;
 
-			//checking to see if an allergy is present in the whole list
-			for(int i = 0; i < menuList.Count; i++) {
-				if(menuList[i].AllergyList.Contains(Allergies.Wheat)) {
-					numOfWheatAllergen++;
-				}
-				else if(menuList[i].AllergyList.Contains(Allergies.Dairy)) {
-					numOfDairyAllergen++;
-				}
-				else if(menuList[i].AllergyList.Contains(Allergies.Peanut)) {
-					numOfPeanutAllergen++;
-				}
-				else if(menuList[i].AllergyList.Contains(Allergies.None)) {
-					numOfNoAllergen++;
-				}
+		//checking to see if an allergy is present in the whole list
+		for(int i = 0; i < menuList.Count; i++) {
+			if(menuList[i].AllergyList.Contains(Allergies.Wheat)) {
+				numOfWheatAllergen++;
 			}
-				if(numOfWheatAllergen == menuList.Count && _allergy.Contains(Allergies.Wheat)) {
-					desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
-					desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
-					return desiredFoodList;
-				}
-				else if(numOfDairyAllergen == menuList.Count && _allergy.Contains( Allergies.Dairy)) {
-					desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
-					desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
-					return desiredFoodList;
-				}
-				else if (numOfPeanutAllergen == menuList.Count && _allergy.Contains(Allergies.Peanut)) {
-					desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
-					desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
-					return desiredFoodList;
-				}
-				else if (numOfNoAllergen == menuList.Count) {
-					desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
-					desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
-					return desiredFoodList;
-				}
+			else if(menuList[i].AllergyList.Contains(Allergies.Dairy)) {
+				numOfDairyAllergen++;
+			}
+			else if(menuList[i].AllergyList.Contains(Allergies.Peanut)) {
+				numOfPeanutAllergen++;
+			}
+			else if(menuList[i].AllergyList.Contains(Allergies.None)) {
+				numOfNoAllergen++;
+			}
+		}
+		if(numOfWheatAllergen == menuList.Count && _allergy.Contains(Allergies.Wheat)) {
+			desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
+			desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
+			return desiredFoodList;
+		}
+		else if(numOfDairyAllergen == menuList.Count && _allergy.Contains(Allergies.Dairy)) {
+			desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
+			desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
+			return desiredFoodList;
+		}
+		else if(numOfPeanutAllergen == menuList.Count && _allergy.Contains(Allergies.Peanut)) {
+			desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
+			desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
+			return desiredFoodList;
+		}
+		else if(numOfNoAllergen == menuList.Count) {
+			desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
+			desiredFoodList.Add(menuList[Random.Range(0, menuList.Count)]);
+			return desiredFoodList;
+		}
+		while(desiredFoodList.Count < 2){
+
+
 			
 
 			allergyFood = false;
