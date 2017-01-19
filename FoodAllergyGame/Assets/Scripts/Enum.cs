@@ -98,7 +98,7 @@ public enum DecoTypes{
 	Special
 }
 
-// Where each deco should go in the deco shop tabs
+// Where each deco should go in the deco shop tabs, NOT always the same as DecoTypes
 public enum DecoTabTypes {
 	None,
 	Table,

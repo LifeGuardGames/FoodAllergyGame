@@ -344,7 +344,6 @@ public class DecoManager : Singleton<DecoManager>{
 
 		if(currentTabType.ToString() != tabName){
 			currentTabType = (DecoTabTypes)Enum.Parse(typeof(DecoTabTypes), tabName);
-			Debug.Log("Setting current tab to " + currentTabType.ToString());
 			Transform topSprite;
 
 			// Reset any existing tabs to inactive parent
