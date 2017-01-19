@@ -2,7 +2,7 @@
 using UnityEditor;
 using System.Collections.Generic;
 using UnityEditor.SceneManagement;
-using EditorExtended;
+using UnityEngine.SceneManagement;
 
 [InitializeOnLoad]
 [ExecuteInEditMode]
@@ -13,46 +13,16 @@ public class UIHelper : EditorWindow {
 	private List<GameObject> UIElementsList;
 	private List<bool> elementBoolList;
 	private List<bool> savedElementBoolList;
-	//private bool isCompileAux = false;
 	private Vector2 scrollPosition = Vector2.zero;
-
-	/*
-	void OnEnable() {
-		EditorPlayMode.PlayModeChanged += OnPlayModeChanged;
-	}
-	
-	// Automatic setup of UIs before being played
-	private void OnPlayModeChanged(PlayModeState currentMode, PlayModeState changedMode) {
-		switch(changedMode) {
-			case PlayModeState.Playing:
-				// Save the current state of bools to repopulate later
-				savedElementBoolList = new List<bool>();
-                foreach(GameObject go in UIElementsList) {
-					savedElementBoolList.Add(go.activeSelf);
-				}
-
-				ResetUIElements();		// Reset the elements to correct toggle
-				break;
-			case PlayModeState.Stopped:
-				for(int i = 0; i < UIElementsList.Count; i++) {
-					UIElementsList[i].SetActive(savedElementBoolList[i]);
-				}
-				break;
-			default:
-				// Do nothing
-				break;
-		}
-	}
-	*/
 
 	[MenuItem("LGG/UI Helper")]
 	public static void ShowWindow(){
-		EditorWindow.GetWindow(typeof(UIHelper));
+		GetWindow(typeof(UIHelper));
 	}
 
 	public void Reload(){
 		// Attempt to load
-		currentScene = EditorSceneManager.GetActiveScene().name;
+		currentScene = SceneManager.GetActiveScene().name;
 		tagsList = GameObject.FindGameObjectsWithTag("UIElementList");
 		if(tagsList.Length > 0){
 			UIElementsList = GameObject.FindGameObjectsWithTag("UIElementList")[0].GetComponent<UIHelperList>().UIElementList;
@@ -61,8 +31,7 @@ public class UIHelper : EditorWindow {
 	}
 
 	public void OnHierarchyChange() {
-		if(currentScene != EditorSceneManager.GetActiveScene().name) {
-			//isCompileAux = false;
+		if(currentScene != SceneManager.GetActiveScene().name) {
 			Reload();
 		}
 	}
@@ -70,7 +39,9 @@ public class UIHelper : EditorWindow {
 	void OnGUI(){
 		if(tagsList != null && tagsList.Length > 0){
 			scrollPosition = GUILayout.BeginScrollView(scrollPosition, false, false);
-
+			if(GUILayout.Button("Refresh Helper", GUILayout.Height(50))) {
+				Reload();
+			}
 			GUILayout.Label("Toggle UI Elements", EditorStyles.boldLabel);
 			if(GUILayout.Button("Disable All")){
 				DisableUIElements();
@@ -89,7 +60,7 @@ public class UIHelper : EditorWindow {
 
 			if(GUILayout.Button("Reset", GUILayout.Height(50))){
 				ResetUIElements();
-				EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+				EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
             }
 			GUILayout.EndScrollView();
 		}

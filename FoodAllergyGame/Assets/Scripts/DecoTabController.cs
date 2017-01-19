@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
 public class DecoTabController : MonoBehaviour {
-	public DecoTypes deco;
+	public DecoTabTypes decoTabType;
 
 	void Start() {
-		if(!DecoManager.Instance.IsCategoryUnlocked(deco)) {
+		if(!DecoManager.Instance.IsTabCategoryUnlocked(decoTabType)) {
 			gameObject.SetActive(false);
 		}
 	}

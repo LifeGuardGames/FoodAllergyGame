@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class RestaurantManagerChallenge : RestaurantManager{
+public class RestaurantManagerChallenge : RestaurantManager {
 	// our satisfaction ai 
 	private ChallengeAI challengeAI;
 	public PlayAreaLoader play;
@@ -28,7 +28,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		customerList = new Dictionary<string, object>();
 		MiddlePhase();
 	}
-	
+
 	private void RunSetUp() {
 		chall = DataLoaderChallenge.GetData(DataManager.Instance.GetChallenge());
 		if(chall.ID == "ChallengeTut1" && !hasAskedTutorial) {
@@ -43,8 +43,8 @@ public class RestaurantManagerChallenge : RestaurantManager{
 				play.LoadDeco(DataLoaderDecoItem.GetData(chall.PlayArea));
 				isPlayarea = true;
 			}
-			else if (PlayArea.Instance != null){
-					PlayArea.Instance.OpenUpSpots();
+			else if(PlayArea.Instance != null) {
+				PlayArea.Instance.OpenUpSpots();
 			}
 			if(chall.VipTable != "0" && isVip == false) {
 				vip.LoadDeco(DataLoaderDecoItem.GetData(chall.VipTable));
@@ -84,7 +84,6 @@ public class RestaurantManagerChallenge : RestaurantManager{
 				menuList.Add(temp[i]);
 			}
 
-
 			FoodManager.Instance.GenerateMenu(menuList);
 			customerTimerDiffMod = chall.CustomerTimerMod;
 			dayEarnedCash = 0;
@@ -92,18 +91,19 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			dayTime = chall.DayLengthMod;
 			dayTimeLeft = dayTime;
 			temp = DataLoaderCustomerSet.GetData(chall.CustomerSet).CustomerSet;
+
 			for(int i = 0; i < temp.Length; i++) {
 				currCusSet.Add(temp[i]);
 			}
 
 			if(chall.ChallengeType != ChallengeTypes.Tutorial) {
-				List<ImmutableDataDecoItem> floors = DataLoaderDecoItem.GetDecoDataByType(DecoTypes.Floor);
+				List<ImmutableDataDecoItem> floors = DataLoaderDecoItem.GetDecoDataByType(DecoTypes.Floor, allowIAP: true);
 				int rand = UnityEngine.Random.Range(0, floors.Count);
 				floor.LoadDeco(floors[rand]);
-				List<ImmutableDataDecoItem> tables = DataLoaderDecoItem.GetDecoDataByType(DecoTypes.Table);
+				List<ImmutableDataDecoItem> tables = DataLoaderDecoItem.GetDecoDataByType(DecoTypes.Table, allowIAP: true);
 				rand = UnityEngine.Random.Range(0, tables.Count);
 				tab.LoadDeco(tables[rand]);
-				List<ImmutableDataDecoItem> kitchens = DataLoaderDecoItem.GetDecoDataByType(DecoTypes.Kitchen);
+				List<ImmutableDataDecoItem> kitchens = DataLoaderDecoItem.GetDecoDataByType(DecoTypes.Kitchen, allowIAP: true);
 				rand = UnityEngine.Random.Range(0, kitchens.Count);
 				kit.LoadDeco(kitchens[rand]);
 			}
@@ -115,7 +115,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 	IEnumerator SpawnCustomer() {
 		yield return 0;
 		yield return new WaitForSeconds(customerSpawnTimer);
-			if(!dayOver && lineCount < 8 && interval < currCusSet.Count) {
+		if(!dayOver && lineCount < 8 && interval < currCusSet.Count) {
 			if(isTutorial) {
 				AnalyticsManager.Instance.DayOneFunnel("Spawning Customer" + customerNumber);
 				ImmutableDataCustomer test;
@@ -132,18 +132,18 @@ public class RestaurantManagerChallenge : RestaurantManager{
 				//stops the user from placing the VIP tut customer at a regular table
 				if(DataManager.Instance.GetChallenge() == "TutDecoVIP") {
 					foreach(GameObject tab in TableList) {
-						if (tab.GetComponent<Table>().tableType != Table.TableType.VIP) {
+						if(tab.GetComponent<Table>().tableType != Table.TableType.VIP) {
 							tab.GetComponent<Table>().inUse = true;
 						}
 					}
 				}
 				ImmutableDataCustomer customerData;
 				customerSpawnTimer = chall.CustSpawnTime;
-				
+
 				customerData = DataLoaderCustomer.GetData(currCusSet[interval]);
 
 				// Track in analytics
-				
+
 				GameObject customerPrefab = Resources.Load(customerData.Script) as GameObject;
 				GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 				customerNumber++;
@@ -166,12 +166,12 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			StartCoroutine("SpawnCustomer");
 		}
 	}
-	
+
 	public override void StartDay() {
 		dayOver = false;
 		restaurantUI.ResetDoor();
 		AnalyticsManager.Instance.SuperProperties.Remove("Challenge");
-		AnalyticsManager.Instance.SuperProperties.Add("Challenge" ,DataManager.Instance.GetChallenge());
+		AnalyticsManager.Instance.SuperProperties.Add("Challenge", DataManager.Instance.GetChallenge());
 		RunSetUp();
 		restaurantUI.StartDay();
 	}
@@ -185,10 +185,10 @@ public class RestaurantManagerChallenge : RestaurantManager{
 		if(customerHash.ContainsKey(customerData.customerID)) {
 			int satisfaction = customerData.satisfaction;
 			int priceMultiplier;
-			
+
 			// Track analytics based on happy or angry leaving
-			if(satisfaction > 0) { 
-				AnalyticsManager.Instance.CustomerLeaveHappy(customerData.type ,satisfaction);
+			if(satisfaction > 0) {
+				AnalyticsManager.Instance.CustomerLeaveHappy(customerData.type, satisfaction);
 				priceMultiplier = customerData.priceMultiplier * VIPMultiplier;
 			}
 			else {
@@ -275,7 +275,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 					if(TierManager.Instance.CurrentTier == 0) {
 						DataManager.Instance.GameData.Cash.TotalCash = 500;
 						DataManager.Instance.GameData.Cash.CurrentCash = 500;
-                    }
+					}
 					if(chall.ID == "TutDecoPlayArea") {
 						AnalyticsManager.Instance.TutorialFunnel("Play area Tut Completed");
 						DataManager.Instance.GameData.Tutorial.IsPlayAreaTutDone = true;
@@ -289,7 +289,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 					//AnalyticsManager.Instance.TrackCustomerSpawned(customerList);
 					AnalyticsManager.Instance.SuperProperties.Remove("Challenge");
 					AnalyticsManager.Instance.EndChallengeReport(challengeAI.ScoreIt(), DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge, challengeAI.MissingCustomers, challengeAI.AvgSatisfaction(), savedCustomers, attempted, inspectionButtonClicked);
-					if(isPlayarea) { 
+					if(isPlayarea) {
 						AnalyticsManager.Instance.PlayAreaUsage(PlayAreaUses);
 					}
 					if(isVip) {
@@ -302,7 +302,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 					else {
 						restaurantUI.ChallengeComplete(challengeAI.Score, dayEarnedCash, challengeAI.NegativeCash);
 					}
-					
+
 					// Save game data
 					DataManager.Instance.SaveGameData();
 				}
@@ -393,7 +393,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			//sitting down
 			cus.transform.SetParent(GetTable(customerScript.tableNum).Seat);
 			customerScript.SetBaseSortingOrder(GetTable(customerScript.tableNum).BaseSortingOrder);
-            cus.transform.localPosition = Vector3.zero;
+			cus.transform.localPosition = Vector3.zero;
 
 			// begin reading menu
 			customerScript.customerAnim.SetReadingMenu();
@@ -481,7 +481,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			CashManager.Instance.RestaurantEndCashUpdate(10, 10);
 			return ChallengeReward.Silver;
 		}
-		else if (challengeAI.Score >= chall.BronzeBreakPoint) {
+		else if(challengeAI.Score >= chall.BronzeBreakPoint) {
 			if(DataManager.Instance.GameData.Challenge.ChallengeProgress[chall.ID] != ChallengeReward.Gold || DataManager.Instance.GameData.Challenge.ChallengeProgress[chall.ID] != ChallengeReward.Silver) {
 				DataManager.Instance.GameData.Challenge.ChallengeProgress[chall.ID] = ChallengeReward.Bronze;
 			}
@@ -517,7 +517,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 
 	public void AskToPlayTutorial() {
 		skipTutController.ShowPanel();
-    }
+	}
 
 	public void DoWePlayTutorial(bool answer) {
 		hasAskedTutorial = true;
@@ -529,7 +529,7 @@ public class RestaurantManagerChallenge : RestaurantManager{
 			DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
 			AnalyticsManager.Instance.TutorialFunnel("Finished tut day, 2 guided customers");
 			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut2";
-        }
+		}
 		else {
 			isTutorial = true;
 		}

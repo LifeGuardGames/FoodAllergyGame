@@ -220,11 +220,11 @@ public class MapUIController : MonoBehaviour {
 			DataManager.Instance.GameData.DayTracker.HasCompletedGoalThisTier = true;
 			StartCoroutine("PlayCometParticle");
 			if(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal != "") {
-				ParticleAndFloatyUtils.PlayMoneyFloaty(comet.transform.position, DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).Reward);
+				ParticleAndFloatyUtils.PlayCoinFloaty(comet.transform.position, DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).Reward);
 				CashManager.Instance.OverrideCurrentCash(DataLoaderTempoGoals.GetData(DataManager.Instance.GameData.DayTracker.CurrentTempoGoal).Reward, comet.transform.position);
 			}
 			else {
-				ParticleAndFloatyUtils.PlayMoneyFloaty(comet.transform.position, 100);
+				ParticleAndFloatyUtils.PlayCoinFloaty(comet.transform.position, 100);
 				CashManager.Instance.OverrideCurrentCash(100, comet.transform.position);
 			}
 		}

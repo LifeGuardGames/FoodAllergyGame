@@ -24,6 +24,6 @@ public class MutableDataDayTracker {
 		CurrentTempoGoal = "";
 		HasCompletedGoalThisTier = false;
 		IAPCurrency = 0;
-		IsAmazonUnderground = false;
+		IsAmazonUnderground = true;
 	}
 }

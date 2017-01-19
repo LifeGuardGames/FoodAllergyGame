@@ -10,7 +10,7 @@ public class DecoManager : Singleton<DecoManager>{
 	private int currentDecoPage = 0;
 	public GameObject decoButtonPrefab;
 	public Transform grid;
-	private DecoTypes currentTabType = DecoTypes.None;
+	private DecoTabTypes currentTabType = DecoTabTypes.None;
 	public GameObject leftButton;
 	public GameObject rightButton;
 	private List<ImmutableDataDecoItem> decoList;
@@ -52,22 +52,12 @@ public class DecoManager : Singleton<DecoManager>{
 		return DataManager.Instance.GameData.Decoration.ActiveDeco.ContainsValue(decoID);
 	}
 
-	public bool IsDecoInRange(string decoID) {
-		return (DataLoaderDecoItem.GetData(decoID).Tier <= TierManager.Instance.CurrentTier + 2) ? true : false;
-	}
-
 	public bool IsDecoUnlocked(string decoID) {
 		return (DataLoaderDecoItem.GetData(decoID).Tier <= TierManager.Instance.CurrentTier) ? true : false;
 	}
 	
-	public bool IsCategoryUnlocked(DecoTypes deco) {
-		List<ImmutableDataDecoItem> decoTypeList = DataLoaderDecoItem.GetDecoDataByType(deco);
-		foreach(ImmutableDataDecoItem decoData in decoTypeList) {
-			if(IsDecoInRange(decoData.ID)) {
-				return true;
-			}
-		}
-		return false;
+	public bool IsTabCategoryUnlocked(DecoTabTypes tabType) {
+		return DataLoaderDecoItem.GetUnlockedDecoDataListByTabType(TierManager.Instance.CurrentTier + 2, tabType).Count > 0;
 	}
 
 	public static bool IsDecoRemoveAllowed(DecoTypes decoType) {
@@ -146,34 +136,34 @@ public class DecoManager : Singleton<DecoManager>{
 
 		//creates a list of deco based on a type, to do this the dataloader first creates the list of all the items then sorts it by cost before returning it
 		switch(currentTabType) {
-			case DecoTypes.Table:
+			case DecoTabTypes.Table:
 				decoList = new List<ImmutableDataDecoItem>();
 				foreach(string deco in DataManager.Instance.GameData.Daily.RotTables) {
 					decoList.Add(DataLoaderDecoItem.GetData(deco));
 				}
 				break;
-			case DecoTypes.Kitchen:
+			case DecoTabTypes.Kitchen:
 				decoList = new List<ImmutableDataDecoItem>();
 				foreach(string deco in DataManager.Instance.GameData.Daily.RotKitchen) {
 					decoList.Add(DataLoaderDecoItem.GetData(deco));
 				}
 				break;
-			case DecoTypes.Floor:
+			case DecoTabTypes.Floor:
 				decoList = new List<ImmutableDataDecoItem>();
 				foreach(string deco in DataManager.Instance.GameData.Daily.RotFloors) {
 					decoList.Add(DataLoaderDecoItem.GetData(deco));
 				}
 				break;
-			case DecoTypes.Special:
+			case DecoTabTypes.Random:
 				decoList = new List<ImmutableDataDecoItem>();
-				decoList.Add(DataLoaderDecoItem.GetData(DataManager.Instance.GameData.Daily.SpeciDeco));
+				decoList.Add(DataLoaderDecoItem.GetData(DataManager.Instance.GameData.Daily.DailyRandomDeco));
 				dailySpecialTag.SetActive(true);
 				break;
-			case DecoTypes.IAP:
-				decoList = DataLoaderDecoItem.GetDecoDataByType(DecoTypes.IAP);
+			case DecoTabTypes.IAP:
+				decoList = DataLoaderDecoItem.GetDecoDataByDecoTabType(DecoTabTypes.IAP);
                 break;
 			default:
-				decoList = DataLoaderDecoItem.GetDecoDataByType(currentTabType);
+				decoList = DataLoaderDecoItem.GetDecoDataByDecoTabType(currentTabType);
 				break;
 		}
 		
@@ -193,8 +183,8 @@ public class DecoManager : Singleton<DecoManager>{
 			if(firstUnboughtDeco == null && !IsDecoBought(decoData.ID)){
 				firstUnboughtDeco = decoData;
 			}
-			if (currentTabType == DecoTypes.Special) {
-				firstUnboughtDeco = DataLoaderDecoItem.GetData(DataManager.Instance.GameData.Daily.SpeciDeco);
+			if(currentTabType == DecoTabTypes.Random) {
+				firstUnboughtDeco = DataLoaderDecoItem.GetData(DataManager.Instance.GameData.Daily.DailyRandomDeco);
 			}
 		}
 		return firstUnboughtDeco;
@@ -275,7 +265,7 @@ public class DecoManager : Singleton<DecoManager>{
 			}
 		}
 		else {
-			if(DataLoaderDecoItem.GetData(decoID).Type != decoType && DataLoaderDecoItem.GetData(decoID).Type != DecoTypes.IAP) {
+			if(DataLoaderDecoItem.GetData(decoID).Type != decoType) {
 				Debug.LogError("Deco mismatch with type:" + decoID + " " + decoType.ToString());
 				return false;
 			}
@@ -301,7 +291,7 @@ public class DecoManager : Singleton<DecoManager>{
 		ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
 		
 		// Check if you have enough money, change cash if so, takes care of anim as well
-		if(CashManager.Instance.DecoBuyCash(decoData.Cost) && decoData.Type != DecoTypes.IAP){
+		if(decoData.DecoTabType != DecoTabTypes.IAP && CashManager.Instance.DecoBuyCoin(decoData.Cost)){
 			if(decoData.Type == DecoTypes.Special) {
 				DataManager.Instance.GameData.Decoration.CustomersBought.Add(decoData.ID);
 			}
@@ -310,12 +300,13 @@ public class DecoManager : Singleton<DecoManager>{
 			AnalyticsManager.Instance.TrackDecoBought(decoID);
             return true;
 		}
-		else if (decoData.Type == DecoTypes.IAP) {
-			if(DataManager.Instance.GameData.DayTracker.IAPCurrency >= decoData.IapPrice || DataManager.Instance.GameData.DayTracker.IsAmazonUnderground){
-				DataManager.Instance.GameData.DayTracker.IAPCurrency -= decoData.IapPrice;
+		else if(decoData.DecoTabType != DecoTabTypes.IAP) {
+			if(DataManager.Instance.GameData.DayTracker.IAPCurrency >= decoData.IAPPrice || DataManager.Instance.GameData.DayTracker.IsAmazonUnderground){
+				DataManager.Instance.GameData.DayTracker.IAPCurrency -= decoData.IAPPrice;
+				ParticleAndFloatyUtils.PlayStardustFloaty(GameObject.Find("ButtonBuy").transform.position, decoData.IAPPrice);
                 DataManager.Instance.GameData.Decoration.BoughtDeco.Add(decoID, "");
 				starDustHud.gameObject.GetComponentInChildren<Text>().text = DataManager.Instance.GameData.DayTracker.IAPCurrency.ToString();
-				SetDeco(decoID, decoData.IapType);
+				SetDeco(decoID, decoData.Type);
 				AnalyticsManager.Instance.TrackDecoBought(decoID);
 				return true;
 			}
@@ -331,6 +322,7 @@ public class DecoManager : Singleton<DecoManager>{
 
 	public void ChangeTab(string tabName){
 		currentDecoPage = 0;
+		
 		if(tabName == "IAP") {
 			starDustHud.Show();
 			starDustHud.gameObject.GetComponentInChildren<Text>().text = DataManager.Instance.GameData.DayTracker.IAPCurrency.ToString();
@@ -351,7 +343,8 @@ public class DecoManager : Singleton<DecoManager>{
 		}
 
 		if(currentTabType.ToString() != tabName){
-			currentTabType = (DecoTypes)Enum.Parse(typeof(DecoTypes), tabName);
+			currentTabType = (DecoTabTypes)Enum.Parse(typeof(DecoTabTypes), tabName);
+			Debug.Log("Setting current tab to " + currentTabType.ToString());
 			Transform topSprite;
 
 			// Reset any existing tabs to inactive parent
@@ -373,7 +366,7 @@ public class DecoManager : Singleton<DecoManager>{
 			// Showcase the first buyable deco if there is any, if not show the lower tier decoration
 			showcaseController.ShowInfo(firstUnboughtDeco != null ?
 				firstUnboughtDeco.ID :
-				DataLoaderDecoItem.GetDecoDataByType((DecoTypes)Enum.Parse(typeof(DecoTypes), tabName))[0].ID);
+				DataLoaderDecoItem.GetDecoDataByDecoTabType((DecoTabTypes)Enum.Parse(typeof(DecoTabTypes), tabName))[0].ID);
 		}
 	}
 

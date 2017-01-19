@@ -41,11 +41,11 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 	}
 
 	#region Coin Animation
-	public void CashAnimationStart(int deltaCoins, Vector3 floatyPosition) {
-		PrepCashAnimation(deltaCoins, new Vector3(500, 500, 0), floatyPosition);
+	public void CoinAnimationStart(int deltaCoins, Vector3 floatyPosition) {
+		PrepCoinAnimation(deltaCoins, new Vector3(500, 500, 0), floatyPosition);
 	}
 
-	private void PrepCashAnimation(int deltaCoins, Vector3 startPos, Vector3 floatyPos) {
+	private void PrepCoinAnimation(int deltaCoins, Vector3 startPos, Vector3 floatyPos) {
 		deltaCoinsAux = deltaCoins;
 		currentCoinsAux = CashManager.Instance.CurrentCash + (-deltaCoins);	// Change is made internally already
 		targetCoinsAux = CashManager.Instance.CurrentCash;
@@ -55,7 +55,7 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 		// after we start a corutine that will end when the first coin reaches the Hud
 		StartCoroutine("ChangeMoney");
 		StartCoroutine("MakeMoney");
-		ParticleAndFloatyUtils.PlayMoneyFloaty(floatyPos, deltaCoins);
+		ParticleAndFloatyUtils.PlayCoinFloaty(floatyPos, deltaCoins);
 		// then we will keep spawning coins as the hud changes
 		// the last coin should reach about the same time as the hud reaches it's target
 	}

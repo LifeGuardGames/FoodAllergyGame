@@ -17,7 +17,7 @@ public class DataLoaderDecoItem: XMLLoaderGeneric<DataLoaderDecoItem> {
 	public static List<string> GetBasicDecoIDUnlockedAtTier(int tier){
 		List<string> decoList = new List<string>();
 		foreach(ImmutableDataDecoItem decoData in GetDataList()){
-			if(decoData.Tier == tier){
+			if(decoData.Tier == tier && decoData.DecoTabType != DecoTabTypes.IAP){
 				if(decoData.Type == DecoTypes.Kitchen || decoData.Type == DecoTypes.Table || decoData.Type == DecoTypes.Floor){
 					decoList.Add(decoData.ID);
 				}
@@ -26,34 +26,12 @@ public class DataLoaderDecoItem: XMLLoaderGeneric<DataLoaderDecoItem> {
 		return decoList;
 	}
 
-	// Get all the decos unlocked, filtered by DecoType
-	public static List<string> GetUnlockedDecoList(int tier, DecoTypes decoType) {
+	public static List<string> GetSpecialDecoIDUnlockedAtTier(int tier) {
 		List<string> decoList = new List<string>();
 		foreach(ImmutableDataDecoItem decoData in GetDataList()) {
-			if(decoData.Tier <= tier && decoData.Type == decoType) {
-				decoList.Add(decoData.ID);
-			}
-		}
-		return decoList;
-	}
-
-	// Get all the decos unlocked
-	public static List<string> GetUnlockedDecoList(int tier) {
-		List<string> decoList = new List<string>();
-		foreach(ImmutableDataDecoItem decoData in GetDataList()) {
-			if(decoData.Tier <= tier) {
-				decoList.Add(decoData.ID);
-			}
-		}
-		return decoList;
-	}
-
-	public static List<string> GetSpecialDecoIDUnlockedAtTier(int tier){
-		List<string> decoList = new List<string>();
-		foreach(ImmutableDataDecoItem decoData in GetDataList()){
-			if(decoData.Tier == tier){
+			if(decoData.Tier == tier && decoData.DecoTabType != DecoTabTypes.IAP) {
 				// Get the inverse of basic decorations
-				if(decoData.Type != DecoTypes.Kitchen && decoData.Type != DecoTypes.Table && decoData.Type != DecoTypes.Floor){
+				if(decoData.Type != DecoTypes.Kitchen && decoData.Type != DecoTypes.Table && decoData.Type != DecoTypes.Floor) {
 					decoList.Add(decoData.ID);
 				}
 			}
@@ -61,17 +39,81 @@ public class DataLoaderDecoItem: XMLLoaderGeneric<DataLoaderDecoItem> {
 		return decoList;
 	}
 
-	public static List<ImmutableDataDecoItem> GetDecoDataByType(DecoTypes type){
-		List<ImmutableDataDecoItem> itemList = GetDataList();
+	// Get all the decos unlocked, filtered by DecoTabTypes, no IAP exclusion necessary
+	public static List<string> GetUnlockedDecoListByTabType(int tier, DecoTabTypes decoTabType) {
+		List<string> decoList = new List<string>();
+		foreach(ImmutableDataDecoItem decoData in GetDataList()) {
+			if(decoData.Tier <= tier && decoData.DecoTabType == decoTabType) {
+				decoList.Add(decoData.ID);
+			}
+		}
+		return decoList;
+	}
+
+	// Same as GetUnlockedDecoListByTabType but returns List<ImmutableDataDecoItem>
+	public static List<ImmutableDataDecoItem> GetUnlockedDecoDataListByTabType(int tier, DecoTabTypes decoTabType) {
 		List<ImmutableDataDecoItem> decoList = new List<ImmutableDataDecoItem>();
-		for(int i = 0; i < itemList.Count; i++){
-			if(itemList[i].Type == type && itemList[i].Tier <= TierManager.Instance.CurrentTier + 2){
-				decoList.Add(itemList[i]);
+		foreach(ImmutableDataDecoItem decoData in GetDataList()) {
+			if(decoData.Tier <= tier && decoData.DecoTabType == decoTabType) {
+				decoList.Add(decoData);
+			}
+		}
+		return decoList;
+	}
+
+	// Get all the decos unlocked, excluding IAPs
+	public static List<string> GetUnlockedDecoList(int tier) {
+		List<string> decoList = new List<string>();
+		foreach(ImmutableDataDecoItem decoData in GetDataList()) {
+			if(decoData.Tier <= tier && decoData.DecoTabType != DecoTabTypes.IAP) {
+				decoList.Add(decoData.ID);
+			}
+		}
+		return decoList;
+	}
+
+	// IAP items selectable
+	public static List<ImmutableDataDecoItem> GetDecoDataByType(DecoTypes type, bool allowIAP = false){
+		List<ImmutableDataDecoItem> decoList = new List<ImmutableDataDecoItem>();
+		foreach(ImmutableDataDecoItem decoData in GetDataList()) {
+			if(decoData.Type == type && decoData.Tier <= TierManager.Instance.CurrentTier + 2) {
+				if(decoData.DecoTabType == DecoTabTypes.IAP) {
+					if(allowIAP) {
+						decoList.Add(decoData);
+					}
+				}
+				else {
+					decoList.Add(decoData);
+				}
 			}
 		}
 
 		// Sort by Tier
 		decoList.Sort((x,y) => x.Tier.CompareTo(y.Tier));
+		return decoList;
+	}
+
+	public static List<ImmutableDataDecoItem> GetDecoDataByDecoTabType(DecoTabTypes type) {
+		List<ImmutableDataDecoItem> decoList = new List<ImmutableDataDecoItem>();
+		foreach(ImmutableDataDecoItem decoData in GetDataList()) {
+			if(decoData.DecoTabType == type && decoData.Tier <= TierManager.Instance.CurrentTier + 2) {
+				decoList.Add(decoData);
+			}
+		}
+
+		// Sort by Tier
+		decoList.Sort((x, y) => x.Tier.CompareTo(y.Tier));
+		return decoList;
+	}
+
+	// Get all the IAPs here, separated out this function for safety
+	public static List<ImmutableDataDecoItem> GetDecoDataIAPs() {
+		List<ImmutableDataDecoItem> decoList = new List<ImmutableDataDecoItem>();
+		foreach(ImmutableDataDecoItem decoData in GetDataList()) {
+			if(decoData.DecoTabType == DecoTabTypes.IAP) {
+				decoList.Add(decoData);
+			}
+		}
 		return decoList;
 	}
 
