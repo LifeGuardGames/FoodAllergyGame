@@ -11,6 +11,7 @@ public class BehavVipTutSaved : Behav {
 	}
 
 	public override void Act() {
+		self.isLeaveing = true;
 		if(RestaurantManager.Instance.GetTable(self.tableNum).tableType == Table.TableType.VIP) {
 			RestaurantManager.Instance.GetTable(self.tableNum).CustomerLeaving();
 		}

@@ -42,6 +42,21 @@ public class DataManager : Singleton<DataManager> {
 		get { return priceStringAux; }
 		set { priceStringAux = value; }
 	}
+	private string priceStringAuxDust1 = "";         // Keep a storage of the price of IAP wall
+	public string PriceStringAuxDust1 {
+		get { return priceStringAuxDust1; }
+		set { priceStringAuxDust1 = value; }
+	}
+	private string priceStringAuxDust2 = "";         // Keep a storage of the price of IAP wall
+	public string PriceStringAuxDust2 {
+		get { return priceStringAuxDust2; }
+		set { priceStringAuxDust2 = value; }
+	}
+	private string priceStringAuxDust3 = "";         // Keep a storage of the price of IAP wall
+	public string PriceStringAuxDust3 {
+		get { return priceStringAuxDust3; }
+		set { priceStringAuxDust3 = value; }
+	}
 
 	void Awake(){
 		// Make object persistent

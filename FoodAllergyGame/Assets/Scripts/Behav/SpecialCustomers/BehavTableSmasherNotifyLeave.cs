@@ -14,6 +14,7 @@ public class BehavTableSmasherNotifyLeave : Behav {
 	}
 
 	public override void Act() {
+		self.isLeaveing = true;
 		self.failedMission = true;
 		// check to make sure he isn't inline as there is no table to smash while inline
 		// and he needs to able to leave normally

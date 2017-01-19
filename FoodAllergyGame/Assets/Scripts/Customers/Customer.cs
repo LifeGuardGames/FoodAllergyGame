@@ -49,6 +49,7 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 	public bool sneakOut = false;
 	public bool ordered = false;
 	public bool isAnnoyed = false;
+	public bool isLeaveing = false;
 
 	// Basic intitialzation
 	public virtual void Init(int num, ImmutableDataEvents mode){
@@ -359,7 +360,8 @@ public class Customer : MonoBehaviour, IWaiterSelection{
 					customerAnim.UpdateSatisfaction(delta);
 
 					// If satisfaction is 0 or negative, we need to leave cause the service is rubbish
-					if(satisfaction <= 0) {
+					if(satisfaction <= 0 && !isLeaveing) {
+						isLeaveing = true;
 						if(Order != null) {
 							Destroy(Order.gameObject);
 						}

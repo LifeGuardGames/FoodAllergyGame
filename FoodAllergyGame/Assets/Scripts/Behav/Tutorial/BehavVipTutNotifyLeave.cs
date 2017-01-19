@@ -13,6 +13,7 @@ public class BehavVipTutNotifyLeave : Behav {
 	}
 
 	public override void Act() {
+		self.isLeaveing = true;
 		if(RestaurantManager.Instance.actTables > 0) {
 			//Debug.Log(self.state);
 			if(self.satisfaction > 3) {

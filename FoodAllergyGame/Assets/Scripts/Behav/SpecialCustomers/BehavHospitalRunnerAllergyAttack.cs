@@ -12,6 +12,7 @@ public class BehavHospitalRunnerAllergyAttack : Behav {
 	}
 
 	public override void Act() {
+		self.isLeaveing = true;
 		Waiter.Instance.Finished();
 		if(self.Order.gameObject != null) {
 			self.DestroyOrder();
