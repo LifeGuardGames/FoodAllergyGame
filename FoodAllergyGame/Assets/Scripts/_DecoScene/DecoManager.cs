@@ -300,7 +300,7 @@ public class DecoManager : Singleton<DecoManager>{
 			AnalyticsManager.Instance.TrackDecoBought(decoID);
             return true;
 		}
-		else if(decoData.DecoTabType != DecoTabTypes.IAP) {
+		else if(decoData.DecoTabType == DecoTabTypes.IAP) {
 			if(DataManager.Instance.GameData.DayTracker.IAPCurrency >= decoData.IAPPrice || DataManager.Instance.GameData.DayTracker.IsAmazonUnderground){
 				DataManager.Instance.GameData.DayTracker.IAPCurrency -= decoData.IAPPrice;
 				ParticleAndFloatyUtils.PlayStardustFloaty(GameObject.Find("ButtonBuy").transform.position, decoData.IAPPrice);

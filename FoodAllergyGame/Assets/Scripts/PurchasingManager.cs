@@ -177,17 +177,26 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 		else*/
 		if(string.Equals(args.purchasedProduct.definition.id, kProductIDStardustOne, StringComparison.Ordinal)) {
 			Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-			Amplitude.Instance.logRevenue(double.Parse(DataManager.Instance.PriceStringAuxDust1));
+			string price = DataManager.Instance.PriceStringAuxDust1;
+			price = price.Trim('$');
+			Debug.Log(price);
+            Amplitude.Instance.logRevenue(double.Parse(price));
 			DataManager.Instance.GameData.DayTracker.IAPCurrency++;
 		}
 		else if(string.Equals(args.purchasedProduct.definition.id, kProductIDStardustTwo, StringComparison.Ordinal)) {
 			Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-			Amplitude.Instance.logRevenue(double.Parse(DataManager.Instance.PriceStringAuxDust2));
+			string price = DataManager.Instance.PriceStringAuxDust1;
+			price = price.Trim('$');
+			Debug.Log(price);
+			Amplitude.Instance.logRevenue(double.Parse(price));
 			DataManager.Instance.GameData.DayTracker.IAPCurrency += 5;
 		}
 		else if(string.Equals(args.purchasedProduct.definition.id, kProductIDStardustThree, StringComparison.Ordinal)) {
 			Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-			Amplitude.Instance.logRevenue(double.Parse(DataManager.Instance.PriceStringAuxDust3));
+			string price = DataManager.Instance.PriceStringAuxDust1;
+			price = price.Trim('$');
+			Debug.Log(price);
+			Amplitude.Instance.logRevenue(double.Parse(price));
 			DataManager.Instance.GameData.DayTracker.IAPCurrency += 10;
 		}
 		// Or ... an unknown product has been purchased by this user. Fill in additional products here.
