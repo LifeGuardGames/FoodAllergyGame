@@ -1,26 +1,23 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
 
-public class StardustVendor : MonoBehaviour {
+public class StardustVendor : Singleton<StardustVendor> {
 	public GameObject starDustHud;
 	public TweenToggleDemux tween;
 
 	public void BuyStardustSetOne() {
 		PurchasingManager.Instance.BuyStardustSet(1);
 		tween.Hide();
-		UpdateStarHud();
     }
 
 	public void BuyStardustSetTwo() {
 		PurchasingManager.Instance.BuyStardustSet(2);
 		tween.Hide();
-		UpdateStarHud();
     }
 
 	public void BuyStardustSetThree() {
 		PurchasingManager.Instance.BuyStardustSet(3);
 		tween.Hide();
-		UpdateStarHud();
     }
 
 	public void UpdateStarHud() {
