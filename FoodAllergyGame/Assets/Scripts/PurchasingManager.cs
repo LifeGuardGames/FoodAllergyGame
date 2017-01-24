@@ -92,10 +92,10 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 				BuyProductID(kProductIDStardustOne);
 				break;
 			case 2:
-				BuyProductID(kProductIDStardustThree);
+				BuyProductID(kProductIDStardustTwo);
 				break;
 			case 3:
-				BuyProductID(kProductIDStardustTwo);
+				BuyProductID(kProductIDStardustThree);
 				break;
 		}
 	}
@@ -185,7 +185,7 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 		}
 		else if(string.Equals(args.purchasedProduct.definition.id, kProductIDStardustTwo, StringComparison.Ordinal)) {
 			Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-			string price = DataManager.Instance.PriceStringAuxDust1;
+			string price = DataManager.Instance.PriceStringAuxDust2;
 			price = price.Trim('$');
 			Debug.Log(price);
 			Amplitude.Instance.logRevenue(double.Parse(price));
@@ -193,7 +193,7 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 		}
 		else if(string.Equals(args.purchasedProduct.definition.id, kProductIDStardustThree, StringComparison.Ordinal)) {
 			Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-			string price = DataManager.Instance.PriceStringAuxDust1;
+			string price = DataManager.Instance.PriceStringAuxDust3;
 			price = price.Trim('$');
 			Debug.Log(price);
 			Amplitude.Instance.logRevenue(double.Parse(price));
