@@ -303,7 +303,7 @@ public class DecoManager : Singleton<DecoManager>{
 		else if(decoData.DecoTabType == DecoTabTypes.IAP) {
 			if(DataManager.Instance.GameData.DayTracker.IAPCurrency >= decoData.IAPPrice || DataManager.Instance.GameData.DayTracker.IsAmazonUnderground){
 				DataManager.Instance.GameData.DayTracker.IAPCurrency -= decoData.IAPPrice;
-				ParticleAndFloatyUtils.PlayStardustFloaty(GameObject.Find("ButtonBuy").transform.position, decoData.IAPPrice);
+				ParticleAndFloatyUtils.PlayStardustFloaty(GameObject.Find("ButtonBuy").transform.position, -decoData.IAPPrice);
                 DataManager.Instance.GameData.Decoration.BoughtDeco.Add(decoID, "");
 				starDustHud.gameObject.GetComponentInChildren<Text>().text = DataManager.Instance.GameData.DayTracker.IAPCurrency.ToString();
 				SetDeco(decoID, decoData.Type);
