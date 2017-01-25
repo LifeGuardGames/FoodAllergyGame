@@ -289,35 +289,24 @@ public class DecoManager : Singleton<DecoManager>{
 
 	private bool BuyItem(string decoID){
 		ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
-		
+
 		// Check if you have enough money, change cash if so, takes care of anim as well
-		if(decoData.DecoTabType != DecoTabTypes.IAP && CashManager.Instance.DecoBuyCoin(decoData.Cost)){
+		if(decoData.DecoTabType != DecoTabTypes.IAP && CashManager.Instance.DecoBuyCoin(decoData.Cost)) {
 			if(decoData.Type == DecoTypes.Special) {
 				DataManager.Instance.GameData.Decoration.CustomersBought.Add(decoData.ID);
 			}
 			DataManager.Instance.GameData.Decoration.BoughtDeco.Add(decoID, "");
 			SetDeco(decoID, decoData.Type);
 			AnalyticsManager.Instance.TrackDecoBought(decoID);
-            return true;
+			return true;
 		}
 		else if(decoData.DecoTabType == DecoTabTypes.IAP) {
-			if(DataManager.Instance.GameData.DayTracker.IAPCurrency >= decoData.IAPPrice || DataManager.Instance.GameData.DayTracker.IsAmazonUnderground){
-				DataManager.Instance.GameData.DayTracker.IAPCurrency -= decoData.IAPPrice;
-				ParticleAndFloatyUtils.PlayStardustFloaty(GameObject.Find("ButtonBuy").transform.position, -decoData.IAPPrice);
-                DataManager.Instance.GameData.Decoration.BoughtDeco.Add(decoID, "");
-				starDustHud.gameObject.GetComponentInChildren<Text>().text = DataManager.Instance.GameData.DayTracker.IAPCurrency.ToString();
-				SetDeco(decoID, decoData.Type);
-				AnalyticsManager.Instance.TrackDecoBought(decoID);
-				return true;
-			}
-			else {
-				OpenIAPMenu();
-			}
-			return false;
+			PurchasingManager.Instance.BuyIapDeco(decoID);
 		}
 		else{
 			return false;
 		}
+		return false;
 	}
 
 	public void ChangeTab(string tabName){
@@ -412,5 +401,12 @@ public class DecoManager : Singleton<DecoManager>{
 
 	public void PurchaseFailed() {
 		IAPStatusUIManager.Instance.ShowPanel(false);
+	}
+
+	public void PurchaseCompleteDeco(string decoID) {
+		ImmutableDataDecoItem decoData = DataLoaderDecoItem.GetData(decoID);
+		DataManager.Instance.GameData.Decoration.BoughtDeco.Add(decoID, "");
+		SetDeco(decoID, decoData.Type);
+		AnalyticsManager.Instance.TrackDecoBought(decoID);
 	}
 }

@@ -43,7 +43,7 @@ public class DataManager : Singleton<DataManager> {
 		set { priceStringAux = value; }
 	}
 	private string priceStringAuxDust1 = "";         // Keep a storage of the price of IAP wall
-	public string PriceStringAuxDust1 {
+	public string BaseDecoPriceStringAux {
 		get { return priceStringAuxDust1; }
 		set { priceStringAuxDust1 = value; }
 	}

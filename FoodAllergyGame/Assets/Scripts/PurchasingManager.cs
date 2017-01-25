@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Purchasing;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 
@@ -14,19 +15,72 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 	private static string kProductNameApplePro = "com.LifeGuardGames.FoodAllergy.IAP.Pro";		// Apple App Store identifier for the non-consumable product.
 	private static string kProductNameGooglePlayPro = "com.lifeguardgames.foodallergyandroid.iap.pro";  // Google Play Store identifier for the non-consumable product.
 
-	private static string kProductIDStardustOne = "com.lifeguardgames.foodallergy.iap.stardust.one";
-	private static string kProductIDAppleStardustOne = "com.LifeGuardGames.FoodAllergy.IAP.Stardust.One";
-	private static string kProductIDGooglePlayStardustOne = "com.lifeguardgames.foodallergyandroid.iap.stardust.one";
+	private static string kProductIDSpookyTable = "com.lifeguardgames.foodallergy.iap.spooky.table";
+	private static string kProductIDAppleSpookyTable = "com.LifeGuardGames.FoodAllergy.IAP.Spooky.table";
+	private static string kProductIDGooglePlaySpookyTable = "com.lifeguardgames.foodallergyandroid.iap.spooky.table";
 
-	private static string kProductIDStardustTwo = "com.lifeguardgames.foodallergy.iap.stardust.two";
-	private static string kProductIDAppleStardustTwo = "com.LifeGuardGames.FoodAllergy.IAP.Stardust.Two";
-	private static string kProductIDGooglePlayStardustTwo = "com.lifeguardgames.foodallergyandroid.iap.stardust.two";
+	private static string kProductIDSpookyKitchen = "com.lifeguardgames.foodallergy.iap.spooky.kitchen";
+	private static string kProductIDAppleSpookyKitchen = "com.LifeGuardGames.FoodAllergy.IAP.Spooky.Kitchen";
+	private static string kProductIDGooglePlaySpookyKitchen = "com.lifeguardgames.foodallergyandroid.iap.spooky.kitchen";
 
-	private static string kProductIDStardustThree = "com.lifeguardgames.foodallergy.iap.stardust.three";
-	private static string kProductIDGooglePlayStardustThree= "com.lifeguardgames.foodallergyandroid.iap.stardust.three";
-	private static string kProductIDAppleStardustThree = "com.LifeGuardGames.FoodAllergy.IAP.Stardust.Three";
+	private static string kProductIDSpookyFloor = "com.lifeguardgames.foodallergy.iap.spooky.floor";
+	private static string kProductIDGooglePlaySpookyFloor = "com.lifeguardgames.foodallergyandroid.iap.spooky.floor";
+	private static string kProductIDAppleSpookyFloor = "com.LifeGuardGames.FoodAllergy.IAP.Spooky.Floor";
+
+	private static string kProductIDSloppyTable = "com.lifeguardgames.foodallergy.iap.sloppy.table";
+	private static string kProductIDAppleSloppyTable = "com.LifeGuardGames.FoodAllergy.IAP.Sloppy.table";
+	private static string kProductIDGooglePlaySloppyTable = "com.lifeguardgames.foodallergyandroid.iap.sloppy.table";
+
+	private static string kProductIDSloppyKitchen = "com.lifeguardgames.foodallergy.iap.sloppy.kitchen";
+	private static string kProductIDAppleSloppyKitchen = "com.LifeGuardGames.FoodAllergy.IAP.Sloppy.Kitchen";
+	private static string kProductIDGooglePlaySloppyKitchen = "com.lifeguardgames.foodallergyandroid.iap.sloppy.kitchen";
+
+	private static string kProductIDSloppyFloor = "com.lifeguardgames.foodallergy.iap.sloppy.floor";
+	private static string kProductIDGooglePlaySloppyFloor = "com.lifeguardgames.foodallergyandroid.iap.sloppy.floor";
+	private static string kProductIDAppleSloppyFloor = "com.LifeGuardGames.FoodAllergy.IAP.Sloppy.Floor";
+
+	private static string kProductIDSeaTable = "com.lifeguardgames.foodallergy.iap.sea.table";
+	private static string kProductIDAppleSeaTable = "com.LifeGuardGames.FoodAllergy.IAP.Sea.table";
+	private static string kProductIDGooglePlaySeaTable = "com.lifeguardgames.foodallergyandroid.iap.sea.table";
+
+	private static string kProductIDSeaKitchen = "com.lifeguardgames.foodallergy.iap.sea.kitchen";
+	private static string kProductIDAppleSeaKitchen = "com.LifeGuardGames.FoodAllergy.IAP.Sea.Kitchen";
+	private static string kProductIDGooglePlaySeaKitchen = "com.lifeguardgames.foodallergyandroid.iap.sea.kitchen";
+
+	private static string kProductIDSeaFloor = "com.lifeguardgames.foodallergy.iap.sea.floor";
+	private static string kProductIDGooglePlaySeaFloor = "com.lifeguardgames.foodallergyandroid.iap.sea.floor";
+	private static string kProductIDAppleSeaFloor = "com.LifeGuardGames.FoodAllergy.IAP.Sea.Floor";
+
+	private static string kProductIDPlushieTable = "com.lifeguardgames.foodallergy.iap.plushie.table";
+	private static string kProductIDApplePlushieTable = "com.LifeGuardGames.FoodAllergy.IAP.Plushie.table";
+	private static string kProductIDGooglePlayPlushieTable = "com.lifeguardgames.foodallergyandroid.iap.plushie.table";
+
+	private static string kProductIDPlushieKitchen = "com.lifeguardgames.foodallergy.iap.plushie.kitchen";
+	private static string kProductIDApplePlushieKitchen = "com.LifeGuardGames.FoodAllergy.IAP.Plushie.Kitchen";
+	private static string kProductIDGooglePlayPlushieKitchen = "com.lifeguardgames.foodallergyandroid.iap.plushie.kitchen";
+
+	private static string kProductIDPlushieFloor = "com.lifeguardgames.foodallergy.iap.plushie.floor";
+	private static string kProductIDGooglePlayPlushieFloor = "com.lifeguardgames.foodallergyandroid.iap.plushie.floor";
+	private static string kProductIDApplePlushieFloor = "com.LifeGuardGames.FoodAllergy.IAP.Plushie.Floor";
+
+	public List<string> productList;
+	public string currentDecoId;
+
 
 	void Start() {
+		productList = new List<string>();
+		productList.Add(kProductIDPlushieFloor);
+		productList.Add(kProductIDPlushieKitchen);
+		productList.Add(kProductIDPlushieTable);
+		productList.Add(kProductIDSeaFloor);
+		productList.Add(kProductIDSeaKitchen);
+		productList.Add(kProductIDSeaTable);
+		productList.Add(kProductIDSloppyFloor);
+		productList.Add(kProductIDSloppyKitchen);
+		productList.Add(kProductIDSloppyTable);
+		productList.Add(kProductIDSpookyFloor);
+		productList.Add(kProductIDSpookyKitchen);
+		productList.Add(kProductIDSpookyTable);
 		// If we haven't set up the Unity Purchasing reference
 		if(m_StoreController == null) {
 			// Begin to configure our connection to Purchasing
@@ -43,12 +97,20 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 
 		// Create a builder, first passing in a suite of Unity provided stores.
 		var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
-
 		// Add a product to sell / restore by way of its identifier, associating the general identifier with its store-specific identifiers.
 		builder.AddProduct(kProductIDPro, ProductType.NonConsumable, new IDs() { { kProductNameApplePro, AppleAppStore.Name }, { kProductNameGooglePlayPro, GooglePlay.Name }, });// And finish adding the subscription product.
-		builder.AddProduct(kProductIDStardustOne, ProductType.Consumable, new IDs() { { kProductIDAppleStardustOne, AppleAppStore.Name }, { kProductIDGooglePlayStardustOne, GooglePlay.Name }, });
-		builder.AddProduct(kProductIDStardustTwo, ProductType.Consumable, new IDs() { { kProductIDAppleStardustTwo, AppleAppStore.Name }, { kProductIDGooglePlayStardustTwo, GooglePlay.Name }, });
-		builder.AddProduct(kProductIDStardustThree, ProductType.Consumable, new IDs() { { kProductIDAppleStardustThree, AppleAppStore.Name }, { kProductIDGooglePlayStardustThree, GooglePlay.Name }, });
+		builder.AddProduct(kProductIDSpookyTable, ProductType.NonConsumable, new IDs() { { kProductIDAppleSpookyTable, AppleAppStore.Name }, { kProductIDGooglePlaySpookyTable, GooglePlay.Name }, });
+		builder.AddProduct(kProductIDSpookyKitchen, ProductType.NonConsumable, new IDs() { { kProductIDAppleSpookyKitchen, AppleAppStore.Name }, { kProductIDGooglePlaySpookyKitchen, GooglePlay.Name }, });
+		builder.AddProduct(kProductIDSpookyFloor, ProductType.NonConsumable, new IDs() { { kProductIDAppleSpookyFloor, AppleAppStore.Name }, { kProductIDGooglePlaySpookyFloor, GooglePlay.Name }, });
+		builder.AddProduct(kProductIDSloppyTable, ProductType.NonConsumable, new IDs() { { kProductIDAppleSloppyTable, AppleAppStore.Name }, { kProductIDGooglePlaySloppyTable, GooglePlay.Name }, });
+		builder.AddProduct(kProductIDSloppyKitchen, ProductType.NonConsumable, new IDs() { { kProductIDAppleSloppyKitchen, AppleAppStore.Name }, { kProductIDGooglePlaySloppyKitchen, GooglePlay.Name }, });
+		builder.AddProduct(kProductIDSloppyFloor, ProductType.NonConsumable, new IDs() { { kProductIDAppleSloppyFloor, AppleAppStore.Name }, { kProductIDGooglePlaySloppyFloor, GooglePlay.Name }, });
+		builder.AddProduct(kProductIDSeaTable, ProductType.NonConsumable, new IDs() { { kProductIDAppleSeaTable, AppleAppStore.Name }, { kProductIDGooglePlaySeaTable, GooglePlay.Name }, });
+		builder.AddProduct(kProductIDSeaKitchen, ProductType.NonConsumable, new IDs() { { kProductIDAppleSeaKitchen, AppleAppStore.Name }, { kProductIDGooglePlaySeaKitchen, GooglePlay.Name }, });
+		builder.AddProduct(kProductIDSeaFloor, ProductType.NonConsumable, new IDs() { { kProductIDAppleSeaFloor, AppleAppStore.Name }, { kProductIDGooglePlaySeaFloor, GooglePlay.Name }, });
+		builder.AddProduct(kProductIDPlushieTable, ProductType.NonConsumable, new IDs() { { kProductIDApplePlushieTable, AppleAppStore.Name }, { kProductIDGooglePlayPlushieTable, GooglePlay.Name }, });
+		builder.AddProduct(kProductIDPlushieKitchen, ProductType.NonConsumable, new IDs() { { kProductIDApplePlushieKitchen, AppleAppStore.Name }, { kProductIDGooglePlayPlushieKitchen, GooglePlay.Name }, });
+		builder.AddProduct(kProductIDPlushieFloor, ProductType.NonConsumable, new IDs() { { kProductIDApplePlushieFloor, AppleAppStore.Name }, { kProductIDGooglePlayPlushieFloor, GooglePlay.Name }, });
 		UnityPurchasing.Initialize(this, builder);
 	}
 	
@@ -68,9 +130,7 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 		m_StoreExtensionProvider = extensions;
 
 		// Save the localized price to DataManager
-		DataManager.Instance.PriceStringAuxDust1 = m_StoreController.products.WithID(kProductIDStardustOne).metadata.localizedPriceString;
-		DataManager.Instance.PriceStringAuxDust2 = m_StoreController.products.WithID(kProductIDStardustTwo).metadata.localizedPriceString;
-		DataManager.Instance.PriceStringAuxDust3 = m_StoreController.products.WithID(kProductIDStardustThree).metadata.localizedPriceString;
+		DataManager.Instance.BaseDecoPriceStringAux = m_StoreController.products.WithID(kProductIDSpookyTable).metadata.localizedPriceString;
 
 	}
 
@@ -89,13 +149,13 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 	public void BuyStardustSet(int setNumber) {
 		switch(setNumber) {
 			case 1:
-				BuyProductID(kProductIDStardustOne);
+				BuyProductID(kProductIDAppleSpookyTable);
 				break;
 			case 2:
-				BuyProductID(kProductIDStardustTwo);
+				BuyProductID(kProductIDAppleSpookyKitchen);
 				break;
 			case 3:
-				BuyProductID(kProductIDStardustThree);
+				BuyProductID(kProductIDAppleSpookyFloor);
 				break;
 		}
 	}
@@ -175,36 +235,19 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 			StartManager.Instance.UnlockMoreCratesAndShowUI();
         }
 		else*/
-		if(string.Equals(args.purchasedProduct.definition.id, kProductIDStardustOne, StringComparison.Ordinal)) {
+		if(productList.Contains(args.purchasedProduct.definition.id)) {
 			Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-			string price = DataManager.Instance.PriceStringAuxDust1;
+			string price = DataManager.Instance.BaseDecoPriceStringAux;
 			price = price.Trim('$');
             Amplitude.Instance.logRevenue(double.Parse(price));
 			DataManager.Instance.GameData.DayTracker.IAPCurrency++;
-			StardustVendor.Instance.UpdateStarHud();
-		}
-		else if(string.Equals(args.purchasedProduct.definition.id, kProductIDStardustTwo, StringComparison.Ordinal)) {
-			Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-			string price = DataManager.Instance.PriceStringAuxDust2;
-			price = price.Trim('$');
-			Amplitude.Instance.logRevenue(double.Parse(price));
-			DataManager.Instance.GameData.DayTracker.IAPCurrency += 5;
-			StardustVendor.Instance.UpdateStarHud();
-		}
-		else if(string.Equals(args.purchasedProduct.definition.id, kProductIDStardustThree, StringComparison.Ordinal)) {
-			Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-			string price = DataManager.Instance.PriceStringAuxDust3;
-			price = price.Trim('$');
-			Amplitude.Instance.logRevenue(double.Parse(price));
-			DataManager.Instance.GameData.DayTracker.IAPCurrency += 10;
-			StardustVendor.Instance.UpdateStarHud();
+			DecoManager.Instance.PurchaseCompleteDeco(currentDecoId);
 		}
 		// Or ... an unknown product has been purchased by this user. Fill in additional products here.
 		else {
 			Debug.Log(string.Format("ProcessPurchase: FAIL. Unrecognized product: '{0}'", args.purchasedProduct.definition.id));
 			PurchaseFailedUI();
 		}
-
 		// Return a flag indicating wither this product has completely been received, 
 		// or if the application needs to be reminded of this purchase at next app launch.
 		// Is useful when saving purchased products to the cloud, and when that save is delayed.
@@ -226,6 +269,50 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 			DecoManager.Instance.PurchaseFailed();
 		}
 	}
+
+	public void BuyIapDeco(string id) {
+		currentDecoId = id;
+		switch(id) {
+			case "TableSpooky":
+				BuyProductID(kProductIDSpookyTable);
+				break;
+			case "KitchenSpooky":
+				BuyProductID(kProductIDSpookyKitchen);
+				break;
+			case "FloorSpooky":
+				BuyProductID(kProductIDSpookyFloor);
+				break;
+			case "TableSloppy":
+				BuyProductID(kProductIDSloppyTable);
+				break;
+			case "KitchenSloppy":
+				BuyProductID(kProductIDSloppyKitchen);
+				break;
+			case "FloorSloppy":
+				BuyProductID(kProductIDSloppyFloor);
+				break;
+			case "TableSea":
+				BuyProductID(kProductIDSeaTable);
+				break;
+			case "KitchenSea":
+				BuyProductID(kProductIDSeaKitchen);
+				break;
+			case "FloorSea":
+				BuyProductID(kProductIDSeaFloor);
+				break;
+			case "TablePlushie":
+				BuyProductID(kProductIDPlushieTable);
+				break;
+			case "KitchenPlushie":
+				BuyProductID(kProductIDPlushieKitchen);
+				break;
+			case "FloorPlushie":
+				BuyProductID(kProductIDPlushieFloor);
+				break;
+
+		}
+	}
+
 
 	// Localized to native price, cached in datamanager
 	/*
