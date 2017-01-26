@@ -117,6 +117,16 @@ public class DataLoaderDecoItem: XMLLoaderGeneric<DataLoaderDecoItem> {
 		return decoList;
 	}
 
+	public static string GetDecoIDFromProdID(string prodID) {
+	List<ImmutableDataDecoItem> decoList = GetDecoDataIAPs();
+		foreach(ImmutableDataDecoItem decoData in decoList) {
+			if(prodID == decoData.ProdID) {
+				return decoData.ID;
+			}
+		}
+		return "FloorSloppy";
+	}
+
 	protected override void XMLNodeHandler(string id, IXMLNode xmlNode, Hashtable hashData, string errorMessage){
 		ImmutableDataDecoItem data = new ImmutableDataDecoItem(id, xmlNode, errorMessage);
 		// Store the data

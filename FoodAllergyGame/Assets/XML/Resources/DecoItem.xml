@@ -510,6 +510,7 @@
 		<SpriteName>RestTablePlushie</SpriteName>
 		<Tier>0</Tier>
 		<IAPPrice>1</IAPPrice>
+    <ProdID>com.lifeguardgames.foodallergy.iap.plushie.table</ProdID>
 	</DecoItem>
 	<DecoItem ID ="FloorPlushie">
 		<Type>Floor</Type>
@@ -520,6 +521,7 @@
 		<SpriteName>RestFloorPlushie</SpriteName>
 		<Tier>0</Tier>
 		<IAPPrice>1</IAPPrice>
+    <ProdID>com.lifeguardgames.foodallergy.iap.plushie.floor</ProdID>
 	</DecoItem>
 	<DecoItem ID ="KitchenPlushie">
 		<Type>Kitchen</Type>
@@ -530,6 +532,7 @@
 		<SpriteName>RestKitchenPlushie</SpriteName>
 		<Tier>0</Tier>
 		<IAPPrice>1</IAPPrice>
+    <ProdID>com.lifeguardgames.foodallergy.iap.plushie.kitchen</ProdID>
 	</DecoItem>
 	<DecoItem ID ="TableSloppy">
 		<Type>Table</Type>
@@ -540,6 +543,7 @@
 		<SpriteName>RestTableSloppy</SpriteName>
 		<Tier>0</Tier>
 		<IAPPrice>1</IAPPrice>
+    <ProdID>com.lifeguardgames.foodallergy.iap.sloopy.table</ProdID>
 	</DecoItem>
 	<DecoItem ID ="FloorSloppy">
 		<Type>Floor</Type>
@@ -550,6 +554,7 @@
 		<SpriteName>RestFloorSloppy</SpriteName>
 		<Tier>0</Tier>
 		<IAPPrice>1</IAPPrice>
+    <ProdID>com.lifeguardgames.foodallergy.iap.sloopy.floor</ProdID>
 	</DecoItem>
 	<DecoItem ID ="KitchenSloppy">
 		<Type>Kitchen</Type>
@@ -560,6 +565,7 @@
 		<SpriteName>RestKitchenSloppy</SpriteName>
 		<Tier>0</Tier>
 		<IAPPrice>1</IAPPrice>
+    <ProdID>com.lifeguardgames.foodallergy.iap.sloopy.kitchen</ProdID>
 	</DecoItem>
 	<DecoItem ID ="TableSpooky">
 		<Type>Table</Type>
@@ -570,6 +576,7 @@
 		<SpriteName>RestTableSpooky</SpriteName>
 		<Tier>0</Tier>
 		<IAPPrice>1</IAPPrice>
+    <ProdID>com.lifeguardgames.foodallergy.iap.spooky.table</ProdID>
 	</DecoItem>
 	<DecoItem ID ="FloorSpooky">
 		<Type>Floor</Type>
@@ -580,6 +587,7 @@
 		<SpriteName>RestFloorSpooky</SpriteName>
 		<Tier>0</Tier>
 		<IAPPrice>1</IAPPrice>
+    <ProdID>com.lifeguardgames.foodallergy.iap.spooky.floor</ProdID>
 	</DecoItem>
 	<DecoItem ID ="KitchenSpooky">
 		<Type>Kitchen</Type>
@@ -590,6 +598,7 @@
 		<SpriteName>RestKitchenSpooky</SpriteName>
 		<Tier>0</Tier>
 		<IAPPrice>1</IAPPrice>
+    <ProdID>com.lifeguardgames.foodallergy.iap.spooky.kitchen</ProdID>
 	</DecoItem>
 	<DecoItem ID ="TableSea">
 		<Type>Table</Type>
@@ -600,6 +609,7 @@
 		<SpriteName>RestTableSea</SpriteName>
 		<Tier>0</Tier>
 		<IAPPrice>1</IAPPrice>
+    <ProdID>com.lifeguardgames.foodallergy.iap.sea.table</ProdID>
 	</DecoItem>
 	<DecoItem ID ="FloorSea">
 		<Type>Floor</Type>
@@ -610,6 +620,7 @@
 		<SpriteName>RestFloorSea</SpriteName>
 		<Tier>0</Tier>
 		<IAPPrice>1</IAPPrice>
+    <ProdID>com.lifeguardgames.foodallergy.iap.sea.floor</ProdID>
 	</DecoItem>
 	<DecoItem ID ="KitchenSea">
 		<Type>Kitchen</Type>
@@ -620,5 +631,6 @@
 		<SpriteName>RestKitchenSea</SpriteName>
 		<Tier>0</Tier>
 		<IAPPrice>1</IAPPrice>
+    <ProdID>com.lifeguardgames.foodallergy.iap.sea.kitchen</ProdID>
 	</DecoItem>
 </DecoItem>

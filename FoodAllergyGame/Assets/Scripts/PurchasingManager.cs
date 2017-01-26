@@ -128,10 +128,15 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 		m_StoreController = controller;
 		// Store specific subsystem, for accessing device-specific store features.
 		m_StoreExtensionProvider = extensions;
-
+		//make sure datamanger knows what has been purchased
+		foreach(Product prod in m_StoreController.products.all) {
+			if(prod.hasReceipt) {
+				currentDecoId = DataLoaderDecoItem.GetDecoIDFromProdID(prod.definition.id);
+				DataManager.Instance.GameData.Decoration.BoughtDeco.Add(currentDecoId, "");
+			}
+		}
 		// Save the localized price to DataManager
 		DataManager.Instance.BaseDecoPriceStringAux = m_StoreController.products.WithID(kProductIDSpookyTable).metadata.localizedPriceString;
-
 	}
 
 	public void OnInitializeFailed(InitializationFailureReason error) {
@@ -240,8 +245,10 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 			string price = DataManager.Instance.BaseDecoPriceStringAux;
 			price = price.Trim('$');
             Amplitude.Instance.logRevenue(double.Parse(price));
-			DataManager.Instance.GameData.DayTracker.IAPCurrency++;
-			DecoManager.Instance.PurchaseCompleteDeco(currentDecoId);
+			//DataManager.Instance.GameData.DayTracker.IAPCurrency++;
+			if(DecoManager.Instance != null) {
+				DecoManager.Instance.PurchaseCompleteDeco(currentDecoId);
+			}
 		}
 		// Or ... an unknown product has been purchased by this user. Fill in additional products here.
 		else {

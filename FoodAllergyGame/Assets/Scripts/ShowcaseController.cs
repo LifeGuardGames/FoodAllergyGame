@@ -34,12 +34,13 @@ public class ShowcaseController : MonoBehaviour {
 		}
 
 		if(decoData.DecoTabType != DecoTabTypes.IAP) {
-			costText.text = decoData.Cost.ToString();
 			costImage.sprite = Resources.Load<Sprite>("Coin");
+			costText.text = decoData.Cost.ToString();
+			costImage.enabled = true;
 		}
 		else {
-			costText.text = decoData.IAPPrice.ToString();
-			costImage.sprite = Resources.Load<Sprite>("StarDust");
+			costText.text = "$0.99";
+			costImage.enabled = false;
 		}
 		
 		// Show the corrosponding buttons based on item state

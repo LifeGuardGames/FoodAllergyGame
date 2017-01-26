@@ -41,7 +41,6 @@ public class DecoManager : Singleton<DecoManager>{
 	public List<GameObject> tabNewTags;
 	public GameObject dailySpecialTag;
 	public TweenToggleDemux IAPMenu;
-	public PositionTweenToggle starDustHud;
 
 	#region Generic functions
 	public static bool IsDecoBought(string decoID){
@@ -311,14 +310,6 @@ public class DecoManager : Singleton<DecoManager>{
 
 	public void ChangeTab(string tabName){
 		currentDecoPage = 0;
-		
-		if(tabName == "IAP") {
-			starDustHud.Show();
-			starDustHud.gameObject.GetComponentInChildren<Text>().text = DataManager.Instance.GameData.DayTracker.IAPCurrency.ToString();
-		}
-		else {
-			starDustHud.Hide();
-		}
 		//if(isTutroial && tabName == "PlayArea" && tutObj1.activeSelf == true){
 		if(isTutorial && tabName == "VIP" && tutObj1.activeSelf == true){
 			tutObj1.SetActive(false);

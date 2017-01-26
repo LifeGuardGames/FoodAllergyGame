@@ -48,6 +48,11 @@ public class ImmutableDataDecoItem {
 		get { return iapPrice; }
 	}
 
+	private string prodID;
+	public string ProdID {
+		get { return prodID; }
+	}
+
 	public ImmutableDataDecoItem(string id, IXMLNode xmlNode, string error) {
 		Hashtable hashElements = XMLUtils.GetChildren(xmlNode);
 
@@ -69,6 +74,9 @@ public class ImmutableDataDecoItem {
 		}
 		else {
 			iapPrice = 0;
+		}
+		if(hashElements.Contains("ProdID")) {
+			prodID = XMLUtils.GetString(hashElements["ProdID"] as IXMLNode);
 		}
 	}
 }
