@@ -299,10 +299,15 @@ public class DecoManager : Singleton<DecoManager>{
 			AnalyticsManager.Instance.TrackDecoBought(decoID);
 			return true;
 		}
-		else if(decoData.DecoTabType == DecoTabTypes.IAP) {
+		else if(decoData.DecoTabType == DecoTabTypes.IAP && !DataManager.Instance.GameData.DayTracker.IsAmazonUnderground) {
 			PurchasingManager.Instance.BuyIapDeco(decoID);
 		}
-		else{
+		else if(decoData.DecoTabType == DecoTabTypes.IAP && DataManager.Instance.GameData.DayTracker.IsAmazonUnderground) {
+			DataManager.Instance.GameData.Decoration.BoughtDeco.Add(decoID, "");
+			SetDeco(decoID, decoData.Type);
+			AnalyticsManager.Instance.TrackDecoBought(decoID);
+		}
+        else {
 			return false;
 		}
 		return false;
