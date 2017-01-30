@@ -13,6 +13,7 @@ public class BehavEaterNotifyLeave : Behav {
 	}
 
 	public override void Act() {
+		self.isLeaveing = true;
 		self.failedMission = true;
 		if(self.tableNum == 5) {
 			var type = Type.GetType(DataLoaderBehav.GetData(self.behavFlow).Behav[10]);

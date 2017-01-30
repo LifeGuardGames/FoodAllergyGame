@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System;
 using System.Linq;
 
@@ -82,45 +81,44 @@ public class DailyBehaviorManager : Singleton<DailyBehaviorManager> {
 	}
 
 	public void ObtainRandomDecos() {
-		GetRandomTablesForStore(DataLoaderDecoItem.GetUnlockedDecoList(TierManager.Instance.CurrentTier, DecoTypes.Table));
-		GetRandomFloorsForStore(DataLoaderDecoItem.GetUnlockedDecoList(TierManager.Instance.CurrentTier, DecoTypes.Floor));
-		GetRandomKitchensForStore(DataLoaderDecoItem.GetUnlockedDecoList(TierManager.Instance.CurrentTier, DecoTypes.Kitchen));
+		GetRandomTablesForStore(DataLoaderDecoItem.GetUnlockedDecoListByTabType(TierManager.Instance.CurrentTier, DecoTabTypes.Table));
+		GetRandomFloorsForStore(DataLoaderDecoItem.GetUnlockedDecoListByTabType(TierManager.Instance.CurrentTier, DecoTabTypes.Floor));
+		GetRandomKitchensForStore(DataLoaderDecoItem.GetUnlockedDecoListByTabType(TierManager.Instance.CurrentTier, DecoTabTypes.Kitchen));
 		GetRandomSpecialItem(DataLoaderDecoItem.GetUnlockedDecoList(TierManager.Instance.CurrentTier));
 	}
 
-	public void GetRandomTablesForStore(List<string> decList) {
+	public void GetRandomTablesForStore(List<string> decoList) {
 		while(DataManager.Instance.GameData.Daily.RotTables.Count < 3) {
-			int rand = UnityEngine.Random.Range(0, decList.Count);
-			if(!DataManager.Instance.GameData.Daily.RotTables.Contains(decList[rand])) {
-				DataManager.Instance.GameData.Daily.RotTables.Add(decList[rand]);
+			int rand = UnityEngine.Random.Range(0, decoList.Count);
+			if(!DataManager.Instance.GameData.Daily.RotTables.Contains(decoList[rand])) {
+				DataManager.Instance.GameData.Daily.RotTables.Add(decoList[rand]);
 			}
 		}
 	}
 
-	public void GetRandomFloorsForStore(List<string> decList) {
+	public void GetRandomFloorsForStore(List<string> decoList) {
 		while(DataManager.Instance.GameData.Daily.RotFloors.Count < 3) {
-			int rand = UnityEngine.Random.Range(0, decList.Count);
-			if(!DataManager.Instance.GameData.Daily.RotFloors.Contains(decList[rand])) {
-				DataManager.Instance.GameData.Daily.RotFloors.Add(decList[rand]);
+			int rand = UnityEngine.Random.Range(0, decoList.Count);
+			if(!DataManager.Instance.GameData.Daily.RotFloors.Contains(decoList[rand])) {
+				DataManager.Instance.GameData.Daily.RotFloors.Add(decoList[rand]);
 			}
 		}
-
 	}
 
-	public void GetRandomKitchensForStore(List<string> decList) {
+	public void GetRandomKitchensForStore(List<string> decoList) {
 		while(DataManager.Instance.GameData.Daily.RotKitchen.Count < 3) {
-			int rand = UnityEngine.Random.Range(0, decList.Count);
-			if(!DataManager.Instance.GameData.Daily.RotKitchen.Contains(decList[rand])) {
-				DataManager.Instance.GameData.Daily.RotKitchen.Add(decList[rand]);
+			int rand = UnityEngine.Random.Range(0, decoList.Count);
+			if(!DataManager.Instance.GameData.Daily.RotKitchen.Contains(decoList[rand])) {
+				DataManager.Instance.GameData.Daily.RotKitchen.Add(decoList[rand]);
 			}
 		}
 	}
 
-	public void GetRandomSpecialItem(List<string> decList) {
-		while(DataManager.Instance.GameData.Daily.SpeciDeco == "") {
-			int rand = UnityEngine.Random.Range(0, decList.Count);
-			if(!DataManager.Instance.GameData.Decoration.BoughtDeco.ContainsKey(decList[rand])) {
-				DataManager.Instance.GameData.Daily.SpeciDeco = decList[rand];
+	public void GetRandomSpecialItem(List<string> decoList) {
+		while(DataManager.Instance.GameData.Daily.DailyRandomDeco == "") {
+			int rand = UnityEngine.Random.Range(0, decoList.Count);
+			if(!DataManager.Instance.GameData.Decoration.BoughtDeco.ContainsKey(decoList[rand])) {
+				DataManager.Instance.GameData.Daily.DailyRandomDeco = decoList[rand];
 			}
 		}
 	}

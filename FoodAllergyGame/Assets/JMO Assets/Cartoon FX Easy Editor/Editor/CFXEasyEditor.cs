@@ -4,7 +4,7 @@ using System.Collections;
 using System.Reflection;
 
 // Cartoon FX Easy Editor
-// (c) 2013, 2014 - Jean Moreno
+// (c) 2013-2015 - Jean Moreno
 
 public class CFXEasyEditor : EditorWindow
 {
@@ -26,7 +26,7 @@ public class CFXEasyEditor : EditorWindow
 	
 	//Scale
 	private float ScalingValue = 2.0f;
-	private float LTScalingValue = 100.0f;
+	private float LTScalingValue = 1.0f;
 	
 	//Delay
 	private float DelayValue = 1.0f;
@@ -46,7 +46,7 @@ public class CFXEasyEditor : EditorWindow
 	//Module copying
 	private ParticleSystem sourceObject;
 	private Color ColorSelected = new Color(0.8f,0.95f,1.0f,1.0f);
-	private bool[] b_modules = new bool[16];
+	private bool[] b_modules = new bool[21];
 	
 	//Foldouts
 	bool basicFoldout = false;
@@ -78,12 +78,11 @@ public class CFXEasyEditor : EditorWindow
 	
 	void OnGUI()
 	{
-		GUILayout.BeginArea(new Rect(0,0,this.position.width - 8,this.position.height));
 		GUILayout.Space(4);
 		
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("CARTOON FX Easy Editor", EditorStyles.boldLabel);
-		pref_ShowAsToolbox = GUILayout.Toggle(pref_ShowAsToolbox, new GUIContent("Toolbox", "If enabled, the window will be displayed as an external toolbox.\nIf false, it will act as a dockable Unity window."), GUILayout.Width(60));
+		pref_ShowAsToolbox = GUILayout.Toggle(pref_ShowAsToolbox, new GUIContent("Toolbox", "If enabled, the window will be displayed as an external toolbox.\nIf false, it will act as a dockable Unity window."), GUILayout.Width(65));
 		if(GUI.changed)
 		{
 			EditorPrefs.SetBool("CFX_ShowAsToolbox", pref_ShowAsToolbox);
@@ -181,13 +180,13 @@ public class CFXEasyEditor : EditorWindow
 		//----------------------------------------------------------------
 			
 			GUILayout.BeginHorizontal();
-			if(GUILayout.Button(new GUIContent("Set Speed", "Changes the speed of the Particle System(s) (if you want quicker or longer effects, 100% = default speed)"), GUILayout.Width(120)))
+			if(GUILayout.Button(new GUIContent("Set Speed", "Changes the simulation speed of the Particle System(s)\n1 = default speed"), GUILayout.Width(120)))
 			{
 				applySpeed();
 			}
-			GUILayout.Label("Speed (%):",GUILayout.Width(110));
+			GUILayout.Label("Speed:",GUILayout.Width(110));
 			LTScalingValue = EditorGUILayout.FloatField(LTScalingValue,GUILayout.Width(50));
-			if(LTScalingValue < 0.1f) LTScalingValue = 0.1f;
+			if(LTScalingValue < 0.0f) LTScalingValue = 0.0f;
 			else if(LTScalingValue > 9999) LTScalingValue = 9999;
 			GUILayout.EndHorizontal();
 			
@@ -363,7 +362,7 @@ public class CFXEasyEditor : EditorWindow
 			GUILayout.EndHorizontal();
 			
 			GUILayout.Space(4);
-			
+
 			GUILayout.BeginHorizontal();
 			GUILayout.FlexibleSpace();
 			GUI.color = b_modules[0] ? ColorSelected : Color.white;	if(GUILayout.Button("Initial", EditorStyles.toolbarButton, GUILayout.Width(70))) b_modules[0] = !b_modules[0];
@@ -373,9 +372,20 @@ public class CFXEasyEditor : EditorWindow
 			GUILayout.EndHorizontal();
 			GUILayout.BeginHorizontal();
 			GUILayout.FlexibleSpace();
+#if UNITY_5_4_OR_NEWER
+			GUI.color = b_modules[3] ? ColorSelected : Color.white;	if(GUILayout.Button("Velocity", EditorStyles.toolbarButton, GUILayout.Width(70))) b_modules[3] = !b_modules[3];
+			GUI.color = b_modules[4] ? ColorSelected : Color.white;	if(GUILayout.Button("Limit Velocity", EditorStyles.toolbarButton, GUILayout.Width(100))) b_modules[4] = !b_modules[4];
+			GUILayout.FlexibleSpace();
+			GUILayout.EndHorizontal();
+			GUILayout.BeginHorizontal();
+			GUILayout.FlexibleSpace();
+			GUI.color = b_modules[16] ? ColorSelected : Color.white; if (GUILayout.Button("Inherit Velocity", EditorStyles.toolbarButton, GUILayout.Width(100))) b_modules[16] = !b_modules[16];
+			GUI.color = b_modules[5] ? ColorSelected : Color.white; if (GUILayout.Button("Force", EditorStyles.toolbarButton, GUILayout.Width(70))) b_modules[5] = !b_modules[5];
+#else
 			GUI.color = b_modules[3] ? ColorSelected : Color.white;	if(GUILayout.Button("Velocity", EditorStyles.toolbarButton, GUILayout.Width(70))) b_modules[3] = !b_modules[3];
 			GUI.color = b_modules[4] ? ColorSelected : Color.white;	if(GUILayout.Button("Limit Velocity", EditorStyles.toolbarButton, GUILayout.Width(100))) b_modules[4] = !b_modules[4];
 			GUI.color = b_modules[5] ? ColorSelected : Color.white;	if(GUILayout.Button("Force", EditorStyles.toolbarButton, GUILayout.Width(70))) b_modules[5] = !b_modules[5];
+#endif
 			GUILayout.FlexibleSpace();
 			GUILayout.EndHorizontal();
 			GUILayout.BeginHorizontal();
@@ -398,12 +408,24 @@ public class CFXEasyEditor : EditorWindow
 			GUILayout.EndHorizontal();
 			GUILayout.BeginHorizontal();
 			GUILayout.FlexibleSpace();
-			GUI.color = b_modules[12] ? ColorSelected : Color.white;	if(GUILayout.Button("Collision", EditorStyles.toolbarButton, GUILayout.Width(100))) b_modules[12] = !b_modules[12];
-			GUI.color = b_modules[13] ? ColorSelected : Color.white;	if(GUILayout.Button("Sub Emitters", EditorStyles.toolbarButton, GUILayout.Width(100))) b_modules[13] = !b_modules[13];
+			GUI.color = b_modules[12] ? ColorSelected : Color.white;	if(GUILayout.Button("Collision", EditorStyles.toolbarButton, GUILayout.Width(80))) b_modules[12] = !b_modules[12];
+#if UNITY_5_4_OR_NEWER
+			GUI.color = b_modules[17] ? ColorSelected : Color.white; if (GUILayout.Button("Triggers", EditorStyles.toolbarButton, GUILayout.Width(80))) b_modules[17] = !b_modules[17];
+#endif
+			GUI.color = b_modules[13] ? ColorSelected : Color.white; if (GUILayout.Button("Sub Emitters", EditorStyles.toolbarButton, GUILayout.Width(100))) b_modules[13] = !b_modules[13];
 			GUILayout.FlexibleSpace();
 			GUILayout.EndHorizontal();
 			GUILayout.BeginHorizontal();
 			GUILayout.FlexibleSpace();
+#if UNITY_5_5_OR_NEWER
+			GUI.color = b_modules[20] ? ColorSelected : Color.white; if (GUILayout.Button("Trails", EditorStyles.toolbarButton, GUILayout.Width(70))) b_modules[20] = !b_modules[20];
+			GUI.color = b_modules[18] ? ColorSelected : Color.white; if (GUILayout.Button("Lights", EditorStyles.toolbarButton, GUILayout.Width(70))) b_modules[18] = !b_modules[18];
+			GUI.color = b_modules[19] ? ColorSelected : Color.white; if (GUILayout.Button("Noise", EditorStyles.toolbarButton, GUILayout.Width(70))) b_modules[19] = !b_modules[19];
+			GUILayout.FlexibleSpace();
+			GUILayout.EndHorizontal();
+			GUILayout.BeginHorizontal();
+			GUILayout.FlexibleSpace();
+#endif
 			GUI.color = b_modules[14] ? ColorSelected : Color.white;	if(GUILayout.Button("Texture Animation", EditorStyles.toolbarButton, GUILayout.Width(110))) b_modules[14] = !b_modules[14];
 			GUI.color = b_modules[15] ? ColorSelected : Color.white;	if(GUILayout.Button("Renderer", EditorStyles.toolbarButton, GUILayout.Width(90))) b_modules[15] = !b_modules[15];
 			GUILayout.FlexibleSpace();
@@ -447,8 +469,6 @@ public class CFXEasyEditor : EditorWindow
 			this.minSize = new Vector2(300,r.y + 8);
 			this.maxSize = new Vector2(300,r.y + 8);
 		}
-		
-		GUILayout.EndArea();
 	}
 	
 	//Loop effects
@@ -878,7 +898,12 @@ public class CFXEasyEditor : EditorWindow
 			//Scale Lifetime
 			foreach(ParticleSystem ps in systems)
 			{
-				ps.playbackSpeed = (100.0f/LTScalingValue);
+#if UNITY_5_5_OR_NEWER
+				var main = ps.main;
+				main.simulationSpeed = LTScalingValue;
+#else
+				ps.playbackSpeed = LTScalingValue;
+#endif
 			}
 		}
 	}
@@ -918,7 +943,12 @@ public class CFXEasyEditor : EditorWindow
 			//Scale Lifetime
 			foreach(ParticleSystem ps in systems)
 			{
+#if UNITY_5_5_OR_NEWER
+				var main = ps.main;
+				main.startDelay = DelayValue;
+#else
 				ps.startDelay = DelayValue;
+#endif
 			}
 		}
 	}
@@ -935,7 +965,7 @@ public class CFXEasyEditor : EditorWindow
 		SerializedObject psSource = new SerializedObject(source);
 		SerializedObject psDest = new SerializedObject(dest);
 		
-		//Inial Module
+		//Initial Module
 		if(b_modules[0])
 		{
 			psDest.FindProperty("prewarm").boolValue = psSource.FindProperty("prewarm").boolValue;
@@ -943,66 +973,58 @@ public class CFXEasyEditor : EditorWindow
 			psDest.FindProperty("moveWithTransform").boolValue = psSource.FindProperty("moveWithTransform").boolValue;
 			
 			GenericModuleCopy(psSource.FindProperty("InitialModule"), psDest.FindProperty("InitialModule"));
-			
+
+#if UNITY_5_5_OR_NEWER
+			var dmain = dest.main;
+			dmain.startDelay = source.main.startDelay;
+			dmain.loop = source.main.loop;
+			dmain.playOnAwake = source.main.playOnAwake;
+			dmain.simulationSpeed = source.main.simulationSpeed;
+			dmain.startSpeed = source.main.startSpeed;
+			dmain.startSize = source.main.startSize;
+			dmain.startColor = source.main.startColor;
+			dmain.startRotation = source.main.startRotation;
+			dmain.startLifetime = source.main.startLifetime;
+			dmain.gravityModifier = source.main.gravityModifier;
+#else
 			dest.startDelay = source.startDelay;
 			dest.loop = source.loop;
 			dest.playOnAwake = source.playOnAwake;
 			dest.playbackSpeed = source.playbackSpeed;
-#pragma warning disable 0618
+#if UNITY_5_0 || UNITY_5_1 || UNITY_5_2
 			dest.emissionRate = source.emissionRate;
-#pragma warning restore 0618
+#endif
 			dest.startSpeed = source.startSpeed;
 			dest.startSize = source.startSize;
 			dest.startColor = source.startColor;
 			dest.startRotation = source.startRotation;
 			dest.startLifetime = source.startLifetime;
 			dest.gravityModifier = source.gravityModifier;
+#endif
 		}
 		
-		//Emission
 		if(b_modules[1])	GenericModuleCopy(psSource.FindProperty("EmissionModule"), psDest.FindProperty("EmissionModule"));
-		
-		//Shape
 		if(b_modules[2])	GenericModuleCopy(psSource.FindProperty("ShapeModule"), psDest.FindProperty("ShapeModule"));
-		
-		//Velocity
 		if(b_modules[3])	GenericModuleCopy(psSource.FindProperty("VelocityModule"), psDest.FindProperty("VelocityModule"));
-		
-		//Velocity Clamp
 		if(b_modules[4])	GenericModuleCopy(psSource.FindProperty("ClampVelocityModule"), psDest.FindProperty("ClampVelocityModule"));
-		
-		//Force
 		if(b_modules[5])	GenericModuleCopy(psSource.FindProperty("ForceModule"), psDest.FindProperty("ForceModule"));
-		
-		//Color
 		if(b_modules[6])	GenericModuleCopy(psSource.FindProperty("ColorModule"), psDest.FindProperty("ColorModule"));
-		
-		//Color Speed
 		if(b_modules[7])	GenericModuleCopy(psSource.FindProperty("ColorBySpeedModule"), psDest.FindProperty("ColorBySpeedModule"));
-		
-		//Size
 		if(b_modules[8])	GenericModuleCopy(psSource.FindProperty("SizeModule"), psDest.FindProperty("SizeModule"));
-		
-		//Size Speed
 		if(b_modules[9])	GenericModuleCopy(psSource.FindProperty("SizeBySpeedModule"), psDest.FindProperty("SizeBySpeedModule"));
-		
-		//Rotation
 		if(b_modules[10])	GenericModuleCopy(psSource.FindProperty("RotationModule"), psDest.FindProperty("RotationModule"));
-		
-		//Rotation Speed
 		if(b_modules[11])	GenericModuleCopy(psSource.FindProperty("RotationBySpeedModule"), psDest.FindProperty("RotationBySpeedModule"));
-		
-		//Collision
 		if(b_modules[12])	GenericModuleCopy(psSource.FindProperty("CollisionModule"), psDest.FindProperty("CollisionModule"));
-		
-		//Sub Emitters
 		if(b_modules[13])	SubModuleCopy(psSource, psDest);
-		
-		//Texture Animation
 		if(b_modules[14])	GenericModuleCopy(psSource.FindProperty("UVModule"), psDest.FindProperty("UVModule"));
-		
+		if(b_modules[16])	GenericModuleCopy(psSource.FindProperty("InheritVelocityModule"), psDest.FindProperty("InheritVelocityModule"));
+		if(b_modules[17])	GenericModuleCopy(psSource.FindProperty("TriggerModule"), psDest.FindProperty("TriggerModule"));
+		if(b_modules[18])	GenericModuleCopy(psSource.FindProperty("LightsModule"), psDest.FindProperty("LightsModule"));
+		if(b_modules[19])	GenericModuleCopy(psSource.FindProperty("NoiseModule"), psDest.FindProperty("NoiseModule"));
+		if(b_modules[20])	GenericModuleCopy(psSource.FindProperty("TrailModule"), psDest.FindProperty("TrailModule"));
+
 		//Renderer
-		if(b_modules[15])
+		if (b_modules[15])
 		{
 			ParticleSystemRenderer rendSource = source.GetComponent<ParticleSystemRenderer>();
 			ParticleSystemRenderer rendDest = dest.GetComponent<ParticleSystemRenderer>();
@@ -1107,6 +1129,33 @@ public class CFXEasyEditor : EditorWindow
 		dest.FindProperty("SubModule.enabled").boolValue = source.FindProperty("SubModule.enabled").boolValue;
 		
 		GameObject copy;
+#if UNITY_5_5_OR_NEWER
+		int arraySize = source.FindProperty("SubModule.subEmitters.Array.size").intValue;
+		dest.FindProperty("SubModule.subEmitters.Array").ClearArray();
+		for (int i = 0; i < arraySize; i++)
+		{
+			if (source.FindProperty("SubModule.subEmitters.Array.data[" + i + "].emitter").objectReferenceValue != null)
+			{
+				copy = (GameObject)Instantiate((source.FindProperty("SubModule.subEmitters.Array.data[" + i + "].emitter").objectReferenceValue as ParticleSystem).gameObject);
+				//Set as child of destination
+				Vector3 localPos = copy.transform.localPosition;
+				Vector3 localScale = copy.transform.localScale;
+				Vector3 localAngles = copy.transform.localEulerAngles;
+				copy.transform.parent = (dest.targetObject as ParticleSystem).transform;
+				copy.transform.localPosition = localPos;
+				copy.transform.localScale = localScale;
+				copy.transform.localEulerAngles = localAngles;
+
+				//Assign as sub Particle Emitter
+				dest.FindProperty("SubModule.subEmitters.Array").InsertArrayElementAtIndex(i);
+				dest.FindProperty("SubModule.subEmitters.Array.data[" + i + "].emitter").objectReferenceValue = copy;
+
+				dest.FindProperty("SubModule.subEmitters.Array.data[" + i + "].type").intValue = source.FindProperty("SubModule.subEmitters.Array.data[" + i + "].type").intValue;
+				dest.FindProperty("SubModule.subEmitters.Array.data[" + i + "].properties").intValue = source.FindProperty("SubModule.subEmitters.Array.data[" + i + "].properties").intValue;
+
+			}
+		}
+#else
 		if(source.FindProperty("SubModule.subEmitterBirth").objectReferenceValue != null)
 		{
 			//Duplicate sub Particle Emitter
@@ -1160,7 +1209,8 @@ public class CFXEasyEditor : EditorWindow
 			//Assign as sub Particle Emitter
 			dest.FindProperty("SubModule.subEmitterCollision").objectReferenceValue = copy;
 		}
-		
+#endif
+
 		//Apply Changes
 		dest.ApplyModifiedProperties();
 	}
@@ -1169,21 +1219,34 @@ public class CFXEasyEditor : EditorWindow
 	private void ScaleParticleValues(ParticleSystem ps, GameObject parent)
 	{
 		//Particle System
-		ps.startSize *= ScalingValue;
-		ps.gravityModifier *= ScalingValue;
-		if(ps.startSpeed > 0.01f)
-			ps.startSpeed *= ScalingValue;
-		if(ps.gameObject != parent)
+		if (ps.gameObject != parent)
 			ps.transform.localPosition *= ScalingValue;
-		
+
 		SerializedObject psSerial = new SerializedObject(ps);
-		
+
+		//Start Size
+		psSerial.FindProperty("InitialModule.startSize.scalar").floatValue *= ScalingValue;
+
+		//Start Speed
+		psSerial.FindProperty("InitialModule.startSpeed.scalar").floatValue *= ScalingValue;
+
+		//Gravity
+		psSerial.FindProperty("InitialModule.gravityModifier.scalar").floatValue *= ScalingValue;
+
+#if UNITY_5_5_OR_NEWER
+		//Scale Emission Distance Rate
+		if (psSerial.FindProperty("EmissionModule.enabled").boolValue)
+		{
+			psSerial.FindProperty("EmissionModule.rateOverDistance.scalar").floatValue /= ScalingValue;
+		}
+#else
 		//Scale Emission Rate if set on Distance
 		if(psSerial.FindProperty("EmissionModule.enabled").boolValue && psSerial.FindProperty("EmissionModule.m_Type").intValue == 1)
 		{
 			psSerial.FindProperty("EmissionModule.rate.scalar").floatValue /= ScalingValue;
 		}
-		
+#endif
+
 		//Scale Size By Speed Module
 		if(psSerial.FindProperty("SizeBySpeedModule.enabled").boolValue)
 		{
@@ -1195,46 +1258,46 @@ public class CFXEasyEditor : EditorWindow
 		if(psSerial.FindProperty("VelocityModule.enabled").boolValue)
 		{
 			psSerial.FindProperty("VelocityModule.x.scalar").floatValue *= ScalingValue;
-			IterateKeys(psSerial.FindProperty("VelocityModule.x.minCurve").animationCurveValue);
-			IterateKeys(psSerial.FindProperty("VelocityModule.x.maxCurve").animationCurveValue);
+			//IterateKeys(psSerial.FindProperty("VelocityModule.x.minCurve").animationCurveValue);
+			//IterateKeys(psSerial.FindProperty("VelocityModule.x.maxCurve").animationCurveValue);
 			psSerial.FindProperty("VelocityModule.y.scalar").floatValue *= ScalingValue;
-			IterateKeys(psSerial.FindProperty("VelocityModule.y.minCurve").animationCurveValue);
-			IterateKeys(psSerial.FindProperty("VelocityModule.y.maxCurve").animationCurveValue);
+			//IterateKeys(psSerial.FindProperty("VelocityModule.y.minCurve").animationCurveValue);
+			//IterateKeys(psSerial.FindProperty("VelocityModule.y.maxCurve").animationCurveValue);
 			psSerial.FindProperty("VelocityModule.z.scalar").floatValue *= ScalingValue;
-			IterateKeys(psSerial.FindProperty("VelocityModule.z.minCurve").animationCurveValue);
-			IterateKeys(psSerial.FindProperty("VelocityModule.z.maxCurve").animationCurveValue);
+			//IterateKeys(psSerial.FindProperty("VelocityModule.z.minCurve").animationCurveValue);
+			//IterateKeys(psSerial.FindProperty("VelocityModule.z.maxCurve").animationCurveValue);
 		}
 		
 		//Scale Limit Velocity Module
 		if(psSerial.FindProperty("ClampVelocityModule.enabled").boolValue)
 		{
 			psSerial.FindProperty("ClampVelocityModule.x.scalar").floatValue *= ScalingValue;
-			IterateKeys(psSerial.FindProperty("ClampVelocityModule.x.minCurve").animationCurveValue);
-			IterateKeys(psSerial.FindProperty("ClampVelocityModule.x.maxCurve").animationCurveValue);
+			//IterateKeys(psSerial.FindProperty("ClampVelocityModule.x.minCurve").animationCurveValue);
+			//IterateKeys(psSerial.FindProperty("ClampVelocityModule.x.maxCurve").animationCurveValue);
 			psSerial.FindProperty("ClampVelocityModule.y.scalar").floatValue *= ScalingValue;
-			IterateKeys(psSerial.FindProperty("ClampVelocityModule.y.minCurve").animationCurveValue);
-			IterateKeys(psSerial.FindProperty("ClampVelocityModule.y.maxCurve").animationCurveValue);
+			//IterateKeys(psSerial.FindProperty("ClampVelocityModule.y.minCurve").animationCurveValue);
+			//IterateKeys(psSerial.FindProperty("ClampVelocityModule.y.maxCurve").animationCurveValue);
 			psSerial.FindProperty("ClampVelocityModule.z.scalar").floatValue *= ScalingValue;
-			IterateKeys(psSerial.FindProperty("ClampVelocityModule.z.minCurve").animationCurveValue);
-			IterateKeys(psSerial.FindProperty("ClampVelocityModule.z.maxCurve").animationCurveValue);
+			//IterateKeys(psSerial.FindProperty("ClampVelocityModule.z.minCurve").animationCurveValue);
+			//IterateKeys(psSerial.FindProperty("ClampVelocityModule.z.maxCurve").animationCurveValue);
 			
 			psSerial.FindProperty("ClampVelocityModule.magnitude.scalar").floatValue *= ScalingValue;
-			IterateKeys(psSerial.FindProperty("ClampVelocityModule.magnitude.minCurve").animationCurveValue);
-			IterateKeys(psSerial.FindProperty("ClampVelocityModule.magnitude.maxCurve").animationCurveValue);
+			//IterateKeys(psSerial.FindProperty("ClampVelocityModule.magnitude.minCurve").animationCurveValue);
+			//IterateKeys(psSerial.FindProperty("ClampVelocityModule.magnitude.maxCurve").animationCurveValue);
 		}
 		
 		//Scale Force Module
 		if(psSerial.FindProperty("ForceModule.enabled").boolValue)
 		{
 			psSerial.FindProperty("ForceModule.x.scalar").floatValue *= ScalingValue;
-			IterateKeys(psSerial.FindProperty("ForceModule.x.minCurve").animationCurveValue);
-			IterateKeys(psSerial.FindProperty("ForceModule.x.maxCurve").animationCurveValue);
+			//IterateKeys(psSerial.FindProperty("ForceModule.x.minCurve").animationCurveValue);
+			//IterateKeys(psSerial.FindProperty("ForceModule.x.maxCurve").animationCurveValue);
 			psSerial.FindProperty("ForceModule.y.scalar").floatValue *= ScalingValue;
-			IterateKeys(psSerial.FindProperty("ForceModule.y.minCurve").animationCurveValue);
-			IterateKeys(psSerial.FindProperty("ForceModule.y.maxCurve").animationCurveValue);
+			//IterateKeys(psSerial.FindProperty("ForceModule.y.minCurve").animationCurveValue);
+			//IterateKeys(psSerial.FindProperty("ForceModule.y.maxCurve").animationCurveValue);
 			psSerial.FindProperty("ForceModule.z.scalar").floatValue *= ScalingValue;
-			IterateKeys(psSerial.FindProperty("ForceModule.z.minCurve").animationCurveValue);
-			IterateKeys(psSerial.FindProperty("ForceModule.z.maxCurve").animationCurveValue);
+			//IterateKeys(psSerial.FindProperty("ForceModule.z.minCurve").animationCurveValue);
+			//IterateKeys(psSerial.FindProperty("ForceModule.z.maxCurve").animationCurveValue);
 		}
 		
 		//Scale Shape Module
@@ -1245,81 +1308,12 @@ public class CFXEasyEditor : EditorWindow
 			psSerial.FindProperty("ShapeModule.boxZ").floatValue *= ScalingValue;
 			psSerial.FindProperty("ShapeModule.radius").floatValue *= ScalingValue;
 			
-			//Create a new scaled Mesh if there is a Mesh reference
 			//(ShapeModule.type 6 == Mesh)
 			if(psSerial.FindProperty("ShapeModule.type").intValue == 6)
 			{
-				Object obj = psSerial.FindProperty("ShapeModule.m_Mesh").objectReferenceValue;
-				if(obj != null)
-				{
-					Mesh mesh = (Mesh)obj;
-					string assetPath = AssetDatabase.GetAssetPath(mesh);
-					string name = assetPath.Substring(assetPath.LastIndexOf("/")+1);
-					
-					//Mesh to use
-					Mesh meshToUse = null;
-					bool createScaledMesh = true;
-					float meshScale = ScalingValue;
-					
-					//Mesh has already been scaled: extract scaling value and re-scale base effect
-					if(name.Contains("(scaled)"))
-					{
-						string scaleStr = name.Substring(name.LastIndexOf("x")+1);
-						scaleStr = scaleStr.Remove(scaleStr.IndexOf(" (scaled).asset"));
-						
-						float oldScale = float.Parse(scaleStr);
-						if(oldScale != 0)
-						{
-							meshScale = oldScale * ScalingValue;
-							
-							//Check if there's already a mesh with the correct scale
-							string unscaledName = assetPath.Substring(0, assetPath.LastIndexOf(" x"));
-							assetPath = unscaledName;
-							string newPath = assetPath + " x"+meshScale+" (scaled).asset";
-							Mesh alreadyScaledMesh = (Mesh)AssetDatabase.LoadAssetAtPath(newPath, typeof(Mesh));
-							if(alreadyScaledMesh != null)
-							{
-								meshToUse = alreadyScaledMesh;
-								createScaledMesh = false;
-							}
-							else
-							//Load original unscaled mesh
-							{
-								Mesh orgMesh = (Mesh)AssetDatabase.LoadAssetAtPath(assetPath, typeof(Mesh));
-								if(orgMesh != null)
-								{
-									mesh = orgMesh;
-								}
-							}
-						}
-					}
-					else
-					//Verify if original mesh has already been scaled to that value
-					{
-						string newPath = assetPath + " x"+meshScale+" (scaled).asset";
-						Mesh alreadyScaledMesh = (Mesh)AssetDatabase.LoadAssetAtPath(newPath, typeof(Mesh));
-						if(alreadyScaledMesh != null)
-						{
-							meshToUse = alreadyScaledMesh;
-							createScaledMesh = false;
-						}
-					}
-					
-					//Duplicate and scale mesh vertices if necessary
-					if(createScaledMesh)
-					{
-						string newMeshPath = assetPath + " x"+meshScale+" (scaled).asset";
-						meshToUse = (Mesh)AssetDatabase.LoadAssetAtPath(newMeshPath, typeof(Mesh));
-						if(meshToUse == null)
-						{
-							meshToUse = DuplicateAndScaleMesh(mesh, meshScale);
-							AssetDatabase.CreateAsset(meshToUse, newMeshPath);
-						}
-					}
-					
-					//Apply new Mesh
-					psSerial.FindProperty("ShapeModule.m_Mesh").objectReferenceValue = meshToUse;
-				}
+				//Unity 4+ : changing the Transform scale will affect the shape Mesh
+				ps.transform.localScale = ps.transform.localScale * ScalingValue;
+				EditorUtility.SetDirty(ps.transform);
 			}
 		}
 		

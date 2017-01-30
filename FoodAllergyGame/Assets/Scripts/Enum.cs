@@ -85,6 +85,7 @@ public enum PowerUpTypes{
 	None,
 }
 
+// The TYPE of decorations available, not to be confused with deco shop Tab types
 public enum DecoTypes{
 	None,
 	Table,
@@ -94,7 +95,21 @@ public enum DecoTypes{
 	VIP,
 	FlyThru,
 	Microwave,
-	Special,
+	Special
+}
+
+// Where each deco should go in the deco shop tabs, NOT always the same as DecoTypes
+public enum DecoTabTypes {
+	None,
+	Table,
+	Floor,
+	Kitchen,
+	PlayArea,
+	VIP,
+	FlyThru,
+	Microwave,
+	Random,
+	IAP
 }
 
 public enum  PropNodeType{

@@ -10,6 +10,8 @@ public class MutableDataDayTracker {
 	public string CurrentTempoGoal { get; set; }
 	public int GoalTimeLimit { get; set; }
 	public bool HasCompletedGoalThisTier { get; set; }
+	public int IAPCurrency { get; set; }
+	public bool IsAmazonUnderground { get; set; }
 
 	public MutableDataDayTracker(){
 		AvgDifficulty = 15.0f;
@@ -21,5 +23,7 @@ public class MutableDataDayTracker {
 		NotifQueue = new List<string>();
 		CurrentTempoGoal = "";
 		HasCompletedGoalThisTier = false;
+		IAPCurrency = 0;
+		IsAmazonUnderground = false;
 	}
 }

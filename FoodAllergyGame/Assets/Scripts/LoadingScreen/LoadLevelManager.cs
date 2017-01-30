@@ -31,6 +31,7 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 		isCreated = true;
 
 		FindEventSystem();
+		SceneManager.sceneLoaded += OnSceneChange;
     }
 
 	private void FindEventSystem() {
@@ -125,7 +126,7 @@ public class LoadLevelManager : Singleton<LoadLevelManager>{
 
 	/// <summary>
 	/// Hide the demux when the new level is loaded
-	void OnLevelWasLoaded(){
+	public void OnSceneChange(Scene scene, LoadSceneMode mode) {
 		loadDemux.Hide();
 		AudioManager.Instance.PlayClip("LoadingClose");
 		if(isLoadingTipWait) {

@@ -13,11 +13,16 @@ public class AudioManager : LgAudioManager<AudioManager>{
 	protected override void Awake(){
 		base.Awake();
 		backgroundSource = GetComponent<AudioSource>();
+		SceneManager.sceneLoaded += OnSceneLoaded;
 	}
 	
 	protected override void Start(){
 		base.Start();
 		StartCoroutine(PlayBackground());
+	}
+
+	protected override void OnDestroy() {
+		SceneManager.sceneLoaded -= OnSceneLoaded;
 	}
 
 	public override void PlayClip(string clipName, int variations = 1, Hashtable option = null) {
@@ -111,7 +116,7 @@ public class AudioManager : LgAudioManager<AudioManager>{
 		FadeOutPlayNewBackground(backgroundMusic);
 	}
 
-	void OnLevelWasLoaded() {
+	public void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
 		string currentScene = SceneManager.GetActiveScene().name;
 		if(currentScene == SceneUtils.LOADING) {
 			isMusicOn = true;

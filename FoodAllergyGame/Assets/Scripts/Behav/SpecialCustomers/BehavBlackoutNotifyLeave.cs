@@ -12,6 +12,7 @@ public class BehavBlackoutNotifyLeave : Behav {
 	}
 
 	public override void Act() {
+		self.isLeaveing = true;
 		if(self.satisfaction == 0 || self.isAnnoyed) {
 			self.DestroyOrder();
 			if(self.state != CustomerStates.InLine) {

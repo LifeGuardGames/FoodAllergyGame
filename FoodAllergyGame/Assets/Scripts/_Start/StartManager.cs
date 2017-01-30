@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 public class StartManager : Singleton<StartManager> {
@@ -51,6 +50,7 @@ public class StartManager : Singleton<StartManager> {
 	public bool isShopAppearHideDinerOverride = false;
 
 	void Start() {
+
 		DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "";
 		// Refresh tier calculation, always do this first
 		TierManager.Instance.RecalculateTier();
@@ -274,19 +274,14 @@ public class StartManager : Singleton<StartManager> {
 		ageNotification.Finish();
 	}
 
-	private IEnumerator WaitOneFram() {
-		yield return 0;
-		ageAskController.ShowPanel();
-	}
-
 	public void OnDebugEpipenGameButton() {
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.EPIPEN);
 	}
 
-	#region IAP UI
+	#region Paywall IAP UI
+	/*
 	// !!!!NOTE!!!! IAP UI is here because PurchaseManager freaks out for some reason and loses all references
 	public ProductPageUIController productPageUIController;     // Window to purchase ads
-	public IAPStatusPageUIController statusPageUIController;    // Status window of purchase
 
 	// Called from beacon gameobject
 	public void ShowProductPage() {
@@ -309,17 +304,18 @@ public class StartManager : Singleton<StartManager> {
 		}
 
 		productPageUIController.HidePanel();
-		statusPageUIController.ShowPanel(true);
+		IAPStatusUIManager.Instance.ShowPanel(true);
 	}
 
 	public void PurchaseFailed() {
 		productPageUIController.HidePanel();
-		statusPageUIController.ShowPanel(false);
+		IAPStatusUIManager.Instance.ShowPanel(false);
 	}
 
 	public void ShowParentalgate() {
 		parentalGate.ShowPanel();
 	}
+	*/
 	#endregion
 
 	public void TurnOffEntrances() {

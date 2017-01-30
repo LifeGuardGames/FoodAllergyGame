@@ -28,14 +28,14 @@ public class CashManager : Singleton<CashManager> {
 	public void OverrideCurrentCash(int cash, Vector3 loc) {
 		cashData.CurrentCash += cash;
 		if(HUDAnimator.Instance != null) {
-			HUDAnimator.Instance.CashAnimationStart(cash, loc);
+			HUDAnimator.Instance.CoinAnimationStart(cash, loc);
 		}
 	}
 
 
 	#region DecoScene calls
 	// Wrap this in another layer for extra control
-	public bool DecoBuyCash(int cost){
+	public bool DecoBuyCoin(int cost){
 		if(cost < 0){
 			Debug.LogError("Cant process negative cost");
 			return false;
@@ -44,7 +44,7 @@ public class CashManager : Singleton<CashManager> {
 		if(cost <= CurrentCash){
 			cashData.CurrentCash -= cost;
 			if(HUDAnimator.Instance != null){
-				HUDAnimator.Instance.CashAnimationStart(-cost, GameObject.Find("ButtonBuy").transform.position);
+				HUDAnimator.Instance.CoinAnimationStart(-cost, GameObject.Find("ButtonBuy").transform.position);
 			}
 			return true;
 		}
