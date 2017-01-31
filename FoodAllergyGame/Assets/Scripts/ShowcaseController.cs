@@ -11,7 +11,8 @@ public class ShowcaseController : MonoBehaviour {
 
 	public Text titleText;
 	public Text descriptionText;
-	public Text costText;
+	public Text coinCostText;
+	public Text iapCostText;
 	public Image decoImage;
 	public Image costImage;
 
@@ -35,12 +36,18 @@ public class ShowcaseController : MonoBehaviour {
 
 		if(decoData.DecoTabType != DecoTabTypes.IAP) {
 			costImage.sprite = Resources.Load<Sprite>("Coin");
-			costText.text = decoData.Cost.ToString();
 			costImage.enabled = true;
+
+			iapCostText.enabled = false;
+			coinCostText.enabled = true;
+			coinCostText.text = decoData.Cost.ToString();
 		}
 		else {
-			costText.text = "$0.99";
 			costImage.enabled = false;
+
+			coinCostText.enabled = false;
+			iapCostText.enabled = true;
+			iapCostText.text = DataManager.Instance.GameData.DayTracker.IsAmazonUnderground ? "Free" : "$0.99";
 		}
 		
 		// Show the corrosponding buttons based on item state
