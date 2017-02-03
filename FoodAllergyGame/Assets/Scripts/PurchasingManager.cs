@@ -128,6 +128,8 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 		m_StoreController = controller;
 		// Store specific subsystem, for accessing device-specific store features.
 		m_StoreExtensionProvider = extensions;
+		// Save the localized price to DataManager
+		DataManager.Instance.BaseDecoPriceStringAux = m_StoreController.products.WithID(kProductIDSpookyTable).metadata.localizedPriceString;
 		//make sure datamanger knows what has been purchased
 		foreach(Product prod in m_StoreController.products.all) {
 			if(prod.hasReceipt) {
@@ -135,8 +137,7 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 				DataManager.Instance.GameData.Decoration.BoughtDeco.Add(currentDecoId, "");
 			}
 		}
-		// Save the localized price to DataManager
-		DataManager.Instance.BaseDecoPriceStringAux = m_StoreController.products.WithID(kProductIDSpookyTable).metadata.localizedPriceString;
+		
 	}
 
 	public void OnInitializeFailed(InitializationFailureReason error) {
