@@ -16,7 +16,7 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 	private static string kProductNameGooglePlayPro = "com.lifeguardgames.foodallergyandroid.iap.pro";  // Google Play Store identifier for the non-consumable product.
 
 	private static string kProductIDSpookyTable = "com.lifeguardgames.foodallergy.iap.spooky.table";
-	private static string kProductIDAppleSpookyTable = "com.LifeGuardGames.FoodAllergy.IAP.Spooky.table";
+	private static string kProductIDAppleSpookyTable = "com.LifeGuardGames.FoodAllergy.IAP.Spooky.Table";
 	private static string kProductIDGooglePlaySpookyTable = "com.lifeguardgames.foodallergyandroid.iap.spooky.table";
 
 	private static string kProductIDSpookyKitchen = "com.lifeguardgames.foodallergy.iap.spooky.kitchen";
@@ -24,11 +24,11 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 	private static string kProductIDGooglePlaySpookyKitchen = "com.lifeguardgames.foodallergyandroid.iap.spooky.kitchen";
 
 	private static string kProductIDSpookyFloor = "com.lifeguardgames.foodallergy.iap.spooky.floor";
-	private static string kProductIDGooglePlaySpookyFloor = "com.lifeguardgames.foodallergyandroid.iap.spooky.floor";
 	private static string kProductIDAppleSpookyFloor = "com.LifeGuardGames.FoodAllergy.IAP.Spooky.Floor";
+	private static string kProductIDGooglePlaySpookyFloor = "com.lifeguardgames.foodallergyandroid.iap.spooky.floor";
 
 	private static string kProductIDSloppyTable = "com.lifeguardgames.foodallergy.iap.sloppy.table";
-	private static string kProductIDAppleSloppyTable = "com.LifeGuardGames.FoodAllergy.IAP.Sloppy.table";
+	private static string kProductIDAppleSloppyTable = "com.LifeGuardGames.FoodAllergy.IAP.Sloppy.Table";
 	private static string kProductIDGooglePlaySloppyTable = "com.lifeguardgames.foodallergyandroid.iap.sloppy.table";
 
 	private static string kProductIDSloppyKitchen = "com.lifeguardgames.foodallergy.iap.sloppy.kitchen";
@@ -36,11 +36,11 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 	private static string kProductIDGooglePlaySloppyKitchen = "com.lifeguardgames.foodallergyandroid.iap.sloppy.kitchen";
 
 	private static string kProductIDSloppyFloor = "com.lifeguardgames.foodallergy.iap.sloppy.floor";
-	private static string kProductIDGooglePlaySloppyFloor = "com.lifeguardgames.foodallergyandroid.iap.sloppy.floor";
 	private static string kProductIDAppleSloppyFloor = "com.LifeGuardGames.FoodAllergy.IAP.Sloppy.Floor";
+	private static string kProductIDGooglePlaySloppyFloor = "com.lifeguardgames.foodallergyandroid.iap.sloppy.floor";
 
 	private static string kProductIDSeaTable = "com.lifeguardgames.foodallergy.iap.sea.table";
-	private static string kProductIDAppleSeaTable = "com.LifeGuardGames.FoodAllergy.IAP.Sea.table";
+	private static string kProductIDAppleSeaTable = "com.LifeGuardGames.FoodAllergy.IAP.Sea.Table";
 	private static string kProductIDGooglePlaySeaTable = "com.lifeguardgames.foodallergyandroid.iap.sea.table";
 
 	private static string kProductIDSeaKitchen = "com.lifeguardgames.foodallergy.iap.sea.kitchen";
@@ -48,11 +48,11 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 	private static string kProductIDGooglePlaySeaKitchen = "com.lifeguardgames.foodallergyandroid.iap.sea.kitchen";
 
 	private static string kProductIDSeaFloor = "com.lifeguardgames.foodallergy.iap.sea.floor";
-	private static string kProductIDGooglePlaySeaFloor = "com.lifeguardgames.foodallergyandroid.iap.sea.floor";
 	private static string kProductIDAppleSeaFloor = "com.LifeGuardGames.FoodAllergy.IAP.Sea.Floor";
+	private static string kProductIDGooglePlaySeaFloor = "com.lifeguardgames.foodallergyandroid.iap.sea.floor";
 
 	private static string kProductIDPlushieTable = "com.lifeguardgames.foodallergy.iap.plushie.table";
-	private static string kProductIDApplePlushieTable = "com.LifeGuardGames.FoodAllergy.IAP.Plushie.table";
+	private static string kProductIDApplePlushieTable = "com.LifeGuardGames.FoodAllergy.IAP.Plushie.Table";
 	private static string kProductIDGooglePlayPlushieTable = "com.lifeguardgames.foodallergyandroid.iap.plushie.table";
 
 	private static string kProductIDPlushieKitchen = "com.lifeguardgames.foodallergy.iap.plushie.kitchen";
@@ -60,8 +60,8 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
 	private static string kProductIDGooglePlayPlushieKitchen = "com.lifeguardgames.foodallergyandroid.iap.plushie.kitchen";
 
 	private static string kProductIDPlushieFloor = "com.lifeguardgames.foodallergy.iap.plushie.floor";
-	private static string kProductIDGooglePlayPlushieFloor = "com.lifeguardgames.foodallergyandroid.iap.plushie.floor";
 	private static string kProductIDApplePlushieFloor = "com.LifeGuardGames.FoodAllergy.IAP.Plushie.Floor";
+	private static string kProductIDGooglePlayPlushieFloor = "com.lifeguardgames.foodallergyandroid.iap.plushie.floor";
 
 	public List<string> productList;
 	public string currentDecoId;
