@@ -33,22 +33,6 @@ public class ShowcaseController : MonoBehaviour {
 		if(descriptionText.text == "None") {						// Hard code ignore empty text
 			descriptionText.text = "";
 		}
-
-		if(decoData.DecoTabType != DecoTabTypes.IAP) {
-			costImage.sprite = Resources.Load<Sprite>("Coin");
-			costImage.enabled = true;
-
-			iapCostText.enabled = false;
-			coinCostText.enabled = true;
-			coinCostText.text = decoData.Cost.ToString();
-		}
-		else {
-			costImage.enabled = false;
-
-			coinCostText.enabled = false;
-			iapCostText.enabled = true;
-			iapCostText.text = DataManager.Instance.GameData.DayTracker.IsAmazonUnderground ? "Free" : "$0.99";
-		}
 		
 		// Show the corrosponding buttons based on item state
 		if(!DecoManager.Instance.IsDecoUnlocked(decoData.ID)) {		// Locked
@@ -75,10 +59,26 @@ public class ShowcaseController : MonoBehaviour {
 				buttonParentActive.SetActive(false);
 			}
 		}
-		else{														// Inactive
+		else{														// Not Bought/Inactive
 			buttonParentBought.SetActive(false);
 			buttonParentUnbought.SetActive(true);
 			buttonParentActive.SetActive(false);
+
+			if(decoData.DecoTabType != DecoTabTypes.IAP) {
+				costImage.sprite = Resources.Load<Sprite>("Coin");
+				costImage.enabled = true;
+
+				iapCostText.enabled = false;
+				coinCostText.enabled = true;
+				coinCostText.text = decoData.Cost.ToString();
+			}
+			else {
+				costImage.enabled = false;
+
+				coinCostText.enabled = false;
+				iapCostText.enabled = true;
+				iapCostText.text = DataManager.Instance.GameData.DayTracker.IsAmazonUnderground ? "Free" : "$0.99";
+			}
 		}
 		content.SetActive(true);
 	}

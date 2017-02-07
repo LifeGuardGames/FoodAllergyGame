@@ -248,6 +248,7 @@ public class PurchasingManager : Singleton<PurchasingManager>, IStoreListener {
             Amplitude.Instance.logRevenue(double.Parse(price));
 			//DataManager.Instance.GameData.DayTracker.IAPCurrency++;
 			if(DecoManager.Instance != null) {
+				currentDecoId = DataLoaderDecoItem.GetDecoIDFromProdID(args.purchasedProduct.definition.id);
 				DecoManager.Instance.PurchaseCompleteDeco(currentDecoId);
 			}
 		}

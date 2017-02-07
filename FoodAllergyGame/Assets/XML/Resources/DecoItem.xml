@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <DecoItem>
-	<DecoItem ID = "TableBasicAqua">
+	<DecoItem ID="TableBasicAqua">
 		<Type>Table</Type>
 		<DecoTabType>Table</DecoTabType>
 		<Price>0</Price>
@@ -9,7 +9,7 @@
 		<SpriteName>RestTableBasicAqua</SpriteName>
 		<Tier>0</Tier>
 	</DecoItem>
-	<DecoItem ID = "TableBasicGreen">
+	<DecoItem ID="TableBasicGreen">
 		<Type>Table</Type>
 		<DecoTabType>Table</DecoTabType>
 		<Price>400</Price>
@@ -18,7 +18,7 @@
 		<SpriteName>RestTableBasicGreen</SpriteName>
 		<Tier>0</Tier>
 	</DecoItem>
-	<DecoItem ID = "TableBasicPurple">
+	<DecoItem ID="TableBasicPurple">
 		<Type>Table</Type>
 		<DecoTabType>Table</DecoTabType>
 		<Price>400</Price>
@@ -27,7 +27,7 @@
 		<SpriteName>RestTableBasicPurple</SpriteName>
 		<Tier>0</Tier>
 	</DecoItem>
-	<DecoItem ID = "TableBasicRed">
+	<DecoItem ID="TableBasicRed">
 		<Type>Table</Type>
 		<DecoTabType>Table</DecoTabType>
 		<Price>400</Price>
@@ -36,7 +36,7 @@
 		<SpriteName>RestTableBasicRed</SpriteName>
 		<Tier>0</Tier>
 	</DecoItem>
-	<DecoItem ID = "TableWizdyPetsBlank">
+	<DecoItem ID="TableWizdyPetsBlank">
 		<Type>Table</Type>
 		<DecoTabType>Table</DecoTabType>
 		<Price>900</Price>
@@ -45,7 +45,7 @@
 		<SpriteName>RestTableWizdyPetsBlank</SpriteName>
 		<Tier>8</Tier>
 	</DecoItem>
-	<DecoItem ID = "TableWizdyPetsPet">
+	<DecoItem ID="TableWizdyPetsPet">
 		<Type>Table</Type>
 		<DecoTabType>Table</DecoTabType>
 		<Price>1600</Price>
@@ -54,7 +54,7 @@
 		<SpriteName>RestTableWizdyPetsPet</SpriteName>
 		<Tier>10</Tier>
 	</DecoItem>
-	<DecoItem ID = "TableWizdyPetsNinja">
+	<DecoItem ID="TableWizdyPetsNinja">
 		<Type>Table</Type>
 		<DecoTabType>Table</DecoTabType>
 		<Price>1800</Price>
@@ -63,7 +63,7 @@
 		<SpriteName>RestTableWizdyPetsNinja</SpriteName>
 		<Tier>16</Tier>
 	</DecoItem>
-	<DecoItem ID = "TableWizdyPetsFire">
+	<DecoItem ID="TableWizdyPetsFire">
 		<Type>Table</Type>
 		<DecoTabType>Table</DecoTabType>
 		<Price>2000</Price>
@@ -72,7 +72,7 @@
 		<SpriteName>RestTableWizdyPetsFire</SpriteName>
 		<Tier>30</Tier>
 	</DecoItem>
-	<DecoItem ID = "TableFancyBlank">
+	<DecoItem ID="TableFancyBlank">
 		<Type>Table</Type>
 		<DecoTabType>Table</DecoTabType>
 		<Price>2200</Price>
@@ -81,7 +81,7 @@
 		<SpriteName>RestTableFancyBlank</SpriteName>
 		<Tier>22</Tier>
 	</DecoItem>
-	<DecoItem ID = "TableFancyStars">
+	<DecoItem ID="TableFancyStars">
 		<Type>Table</Type>
 		<DecoTabType>Table</DecoTabType>
 		<Price>2400</Price>
@@ -90,7 +90,7 @@
 		<SpriteName>RestTableFancyStars</SpriteName>
 		<Tier>23</Tier>
 	</DecoItem>
-	<DecoItem ID = "TableFancyRailing">
+	<DecoItem ID="TableFancyRailing">
 		<Type>Table</Type>
 		<DecoTabType>Table</DecoTabType>
 		<Price>2600</Price>
@@ -99,7 +99,7 @@
 		<SpriteName>RestTableFancyRailing</SpriteName>
 		<Tier>26</Tier>
 	</DecoItem>
-	<DecoItem ID = "TableFancyBanner">
+	<DecoItem ID="TableFancyBanner">
 		<Type>Table</Type>
 		<DecoTabType>Table</DecoTabType>
 		<Price>2800</Price>
@@ -108,7 +108,7 @@
 		<SpriteName>RestTableFancyBanner</SpriteName>
 		<Tier>34</Tier>
 	</DecoItem>
-	<DecoItem ID = "TableCandyRed">
+	<DecoItem ID="TableCandyRed">
 		<Type>Table</Type>
 		<DecoTabType>Table</DecoTabType>
 		<Price>800</Price>
@@ -117,7 +117,7 @@
 		<SpriteName>RestTableCandyRed</SpriteName>
 		<Tier>2</Tier>
 	</DecoItem>
-	<DecoItem ID = "TableCandyBlue">
+	<DecoItem ID="TableCandyBlue">
 		<Type>Table</Type>
 		<DecoTabType>Table</DecoTabType>
 		<Price>2400</Price>
@@ -126,7 +126,7 @@
 		<SpriteName>RestTableCandyBlue</SpriteName>
 		<Tier>23</Tier>
 	</DecoItem>
-	<DecoItem ID = "TableWinter">
+	<DecoItem ID="TableWinter">
 		<Type>Table</Type>
 		<DecoTabType>Table</DecoTabType>
 		<Price>800</Price>
@@ -135,9 +135,7 @@
 		<SpriteName>RestTableWinter</SpriteName>
 		<Tier>2</Tier>
 	</DecoItem>
-
-
-	<DecoItem ID = "FloorBasicAqua">
+	<DecoItem ID="FloorBasicAqua">
 		<Type>Floor</Type>
 		<DecoTabType>Floor</DecoTabType>
 		<Price>100</Price>
@@ -146,7 +144,7 @@
 		<SpriteName>RestFloorBasicAqua</SpriteName>
 		<Tier>0</Tier>
 	</DecoItem>
-	<DecoItem ID = "FloorBasicGreen">
+	<DecoItem ID="FloorBasicGreen">
 		<Type>Floor</Type>
 		<DecoTabType>Floor</DecoTabType>
 		<Price>800</Price>
@@ -155,7 +153,7 @@
 		<SpriteName>RestFloorBasicGreen</SpriteName>
 		<Tier>0</Tier>
 	</DecoItem>
-	<DecoItem ID = "FloorBasicPurple">
+	<DecoItem ID="FloorBasicPurple">
 		<Type>Floor</Type>
 		<DecoTabType>Floor</DecoTabType>
 		<Price>800</Price>
@@ -164,7 +162,7 @@
 		<SpriteName>RestFloorBasicPurple</SpriteName>
 		<Tier>0</Tier>
 	</DecoItem>
-	<DecoItem ID = "FloorBasicRed">
+	<DecoItem ID="FloorBasicRed">
 		<Type>Floor</Type>
 		<DecoTabType>Floor</DecoTabType>
 		<Price>800</Price>
@@ -173,7 +171,7 @@
 		<SpriteName>RestFloorBasicRed</SpriteName>
 		<Tier>0</Tier>
 	</DecoItem>
-	<DecoItem ID = "FloorWizdyPetsBlue">
+	<DecoItem ID="FloorWizdyPetsBlue">
 		<Type>Floor</Type>
 		<DecoTabType>Floor</DecoTabType>
 		<Price>3000</Price>
@@ -182,7 +180,7 @@
 		<SpriteName>RestFloorWizdyPetsBlue</SpriteName>
 		<Tier>8</Tier>
 	</DecoItem>
-	<DecoItem ID = "FloorWizdyPetsGreen">
+	<DecoItem ID="FloorWizdyPetsGreen">
 		<Type>Floor</Type>
 		<DecoTabType>Floor</DecoTabType>
 		<Price>3400</Price>
@@ -191,7 +189,7 @@
 		<SpriteName>RestFloorWizdyPetsGreen</SpriteName>
 		<Tier>14</Tier>
 	</DecoItem>
-	<DecoItem ID = "FloorWizdyPetsRed">
+	<DecoItem ID="FloorWizdyPetsRed">
 		<Type>Floor</Type>
 		<DecoTabType>Floor</DecoTabType>
 		<Price>3800</Price>
@@ -200,7 +198,7 @@
 		<SpriteName>RestFloorWizdyPetsRed</SpriteName>
 		<Tier>20</Tier>
 	</DecoItem>
-	<DecoItem ID = "FloorWizdyPetsPurple">
+	<DecoItem ID="FloorWizdyPetsPurple">
 		<Type>Floor</Type>
 		<DecoTabType>Floor</DecoTabType>
 		<Price>4200</Price>
@@ -209,7 +207,7 @@
 		<SpriteName>RestFloorWizdyPetsPurple</SpriteName>
 		<Tier>33</Tier>
 	</DecoItem>
-	<DecoItem ID = "FloorFancyRed">
+	<DecoItem ID="FloorFancyRed">
 		<Type>Floor</Type>
 		<DecoTabType>Floor</DecoTabType>
 		<Price>4200</Price>
@@ -218,7 +216,7 @@
 		<SpriteName>RestFloorFancyRed</SpriteName>
 		<Tier>22</Tier>
 	</DecoItem>
-	<DecoItem ID = "FloorFancyGreen">
+	<DecoItem ID="FloorFancyGreen">
 		<Type>Floor</Type>
 		<DecoTabType>Floor</DecoTabType>
 		<Price>4600</Price>
@@ -227,7 +225,7 @@
 		<SpriteName>RestFloorFancyGreen</SpriteName>
 		<Tier>25</Tier>
 	</DecoItem>
-	<DecoItem ID = "FloorFancyBlue">
+	<DecoItem ID="FloorFancyBlue">
 		<Type>Floor</Type>
 		<DecoTabType>Floor</DecoTabType>
 		<Price>5000</Price>
@@ -236,7 +234,7 @@
 		<SpriteName>RestFloorFancyBlue</SpriteName>
 		<Tier>29</Tier>
 	</DecoItem>
-	<DecoItem ID = "FloorFancyPurple">
+	<DecoItem ID="FloorFancyPurple">
 		<Type>Floor</Type>
 		<DecoTabType>Floor</DecoTabType>
 		<Price>5400</Price>
@@ -245,7 +243,7 @@
 		<SpriteName>RestFloorFancyPurple</SpriteName>
 		<Tier>33</Tier>
 	</DecoItem>
-	<DecoItem ID = "FloorCandyBlue">
+	<DecoItem ID="FloorCandyBlue">
 		<Type>Floor</Type>
 		<DecoTabType>Floor</DecoTabType>
 		<Price>3000</Price>
@@ -254,7 +252,7 @@
 		<SpriteName>RestFloorCandyBlue</SpriteName>
 		<Tier>8</Tier>
 	</DecoItem>
-	<DecoItem ID = "FloorCandyRed">
+	<DecoItem ID="FloorCandyRed">
 		<Type>Floor</Type>
 		<DecoTabType>Floor</DecoTabType>
 		<Price>3600</Price>
@@ -263,7 +261,7 @@
 		<SpriteName>RestFloorCandyRed</SpriteName>
 		<Tier>19</Tier>
 	</DecoItem>
-	<DecoItem ID = "FloorWinter">
+	<DecoItem ID="FloorWinter">
 		<Type>Floor</Type>
 		<DecoTabType>Floor</DecoTabType>
 		<Price>1200</Price>
@@ -272,9 +270,7 @@
 		<SpriteName>RestFloorWinter</SpriteName>
 		<Tier>4</Tier>
 	</DecoItem>
-
-
-	<DecoItem ID = "KitchenBasicAqua">
+	<DecoItem ID="KitchenBasicAqua">
 		<Type>Kitchen</Type>
 		<DecoTabType>Kitchen</DecoTabType>
 		<Price>100</Price>
@@ -283,7 +279,7 @@
 		<SpriteName>RestKitchenBasicAqua</SpriteName>
 		<Tier>0</Tier>
 	</DecoItem>
-	<DecoItem ID = "KitchenBasicGreen">
+	<DecoItem ID="KitchenBasicGreen">
 		<Type>Kitchen</Type>
 		<DecoTabType>Kitchen</DecoTabType>
 		<Price>300</Price>
@@ -292,7 +288,7 @@
 		<SpriteName>RestKitchenBasicGreen</SpriteName>
 		<Tier>0</Tier>
 	</DecoItem>
-	<DecoItem ID = "KitchenBasicPurple">
+	<DecoItem ID="KitchenBasicPurple">
 		<Type>Kitchen</Type>
 		<DecoTabType>Kitchen</DecoTabType>
 		<Price>300</Price>
@@ -301,7 +297,7 @@
 		<SpriteName>RestKitchenBasicPurple</SpriteName>
 		<Tier>0</Tier>
 	</DecoItem>
-	<DecoItem ID = "KitchenBasicRed">
+	<DecoItem ID="KitchenBasicRed">
 		<Type>Kitchen</Type>
 		<DecoTabType>Kitchen</DecoTabType>
 		<Price>300</Price>
@@ -310,7 +306,7 @@
 		<SpriteName>RestKitchenBasicRed</SpriteName>
 		<Tier>0</Tier>
 	</DecoItem>
-	<DecoItem ID = "KitchenWizdyPetsBlank">
+	<DecoItem ID="KitchenWizdyPetsBlank">
 		<Type>Kitchen</Type>
 		<DecoTabType>Kitchen</DecoTabType>
 		<Price>1200</Price>
@@ -319,7 +315,7 @@
 		<SpriteName>RestKitchenWizdyPetsBlank</SpriteName>
 		<Tier>8</Tier>
 	</DecoItem>
-	<DecoItem ID = "KitchenWizdyPetsPet">
+	<DecoItem ID="KitchenWizdyPetsPet">
 		<Type>Kitchen</Type>
 		<DecoTabType>Kitchen</DecoTabType>
 		<Price>1500</Price>
@@ -328,7 +324,7 @@
 		<SpriteName>RestKitchenWizdyPetsPet</SpriteName>
 		<Tier>12</Tier>
 	</DecoItem>
-	<DecoItem ID = "KitchenWizdyPetsNinja">
+	<DecoItem ID="KitchenWizdyPetsNinja">
 		<Type>Kitchen</Type>
 		<DecoTabType>Kitchen</DecoTabType>
 		<Price>1800</Price>
@@ -337,7 +333,7 @@
 		<SpriteName>RestKitchenWizdyPetsNinja</SpriteName>
 		<Tier>18</Tier>
 	</DecoItem>
-	<DecoItem ID = "KitchenWizdyPetsFire">
+	<DecoItem ID="KitchenWizdyPetsFire">
 		<Type>Kitchen</Type>
 		<DecoTabType>Kitchen</DecoTabType>
 		<Price>3100</Price>
@@ -346,7 +342,7 @@
 		<SpriteName>RestKitchenWizdyPetsFire</SpriteName>
 		<Tier>31</Tier>
 	</DecoItem>
-	<DecoItem ID = "KitchenFancyBlank">
+	<DecoItem ID="KitchenFancyBlank">
 		<Type>Kitchen</Type>
 		<DecoTabType>Kitchen</DecoTabType>
 		<Price>2400</Price>
@@ -355,7 +351,7 @@
 		<SpriteName>RestKitchenFancyBlank</SpriteName>
 		<Tier>22</Tier>
 	</DecoItem>
-	<DecoItem ID = "KitchenFancyStars">
+	<DecoItem ID="KitchenFancyStars">
 		<Type>Kitchen</Type>
 		<DecoTabType>Kitchen</DecoTabType>
 		<Price>2700</Price>
@@ -364,7 +360,7 @@
 		<SpriteName>RestKitchenFancyStars</SpriteName>
 		<Tier>24</Tier>
 	</DecoItem>
-	<DecoItem ID = "KitchenFancyRailing">
+	<DecoItem ID="KitchenFancyRailing">
 		<Type>Kitchen</Type>
 		<DecoTabType>Kitchen</DecoTabType>
 		<Price>3000</Price>
@@ -373,7 +369,7 @@
 		<SpriteName>RestKitchenFancyRailing</SpriteName>
 		<Tier>28</Tier>
 	</DecoItem>
-	<DecoItem ID = "KitchenFancyBanner">
+	<DecoItem ID="KitchenFancyBanner">
 		<Type>Kitchen</Type>
 		<DecoTabType>Kitchen</DecoTabType>
 		<Price>3300</Price>
@@ -382,7 +378,7 @@
 		<SpriteName>RestKitchenFancyBanner</SpriteName>
 		<Tier>35</Tier>
 	</DecoItem>
-	<DecoItem ID = "KitchenCandySimple">
+	<DecoItem ID="KitchenCandySimple">
 		<Type>Kitchen</Type>
 		<DecoTabType>Kitchen</DecoTabType>
 		<Price>600</Price>
@@ -391,7 +387,7 @@
 		<SpriteName>RestKitchenCandySimple</SpriteName>
 		<Tier>2</Tier>
 	</DecoItem>
-	<DecoItem ID = "KitchenCandySprinkles">
+	<DecoItem ID="KitchenCandySprinkles">
 		<Type>Kitchen</Type>
 		<DecoTabType>Kitchen</DecoTabType>
 		<Price>2100</Price>
@@ -400,7 +396,7 @@
 		<SpriteName>RestKitchenCandySprinkles</SpriteName>
 		<Tier>21</Tier>
 	</DecoItem>
-	<DecoItem ID = "KitchenWinter">
+	<DecoItem ID="KitchenWinter">
 		<Type>Kitchen</Type>
 		<DecoTabType>Kitchen</DecoTabType>
 		<Price>1200</Price>
@@ -409,9 +405,7 @@
 		<SpriteName>RestKitchenWinter</SpriteName>
 		<Tier>4</Tier>
 	</DecoItem>
-
-
-	<DecoItem ID = "VIPBasic">
+	<DecoItem ID="VIPBasic">
 		<Type>VIP</Type>
 		<DecoTabType>VIP</DecoTabType>
 		<Price>0</Price>
@@ -420,7 +414,7 @@
 		<SpriteName>RestVIPBasic</SpriteName>
 		<Tier>2</Tier>
 	</DecoItem>
-	<DecoItem ID = "VIPBlackHole">
+	<DecoItem ID="VIPBlackHole">
 		<Type>VIP</Type>
 		<DecoTabType>VIP</DecoTabType>
 		<Price>30000</Price>
@@ -429,9 +423,7 @@
 		<SpriteName>RestVIPBlackHole</SpriteName>
 		<Tier>12</Tier>
 	</DecoItem>
-
-
-	<DecoItem ID = "PlayArea00">
+	<DecoItem ID="PlayArea00">
 		<Type>PlayArea</Type>
 		<DecoTabType>PlayArea</DecoTabType>
 		<Price>0</Price>
@@ -440,7 +432,7 @@
 		<SpriteName>RestPlayAreaClawMachine</SpriteName>
 		<Tier>4</Tier>
 	</DecoItem>
-	<DecoItem ID = "PlayArea01">
+	<DecoItem ID="PlayArea01">
 		<Type>PlayArea</Type>
 		<DecoTabType>PlayArea</DecoTabType>
 		<Price>40000</Price>
@@ -449,8 +441,7 @@
 		<SpriteName>RestPlayAreaArcade</SpriteName>
 		<Tier>15</Tier>
 	</DecoItem>
-
-	<DecoItem ID = "FlyThru00">
+	<DecoItem ID="FlyThru00">
 		<Type>FlyThru</Type>
 		<DecoTabType>FlyThru</DecoTabType>
 		<Price>0</Price>
@@ -459,8 +450,7 @@
 		<SpriteName>RestFlyThruBasicSample</SpriteName>
 		<Tier>6</Tier>
 	</DecoItem>
-
-	<DecoItem ID = "CustomerGossiper">
+	<DecoItem ID="CustomerGossiper">
 		<Type>Special</Type>
 		<DecoTabType>Random</DecoTabType>
 		<Price>6000</Price>
@@ -469,8 +459,7 @@
 		<SpriteName>ItemCustomerGossiper</SpriteName>
 		<Tier>0</Tier>
 	</DecoItem>
-
-	<DecoItem ID = "CustomerEater">
+	<DecoItem ID="CustomerEater">
 		<Type>Special</Type>
 		<DecoTabType>Random</DecoTabType>
 		<Price>6000</Price>
@@ -479,8 +468,7 @@
 		<SpriteName>ItemCustomerEater</SpriteName>
 		<Tier>0</Tier>
 	</DecoItem>
-
-	<DecoItem ID = "CustomerHospitalRunner">
+	<DecoItem ID="CustomerHospitalRunner">
 		<Type>Special</Type>
 		<DecoTabType>Random</DecoTabType>
 		<Price>6000</Price>
@@ -489,8 +477,7 @@
 		<SpriteName>ItemCustomerHospitalRunner</SpriteName>
 		<Tier>0</Tier>
 	</DecoItem>
-
-	<DecoItem ID = "CustomerBlackOut">
+	<DecoItem ID="CustomerBlackOut">
 		<Type>Special</Type>
 		<DecoTabType>Random</DecoTabType>
 		<Price>6000</Price>
@@ -500,8 +487,7 @@
 		<Tier>0</Tier>
 		<IAPPrice>1</IAPPrice>
 	</DecoItem>
-
-	<DecoItem ID ="TablePlushie">
+	<DecoItem ID="TablePlushie">
 		<Type>Table</Type>
 		<DecoTabType>IAP</DecoTabType>
 		<Price>0</Price>
@@ -510,9 +496,9 @@
 		<SpriteName>RestTablePlushie</SpriteName>
 		<Tier>0</Tier>
 		<IAPPrice>1</IAPPrice>
-    <ProdID>com.lifeguardgames.foodallergy.iap.plushie.table</ProdID>
+		<ProdID>com.lifeguardgames.foodallergy.iap.plushie.table</ProdID>
 	</DecoItem>
-	<DecoItem ID ="FloorPlushie">
+	<DecoItem ID="FloorPlushie">
 		<Type>Floor</Type>
 		<DecoTabType>IAP</DecoTabType>
 		<Price>0</Price>
@@ -521,9 +507,9 @@
 		<SpriteName>RestFloorPlushie</SpriteName>
 		<Tier>0</Tier>
 		<IAPPrice>1</IAPPrice>
-    <ProdID>com.lifeguardgames.foodallergy.iap.plushie.floor</ProdID>
+		<ProdID>com.lifeguardgames.foodallergy.iap.plushie.floor</ProdID>
 	</DecoItem>
-	<DecoItem ID ="KitchenPlushie">
+	<DecoItem ID="KitchenPlushie">
 		<Type>Kitchen</Type>
 		<DecoTabType>IAP</DecoTabType>
 		<Price>0</Price>
@@ -532,9 +518,9 @@
 		<SpriteName>RestKitchenPlushie</SpriteName>
 		<Tier>0</Tier>
 		<IAPPrice>1</IAPPrice>
-    <ProdID>com.lifeguardgames.foodallergy.iap.plushie.kitchen</ProdID>
+		<ProdID>com.lifeguardgames.foodallergy.iap.plushie.kitchen</ProdID>
 	</DecoItem>
-	<DecoItem ID ="TableSloppy">
+	<DecoItem ID="TableSloppy">
 		<Type>Table</Type>
 		<DecoTabType>IAP</DecoTabType>
 		<Price>0</Price>
@@ -543,9 +529,9 @@
 		<SpriteName>RestTableSloppy</SpriteName>
 		<Tier>0</Tier>
 		<IAPPrice>1</IAPPrice>
-    <ProdID>com.lifeguardgames.foodallergy.iap.sloopy.table</ProdID>
+		<ProdID>com.lifeguardgames.foodallergy.iap.sloppy.table</ProdID>
 	</DecoItem>
-	<DecoItem ID ="FloorSloppy">
+	<DecoItem ID="FloorSloppy">
 		<Type>Floor</Type>
 		<DecoTabType>IAP</DecoTabType>
 		<Price>0</Price>
@@ -554,9 +540,9 @@
 		<SpriteName>RestFloorSloppy</SpriteName>
 		<Tier>0</Tier>
 		<IAPPrice>1</IAPPrice>
-    <ProdID>com.lifeguardgames.foodallergy.iap.sloopy.floor</ProdID>
+		<ProdID>com.lifeguardgames.foodallergy.iap.sloppy.floor</ProdID>
 	</DecoItem>
-	<DecoItem ID ="KitchenSloppy">
+	<DecoItem ID="KitchenSloppy">
 		<Type>Kitchen</Type>
 		<DecoTabType>IAP</DecoTabType>
 		<Price>0</Price>
@@ -565,9 +551,9 @@
 		<SpriteName>RestKitchenSloppy</SpriteName>
 		<Tier>0</Tier>
 		<IAPPrice>1</IAPPrice>
-    <ProdID>com.lifeguardgames.foodallergy.iap.sloopy.kitchen</ProdID>
+		<ProdID>com.lifeguardgames.foodallergy.iap.sloppy.kitchen</ProdID>
 	</DecoItem>
-	<DecoItem ID ="TableSpooky">
+	<DecoItem ID="TableSpooky">
 		<Type>Table</Type>
 		<DecoTabType>IAP</DecoTabType>
 		<Price>0</Price>
@@ -576,9 +562,9 @@
 		<SpriteName>RestTableSpooky</SpriteName>
 		<Tier>0</Tier>
 		<IAPPrice>1</IAPPrice>
-    <ProdID>com.lifeguardgames.foodallergy.iap.spooky.table</ProdID>
+		<ProdID>com.lifeguardgames.foodallergy.iap.spooky.table</ProdID>
 	</DecoItem>
-	<DecoItem ID ="FloorSpooky">
+	<DecoItem ID="FloorSpooky">
 		<Type>Floor</Type>
 		<DecoTabType>IAP</DecoTabType>
 		<Price>0</Price>
@@ -587,9 +573,9 @@
 		<SpriteName>RestFloorSpooky</SpriteName>
 		<Tier>0</Tier>
 		<IAPPrice>1</IAPPrice>
-    <ProdID>com.lifeguardgames.foodallergy.iap.spooky.floor</ProdID>
+		<ProdID>com.lifeguardgames.foodallergy.iap.spooky.floor</ProdID>
 	</DecoItem>
-	<DecoItem ID ="KitchenSpooky">
+	<DecoItem ID="KitchenSpooky">
 		<Type>Kitchen</Type>
 		<DecoTabType>IAP</DecoTabType>
 		<Price>0</Price>
@@ -598,9 +584,9 @@
 		<SpriteName>RestKitchenSpooky</SpriteName>
 		<Tier>0</Tier>
 		<IAPPrice>1</IAPPrice>
-    <ProdID>com.lifeguardgames.foodallergy.iap.spooky.kitchen</ProdID>
+		<ProdID>com.lifeguardgames.foodallergy.iap.spooky.kitchen</ProdID>
 	</DecoItem>
-	<DecoItem ID ="TableSea">
+	<DecoItem ID="TableSea">
 		<Type>Table</Type>
 		<DecoTabType>IAP</DecoTabType>
 		<Price>0</Price>
@@ -609,9 +595,9 @@
 		<SpriteName>RestTableSea</SpriteName>
 		<Tier>0</Tier>
 		<IAPPrice>1</IAPPrice>
-    <ProdID>com.lifeguardgames.foodallergy.iap.sea.table</ProdID>
+		<ProdID>com.lifeguardgames.foodallergy.iap.sea.table</ProdID>
 	</DecoItem>
-	<DecoItem ID ="FloorSea">
+	<DecoItem ID="FloorSea">
 		<Type>Floor</Type>
 		<DecoTabType>IAP</DecoTabType>
 		<Price>0</Price>
@@ -620,9 +606,9 @@
 		<SpriteName>RestFloorSea</SpriteName>
 		<Tier>0</Tier>
 		<IAPPrice>1</IAPPrice>
-    <ProdID>com.lifeguardgames.foodallergy.iap.sea.floor</ProdID>
+		<ProdID>com.lifeguardgames.foodallergy.iap.sea.floor</ProdID>
 	</DecoItem>
-	<DecoItem ID ="KitchenSea">
+	<DecoItem ID="KitchenSea">
 		<Type>Kitchen</Type>
 		<DecoTabType>IAP</DecoTabType>
 		<Price>0</Price>
@@ -631,6 +617,6 @@
 		<SpriteName>RestKitchenSea</SpriteName>
 		<Tier>0</Tier>
 		<IAPPrice>1</IAPPrice>
-    <ProdID>com.lifeguardgames.foodallergy.iap.sea.kitchen</ProdID>
+		<ProdID>com.lifeguardgames.foodallergy.iap.sea.kitchen</ProdID>
 	</DecoItem>
 </DecoItem>

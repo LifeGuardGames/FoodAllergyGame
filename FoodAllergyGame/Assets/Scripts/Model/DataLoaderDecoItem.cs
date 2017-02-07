@@ -124,7 +124,8 @@ public class DataLoaderDecoItem: XMLLoaderGeneric<DataLoaderDecoItem> {
 				return decoData.ID;
 			}
 		}
-		return "FloorSloppy";
+		Debug.LogError("No deco ID from Product ID found: " + prodID);
+		return "";
 	}
 
 	protected override void XMLNodeHandler(string id, IXMLNode xmlNode, Hashtable hashData, string errorMessage){
