@@ -112,7 +112,7 @@ public enum DecoTabTypes {
 	IAP
 }
 
-public enum  PropNodeType{
+public enum PropNodeType{
 	None,
 	Event,
 	Growth,
@@ -160,4 +160,7 @@ public enum MissionType {
 	Allergy,
 }
 
-
+public enum AdConversionType {
+	PageClick,		// Has clicked anywhere in the page
+	ButtonClick		// Has clicked the link button
+}

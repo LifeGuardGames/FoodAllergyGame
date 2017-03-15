@@ -1,15 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
-
 
 /// <summary>
 /// This class is the decision maker to make the restaurant random
 /// </summary>
 public class DifficultyAI {
-
 	public DifficultyLevels diff;
 
-// Decides how to set up the restaurant then returns to RunSetUp in Arcade Manager
+	// Decides how to set up the restaurant then returns to RunSetUp in Arcade Manager
 	public void Init (float difficultyValue, ImmutableDataEvents eventData) {
 		if(difficultyValue < 26) {
 			diff = DifficultyLevels.Hard;
@@ -20,12 +17,10 @@ public class DifficultyAI {
 		else {
 			diff = DifficultyLevels.Medium;
 		}
-		RestaurantManagerArcade rest = RestaurantManagerArcade.Instance.GetComponent<RestaurantManagerArcade>();
-		//rest.AvailableTables(RemoveTables());
 		eventData.RestMode = RestModeChooser();
     }
 
-	//Determines what tables to remove on higher difficulties
+	// Determines what tables to remove on higher difficulties
 	private int RemoveTables() {
 		if(diff == DifficultyLevels.Easy) {
 			return 4;
