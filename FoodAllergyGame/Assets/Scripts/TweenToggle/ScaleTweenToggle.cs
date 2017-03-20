@@ -1,7 +1,6 @@
 ﻿//// Copyright (c) 2015 LifeGuard Games Inc.
 
 using UnityEngine;
-using System.Collections;
 
 /// <summary>
 /// Position tween toggle.

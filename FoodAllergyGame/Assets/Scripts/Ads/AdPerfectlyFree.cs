@@ -22,6 +22,10 @@ public class AdPerfectlyFree : MonoBehaviour {
 		tweenToggle.Hide();
 	}
 
+	public void OnHideComplete() {
+		Destroy(gameObject);
+	}
+
 	public void OnButtonClicked() {
 		Debug.Log("BUTTON");
 		// Track Button Clicked
