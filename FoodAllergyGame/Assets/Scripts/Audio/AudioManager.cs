@@ -18,7 +18,6 @@ public class AudioManager : LgAudioManager<AudioManager>{
 	
 	protected override void Start(){
 		base.Start();
-		StartCoroutine(PlayBackground());
 	}
 
 	protected override void OnDestroy() {
@@ -75,7 +74,6 @@ public class AudioManager : LgAudioManager<AudioManager>{
 			if(!isLoop){
 				backgroundSource.loop = false;
 			}
-
 			StartCoroutine(PlayBackground());
 		}
 		else{

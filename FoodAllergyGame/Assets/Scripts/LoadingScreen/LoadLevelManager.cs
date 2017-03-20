@@ -18,6 +18,7 @@ public class LoadLevelManager : Singleton<LoadLevelManager> {
 	private bool isAdWait = false;
 	private string sceneToLoad;
 	private GameObject eventSystemObject;
+	private AdPerfectlyFree adScript;
 
 	public string GetCurrentSceneName() {
 		return SceneManager.GetActiveScene().name;
@@ -71,14 +72,16 @@ public class LoadLevelManager : Singleton<LoadLevelManager> {
 			if(showAdChance && !showRandomTip) {
 				showAd = true;
 			}
-			else if(showAdChance) {		// 33% chance to show ads
-				showAd = UnityEngine.Random.Range(0, 3) == 0;
+			else if(showAdChance) {		// 20% chance to show ads
+				showAd = UnityEngine.Random.Range(0, 5) == 0;
 			}
 
 			if(showAd) {    // Show ad
 				isAdWait = true;
-				GameObject adObject = Resources.Load("AdPerfectlyFree") as GameObject;
-				GameObjectUtils.AddChild(adParentTransform.gameObject, adObject);
+				GameObject adReference = Resources.Load("AdPerfectlyFree") as GameObject;
+				GameObject ad = GameObjectUtils.AddChild(adParentTransform.gameObject, adReference);
+				adScript = ad.GetComponent<AdPerfectlyFree>();
+				adScript.ShowPanel();
 			}
 			else {			// Show food tip
 				isLoadingTipWait = true;
@@ -146,6 +149,10 @@ public class LoadLevelManager : Singleton<LoadLevelManager> {
 	}
 
 	private void LoadLevel() {
+		if(adScript != null) {
+			adScript.HidePanel();
+			adScript = null;
+		}
 		SceneManager.LoadScene(sceneToLoad);
 	}
 

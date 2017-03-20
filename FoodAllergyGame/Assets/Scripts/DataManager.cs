@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System;
 using fastJSON;
-using UnityEngine.SceneManagement;
 
 /// <summary>
 /// This class handles all game data. No game logic

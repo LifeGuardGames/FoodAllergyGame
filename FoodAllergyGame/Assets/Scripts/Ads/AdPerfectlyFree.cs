@@ -23,12 +23,14 @@ public class AdPerfectlyFree : MonoBehaviour {
 	}
 
 	public void OnButtonClicked() {
+		Debug.Log("BUTTON");
 		// Track Button Clicked
 		AnalyticsManager.Instance.AdConversion(AD_KEY, AdConversionType.ButtonClick);
 		Application.OpenURL("http://bit.ly/2nFILnS");
 	}
 
 	public void OnAnythingClicked() {
+		Debug.Log("ANYTHING");
 		// Track Anything Clicked
 		AnalyticsManager.Instance.AdConversion(AD_KEY, AdConversionType.PageClick);
 		Application.OpenURL("http://bit.ly/2nFILnS");
