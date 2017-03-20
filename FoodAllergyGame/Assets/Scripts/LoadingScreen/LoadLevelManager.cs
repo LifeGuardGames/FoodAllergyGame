@@ -50,6 +50,10 @@ public class LoadLevelManager : Singleton<LoadLevelManager> {
 		isLoadingTipWait = false;
 		isAdWait = false;
 
+		if(eventSystemObject != null) {
+			eventSystemObject.SetActive(false);
+		}
+
 		// Reset everything first
 		loadText.text = "";
 		loadImage.gameObject.SetActive(false);
@@ -77,6 +81,10 @@ public class LoadLevelManager : Singleton<LoadLevelManager> {
 			}
 
 			if(showAd) {    // Show ad
+				if(eventSystemObject != null) {
+					eventSystemObject.SetActive(true);
+				}
+
 				isAdWait = true;
 				GameObject adReference = Resources.Load("AdPerfectlyFree") as GameObject;
 				GameObject ad = GameObjectUtils.AddChild(adParentTransform.gameObject, adReference);
@@ -122,10 +130,6 @@ public class LoadLevelManager : Singleton<LoadLevelManager> {
 		sceneToLoad = sceneName;
 		loadDemux.Show();
 		AudioManager.Instance.PlayClip("LoadingOpen");
-
-		if(eventSystemObject != null) {
-			eventSystemObject.SetActive(false);
-		}
 	}
 
 	/// <summary>
@@ -149,6 +153,9 @@ public class LoadLevelManager : Singleton<LoadLevelManager> {
 	}
 
 	private void LoadLevel() {
+		if(eventSystemObject != null) {
+			eventSystemObject.SetActive(false);
+		}
 		if(adScript != null) {
 			adScript.HidePanel();
 			adScript = null;
