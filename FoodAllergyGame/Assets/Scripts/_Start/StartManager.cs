@@ -223,7 +223,9 @@ public class StartManager : Singleton<StartManager> {
 		TurnOffEntrances();
 		// Check if special tutorial is set, load it as a challenge directly
 		if(!string.IsNullOrEmpty(DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge)) {
-			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, showRandomTip: true);
+			// Disable ad showing for the first time tutorial
+			bool allowShowAds = DataManager.Instance.GameData.Tutorial.IsTutorial1Done;
+            LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, showRandomTip: true, showAdChance: allowShowAds);
 		}
 		else {
 			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.MENUPLANNING, showRandomTip: true);

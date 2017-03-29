@@ -49,7 +49,6 @@ public class LoadLevelManager : Singleton<LoadLevelManager> {
 	public void StartLoadTransition(string sceneName, string additionalTextKey = null, string additionalImageKey = null, bool showRandomTip = false, bool showAdChance = true) {
 		isLoadingTipWait = false;
 		isAdWait = false;
-
 		if(eventSystemObject != null) {
 			eventSystemObject.SetActive(false);
 		}
