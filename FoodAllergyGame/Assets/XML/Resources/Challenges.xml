@@ -26,14 +26,68 @@
     <IsBossChallenge>false</IsBossChallenge>
   </Challenge>
   <Challenge ID="Challenge01">
-    <Title>ChallengeTrainingDay</Title>
-    <Description>ChallengeTrainingDayDesc</Description>
-    <ChallengeType>Regular</ChallengeType>
-    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
-    <Tier>3</Tier>
-    <KitchenTimer>5</KitchenTimer>
-    <CustomerSet>ChallengeSet15</CustomerSet>
+    <Title>ChallengeYourFirstDay</Title>
+    <Description>ChallengeYourFirstDayDesc</Description>
+    <ChallengeType>Tutorial</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>2</KitchenTimer>
+    <CustomerSet>CustomerSetT1</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
+    <DayLength>27</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>0</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <NextChallenge>TuT2</NextChallenge>
+    <Tables>4</Tables>
+    <Bronze>20</Bronze>
+    <Silver>30</Silver>
+    <Gold>40</Gold>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+    <Challenge ID="Challenge02">
+    <Title>ChallengeTrainingPart2</Title>
+    <Description>ChallengeTrainingPart2Desc</Description>
+    <ChallengeType>Regular</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>2</KitchenTimer>
+    <CustomerSet>CustomerSetT2</CustomerSet>
+    <CustomerTimer>3</CustomerTimer>
+    <DayLength>30</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>0</RestMode>
+    <CustomerSpawnTimer>10</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <NextChallenge>TuT2</NextChallenge>
+    <Tables>4</Tables>
+    <Bronze>20</Bronze>
+    <Silver>40</Silver>
+    <Gold>60</Gold>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+   <Challenge ID="Challenge03">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>2</KitchenTimer>
+    <CustomerSet>CustomerSetT2</CustomerSet>
+    <CustomerTimer>3</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
     <WaiterMove>0</WaiterMove>
@@ -41,22 +95,23 @@
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
-    <Bronze>25</Bronze>
-    <Silver>75</Silver>
-    <Gold>100</Gold>
+    <NextChallenge>TuT2</NextChallenge>
     <Tables>4</Tables>
-    <PlayArea>PlayArea00</PlayArea>
-    <Vip>VIPBasic</Vip>
-    <Flythru>FlyThru00</Flythru>
+    <Bronze>20</Bronze>
+    <Silver>50</Silver>
+    <Gold>80</Gold>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
     <IsBossChallenge>false</IsBossChallenge>
   </Challenge>
 
-  <Challenge ID="Challenge02">
+  <Challenge ID="Challenge04">
     <Title>ChallengePackedIn</Title>
     <Description>ChallengePackedInDesc</Description>
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
-    <Tier>3</Tier>
+    <Tier>0</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet01</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
@@ -77,12 +132,90 @@
     <IsBossChallenge>false</IsBossChallenge>
   </Challenge>
 
-  <Challenge ID="Challenge03">
+   <Challenge ID="Challenge05">
+    <Title>ChallengeMeetMrAsteroid</Title>
+    <Description>ChallengeMeetMrAsteroidDesc</Description>
+    <ChallengeType>Character</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSet1</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+
+  <Challenge ID="Challenge06">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR2</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>45</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>0</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+
+  <Challenge ID="Challenge07">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Regular</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR2</CustomerSet>
+    <CustomerTimer>1</CustomerTimer>
+    <DayLength>30</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+  <Challenge ID="Challenge08">
     <Title>ChallengeMemoryFood</Title>
     <Description>ChallengeMemoryFoodDesc</Description>
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
-    <Tier>3</Tier>
+    <Tier>0</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet01</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
@@ -103,12 +236,474 @@
     <IsBossChallenge>false</IsBossChallenge>
   </Challenge>
 
-  <Challenge ID="Challenge04">
+  <Challenge ID="Challenge09">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR2</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+   <Challenge ID="Challenge10">
+    <Title>ChallengeVIPTut</Title>
+    <Description>ChallengeVIPTutDesc</Description>
+    <ChallengeType>Tutorial</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>3</KitchenTimer>
+    <CustomerSet>CustomerSetTV</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>2</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>0</RestMode>
+    <CustomerSpawnTimer>2</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>VIPBasic</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+    <Challenge ID="Challenge11">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR2</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+    <Challenge ID="Challenge12">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR2</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>2</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>VIPBasic</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+    <Challenge ID="Challenge13">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR2</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+   <Challenge ID="Challenge14">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR2</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+   <Challenge ID="Challenge15">
+    <Title>ChallengeMeetSly</Title>
+    <Description>ChallengeMeetSlyDesc</Description>
+    <ChallengeType>Character</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetT15</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>  
+  
+   <Challenge ID="Challenge16">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR3</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+  <Challenge ID="Challenge17">
+    <Title>ChallengeNotGonnaPayIt</Title>
+    <Description>ChallengeNotGonnaPayItDesc</Description>
+    <ChallengeType>Regular</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet02</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSet07</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>0</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>100</Bronze>
+    <Silver>150</Silver>
+    <Gold>200</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+    
+   <Challenge ID="Challenge18">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR3</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+   <Challenge ID="Challenge19">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR3</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+  <Challenge ID="Challenge20">
+    <Title>ChallengePlayArea</Title>
+    <Description>ChallengePlayAreaDesc</Description>
+    <ChallengeType>Tutorial</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>3</KitchenTimer>
+    <CustomerSet>CustomerSetTP</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>1</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>2</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Tables>4</Tables>
+    <PlayArea>PlayArea00</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+    
+     <Challenge ID="Challenge21">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR3</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+    
+     <Challenge ID="Challenge22">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR3</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>2</Tables>
+    <PlayArea>PlayArea00-</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+    
+       <Challenge ID="Challenge23">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR3</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+      
+     <Challenge ID="Challenge24">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR3</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+    
+     <Challenge ID="Challenge25">
+    <Title>ChallengeMeetTiki</Title>
+    <Description>ChallengeMeetTikiDesc</Description>
+    <ChallengeType>Character</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetT25</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge> 
+  
+   <Challenge ID="Challenge26">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR4</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+    
+  <Challenge ID="Challenge27">
     <Title>ChallengeTemper</Title>
     <Description>ChallengeTemperDesc</Description>
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
-    <Tier>5</Tier>
+    <Tier>0</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet06</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
@@ -129,39 +724,38 @@
     <IsBossChallenge>false</IsBossChallenge>
   </Challenge>
 
-  <Challenge ID="Challenge05">
-    <Title>ChallengeTalkieTalkie</Title>
-    <Description>ChallengeTalkieTalkieDesc</Description>
-    <ChallengeType>Regular</ChallengeType>
-    <ChallengeMenuSet>ChallengeMenuSet02</ChallengeMenuSet>
-    <Tier>6</Tier>
+     <Challenge ID="Challenge28">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
     <KitchenTimer>5</KitchenTimer>
-    <CustomerSet>ChallengeSet01</CustomerSet>
+    <CustomerSet>ChallengeSetR4</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
     <WaiterMove>0</WaiterMove>
-    <RestMode>4</RestMode>
+    <RestMode>1</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
-    <Bronze>100</Bronze>
-    <Silver>150</Silver>
-    <Gold>200</Gold>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
     <Tables>4</Tables>
-    <GossiperMode>0</GossiperMode>
     <PlayArea>0</PlayArea>
     <Vip>0</Vip>
     <Flythru>0</Flythru>
-    <IsBossChallenge>True</IsBossChallenge>
+    <IsBossChallenge>false</IsBossChallenge>
   </Challenge>
-
-  <Challenge ID="Challenge06">
+  
+  <Challenge ID="Challenge29">
     <Title>ChallengeTooMuchFun</Title>
     <Description>ChallengeTooMuchFunDesc</Description>
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
-    <Tier>8</Tier>
+    <Tier>0</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet06</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
@@ -181,13 +775,192 @@
     <Flythru>0</Flythru>
     <IsBossChallenge>false</IsBossChallenge>
   </Challenge>
-
-  <Challenge ID="Challenge07">
+    
+  <Challenge ID="Challenge30">
+    <Title>ChallengeFlyThru</Title>
+    <Description>ChallengeFlyThruDesc</Description>
+    <ChallengeType>Tutorial</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>3</KitchenTimer>
+    <CustomerSet>CustomerSetTF</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>2</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>0</RestMode>
+    <CustomerSpawnTimer>2</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>FlyThru00</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+    
+   <Challenge ID="Challenge31">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR4</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+   <Challenge ID="Challenge32">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR4</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+   <Challenge ID="Challenge33">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR4</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+   <Challenge ID="Challenge34">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR4</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+   <Challenge ID="Challenge35">
+    <Title>ChallengeMeetCoolKid</Title>
+    <Description>ChallengeMeetCoolKidDesc</Description>
+    <ChallengeType>Character</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetT35</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge> 
+    
+     <Challenge ID="Challenge36">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR5</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+   <Challenge ID="Challenge37">
     <Title>ChallengeTooMuchWorkandNoPlay</Title>
     <Description>ChallengeTooMuchWorkandNoPlayDesc</Description>
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet02</ChallengeMenuSet>
-    <Tier>10</Tier>
+    <Tier>0</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet06</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
@@ -207,93 +980,119 @@
     <Flythru>0</Flythru>
     <IsBossChallenge>false</IsBossChallenge>
   </Challenge>
-
-  <Challenge ID="Challenge08">
-    <Title>ChallengeNotGonnaPayIt</Title>
-    <Description>ChallengeNotGonnaPayItDesc</Description>
-    <ChallengeType>Regular</ChallengeType>
-    <ChallengeMenuSet>ChallengeMenuSet02</ChallengeMenuSet>
-    <Tier>12</Tier>
+    
+     <Challenge ID="Challenge38">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
     <KitchenTimer>5</KitchenTimer>
-    <CustomerSet>ChallengeSet07</CustomerSet>
+    <CustomerSet>ChallengeSetR5</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
     <WaiterMove>0</WaiterMove>
-    <RestMode>0</RestMode>
+    <RestMode>1</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
-    <Bronze>100</Bronze>
-    <Silver>150</Silver>
-    <Gold>200</Gold>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
     <Tables>4</Tables>
     <PlayArea>0</PlayArea>
     <Vip>0</Vip>
     <Flythru>0</Flythru>
-    <IsBossChallenge>True</IsBossChallenge>
-  </Challenge>
-
-  <Challenge ID="Challenge09">
-    <Title>ChallengeWrongOrder</Title>
-    <Description>ChallengeWrongOrderDesc</Description>
-    <ChallengeType>Regular</ChallengeType>
-    <ChallengeMenuSet>ChallengeMenuSet02</ChallengeMenuSet>
-    <Tier>16</Tier>
-    <KitchenTimer>5</KitchenTimer>
-    <CustomerSet>ChallengeSet03</CustomerSet>
-    <CustomerTimer>2</CustomerTimer>
-    <DayLength>72</DayLength>
-    <Allergy>None</Allergy>
-    <WaiterMove>0</WaiterMove>
-    <RestMode>0</RestMode>
-    <CustomerSpawnTimer>6</CustomerSpawnTimer>
-    <SpecialDecoMode>0</SpecialDecoMode>
-    <CustomerStartingHearts>3</CustomerStartingHearts>
-    <Bronze>100</Bronze>
-    <Silver>150</Silver>
-    <Gold>200</Gold>
-    <Tables>4</Tables>
-    <PlayArea>PlayArea00</PlayArea>
-    <Vip>0</Vip>
-    <Flythru>0</Flythru>
     <IsBossChallenge>false</IsBossChallenge>
   </Challenge>
-
-  <Challenge ID="Challenge10">
-    <Title>ChallengeHammerTime</Title>
-    <Description>ChallengeHammerTimeDesc</Description>
-    <ChallengeType>Regular</ChallengeType>
-    <ChallengeMenuSet>ChallengeMenuSet02</ChallengeMenuSet>
-    <Tier>18</Tier>
+    
+     <Challenge ID="Challenge39">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
     <KitchenTimer>5</KitchenTimer>
-    <CustomerSet>ChallengeSet04</CustomerSet>
+    <CustomerSet>ChallengeSetR5</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
     <WaiterMove>0</WaiterMove>
-    <RestMode>0</RestMode>
-    <CustomerSpawnTimer>7</CustomerSpawnTimer>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
     <SpecialDecoMode>0</SpecialDecoMode>
-    <CustomerStartingHearts>1</CustomerStartingHearts>
-    <Bronze>275</Bronze>
-    <Silver>350</Silver>
-    <Gold>425</Gold>
-    <Tables>1</Tables>
-    <PlayArea>PlayArea00</PlayArea>
-    <Vip>VIPBasic</Vip>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
     <Flythru>0</Flythru>
-    <IsBossChallenge>True</IsBossChallenge>
+    <IsBossChallenge>false</IsBossChallenge>
   </Challenge>
-
-  <Challenge ID="Challenge11">
-    <Title>ChallengeTalkieSmashie</Title>
-    <Description>ChallengeTalkieSmashieDesc</Description>
+  
+   <Challenge ID="Challenge40">
+    <Title>ChallengeMeetGabby</Title>
+    <Description>ChallengeMeetGabbyDesc</Description>
+    <ChallengeType>Character</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetT40</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>  
+  
+   <Challenge ID="Challenge41">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR6</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+  <Challenge ID="Challenge42">
+    <Title>ChallengeTalkieTalkie</Title>
+    <Description>ChallengeTalkieTalkieDesc</Description>
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet02</ChallengeMenuSet>
-    <Tier>20</Tier>
+    <Tier>0</Tier>
     <KitchenTimer>5</KitchenTimer>
-    <CustomerSet>ChallengeSet09</CustomerSet>
+    <CustomerSet>ChallengeSet01</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
@@ -302,36 +1101,36 @@
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
-    <Bronze>150</Bronze>
-    <Silver>200</Silver>
-    <Gold>240</Gold>
+    <Bronze>100</Bronze>
+    <Silver>150</Silver>
+    <Gold>200</Gold>
     <Tables>4</Tables>
-    <GossiperMode>1</GossiperMode>
+    <GossiperMode>0</GossiperMode>
     <PlayArea>0</PlayArea>
     <Vip>0</Vip>
     <Flythru>0</Flythru>
     <IsBossChallenge>false</IsBossChallenge>
   </Challenge>
 
-  <Challenge ID="Challenge12">
-    <Title>ChallengeBlackOut</Title>
-    <Description>ChallengeBlackOutDesc</Description>
+  <Challenge ID="Challenge43">
+    <Title>ChallengeMemoryFood</Title>
+    <Description>ChallengeMemoryFoodDesc</Description>
     <ChallengeType>Regular</ChallengeType>
-    <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
-    <Tier>20</Tier>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
     <KitchenTimer>5</KitchenTimer>
-    <CustomerSet>ChallengeSet05</CustomerSet>
+    <CustomerSet>ChallengeSet01</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
-    <DayLength>70</DayLength>
+    <DayLength>66</DayLength>
     <Allergy>None</Allergy>
     <WaiterMove>0</WaiterMove>
     <RestMode>2</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
-    <Bronze>100</Bronze>
-    <Silver>150</Silver>
-    <Gold>200</Gold>
+    <Bronze>50</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
     <Tables>4</Tables>
     <PlayArea>0</PlayArea>
     <Vip>0</Vip>
@@ -339,144 +1138,90 @@
     <IsBossChallenge>false</IsBossChallenge>
   </Challenge>
 
-  <Challenge ID="Challenge13">
-    <Title>ChallengeHungryEato</Title>
-    <Description>ChallengeHungryEatoDesc</Description>
-    <ChallengeType>Regular</ChallengeType>
-    <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
-    <Tier>24</Tier>
+   <Challenge ID="Challenge44">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
     <KitchenTimer>5</KitchenTimer>
-    <CustomerSet>ChallengeSet13</CustomerSet>
-    <CustomerTimer>1</CustomerTimer>
-    <DayLength>70</DayLength>
-    <Allergy>None</Allergy>
-    <WaiterMove>0</WaiterMove>
-    <RestMode>0</RestMode>
-    <CustomerSpawnTimer>6</CustomerSpawnTimer>
-    <SpecialDecoMode>0</SpecialDecoMode>
-    <CustomerStartingHearts>3</CustomerStartingHearts>
-    <Bronze>150</Bronze>
-    <Silver>200</Silver>
-    <Gold>250</Gold>
-    <Tables>4</Tables>
-    <PlayArea>0</PlayArea>
-    <Vip>0</Vip>
-    <Flythru>0</Flythru>
-    <IsBossChallenge>True</IsBossChallenge>
-  </Challenge>
-
-  <Challenge ID="Challenge14">
-    <Title>ChallengeDeviouslyCrooked</Title>
-    <Description>ChallengeDeviouslyCrookedDesc</Description>
-    <ChallengeType>Regular</ChallengeType>
-    <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
-    <Tier>27</Tier>
-    <KitchenTimer>5</KitchenTimer>
-    <CustomerSet>ChallengeSet08</CustomerSet>
+    <CustomerSet>ChallengeSetR6</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
     <WaiterMove>0</WaiterMove>
-    <RestMode>0</RestMode>
+    <RestMode>1</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
-    <Bronze>125</Bronze>
-    <Silver>150</Silver>
-    <Gold>175</Gold>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
     <Tables>4</Tables>
     <PlayArea>0</PlayArea>
     <Vip>0</Vip>
     <Flythru>0</Flythru>
     <IsBossChallenge>false</IsBossChallenge>
   </Challenge>
-
-  <Challenge ID="Challenge15">
-    <Title>ChallengeTalkieEatie</Title>
-    <Description>ChallengeTalkieEatieDesc</Description>
-    <ChallengeType>Regular</ChallengeType>
-    <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
-    <Tier>28</Tier>
+    
+     <Challenge ID="Challenge45">
+    <Title>ChallengeMeetBlackOut</Title>
+    <Description>ChallengeMeetBlackOutDesc</Description>
+    <ChallengeType>Character</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
     <KitchenTimer>5</KitchenTimer>
-    <CustomerSet>ChallengeSet10</CustomerSet>
+    <CustomerSet>ChallengeSetT45</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
     <WaiterMove>0</WaiterMove>
-    <RestMode>4</RestMode>
+    <RestMode>1</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
-    <Bronze>175</Bronze>
-    <Silver>225</Silver>
-    <Gold>275</Gold>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
     <Tables>4</Tables>
-    <GossiperMode>2</GossiperMode>
     <PlayArea>0</PlayArea>
     <Vip>0</Vip>
     <Flythru>0</Flythru>
     <IsBossChallenge>false</IsBossChallenge>
   </Challenge>
-
-  <Challenge ID="Challenge16">
-    <Title>ChallengeTalkieHungryEatie</Title>
-    <Description>ChallengeTalkieHungryEatieDesc</Description>
-    <ChallengeType>Regular</ChallengeType>
-    <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
-    <Tier>30</Tier>
+    
+     <Challenge ID="Challenge46">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
     <KitchenTimer>5</KitchenTimer>
-    <CustomerSet>ChallengeSet13</CustomerSet>
-    <CustomerTimer>1</CustomerTimer>
+    <CustomerSet>ChallengeSetR7</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
     <DayLength>70</DayLength>
     <Allergy>None</Allergy>
     <WaiterMove>0</WaiterMove>
-    <RestMode>4</RestMode>
+    <RestMode>1</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
-    <Bronze>150</Bronze>
-    <Silver>200</Silver>
-    <Gold>250</Gold>
-    <Tables>4</Tables>
-    <GossiperMode>2</GossiperMode>
-    <PlayArea>PlayArea00</PlayArea>
-    <Vip>0</Vip>
-    <Flythru>0</Flythru>
-    <IsBossChallenge>True</IsBossChallenge>
-  </Challenge>
-
-  <Challenge ID="Challenge17">
-    <Title>ChallengeInstaKitchen</Title>
-    <Description>ChallengeInstaKitchenDesc</Description>
-    <ChallengeType>Regular</ChallengeType>
-    <ChallengeMenuSet>ChallengeMenuSet02</ChallengeMenuSet>
-    <Tier>32</Tier>
-    <KitchenTimer>0</KitchenTimer>
-    <CustomerSet>ChallengeSet14</CustomerSet>
-    <CustomerTimer>1</CustomerTimer>
-    <DayLength>70</DayLength>
-    <Allergy>None</Allergy>
-    <WaiterMove>0</WaiterMove>
-    <RestMode>0</RestMode>
-    <CustomerSpawnTimer>6</CustomerSpawnTimer>
-    <SpecialDecoMode>0</SpecialDecoMode>
-    <CustomerStartingHearts>3</CustomerStartingHearts>
-    <Bronze>125</Bronze>
-    <Silver>175</Silver>
-    <Gold>225</Gold>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
     <Tables>4</Tables>
     <PlayArea>0</PlayArea>
     <Vip>0</Vip>
     <Flythru>0</Flythru>
     <IsBossChallenge>false</IsBossChallenge>
   </Challenge>
-
-  <Challenge ID="Challenge18">
+   
+  <Challenge ID="Challenge47">
     <Title>ChallengeTalkieBlackOutie</Title>
     <Description>ChallengeTalkieBlackOutieDesc</Description>
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
-    <Tier>34</Tier>
+    <Tier>0</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet11</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
@@ -498,12 +1243,430 @@
     <IsBossChallenge>false</IsBossChallenge>
   </Challenge>
 
-  <Challenge ID="Challenge19">
+    <Challenge ID="Challenge48">
+    <Title>ChallengeBlackOut</Title>
+    <Description>ChallengeBlackOutDesc</Description>
+    <ChallengeType>Regular</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSet05</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>2</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>100</Bronze>
+    <Silver>150</Silver>
+    <Gold>200</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+  <Challenge ID="Challenge49">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR7</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+    
+     <Challenge ID="Challenge50">
+    <Title>ChallengeMeetEater</Title>
+    <Description>ChallengeMeetEaterDesc</Description>
+    <ChallengeType>Character</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetT50</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+    
+     <Challenge ID="Challenge51">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR8</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+    
+    <Challenge ID="Challenge52">
+    <Title>ChallengeHungryEato</Title>
+    <Description>ChallengeHungryEatoDesc</Description>
+    <ChallengeType>Regular</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSet13</CustomerSet>
+    <CustomerTimer>1</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>0</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>150</Bronze>
+    <Silver>200</Silver>
+    <Gold>250</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+    
+   <Challenge ID="Challenge53">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR8</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+    <Challenge ID="Challenge54">
+    <Title>ChallengeTalkieEatie</Title>
+    <Description>ChallengeTalkieEatieDesc</Description>
+    <ChallengeType>Regular</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSet10</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>4</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>175</Bronze>
+    <Silver>225</Silver>
+    <Gold>275</Gold>
+    <Tables>4</Tables>
+    <GossiperMode>2</GossiperMode>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+   <Challenge ID="Challenge55">
+    <Title>ChallengeMeetTableSmasher</Title>
+    <Description>ChallengeMeetTableSmasherDesc</Description>
+    <ChallengeType>Character</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetT55</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+    
+     <Challenge ID="Challenge56">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR9</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+   <Challenge ID="Challenge57">
+    <Title>ChallengeHammerTime</Title>
+    <Description>ChallengeHammerTimeDesc</Description>
+    <ChallengeType>Regular</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet02</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSet04</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>0</RestMode>
+    <CustomerSpawnTimer>7</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>1</CustomerStartingHearts>
+    <Bronze>275</Bronze>
+    <Silver>350</Silver>
+    <Gold>425</Gold>
+    <Tables>1</Tables>
+    <PlayArea>PlayArea00</PlayArea>
+    <Vip>VIPBasic</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+  <Challenge ID="Challenge58">
+    <Title>ChallengeBlackOut</Title>
+    <Description>ChallengeBlackOutDesc</Description>
+    <ChallengeType>Regular</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSet05</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>2</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>100</Bronze>
+    <Silver>150</Silver>
+    <Gold>200</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+     <Challenge ID="Challenge59">
+    <Title>ChallengeTalkieSmashie</Title>
+    <Description>ChallengeTalkieSmashieDesc</Description>
+    <ChallengeType>Regular</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet02</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSet09</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>4</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>150</Bronze>
+    <Silver>200</Silver>
+    <Gold>240</Gold>
+    <Tables>4</Tables>
+    <GossiperMode>1</GossiperMode>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+    <Challenge ID="Challenge60">
+    <Title>ChallengeInstaKitchen</Title>
+    <Description>ChallengeInstaKitchenDesc</Description>
+    <ChallengeType>Regular</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet02</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>0</KitchenTimer>
+    <CustomerSet>ChallengeSet14</CustomerSet>
+    <CustomerTimer>1</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>0</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>125</Bronze>
+    <Silver>175</Silver>
+    <Gold>225</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+   <Challenge ID="Challenge61">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR9</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+    <Challenge ID="Challenge62">
+    <Title>ChallengeBlackOut</Title>
+    <Description>ChallengeBlackOutDesc</Description>
+    <ChallengeType>Regular</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSet05</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>2</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>100</Bronze>
+    <Silver>150</Silver>
+    <Gold>200</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+    
+  <Challenge ID="Challenge63">
+    <Title>ChallengeWrongOrder</Title>
+    <Description>ChallengeWrongOrderDesc</Description>
+    <ChallengeType>Regular</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet02</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSet03</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>72</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>0</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>100</Bronze>
+    <Silver>150</Silver>
+    <Gold>200</Gold>
+    <Tables>4</Tables>
+    <PlayArea>PlayArea00</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+
+  <Challenge ID="Challenge64">
     <Title>ChallengeTalkieAll</Title>
     <Description>ChallengeTalkieAllDesc</Description>
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
-    <Tier>36</Tier>
+    <Tier>0</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet12</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
@@ -525,12 +1688,143 @@
     <IsBossChallenge>false</IsBossChallenge>
   </Challenge>
 
-  <Challenge ID="Challenge20">
+   <Challenge ID="Challenge65">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR9</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+    <Challenge ID="Challenge66">
+    <Title>ChallengeTemper</Title>
+    <Description>ChallengeTemperDesc</Description>
+    <ChallengeType>Regular</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSet06</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>4</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>1</CustomerStartingHearts>
+    <Bronze>125</Bronze>
+    <Silver>150</Silver>
+    <Gold>190</Gold>
+    <Tables>4</Tables>
+    <PlayArea>PlayArea00</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+  
+   <Challenge ID="Challenge67">
+    <Title>ChallengeRegularDay</Title>
+    <Description>ChallengeRegularDayDesc</Description>
+    <ChallengeType>Normal</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet01</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSetR9</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>1</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>75</Bronze>
+    <Silver>100</Silver>
+    <Gold>150</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+
+  <Challenge ID="Challenge68">
+    <Title>ChallengeDeviouslyCrooked</Title>
+    <Description>ChallengeDeviouslyCrookedDesc</Description>
+    <ChallengeType>Regular</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSet08</CustomerSet>
+    <CustomerTimer>2</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>0</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>125</Bronze>
+    <Silver>150</Silver>
+    <Gold>175</Gold>
+    <Tables>4</Tables>
+    <PlayArea>0</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+
+  <Challenge ID="Challenge69">
+    <Title>ChallengeTalkieHungryEatie</Title>
+    <Description>ChallengeTalkieHungryEatieDesc</Description>
+    <ChallengeType>Regular</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
+    <Tier>0</Tier>
+    <KitchenTimer>5</KitchenTimer>
+    <CustomerSet>ChallengeSet13</CustomerSet>
+    <CustomerTimer>1</CustomerTimer>
+    <DayLength>70</DayLength>
+    <Allergy>None</Allergy>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>4</RestMode>
+    <CustomerSpawnTimer>6</CustomerSpawnTimer>
+    <SpecialDecoMode>0</SpecialDecoMode>
+    <CustomerStartingHearts>3</CustomerStartingHearts>
+    <Bronze>150</Bronze>
+    <Silver>200</Silver>
+    <Gold>250</Gold>
+    <Tables>4</Tables>
+    <GossiperMode>2</GossiperMode>
+    <PlayArea>PlayArea00</PlayArea>
+    <Vip>0</Vip>
+    <Flythru>0</Flythru>
+    <IsBossChallenge>false</IsBossChallenge>
+  </Challenge>
+
+  <Challenge ID="Challenge70">
     <Title>ChallengeMakeUpYourMind</Title>
     <Description>ChallengeMakeUpYourMindDesc</Description>
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
-    <Tier>36</Tier>
+    <Tier>0</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet02</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
@@ -551,12 +1845,12 @@
     <IsBossChallenge>false</IsBossChallenge>
   </Challenge>
 
-  <Challenge ID="Challenge21">
+  <Challenge ID="Challenge71">
     <Title>ChallengeCoverofNight</Title>
     <Description>ChallengeCoverofNightDesc</Description>
     <ChallengeType>Regular</ChallengeType>
     <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
-    <Tier>36</Tier>
+    <Tier>0</Tier>
     <KitchenTimer>5</KitchenTimer>
     <CustomerSet>ChallengeSet07</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
@@ -574,141 +1868,33 @@
     <PlayArea>0</PlayArea>
     <Vip>0</Vip>
     <Flythru>0</Flythru>
-    <IsBossChallenge>True</IsBossChallenge>
-  </Challenge>
-
-  <Challenge ID="ChallengeTut1">
-    <Title>None</Title>
-    <ChallengeType>Tutorial</ChallengeType>
-    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
-    <Tier>0</Tier>
-    <KitchenTimer>2</KitchenTimer>
-    <CustomerSet>CustomerSetT1</CustomerSet>
-    <CustomerTimer>2</CustomerTimer>
-    <DayLength>27</DayLength>
-    <Allergy>None</Allergy>
-    <WaiterMove>0</WaiterMove>
-    <RestMode>0</RestMode>
-    <CustomerSpawnTimer>6</CustomerSpawnTimer>
-    <SpecialDecoMode>0</SpecialDecoMode>
-    <CustomerStartingHearts>3</CustomerStartingHearts>
-    <NextChallenge>TuT2</NextChallenge>
-    <Tables>4</Tables>
-    <PlayArea>PlayArea00</PlayArea>
-    <Vip>VIPBasic</Vip>
-    <Flythru>FlyThru00</Flythru>
     <IsBossChallenge>false</IsBossChallenge>
   </Challenge>
-
-  <Challenge ID="ChallengeTut2">
-    <Title>None</Title>
-    <ChallengeType>Tutorial</ChallengeType>
-    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
-    <Tier>0</Tier>
-    <KitchenTimer>3</KitchenTimer>
-    <CustomerSet>CustomerSetT2</CustomerSet>
-    <CustomerTimer>3</CustomerTimer>
-    <DayLength>72</DayLength>
-    <Allergy>None</Allergy>
-    <WaiterMove>0</WaiterMove>
-    <RestMode>0</RestMode>
-    <CustomerSpawnTimer>8</CustomerSpawnTimer>
-    <SpecialDecoMode>0</SpecialDecoMode>
-    <CustomerStartingHearts>3</CustomerStartingHearts>
-    <NextChallenge>ChallengeTut3</NextChallenge>
-    <Tables>6</Tables>
-    <PlayArea>PlayArea00</PlayArea>
-    <Vip>VIPBasic</Vip>
-    <Flythru>FlyThru00</Flythru>
-    <IsBossChallenge>false</IsBossChallenge>
-  </Challenge>
-
-  <Challenge ID="ChallengeTut3">
-    <Title>None</Title>
-    <WaiterMove>0</WaiterMove>
-    <ChallengeType>Tutorial</ChallengeType>
-    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
+  
+  <Challenge ID="Challenge72">
+    <Title>ChallengeLateNightGossip</Title>
+    <Description>ChallengeLateNightGossipDesc</Description>
+    <ChallengeType>Regular</ChallengeType>
+    <ChallengeMenuSet>ChallengeMenuSet03</ChallengeMenuSet>
     <Tier>0</Tier>
     <KitchenTimer>5</KitchenTimer>
-    <CustomerSet>CustomerSet00</CustomerSet>
+    <CustomerSet>ChallengeSet07</CustomerSet>
     <CustomerTimer>2</CustomerTimer>
-    <DayLength>33</DayLength>
+    <DayLength>70</DayLength>
     <Allergy>None</Allergy>
-    <RestMode>0</RestMode>
+    <WaiterMove>0</WaiterMove>
+    <RestMode>5</RestMode>
     <CustomerSpawnTimer>6</CustomerSpawnTimer>
     <SpecialDecoMode>0</SpecialDecoMode>
     <CustomerStartingHearts>3</CustomerStartingHearts>
-    <NextChallenge>Random</NextChallenge>
+    <Bronze>150</Bronze>
+    <Silver>200</Silver>
+    <Gold>250</Gold>
     <Tables>4</Tables>
     <PlayArea>0</PlayArea>
     <Vip>0</Vip>
     <Flythru>0</Flythru>
-    <IsBossChallenge>false</IsBossChallenge>
+    <IsBossChallenge>False</IsBossChallenge>
   </Challenge>
 
-  <Challenge ID="TutDecoPlayArea">
-    <Title>None</Title>
-    <ChallengeType>Tutorial</ChallengeType>
-    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
-    <Tier>3</Tier>
-    <KitchenTimer>3</KitchenTimer>
-    <CustomerSet>CustomerSetTP</CustomerSet>
-    <CustomerTimer>2</CustomerTimer>
-    <DayLength>1</DayLength>
-    <Allergy>None</Allergy>
-    <WaiterMove>0</WaiterMove>
-    <RestMode>1</RestMode>
-    <CustomerSpawnTimer>2</CustomerSpawnTimer>
-    <SpecialDecoMode>0</SpecialDecoMode>
-    <CustomerStartingHearts>3</CustomerStartingHearts>
-    <Tables>4</Tables>
-    <PlayArea>PlayArea00</PlayArea>
-    <Vip>0</Vip>
-    <Flythru>0</Flythru>
-    <IsBossChallenge>false</IsBossChallenge>
-  </Challenge>
-
-  <Challenge ID="TutDecoVIP">
-    <Title>None</Title>
-    <ChallengeType>Tutorial</ChallengeType>
-    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
-    <Tier>3</Tier>
-    <KitchenTimer>3</KitchenTimer>
-    <CustomerSet>CustomerSetTV</CustomerSet>
-    <CustomerTimer>2</CustomerTimer>
-    <DayLength>2</DayLength>
-    <Allergy>None</Allergy>
-    <WaiterMove>0</WaiterMove>
-    <RestMode>0</RestMode>
-    <CustomerSpawnTimer>2</CustomerSpawnTimer>
-    <SpecialDecoMode>0</SpecialDecoMode>
-    <CustomerStartingHearts>3</CustomerStartingHearts>
-    <Tables>4</Tables>
-    <PlayArea>0</PlayArea>
-    <Vip>VIPBasic</Vip>
-    <Flythru>0</Flythru>
-    <IsBossChallenge>false</IsBossChallenge>
-  </Challenge>
-
-  <Challenge ID="TutDecoFlyThru">
-    <Title>None</Title>
-    <ChallengeType>Tutorial</ChallengeType>
-    <ChallengeMenuSet>ChallengeMenuSetT1</ChallengeMenuSet>
-    <Tier>3</Tier>
-    <KitchenTimer>3</KitchenTimer>
-    <CustomerSet>CustomerSetTF</CustomerSet>
-    <CustomerTimer>2</CustomerTimer>
-    <DayLength>2</DayLength>
-    <Allergy>None</Allergy>
-    <WaiterMove>0</WaiterMove>
-    <RestMode>0</RestMode>
-    <CustomerSpawnTimer>2</CustomerSpawnTimer>
-    <SpecialDecoMode>0</SpecialDecoMode>
-    <CustomerStartingHearts>3</CustomerStartingHearts>
-    <Tables>4</Tables>
-    <PlayArea>0</PlayArea>
-    <Vip>0</Vip>
-    <Flythru>FlyThru00</Flythru>
-    <IsBossChallenge>false</IsBossChallenge>
-  </Challenge>
 </Challenges>

@@ -16,7 +16,7 @@ public class NotificationQueueDataMapReward : NotificationQueueData {
 
 	public override void Start() {
 		if(allowedScene == SceneManager.GetActiveScene().name) {
-			StartManager.Instance.MapUIController.InitializeAndShow(oldTotalCash, newTotalCash, this);
+			//StartManager.Instance.MapUIController.InitializeAndShow(oldTotalCash, newTotalCash, this);
 		}
 		else {
 			Finish();

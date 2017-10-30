@@ -3,33 +3,32 @@ using UnityEngine.UI;
 
 public class ChallengeButton : MonoBehaviour {
 	private string challengeID;
+	public Image Completed;
 
-	public Text textTitle;
-	public Image imageBackground;
-	public Image imageCore;
-
-	public void Init(ImmutableDataChallenge challengeData) {
+	public void Init(ImmutableDataChallenge challengeData, int challengeCount) {
+		//if(challengeData.ChallengeType != ChallengeTypes.Character) {
+			//line.rectTransform.SetParent(GameObject.Find("Line Holder").transform);
+		//}
 		gameObject.name = challengeData.ID;
+		gameObject.transform.position = new Vector2(gameObject.transform.position.x + (350* challengeCount), gameObject.transform.position.y);
 		challengeID = challengeData.ID;
 		ChallengeReward rewardProgress = DataManager.Instance.GameData.Challenge.ChallengeProgress[challengeID];
-		imageBackground.sprite = SpriteCacheManager.GetChallengeButton(rewardProgress);
-		textTitle.text = LocalizationText.GetText(challengeData.Title);
-		if(challengeData.IsBossChallenge) {
-			imageCore.gameObject.SetActive(true);
-			// TODO abtract out this definition?
-			if(rewardProgress == ChallengeReward.Bronze
-				|| rewardProgress == ChallengeReward.Silver
-				|| rewardProgress == ChallengeReward.Gold) {
-				
-			}
-			else {
-				imageCore.color = new Color(0f, 0f, 0f, 1f);
-			}
+		switch(rewardProgress) {
+			case ChallengeReward.Bronze:
+				Completed.sprite = Resources.Load("ChallengeButtonBronze") as Sprite;
+				Completed.gameObject.SetActive(true);
+				break;
+			case ChallengeReward.Silver:
+				Completed.sprite = Resources.Load("ChallengeButtonSilver") as Sprite;
+				Completed.gameObject.SetActive(true);
+				break;
+			case ChallengeReward.Gold:
+				Completed.sprite = Resources.Load("ChallengeButtonGold") as Sprite;
+				Completed.gameObject.SetActive(true);
+				break;
+			}	
 		}
-		else {
-			imageCore.gameObject.SetActive(false);
-		}
-	}
+
 
 	public void OnButtonClicked() {
 		ChallengeMenuManager.Instance.ShowPrompt(challengeID);

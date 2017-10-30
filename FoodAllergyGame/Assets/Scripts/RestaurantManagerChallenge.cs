@@ -31,14 +31,15 @@ public class RestaurantManagerChallenge : RestaurantManager {
 
 	private void RunSetUp() {
 		chall = DataLoaderChallenge.GetData(DataManager.Instance.GetChallenge());
-		if(chall.ID == "ChallengeTut1" && !hasAskedTutorial) {
+		/*if(chall.ID == "ChallengeTut1" && !hasAskedTutorial) {
 			AskToPlayTutorial();
 		}
-		else {
-			if(chall.ChallengeType != ChallengeTypes.Tutorial) {
-				scoreBoard.gameObject.SetActive(true);
-				scoreBoard.UpDateScore(0);
-			}
+		else {*/
+		if(chall.ID == "Challenge01") {
+			isTutorial = true;
+		}
+			scoreBoard.gameObject.SetActive(true);
+			scoreBoard.UpDateScore(0);
 			if(chall.PlayArea != "0" && PlayArea.Instance == null) {
 				play.LoadDeco(DataLoaderDecoItem.GetData(chall.PlayArea));
 				isPlayarea = true;
@@ -71,32 +72,40 @@ public class RestaurantManagerChallenge : RestaurantManager {
 				GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
 				cus.GetComponent<CustomerSpecialGossiper>().init(chall.GossiperMode);
 			}
+			else if(chall.RestMode == 5.0f) {
+				ImmutableDataCustomer test;
+				test = DataLoaderCustomer.GetData("CustomerSpecialGossiper");
+				GameObject customerPrefab = Resources.Load(test.Script) as GameObject;
+				GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
+				cus.GetComponent<CustomerSpecialGossiper>().init(chall.GossiperMode);
+				BlackoutDay();
+			}
 
 			if(chall.SpecialDecoMode == 1) {
 				PlayArea.Instance.cantLeave = true;
 			}
 
 			KitchenManager.Instance.Init(chall.KitchenTimerMod);
-			string[] temp = DataLoaderChallengeMenuSet.GetData(chall.ChallengeMenuSet).ChallengeMenuSet;
+/*			string[] temp = DataLoaderChallengeMenuSet.GetData(chall.ChallengeMenuSet).ChallengeMenuSet;
 			List<string> menuList = new List<string>();
 
 			for(int i = 0; i < temp.Length; i++) {
 				menuList.Add(temp[i]);
 			}
 
-			FoodManager.Instance.GenerateMenu(menuList);
+			FoodManager.Instance.GenerateMenu(menuList); */
 			customerTimerDiffMod = chall.CustomerTimerMod;
 			dayEarnedCash = 0;
 			dayCashRevenue = 0;
 			dayTime = chall.DayLengthMod;
 			dayTimeLeft = dayTime;
-			temp = DataLoaderCustomerSet.GetData(chall.CustomerSet).CustomerSet;
+			string [] temp = DataLoaderCustomerSet.GetData(chall.CustomerSet).CustomerSet;
 
 			for(int i = 0; i < temp.Length; i++) {
 				currCusSet.Add(temp[i]);
 			}
 
-			if(chall.ChallengeType != ChallengeTypes.Tutorial) {
+			/*if(chall.ChallengeType != ChallengeTypes.Tutorial) {
 				List<ImmutableDataDecoItem> floors = DataLoaderDecoItem.GetDecoDataByType(DecoTypes.Floor, allowIAP: true);
 				int rand = UnityEngine.Random.Range(0, floors.Count);
 				floor.LoadDeco(floors[rand]);
@@ -106,16 +115,16 @@ public class RestaurantManagerChallenge : RestaurantManager {
 				List<ImmutableDataDecoItem> kitchens = DataLoaderDecoItem.GetDecoDataByType(DecoTypes.Kitchen, allowIAP: true);
 				rand = UnityEngine.Random.Range(0, kitchens.Count);
 				kit.LoadDeco(kitchens[rand]);
-			}
+			}*/
 			StartCoroutine("SpawnCustomer");
-		}
+		//}
 	}
 
 	// Spawns a customer after a given amount of timer then it restarts the coroutine
 	IEnumerator SpawnCustomer() {
 		yield return 0;
 		yield return new WaitForSeconds(customerSpawnTimer);
-		if(!dayOver && lineCount < 8 && interval < currCusSet.Count) {
+		if(!dayOver && lineCount < 8 && interval < currCusSet.Count && chall.ChallengeType != ChallengeTypes.Normal) {
 			if(isTutorial) {
 				AnalyticsManager.Instance.DayOneFunnel("Spawning Customer" + customerNumber);
 				ImmutableDataCustomer test;
@@ -139,9 +148,7 @@ public class RestaurantManagerChallenge : RestaurantManager {
 				}
 				ImmutableDataCustomer customerData;
 				customerSpawnTimer = chall.CustSpawnTime;
-
 				customerData = DataLoaderCustomer.GetData(currCusSet[interval]);
-
 				// Track in analytics
 
 				GameObject customerPrefab = Resources.Load(customerData.Script) as GameObject;
@@ -160,6 +167,24 @@ public class RestaurantManagerChallenge : RestaurantManager {
 				interval++;
 				StartCoroutine("SpawnCustomer");
 			}
+		}
+		else if(chall.ChallengeType == ChallengeTypes.Normal &&!dayOver){
+			ImmutableDataCustomer customerData;
+			customerSpawnTimer = chall.CustSpawnTime;
+			int rand = UnityEngine.Random.Range(0, currCusSet.Count);
+			customerData = DataLoaderCustomer.GetData(currCusSet[rand]); GameObject customerPrefab = Resources.Load(customerData.Script) as GameObject;
+			GameObject cus = GameObjectUtils.AddChild(null, customerPrefab);
+			customerNumber++;
+
+			cus.GetComponent<Customer>().behavFlow = customerData.BehavFlow;
+			cus.GetComponent<Customer>().Init(customerNumber, chall);
+
+			cus.GetComponent<Customer>().UpdateSatisfaction(chall.StartingHearts - 3);
+			customerHash.Add(cus.GetComponent<Customer>().customerID, cus);
+			AddCustomer(cus.GetComponent<Customer>());
+			challengeAI.AddCustomer();
+			interval++;
+			StartCoroutine("SpawnCustomer");
 		}
 		else {
 			// Call self to loop
@@ -252,60 +277,44 @@ public class RestaurantManagerChallenge : RestaurantManager {
 					DataManager.Instance.GameData.Tutorial.IsTutorial1Done = true;
 				}
 
-				if(isTutorial) {
-					if(!DataManager.Instance.GameData.Tutorial.IsTutorial1Done) {
-						AnalyticsManager.Instance.TutorialFunnel("Finished tut day, 2 guided customers");
-					}
-					DataManager.Instance.SaveGameData();
-					AnalyticsManager.Instance.DayOneFunnel("4 customer start");
-					DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut2";
-					isTutorial = false;
-					DataManager.Instance.GameData.RestaurantEvent.CustomerList.Add("CustomerRegular");
-					StopCoroutine("SpawnCustomer");
-					interval = 0;
-					customerSpawnTimer = 0;
-					RestaurantManager.Instance.GetTable(2).inUse = false;
-					RestaurantManager.Instance.GetTable(3).inUse = false;
-					RestaurantManager.Instance.GetTable(4).inUse = false;
-					pauseUI.isActive = true;
-					restaurantUI.ResetDoor();
-					StartDay();
+			if(isTutorial) {
+				if(!DataManager.Instance.GameData.Tutorial.IsTutorial1Done) {
+					AnalyticsManager.Instance.TutorialFunnel("Finished tut day, 2 guided customers");
 				}
-				else {
-					if(TierManager.Instance.CurrentTier == 0) {
-						DataManager.Instance.GameData.Cash.TotalCash = 500;
-						DataManager.Instance.GameData.Cash.CurrentCash = 500;
-					}
-					if(chall.ID == "TutDecoPlayArea") {
-						AnalyticsManager.Instance.TutorialFunnel("Play area Tut Completed");
-						DataManager.Instance.GameData.Tutorial.IsPlayAreaTutDone = true;
-					}
-					if(chall.ID == "TutDecoFlyThru") {
-						AnalyticsManager.Instance.TutorialFunnel("Fly thru Tut Completed");
-						DataManager.Instance.GameData.Tutorial.IsFlyThruTutDone = true;
-					}
-					DataManager.Instance.GameData.DayTracker.ChallengesPlayed++;
-					DataManager.Instance.ChallengesInSession++;
-					//AnalyticsManager.Instance.TrackCustomerSpawned(customerList);
-					AnalyticsManager.Instance.SuperProperties.Remove("Challenge");
-					AnalyticsManager.Instance.EndChallengeReport(challengeAI.ScoreIt(), DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge, challengeAI.MissingCustomers, challengeAI.AvgSatisfaction(), savedCustomers, attempted, inspectionButtonClicked);
-					if(isPlayarea) {
-						AnalyticsManager.Instance.PlayAreaUsage(PlayAreaUses);
-					}
-					if(isVip) {
-						AnalyticsManager.Instance.VIPUsage(VIPUses);
-					}
-					// Show day complete UI
-					if(chall.ChallengeType == ChallengeTypes.Tutorial) {
-						restaurantUI.DayComplete(challengeAI.MissingCustomers, dayEarnedCash, 0, dayCashRevenue);
-					}
-					else {
-						restaurantUI.ChallengeComplete(challengeAI.Score, dayEarnedCash, challengeAI.NegativeCash);
-					}
-
-					// Save game data
-					DataManager.Instance.SaveGameData();
-				}
+				DataManager.Instance.SaveGameData();
+			}
+			if(TierManager.Instance.CurrentTier == 0) {
+				DataManager.Instance.GameData.Cash.TotalCash = 500;
+				DataManager.Instance.GameData.Cash.CurrentCash = 500;
+			}
+			if(chall.ID == "TutDecoPlayArea") {
+				AnalyticsManager.Instance.TutorialFunnel("Play area Tut Completed");
+				DataManager.Instance.GameData.Tutorial.IsPlayAreaTutDone = true;
+			}
+			if(chall.ID == "TutDecoFlyThru") {
+				AnalyticsManager.Instance.TutorialFunnel("Fly thru Tut Completed");
+				DataManager.Instance.GameData.Tutorial.IsFlyThruTutDone = true;
+			}
+			DataManager.Instance.GameData.DayTracker.ChallengesPlayed++;
+			DataManager.Instance.ChallengesInSession++;
+			//AnalyticsManager.Instance.TrackCustomerSpawned(customerList);
+			AnalyticsManager.Instance.SuperProperties.Remove("Challenge");
+			AnalyticsManager.Instance.EndChallengeReport(challengeAI.ScoreIt(), DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge, challengeAI.MissingCustomers, challengeAI.AvgSatisfaction(), savedCustomers, attempted, inspectionButtonClicked);
+			if(isPlayarea) {
+				AnalyticsManager.Instance.PlayAreaUsage(PlayAreaUses);
+			}
+			if(isVip) {
+				AnalyticsManager.Instance.VIPUsage(VIPUses);
+			}
+			// Show day complete UI
+			if(chall.ChallengeType == ChallengeTypes.Tutorial) {
+				restaurantUI.DayComplete(challengeAI.MissingCustomers, dayEarnedCash, 0, dayCashRevenue);
+			}
+			else {
+				restaurantUI.ChallengeComplete(challengeAI.Score, dayEarnedCash, challengeAI.NegativeCash);
+			}
+			// Save game data
+			DataManager.Instance.SaveGameData();
 			}
 		}
 	}

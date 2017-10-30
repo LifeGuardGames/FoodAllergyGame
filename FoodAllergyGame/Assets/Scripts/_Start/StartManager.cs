@@ -63,7 +63,7 @@ public class StartManager : Singleton<StartManager> {
 			shopEntranceUIController.Hide();
 			replayTutButton.SetActive(false);
 			showMissionsButton.SetActive(false);
-			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut1";
+			//DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut1";
 		}
 		else {
 			replayTutButton.SetActive(true);
@@ -228,7 +228,7 @@ public class StartManager : Singleton<StartManager> {
             LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, showRandomTip: true, showAdChance: allowShowAds);
 		}
 		else {
-			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.MENUPLANNING, showRandomTip: true);
+			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.CHALLENGEMENU, showRandomTip: true);
 		}
 	}
 

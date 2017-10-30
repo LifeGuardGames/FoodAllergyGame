@@ -23,7 +23,9 @@ public enum AssetTypes{
 
 public enum ChallengeTypes {
 	Regular,
-	Tutorial
+	Normal,
+	Tutorial,
+	Character,
 }
 
 public enum FoodKeywords{

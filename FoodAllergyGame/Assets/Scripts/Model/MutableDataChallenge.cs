@@ -6,6 +6,7 @@ public class MutableDataChallenge {
 	public int StarCoresEarned { get; set; }
 	public int LastSeenStarCoresEarned { get; set; }
 	public List<string> BossChallengeCompleted;
+	public List<string> ChallengeUnlocked;
 
 	public MutableDataChallenge() {
 		IsFirstTimeChallengeEntrance = true;
@@ -17,6 +18,8 @@ public class MutableDataChallenge {
 			ChallengeProgress.Add(temp[i].ID, ChallengeReward.None);
 		}
 		BossChallengeCompleted = new List<string>();
+		ChallengeUnlocked = new List<string>();
+		ChallengeUnlocked.Add("Challenge01");
 	}
 
 	public void PostLogicCheck() {

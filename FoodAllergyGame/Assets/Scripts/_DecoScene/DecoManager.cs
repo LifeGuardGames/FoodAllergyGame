@@ -334,14 +334,14 @@ public class DecoManager : Singleton<DecoManager>{
 			// Reset any existing tabs to inactive parent
 			if(currentTabTransform != null){
 				currentTabTransform.SetParent(tabGroupInactive);
-				topSprite = currentTabTransform.FindChild("Top");
+				topSprite = currentTabTransform.Find("Top");
 				topSprite.GetComponent<Image>().sprite = tabInactiveSprite;
 			}
 
 			// Sort the ordering of the tab to active parent
 			currentTabTransform = tabGroupInactiveSearchTable["Tab" + tabName];
 			currentTabTransform.SetParent(tabGroupActive);
-			topSprite = currentTabTransform.FindChild("Top");
+			topSprite = currentTabTransform.Find("Top");
 			topSprite.GetComponent<Image>().sprite = tabActiveSprite;
 
 			// Repopulate the grid and get the first unbought deco
