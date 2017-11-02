@@ -25,7 +25,7 @@ public class HUDManager : Singleton<HUDManager> {
 		switch(SceneManager.GetActiveScene().name){
 		case SceneUtils.START:
 			ToggleCoin(isShow);
-			ToggleTier(isShow);
+			ToggleTier(false);
 			break;
 		case SceneUtils.MENUPLANNING:
 			ToggleCoin(isShow);

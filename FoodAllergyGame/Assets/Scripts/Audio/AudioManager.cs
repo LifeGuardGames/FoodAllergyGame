@@ -129,7 +129,7 @@ public class AudioManager : LgAudioManager<AudioManager>{
 			FadeOutPlayNewBackground(backgroundMusic);
 		}
 		else if (currentScene == SceneUtils.CHALLENGEMENU) {
-			backgroundMusic = "BgChallenge";
+			backgroundMusic = "BgStart";
 			FadeOutPlayNewBackground(backgroundMusic);
 		}
 		else if(currentScene == SceneUtils.COMICSCENE) {

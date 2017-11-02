@@ -35,9 +35,9 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 
 	public void Initialize(int cashProgress) {
 		coin.GetComponentInChildren<Text>().text = CashManager.Instance.CurrentCash.ToString();
-		fullSizeBar = tierBar.rectTransform.sizeDelta;
-		float percentage = DataLoaderTiers.GetPercentProgressInTier(cashProgress);
-		tierBar.rectTransform.sizeDelta = new Vector2(fullSizeBar.x * percentage, fullSizeBar.y);
+		//fullSizeBar = tierBar.rectTransform.sizeDelta;
+		//float percentage = DataLoaderTiers.GetPercentProgressInTier(cashProgress);
+		//tierBar.rectTransform.sizeDelta = new Vector2(fullSizeBar.x * percentage, fullSizeBar.y);
 	}
 
 	#region Coin Animation
@@ -100,7 +100,7 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 	#region Tier Animation Sequences
 	public void StartStarChunkTweenSpawning(NotificationQueueDataTierProgress tierCaller, int oldTotalCash, int newTotalCash){
 		// Just start the bar tweening instead of chunk flying
-		StartTierAnimation(tierCaller, oldTotalCash, newTotalCash);
+		//StartTierAnimation(tierCaller, oldTotalCash, newTotalCash);
 
 		//////////////////////////////////////////
 		this.tierCaller = tierCaller;
@@ -149,7 +149,7 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 	//	AudioManager.Instance.PlayClip("StarChunkArrive");
 	//}
 
-	private void StartTierAnimation(NotificationQueueDataTierProgress tierCaller, int oldTotalCash, int newTotalCash) {
+	/*private void StartTierAnimation(NotificationQueueDataTierProgress tierCaller, int oldTotalCash, int newTotalCash) {
 		float startPercentage = DataLoaderTiers.GetPercentProgressInTier(oldTotalCash);
 
 		// If the tiers don't change, just animate it
@@ -166,11 +166,11 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 			LeanTween.value(this.gameObject, ChangePercentage, startPercentage, endPercentage, 0.7f)
 				.setOnComplete(OnTweenCompleteTierUp);
 		}
-	}
+	}*/
 
-	private void ChangePercentage(float amount) {
-		tierBar.rectTransform.sizeDelta = new Vector2(fullSizeBar.x * amount, fullSizeBar.y);
-	}
+	//private void ChangePercentage(float amount) {
+		//tierBar.rectTransform.sizeDelta = new Vector2(fullSizeBar.x * amount, fullSizeBar.y);
+	//}
 
 	// Update the old tier to the next tier up and call StartTierAnimation again
 	private void OnTweenCompleteTierUp() {
@@ -183,13 +183,13 @@ public class HUDAnimator : Singleton<HUDAnimator> {
 			oldTotalCash = DataLoaderTiers.GetData("Tier" + StringUtils.FormatIntToDoubleDigitString(currentOldTier + 1)).CashCutoffFloor;
 
 			// Reset the UI
-			tierBar.rectTransform.sizeDelta = new Vector2(0f, fullSizeBar.y);
+			//tierBar.rectTransform.sizeDelta = new Vector2(0f, fullSizeBar.y);
 
 			// Do any animation effects here
 			fireworksController.StartFireworks();
 
 			// Pass that total cash into the animate function again
-			StartTierAnimation(tierCaller, oldTotalCash, newTotalCash);
+			//StartTierAnimation(tierCaller, oldTotalCash, newTotalCash);
 		}
 		else {
 			Debug.LogWarning("Reached max tiers");  //TODO check max tiers

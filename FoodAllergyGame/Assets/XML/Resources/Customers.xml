@@ -13,7 +13,7 @@
 		<CustomerDesc>CustomerImpatientDesc</CustomerDesc>
 		<SpriteName>ItemCustomerImpatient</SpriteName>
 		<Script>CustomerImpatient</Script>
-		<Tier>1</Tier>
+		<Tier>5</Tier>
     <Flow>BehavFlow00</Flow>
 	</Customer>
 	<Customer ID="CustomerPlayful">
@@ -21,7 +21,7 @@
 		<CustomerDesc>CustomerPlayfulDesc</CustomerDesc>
 		<SpriteName>ItemCustomerPlayful</SpriteName>
 		<Script>CustomerPlayful</Script>
-		<Tier>4</Tier>
+		<Tier>15</Tier>
     <Flow>BehavFlow08</Flow>
 	</Customer>
 	<Customer ID="CustomerCoolKid">

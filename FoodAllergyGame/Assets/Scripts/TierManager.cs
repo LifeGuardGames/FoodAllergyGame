@@ -40,17 +40,21 @@ public class TierManager : Singleton<TierManager> {
 		isNewUnlocksAvailable = false;
 		isTierUp = false;
 
-		if(CashManager.Instance.TotalCash > 5800 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates) {
-			CashManager.Instance.OverrideTotalCash(5800);
-        }
-		oldTier = DataLoaderTiers.GetTierFromCash(CashManager.Instance.LastSeenTotalCash);
+		//if(CashManager.Instance.TotalCash > 5800 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates) {
+		//CashManager.Instance.OverrideTotalCash(5800);
+		//}
+
+		//change
+		oldTier = DataManager.Instance.GameData.Challenge.CurrentTier;
+
 		currentTier = oldTier; // TODO Triple check this line
-		int newTier = DataLoaderTiers.GetTierFromCash(CashManager.Instance.TotalCash);
+		int newTier = (DataManager.Instance.GameData.Challenge.ChallengeUnlocked.Count -1) /2;
 		AnalyticsManager.Instance.SuperProperties.Remove("Tier");
 		AnalyticsManager.Instance.SuperProperties.Add("Tier", currentTier);
 		// If there is a change in tier, run logic
 		// INVARIABLE: Tiers are maximum one above, never multiple tiers at once
 		if(oldTier < newTier || DataManager.Instance.GameData.DayTracker.NotifQueue.Count > 0) {
+			DataManager.Instance.GameData.Challenge.CurrentTier = newTier;
 			StartManager.Instance.TurnOffEntrances();
 			isTierUp = true;
 			

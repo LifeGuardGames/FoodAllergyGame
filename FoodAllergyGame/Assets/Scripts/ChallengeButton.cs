@@ -15,15 +15,15 @@ public class ChallengeButton : MonoBehaviour {
 		ChallengeReward rewardProgress = DataManager.Instance.GameData.Challenge.ChallengeProgress[challengeID];
 		switch(rewardProgress) {
 			case ChallengeReward.Bronze:
-				Completed.sprite = Resources.Load("ChallengeButtonBronze") as Sprite;
+				Completed.sprite = Resources.Load<Sprite>("ChallengeButtonBronze") as Sprite;
 				Completed.gameObject.SetActive(true);
 				break;
 			case ChallengeReward.Silver:
-				Completed.sprite = Resources.Load("ChallengeButtonSilver") as Sprite;
+				Completed.sprite = Resources.Load<Sprite>("ChallengeButtonSilver") as Sprite;
 				Completed.gameObject.SetActive(true);
 				break;
 			case ChallengeReward.Gold:
-				Completed.sprite = Resources.Load("ChallengeButtonGold") as Sprite;
+				Completed.sprite = Resources.Load<Sprite>("ChallengeButtonGold") as Sprite;
 				Completed.gameObject.SetActive(true);
 				break;
 			}	

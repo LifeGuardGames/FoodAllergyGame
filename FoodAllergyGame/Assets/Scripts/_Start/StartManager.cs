@@ -59,13 +59,13 @@ public class StartManager : Singleton<StartManager> {
 		HUDAnimator.Instance.Initialize(CashManager.Instance.LastSeenTotalCash);
 
 		// First restaurant tutorial
-		if(DataManager.Instance.GameData.Tutorial.IsTutorial1Done == false) {
+/*		if(DataManager.Instance.GameData.Tutorial.IsTutorial1Done == false) {
 			shopEntranceUIController.Hide();
 			replayTutButton.SetActive(false);
 			showMissionsButton.SetActive(false);
 			//DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut1";
-		}
-		else {
+		}*/
+	
 			replayTutButton.SetActive(true);
 			showMissionsButton.SetActive(true);
 			// Default case
@@ -77,7 +77,7 @@ public class StartManager : Singleton<StartManager> {
 				DataManager.Instance.GameData.RestaurantEvent.CurrentBonus = TierManager.Instance.GetBonusUnlocked();
 				// Lock the generate event bool until day is completed
 				DataManager.Instance.GameData.RestaurantEvent.ShouldGenerateNewEvent = false;
-			}
+			
 		}
 
 		// Set up pre-existing visuals and appearances for that day based on event
@@ -85,13 +85,9 @@ public class StartManager : Singleton<StartManager> {
 
 		//TODO Set up any new notifications here (through NotificationManager)
 
-		// Check if tier bar needs to be updated
+		/*// Check if tier bar needs to be updated
 		if(CashManager.Instance.IsNeedToSyncTotalCash()) {
-			ShopEntranceUIController.ToggleClickable(false);
-			DinerEntranceUIController.ToggleClickable(false);
-			ChallengeMenuEntranceUIController.ToggleClickable(false);
-			replayTutButton.SetActive(false);
-			showMissionsButton.SetActive(false);
+			
 
 			int oldTotalCash = CashManager.Instance.LastSeenTotalCash;
 			Debug.Log("last scene total: " + oldTotalCash);
@@ -105,7 +101,7 @@ public class StartManager : Singleton<StartManager> {
 			NotificationQueueDataTierProgress tierNotif =
 				new NotificationQueueDataTierProgress(SceneUtils.START, oldTotalCash, newTotalCash);
 			NotificationManager.Instance.AddNotification(tierNotif);
-		}
+		}*/
 
 		// Then check if any star cores needs to be rewarded
 		if(TierManager.Instance.HasNewCoreAndSync()) {
@@ -141,23 +137,7 @@ public class StartManager : Singleton<StartManager> {
 		}
 		// Make sure recalculate tier doesnt get called again
 		CashManager.Instance.SyncLastSeenTotalCash();
-		if(TierManager.Instance.CurrentTier == 2 && !DataManager.Instance.GameData.Tutorial.IsSpeDecoTutDone) {
-			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoVIP";
-		}
-		if(TierManager.Instance.CurrentTier == 4 && !DataManager.Instance.GameData.Tutorial.IsPlayAreaTutDone && DataManager.Instance.GameData.Tutorial.IsSpeDecoTutDone) {
-			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoPlayArea";
-		}
-		else if(TierManager.Instance.CurrentTier == 6 && !DataManager.Instance.GameData.Tutorial.IsFlyThruTutDone && DataManager.Instance.GameData.Tutorial.IsPlayAreaTutDone) {
-			DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "TutDecoFlyThru";
-		}
 
-		if(TierManager.Instance.CurrentTier == 6 && !DataManager.Instance.GameData.DayTracker.IsMoreCrates && !TierManager.Instance.IsNewUnlocksAvailable) {
-			if(beaconNode.transform.childCount == 0) {
-				GameObject beacon = Resources.Load("Beacon") as GameObject;
-				GameObjectUtils.AddChild(beaconNode, beacon);
-				HUDManager.Instance.ToggleBeaconLock(true);
-			}
-		}
 		NotificationManager.Instance.TryNextNotification();
     //    TurnOnEntrances();
 		// Save game data again, lock down on the event

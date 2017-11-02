@@ -59,6 +59,8 @@ public class NotificationManager : Singleton<NotificationManager> {
 			if(delayBetweenNotifications > 0) {
 				yield return new WaitForSeconds(delayBetweenNotifications);
 			}
+			Debug.Log(notificationQueue.Count);
+			Debug.Log(notificationQueue.Peek().ToString());
 			NotificationQueueData pop = notificationQueue.Dequeue();
 			/*if(pop.GetType().ToString() == "NotificationQueueDataReward") {
 				notificationQueue.Clear();
