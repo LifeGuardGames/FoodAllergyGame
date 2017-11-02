@@ -202,10 +202,10 @@ public class StartManager : Singleton<StartManager> {
 		}
 		TurnOffEntrances();
 		// Check if special tutorial is set, load it as a challenge directly
-		if(!string.IsNullOrEmpty(DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge)) {
+		if(!DataManager.Instance.GameData.Tutorial.IsComicViewed) {
 			// Disable ad showing for the first time tutorial
-			bool allowShowAds = DataManager.Instance.GameData.Tutorial.IsTutorial1Done;
-            LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, showRandomTip: true, showAdChance: allowShowAds);
+			//bool allowShowAds = DataManager.Instance.GameData.Tutorial.IsTutorial1Done;
+            LoadLevelManager.Instance.StartLoadTransition(SceneUtils.VIDEO);
 		}
 		else {
 			LoadLevelManager.Instance.StartLoadTransition(SceneUtils.CHALLENGEMENU, showRandomTip: true);
@@ -243,7 +243,7 @@ public class StartManager : Singleton<StartManager> {
 	}
 
 	public void OnLaunchTutorialButton() {
-		DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "ChallengeTut1";
+		DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "Challenge01";
 		TurnOffEntrances();
         LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, "LoadingKeyTutorial", showRandomTip: false);
 	}

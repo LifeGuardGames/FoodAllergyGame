@@ -73,7 +73,7 @@ public class LoadLevelManager : Singleton<LoadLevelManager> {
 
 			// Determine if show ad chance overrides random tip
 			if(showAdChance && !showRandomTip) {
-				showAd = true;
+				showAd = false;
 			}
 			else if(showAdChance) {		// 20% chance to show ads
 				showAd = UnityEngine.Random.Range(0, 5) == 0;

@@ -8,4 +8,5 @@
 	public const string CHALLENGEMENU = "ChallengeMenu";
 	public const string EPIPEN = "EpiPenGame";
 	public const string CHEATY = "CheatyScene";
+	public const string VIDEO = "TutorialVideoScene";
 }
