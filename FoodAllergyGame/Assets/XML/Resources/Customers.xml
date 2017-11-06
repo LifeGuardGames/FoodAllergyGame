@@ -5,7 +5,7 @@
 		<CustomerDesc>CustomerDesc</CustomerDesc>
 		<SpriteName>ItemCustomerRegular</SpriteName>
 		<Script>Customer</Script>
-		<Tier>0</Tier>
+		<Tier>-2</Tier>
     <Flow>BehavFlow00</Flow>
 	</Customer>
 	<Customer ID="CustomerImpatient">
@@ -13,7 +13,7 @@
 		<CustomerDesc>CustomerImpatientDesc</CustomerDesc>
 		<SpriteName>ItemCustomerImpatient</SpriteName>
 		<Script>CustomerImpatient</Script>
-		<Tier>5</Tier>
+		<Tier>-2</Tier>
     <Flow>BehavFlow00</Flow>
 	</Customer>
 	<Customer ID="CustomerPlayful">
@@ -21,7 +21,7 @@
 		<CustomerDesc>CustomerPlayfulDesc</CustomerDesc>
 		<SpriteName>ItemCustomerPlayful</SpriteName>
 		<Script>CustomerPlayful</Script>
-		<Tier>15</Tier>
+		<Tier>-2</Tier>
     <Flow>BehavFlow08</Flow>
 	</Customer>
 	<Customer ID="CustomerCoolKid">
@@ -29,7 +29,7 @@
 		<CustomerDesc>CustomerCoolKidDesc</CustomerDesc>
 		<SpriteName>ItemCustomerCoolKid</SpriteName>
 		<Script>CustomerCoolKid</Script>
-		<Tier>7</Tier>
+		<Tier>-2</Tier>
     <Flow>BehavFlow00</Flow>
 	</Customer>
 	<Customer ID="CustomerTableSmasher">
@@ -37,7 +37,7 @@
 		<CustomerDesc>CustomerTableSmasherDesc</CustomerDesc>
 		<SpriteName>ItemCustomerTableSmasher</SpriteName>
 		<Script>CustomerTableSmasher</Script>
-		<Tier>6</Tier>
+		<Tier>-2</Tier>
     <Flow>BehavFlow02</Flow>
 	</Customer>
 	<Customer ID="CustomerHospitalRunner">
@@ -45,7 +45,7 @@
 		<CustomerDesc>CustomerHospitalRunnerDesc</CustomerDesc>
 		<SpriteName>ItemCustomerHospitalRunner</SpriteName>
 		<Script>CustomerHospitalRunner</Script>
-		<Tier>11</Tier>
+		<Tier>-2</Tier>
     <Flow>BehavFlow07</Flow>
 	</Customer>
 	<Customer ID="CustomerEater">
@@ -53,7 +53,7 @@
 		<CustomerDesc>CustomerEaterDesc</CustomerDesc>
 		<SpriteName>ItemCustomerEater</SpriteName>
 		<Script>CustomerEater</Script>
-		<Tier>13</Tier>
+		<Tier>-2</Tier>
     <Flow>BehavFlow21</Flow>
 	</Customer>
 	<Customer ID="CustomerBlackOut">
@@ -61,7 +61,7 @@
 		<CustomerDesc>CustomerBlackOutDesc</CustomerDesc>
 		<SpriteName>ItemCustomerBlackOut</SpriteName>
 		<Script>CustomerBlackOut</Script>
-		<Tier>15</Tier>
+		<Tier>-2</Tier>
     <Flow>BehavFlow05</Flow>
 	</Customer>
 	<Customer ID="CustomerGossiper">
@@ -69,7 +69,7 @@
 		<CustomerDesc>CustomerGossiperDesc</CustomerDesc>
 		<SpriteName>ItemCustomerGossiper</SpriteName>
 		<Script>CustomerGossiper</Script>
-		<Tier>17</Tier>
+		<Tier>-2</Tier>
     <Flow>BehavFlow06</Flow>
 	</Customer>
 
