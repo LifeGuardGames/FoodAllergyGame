@@ -412,7 +412,7 @@
 		<TitleKey>VIPBasic</TitleKey>
 		<DescriptionKey>VIPBasicDesc</DescriptionKey>
 		<SpriteName>RestVIPBasic</SpriteName>
-		<Tier>2</Tier>
+		<Tier>5</Tier>
 	</DecoItem>
 	<DecoItem ID="VIPBlackHole">
 		<Type>VIP</Type>
@@ -430,7 +430,7 @@
 		<TitleKey>PlayAreaClawMachine</TitleKey>
 		<DescriptionKey>PlayAreaClawMachineDesc</DescriptionKey>
 		<SpriteName>RestPlayAreaClawMachine</SpriteName>
-		<Tier>4</Tier>
+		<Tier>10</Tier>
 	</DecoItem>
 	<DecoItem ID="PlayArea01">
 		<Type>PlayArea</Type>
@@ -448,7 +448,7 @@
 		<TitleKey>FlyThruBasic</TitleKey>
 		<DescriptionKey>FlyThruBasicDesc</DescriptionKey>
 		<SpriteName>RestFlyThruBasicSample</SpriteName>
-		<Tier>6</Tier>
+		<Tier>15</Tier>
 	</DecoItem>
 	<DecoItem ID="CustomerGossiper">
 		<Type>Special</Type>

@@ -9,8 +9,17 @@ public class ChallengeMenuManager : Singleton<ChallengeMenuManager> {
 	public ChallengeDescriptionController challengeDescription;
 	public Transform topPosition;
 	public Transform bottomPosition;
+	public GameObject Shop;
+	public GameObject PirateShip;
 
 	void Start() {
+		if(TierManager.Instance.CurrentTier < 1) {
+			Shop.SetActive(false);
+		}
+
+		if(TierManager.Instance.CurrentTier < 3) {
+			PirateShip.SetActive(false);
+		}
 
 		List<ImmutableDataChallenge> unorderedList = DataLoaderChallenge.GetDataList();
         List<ImmutableDataChallenge> challengeList = (from element in unorderedList
@@ -26,7 +35,7 @@ public class ChallengeMenuManager : Singleton<ChallengeMenuManager> {
 		int regularChallengeCount = 0;
 		GameObject challengeButton;
         foreach(ImmutableDataChallenge challengeData in challengeList) {
-			if(challengeData.Tier <= TierManager.Instance.CurrentTier) {
+			if(challengeData.Tier <= TierManager.Instance.CurrentTier && challengeData.ID != "Challenge00") {
 				if(regularChallengeCount % 2 == 0) {
 						if(challengeData.ChallengeType == ChallengeTypes.Character) {
 							challengeButton = GameObjectUtils.AddChildGUI(bottomPosition.gameObject, GetCharacterShip(challengeData));

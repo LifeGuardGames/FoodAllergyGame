@@ -137,21 +137,15 @@ public class DecoManager : Singleton<DecoManager>{
 		switch(currentTabType) {
 			case DecoTabTypes.Table:
 				decoList = new List<ImmutableDataDecoItem>();
-				foreach(string deco in DataManager.Instance.GameData.Daily.RotTables) {
-					decoList.Add(DataLoaderDecoItem.GetData(deco));
-				}
+				decoList = DataLoaderDecoItem.GetUnlockedDecoDataListByTabType(TierManager.Instance.CurrentTier, DecoTabTypes.Table);
 				break;
 			case DecoTabTypes.Kitchen:
 				decoList = new List<ImmutableDataDecoItem>();
-				foreach(string deco in DataManager.Instance.GameData.Daily.RotKitchen) {
-					decoList.Add(DataLoaderDecoItem.GetData(deco));
-				}
+				decoList = DataLoaderDecoItem.GetUnlockedDecoDataListByTabType(TierManager.Instance.CurrentTier, DecoTabTypes.Kitchen);
 				break;
 			case DecoTabTypes.Floor:
 				decoList = new List<ImmutableDataDecoItem>();
-				foreach(string deco in DataManager.Instance.GameData.Daily.RotFloors) {
-					decoList.Add(DataLoaderDecoItem.GetData(deco));
-				}
+				decoList = DataLoaderDecoItem.GetUnlockedDecoDataListByTabType(TierManager.Instance.CurrentTier, DecoTabTypes.Floor);
 				break;
 			case DecoTabTypes.Random:
 				decoList = new List<ImmutableDataDecoItem>();
@@ -168,7 +162,7 @@ public class DecoManager : Singleton<DecoManager>{
 		
 	
 		ImmutableDataDecoItem firstUnboughtDeco = null;
-
+		Debug.Log(decoList.Count);
 		for(int i = 0; i < decoPageSize; i++){
 			if(decoList.Count <= i + currentDecoPage * decoPageSize){		// Reached the end of list
 				currentDecoPage--;

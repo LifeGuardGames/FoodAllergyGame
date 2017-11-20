@@ -92,7 +92,7 @@ public class ShowcaseController : MonoBehaviour {
 	}
 
 	public void OnRemoveButtonClicked(){
-		DecoManager.Instance.SetDeco(currentDeco.ID, currentDeco.Type);
+		DecoManager.Instance.SetDeco(null, currentDeco.Type);
 	}
 
 	// Hide everything but dont touch UI state
