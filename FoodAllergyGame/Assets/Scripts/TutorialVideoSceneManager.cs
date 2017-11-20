@@ -10,7 +10,7 @@ public class TutorialVideoSceneManager : MonoBehaviour {
 	}
 	
 	IEnumerator FinishVideo() {
-		yield return new WaitForSeconds(17f);
+		yield return new WaitForSeconds(19f);
 		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.COMICSCENE);
 	}
 

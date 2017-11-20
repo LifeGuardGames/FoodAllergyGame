@@ -450,7 +450,7 @@
 		<SpriteName>RestFlyThruBasicSample</SpriteName>
 		<Tier>15</Tier>
 	</DecoItem>
-	<DecoItem ID="CustomerGossiper">
+	<!--<DecoItem ID="CustomerGossiper">
 		<Type>Special</Type>
 		<DecoTabType>Random</DecoTabType>
 		<Price>6000</Price>
@@ -486,136 +486,136 @@
 		<SpriteName>ItemCustomerBlackOut</SpriteName>
 		<Tier>0</Tier>
 		<IAPPrice>1</IAPPrice>
-	</DecoItem>
+	</DecoItem>-->
 	<DecoItem ID="TablePlushie">
 		<Type>Table</Type>
-		<DecoTabType>IAP</DecoTabType>
-		<Price>0</Price>
+		<DecoTabType>Table</DecoTabType>
+		<Price>1500</Price>
 		<TitleKey>TablePlushie</TitleKey>
 		<DescriptionKey>TablePlushieDesc</DescriptionKey>
 		<SpriteName>RestTablePlushie</SpriteName>
-		<Tier>0</Tier>
+		<Tier>15</Tier>
 		<IAPPrice>1</IAPPrice>
 		<ProdID>com.lifeguardgames.foodallergy.iap.plushie.table</ProdID>
 	</DecoItem>
 	<DecoItem ID="FloorPlushie">
 		<Type>Floor</Type>
-		<DecoTabType>IAP</DecoTabType>
-		<Price>0</Price>
+		<DecoTabType>Floor</DecoTabType>
+		<Price>2000</Price>
 		<TitleKey>FloorPlushie</TitleKey>
 		<DescriptionKey>FloorPlushieDesc</DescriptionKey>
 		<SpriteName>RestFloorPlushie</SpriteName>
-		<Tier>0</Tier>
+		<Tier>20</Tier>
 		<IAPPrice>1</IAPPrice>
 		<ProdID>com.lifeguardgames.foodallergy.iap.plushie.floor</ProdID>
 	</DecoItem>
 	<DecoItem ID="KitchenPlushie">
 		<Type>Kitchen</Type>
-		<DecoTabType>IAP</DecoTabType>
-		<Price>0</Price>
+		<DecoTabType>Kitchen</DecoTabType>
+		<Price>2500</Price>
 		<TitleKey>KitchenPlushie</TitleKey>
 		<DescriptionKey>KitchenPlushieDesc</DescriptionKey>
 		<SpriteName>RestKitchenPlushie</SpriteName>
-		<Tier>0</Tier>
+		<Tier>25</Tier>
 		<IAPPrice>1</IAPPrice>
 		<ProdID>com.lifeguardgames.foodallergy.iap.plushie.kitchen</ProdID>
 	</DecoItem>
 	<DecoItem ID="TableSloppy">
 		<Type>Table</Type>
-		<DecoTabType>IAP</DecoTabType>
-		<Price>0</Price>
+		<DecoTabType>Table</DecoTabType>
+		<Price>1000</Price>
 		<TitleKey>TableSloppy</TitleKey>
 		<DescriptionKey>TableSloppyDesc</DescriptionKey>
 		<SpriteName>RestTableSloppy</SpriteName>
-		<Tier>0</Tier>
+		<Tier>10</Tier>
 		<IAPPrice>1</IAPPrice>
 		<ProdID>com.lifeguardgames.foodallergy.iap.sloppy.table</ProdID>
 	</DecoItem>
 	<DecoItem ID="FloorSloppy">
 		<Type>Floor</Type>
-		<DecoTabType>IAP</DecoTabType>
-		<Price>0</Price>
+		<DecoTabType>Floor</DecoTabType>
+		<Price>1500</Price>
 		<TitleKey>FloorSloppy</TitleKey>
 		<DescriptionKey>FloorSloppyDesc</DescriptionKey>
 		<SpriteName>RestFloorSloppy</SpriteName>
-		<Tier>0</Tier>
+		<Tier>15</Tier>
 		<IAPPrice>1</IAPPrice>
 		<ProdID>com.lifeguardgames.foodallergy.iap.sloppy.floor</ProdID>
 	</DecoItem>
 	<DecoItem ID="KitchenSloppy">
 		<Type>Kitchen</Type>
-		<DecoTabType>IAP</DecoTabType>
-		<Price>0</Price>
+		<DecoTabType>Kitchen</DecoTabType>
+		<Price>2000</Price>
 		<TitleKey>KitchenSloppy</TitleKey>
 		<DescriptionKey>KitchenSloppyDesc</DescriptionKey>
 		<SpriteName>RestKitchenSloppy</SpriteName>
-		<Tier>0</Tier>
+		<Tier>20</Tier>
 		<IAPPrice>1</IAPPrice>
 		<ProdID>com.lifeguardgames.foodallergy.iap.sloppy.kitchen</ProdID>
 	</DecoItem>
 	<DecoItem ID="TableSpooky">
 		<Type>Table</Type>
-		<DecoTabType>IAP</DecoTabType>
-		<Price>0</Price>
+		<DecoTabType>Table</DecoTabType>
+		<Price>2500</Price>
 		<TitleKey>TableSpooky</TitleKey>
 		<DescriptionKey>TableSpookyDesc</DescriptionKey>
 		<SpriteName>RestTableSpooky</SpriteName>
-		<Tier>0</Tier>
+		<Tier>25</Tier>
 		<IAPPrice>1</IAPPrice>
 		<ProdID>com.lifeguardgames.foodallergy.iap.spooky.table</ProdID>
 	</DecoItem>
 	<DecoItem ID="FloorSpooky">
 		<Type>Floor</Type>
-		<DecoTabType>IAP</DecoTabType>
-		<Price>0</Price>
+		<DecoTabType>Floor</DecoTabType>
+		<Price>3000</Price>
 		<TitleKey>FloorSpooky</TitleKey>
 		<DescriptionKey>FloorSpookyDesc</DescriptionKey>
 		<SpriteName>RestFloorSpooky</SpriteName>
-		<Tier>0</Tier>
+		<Tier>30</Tier>
 		<IAPPrice>1</IAPPrice>
 		<ProdID>com.lifeguardgames.foodallergy.iap.spooky.floor</ProdID>
 	</DecoItem>
 	<DecoItem ID="KitchenSpooky">
 		<Type>Kitchen</Type>
-		<DecoTabType>IAP</DecoTabType>
-		<Price>0</Price>
+		<DecoTabType>Kitchen</DecoTabType>
+		<Price>3500</Price>
 		<TitleKey>KitchenSpooky</TitleKey>
 		<DescriptionKey>KitchenSpookyDesc</DescriptionKey>
 		<SpriteName>RestKitchenSpooky</SpriteName>
-		<Tier>0</Tier>
+		<Tier>35</Tier>
 		<IAPPrice>1</IAPPrice>
 		<ProdID>com.lifeguardgames.foodallergy.iap.spooky.kitchen</ProdID>
 	</DecoItem>
 	<DecoItem ID="TableSea">
 		<Type>Table</Type>
-		<DecoTabType>IAP</DecoTabType>
-		<Price>0</Price>
+		<DecoTabType>Table</DecoTabType>
+		<Price>500</Price>
 		<TitleKey>TableSea</TitleKey>
 		<DescriptionKey>TableSeaDesc</DescriptionKey>
 		<SpriteName>RestTableSea</SpriteName>
-		<Tier>0</Tier>
+		<Tier>5</Tier>
 		<IAPPrice>1</IAPPrice>
 		<ProdID>com.lifeguardgames.foodallergy.iap.sea.table</ProdID>
 	</DecoItem>
 	<DecoItem ID="FloorSea">
 		<Type>Floor</Type>
-		<DecoTabType>IAP</DecoTabType>
-		<Price>0</Price>
+		<DecoTabType>Floor</DecoTabType>
+    <Price>1000</Price>
 		<TitleKey>FloorSea</TitleKey>
 		<DescriptionKey>FloorSeaDesc</DescriptionKey>
 		<SpriteName>RestFloorSea</SpriteName>
-		<Tier>0</Tier>
+		<Tier>10</Tier>
 		<IAPPrice>1</IAPPrice>
 		<ProdID>com.lifeguardgames.foodallergy.iap.sea.floor</ProdID>
 	</DecoItem>
 	<DecoItem ID="KitchenSea">
 		<Type>Kitchen</Type>
-		<DecoTabType>IAP</DecoTabType>
-		<Price>0</Price>
+		<DecoTabType>Kitchen</DecoTabType>
+		<Price>1500</Price>
 		<TitleKey>KitchenSea</TitleKey>
 		<DescriptionKey>KitchenSeaDesc</DescriptionKey>
 		<SpriteName>RestKitchenSea</SpriteName>
-		<Tier>0</Tier>
+    <Tier>15</Tier>
 		<IAPPrice>1</IAPPrice>
 		<ProdID>com.lifeguardgames.foodallergy.iap.sea.kitchen</ProdID>
 	</DecoItem>
