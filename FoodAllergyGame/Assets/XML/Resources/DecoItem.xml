@@ -450,43 +450,6 @@
 		<SpriteName>RestFlyThruBasicSample</SpriteName>
 		<Tier>15</Tier>
 	</DecoItem>
-	<!--<DecoItem ID="CustomerGossiper">
-		<Type>Special</Type>
-		<DecoTabType>Random</DecoTabType>
-		<Price>6000</Price>
-		<TitleKey>CustomerGossiper</TitleKey>
-		<DescriptionKey>CustomerGossiperDesc</DescriptionKey>
-		<SpriteName>ItemCustomerGossiper</SpriteName>
-		<Tier>0</Tier>
-	</DecoItem>
-	<DecoItem ID="CustomerEater">
-		<Type>Special</Type>
-		<DecoTabType>Random</DecoTabType>
-		<Price>6000</Price>
-		<TitleKey>CustomerEater</TitleKey>
-		<DescriptionKey>CustomerEaterDesc</DescriptionKey>
-		<SpriteName>ItemCustomerEater</SpriteName>
-		<Tier>0</Tier>
-	</DecoItem>
-	<DecoItem ID="CustomerHospitalRunner">
-		<Type>Special</Type>
-		<DecoTabType>Random</DecoTabType>
-		<Price>6000</Price>
-		<TitleKey>CustomerHospitalRunner</TitleKey>
-		<DescriptionKey>CustomerHospitalRunnerDesc</DescriptionKey>
-		<SpriteName>ItemCustomerHospitalRunner</SpriteName>
-		<Tier>0</Tier>
-	</DecoItem>
-	<DecoItem ID="CustomerBlackOut">
-		<Type>Special</Type>
-		<DecoTabType>Random</DecoTabType>
-		<Price>6000</Price>
-		<TitleKey>CustomerBlackOut</TitleKey>
-		<DescriptionKey>CustomerBlackOutDesc</DescriptionKey>
-		<SpriteName>ItemCustomerBlackOut</SpriteName>
-		<Tier>0</Tier>
-		<IAPPrice>1</IAPPrice>
-	</DecoItem>-->
 	<DecoItem ID="TablePlushie">
 		<Type>Table</Type>
 		<DecoTabType>Table</DecoTabType>

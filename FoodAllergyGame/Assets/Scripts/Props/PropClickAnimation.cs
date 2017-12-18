@@ -18,16 +18,16 @@ public class PropClickAnimation : MonoBehaviour {
 	public ParticleSystem particle;
 
 	public void OnMouseDown() {
-		if(anim != null) {
+		if(anim != null && !NotificationManager.Instance.IsNotificationActive) {
 			anim.Play();
 		}
-		if(animator != null) {
+		if(animator != null && !NotificationManager.Instance.IsNotificationActive ){
 			animator.SetTrigger("Clicked");
 		}
-		if(!string.IsNullOrEmpty(audioClipToPlay)) {
+		if(!string.IsNullOrEmpty(audioClipToPlay) && !NotificationManager.Instance.IsNotificationActive) {
 			AudioManager.Instance.PlayClip(audioClipToPlay, variations: audioVariations);
 		}
-		if(particle != null) {
+		if(particle != null && !NotificationManager.Instance.IsNotificationActive) {
 			particle.Play();
         }
 	}

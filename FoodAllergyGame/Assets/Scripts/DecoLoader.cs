@@ -40,13 +40,8 @@ public abstract class DecoLoader : MonoBehaviour {
 				LoadDeco(decoData);
 			}
 			else {
-				if(decoType == DecoTypes.PlayArea || decoType == DecoTypes.VIP || decoType == DecoTypes.FlyThru) {
-					LoadDeco(null);
-				}
-				else {
-					ImmutableDataDecoItem decoData = DataManager.Instance.GetActiveDecoData(decoType);
-					LoadDeco(decoData);
-				}
+				ImmutableDataDecoItem decoData = DataManager.Instance.GetActiveDecoData(decoType);
+				LoadDeco(decoData);
 			}
 		}
 	}

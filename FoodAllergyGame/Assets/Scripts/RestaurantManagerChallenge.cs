@@ -40,20 +40,7 @@ public class RestaurantManagerChallenge : RestaurantManager {
 		}
 			scoreBoard.gameObject.SetActive(true);
 			scoreBoard.UpDateScore(0);
-			if(chall.PlayArea != "0" && PlayArea.Instance == null) {
-				play.LoadDeco(DataLoaderDecoItem.GetData(chall.PlayArea));
-				isPlayarea = true;
-			}
-			else if(PlayArea.Instance != null) {
-				PlayArea.Instance.OpenUpSpots();
-			}
-			if(chall.VipTable != "0" && isVip == false) {
-				vip.LoadDeco(DataLoaderDecoItem.GetData(chall.VipTable));
-				isVip = true;
-			}
-			if(chall.FlyThru != "0" && flyThruTable == null) {
-				fly.LoadDeco(DataLoaderDecoItem.GetData(chall.FlyThru));
-			}
+
 
 			currCusSet = new List<string>();
 			actTables = chall.NumOfTables;
