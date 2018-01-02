@@ -18,12 +18,12 @@
 
 	<PropGrowth ID="PropGrowthParking00">
 		<PropKey>PropGrowthParking</PropKey>
-		<TierUnlock>2</TierUnlock>
+		<TierUnlock>1</TierUnlock>
 		<PrefabName>PropGrowthParking00</PrefabName>
 	</PropGrowth>
 	<PropGrowth ID="PropGrowthParking01">
 		<PropKey>PropGrowthParking</PropKey>
-		<TierUnlock>5</TierUnlock>
+		<TierUnlock>1</TierUnlock>
 		<PrefabName>PropGrowthParking01</PrefabName>
 	</PropGrowth>
 	<PropGrowth ID="PropGrowthParking02">

@@ -221,7 +221,7 @@ public class StartManager : Singleton<StartManager> {
 	public void ChallengeMenuButtonClicked() {
 		DataManager.Instance.GameData.Challenge.IsFirstTimeChallengeEntrance = false;
 		TurnOffEntrances();
-		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.CHALLENGEMENU, showRandomTip: true);
+		LoadLevelManager.Instance.StartLoadTransition(SceneUtils.MENUPLANNING, showRandomTip: true);
 	}
 
 	public void CheatyScene() {
@@ -243,9 +243,9 @@ public class StartManager : Singleton<StartManager> {
 	}
 
 	public void OnLaunchTutorialButton() {
-		DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "Challenge01";
+		DataManager.Instance.GameData.RestaurantEvent.CurrentChallenge = "Challenge00";
 		TurnOffEntrances();
-        LoadLevelManager.Instance.StartLoadTransition(SceneUtils.RESTAURANT, "LoadingKeyTutorial", showRandomTip: false);
+        LoadLevelManager.Instance.StartLoadTransition(SceneUtils.EPIPEN, "LoadingKeyEpipen", showRandomTip: false);
 	}
 
 	// Called from AgeAskController
